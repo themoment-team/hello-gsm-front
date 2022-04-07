@@ -4,7 +4,7 @@ Hello, GSM은 광주 소프트웨어 마이스터고등학교 입학지원 시�
 
 ```
 - git clone
-$ git clone https://github.com/themoment-team/whiteday-front.git
+$ git clone https://github.com/themoment-team/hello-gsm-front.git
 
 - setting project
 $ yarn install
