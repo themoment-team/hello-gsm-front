@@ -15,6 +15,20 @@ export function GlobalStyle() {
           -webkit-font-smoothing: antialiased;
           font-smoothing: antialiased;
         }
+
+        @font-face {
+          font-family: 'Product-Sans-Bold';
+          src: url('/Fonts/Product Sans Bold.ttf') format('truetype');
+        }
+
+        @font-face {
+          font-family: 'Product-Sans-Regular';
+          src: url('/Fonts/Product Sans Regular.ttf') format('truetype');
+        }
+
+        body {
+          font-family: 'Product-Sans-Bold';
+        }
       `}
     />
   );
