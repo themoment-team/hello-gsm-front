@@ -7,27 +7,17 @@ export function GlobalStyle() {
       styles={css`
         ${emotionReset}
 
+        body {
+          font-family: 'Noto Sans KR', sans-serif;
+        }
+
         *,
-          *::after,
-          *::before {
+        *::after,
+        *::before {
           box-sizing: border-box;
           -moz-osx-font-smoothing: grayscale;
           -webkit-font-smoothing: antialiased;
           font-smoothing: antialiased;
-        }
-
-        @font-face {
-          font-family: 'Product-Sans-Bold';
-          src: url('/Fonts/Product Sans Bold.ttf') format('truetype');
-        }
-
-        @font-face {
-          font-family: 'Product-Sans-Regular';
-          src: url('/Fonts/Product Sans Regular.ttf') format('truetype');
-        }
-
-        body {
-          font-family: 'Product-Sans-Bold';
         }
       `}
     />
