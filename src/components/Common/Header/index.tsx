@@ -23,6 +23,14 @@ const Header: React.FC = () => {
           <S.NavContent>자주 묻는 질문</S.NavContent>
         </Link>
       </S.NavBar>
+      <S.MemberBox>
+        <Link href="/login">
+          <S.Login>login</S.Login>
+        </Link>
+        <Link href="signup">
+          <S.SignUp>sign in</S.SignUp>
+        </Link>
+      </S.MemberBox>
     </S.Header>
   );
 }
