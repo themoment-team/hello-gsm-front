@@ -11,7 +11,7 @@ export const Header = styled.div`
 export const Logo = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 export const LogoContent = styled.a`
   font-size: 30px;
@@ -21,16 +21,14 @@ export const LogoContent = styled.a`
 `
 
 export const NavBar = styled.div`
-  background-color: red;
-  width: 50%;
+  width: 700px;
   height: 100%;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
-export const NavContent = styled.p`
+export const NavContent = styled.a`
   text-decoration: none;
   font-weight: 700;
   font-size: 18px;
@@ -38,4 +36,25 @@ export const NavContent = styled.p`
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const MemberBox = styled.div`
+  width: 140px;
+  color: #969696;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 400;
+  a:hover{
+    cursor: pointer;
+  }
+`;
+
+export const Login = styled.a`
+
+`;
+
+export const SignUp = styled.a`
+
 `;
