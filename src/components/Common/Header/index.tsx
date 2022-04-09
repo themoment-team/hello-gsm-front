@@ -4,6 +4,11 @@ import * as S from './style';
 const Header: React.FC = () => {
   return (
     <S.Header>
+      <S.Logo>
+        <Link href="/">
+          <S.LogoContent>Hello, GSM</S.LogoContent>
+        </Link>
+      </S.Logo>
       <S.NavBar>
         <Link href="/asdf">
           <S.NavContent>학교소개</S.NavContent>
