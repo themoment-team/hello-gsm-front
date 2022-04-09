@@ -8,6 +8,18 @@ export const Header = styled.div`
   justify-content: space-around;
 `;
 
+export const Logo = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+export const LogoContent = styled.a`
+  font-size: 30px;
+  &:hover {
+    cursor: pointer;
+  }
+`
+
 export const NavBar = styled.div`
   background-color: red;
   width: 50%;
