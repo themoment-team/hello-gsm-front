@@ -7,9 +7,13 @@ export function GlobalStyle() {
       styles={css`
         ${emotionReset}
 
+        body {
+          font-family: 'Noto Sans KR', sans-serif;
+        }
+
         *,
-          *::after,
-          *::before {
+        *::after,
+        *::before {
           box-sizing: border-box;
           -moz-osx-font-smoothing: grayscale;
           -webkit-font-smoothing: antialiased;
