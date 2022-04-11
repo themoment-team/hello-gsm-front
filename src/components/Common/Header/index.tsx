@@ -25,10 +25,10 @@ const Header: React.FC = () => {
       </S.NavBar>
       <S.MemberBox>
         <Link href="/login">
-          <S.Login>login</S.Login>
+          <a>login</a>
         </Link>
         <Link href="signup">
-          <S.SignUp>sign in</S.SignUp>
+          <a>sign in</a>
         </Link>
       </S.MemberBox>
     </S.Header>
