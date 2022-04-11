@@ -22,7 +22,7 @@ const Header: React.FC = () => {
         <Link href="/school" passHref>
           <S.NavContent style={select('/school')}>학교소개</S.NavContent>
         </Link>
-        <Link href="/team" passHref>
+        <Link href="/about" passHref>
           <S.NavContent style={select('/about')}>팀소개</S.NavContent>
         </Link>
         <Link href="/faq" passHref>
