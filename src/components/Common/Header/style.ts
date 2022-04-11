@@ -19,7 +19,7 @@ export const LogoContent = styled.a`
   &:hover {
     cursor: pointer;
   }
-`
+`;
 
 export const NavBar = styled.div`
   width: 700px;
@@ -40,16 +40,16 @@ export const NavContent = styled.a`
 
 export const MemberBox = styled.div`
   width: 140px;
-  font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  a {
-    text-decoration: none;
-    color: #969696;
-    font-weight: 400;
-  }
-  a:hover {
+`;
+
+export const MemberContent = styled.a`
+  color: #969696;
+  font-weight: 400;
+  font-size: 18px;
+  &:hover {
     cursor: pointer;
   }
 `;
