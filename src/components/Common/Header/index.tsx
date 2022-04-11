@@ -10,29 +10,29 @@ const Header: React.FC = () => {
         </Link>
       </S.Logo>
       <S.NavBar>
-        <Link href="/asdf">
+        <Link href="/">
           <S.NavContent>홈으로</S.NavContent>
         </Link>
-        <Link href="/asdf">
+        <Link href="/school">
           <S.NavContent>학교소개</S.NavContent>
         </Link>
-        <Link href="/asdf">
+        <Link href="/team">
           <S.NavContent>팀소개</S.NavContent>
         </Link>
-        <Link href="/asdf">
+        <Link href="/faq">
           <S.NavContent>자주 묻는 질문</S.NavContent>
         </Link>
       </S.NavBar>
       <S.MemberBox>
-        <Link href="/login">
-          <a>로그인</a>
+        <Link href="/signin">
+          <S.MemberContent>로그인</S.MemberContent>
         </Link>
-        <Link href="signup">
-          <a>회원가입</a>
+        <Link href="/signup">
+          <S.MemberContent>회원가입</S.MemberContent>
         </Link>
       </S.MemberBox>
     </S.Header>
   );
 }
 
-export default Header;
+export default Header; 
