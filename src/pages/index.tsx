@@ -1,16 +1,12 @@
 import React from 'react';
 import type { NextPage } from 'next';
-import { css } from '@emotion/react';
+import MainPage from 'components/MainPage';
 
 const Home: NextPage = () => {
   return (
-    <div
-      css={css`
-        color: red;
-      `}
-    >
-      Designed by sunwoo in californium
-    </div>
+    <>
+      <MainPage />
+    </>
   );
 };
 
