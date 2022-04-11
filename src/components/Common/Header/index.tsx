@@ -11,13 +11,13 @@ const Header: React.FC = () => {
       </S.Logo>
       <S.NavBar>
         <Link href="/asdf">
+          <S.NavContent>홈으로</S.NavContent>
+        </Link>
+        <Link href="/asdf">
           <S.NavContent>학교소개</S.NavContent>
         </Link>
         <Link href="/asdf">
           <S.NavContent>팀소개</S.NavContent>
-        </Link>
-        <Link href="/asdf">
-          <S.NavContent>합격 여부</S.NavContent>
         </Link>
         <Link href="/asdf">
           <S.NavContent>자주 묻는 질문</S.NavContent>
@@ -25,10 +25,10 @@ const Header: React.FC = () => {
       </S.NavBar>
       <S.MemberBox>
         <Link href="/login">
-          <a>login</a>
+          <a>로그인</a>
         </Link>
         <Link href="signup">
-          <a>sign in</a>
+          <a>회원가입</a>
         </Link>
       </S.MemberBox>
     </S.Header>
