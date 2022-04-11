@@ -15,6 +15,7 @@ export const Logo = styled.div`
 
 export const LogoContent = styled.a`
   font-size: 30px;
+  font-weight: 700;
   &:hover {
     cursor: pointer;
   }
@@ -29,7 +30,6 @@ export const NavBar = styled.div`
 `;
 
 export const NavContent = styled.a`
-  text-decoration: none;
   font-weight: 700;
   font-size: 18px;
   color: #bdbdbd;
@@ -40,21 +40,16 @@ export const NavContent = styled.a`
 
 export const MemberBox = styled.div`
   width: 140px;
-  color: #969696;
   font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-weight: 400;
-  a:hover{
+  a {
+    text-decoration: none;
+    color: #969696;
+    font-weight: 400;
+  }
+  a:hover {
     cursor: pointer;
   }
-`;
-
-export const Login = styled.a`
-
-`;
-
-export const SignUp = styled.a`
-
 `;
