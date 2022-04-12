@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import * as S from './style';
 
 const Header: React.FC = () => {
-  const pathname: string = useRouter().pathname;
+  const { pathname } = useRouter();
 
   const select = (navPath: string) =>
     navPath === pathname ? { color: '#ffffff' } : undefined;
