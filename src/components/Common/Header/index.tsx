@@ -39,6 +39,6 @@ const Header: React.FC = () => {
       </S.MemberBox>
     </S.Header>
   );
-}
+};
 
-export default Header; 
+export default Header;
