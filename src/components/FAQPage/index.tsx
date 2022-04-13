@@ -16,7 +16,6 @@ const FAQPage: NextPage<FAQType> = ({ faqData }) => {
   return (
     <>
       <Header />
-      <div>{faqData[0].content}</div>
     </>
   );
 };
