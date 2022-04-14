@@ -7,10 +7,10 @@ interface InputProps {
   type: string;
   register: UseFormRegisterReturn;
 }
-const Input = ({ placeholder, type, register }: InputProps) => {
+const SignInInput = ({ placeholder, type, register }: InputProps) => {
   return (
     <S.Input placeholder={placeholder} type={type} {...register}></S.Input>
   );
 };
 
-export default Input;
+export default SignInInput;

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const SingInPage = styled.div`
+export const SignInPage = styled.div`
   position: relative;
   background: #0f0921;
   height: calc(100vh - 70px);
@@ -11,7 +11,7 @@ export const SingInPage = styled.div`
   z-index: 2;
 `;
 
-export const SignInBox = styled.form`
+export const SignInForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;

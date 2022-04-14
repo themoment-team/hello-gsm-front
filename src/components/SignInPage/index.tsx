@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import Header from 'components/Common/Header';
 import Link from 'next/link';
-import Input from 'components/Input/SignIn';
+import SignInInput from 'components/Input/SignIn';
 import { useForm } from 'react-hook-form';
 
 interface UserForm {
@@ -19,13 +19,12 @@ const SignInPage: NextPage = () => {
   return (
     <>
       <Header />
-      <S.SingInPage>
+      <S.SignInPage>
         <S.BigCircle></S.BigCircle>
         <S.SmallCircle></S.SmallCircle>
-
-        <S.SignInBox onSubmit={handleSubmit(onValid)}>
+        <S.SignInForm onSubmit={handleSubmit(onValid)}>
           <S.Title>로그인</S.Title>
-          <Input
+          <SignInInput
             placeholder="아이디 또는 이메일을 입력해주세요"
             type="text"
             register={register('id', {
@@ -34,7 +33,7 @@ const SignInPage: NextPage = () => {
               maxLength: 12,
             })}
           />
-          <Input
+          <SignInInput
             placeholder="비밀번호를 입력해주세요"
             type="password"
             register={register('password', {
@@ -53,8 +52,8 @@ const SignInPage: NextPage = () => {
               <S.SignUp>회원가입</S.SignUp>
             </Link>
           </S.Forget>
-        </S.SignInBox>
-      </S.SingInPage>
+        </S.SignInForm>
+      </S.SignInPage>
     </>
   );
 };
