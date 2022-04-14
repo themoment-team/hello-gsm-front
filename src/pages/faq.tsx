@@ -21,7 +21,6 @@ const Faq: NextPage<FaqType> = ({ data }) => {
 export const getStaticProps: GetStaticProps = async () => {
   try {
     const { data } = await axios.get('http://localhost:3000/data/faq.json');
-    console.log(data);
     return {
       props: {
         data,
