@@ -1,22 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import Header from 'components/Common/Header';
-import { useForm } from 'react-hook-form';
 import * as I from '../../Assets/svg';
 import * as S from './style';
+import FAQBox from 'components/FAQBox';
 
-interface FAQType {
-  faqData: {
-    title: string;
-    content: string;
-  }[];
-}
+type FAQDataType = {
+  faqData: FAQType[];
+};
 
-const FAQPage: NextPage<FAQType> = ({ faqData }) => {
-  console.log(faqData);
+export type FAQType = {
+  title: string;
+  content: string;
+};
 
-  const { register, watch } = useForm();
-  console.log(watch());
+const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
+  const [faqList, setFaqList] = useState<FAQType[]>(faqData);
+  const [keyword, setKeyword] = useState<string>('');
+
+  const searching = e => {
+    setKeyword(e.target.value);
+  };
+
+  useEffect(() => {
+    setFaqList(faqData.filter((faq: FAQType) => faq.title.includes(keyword)));
+  }, [keyword]);
 
   return (
     <S.FAQPage>
@@ -28,11 +36,14 @@ const FAQPage: NextPage<FAQType> = ({ faqData }) => {
           <S.Search
             type="text"
             placeholder="질문 제목을 입력해주세요"
-            {...register('keywords')}
+            onChange={searching}
+            value={keyword}
           />
         </S.SearchWrapper>
         <S.FAQList>
-          
+          {faqList.map((faq: FAQType, index: number) => (
+            <FAQBox key={index} title={faq.title} content={faq.content} />
+          ))}
         </S.FAQList>
       </S.FAQWrapper>
     </S.FAQPage>
