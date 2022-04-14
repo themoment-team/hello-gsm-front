@@ -9,7 +9,7 @@ interface InputProps {
 }
 const SignInInput = ({ placeholder, type, register }: InputProps) => {
   return (
-    <S.Input placeholder={placeholder} type={type} {...register}></S.Input>
+    <S.Input placeholder={placeholder} type={type} {...register} />
   );
 };
 
