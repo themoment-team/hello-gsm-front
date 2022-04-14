@@ -3,20 +3,20 @@ import styled from '@emotion/styled';
 export const SingInPage = styled.div`
   position: relative;
   background: #0f0921;
-  height: 100vh;
+  height: calc(100vh - 70px);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  z-index: 2;
 `;
 
-export const SignInBox = styled.div`
+export const SignInBox = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 330px;
-  height: 100%;
-  /* background-color: white; */
 `;
 
 export const Title = styled.h1`
@@ -27,21 +27,6 @@ export const Title = styled.h1`
   color: #ffffff;
   border-bottom: 1px solid #fff;
   margin-bottom: 50px;
-`;
-
-export const Input = styled.input`
-  width: 328px;
-  height: 50px;
-  background: rgba(255, 255, 255, 0.27);
-  border-radius: 32px;
-  box-sizing: border-box;
-  padding: 0 32px;
-  margin-bottom: 10px;
-  color: rgba(255, 255, 255, 0.43);
-  border: none;
-  :focus {
-    outline: none;
-  }
 `;
 
 export const Submit = styled.button`
@@ -59,6 +44,9 @@ export const Submit = styled.button`
 `;
 
 export const Forget = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -69,12 +57,21 @@ export const Forget = styled.div`
   }
 `;
 
+export const SignUp = styled.a`
+  display: block;
+  width: 72px;
+  border-top: 1px solid #ffffff;
+  text-align: center;
+  line-height: 30px;
+  margin-top: 10px;
+`;
+
 export const BigCircle = styled.div`
   position: absolute;
-  width: 1037px;
-  height: 1037px;
-  left: -337px;
-  top: 481px;
+  width: 93vh;
+  height: 93vh;
+  left: -30vh;
+  top: 43vh;
   border-radius: 50%;
   background: linear-gradient(
     201.42deg,
@@ -82,14 +79,15 @@ export const BigCircle = styled.div`
     #3f98ff 33.16%,
     rgba(0, 33, 65, 0.68) 80.28%
   );
+  z-index: -1;
 `;
 
 export const SmallCircle = styled.div`
   position: absolute;
-  width: 282px;
-  height: 282px;
-  left: 1649px;
-  top: 902px;
+  width: 25vh;
+  height: 25vh;
+  right: -5vh;
+  top: 77vh;
   border-radius: 50%;
   background: linear-gradient(
     207.52deg,
@@ -97,4 +95,5 @@ export const SmallCircle = styled.div`
     #61c5db 37.16%,
     rgba(0, 132, 201, 0.27) 91.31%
   );
+  z-index: -1;
 `;
