@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import React from 'react';
 import * as S from './style';
 
 const Header: React.FC = () => {
@@ -41,4 +42,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
