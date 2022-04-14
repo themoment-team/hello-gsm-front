@@ -8,9 +8,7 @@ interface InputProps {
   register: UseFormRegisterReturn;
 }
 const SignInInput = ({ placeholder, type, register }: InputProps) => {
-  return (
-    <S.Input placeholder={placeholder} type={type} {...register} />
-  );
+  return <S.Input placeholder={placeholder} type={type} {...register} />;
 };
 
 export default SignInInput;
