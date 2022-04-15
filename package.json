@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
+    "@react-pdf/renderer": "^2.1.1",
     "axios": "^0.26.1",
     "emotion-reset": "^3.0.1",
     "next": "12.1.0",
