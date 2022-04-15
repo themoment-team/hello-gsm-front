@@ -48,7 +48,6 @@ export const SignUpForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  display: flex;
 `;
 
 export const Title = styled.h1`
