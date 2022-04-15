@@ -9,13 +9,11 @@ export const SignUpPage = styled.div`
 `;
 
 export const LineList = styled.div`
-  position: relative;
   margin-right: 30px;
   padding-top: 70px;
 `;
 
 export const Line = styled.div`
-  font-family: 'Noto Sans KR';
   font-weight: 400;
   font-size: 20px;
   line-height: 29px;
@@ -23,21 +21,25 @@ export const Line = styled.div`
   text-align: end;
   display: block;
   &::after {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-    content: 'o';
-    position: absolute;
+    display: block;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/White_Circle.svg/2048px-White_Circle.svg.png);
+    position: relative;
+    background-size: 10px 10px;
     left: 180px;
+    top: -20px;
+    width: 10px;
+    height: 10px;
+    content: '';
   }
 
   :nth-child(2) {
-    margin: 80px 0;
+    margin: 70px 0;
   }
   :nth-child(3) {
     margin: 20px 0;
   }
   :nth-child(4) {
-    margin: 45px 0;
+    margin: 35px 0;
   }
   :nth-child(5) {
     margin: 80px 0;
