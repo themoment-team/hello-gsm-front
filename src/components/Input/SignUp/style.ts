@@ -5,15 +5,19 @@ export const Input = styled.input`
   background: #484453;
   box-sizing: border-box;
   padding: 0 24px;
-  margin-bottom: 10px;
   border: none;
   color: #ffffff;
-  font-size: 16px;
+  font-size: 20px;
   border-radius: 6px;
   ::placeholder {
     color: rgba(255, 255, 255, 0.43);
   }
   :focus {
     outline: none;
+  }
+
+  margin-bottom: 50px;
+  :nth-child(3) {
+    margin-bottom: 21px;
   }
 `;

@@ -4,9 +4,9 @@ import * as S from './style';
 import Header from 'components/Common/Header';
 import { useForm } from 'react-hook-form';
 import SignUpInput from 'components/Input/SignUp';
-import reset from 'emotion-reset';
 
 interface UserForm {
+  name: string;
   id: string;
   password: string;
   checkPW: string;
@@ -51,8 +51,9 @@ const SignUpPage: NextPage = () => {
       <S.SignUpPage>
         <S.LineList>
           <S.Line>이름</S.Line>
+          <S.Line>아이디</S.Line>
           <S.Line>비밀번호</S.Line>
-          <S.Line>비밀번호 재확인</S.Line>
+          <S.Line>비밀번호 확인</S.Line>
           <S.Line>본인인증</S.Line>
           <S.Line>개인정보 이용약관</S.Line>
         </S.LineList>
@@ -63,28 +64,41 @@ const SignUpPage: NextPage = () => {
               placeholder="실명을 입력해주세요"
               type="text"
               smallWidth={true}
+              register={register('name', {
+                required: true,
+              })}
+            />
+            <SignUpInput
+              placeholder="아이디를 입력해주세요"
+              type="text"
+              smallWidth={true}
               register={register('id', {
                 required: true,
               })}
             />
             <SignUpInput
-              placeholder="사용하실 비밀번호를 입력해주세요"
+              placeholder="비밀번호를 입력해주세요"
               type="password"
               register={register('password', {
                 required: true,
               })}
             />
             <SignUpInput
-              placeholder="사용하실 비밀번호를 한번 더 입력해주세요"
+              placeholder="비밀번호를 다시 입력해주세요"
               type="password"
               register={register('checkPW', {
                 required: true,
               })}
             />
             {errors.formError ? errors.formError?.message : ''}
+            <S.User>본인인증</S.User>
             <S.TosBox></S.TosBox>
-            <S.Button>가입하기</S.Button>
+            <S.CheckLabel htmlFor="check">
+              <input type="checkbox" id="check" /> 개인정보 이용약관을
+              확인했으며, 이에 동의합니다
+            </S.CheckLabel>
           </S.InputSection>
+          <S.Button>가입하기</S.Button>
         </S.SignUpForm>
       </S.SignUpPage>
     </>
