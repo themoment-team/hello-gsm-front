@@ -1,4 +1,5 @@
 import React from 'react';
+import type { NextPage } from 'next';
 import * as S from './style';
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
@@ -9,12 +10,12 @@ interface InputProps {
   smallWidth?: boolean;
 }
 
-const SignUpInput = ({
+const SignUpInput: NextPage<InputProps> = ({
   placeholder,
   type,
   register,
   smallWidth = false,
-}: InputProps) => {
+}) => {
   return (
     <S.Input
       placeholder={placeholder}
