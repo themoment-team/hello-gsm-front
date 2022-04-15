@@ -9,9 +9,10 @@ export function GlobalStyle() {
 
         body {
           font-family: 'Noto Sans KR', sans-serif;
+          background-color: #0f0921;
         }
 
-        a{
+        a {
           text-decoration: none;
           color: #ffffff;
         }
