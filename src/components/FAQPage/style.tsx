@@ -9,7 +9,8 @@ export const FAQWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-top: 150px;
+  position: relative;
+  top: 150px;
 `;
 
 export const Title = styled.p`
@@ -37,14 +38,60 @@ export const Search = styled.input`
   font-size: 22px;
   font-weight: 400;
   color: #ffffff;
-  &:focus {
-    outline: none;
-  }
   &::placeholder {
     color: rgba(255, 255, 255, 0.72);
+    opacity: 1;
+  }
+  &:focus {
+    outline: none;
+    ::placeholder {
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
   }
 `;
 
 export const FAQList = styled.div`
-  height: 400px;
+  margin-top: 50px;
 `;
+
+export const FAQTitle = styled.div`
+  color: white;
+`;
+
+export const FAQListIndex = styled.div`
+  width: 250px;
+  margin-top: 100px;
+  margin-bottom: 70px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const LeftButtonWrapper = styled.div`
+  width: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const RightButtonWrapper = styled.div`
+  width: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const FAQListIndexButtonWrapper = styled.div`
+  width: 100px;
+  color: #888888;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+`;
+
+export const ChangeAllowButton = styled.div`
+  cursor: pointer;
+`
