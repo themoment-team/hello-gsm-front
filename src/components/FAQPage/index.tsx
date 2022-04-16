@@ -5,6 +5,7 @@ import * as I from '../../Assets/svg';
 import * as S from './style';
 import FAQBox from 'components/FAQBox';
 import FAQModal from 'components/FAQModal';
+import useStore from 'Stores/StoreContainer';
 
 type FAQDataType = {
   faqData: FAQType[];
@@ -20,6 +21,8 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   const [keyword, setKeyword] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(1);
   const [isSearching, setIsSearching] = useState<boolean>(false);
+
+  const { showModal } = useStore();
 
   const searching = e => {
     setKeyword(e.target.value);
@@ -57,7 +60,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   return (
     <S.FAQPage>
       <Header />
-      {/* <FAQModal /> */}
+      {showModal && <FAQModal />}
       <S.FAQWrapper>
         <S.Title>자주 묻는 질문</S.Title>
         <S.SearchWrapper>
