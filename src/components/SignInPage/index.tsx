@@ -20,8 +20,8 @@ const SignInPage: NextPage = () => {
     <>
       <Header />
       <S.SignInPage>
-        <S.BigCircle></S.BigCircle>
-        <S.SmallCircle></S.SmallCircle>
+        <S.BigCircle />
+        <S.SmallCircle />
         <S.SignInForm onSubmit={handleSubmit(onValid)}>
           <S.Title>로그인</S.Title>
           <Input
