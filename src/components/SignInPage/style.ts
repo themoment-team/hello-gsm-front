@@ -32,8 +32,8 @@ export const Title = styled.h1`
 export const Submit = styled.button`
   width: 328px;
   height: 45px;
+  border-radius: 10px;
   background: #ffffff;
-  border-radius: 32px;
   font-weight: 700;
   font-size: 21px;
   line-height: 30px;
@@ -53,7 +53,7 @@ export const Forget = styled.div`
   color: #ffffff;
   a {
     text-decoration: none;
-    color: #5dc0f8;
+    color: #dee449;
   }
 `;
 
