@@ -4,14 +4,15 @@ export const FAQBox = styled.div`
   width: 620px;
   height: 65px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
   background-color: white;
   margin: 15px 0;
   border-radius: 10px;
+  cursor: pointer;
   &:hover {
-    background-color: rgba(255, 255, 255, 0.47);
-    cursor: pointer;
+    transition: background 0.3s;
+    background: rgba(255, 255, 255, 0.47);
   }
   p {
     display: inline;
@@ -20,7 +21,9 @@ export const FAQBox = styled.div`
   }
 `;
 
-export const Title = styled.p``;
+export const Title = styled.p`
+  padding: 0 50px;
+`;
 
 export const PointColor = styled.p`
   color: #42bafe;
