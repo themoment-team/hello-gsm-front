@@ -29,22 +29,28 @@ const SignUpPage: NextPage = () => {
   const onValid = ({ name, id, password, checkPW, agree }: UserForm) => {
     console.log(name, id, password, checkPW, agree);
   };
+  const Lines = [
+    '본인인증',
+    '이름',
+    '아이디',
+    '비밀번호',
+    '비밀번호 확인',
+    '개인정보 이용약관',
+  ];
 
   return (
     <>
       <Header />
       <S.SignUpPage>
         <S.LineList>
-          <S.Line>이름</S.Line>
-          <S.Line>아이디</S.Line>
-          <S.Line>비밀번호</S.Line>
-          <S.Line>비밀번호 확인</S.Line>
-          <S.Line>본인인증</S.Line>
-          <S.Line>개인정보 이용약관</S.Line>
+          {Lines.map((line, i) => (
+            <S.Line key={i}>{line}</S.Line>
+          ))}
         </S.LineList>
         <S.SignUpForm onSubmit={handleSubmit(onValid)}>
           <S.Title>회원가입</S.Title>
           <S.InputSection>
+            <S.User>본인인증</S.User>
             <SignUpInput
               placeholder="실명을 입력해주세요."
               type="text"
@@ -75,14 +81,13 @@ const SignUpPage: NextPage = () => {
                 required: true,
               })}
             />
-            <S.User>본인인증</S.User>
             <S.TosBox></S.TosBox>
             <S.CheckLabel htmlFor="check">
               <input {...register('agree')} type="checkbox" id="check" />
               개인정보 이용약관을 확인했으며, 이에 동의합니다.
             </S.CheckLabel>
-            <S.Button>가입하기</S.Button>
           </S.InputSection>
+          <S.Button>가입하기</S.Button>
         </S.SignUpForm>
       </S.SignUpPage>
     </>

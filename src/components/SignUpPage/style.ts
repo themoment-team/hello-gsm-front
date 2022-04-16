@@ -10,7 +10,11 @@ export const SignUpPage = styled.div`
 
 export const LineList = styled.div`
   margin-right: 30px;
-  padding-top: 70px;
+  padding-top: 140px;
+`;
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export const Line = styled.div`
@@ -42,7 +46,7 @@ export const Line = styled.div`
     margin: 35px 0;
   }
   :nth-child(5) {
-    margin: 80px 0;
+    margin: 65px 0;
   }
 `;
 
@@ -57,6 +61,7 @@ export const Title = styled.h1`
   font-size: 30px;
   text-align: center;
   color: #ffffff;
+  margin-bottom: 70px;
 `;
 
 export const InputSection = styled.div`
@@ -106,11 +111,10 @@ export const CheckLabel = styled.label`
     border-radius: 1px;
     margin-right: 10px;
   }
-  margin-bottom: 240px;
+  margin-bottom: 200px;
 `;
 
 export const Button = styled.button`
-  margin-top: 240px;
   font-size: 24px;
   line-height: 46px;
   text-align: center;
