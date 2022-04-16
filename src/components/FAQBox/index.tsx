@@ -1,16 +1,20 @@
 import * as S from './style';
 import { FAQType } from 'components/FAQPage';
+import useStore from 'Stores/StoreContainer';
 
 const FAQBox: React.FC<FAQType> = ({ title, content }) => {
+  const { setShowModal, setModalTitle, setModalContent } = useStore();
+
   const showAnswer = () => {
-    // setShowModal(True);
-    // setSelectFAQ(True);
-  }
+    setShowModal();
+    setModalTitle(title);
+    setModalContent(content);
+  };
 
   return (
-    <S.FAQBox>
+    <S.FAQBox onClick={showAnswer}>
       <S.Title>
-        <S.PointColor>Q</S.PointColor>
+        <S.PointColor>Q.</S.PointColor>
         {title}
       </S.Title>
     </S.FAQBox>
