@@ -22,7 +22,7 @@ const Input: NextPage<InputProps> = ({
       type={type}
       {...register}
       style={{ width: bigWidth ? '800px' : '328px' }}
-    ></S.Input>
+    />
   );
 };
 
