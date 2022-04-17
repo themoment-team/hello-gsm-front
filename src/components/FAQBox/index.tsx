@@ -13,10 +13,7 @@ const FAQBox: React.FC<FAQType> = ({ title, content }) => {
 
   return (
     <S.FAQBox onClick={showAnswer}>
-      <S.Title>
-        <S.PointColor>Q.</S.PointColor>
-        {title}
-      </S.Title>
+      <S.Title>{title}</S.Title>
     </S.FAQBox>
   );
 };
