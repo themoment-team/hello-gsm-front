@@ -23,9 +23,8 @@ export const FAQBox = styled.div`
 
 export const Title = styled.p`
   padding: 0 50px;
-`;
-
-export const PointColor = styled.p`
-  color: #42bafe;
-  margin-right: 5px;
+  &::before {
+    content: 'Q. ';
+    color: #42bafe;
+  }
 `;
