@@ -14,10 +14,7 @@ const FAQModal: React.FC = () => {
         <S.ContentBox>
           <S.QuestionBox>
             <S.QuestionTitle>
-              <S.QuestionTitleContent>
-                <S.PointColor>Q.</S.PointColor>
-                {modalTitle}
-              </S.QuestionTitleContent>
+              <S.QuestionTitleContent>{modalTitle}</S.QuestionTitleContent>
             </S.QuestionTitle>
             <I.Questioner />
           </S.QuestionBox>
