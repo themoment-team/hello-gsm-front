@@ -57,19 +57,16 @@ export const QuestionTitle = styled.div`
   align-items: center;
 `;
 
-export const PointColor = styled.p`
-  display: inline;
-  color: #42bafe;
-  margin-right: 5px;
-`;
-
-
-export const QuestionTitleContent = styled.div`
+export const QuestionTitleContent = styled.p`
   width: 390px;
   font-weight: 700;
   font-size: 24px;
   text-align: center;
   line-height: 35px;
+  &::before {
+    content: 'Q. ';
+    color: #42bafe;
+  }
 `;
 
 export const AnswerBox = styled.div`
