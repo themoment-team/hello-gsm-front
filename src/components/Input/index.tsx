@@ -15,15 +15,13 @@ const Input: NextPage<InputProps> = ({
   type,
   register,
   bigWidth = true,
-}) => {
-  return (
-    <S.Input
-      placeholder={placeholder}
-      type={type}
-      {...register}
-      style={{ width: bigWidth ? '800px' : '328px' }}
-    />
-  );
-};
+}) => (
+  <S.Input
+    placeholder={placeholder}
+    type={type}
+    {...register}
+    style={{ width: bigWidth ? '800px' : '328px' }}
+  />
+);
 
 export default Input;
