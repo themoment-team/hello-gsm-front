@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const SignInPage = styled.div`
   position: relative;
-  background: #0f0921;
   height: calc(100vh - 70px);
   display: flex;
   align-items: center;
@@ -66,7 +65,7 @@ export const SignUp = styled.a`
   margin-top: 10px;
 `;
 
-export const BigCircle = styled.div`
+export const BigBall = styled.div`
   position: absolute;
   width: 93vh;
   height: 93vh;
@@ -82,7 +81,7 @@ export const BigCircle = styled.div`
   z-index: -1;
 `;
 
-export const SmallCircle = styled.div`
+export const SmallBall = styled.div`
   position: absolute;
   width: 25vh;
   height: 25vh;
