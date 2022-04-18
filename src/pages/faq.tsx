@@ -10,13 +10,7 @@ interface FaqType {
   }[];
 }
 
-const Faq: NextPage<FaqType> = ({ data }) => {
-  return (
-    <>
-      <FAQPage faqData={data} />
-    </>
-  );
-};
+const Faq: NextPage<FaqType> = ({ data }) => <FAQPage faqData={data} />;
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
