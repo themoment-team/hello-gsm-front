@@ -1,10 +1,6 @@
 import styled from '@emotion/styled';
 
 export const FAQPage = styled.div`
-  background-color: #0f0921;
-`;
-
-export const FAQWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -94,4 +90,18 @@ export const FAQListIndexButtonWrapper = styled.div`
 
 export const ChangeAllowButton = styled.div`
   cursor: pointer;
-`
+`;
+
+export const SkyBlueBall = styled.div`
+  position: absolute;
+  top: 80vh;
+  left: 3vw;
+  z-index: -1;
+`;
+
+export const BlueBall = styled.div`
+  position: absolute;
+  top: 75vh;
+  right: 3vw;
+  z-index: -1;
+`;
