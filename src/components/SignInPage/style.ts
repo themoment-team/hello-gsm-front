@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const SignInPage = styled.div`
   position: relative;
-  background: #0f0921;
   height: calc(100vh - 70px);
   display: flex;
   align-items: center;
