@@ -81,7 +81,16 @@ export const ChangeAllowButton = styled.div`
 `;
 
 export const SkyBlueBall = styled.div`
+  width: 177px;
+  height: 177px;
   position: absolute;
+  border-radius: 100%;
+  background: linear-gradient(
+    207.52deg,
+    #d2f7ff 13.95%,
+    #61c5db 37.16%,
+    rgba(0, 132, 201, 0.27) 91.31%
+  );
   top: 80vh;
   left: 3vw;
   z-index: -1;
@@ -89,7 +98,16 @@ export const SkyBlueBall = styled.div`
 
 export const BlueBall = styled.div`
   position: absolute;
+  width: 131px;
+  height: 131px;
+  border-radius: 100%;
   top: 75vh;
   right: 4vw;
   z-index: -1;
+  background: linear-gradient(
+    207.52deg,
+    #5dc4ff 13.95%,
+    #2978d6 37.16%,
+    #0a244a 91.31%
+  );
 `;

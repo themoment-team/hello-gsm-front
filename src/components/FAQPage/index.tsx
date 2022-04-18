@@ -108,12 +108,8 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
           </S.FAQListIndex>
         )}
       </S.FAQPage>
-      <S.SkyBlueBall>
-        <I.FAQPageSkyBlue />
-      </S.SkyBlueBall>
-      <S.BlueBall>
-        <I.FAQPageBlue />
-      </S.BlueBall>
+      <S.SkyBlueBall />
+      <S.BlueBall />
     </>
   );
 };
