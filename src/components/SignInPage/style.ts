@@ -66,7 +66,7 @@ export const SignUp = styled.a`
   margin-top: 10px;
 `;
 
-export const BigCircle = styled.div`
+export const BigBall = styled.div`
   position: absolute;
   width: 93vh;
   height: 93vh;
@@ -82,7 +82,7 @@ export const BigCircle = styled.div`
   z-index: -1;
 `;
 
-export const SmallCircle = styled.div`
+export const SmallBall = styled.div`
   position: absolute;
   width: 25vh;
   height: 25vh;
