@@ -7,7 +7,7 @@ const FAQModal: React.FC = () => {
   const { showModal, setShowModal, modalTitle, modalContent } = useStore();
 
   return (
-    <S.FAQModal>
+    <S.FAQModal onClick={setShowModal}>
       <Global
         styles={css`
           body {
