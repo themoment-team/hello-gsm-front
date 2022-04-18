@@ -1,12 +1,20 @@
 import * as S from './style';
 import * as I from '../../Assets/svg';
 import useStore from 'Stores/StoreContainer';
+import { css, Global } from '@emotion/react';
 
 const FAQModal: React.FC = () => {
-  const { setShowModal, modalTitle, modalContent } = useStore();
+  const { showModal, setShowModal, modalTitle, modalContent } = useStore();
 
   return (
     <S.FAQModal>
+      <Global
+        styles={css`
+          body {
+            overflow: ${showModal ? 'hidden' : 'visible'};
+          }
+        `}
+      />
       <S.FAQModalBox>
         <S.CloseButton onClick={setShowModal}>
           <I.CloseButton />
