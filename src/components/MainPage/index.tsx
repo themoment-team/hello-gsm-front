@@ -25,6 +25,15 @@ const MainPage: NextPage = () => {
           <S.Underline />
         </S.ApplyBox>
       </S.TitleWrap>
+      <S.ContentBox>
+        <S.ContentHeader>
+          <S.ContentSelect>원서 작성</S.ContentSelect>
+          <S.ContentSelect>원서 학교 제출</S.ContentSelect>
+          <S.ContentSelect>1차 서류 전형</S.ContentSelect>
+          <S.ContentSelect>2차 면접</S.ContentSelect>
+          <S.ContentSelect>최종 결과 발표</S.ContentSelect>
+        </S.ContentHeader>
+      </S.ContentBox>
     </>
   );
 };
