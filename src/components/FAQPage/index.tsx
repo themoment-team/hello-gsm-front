@@ -79,14 +79,9 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
         </S.FAQList>
         {!isSearching && (
           <S.FAQListIndex>
-            <S.LeftButtonWrapper>
-              <S.ChangeAllowButton onClick={() => selectPage(1)}>
-                <I.LeftAllButton />
-              </S.ChangeAllowButton>
-              <S.ChangeAllowButton onClick={minusPageIndex}>
-                <I.LeftButton />
-              </S.ChangeAllowButton>
-            </S.LeftButtonWrapper>
+            <S.ChangeAllowButton onClick={minusPageIndex}>
+              <I.LeftButton />
+            </S.ChangeAllowButton>
             <S.FAQListIndexButtonWrapper>
               <S.ChangeAllowButton
                 onClick={() => selectPage(1)}
@@ -107,14 +102,9 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
                 3
               </S.ChangeAllowButton>
             </S.FAQListIndexButtonWrapper>
-            <S.RightButtonWrapper>
-              <S.ChangeAllowButton onClick={plusPageIndex}>
-                <I.RightButton />
-              </S.ChangeAllowButton>
-              <S.ChangeAllowButton onClick={() => selectPage(3)}>
-                <I.RightAllButton />
-              </S.ChangeAllowButton>
-            </S.RightButtonWrapper>
+            <S.ChangeAllowButton onClick={plusPageIndex}>
+              <I.RightButton />
+            </S.ChangeAllowButton>
           </S.FAQListIndex>
         )}
       </S.FAQPage>
