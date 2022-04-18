@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { NextPage } from 'next';
 import Header from 'components/Common/Header';
 import * as S from './style';
 import Link from 'next/link';
 
 const MainPage: NextPage = () => {
+  const [selectIndex, setSelectIndex] = useState<number>(1);
+
+  const selectedStyle = (index: number) => {
+    return (
+      selectIndex === index && {
+        color: '#ffffff',
+        fontWeight: 700,
+        fontSize: '24px',
+        '&:before, &:after': {
+          content: '" ㅣ "',
+        }
+      }
+    );
+  };
+
+  const selecting = (index: number) => setSelectIndex(index);
+
   return (
-    <>
+    <S.MainPage>
       <Header />
       <S.TitleWrap>
         <S.TitleBox>
@@ -27,14 +44,31 @@ const MainPage: NextPage = () => {
       </S.TitleWrap>
       <S.ContentBox>
         <S.ContentHeader>
-          <S.ContentSelect>원서 작성</S.ContentSelect>
-          <S.ContentSelect>원서 학교 제출</S.ContentSelect>
-          <S.ContentSelect>1차 서류 전형</S.ContentSelect>
-          <S.ContentSelect>2차 면접</S.ContentSelect>
-          <S.ContentSelect>최종 결과 발표</S.ContentSelect>
+          <S.ContentSelect css={selectedStyle(1)} onClick={() => selecting(1)}>
+            원서 작성
+          </S.ContentSelect>
+          <S.ContentSelect css={selectedStyle(2)} onClick={() => selecting(2)}>
+            원서 학교 제출
+          </S.ContentSelect>
+          <S.ContentSelect css={selectedStyle(3)} onClick={() => selecting(3)}>
+            1차 서류 전형
+          </S.ContentSelect>
+          <S.ContentSelect css={selectedStyle(4)} onClick={() => selecting(4)}>
+            2차 면접
+          </S.ContentSelect>
+          <S.ContentSelect css={selectedStyle(5)} onClick={() => selecting(5)}>
+            최종 결과 발표
+          </S.ContentSelect>
         </S.ContentHeader>
       </S.ContentBox>
-    </>
+      <S.GreenBall />
+      <S.BigBlueBall />
+      <S.YellowBall />
+      <S.OrangeBall />
+      <S.SmallBlueBall />
+      <S.MintBall />
+      <S.NanoBlueBall />
+    </S.MainPage>
   );
 };
 
