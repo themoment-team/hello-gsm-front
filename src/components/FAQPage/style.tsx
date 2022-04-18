@@ -56,25 +56,11 @@ export const FAQTitle = styled.div`
 `;
 
 export const FAQListIndex = styled.div`
-  width: 250px;
+  width: 200px;
   margin-top: 100px;
   margin-bottom: 70px;
   display: flex;
   justify-content: space-between;
-`;
-
-export const LeftButtonWrapper = styled.div`
-  width: 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const RightButtonWrapper = styled.div`
-  width: 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 `;
 
 export const FAQListIndexButtonWrapper = styled.div`
@@ -90,6 +76,8 @@ export const FAQListIndexButtonWrapper = styled.div`
 
 export const ChangeAllowButton = styled.div`
   cursor: pointer;
+  display: flex;
+  align-items: flex-end;
 `;
 
 export const SkyBlueBall = styled.div`
