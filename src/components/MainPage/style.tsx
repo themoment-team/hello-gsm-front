@@ -69,3 +69,35 @@ export const Underline = styled.div`
   width: 55px;
   border: 2px solid #ffffff;
 `;
+
+export const ContentBox = styled.div`
+  width: 1550px;
+  height: 800px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(48px);
+  position: relative;
+  top: 400px;
+  margin: 0 auto;
+  border-radius: 24px;
+`;
+
+export const ContentHeader = styled.div`
+  width: 100%;
+  height: 130px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+
+export const ContentSelect = styled.p`
+  font-weight: 400;
+  font-size: 20px;
+  color: #d6d6d6;
+  cursor: pointer;
+`;
+
+export const Test = styled.div`
+  width: 300px;
+  height: 300px;
+  background-color: red;
+`;
