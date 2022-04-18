@@ -102,6 +102,6 @@ export const SkyBlueBall = styled.div`
 export const BlueBall = styled.div`
   position: absolute;
   top: 75vh;
-  right: 3vw;
+  right: 4vw;
   z-index: -1;
 `;
