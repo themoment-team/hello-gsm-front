@@ -12,10 +12,6 @@ export const LineList = styled.div`
   margin-right: 30px;
   padding-top: 140px;
 `;
-export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-`;
 
 export const Line = styled.div`
   font-weight: 400;
@@ -37,16 +33,16 @@ export const Line = styled.div`
   }
 
   :nth-child(2) {
-    margin: 70px 0;
+    margin: 70px 0 0;
   }
   :nth-child(3) {
-    margin: 20px 0;
+    margin: 65px 0 0;
   }
   :nth-child(4) {
-    margin: 35px 0;
+    margin: 65px 0 0;
   }
   :nth-child(5) {
-    margin: 65px 0;
+    margin: 30px 0 80px;
   }
 `;
 
@@ -69,6 +65,12 @@ export const InputSection = styled.div`
   flex-direction: column;
   padding: 30px 50px 0px;
   border-left: 3px solid rgba(255, 255, 255, 0.17);
+  input {
+    margin-bottom: 54px;
+  }
+  input:nth-of-type(3) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const User = styled.div`
@@ -80,7 +82,7 @@ export const User = styled.div`
   font-size: 20px;
   line-height: 55px;
   text-align: center;
-  color: #42bafe;
+  color: #e7ff53;
   cursor: pointer;
   margin: 0 auto 50px;
 `;
@@ -109,6 +111,7 @@ export const CheckLabel = styled.label`
     height: 20px;
     background: #e4e4e4;
     border-radius: 1px;
+    margin-bottom: 0;
     margin-right: 10px;
   }
   margin-bottom: 200px;
@@ -120,7 +123,6 @@ export const Button = styled.button`
   text-align: center;
   width: 225px;
   height: 55px;
-  color: #42bafe;
   font-weight: 700;
   border-radius: 10px;
   border: none;

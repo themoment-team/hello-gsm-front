@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import Header from 'components/Common/Header';
 import { useForm } from 'react-hook-form';
-import SignUpInput from 'components/Input/SignUp';
+import Input from 'components/Input';
 
 interface UserForm {
   name: string;
@@ -51,32 +51,34 @@ const SignUpPage: NextPage = () => {
           <S.Title>회원가입</S.Title>
           <S.InputSection>
             <S.User>본인인증</S.User>
-            <SignUpInput
+            <Input
               placeholder="실명을 입력해주세요."
               type="text"
-              smallWidth={true}
+              bigWidth
               register={register('name', {
                 required: true,
               })}
             />
-            <SignUpInput
+            <Input
               placeholder="아이디를 입력해주세요."
               type="text"
-              smallWidth={true}
+              bigWidth
               register={register('id', {
                 required: true,
               })}
             />
-            <SignUpInput
+            <Input
               placeholder="비밀번호를 입력해주세요."
               type="password"
+              bigWidth
               register={register('password', {
                 required: true,
               })}
             />
-            <SignUpInput
+            <Input
               placeholder="비밀번호를 다시 입력해주세요."
               type="password"
+              bigWidth
               register={register('checkPW', {
                 required: true,
               })}
