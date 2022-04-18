@@ -8,7 +8,6 @@ const MainPage: NextPage = () => {
   return (
     <>
       <Header />
-      <Footer />
     </>
   );
 };
