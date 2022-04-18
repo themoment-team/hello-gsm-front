@@ -58,10 +58,10 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
     pageIndex === index && { color: '#ffffff' };
 
   return (
-    <S.FAQPage>
+    <>
       <Header />
       {showModal && <FAQModal />}
-      <S.FAQWrapper>
+      <S.FAQPage>
         <S.Title>자주 묻는 질문</S.Title>
         <S.SearchWrapper>
           <I.SearchIcon />
@@ -117,8 +117,14 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
             </S.RightButtonWrapper>
           </S.FAQListIndex>
         )}
-      </S.FAQWrapper>
-    </S.FAQPage>
+      </S.FAQPage>
+      <S.SkyBlueBall>
+        <I.FAQPageSkyBlue />
+      </S.SkyBlueBall>
+      <S.BlueBall>
+        <I.FAQPageBlue />
+      </S.BlueBall>
+    </>
   );
 };
 
