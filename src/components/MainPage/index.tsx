@@ -8,6 +8,8 @@ import Footer from 'components/Common/Footer';
 const MainPage: NextPage = () => {
   const [selectIndex, setSelectIndex] = useState<number>(1);
 
+  // const description =
+
   const selectedStyle = (index: number) => {
     return (
       selectIndex === index && {
@@ -15,7 +17,7 @@ const MainPage: NextPage = () => {
         fontWeight: 700,
         fontSize: '24px',
         '&:before, &:after': {
-          content: '" ㅣ "',
+          content: '"ㅣ"',
         },
       }
     );
@@ -24,9 +26,9 @@ const MainPage: NextPage = () => {
   const selecting = (index: number) => setSelectIndex(index);
 
   return (
-    <>
+    <S.MainPage>
       <Header />
-      <S.MainPage>
+      <S.MainContent>
         <S.TitleWrap>
           <S.TitleBox>
             <S.Title>광주 소프트웨어 마이스터고등학교</S.Title>
@@ -78,16 +80,16 @@ const MainPage: NextPage = () => {
             </S.ContentSelect>
           </S.ContentHeader>
         </S.ContentBox>
-        <S.GreenBall />
-        <S.BigBlueBall />
-        <S.YellowBall />
-        <S.OrangeBall />
-        <S.SmallBlueBall />
-        <S.MintBall />
-        <S.NanoBlueBall />
-      </S.MainPage>
+      </S.MainContent>
+      <S.GreenBall />
+      <S.BigBlueBall />
+      <S.YellowBall />
+      <S.OrangeBall />
+      <S.SmallBlueBall />
+      <S.MintBall />
+      <S.NanoBlueBall />
       <Footer />
-    </>
+    </S.MainPage>
   );
 };
 

@@ -5,11 +5,19 @@ export const MainPage = styled.div`
   overflow-x: hidden;
 `;
 
+export const MainContent = styled.div`
+  height: 1700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 300px;
+  margin-top: 230px;
+`;
+
 export const TitleWrap = styled.div`
+  width: 88%;
   height: 520px;
-  position: relative;
-  top: 250px;
-  left: 100px;
   color: white;
   display: flex;
   flex-direction: column;
@@ -76,12 +84,10 @@ export const Underline = styled.div`
 `;
 
 export const ContentBox = styled.div`
-  width: 1550px;
+  width: 80%;
   height: 800px;
   background: rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(48px);
-  position: relative;
-  top: 650px;
   margin: 0 auto;
   border-radius: 24px;
 `;
@@ -99,12 +105,6 @@ export const ContentSelect = styled.p`
   font-size: 20px;
   color: #d6d6d6;
   cursor: pointer;
-`;
-
-export const Test = styled.div`
-  width: 300px;
-  height: 300px;
-  background-color: red;
 `;
 
 const Ball = styled.div`
@@ -160,6 +160,7 @@ export const OrangeBall = styled(Ball)`
   height: 312px;
   background: linear-gradient(220deg, #e1da40 10.2%, #f29100 88.36%);
   filter: blur(10px);
+  top: 1351px;
   left: 26%;
 `;
 
