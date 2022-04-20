@@ -22,29 +22,31 @@ const AboutPage: NextPage = () => {
           <I.TMLogo />
           <S.Title>더모먼트팀</S.Title>
           <S.Desc>광주소프트웨어마이스터고등학교 입학 지원 시스템</S.Desc>
-          <S.SubTitle>비전</S.SubTitle>
-          <S.Desc>더모먼트팀은 아래의 비전을 갖고 활동해요!</S.Desc>
           <S.BigBall style={{ left: '-24vh' }} />
           <S.GreenBall style={{ left: '20vh' }} />
           <S.SmallBall />
           <S.SkyBlueBall />
         </S.Section>
 
-        <S.Section2>
-          <S.WheelPicker>
-            <S.PickerText>
-              사용자의 순간을 한층 더 혁신 <br /> 하는 데 최적의 장소.
-            </S.PickerText>
-            <S.PickerText>
-              사용자의 니즈를 고민하고 모든 일에 <br /> 높은 비즈니스 임팩트를
-              창출해요.
-            </S.PickerText>
-            <S.PickerText>
-              저희는 사용자의 순간을 깊이 통찰하고, <br /> 순간의 가치를
-              비춰내요!
-            </S.PickerText>
-          </S.WheelPicker>
-          <Image src={Think} alt="" />
+        <S.Section>
+          <S.SubTitle>비전</S.SubTitle>
+          <S.Desc>더모먼트팀은 아래의 비전을 갖고 활동해요!</S.Desc>
+          <S.PickerSection>
+            <S.WheelPicker>
+              <S.PickerText>
+                사용자의 순간을 한층 더 혁신 <br /> 하는 데 최적의 장소.
+              </S.PickerText>
+              <S.PickerText>
+                사용자의 니즈를 고민하고 모든 일에 <br /> 높은 비즈니스 임팩트를
+                창출해요.
+              </S.PickerText>
+              <S.PickerText>
+                저희는 사용자의 순간을 깊이 통찰하고, <br /> 순간의 가치를
+                비춰내요!
+              </S.PickerText>
+            </S.WheelPicker>
+            <Image src={Think} alt="" />
+          </S.PickerSection>
           <S.GreenBall
             style={{
               width: '12vh',
@@ -53,19 +55,20 @@ const AboutPage: NextPage = () => {
               top: '94vh',
             }}
           />
-        </S.Section2>
+        </S.Section>
 
         <S.Section>
           <S.SubTitle>팀원 소개</S.SubTitle>
           <S.Row>
-            <div>
+            <S.TeamSection>
               <S.TeamTitle>
                 <span className="DevOps">DevOps</span> Chapter
               </S.TeamTitle>
               <S.TeamSubTitle>
-                클라우드 아키텍쳐를 <br /> 구성하고 운영하는데 사용되는 기술들을
+                클라우드 아키텍쳐를 구성하고 운영하는데 <br /> 사용되는 기술들을
                 연구합니다.
               </S.TeamSubTitle>
+              <hr />
               <S.ProfileSection>
                 {DevOps.map((profile, i) => (
                   <a
@@ -74,26 +77,25 @@ const AboutPage: NextPage = () => {
                     key={i}
                     rel="noreferrer"
                   >
-                    <S.Profile>
-                      <Image
-                        src={profile.imageURL}
-                        alt=""
-                        width={75}
-                        height={75}
-                      />
-                      <p>{profile.name}</p>
-                    </S.Profile>
+                    <Image
+                      src={profile.imageURL}
+                      alt=""
+                      width={75}
+                      height={75}
+                    />
+                    <p>{profile.name}</p>
                   </a>
                 ))}
               </S.ProfileSection>
-            </div>
-            <div>
+            </S.TeamSection>
+            <S.TeamSection>
               <S.TeamTitle>
                 <span className="Operating">Operating</span> Chapter
               </S.TeamTitle>
               <S.TeamSubTitle>
                 팀을 관리하고 개개인의 <br /> 역량을 끌어내는 팀이에요.
               </S.TeamSubTitle>
+              <hr />
               <S.ProfileSection>
                 {Operating.map((profile, i) => (
                   <a
@@ -102,26 +104,25 @@ const AboutPage: NextPage = () => {
                     key={i}
                     rel="noreferrer"
                   >
-                    <S.Profile>
-                      <Image
-                        src={profile.imageURL}
-                        alt=""
-                        width={75}
-                        height={75}
-                      />
-                      <p>{profile.name}</p>
-                    </S.Profile>
+                    <Image
+                      src={profile.imageURL}
+                      alt=""
+                      width={75}
+                      height={75}
+                    />
+                    <p>{profile.name}</p>
                   </a>
                 ))}
               </S.ProfileSection>
-            </div>
-            <div>
+            </S.TeamSection>
+            <S.TeamSection>
               <S.TeamTitle>
                 <span className="Design">Design</span> Chapter
               </S.TeamTitle>
               <S.TeamSubTitle>
-                디자인 파트를 <br /> 담당하고 있는 팀이에요
+                사용자의 관점에서 <br /> 디자인하는 팀입니다.
               </S.TeamSubTitle>
+              <hr />
               <S.ProfileSection>
                 {Design.map((profile, i) => (
                   <a
@@ -130,31 +131,28 @@ const AboutPage: NextPage = () => {
                     key={i}
                     rel="noreferrer"
                   >
-                    <S.Profile>
-                      <Image
-                        src={profile.imageURL}
-                        alt=""
-                        width={75}
-                        height={75}
-                      />
-                      <p>{profile.name}</p>
-                    </S.Profile>
+                    <Image
+                      src={profile.imageURL}
+                      alt=""
+                      width={75}
+                      height={75}
+                    />
+                    <p>{profile.name}</p>
                   </a>
                 ))}
               </S.ProfileSection>
-            </div>
+            </S.TeamSection>
           </S.Row>
-
           <S.Row>
-            <div>
+            <S.TeamSection>
               <S.TeamTitle>
                 <span className="FrontEnd">FrontEnd</span> Chapter
               </S.TeamTitle>
               <S.TeamSubTitle>
-                화면을 구상하고, 제작하며 <br /> 사용자에게 더 나은 UI/UX를
-                <br />
-                제공하기 위해 끊임없이 연구합니다.
+                화면을 구상하고, 제작하며 사용자에게 <br /> 더 나은 UI/UX를
+                제공하기 위해 끊임없이 <br /> 연구합니다.
               </S.TeamSubTitle>
+              <hr />
               <S.ProfileSection>
                 {FrontEnd.map((profile, i) => (
                   <a
@@ -163,27 +161,27 @@ const AboutPage: NextPage = () => {
                     key={i}
                     rel="noreferrer"
                   >
-                    <S.Profile>
-                      <Image
-                        src={profile.imageURL}
-                        alt=""
-                        width={75}
-                        height={75}
-                      />
-                      <p>{profile.name}</p>
-                    </S.Profile>
+                    <Image
+                      src={profile.imageURL}
+                      alt=""
+                      width={75}
+                      height={75}
+                    />
+                    <p>{profile.name}</p>
                   </a>
                 ))}
               </S.ProfileSection>
-            </div>
-            <div>
+            </S.TeamSection>
+            <S.TeamSection>
               <S.TeamTitle>
                 <span className="BackEnd">BackEnd</span> Chapter
               </S.TeamTitle>
               <S.TeamSubTitle>
-                서버 애플리케이션을 개발하고, <br /> 깊은 CS 지식을 통해
-                안정적인 서비스를 만들어 나아갑니다.
+                더모먼트팀의 서비스를 구상하기 위한 서버 <br /> 애플리케이션을
+                개발하고, 깊은 CS 지식을 통해 <br /> 안정적인 서비스를 만들어
+                나아갑니다.
               </S.TeamSubTitle>
+              <hr />
               <S.ProfileSection>
                 {BackEnd.map((profile, i) => (
                   <a
@@ -192,19 +190,17 @@ const AboutPage: NextPage = () => {
                     key={i}
                     rel="noreferrer"
                   >
-                    <S.Profile>
-                      <Image
-                        src={profile.imageURL}
-                        alt=""
-                        width={75}
-                        height={75}
-                      />
-                      <p>{profile.name}</p>
-                    </S.Profile>
+                    <Image
+                      src={profile.imageURL}
+                      alt=""
+                      width={75}
+                      height={75}
+                    />
+                    <p>{profile.name}</p>
                   </a>
                 ))}
               </S.ProfileSection>
-            </div>
+            </S.TeamSection>
           </S.Row>
           <S.BigBall style={{ right: '-35vh', top: '280vh' }} />
           <S.SkyBlueBall style={{ left: '-7vh', top: '187vh' }} />

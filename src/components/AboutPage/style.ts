@@ -43,7 +43,7 @@ export const SubTitle = styled.p`
   margin-top: 400px;
 `;
 
-export const Section2 = styled.div`
+export const PickerSection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,11 +79,31 @@ export const PickerText = styled.div`
 export const Row = styled.div`
   display: flex;
   justify-content: space-around;
-  width: 80vw;
+  /* width: 80vw; */
+  width: 100vw;
+  padding: 0px 4vw;
   margin-top: 70px;
+  :nth-of-type(1) {
+    margin-top: 160px;
+  }
+  @media screen and (max-width: 1400px) {
+    flex-direction: column;
+  }
+`;
+
+export const TeamSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  hr {
+    width: 54px;
+  }
 `;
 
 export const TeamTitle = styled.p`
+  display: inline-block;
+  border-bottom: 1px solid #ffffff;
+  margin: 0 auto;
   font-weight: 700;
   font-size: 24px;
   line-height: 35px;
@@ -107,35 +127,26 @@ export const TeamTitle = styled.p`
 `;
 
 export const TeamSubTitle = styled.p`
-  font-family: 'Noto Sans KR';
-  font-style: normal;
   font-weight: 400;
-  font-size: 22px;
+  font-size: 20px;
   text-align: center;
   line-height: 32px;
   padding: 5px 0;
   color: #ffffff;
-  border-top: 1px solid #ffffff;
-  border-bottom: 1px solid #ffffff;
-  width: 330px;
-  margin: 0 auto;
 `;
 
 export const ProfileSection = styled.div`
   display: flex;
-  justify-content: space-around;
-  margin-top: 60px;
-`;
-
-export const Profile = styled.div`
-  display: inline-block;
+  margin-top: 40px;
+  justify-content: center;
   img {
     width: 75px;
     height: 75px;
     border-radius: 50%;
   }
-
-  margin: 0 10px;
+  a {
+    margin: 0 20px;
+  }
   p {
     text-align: center;
     line-height: 64px;
