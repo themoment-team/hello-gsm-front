@@ -40,7 +40,7 @@ export const SubTitle = styled.p`
   font-weight: 700;
   font-size: 30px;
   line-height: 43px;
-  margin-top: 380px;
+  margin-top: 400px;
 `;
 
 export const Section2 = styled.div`

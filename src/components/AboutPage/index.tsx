@@ -33,14 +33,15 @@ const AboutPage: NextPage = () => {
         <S.Section2>
           <S.WheelPicker>
             <S.PickerText>
-              사용자의 순간을 한층 더 혁신하는 데 최적의 장소.
+              사용자의 순간을 한층 더 혁신 <br /> 하는 데 최적의 장소.
             </S.PickerText>
             <S.PickerText>
-              사용자의 니즈를 고민하고 모든 일에 높은 비즈니스 임팩트를
+              사용자의 니즈를 고민하고 모든 일에 <br /> 높은 비즈니스 임팩트를
               창출해요.
             </S.PickerText>
             <S.PickerText>
-              저희는 사용자의 순간을 깊이 통찰하고, 순간의 가치를 비춰내요!
+              저희는 사용자의 순간을 깊이 통찰하고, <br /> 순간의 가치를
+              비춰내요!
             </S.PickerText>
           </S.WheelPicker>
           <Image src={Think} alt="" />
