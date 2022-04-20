@@ -29,7 +29,11 @@ const MainPage: NextPage = () => {
       <S.MainContent>
         <S.TitleWrap>
           <S.TitleBox>
-            <S.Title>광주 소프트웨어 마이스터고등학교</S.Title>
+            <S.Title>
+              광주소프트웨어
+              <br />
+              마이스터고등학교
+            </S.Title>
             <S.Description>
               광주소프트웨어마이스터고등학교 입학 지원 시스템
             </S.Description>

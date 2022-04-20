@@ -32,7 +32,6 @@ export const TitleBox = styled.div`
 `;
 
 export const Title = styled.p`
-  width: 710px;
   font-weight: 700;
   font-size: 96px;
   line-height: 110px;
