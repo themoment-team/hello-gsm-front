@@ -8,6 +8,11 @@ import { css } from '@emotion/react';
 import Graph from './Graph';
 
 const SchoolPage: NextPage = () => {
+  const data = [
+    { x: '취업성공', y: 35 },
+    { x: '취업 실패', y: 40 },
+  ];
+
   const enterprises = [
     '/Enterprises/samsung-sdi.png',
     '/Enterprises/samsung-sdi.png',
@@ -52,6 +57,20 @@ const SchoolPage: NextPage = () => {
             ))}
           </S.EnterpriseWrap>
         </S.Section2>
+        <S.Section3>
+          <S.Section3Title>취업률</S.Section3Title>
+          <S.GraphWrap>
+            <S.SelectBox>
+              <S.SelectBar></S.SelectBar>
+            </S.SelectBox>
+            <S.GraphBox>
+              <S.Title>총 80명</S.Title>
+              <S.Graph>
+                <Graph data={data} />
+              </S.Graph>
+            </S.GraphBox>
+          </S.GraphWrap>
+        </S.Section3>
       </S.SchoolPage>
       <S.GreenBall />
       <S.BlueBall />
