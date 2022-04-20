@@ -60,19 +60,44 @@ export const PickerText = styled.div`
   font-weight: 700;
   font-size: 48px;
   line-height: 70px;
-
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0) -62.5%,
-    rgba(255, 255, 255, 0.48) 193.42%
-  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 30px;
-  :nth-child(2) {
+  :nth-of-type(1) {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) -62.5%,
+      rgba(255, 255, 255, 0.7) 193.42%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  :nth-of-type(2) {
     background-color: #ffffff;
     margin-left: 70px;
+    &::before {
+      display: block;
+      background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/White_Circle.svg/2048px-White_Circle.svg.png);
+      position: relative;
+      background-size: 10px 10px;
+      width: 10px;
+      height: 10px;
+      top: 70px;
+      left: -50px;
+      content: '';
+    }
+  }
+  :nth-of-type(3) {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.48) 0%,
+      rgba(255, 255, 255, 0) 117.99%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 `;
 
