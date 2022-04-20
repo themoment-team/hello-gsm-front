@@ -4,8 +4,19 @@ import Header from 'components/Common/Header';
 import * as S from './style';
 import Footer from 'components/Common/Footer';
 import Link from 'next/link';
+import { css } from '@emotion/react';
+import Graph from './Graph';
 
 const SchoolPage: NextPage = () => {
+  const enterprises = [
+    '/Enterprises/samsung-sdi.png',
+    '/Enterprises/samsung-sdi.png',
+    '/Enterprises/samsung-sdi.png',
+    '/Enterprises/samsung-sdi.png',
+    '/Enterprises/samsung-sdi.png',
+    '/Enterprises/samsung-sdi.png',
+  ];
+
   return (
     <>
       <Header />
@@ -13,7 +24,7 @@ const SchoolPage: NextPage = () => {
         <S.Section1>
           <S.SchoolName>광주소프트웨어마이스터고등학교</S.SchoolName>
           <S.VideoBox>
-            {/* <iframe
+            <iframe
               width="100%"
               height="100%"
               src="https://www.youtube.com/embed/ajKbPblRU7Q"
@@ -21,7 +32,7 @@ const SchoolPage: NextPage = () => {
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-            /> */}
+            />
           </S.VideoBox>
           <Link href="http://gsm.gen.hs.kr/main/main.php" passHref>
             <S.ToHomepage>
@@ -29,6 +40,18 @@ const SchoolPage: NextPage = () => {
             </S.ToHomepage>
           </Link>
         </S.Section1>
+        <S.Section2>
+          <S.EnterpriseWrap>
+            {enterprises.map((enterprise, index: number) => (
+              <S.Enterprise
+                key={index}
+                css={css`
+                  background-image: url(${enterprise});
+                `}
+              />
+            ))}
+          </S.EnterpriseWrap>
+        </S.Section2>
       </S.SchoolPage>
       <S.GreenBall />
       <S.BlueBall />
