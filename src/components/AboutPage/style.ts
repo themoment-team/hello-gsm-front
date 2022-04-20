@@ -7,12 +7,12 @@ export const AboutPage = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 280px 0 440px;
+  padding: 25vh 0 42vh;
   overflow: hidden;
 
   svg {
-    width: 255px;
-    height: 255px;
+    width: 22vh;
+    height: 22vh;
   }
 `;
 
@@ -76,15 +76,11 @@ export const PickerText = styled.div`
   }
 `;
 
-export const TeamSection = styled.div`
-  margin-top: 160px;
-`;
-
 export const Row = styled.div`
   display: flex;
   justify-content: space-around;
   width: 80vw;
-  margin-bottom: 70px;
+  margin-top: 70px;
 `;
 
 export const TeamTitle = styled.p`
@@ -121,11 +117,13 @@ export const TeamSubTitle = styled.p`
   color: #ffffff;
   border-top: 1px solid #ffffff;
   border-bottom: 1px solid #ffffff;
-  width: 300px;
+  width: 330px;
   margin: 0 auto;
 `;
 
 export const ProfileSection = styled.div`
+  display: flex;
+  justify-content: space-around;
   margin-top: 60px;
 `;
 
@@ -148,8 +146,7 @@ export const BigBall = styled.div`
   position: absolute;
   width: 57vh;
   height: 57vh;
-  left: -275px;
-  top: 605px;
+  top: 54vh;
   border-radius: 50%;
   background: linear-gradient(
     198.09deg,
@@ -158,14 +155,14 @@ export const BigBall = styled.div`
     rgba(0, 33, 65, 0.63) 90.22%
   );
   box-shadow: -12px -12px 24px rgba(0, 0, 0, 0.25);
+  z-index: -1;
 `;
 
 export const GreenBall = styled.div`
   position: absolute;
   width: 8vh;
   height: 8vh;
-  left: 214px;
-  top: 47vh;
+  top: 46vh;
   border-radius: 50%;
   background: linear-gradient(
     202.92deg,
@@ -175,14 +172,15 @@ export const GreenBall = styled.div`
     #70a52e 90.6%
   );
   box-shadow: 4px 4px 31px rgba(0, 0, 0, 0.25);
+  z-index: -1;
 `;
 
 export const SkyBlueBall = styled.div`
   position: absolute;
   width: 25vh;
   height: 25vh;
-  left: 1700px;
-  top: 61vh;
+  right: -10vh;
+  top: 55vh;
   border-radius: 50%;
   background: linear-gradient(
     220deg,
@@ -190,13 +188,14 @@ export const SkyBlueBall = styled.div`
     #48afe4 32.84%,
     rgba(0, 51, 77, 0.51) 88.36%
   );
+  z-index: -1;
 `;
 
 export const SmallBall = styled.div`
   position: absolute;
   width: 5vh;
   height: 5vh;
-  left: 363px;
+  left: 32vh;
   top: 51vh;
   border-radius: 50%;
   background: linear-gradient(
@@ -205,4 +204,5 @@ export const SmallBall = styled.div`
     #48afe4 32.84%,
     rgba(0, 51, 77, 0.51) 88.36%
   );
+  z-index: -1;
 `;
