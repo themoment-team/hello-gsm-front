@@ -8,8 +8,6 @@ import Footer from 'components/Common/Footer';
 const MainPage: NextPage = () => {
   const [selectIndex, setSelectIndex] = useState<number>(1);
 
-  // const description =
-
   const selectedStyle = (index: number) => {
     return (
       selectIndex === index && {
