@@ -64,6 +64,59 @@ export const Enterprise = styled.div`
   background-position: center center;
 `;
 
+export const Section3 = styled.div`
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 200px;
+`;
+
+export const Section3Title = styled.div`
+  font-weight: 700;
+  font-size: 24px;
+  color: #ffffff;
+`;
+
+export const GraphWrap = styled.div`
+  width: 1200px;
+  height: 600px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const SelectBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const SelectBar = styled.div`
+  height: 500px;
+  border: 3px solid #9a9a9a;
+`;
+
+export const GraphBox = styled.div`
+  width: 500px;
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const Title = styled.div`
+  font-weight: 700;
+  font-size: 20px;
+  color: white;
+`;
+
+export const Graph = styled.div`
+  width: 100%;
+  width: 500px;
+`;
+
 const Ball = styled.div`
   border-radius: 100%;
   position: absolute;
