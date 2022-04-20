@@ -65,8 +65,7 @@ export const FrontEnd = [
   },
   {
     name: '유시온',
-    imageURL:
-      'https://avatars.githubusercontent.com/u/80191860?s=400&u=f4eadb4f5fe3e8a551277090871175054cf14e46&v=4',
+    imageURL: 'https://avatars.githubusercontent.com/u/80191860?v=4',
     githubURL: 'https://github.com/yoosion030',
   },
   {
