@@ -89,12 +89,39 @@ export const GraphWrap = styled.div`
 
 export const SelectBox = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 export const SelectBar = styled.div`
-  height: 500px;
+  height: 450px;
   border: 3px solid #9a9a9a;
+`;
+
+export const SelectOptionBox = styled.div`
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  left: -8px;
+`;
+
+export const SelectOption = styled.div`
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  &::before {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 100%;
+    background-color: #c4c4c4;
+    content: '';
+    margin-right: 30px;
+    vertical-align: top;
+  }
 `;
 
 export const GraphBox = styled.div`
