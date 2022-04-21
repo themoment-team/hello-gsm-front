@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import Header from 'components/Common/Header';
 import * as S from './style';
@@ -7,12 +7,29 @@ import Link from 'next/link';
 import { css } from '@emotion/react';
 import Graph from './Graph';
 
-const SchoolPage: NextPage = () => {
-  const data = [
-    { x: '취업성공', y: 35 },
-    { x: '취업 실패', y: 40 },
-  ];
+interface employType {
+  x: string;
+  y: number;
+}
 
+const SchoolPage: NextPage = () => {
+  const [select, setSelect] = useState<number>(1);
+  const [EmoployRate, setEmployRate] = useState<employType[]>([]);
+
+  const data = [
+    [
+      { x: '취업 성공', y: 35 },
+      { x: '취업 실패', y: 40 },
+    ],
+    [
+      { x: '취업 성공', y: 50 },
+      { x: '취업 실패', y: 30 },
+    ],
+    [
+      { x: '취업 성공', y: 20 },
+      { x: '취업 실패', y: 30 },
+    ],
+  ];
   const enterprises = [
     '/Enterprises/samsung-sdi.png',
     '/Enterprises/samsung-sdi.png',
@@ -21,6 +38,15 @@ const SchoolPage: NextPage = () => {
     '/Enterprises/samsung-sdi.png',
     '/Enterprises/samsung-sdi.png',
   ];
+
+  const selectStyle = (index: number) =>
+    select === index && { color: '#ffffff' };
+
+  const selecting = (index: number) => setSelect(index);
+
+  useEffect(() => {
+    setEmployRate(data[select - 1]);
+  }, [select]);
 
   return (
     <>
@@ -61,12 +87,32 @@ const SchoolPage: NextPage = () => {
           <S.Section3Title>취업률</S.Section3Title>
           <S.GraphWrap>
             <S.SelectBox>
-              <S.SelectBar></S.SelectBar>
+              <S.SelectBar />
+              <S.SelectOptionBox>
+                <S.SelectOption
+                  css={selectStyle(1)}
+                  onClick={() => selecting(1)}
+                >
+                  1기
+                </S.SelectOption>
+                <S.SelectOption
+                  css={selectStyle(2)}
+                  onClick={() => selecting(2)}
+                >
+                  2기
+                </S.SelectOption>
+                <S.SelectOption
+                  css={selectStyle(3)}
+                  onClick={() => selecting(3)}
+                >
+                  3기
+                </S.SelectOption>
+              </S.SelectOptionBox>
             </S.SelectBox>
             <S.GraphBox>
               <S.Title>총 80명</S.Title>
               <S.Graph>
-                <Graph data={data} />
+                <Graph data={EmoployRate} />
               </S.Graph>
             </S.GraphBox>
           </S.GraphWrap>
