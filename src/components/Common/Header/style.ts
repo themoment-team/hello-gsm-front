@@ -1,6 +1,11 @@
 import styled from '@emotion/styled';
 
 export const Header = styled.div`
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
   height: 70px;
   background-color: #0f0921;
   color: #ffffff;

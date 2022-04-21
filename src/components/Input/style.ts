@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
 
 export const Input = styled.input`
-  width: 328px;
   height: 50px;
   background: rgba(255, 255, 255, 0.27);
-  border-radius: 32px;
+  border-radius: 10px;
   box-sizing: border-box;
   padding: 0 32px;
   margin-bottom: 10px;

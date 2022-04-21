@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const SignInPage = styled.div`
   position: relative;
-  background: #0f0921;
   height: calc(100vh - 70px);
   display: flex;
   align-items: center;
@@ -32,8 +31,8 @@ export const Title = styled.h1`
 export const Submit = styled.button`
   width: 328px;
   height: 45px;
+  border-radius: 10px;
   background: #ffffff;
-  border-radius: 32px;
   font-weight: 700;
   font-size: 21px;
   line-height: 30px;
@@ -53,7 +52,7 @@ export const Forget = styled.div`
   color: #ffffff;
   a {
     text-decoration: none;
-    color: #5dc0f8;
+    color: #dee449;
   }
 `;
 
@@ -66,7 +65,7 @@ export const SignUp = styled.a`
   margin-top: 10px;
 `;
 
-export const BigCircle = styled.div`
+export const BigBall = styled.div`
   position: absolute;
   width: 93vh;
   height: 93vh;
@@ -82,7 +81,7 @@ export const BigCircle = styled.div`
   z-index: -1;
 `;
 
-export const SmallCircle = styled.div`
+export const SmallBall = styled.div`
   position: absolute;
   width: 25vh;
   height: 25vh;
