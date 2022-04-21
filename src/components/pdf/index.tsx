@@ -7,6 +7,7 @@ import {
   Image,
   Font,
 } from '@react-pdf/renderer';
+import { Test } from 'components/test';
 
 Font.register({
   family: 'Nanum Gothic',
@@ -42,7 +43,6 @@ const styles = StyleSheet.create({
   subject: {
     backgroundColor: '#c4c4c4',
     border: '1px solid #000000',
-    
   },
 });
 
@@ -51,7 +51,7 @@ export function PdfFile() {
   return (
     <Document>
       <Page style={styles.text}>
-        <Text style={styles.title}>
+        {/* <Text style={styles.title}>
           광주소프트웨어마이스터고등학교 입학원서
         </Text>
 
@@ -59,7 +59,8 @@ export function PdfFile() {
           <FontText>2023학년도 신입생 입학전형</FontText>
           <Text style={(styles.subject, { color: 'red' })}>접수번호</Text>
           <Text style={styles.text}>12345</Text>
-        </View>
+        </View> */}
+        <Test name="yoosion" />
       </Page>
     </Document>
   );
