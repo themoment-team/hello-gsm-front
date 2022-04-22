@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const FAQBox = styled.div`
-  width: 620px;
+  width: 670px;
   height: 65px;
   display: flex;
   flex-direction: column;
