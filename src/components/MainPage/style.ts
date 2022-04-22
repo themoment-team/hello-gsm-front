@@ -64,11 +64,13 @@ export const ToApply = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #dbe44e;
 `;
 
 export const ToApplyText = styled.p`
   font-weight: 700;
   font-size: 22px;
+  color: #303030;
 `;
 
 export const ApplyTerm = styled.p`
