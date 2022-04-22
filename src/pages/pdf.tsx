@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
-import { PdfFile } from '../components/pdf';
+import PdfFile from '../components/pdf';
 
 export default function PdfDocument() {
   const [isClient, setIsClient] = useState(false);
-  const [movieDetails, setDetails] = useState([{ movieDetails: 'asdasdas' }]);
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -14,7 +13,7 @@ export default function PdfDocument() {
       {isClient && (
         <PDFDownloadLink
           document={<PdfFile />}
-          fileName="movielist.pdf"
+          fileName="2022신입생_입학원서.pdf"
           style={{
             textDecoration: 'none',
             padding: '10px',
