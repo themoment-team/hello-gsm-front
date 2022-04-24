@@ -7,6 +7,8 @@ interface storeType {
   setModalTitle: (title: string) => void;
   modalContent: string;
   setModalContent: (content: string) => void;
+  isSearching: boolean;
+  setIsSearching: (trueOrFalse: boolean) => void;
 }
 
 const useStore = create<storeType>(set => ({
@@ -16,6 +18,8 @@ const useStore = create<storeType>(set => ({
   setModalTitle: title => set({ modalTitle: title }),
   modalContent: '',
   setModalContent: content => set({ modalContent: content }),
+  isSearching: false,
+  setIsSearching: trueOrFalse => set({ isSearching: trueOrFalse }),
 }));
 
 export default useStore;
