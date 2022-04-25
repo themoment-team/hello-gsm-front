@@ -5,3 +5,5 @@ export { default as CloseButton } from './CloseButton';
 export { default as Questioner } from './Questioner';
 export { default as NotFound } from './NotFound';
 export { default as TMLogo } from './TMLogo';
+export { default as Woman } from './Woman';
+export { default as Man } from './Man';
