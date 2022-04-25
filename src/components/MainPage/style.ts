@@ -64,12 +64,16 @@ export const ToApply = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #dbe44e;
+  background: #ededed;
+  :hover {
+    transition: background 0.4s;
+    background: #dbe44e;
+  }
 `;
 
 export const ToApplyText = styled.p`
   font-weight: 700;
-  font-size: 22px;
+  font-size: 24px;
   color: #303030;
 `;
 

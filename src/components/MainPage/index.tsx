@@ -4,7 +4,6 @@ import Header from 'components/Common/Header';
 import * as S from './style';
 import Link from 'next/link';
 import Footer from 'components/Common/Footer';
-import { css } from '@emotion/react';
 
 const MainPage: NextPage = () => {
   const [selectIndex, setSelectIndex] = useState<number>(1);
