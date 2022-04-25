@@ -6,6 +6,56 @@ export const MyPage = styled.div`
   overflow-y: hidden;
 `;
 
+export const Content = styled.div`
+  width: 350px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 100px auto 0;
+`;
+
+export const UserBox = styled.div`
+  height: 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const GenderAvatar = styled.div`
+  width: 140px;
+  height: 140px;
+  border-radius: 100%;
+  background: #fffafa;
+`;
+
+export const Name = styled.p`
+  font-weight: 700;
+  font-size: 18px;
+  color: #ffffff;
+`;
+
+export const ButtonBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Button = styled.a`
+  width: 160px;
+  height: 45px;
+  border-radius: 10px;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 20px;
+  color: #0f0921;
+`;
+
 const Ball = styled.div`
   border-radius: 100%;
   z-index: -1;
