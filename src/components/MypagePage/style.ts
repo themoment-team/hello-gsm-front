@@ -7,28 +7,21 @@ export const MyPage = styled.div`
 `;
 
 export const Content = styled.div`
-  width: 350px;
-  height: 280px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  margin: 100px auto 0;
+  position: relative;
+  top: 100px;
 `;
 
 export const UserBox = styled.div`
-  height: 170px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-`;
-
-export const GenderAvatar = styled.div`
-  width: 140px;
-  height: 140px;
-  border-radius: 100%;
-  background: #fffafa;
 `;
 
 export const Name = styled.p`
