@@ -5,7 +5,8 @@ import { css, Global } from '@emotion/react';
 import { useCallback, MouseEvent } from 'react';
 
 const FAQModal: React.FC = () => {
-  const { showFAQModal, setShowFAQModal, modalTitle, modalContent } = useStore();
+  const { showFAQModal, setShowFAQModal, FAQModalTitle, FAQModalContent } =
+    useStore();
 
   const removeClick = useCallback((e: MouseEvent<HTMLDivElement>): void => {
     e.stopPropagation();
@@ -27,14 +28,14 @@ const FAQModal: React.FC = () => {
         <S.ContentBox>
           <S.QuestionBox>
             <S.QuestionTitle>
-              <S.QuestionTitleContent>{modalTitle}</S.QuestionTitleContent>
+              <S.QuestionTitleContent>{FAQModalTitle}</S.QuestionTitleContent>
             </S.QuestionTitle>
             <I.Questioner />
           </S.QuestionBox>
           <S.AnswerBox>
             <S.AnswerContent>
               <S.AnswerHeader>답변</S.AnswerHeader>
-              <S.AnswerBody>{modalContent}</S.AnswerBody>
+              <S.AnswerBody>{FAQModalContent}</S.AnswerBody>
             </S.AnswerContent>
           </S.AnswerBox>
         </S.ContentBox>
