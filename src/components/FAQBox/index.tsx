@@ -3,12 +3,12 @@ import { FAQType } from 'components/FAQPage';
 import useStore from 'Stores/StoreContainer';
 
 const FAQBox: React.FC<FAQType> = ({ title, content }) => {
-  const { setShowFAQModal, setModalTitle, setModalContent } = useStore();
+  const { setShowFAQModal, setFAQModalTitle, setFAQModalContent } = useStore();
 
   const showAnswer = () => {
     setShowFAQModal();
-    setModalTitle(title);
-    setModalContent(content);
+    setFAQModalTitle(title);
+    setFAQModalContent(content);
   };
 
   return (
