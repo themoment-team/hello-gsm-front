@@ -16,7 +16,7 @@ export const FAQModalBox = styled.div`
   background-color: #ffffff;
   border-radius: 40px;
   position: fixed;
-  top: 150px;
+  top: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
