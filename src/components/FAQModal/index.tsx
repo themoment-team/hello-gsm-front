@@ -5,23 +5,23 @@ import { css, Global } from '@emotion/react';
 import { useCallback, MouseEvent } from 'react';
 
 const FAQModal: React.FC = () => {
-  const { showModal, setShowModal, modalTitle, modalContent } = useStore();
+  const { showFAQModal, setShowFAQModal, modalTitle, modalContent } = useStore();
 
   const removeClick = useCallback((e: MouseEvent<HTMLDivElement>): void => {
     e.stopPropagation();
   }, []);
 
   return (
-    <S.FAQModal onClick={setShowModal}>
+    <S.FAQModal onClick={setShowFAQModal}>
       <Global
         styles={css`
           body {
-            overflow: ${showModal ? 'hidden' : 'visible'};
+            overflow: ${showFAQModal ? 'hidden' : 'visible'};
           }
         `}
       />
       <S.FAQModalBox onClick={removeClick}>
-        <S.CloseButton onClick={setShowModal}>
+        <S.CloseButton onClick={setShowFAQModal}>
           <I.CloseButton />
         </S.CloseButton>
         <S.ContentBox>

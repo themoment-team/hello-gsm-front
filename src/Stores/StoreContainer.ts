@@ -1,8 +1,8 @@
 import create from 'zustand';
 
 interface storeType {
-  showModal: boolean;
-  setShowModal: () => void;
+  showFAQModal: boolean;
+  setShowFAQModal: () => void;
   modalTitle: string;
   setModalTitle: (title: string) => void;
   modalContent: string;
@@ -10,8 +10,8 @@ interface storeType {
 }
 
 const useStore = create<storeType>(set => ({
-  showModal: false,
-  setShowModal: () => set(state => ({ showModal: !state.showModal })),
+  showFAQModal: false,
+  setShowFAQModal: () => set(state => ({ showFAQModal: !state.showFAQModal })),
   modalTitle: '',
   setModalTitle: title => set({ modalTitle: title }),
   modalContent: '',

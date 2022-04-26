@@ -22,7 +22,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   const [pageIndex, setPageIndex] = useState<number>(1);
   const [isSearching, setIsSearching] = useState<boolean>(false);
 
-  const { showModal } = useStore();
+  const { showFAQModal } = useStore();
 
   const searching = e => {
     setKeyword(e.target.value);
@@ -60,7 +60,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   return (
     <>
       <Header />
-      {showModal && <FAQModal />}
+      {showFAQModal && <FAQModal />}
       <S.FAQPage>
         <S.Title>자주 묻는 질문</S.Title>
         <S.SearchWrapper>
