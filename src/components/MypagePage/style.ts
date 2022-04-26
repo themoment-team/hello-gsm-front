@@ -47,6 +47,7 @@ export const Button = styled.a`
   font-weight: 700;
   font-size: 20px;
   color: #0f0921;
+  cursor: pointer;
 `;
 
 const Ball = styled.div`

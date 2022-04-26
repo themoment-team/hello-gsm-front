@@ -5,14 +5,25 @@ import * as S from './style';
 import * as I from '../../Assets/svg';
 import { useState } from 'react';
 import { css } from '@emotion/react';
+import MypageModal from 'components/MypageModal';
+import useStore from 'Stores/StoreContainer';
 
 const MyPage: NextPage = () => {
   const [gender, setGender] = useState<string>('W');
-  const [saved, setSaved] = useState<boolean>(false);
+  const [saved, setSaved] = useState<boolean>(true);
   const [submitted, setSubmitted] = useState<boolean>(false);
+
+  const { showMypageModal, setShowMypageModal, setMypageModalContent } =
+    useStore();
+
+  const showModal = (content: string) => {
+    setShowMypageModal();
+    setMypageModalContent(content);
+  };
 
   return (
     <S.MyPage>
+      {showMypageModal && <MypageModal />}
       <Header />
       <S.Content>
         <S.UserBox>
@@ -26,28 +37,20 @@ const MyPage: NextPage = () => {
                 width: 335px;
               `}
             >
-              <Link href="/apply" passHref>
-                <S.Button>원서 다운</S.Button>
-              </Link>
-              <Link href="/apply" passHref>
-                <S.Button>제출 서류 다운</S.Button>
-              </Link>
+              <S.Button>원서 다운</S.Button>
+              <S.Button onClick={() => showModal('download')}>제출 서류 다운</S.Button>
             </S.ButtonBox>
           ) : (
             <S.ButtonBox
               css={css`
-                width: 100%;
+                width: 510px;
               `}
             >
-              <Link href="/apply" passHref>
-                <S.Button>입학 취소</S.Button>
-              </Link>
+              <S.Button onClick={() => showModal('cancel')}>입학 취소</S.Button>
               <Link href="/apply" passHref>
                 <S.Button>원서 수정</S.Button>
               </Link>
-              <Link href="/apply" passHref>
-                <S.Button>최종제출</S.Button>
-              </Link>
+              <S.Button onClick={() => showModal('final')}>최종제출</S.Button>
             </S.ButtonBox>
           )
         ) : (
