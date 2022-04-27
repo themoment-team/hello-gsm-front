@@ -10,7 +10,13 @@ export const Header = styled.div`
   background-color: #0f0921;
   color: #ffffff;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+`;
+
+export const HeaderWrap = styled.div`
+  width: 88%;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const Logo = styled.div`
