@@ -29,6 +29,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   };
 
   useEffect(() => {
+    keyword === '' && setIsSearching(false);
     isSearching
       ? setFaqList(
           faqData.filter(
@@ -43,7 +44,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
               faqData.indexOf(faq) < pageIndex * 10,
           ),
         );
-  }, [keyword, pageIndex]);
+  }, [keyword, pageIndex, isSearching]);
 
   const selectPage = (index: number) => setPageIndex(index);
 
