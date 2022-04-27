@@ -49,6 +49,7 @@ export const Search = styled.input`
 
 export const FAQList = styled.div`
   margin-top: 50px;
+  margin-bottom: 100px;
 `;
 
 export const FAQTitle = styled.div`
@@ -57,7 +58,6 @@ export const FAQTitle = styled.div`
 
 export const FAQListIndex = styled.div`
   width: 200px;
-  margin-top: 100px;
   margin-bottom: 70px;
   display: flex;
   justify-content: space-between;
