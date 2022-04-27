@@ -1,47 +1,53 @@
 import * as S from './style';
 import { FAQType } from 'components/FAQPage';
 import useStore from 'Stores/StoreContainer';
-import { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 
 type FAQBoxType = FAQType & {
   keyword: string;
 };
 
-const FAQBox: React.FC<FAQBoxType> = ({ title, content, keyword }) => {
+const FAQBox: React.FC<FAQBoxType> = ({ question, answer, keyword }) => {
   const { isSearching, setShowModal, setModalTitle, setModalContent } =
     useStore();
 
-  const [FAQtitle, setFAQtitle] = useState(title);
-
   const showAnswer = () => {
     setShowModal();
-    setModalTitle(title);
-    setModalContent(content);
+    setModalTitle(question);
+    setModalContent(answer);
   };
 
-  useEffect(
-    () =>
-      isSearching
-        ? setFAQtitle(
-            title
-              .split(keyword)
-              .join(
-                `<span style="color: #000000; font-weight: 900; font-size: 22px;"}>${keyword}</span>`,
-              ),
-          )
-        : setFAQtitle(title),
-    [isSearching, keyword, title],
-  );
-
   return (
-    <S.FAQBox onClick={showAnswer}>
+    <S.FAQBox
+      onClick={showAnswer}
+      css={css`
+        &:hover {
+          background: ${isSearching && 'rgba(255, 255, 255, 0.29);'};
+          p {
+            color: ${isSearching && 'rgba(255, 255, 255, 0.65);'};
+          }
+          p > span {
+            color: ${isSearching && '#ffffff'};
+          }
+        }
+      `}
+    >
       <S.Title
-        dangerouslySetInnerHTML={{ __html: FAQtitle }}
         css={css`
-          color: ${isSearching && '#827F8C'};
+          color: ${isSearching && 'rgba(15, 9, 33, 0.52);'};
         `}
-      />
+      >
+        {question.split(keyword).map((title: string, index: number) => {
+          return index < question.split(keyword).length - 1 ? (
+            <>
+              {title}
+              <S.IsSearching key={index}>{keyword}</S.IsSearching>
+            </>
+          ) : (
+            <>{title}</>
+          );
+        })}
+      </S.Title>
     </S.FAQBox>
   );
 };
