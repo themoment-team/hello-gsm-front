@@ -12,8 +12,8 @@ type FAQDataType = {
 };
 
 export type FAQType = {
-  title: string;
-  content: string;
+  question: string;
+  answer: string;
 };
 
 const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
@@ -34,7 +34,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
       ? setFaqList(
           faqData.filter(
             (faq: FAQType) =>
-              faq.title.includes(keyword) || faq.content.includes(keyword),
+              faq.question.includes(keyword) || faq.answer.includes(keyword),
           ),
         )
       : setFaqList(
@@ -74,7 +74,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
         </S.SearchWrapper>
         <S.FAQList>
           {faqList.map((faq: FAQType, index: number) => (
-            <FAQBox key={index} title={faq.title} content={faq.content} />
+            <FAQBox key={index} question={faq.question} answer={faq.answer} />
           ))}
         </S.FAQList>
         {!isSearching && (

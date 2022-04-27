@@ -2,28 +2,30 @@ import create from 'zustand';
 
 interface storeType {
   showFAQModal: boolean;
-  setShowFAQModal: () => void;
   FAQModalTitle: string;
-  setFAQModalTitle: (title: string) => void;
   FAQModalContent: string;
-  setFAQModalContent: (content: string) => void;
   showMypageModal: boolean;
-  setShowMypageModal: () => void;
   mypageModalContent: string;
+
+  setShowFAQModal: () => void;
+  setFAQModalTitle: (title: string) => void;
+  setFAQModalContent: (content: string) => void;
+  setShowMypageModal: () => void;
   setMypageModalContent: (content: string) => void;
 }
 
 const useStore = create<storeType>(set => ({
   showFAQModal: false,
-  setShowFAQModal: () => set(state => ({ showFAQModal: !state.showFAQModal })),
   FAQModalTitle: '',
-  setFAQModalTitle: title => set({ FAQModalTitle: title }),
   FAQModalContent: '',
-  setFAQModalContent: content => set({ FAQModalContent: content }),
   showMypageModal: false,
+  mypageModalContent: '',
+
+  setShowFAQModal: () => set(state => ({ showFAQModal: !state.showFAQModal })),
+  setFAQModalTitle: title => set({ FAQModalTitle: title }),
+  setFAQModalContent: content => set({ FAQModalContent: content }),
   setShowMypageModal: () =>
     set(state => ({ showMypageModal: !state.showMypageModal })),
-  mypageModalContent: '',
   setMypageModalContent: content => set({ mypageModalContent: content }),
 }));
 
