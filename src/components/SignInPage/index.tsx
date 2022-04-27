@@ -47,10 +47,10 @@ const SignInPage: NextPage = () => {
           <S.Submit>로그인</S.Submit>
           <S.Forget>
             <div>
-              <Link href="/findid">아이디</Link> 혹은{' '}
-              <Link href="/findpassword">비밀번호</Link>를 잊어 버리셨나요?
+              <Link href="/find/id">아이디</Link> 혹은{' '}
+              <Link href="/find/password">비밀번호</Link>를 잊어 버리셨나요?
             </div>
-            <Link href="/signup" passHref>
+            <Link href="/auth/signup" passHref>
               <S.SignUp>회원가입</S.SignUp>
             </Link>
           </S.Forget>
