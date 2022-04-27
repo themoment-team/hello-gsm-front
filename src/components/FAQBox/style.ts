@@ -28,3 +28,9 @@ export const Title = styled.p`
     color: #42bafe;
   }
 `;
+
+export const IsSearching = styled.span`
+  color: #000000;
+  font-weight: 900;
+  font-size: 22px;
+`;
