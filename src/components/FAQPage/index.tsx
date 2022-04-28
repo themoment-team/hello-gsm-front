@@ -20,9 +20,8 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   const [faqList, setFaqList] = useState<FAQType[]>(faqData);
   const [keyword, setKeyword] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(1);
-  const [isSearching, setIsSearching] = useState<boolean>(false);
 
-  const { showFAQModal } = useStore();
+  const { showModal, isSearching, setIsSearching } = useStore();
 
   const searching = e => {
     setKeyword(e.target.value);
@@ -30,6 +29,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   };
 
   useEffect(() => {
+    keyword === '' && setIsSearching(false);
     isSearching
       ? setFaqList(
           faqData.filter(
@@ -44,7 +44,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
               faqData.indexOf(faq) < pageIndex * 10,
           ),
         );
-  }, [keyword, pageIndex]);
+  }, [keyword, pageIndex, isSearching]);
 
   const selectPage = (index: number) => setPageIndex(index);
 
@@ -74,7 +74,12 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
         </S.SearchWrapper>
         <S.FAQList>
           {faqList.map((faq: FAQType, index: number) => (
-            <FAQBox key={index} question={faq.question} answer={faq.answer} />
+            <FAQBox
+              key={index}
+              question={faq.question}
+              answer={faq.answer}
+              keyword={keyword}
+            />
           ))}
         </S.FAQList>
         {!isSearching && (

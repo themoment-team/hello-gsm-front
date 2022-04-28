@@ -6,12 +6,14 @@ interface storeType {
   FAQModalContent: string;
   showMypageModal: boolean;
   mypageModalContent: string;
+  isSearching: boolean;
 
   setShowFAQModal: () => void;
   setFAQModalTitle: (title: string) => void;
   setFAQModalContent: (content: string) => void;
   setShowMypageModal: () => void;
   setMypageModalContent: (content: string) => void;
+  setIsSearching: (trueOrFalse: boolean) => void;
 }
 
 const useStore = create<storeType>(set => ({
@@ -20,6 +22,7 @@ const useStore = create<storeType>(set => ({
   FAQModalContent: '',
   showMypageModal: false,
   mypageModalContent: '',
+  isSearching: false,
 
   setShowFAQModal: () => set(state => ({ showFAQModal: !state.showFAQModal })),
   setFAQModalTitle: title => set({ FAQModalTitle: title }),
@@ -27,6 +30,7 @@ const useStore = create<storeType>(set => ({
   setShowMypageModal: () =>
     set(state => ({ showMypageModal: !state.showMypageModal })),
   setMypageModalContent: content => set({ mypageModalContent: content }),
+  setIsSearching: trueOrFalse => set({ isSearching: trueOrFalse }),
 }));
 
 export default useStore;
