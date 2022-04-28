@@ -38,7 +38,9 @@ const MyPage: NextPage = () => {
               `}
             >
               <S.Button>원서 다운</S.Button>
-              <S.Button onClick={() => showModal('download')}>제출 서류 다운</S.Button>
+              <S.Button onClick={() => showModal('download')}>
+                제출 서류 다운
+              </S.Button>
             </S.ButtonBox>
           ) : (
             <S.ButtonBox
@@ -46,7 +48,7 @@ const MyPage: NextPage = () => {
                 width: 510px;
               `}
             >
-              <S.Button onClick={() => showModal('cancel')}>입학 취소</S.Button>
+              <S.Button onClick={() => showModal('cancel')}>원서 삭제</S.Button>
               <Link href="/apply" passHref>
                 <S.Button>원서 수정</S.Button>
               </Link>
