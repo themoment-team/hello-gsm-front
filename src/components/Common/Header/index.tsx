@@ -33,10 +33,14 @@ const Header: React.FC = () => {
         </S.NavBar>
         <S.MemberBox>
           <Link href="/auth/signin" passHref>
-            <S.MemberContent css={select('/signin')}>로그인</S.MemberContent>
+            <S.MemberContent css={select('/auth/signin')}>
+              로그인
+            </S.MemberContent>
           </Link>
           <Link href="/auth/signup" passHref>
-            <S.MemberContent css={select('/signup')}>회원가입</S.MemberContent>
+            <S.MemberContent css={select('/auth/signup')}>
+              회원가입
+            </S.MemberContent>
           </Link>
         </S.MemberBox>
       </S.HeaderWrap>
