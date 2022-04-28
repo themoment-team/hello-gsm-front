@@ -8,12 +8,7 @@ const MypageModal = () => {
 
   return (
     <S.MypageModal>
-      <S.MypageModalBox
-        css={css`
-          ${mypageModalContent === 'download' &&
-          'justify-content: space-evenly;'}
-        `}
-      >
+      <S.MypageModalBox>
         <S.ExplanationBox>
           <S.ExplanationTitle
             css={css`
@@ -26,7 +21,7 @@ const MypageModal = () => {
                   width: 310px;
                 `}
               >
-                입학 취소을 누르시면 작성하신 원서가
+                원서 삭제를 누르시면 작성하신 원서가
                 <S.RedHighlighting> 삭제</S.RedHighlighting>됩니다.
               </S.ExplanationTitleContent>
             )}
@@ -56,8 +51,12 @@ const MypageModal = () => {
         </S.ExplanationBox>
         <S.ButtonBox>
           <S.CancelButton onClick={setShowMypageModal}>취소</S.CancelButton>
-          <S.AllowButton>
-            {mypageModalContent === 'cancel' && '입학 취소'}
+          <S.AllowButton
+            css={css`
+              ${mypageModalContent === 'cancel' && 'background: #FB1834'};
+            `}
+          >
+            {mypageModalContent === 'cancel' && '원서 삭제'}
             {mypageModalContent === 'final' && '최종제출'}
             {mypageModalContent === 'download' && '제출 서류 다운'}
           </S.AllowButton>

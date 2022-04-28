@@ -19,7 +19,7 @@ export const MypageModalBox = styled.div`
   top: 200px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 `;
 
