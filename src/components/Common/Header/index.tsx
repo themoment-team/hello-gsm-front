@@ -47,7 +47,7 @@ const Header: React.FC = () => {
         ) : (
           <S.MemberBox>
             <Link href="/mypage" passHref>
-              <S.MemberContent css={select('/mypage')}>프로필</S.MemberContent>
+              <S.MemberContent css={select('/mypage')}>내 정보</S.MemberContent>
             </Link>
             <S.MemberContent onClick={() => setLogged(false)}>
               로그아웃
