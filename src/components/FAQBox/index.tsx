@@ -12,9 +12,9 @@ const FAQBox: React.FC<FAQBoxType> = ({ question, answer, keyword }) => {
     useStore();
 
   const showAnswer = () => {
-    setShowModal();
-    setModalTitle(question);
-    setModalContent(answer);
+    setShowFAQModal();
+    setFAQModalTitle(question);
+    setFAQModalContent(answer);
   };
 
   return (

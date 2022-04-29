@@ -44,14 +44,14 @@ export const NavContent = styled.a`
 `;
 
 export const MemberBox = styled.div`
-  width: 140px;
+  width: 150px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
 export const MemberContent = styled.a`
-  color: #969696;
+  color: #dddddd;
   font-weight: 400;
   font-size: 18px;
 `;

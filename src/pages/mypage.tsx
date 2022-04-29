@@ -1,13 +1,8 @@
-import React from 'react';
 import type { NextPage } from 'next';
-import MyPage from 'components/MyPage';
+import MypagePage from 'components/MypagePage';
 
-const Mypage: NextPage = () => {
-  return (
-    <>
-      <MyPage />
-    </>
-  );
+const MyPage: NextPage = () => {
+  return <MypagePage />;
 };
 
-export default Mypage;
+export default MyPage;
