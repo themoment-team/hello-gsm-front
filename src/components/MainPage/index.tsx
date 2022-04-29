@@ -44,7 +44,7 @@ const MainPage: NextPage = () => {
                 <S.ToApplyText>원서 접수</S.ToApplyText>
               </S.ToApply>
             </Link>
-            <S.ApplyTerm>접수 기간: 4.03~4.15</S.ApplyTerm>
+            <S.ApplyTerm>접수 기간: 10.18~10.21</S.ApplyTerm>
             <S.Underline />
           </S.ApplyBox>
         </S.TitleWrap>
