@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
 import MypagePage from 'components/MypagePage';
 
 const MyPage: NextPage = () => {
