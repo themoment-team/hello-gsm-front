@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './style';
 
 const Header: React.FC = () => {
   const { pathname } = useRouter();
+
+  const [logged, setLogged] = useState(true);
 
   const select = (navPath: string) =>
     navPath === pathname && { color: '#ffffff' };
@@ -31,18 +33,27 @@ const Header: React.FC = () => {
             <S.NavContent css={select('/faq')}>자주 묻는 질문</S.NavContent>
           </Link>
         </S.NavBar>
-        <S.MemberBox>
-          <Link href="/auth/signin" passHref>
-            <S.MemberContent css={select('/auth/signin')}>
-              로그인
+        {!logged ? (
+          <S.MemberBox>
+            <Link href="/auth/signin" passHref>
+              <S.MemberContent css={select('/auth/signin')}>로그인</S.MemberContent>
+            </Link>
+            <Link href="/auth/signup" passHref>
+              <S.MemberContent css={select('/auth/signup')}>
+                회원가입
+              </S.MemberContent>
+            </Link>
+          </S.MemberBox>
+        ) : (
+          <S.MemberBox>
+            <Link href="/mypage" passHref>
+              <S.MemberContent css={select('/mypage')}>내 정보</S.MemberContent>
+            </Link>
+            <S.MemberContent onClick={() => setLogged(false)}>
+              로그아웃
             </S.MemberContent>
-          </Link>
-          <Link href="/auth/signup" passHref>
-            <S.MemberContent css={select('/auth/signup')}>
-              회원가입
-            </S.MemberContent>
-          </Link>
-        </S.MemberBox>
+          </S.MemberBox>
+        )}
       </S.HeaderWrap>
     </S.Header>
   );

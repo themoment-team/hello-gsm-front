@@ -1,26 +1,35 @@
 import create from 'zustand';
 
 interface storeType {
-  showModal: boolean;
-  modalTitle: string;
-  modalContent: string;
+  showFAQModal: boolean;
+  FAQModalTitle: string;
+  FAQModalContent: string;
+  showMypageModal: boolean;
+  mypageModalContent: string;
   isSearching: boolean;
 
-  setShowModal: () => void;
-  setModalTitle: (title: string) => void;
-  setModalContent: (content: string) => void;
+  setShowFAQModal: () => void;
+  setFAQModalTitle: (title: string) => void;
+  setFAQModalContent: (content: string) => void;
+  setShowMypageModal: () => void;
+  setMypageModalContent: (content: string) => void;
   setIsSearching: (trueOrFalse: boolean) => void;
 }
 
 const useStore = create<storeType>(set => ({
-  showModal: false,
-  modalTitle: '',
-  modalContent: '',
+  showFAQModal: false,
+  FAQModalTitle: '',
+  FAQModalContent: '',
+  showMypageModal: false,
+  mypageModalContent: '',
   isSearching: false,
 
-  setShowModal: () => set(state => ({ showModal: !state.showModal })),
-  setModalTitle: title => set({ modalTitle: title }),
-  setModalContent: content => set({ modalContent: content }),
+  setShowFAQModal: () => set(state => ({ showFAQModal: !state.showFAQModal })),
+  setFAQModalTitle: title => set({ FAQModalTitle: title }),
+  setFAQModalContent: content => set({ FAQModalContent: content }),
+  setShowMypageModal: () =>
+    set(state => ({ showMypageModal: !state.showMypageModal })),
+  setMypageModalContent: content => set({ mypageModalContent: content }),
   setIsSearching: trueOrFalse => set({ isSearching: trueOrFalse }),
 }));
 
