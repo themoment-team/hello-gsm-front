@@ -1,5 +1,5 @@
 import Header from 'components/Common/Header';
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
 import Link from 'next/link';
 import * as S from './style';
 import * as I from '../../Assets/svg';
