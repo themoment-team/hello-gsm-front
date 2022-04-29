@@ -3,7 +3,7 @@ import * as I from '../../Assets/svg';
 import useStore from 'Stores/StoreContainer';
 import { css } from '@emotion/react';
 
-const MypageModal = () => {
+const MypageModal: React.FC = () => {
   const { setShowMypageModal, mypageModalContent } = useStore();
 
   return (
