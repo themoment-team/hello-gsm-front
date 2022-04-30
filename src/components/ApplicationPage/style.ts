@@ -52,7 +52,7 @@ export const Content = styled.div`
 `;
 
 export const Container = styled.div`
-  height: 60vh;
+  /* height: 60vh; */
   border: 2px solid #000000;
 `;
 
@@ -70,17 +70,36 @@ export const SectionTitle = styled.div`
   background-color: #c4c4c4;
   width: 3%;
   height: 100%;
-  border-right: 1px solid #000000;
   font-size: 20px;
 `;
 
 export const Table = styled.table`
-  /* width: 100%; */
   height: 100%;
+  text-align: center;
+  td {
+    vertical-align: middle;
+    border: 1px solid #000000;
+    border-collapse: collapse;
+  }
 `;
 
 export const Photo = styled.div`
   width: 237px;
   height: 100%;
   background-color: red;
+  img {
+    width: 100%;
+    /* height: 100%; */
+  }
 `;
+
+export const Sub = styled.td`
+  font-weight: 500;
+  background-color: #c4c4c4;
+  border-collapse: collapse;
+  padding: 0 10px;
+  vertical-align: middle;
+  border: 1px solid #000000;
+`;
+
+export const Tr = styled.tr``;

@@ -11,6 +11,9 @@ const profile = {
   phoneNumber: '010 9201 5487',
   birth: '2022년 11월 09일',
   middleSchool: '풍암중학교',
+  area: '광주광역시 서구',
+  photoUrl:
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrNSGTUntb7tiyrB0zEeemK8lJd3gGOSHILw&usqp=CAU',
   guardian: {
     name: '울엄마',
     relation: '모',
@@ -41,55 +44,61 @@ const ApplicationPage: NextPage = () => {
       </S.Wrap>
       <S.Container>
         <S.Section1>
-          <S.SectionTitle>인적사항</S.SectionTitle>
           <S.Table>
             <tbody>
               <tr>
-                <td style={{ width: '3%' }} rowSpan={3}>
+                <S.Sub style={{ width: '3%' }} rowSpan={7}>
+                  인적사항
+                </S.Sub>
+              </tr>
+              <tr>
+                <S.Sub style={{ width: '3%' }} rowSpan={3}>
                   지원자
-                </td>
-                <td>성 명</td>
-                <td>{profile.name}</td>
-                <td>성별</td>
+                </S.Sub>
+                <S.Sub>성 명</S.Sub>
+                <td colSpan={2}>{profile.name}</td>
+                <S.Sub style={{ width: '3%' }}>성별</S.Sub>
                 <td>남 여</td>
-                <td>생년월일</td>
+                <S.Sub>생년월일</S.Sub>
                 <td>{profile.birth}</td>
               </tr>
               <tr>
-                <td>주 소</td>
-                <td colSpan={5}>{profile.address}</td>
+                <S.Sub>주 소</S.Sub>
+                <td colSpan={6}>{profile.address}</td>
               </tr>
               <tr>
-                <td>연락처</td>
-                <td>집전화</td>
+                <S.Sub>연락처</S.Sub>
+                <S.Sub colSpan={1}>집전화</S.Sub>
                 <td>{profile.homeNumber}</td>
-                <td>핸드폰</td>
-                <td>{profile.phoneNumber}</td>
+                <S.Sub colSpan={2}>핸드폰</S.Sub>
+                <td colSpan={2}>{profile.phoneNumber}</td>
               </tr>
-              <tr>
-                <td style={{ width: '3%' }} rowSpan={2}>
+              <S.Tr>
+                <S.Sub style={{ width: '3%' }} rowSpan={2}>
                   보호자
-                </td>
-                <td>성 명</td>
-                <td>{profile.guardian.name}</td>
-                <td>지원자와의 관계</td>
-                <td>{profile.guardian.relation}</td>
-              </tr>
+                </S.Sub>
+                <S.Sub>성 명</S.Sub>
+                <td colSpan={2}>{profile.guardian.name}</td>
+                <S.Sub>지원자와의 관계</S.Sub>
+                <td colSpan={2}>{profile.guardian.relation}</td>
+              </S.Tr>
               <tr>
-                <td>핸드폰</td>
-                <td>{profile.guardian.phoneNumber}</td>
+                <S.Sub>핸드폰</S.Sub>
+                <td colSpan={6}>{profile.guardian.phoneNumber}</td>
               </tr>
-              <tr>
-                <td colSpan={3} rowSpan={1}>
+              <S.Tr>
+                <S.Sub colSpan={3}>
                   원서작성자(담임) <br /> 성명
-                </td>
-                <td>(인)</td>
-                <td>핸드폰</td>
-                <td>{profile.teacher.phoneNumber}</td>
-              </tr>
+                </S.Sub>
+                <td colSpan={2}>(인)</td>
+                <td colSpan={1}>핸드폰</td>
+                <td colSpan={5}>{profile.teacher.phoneNumber}</td>
+              </S.Tr>
             </tbody>
           </S.Table>
-          <S.Photo>사진</S.Photo>
+          <S.Photo>
+            <img src={profile.photoUrl} alt="" />
+          </S.Photo>
         </S.Section1>
         <S.Section1>
           <S.SectionTitle>지원자 현황</S.SectionTitle>
@@ -98,21 +107,75 @@ const ApplicationPage: NextPage = () => {
               <tr>
                 <td rowSpan={2}>출신중학교</td>
                 <td>{profile.middleSchool}</td>
+                <td>2023년 졸업예정</td>
               </tr>
               <tr>
                 <td>지역명</td>
+                <td colSpan={5}>{profile.area}</td>
               </tr>
               <tr>
-                <td>전형구분</td>
-                <td></td>
+                <td rowSpan={1} colSpan={5}>
+                  전형구분
+                </td>
+                <td colSpan={4}>사회통합전형의 대상 구분</td>
               </tr>
               <tr>
-                <td rowSpan={2}>교과성적</td>
-                <td></td>
+                <td rowSpan={1} colSpan={5}>
+                  일반전형
+                </td>
+                <td colSpan={5}>기회균등전형</td>
+              </tr>
+              <tr>
+                <td rowSpan={1}>교과성적</td>
+              </tr>
+              <tr>
+                <td>1-1</td>
+                <td>1-2</td>
+                <td>1-3</td>
+              </tr>
+              <tr>
+                <td>1-1</td>
+                <td>1-2</td>
+                <td>1-3</td>
               </tr>
               <tr>
                 <td rowSpan={2}>비교과성적</td>
-                <td></td>
+              </tr>
+              <tr>
+                <td colSpan={2}>출석</td>
+                <td colSpan={2}>봉사활동</td>
+                <td colSpan={2}>예체능</td>
+              </tr>
+              <tr>
+                <td colSpan={2} rowSpan={3}>
+                  봉사활동asdfasdfasdfasd
+                </td>
+                <td colSpan={2}>봉사활동</td>
+                <td colSpan={2}>봉사활동</td>
+              </tr>
+            </tbody>
+          </S.Table>
+        </S.Section1>
+        <S.Section1>
+          <S.SectionTitle style={{ width: '10%' }}>지원구분</S.SectionTitle>
+          <S.Table>
+            <tbody>
+              <tr>
+                <td colSpan={2}>1지망 학과</td>
+                <td colSpan={2}>2지망 학과</td>
+                <td colSpan={2}>3지망 학과</td>
+              </tr>
+              <tr>
+                <td colSpan={2}>소프트웨어개발과</td>
+                <td colSpan={2}>스마트IOT과</td>
+                <td colSpan={2}>인공지능과</td>
+              </tr>
+              <tr>
+                <td colSpan={3}>
+                  1.(인공지능과/ 스마트IOT과/ 소프트웨어개발과) 중 지망 학과를
+                  순서대로 기록 <br />
+                  2. 지원학과는 희망 순에 따라 3개 학과를 모두 기록해야 한다.
+                </td>
               </tr>
             </tbody>
           </S.Table>
