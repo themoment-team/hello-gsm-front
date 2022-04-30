@@ -100,6 +100,7 @@ export const Sub = styled.td`
   padding: 0 10px;
   vertical-align: middle;
   border: 1px solid #000000;
+  /* font-size: 20px; */
 `;
 
 export const Tr = styled.tr``;

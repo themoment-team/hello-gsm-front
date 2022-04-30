@@ -56,43 +56,45 @@ const ApplicationPage: NextPage = () => {
                   지원자
                 </S.Sub>
                 <S.Sub>성 명</S.Sub>
-                <td colSpan={2}>{profile.name}</td>
+                <td colSpan={4}>{profile.name}</td>
                 <S.Sub style={{ width: '3%' }}>성별</S.Sub>
-                <td>남 여</td>
+                <td colSpan={2}>남 여</td>
                 <S.Sub>생년월일</S.Sub>
                 <td>{profile.birth}</td>
               </tr>
               <tr>
                 <S.Sub>주 소</S.Sub>
-                <td colSpan={6}>{profile.address}</td>
+                <td colSpan={9}>{profile.address}</td>
               </tr>
               <tr>
                 <S.Sub>연락처</S.Sub>
-                <S.Sub colSpan={1}>집전화</S.Sub>
-                <td>{profile.homeNumber}</td>
-                <S.Sub colSpan={2}>핸드폰</S.Sub>
-                <td colSpan={2}>{profile.phoneNumber}</td>
+                <S.Sub colSpan={3}>집전화</S.Sub>
+                <td colSpan={3}>{profile.homeNumber}</td>
+                <S.Sub>핸드폰</S.Sub>
+                <td colSpan={3}>{profile.phoneNumber}</td>
               </tr>
               <S.Tr>
                 <S.Sub style={{ width: '3%' }} rowSpan={2}>
                   보호자
                 </S.Sub>
                 <S.Sub>성 명</S.Sub>
-                <td colSpan={2}>{profile.guardian.name}</td>
-                <S.Sub>지원자와의 관계</S.Sub>
-                <td colSpan={2}>{profile.guardian.relation}</td>
+                <td colSpan={5}>{profile.guardian.name}</td>
+                <S.Sub colSpan={1}>지원자와의 관계</S.Sub>
+                <td colSpan={3}>{profile.guardian.relation}</td>
               </S.Tr>
               <tr>
                 <S.Sub>핸드폰</S.Sub>
-                <td colSpan={6}>{profile.guardian.phoneNumber}</td>
+                <td colSpan={9}>{profile.guardian.phoneNumber}</td>
               </tr>
               <S.Tr>
-                <S.Sub colSpan={3}>
+                <S.Sub colSpan={3} style={{ height: '15%' }}>
                   원서작성자(담임) <br /> 성명
                 </S.Sub>
-                <td colSpan={2}>(인)</td>
-                <td colSpan={1}>핸드폰</td>
-                <td colSpan={5}>{profile.teacher.phoneNumber}</td>
+                <td colSpan={5} style={{ textAlign: 'end' }}>
+                  (인)
+                </td>
+                <S.Sub>핸드폰</S.Sub>
+                <td colSpan={4}>{profile.teacher.phoneNumber}</td>
               </S.Tr>
             </tbody>
           </S.Table>
