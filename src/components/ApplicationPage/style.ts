@@ -53,18 +53,34 @@ export const Content = styled.div`
 
 export const Container = styled.div`
   height: 60vh;
-  border: 1.5px solid #000000;
+  border: 2px solid #000000;
 `;
 
 export const Section1 = styled.div`
   display: flex;
   align-items: center;
-  height: 30%;
-  border-bottom: 1px solid #000000;
+  height: 265px;
+  border-bottom: 2px solid #000000;
 `;
 
 export const SectionTitle = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
   background-color: #c4c4c4;
-  width: 4%;
+  width: 3%;
   height: 100%;
+  border-right: 1px solid #000000;
+  font-size: 20px;
+`;
+
+export const Table = styled.table`
+  /* width: 100%; */
+  height: 100%;
+`;
+
+export const Photo = styled.div`
+  width: 237px;
+  height: 100%;
+  background-color: red;
 `;
