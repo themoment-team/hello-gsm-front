@@ -36,7 +36,7 @@ const ApplyPage: NextPage = () => {
         <S.BarBox>
           <S.BarElement
             css={css`
-              top: 80px;
+              top: 100px;
             `}
           >
             증명사진
