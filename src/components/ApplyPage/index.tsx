@@ -11,6 +11,7 @@ const ApplyPage: NextPage = () => {
   const [imgURL, setImgURL] = useState<string>('');
   const [name, setName] = useState<string>('김형록');
   const [gender, setGender] = useState<string>('M');
+  const [birth, setBirth] = useState<number>(20050228);
 
   const readImg = (event: any) => {
     const reader = new FileReader();
@@ -54,6 +55,13 @@ const ApplyPage: NextPage = () => {
           >
             성별
           </S.BarElement>
+          <S.BarElement
+            css={css`
+              top: 580px;
+            `}
+          >
+            생년월일
+          </S.BarElement>
         </S.BarBox>
         <S.ApplyPageContent>
           <S.Title>지원자 인적사항</S.Title>
@@ -91,6 +99,7 @@ const ApplyPage: NextPage = () => {
               여쟈
             </S.GenderSelect>
           </S.GenderBox>
+          <S.BirthBox>{birth}</S.BirthBox>
         </S.ApplyPageContent>
       </S.ApplyPage>
     </>
