@@ -75,6 +75,22 @@ const ApplyPage: NextPage = () => {
             onChange={e => readImg(e)}
           />
           <S.NameBox>{name}</S.NameBox>
+          <S.GenderBox>
+            <S.GenderSelect
+              css={css`
+                background: ${gender === 'M' && '#42bafe'};
+              `}
+            >
+              남자
+            </S.GenderSelect>
+            <S.GenderSelect
+              css={css`
+                background: ${gender === 'W' && '#42bafe'};
+              `}
+            >
+              여쟈
+            </S.GenderSelect>
+          </S.GenderBox>
         </S.ApplyPageContent>
       </S.ApplyPage>
     </>
