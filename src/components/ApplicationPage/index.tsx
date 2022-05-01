@@ -30,6 +30,23 @@ const ApplicationPage: NextPage = () => {
       css={css`
         @media print {
           -webkit-print-color-adjust: exact;
+          table {
+            page-break-after: auto;
+          }
+          table tr {
+            page-break-inside: avoid;
+            page-break-after: auto;
+          }
+          table td {
+            page-break-inside: avoid;
+            page-break-after: auto;
+          }
+          table thead {
+            display: table-header-group;
+          }
+          table tfoot {
+            display: table-footer-group;
+          }
         }
       `}
     >
@@ -43,121 +60,123 @@ const ApplicationPage: NextPage = () => {
         </S.Box>
       </S.Wrap>
       <S.Container>
-        <S.Section1>
-          <S.Table>
-            <tbody>
-              <tr>
-                <S.Sub style={{ width: '3%' }} rowSpan={7}>
-                  인적사항
-                </S.Sub>
-              </tr>
-              <tr>
-                <S.Sub style={{ width: '3%' }} rowSpan={3}>
-                  지원자
-                </S.Sub>
-                <S.Sub>성 명</S.Sub>
-                <td colSpan={4}>{profile.name}</td>
-                <S.Sub style={{ width: '3%' }}>성별</S.Sub>
-                <td colSpan={2}>남 여</td>
-                <S.Sub>생년월일</S.Sub>
-                <td>{profile.birth}</td>
-              </tr>
-              <tr>
-                <S.Sub>주 소</S.Sub>
-                <td colSpan={9}>{profile.address}</td>
-              </tr>
-              <tr>
-                <S.Sub>연락처</S.Sub>
-                <S.Sub colSpan={3}>집전화</S.Sub>
-                <td colSpan={3}>{profile.homeNumber}</td>
-                <S.Sub>핸드폰</S.Sub>
-                <td colSpan={3}>{profile.phoneNumber}</td>
-              </tr>
-              <S.Tr>
-                <S.Sub style={{ width: '3%' }} rowSpan={2}>
-                  보호자
-                </S.Sub>
-                <S.Sub>성 명</S.Sub>
-                <td colSpan={5}>{profile.guardian.name}</td>
-                <S.Sub colSpan={1}>지원자와의 관계</S.Sub>
-                <td colSpan={3}>{profile.guardian.relation}</td>
-              </S.Tr>
-              <tr>
-                <S.Sub>핸드폰</S.Sub>
-                <td colSpan={9}>{profile.guardian.phoneNumber}</td>
-              </tr>
-              <S.Tr>
-                <S.Sub colSpan={3} style={{ height: '15%' }}>
-                  원서작성자(담임) <br /> 성명
-                </S.Sub>
-                <td colSpan={5} style={{ textAlign: 'end' }}>
-                  (인)
-                </td>
-                <S.Sub>핸드폰</S.Sub>
-                <td colSpan={4}>{profile.teacher.phoneNumber}</td>
-              </S.Tr>
-            </tbody>
-          </S.Table>
-          <S.Photo>
-            <img src={profile.photoUrl} alt="" />
-          </S.Photo>
-        </S.Section1>
-        <S.Section1>
-          <S.SectionTitle>지원자 현황</S.SectionTitle>
-          <S.Table>
-            <tbody>
-              <tr>
-                <td rowSpan={2}>출신중학교</td>
-                <td>{profile.middleSchool}</td>
-                <td>2023년 졸업예정</td>
-              </tr>
-              <tr>
-                <td>지역명</td>
-                <td colSpan={5}>{profile.area}</td>
-              </tr>
-              <tr>
-                <td rowSpan={1} colSpan={5}>
-                  전형구분
-                </td>
-                <td colSpan={4}>사회통합전형의 대상 구분</td>
-              </tr>
-              <tr>
-                <td rowSpan={1} colSpan={5}>
-                  일반전형
-                </td>
-                <td colSpan={5}>기회균등전형</td>
-              </tr>
-              <tr>
-                <td rowSpan={1}>교과성적</td>
-              </tr>
-              <tr>
-                <td>1-1</td>
-                <td>1-2</td>
-                <td>1-3</td>
-              </tr>
-              <tr>
-                <td>1-1</td>
-                <td>1-2</td>
-                <td>1-3</td>
-              </tr>
-              <tr>
-                <td rowSpan={2}>비교과성적</td>
-              </tr>
-              <tr>
-                <td colSpan={2}>출석</td>
-                <td colSpan={2}>봉사활동</td>
-                <td colSpan={2}>예체능</td>
-              </tr>
-              <tr>
-                <td colSpan={2} rowSpan={3}>
-                  봉사활동asdfasdfasdfasd
-                </td>
-                <td colSpan={2}>봉사활동</td>
-                <td colSpan={2}>봉사활동</td>
-              </tr>
-            </tbody>
-          </S.Table>
-        </S.Section1>
+        <S.Table>
+          <tbody>
+            <tr>
+              <S.Sub style={{ width: '3%' }} rowSpan={7}>
+                인적사항
+              </S.Sub>
+            </tr>
+            <tr>
+              <S.Sub style={{ width: '3%' }} rowSpan={3}>
+                지원자
+              </S.Sub>
+              <S.Sub>성 명</S.Sub>
+              <td colSpan={4}>{profile.name}</td>
+              <S.Sub style={{ width: '3%' }}>성별</S.Sub>
+              <td colSpan={2}>남 여</td>
+              <S.Sub>생년월일</S.Sub>
+              <td>{profile.birth}</td>
+              <td rowSpan={7}>
+                <img src={profile.photoUrl} alt="" />
+              </td>
+            </tr>
+            <tr>
+              <S.Sub>주 소</S.Sub>
+              <td colSpan={9}>{profile.address}</td>
+            </tr>
+            <tr>
+              <S.Sub>연락처</S.Sub>
+              <S.Sub colSpan={3}>집전화</S.Sub>
+              <td colSpan={3}>{profile.homeNumber}</td>
+              <S.Sub>핸드폰</S.Sub>
+              <td colSpan={3}>{profile.phoneNumber}</td>
+            </tr>
+            <S.Tr>
+              <S.Sub style={{ width: '3%' }} rowSpan={2}>
+                보호자
+              </S.Sub>
+              <S.Sub>성 명</S.Sub>
+              <td colSpan={5}>{profile.guardian.name}</td>
+              <S.Sub colSpan={1}>지원자와의 관계</S.Sub>
+              <td colSpan={3}>{profile.guardian.relation}</td>
+            </S.Tr>
+            <tr>
+              <S.Sub>핸드폰</S.Sub>
+              <td colSpan={9}>{profile.guardian.phoneNumber}</td>
+            </tr>
+            <S.Tr>
+              <S.Sub colSpan={3} style={{ height: '15%' }}>
+                원서작성자(담임) <br /> 성명
+              </S.Sub>
+              <td colSpan={5} style={{ textAlign: 'end' }}>
+                (인)
+              </td>
+              <S.Sub>핸드폰</S.Sub>
+              <td colSpan={4}>{profile.teacher.phoneNumber}</td>
+            </S.Tr>
+          </tbody>
+        </S.Table>
+        <S.Table>
+          <tbody>
+            <tr>
+              <S.Sub style={{ width: '3%' }} rowSpan={11}>
+                지원자 현황
+              </S.Sub>
+            </tr>
+            <tr>
+              <S.Sub colSpan={1} rowSpan={2}>
+                출신중학교
+              </S.Sub>
+              <td colSpan={2}>{profile.middleSchool}</td>
+              <td colSpan={3}>2023년 졸업예정</td>
+            </tr>
+            <tr>
+              <S.Sub>지역명</S.Sub>
+              <td colSpan={4}>{profile.area}</td>
+            </tr>
+            <tr>
+              <S.Sub rowSpan={1} colSpan={3}>
+                전 형 구 분
+              </S.Sub>
+              <S.Sub colSpan={3}>사회통합전형의 대상 구분</S.Sub>
+            </tr>
+            <tr>
+              <td rowSpan={1} colSpan={3}>
+                일반전형 사회통합전형 특별전형
+              </td>
+              <td colSpan={3}>기회균등전형 사회다양성전형</td>
+            </tr>
+            <tr>
+              <td rowSpan={1}>교과성적</td>
+            </tr>
+            <tr>
+              <td>1-1</td>
+              <td>1-2</td>
+              <td>1-3</td>
+            </tr>
+            <tr>
+              <td>1-1</td>
+              <td>1-2</td>
+              <td>1-3</td>
+            </tr>
+            <tr>
+              <td rowSpan={2}>비교과성적</td>
+            </tr>
+            <tr>
+              <td colSpan={2}>출석</td>
+              <td colSpan={2}>봉사활동</td>
+              <td colSpan={2}>예체능</td>
+            </tr>
+            <tr>
+              <td colSpan={2} rowSpan={3}>
+                봉사활동asdfasdfasdfasd
+              </td>
+              <td colSpan={2}>봉사활동</td>
+              <td colSpan={2}>봉사활동</td>
+            </tr>
+          </tbody>
+        </S.Table>
         <S.Section1>
           <S.SectionTitle style={{ width: '10%' }}>지원구분</S.SectionTitle>
           <S.Table>

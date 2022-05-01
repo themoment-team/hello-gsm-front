@@ -52,15 +52,7 @@ export const Content = styled.div`
 `;
 
 export const Container = styled.div`
-  /* height: 60vh; */
   border: 2px solid #000000;
-`;
-
-export const Section1 = styled.div`
-  display: flex;
-  align-items: center;
-  height: 265px;
-  border-bottom: 2px solid #000000;
 `;
 
 export const SectionTitle = styled.div`
@@ -74,6 +66,7 @@ export const SectionTitle = styled.div`
 `;
 
 export const Table = styled.table`
+  width: 100%;
   height: 100%;
   text-align: center;
   td {
@@ -89,7 +82,7 @@ export const Photo = styled.div`
   background-color: red;
   img {
     width: 100%;
-    /* height: 100%; */
+    height: 100%;
   }
 `;
 
