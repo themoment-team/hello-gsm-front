@@ -84,3 +84,21 @@ export const NameBox = styled.div`
   font-weight: 400;
   font-size: 20px;
 `;
+
+export const GenderBox = styled.div`
+  width: 800px;
+  height: 55px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const GenderSelect = styled.div`
+  width: 390px;
+  background: #a0a0a0;
+  color: #f8f8f8;
+  font-weight: 700;
+  font-size: 20px;
+  border-radius: 6px;
+  padding: 16px 176px;
+`;
