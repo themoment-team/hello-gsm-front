@@ -16,7 +16,7 @@ const profile = {
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrNSGTUntb7tiyrB0zEeemK8lJd3gGOSHILw&usqp=CAU',
   guardian: {
     name: '울엄마',
-    relation: '모',
+    relation: '지원자의 (모)',
     phoneNumber: '010 1234 5678',
   },
   teacher: {
@@ -30,23 +30,6 @@ const ApplicationPage: NextPage = () => {
       css={css`
         @media print {
           -webkit-print-color-adjust: exact;
-          table {
-            page-break-after: auto;
-          }
-          table tr {
-            page-break-inside: avoid;
-            page-break-after: auto;
-          }
-          table td {
-            page-break-inside: avoid;
-            page-break-after: auto;
-          }
-          table thead {
-            display: table-header-group;
-          }
-          table tfoot {
-            display: table-footer-group;
-          }
         }
       `}
     >
@@ -61,146 +44,158 @@ const ApplicationPage: NextPage = () => {
       </S.Wrap>
       <S.Container>
         <S.Table>
-          <tbody>
+          <thead>
             <tr>
-              <S.Sub style={{ width: '3%' }} rowSpan={7}>
+              <S.Sub style={{ width: '3%', height: '300px' }} rowSpan={7}>
                 인적사항
               </S.Sub>
             </tr>
             <tr>
-              <S.Sub style={{ width: '3%' }} rowSpan={3}>
+              <S.Sub style={{ width: '3%', height: '160px' }} rowSpan={3}>
                 지원자
               </S.Sub>
               <S.Sub>성 명</S.Sub>
-              <td colSpan={4}>{profile.name}</td>
+              <td>{profile.name}</td>
               <S.Sub style={{ width: '3%' }}>성별</S.Sub>
-              <td colSpan={2}>남 여</td>
+              <td>남 여</td>
               <S.Sub>생년월일</S.Sub>
               <td>{profile.birth}</td>
-              <td rowSpan={7}>
+              <td rowSpan={6}>
                 <img src={profile.photoUrl} alt="" />
               </td>
             </tr>
             <tr>
               <S.Sub>주 소</S.Sub>
-              <td colSpan={9}>{profile.address}</td>
+              <td colSpan={5}>{profile.address}</td>
             </tr>
             <tr>
               <S.Sub>연락처</S.Sub>
-              <S.Sub colSpan={3}>집전화</S.Sub>
-              <td colSpan={3}>{profile.homeNumber}</td>
+              <S.Sub>집전화</S.Sub>
+              <td colSpan={2}>{profile.homeNumber}</td>
               <S.Sub>핸드폰</S.Sub>
-              <td colSpan={3}>{profile.phoneNumber}</td>
+              <td colSpan={1}>{profile.phoneNumber}</td>
             </tr>
-            <S.Tr>
+            <tr>
               <S.Sub style={{ width: '3%' }} rowSpan={2}>
                 보호자
               </S.Sub>
-              <S.Sub>성 명</S.Sub>
-              <td colSpan={5}>{profile.guardian.name}</td>
-              <S.Sub colSpan={1}>지원자와의 관계</S.Sub>
-              <td colSpan={3}>{profile.guardian.relation}</td>
-            </S.Tr>
+              <S.Sub style={{ height: '10px' }}>성 명</S.Sub>
+              <td colSpan={2}>{profile.guardian.name}</td>
+              <S.Sub>지원자와의 관계</S.Sub>
+              <td colSpan={2}>{profile.guardian.relation}</td>
+            </tr>
             <tr>
               <S.Sub>핸드폰</S.Sub>
-              <td colSpan={9}>{profile.guardian.phoneNumber}</td>
+              <td colSpan={5}>{profile.guardian.phoneNumber}</td>
             </tr>
-            <S.Tr>
+            <tr>
               <S.Sub colSpan={3} style={{ height: '15%' }}>
                 원서작성자(담임) <br /> 성명
               </S.Sub>
-              <td colSpan={5} style={{ textAlign: 'end' }}>
+
+              <td colSpan={2} style={{ textAlign: 'end' }}>
                 (인)
               </td>
               <S.Sub>핸드폰</S.Sub>
-              <td colSpan={4}>{profile.teacher.phoneNumber}</td>
-            </S.Tr>
-          </tbody>
+              <td>{profile.teacher.phoneNumber}</td>
+            </tr>
+          </thead>
         </S.Table>
+
         <S.Table>
-          <tbody>
+          <thead>
             <tr>
-              <S.Sub style={{ width: '3%' }} rowSpan={11}>
+              <S.Sub style={{ width: '3%', height: '300px' }} rowSpan={9}>
                 지원자 현황
               </S.Sub>
             </tr>
             <tr>
-              <S.Sub colSpan={1} rowSpan={2}>
+              <S.Sub colSpan={2} rowSpan={2}>
                 출신중학교
               </S.Sub>
               <td colSpan={2}>{profile.middleSchool}</td>
-              <td colSpan={3}>2023년 졸업예정</td>
+              <td colSpan={6}>2023년 졸업예정</td>
             </tr>
             <tr>
               <S.Sub>지역명</S.Sub>
-              <td colSpan={4}>{profile.area}</td>
+              <td colSpan={7}>{profile.area}</td>
             </tr>
             <tr>
-              <S.Sub rowSpan={1} colSpan={3}>
-                전 형 구 분
+              <S.Sub colSpan={5}>전 형 구 분</S.Sub>
+              <S.Sub colSpan={4}>사회통합전형의 대상 구분</S.Sub>
+            </tr>
+            <tr>
+              <td colSpan={5}>일반전형 사회통합전형 특별전형</td>
+              <td colSpan={4}>기회균등전형 사회다양성전형</td>
+            </tr>
+            <tr>
+              <S.Sub rowSpan={2} style={{ width: '7%' }}>
+                교과 성적
               </S.Sub>
-              <S.Sub colSpan={3}>사회통합전형의 대상 구분</S.Sub>
+              <S.Sub rowSpan={1} colSpan={1}>
+                1-1
+              </S.Sub>
+              <S.Sub>1-2</S.Sub>
+              <S.Sub>2-1</S.Sub>
+              <S.Sub>2-2</S.Sub>
+              <S.Sub>3-1</S.Sub>
+              <S.Sub>예체능</S.Sub>
+              <S.Sub>소계</S.Sub>
+              <S.Sub rowSpan={2}>합계 (환산총점)</S.Sub>
             </tr>
             <tr>
-              <td rowSpan={1} colSpan={3}>
-                일반전형 사회통합전형 특별전형
+              <td rowSpan={1} colSpan={1}>
+                1234
               </td>
-              <td colSpan={3}>기회균등전형 사회다양성전형</td>
+              <td>1234</td>
+              <td>1234</td>
+              <td>1234</td>
+              <td>1234</td>
+              <td>1234</td>
+              <td>1234</td>
             </tr>
             <tr>
-              <td rowSpan={1}>교과성적</td>
+              <S.Sub rowSpan={2}>비교과성적</S.Sub>
+              <S.Sub colSpan={3} rowSpan={1}>
+                출석
+              </S.Sub>
+              <S.Sub colSpan={3}>봉사활동</S.Sub>
+              <S.Sub colSpan={1}>소계</S.Sub>
+              <td rowSpan={2}>.</td>
             </tr>
             <tr>
-              <td>1-1</td>
-              <td>1-2</td>
-              <td>1-3</td>
-            </tr>
-            <tr>
-              <td>1-1</td>
-              <td>1-2</td>
-              <td>1-3</td>
-            </tr>
-            <tr>
-              <td rowSpan={2}>비교과성적</td>
-            </tr>
-            <tr>
-              <td colSpan={2}>출석</td>
-              <td colSpan={2}>봉사활동</td>
-              <td colSpan={2}>예체능</td>
-            </tr>
-            <tr>
-              <td colSpan={2} rowSpan={3}>
-                봉사활동asdfasdfasdfasd
+              <td colSpan={3} rowSpan={1}>
+                .
               </td>
-              <td colSpan={2}>봉사활동</td>
-              <td colSpan={2}>봉사활동</td>
+              <td colSpan={3}>.</td>
+              <td colSpan={1}>.</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <S.Sub rowSpan={4} colSpan={2} style={{ height: '80px' }}>
+                지원구분
+              </S.Sub>
+            </tr>
+            <tr>
+              <td colSpan={3}>1지망 학과</td>
+              <td colSpan={3}>2지망 학과</td>
+              <td colSpan={3}>3지망 학과</td>
+            </tr>
+            <tr>
+              <td colSpan={3}>소프트웨어개발과</td>
+              <td colSpan={3}>스마트IOT과</td>
+              <td colSpan={3}>인공지능과</td>
+            </tr>
+            <tr>
+              <td colSpan={9} style={{ textAlign: 'start' }}>
+                1.(인공지능과/ 스마트IOT과/ 소프트웨어개발과) 중 지망 학과를
+                순서대로 기록 <br />
+                2. 지원학과는 희망 순에 따라 3개 학과를 모두 기록해야 한다.
+              </td>
             </tr>
           </tbody>
         </S.Table>
-        <S.Section1>
-          <S.SectionTitle style={{ width: '10%' }}>지원구분</S.SectionTitle>
-          <S.Table>
-            <tbody>
-              <tr>
-                <td colSpan={2}>1지망 학과</td>
-                <td colSpan={2}>2지망 학과</td>
-                <td colSpan={2}>3지망 학과</td>
-              </tr>
-              <tr>
-                <td colSpan={2}>소프트웨어개발과</td>
-                <td colSpan={2}>스마트IOT과</td>
-                <td colSpan={2}>인공지능과</td>
-              </tr>
-              <tr>
-                <td colSpan={3}>
-                  1.(인공지능과/ 스마트IOT과/ 소프트웨어개발과) 중 지망 학과를
-                  순서대로 기록 <br />
-                  2. 지원학과는 희망 순에 따라 3개 학과를 모두 기록해야 한다.
-                </td>
-              </tr>
-            </tbody>
-          </S.Table>
-        </S.Section1>
       </S.Container>
     </S.ApplicationPage>
   );

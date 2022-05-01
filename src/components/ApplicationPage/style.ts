@@ -5,6 +5,13 @@ export const ApplicationPage = styled.div`
   background-color: #ffffff;
   padding: 3vh;
   width: 1028px;
+  * {
+    line-height: 20px;
+  }
+  img {
+    /* width: 100%; */
+    height: 300px;
+  }
 `;
 
 export const Template = styled.div`
@@ -66,23 +73,12 @@ export const SectionTitle = styled.div`
 `;
 
 export const Table = styled.table`
-  width: 100%;
-  height: 100%;
+  /* height: 300px; */
   text-align: center;
   td {
     vertical-align: middle;
     border: 1px solid #000000;
     border-collapse: collapse;
-  }
-`;
-
-export const Photo = styled.div`
-  width: 237px;
-  height: 100%;
-  background-color: red;
-  img {
-    width: 100%;
-    height: 100%;
   }
 `;
 
@@ -93,7 +89,4 @@ export const Sub = styled.td`
   padding: 0 10px;
   vertical-align: middle;
   border: 1px solid #000000;
-  /* font-size: 20px; */
 `;
-
-export const Tr = styled.tr``;
