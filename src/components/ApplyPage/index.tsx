@@ -3,11 +3,14 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import * as I from '../../Assets/svg';
 import Header from 'components/Common/Header';
+import { css } from '@emotion/react';
 
 const ApplyPage: NextPage = () => {
   const imgInput = useRef<HTMLInputElement>(null);
 
   const [imgURL, setImgURL] = useState<string>('');
+  const [name, setName] = useState<string>('김형록');
+  const [gender, setGender] = useState<string>('M');
 
   const readImg = (event: any) => {
     const reader = new FileReader();
@@ -30,7 +33,27 @@ const ApplyPage: NextPage = () => {
       <Header />
       <S.ApplyPage>
         <S.BarBox>
-          <S.BarElement>증명사진</S.BarElement>
+          <S.BarElement
+            css={css`
+              top: 80px;
+            `}
+          >
+            증명사진
+          </S.BarElement>
+          <S.BarElement
+            css={css`
+              top: 410px;
+            `}
+          >
+            이름
+          </S.BarElement>
+          <S.BarElement
+            css={css`
+              top: 500px;
+            `}
+          >
+            성별
+          </S.BarElement>
         </S.BarBox>
         <S.ApplyPageContent>
           <S.Title>지원자 인적사항</S.Title>
@@ -51,6 +74,7 @@ const ApplyPage: NextPage = () => {
             ref={imgInput}
             onChange={e => readImg(e)}
           />
+          <S.NameBox>{name}</S.NameBox>
         </S.ApplyPageContent>
       </S.ApplyPage>
     </>
