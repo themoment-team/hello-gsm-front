@@ -7,7 +7,6 @@ export const ApplyPage = styled.div`
 `;
 
 export const BarBox = styled.div`
-  height: 100px;
   border-right: 3px solid rgba(255, 255, 255, 0.17);
 `;
 
@@ -16,7 +15,9 @@ export const BarElement = styled.p`
   font-weight: 400;
   font-size: 20px;
   position: relative;
-  top: 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   &::after {
     content: '';
     background: #f8f8f8;
@@ -70,4 +71,16 @@ export const Description = styled.p`
 export const InputImg = styled.img`
   width: 100%;
   height: 100%;
+`;
+
+export const NameBox = styled.div`
+  width: 800px;
+  height: 55px;
+  border-radius: 6px;
+  background: #484453;
+  margin-top: 60px;
+  padding: 16px 20px;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 400;
+  font-size: 20px;
 `;
