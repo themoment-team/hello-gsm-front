@@ -102,3 +102,15 @@ export const GenderSelect = styled.div`
   border-radius: 6px;
   padding: 16px 176px;
 `;
+
+export const BirthBox = styled.div`
+  width: 800px;
+  height: 55px;
+  border-radius: 6px;
+  background: #484453;
+  margin-top: 50px;
+  padding: 16px 20px;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 400;
+  font-size: 20px;
+`;
