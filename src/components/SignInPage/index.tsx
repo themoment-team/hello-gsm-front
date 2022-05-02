@@ -25,7 +25,7 @@ const SignInPage: NextPage = () => {
         <S.SignInForm onSubmit={handleSubmit(onValid)}>
           <S.Title>로그인</S.Title>
           <Input
-            placeholder="아이디 또는 이메일을 입력해주세요"
+            placeholder="이메일을 입력해주세요."
             type="text"
             register={register('id', {
               required: true,
@@ -35,7 +35,7 @@ const SignInPage: NextPage = () => {
             bigWidth={false}
           />
           <Input
-            placeholder="비밀번호를 입력해주세요"
+            placeholder="비밀번호를 입력해주세요."
             type="password"
             register={register('password', {
               required: true,
@@ -47,7 +47,6 @@ const SignInPage: NextPage = () => {
           <S.Submit>로그인</S.Submit>
           <S.Forget>
             <div>
-              <Link href="/find/id">아이디</Link> 혹은{' '}
               <Link href="/find/password">비밀번호</Link>를 잊어 버리셨나요?
             </div>
             <Link href="/auth/signup" passHref>
