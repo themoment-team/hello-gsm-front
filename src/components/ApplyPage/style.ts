@@ -183,3 +183,11 @@ export const FindAddressButton = styled.div`
 export const DetailAddress = styled(Input)`
   margin-top: 5px;
 `;
+
+export const HomeTelephone = styled(Input)`
+  margin-top: 80px;
+`;
+
+export const Cellphone = styled(Input)`
+  margin-top: 20px;
+`;
