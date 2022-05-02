@@ -51,7 +51,7 @@ const profile: ProfileType = {
 
 const ApplicationPage: NextPage = () => {
   useEffect(() => {
-    window.print();
+    // window.print();
   }, []);
   return (
     <>
@@ -65,7 +65,7 @@ const ApplicationPage: NextPage = () => {
           }
         `}
       >
-        <div>
+        <S.Document>
           <div className="warterMark">견본</div>
           <S.Template>[서식 1]</S.Template>
           <S.Title>광주소프트웨어마이스터고등학교 입학원서</S.Title>
@@ -86,7 +86,7 @@ const ApplicationPage: NextPage = () => {
                 </tr>
                 <tr>
                   <S.Subject
-                    style={{ width: '3%', height: '160px' }}
+                    style={{ width: '3%', height: '14vh' }}
                     rowSpan={3}
                   >
                     지원자
@@ -141,7 +141,7 @@ const ApplicationPage: NextPage = () => {
               <tbody>
                 <tr>
                   <S.Subject
-                    style={{ width: '3%', height: '300px' }}
+                    style={{ width: '3%', height: '26vh' }}
                     rowSpan={9}
                   >
                     지원자 현황
@@ -203,7 +203,7 @@ const ApplicationPage: NextPage = () => {
                   <td>{profile.nonSubject.subTotal}</td>
                 </tr>
                 <tr>
-                  <S.Subject rowSpan={4} colSpan={2} style={{ height: '80px' }}>
+                  <S.Subject rowSpan={4} colSpan={2} style={{ height: '7vh' }}>
                     지원구분
                   </S.Subject>
                 </tr>
@@ -250,7 +250,7 @@ const ApplicationPage: NextPage = () => {
               <S.Seal>중학교장[직인]</S.Seal>
             </S.Details>
           </S.Container>
-        </div>
+        </S.Document>
       </S.ApplicationPage>
     </>
   );
