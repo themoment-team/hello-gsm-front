@@ -1,11 +1,23 @@
 import styled from '@emotion/styled';
 
 export const ApplicationPage = styled.div`
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
   background-color: #ffffff;
   padding: 2vh;
   height: 100vh;
+  .warterMark {
+    position: absolute;
+    font-size: 450px;
+    color: #e8e8e8;
+    z-index: -1;
+    text-align: center;
+    top: 30vw;
+    left: 5vw;
+    transform: rotate(-30deg);
+  }
 `;
 
 export const Template = styled.div`
