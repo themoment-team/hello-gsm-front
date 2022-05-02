@@ -73,18 +73,8 @@ export const InputSection = styled.div`
   }
 `;
 
-export const User = styled.div`
-  width: 144px;
-  height: 55px;
-  background: #484453;
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 55px;
-  text-align: center;
-  color: #e7ff53;
-  cursor: pointer;
-  margin: 0 auto 50px;
+export const Try = styled.div`
+  color: #ffffff;
 `;
 
 export const TosBox = styled.div`
@@ -128,4 +118,35 @@ export const Button = styled.button`
   border: none;
   margin: 40px auto;
   cursor: pointer;
+`;
+
+export const LadioWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 75px;
+`;
+
+export const RadioLabel = styled.label`
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+
+  input {
+    display: none;
+  }
+
+  div {
+    width: 380px;
+    height: 61px;
+    background-color: #484453;
+    color: rgba(255, 255, 255, 0.45);
+    border-radius: 6px;
+    font-size: 23px;
+    line-height: 61px;
+  }
+
+  input[type='radio']:checked + div {
+    background-color: #42bafe;
+    color: #ffffff;
+  }
 `;
