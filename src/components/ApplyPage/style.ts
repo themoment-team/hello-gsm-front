@@ -1,5 +1,29 @@
 import styled from '@emotion/styled';
 
+const Input = styled.input`
+  width: 800px;
+  height: 55px;
+  border-radius: 6px;
+  padding: 15px 25px;
+  font-weight: 400;
+  font-size: 20px;
+  background: #484453;
+  border: none;
+  color: #f8f8f8;
+  ::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+  }
+  &:focus {
+    outline: none;
+    border: 2px solid #c0c0c0;
+    background: rgba(255, 255, 255, 0.89);
+    color: #4b4b4b;
+    ::placeholder {
+      display: none;
+    }
+  }
+`;
+
 export const ApplyPage = styled.div`
   display: flex;
   justify-content: center;
@@ -113,4 +137,49 @@ export const BirthBox = styled.div`
   color: rgba(255, 255, 255, 0.45);
   font-weight: 400;
   font-size: 20px;
+`;
+
+export const AddressBox = styled.div`
+  width: 800px;
+  margin-top: 30px;
+`;
+
+export const AddressDescription = styled.p`
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.45);
+  margin-left: 10px;
+`;
+
+export const FindAddressBox = styled.div`
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  margin-bottom: 10px;
+`;
+
+export const FindAddress = styled(Input)`
+  width: 615px;
+  :focus {
+    background: #484453;
+    border: none;
+  }
+  cursor: default;
+`;
+
+export const FindAddressButton = styled.div`
+  width: 170px;
+  height: 55px;
+  background: #42bafe;
+  border-radius: 6px;
+  color: #f8f8f8;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 17px 45px;
+  cursor: pointer;
+`;
+
+export const DetailAddress = styled(Input)`
+  margin-top: 5px;
 `;
