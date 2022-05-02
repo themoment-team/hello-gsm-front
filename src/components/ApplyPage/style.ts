@@ -213,3 +213,14 @@ export const Type = styled.p`
   justify-content: center;
   cursor: pointer;
 `;
+
+export const ErrorBox = styled.div`
+  width: 200px;
+`;
+
+export const Error = styled.p`
+  color: #ff5959;
+  font-weight: 400;
+  font-size: 14px;
+  position: relative;
+`;
