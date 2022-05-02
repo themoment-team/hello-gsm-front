@@ -62,6 +62,13 @@ const ApplyPage: NextPage = () => {
           >
             생년월일
           </S.BarElement>
+          <S.BarElement
+            css={css`
+              top: 665px;
+            `}
+          >
+            주소지
+          </S.BarElement>
         </S.BarBox>
         <S.ApplyPageContent>
           <S.Title>지원자 인적사항</S.Title>
@@ -96,10 +103,19 @@ const ApplyPage: NextPage = () => {
                 background: ${gender === 'W' && '#42bafe'};
               `}
             >
-              여쟈
+              여자
             </S.GenderSelect>
           </S.GenderBox>
           <S.BirthBox>{birth}</S.BirthBox>
+          <S.AddressBox>
+            <S.AddressDescription>주소지 검색</S.AddressDescription>
+            <S.FindAddressBox>
+              <S.FindAddress readOnly />
+              <S.FindAddressButton>주소 검색</S.FindAddressButton>
+            </S.FindAddressBox>
+            <S.AddressDescription>상세주소</S.AddressDescription>
+            <S.DetailAddress placeholder="상세주소" />
+          </S.AddressBox>
         </S.ApplyPageContent>
       </S.ApplyPage>
     </>
