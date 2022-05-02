@@ -2,11 +2,12 @@ import React from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import { css } from '@emotion/react';
+import { ProfileType } from 'type/profile';
 
-const profile = {
-  id: '2022',
+const profile: ProfileType = {
+  id: 2022,
   name: '유시온',
-  gender: '여',
+  gender: '여자',
   address: '광주광역시 서구 풍암동 우미광장아파트',
   homeNumber: '062 681 7815',
   phoneNumber: '010 9201 5487',
@@ -15,10 +16,14 @@ const profile = {
   area: '광주광역시 서구',
   photoUrl:
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrNSGTUntb7tiyrB0zEeemK8lJd3gGOSHILw&usqp=CAU',
-
-  firstClass: '소프트웨어개발과',
-  secondClass: '스마트IOT과',
-  thirdClass: '인공지능과',
+  type: '일반전형',
+  graduated: '2023년 졸업예정',
+  socialType: '',
+  class: {
+    firstClass: '소프트웨어개발과',
+    secondClass: '스마트IOT과',
+    thirdClass: '인공지능과',
+  },
   guardian: {
     name: '울엄마',
     relation: '지원자의 (모)',
@@ -27,6 +32,21 @@ const profile = {
   teacher: {
     phoneNumber: '010 9876 5432',
   },
+  subject: {
+    one_one: 11,
+    one_two: 12,
+    two_one: 21,
+    two_two: 22,
+    three_one: 31,
+    artsAndSports: 32,
+    subTotal: 130,
+  },
+  nonSubject: {
+    attendance: 365,
+    volunteer: 20,
+    subTotal: 385,
+  },
+  total: 515,
 };
 
 const ApplicationPage: NextPage = () => {
@@ -63,7 +83,7 @@ const ApplicationPage: NextPage = () => {
                 <S.Subject>성 명</S.Subject>
                 <td>{profile.name}</td>
                 <S.Subject style={{ width: '3%' }}>성별</S.Subject>
-                <td>{profile.gender === '여' ? 'hi' : 'bye'}남 여</td>
+                <td>{profile.gender}</td>
                 <S.Subject>생년월일</S.Subject>
                 <td>{profile.birth}</td>
                 <td rowSpan={6}>
@@ -79,7 +99,7 @@ const ApplicationPage: NextPage = () => {
                 <S.Subject>집전화</S.Subject>
                 <td colSpan={2}>{profile.homeNumber}</td>
                 <S.Subject>핸드폰</S.Subject>
-                <td colSpan={1}>{profile.phoneNumber}</td>
+                <td>{profile.phoneNumber}</td>
               </tr>
               <tr>
                 <S.Subject style={{ width: '3%' }} rowSpan={2}>
@@ -107,7 +127,7 @@ const ApplicationPage: NextPage = () => {
             </thead>
           </S.Table>
           <S.Table>
-            <thead>
+            <tbody>
               <tr>
                 <S.Subject style={{ width: '3%', height: '300px' }} rowSpan={9}>
                   지원자 현황
@@ -118,7 +138,7 @@ const ApplicationPage: NextPage = () => {
                   출신중학교
                 </S.Subject>
                 <td colSpan={2}>{profile.middleSchool}</td>
-                <td colSpan={6}>2023년 졸업예정</td>
+                <td colSpan={6}>{profile.graduated}</td>
               </tr>
               <tr>
                 <S.Subject>지역명</S.Subject>
@@ -129,16 +149,14 @@ const ApplicationPage: NextPage = () => {
                 <S.Subject colSpan={4}>사회통합전형의 대상 구분</S.Subject>
               </tr>
               <tr>
-                <td colSpan={5}>일반전형 사회통합전형 특별전형</td>
-                <td colSpan={4}>기회균등전형 사회다양성전형</td>
+                <td colSpan={5}>{profile.type}</td>
+                <td colSpan={4}>{profile.socialType}</td>
               </tr>
               <tr>
-                <S.Subject rowSpan={2} style={{ width: '7%' }}>
+                <S.Subject rowSpan={2} style={{ width: '10%' }}>
                   교과 <br /> 성적
                 </S.Subject>
-                <S.Subject rowSpan={1} colSpan={1}>
-                  1-1
-                </S.Subject>
+                <S.Subject>1-1</S.Subject>
                 <S.Subject>1-2</S.Subject>
                 <S.Subject>2-1</S.Subject>
                 <S.Subject>2-2</S.Subject>
@@ -148,36 +166,28 @@ const ApplicationPage: NextPage = () => {
                 <S.Subject rowSpan={2}>합계 (환산총점)</S.Subject>
               </tr>
               <tr>
-                <td rowSpan={1} colSpan={1}>
-                  1234
-                </td>
-                <td>1234</td>
-                <td>1234</td>
-                <td>1234</td>
-                <td>1234</td>
-                <td>1234</td>
-                <td>1234</td>
+                <td>{profile.subject.one_one}</td>
+                <td>{profile.subject.one_two}</td>
+                <td>{profile.subject.two_one}</td>
+                <td>{profile.subject.two_two}</td>
+                <td>{profile.subject.three_one}</td>
+                <td>{profile.subject.artsAndSports}</td>
+                <td>{profile.subject.subTotal}</td>
               </tr>
               <tr>
                 <S.Subject rowSpan={2}>
                   비교과 <br /> 성적
                 </S.Subject>
-                <S.Subject colSpan={3} rowSpan={1}>
-                  출석
-                </S.Subject>
+                <S.Subject colSpan={3}>출석</S.Subject>
                 <S.Subject colSpan={3}>봉사활동</S.Subject>
-                <S.Subject colSpan={1}>소계</S.Subject>
-                <td rowSpan={2}>1234</td>
+                <S.Subject>소계</S.Subject>
+                <td rowSpan={2}>{profile.total}</td>
               </tr>
               <tr>
-                <td colSpan={3} rowSpan={1}>
-                  1234
-                </td>
-                <td colSpan={3}>1234</td>
-                <td colSpan={1}>1234</td>
+                <td colSpan={3}>{profile.nonSubject.attendance}</td>
+                <td colSpan={3}>{profile.nonSubject.volunteer}</td>
+                <td>{profile.nonSubject.subTotal}</td>
               </tr>
-            </thead>
-            <tbody>
               <tr>
                 <S.Subject rowSpan={4} colSpan={2} style={{ height: '80px' }}>
                   지원구분
@@ -189,9 +199,9 @@ const ApplicationPage: NextPage = () => {
                 <td colSpan={3}>3지망 학과</td>
               </tr>
               <tr>
-                <td colSpan={3}>{profile.firstClass}</td>
-                <td colSpan={3}>{profile.secondClass}</td>
-                <td colSpan={3}>{profile.thirdClass}</td>
+                <td colSpan={3}>{profile.class.firstClass}</td>
+                <td colSpan={3}>{profile.class.secondClass}</td>
+                <td colSpan={3}>{profile.class.thirdClass}</td>
               </tr>
               <tr>
                 <td colSpan={9} style={{ textAlign: 'start' }}>
@@ -205,7 +215,7 @@ const ApplicationPage: NextPage = () => {
           <S.Details>
             <S.Pledge>
               위 학생은 2023학년도 귀교 제1학년에 입학하고자 소정의 서류를
-              갖추어 지원하며,
+              갖추어 지원하며, &nbsp;
               <strong>
                 다른 산업수요맞춤형(마이스터)고등학교에 이중지원하지 않을 것을
                 서약

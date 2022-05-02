@@ -21,7 +21,7 @@ export const Title = styled.div`
 
 export const SubTitle = styled.div`
   font-size: 20px;
-  font-weight: 700px;
+  font-weight: 700;
 `;
 
 export const Wrap = styled.div`
@@ -53,7 +53,7 @@ export const Content = styled.div`
 `;
 
 export const Container = styled.div`
-  border: 2px solid #000000;
+  border: 1px solid #000000;
 `;
 
 export const Table = styled.table`
@@ -63,7 +63,6 @@ export const Table = styled.table`
   td {
     vertical-align: middle;
     border: 1px solid #000000;
-    border-bottom: none;
     border-collapse: collapse;
   }
   * {
@@ -83,11 +82,14 @@ export const Subject = styled.td`
   border-collapse: collapse;
   vertical-align: middle;
   border: 1px solid #000000;
+  padding: 0 3px;
 `;
 
 export const Details = styled.div`
   width: 700px;
   padding: 0 5px 20px;
+  border: 1px solid #000000;
+  border-top: none;
 `;
 
 export const Pledge = styled.div`
@@ -114,6 +116,7 @@ export const Signature = styled.div`
   width: 200px;
   margin-left: auto;
   line-height: 30px;
+  margin: 0px 40px 0 auto;
 `;
 
 export const Principal = styled.div`
