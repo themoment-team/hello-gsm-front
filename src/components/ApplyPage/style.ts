@@ -191,3 +191,25 @@ export const HomeTelephone = styled(Input)`
 export const Cellphone = styled(Input)`
   margin-top: 20px;
 `;
+
+export const TypeBox = styled.div`
+  width: 800px;
+  height: 55px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+`;
+
+export const Type = styled.p`
+  width: 250px;
+  height: 100%;
+  background: #484453;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
