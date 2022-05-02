@@ -177,6 +177,43 @@ const ApplyPage: NextPage = () => {
             </S.Type>
           </S.TypeBox>
         </S.ApplyPageContent>
+        <S.ErrorBox>
+          <S.Error
+            css={css`
+              top: 100px;
+            `}
+          >
+            증명사진을 업로드해주세요.
+          </S.Error>
+          <S.Error
+            css={css`
+              top: 730px;
+            `}
+          >
+            주소지를 입력해주세요.
+          </S.Error>
+          <S.Error
+            css={css`
+              top: 940px;
+            `}
+          >
+            집 전화번호를 입력해주세요.
+          </S.Error>
+          <S.Error
+            css={css`
+              top: 1000px;
+            `}
+          >
+            휴대폰 번호를 입력해주세요.
+          </S.Error>
+          <S.Error
+            css={css`
+              top: 1200px;
+            `}
+          >
+            전형을 선택해주세요.
+          </S.Error>
+        </S.ErrorBox>
       </S.ApplyPage>
     </>
   );
