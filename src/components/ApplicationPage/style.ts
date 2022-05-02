@@ -1,17 +1,11 @@
 import styled from '@emotion/styled';
 
 export const ApplicationPage = styled.div`
-  height: 100vh;
+  display: flex;
+  justify-content: center;
   background-color: #ffffff;
-  padding: 3vh;
-  width: 1028px;
-  * {
-    line-height: 20px;
-  }
-  img {
-    /* width: 100%; */
-    height: 300px;
-  }
+  padding: 2vh;
+  height: 100vh;
 `;
 
 export const Template = styled.div`
@@ -19,10 +13,10 @@ export const Template = styled.div`
 `;
 
 export const Title = styled.div`
-  font-size: 30px;
+  font-size: 35px;
   text-align: center;
   font-weight: 700;
-  line-height: 70px;
+  margin: 20px 0 30px;
 `;
 
 export const SubTitle = styled.div`
@@ -39,12 +33,12 @@ export const Box = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1.5px solid #000000;
+  border: 2px solid #000000;
   border-bottom: none;
   width: 250px;
 `;
 
-export const Subject = styled.div`
+export const ApplyNum = styled.div`
   font-weight: 500;
   background-color: #c4c4c4;
   height: 100%;
@@ -62,31 +56,79 @@ export const Container = styled.div`
   border: 2px solid #000000;
 `;
 
-export const SectionTitle = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 0 5px;
-  background-color: #c4c4c4;
-  width: 3%;
-  height: 100%;
-  font-size: 20px;
-`;
-
 export const Table = styled.table`
-  /* height: 300px; */
+  width: 700px;
   text-align: center;
+
   td {
     vertical-align: middle;
     border: 1px solid #000000;
+    border-bottom: none;
     border-collapse: collapse;
+  }
+  * {
+    line-height: 25px;
+  }
+
+  img {
+    display: block;
+    width: 215px;
+    height: 287px;
   }
 `;
 
-export const Sub = styled.td`
+export const Subject = styled.td`
   font-weight: 500;
   background-color: #c4c4c4;
   border-collapse: collapse;
-  padding: 0 10px;
   vertical-align: middle;
   border: 1px solid #000000;
+`;
+
+export const Details = styled.div`
+  width: 700px;
+  padding: 0 5px 20px;
+`;
+
+export const Pledge = styled.div`
+  text-indent: 5px;
+  line-height: 24px;
+  strong {
+    font-weight: bold;
+    font-size: 16px;
+  }
+`;
+
+export const Date = styled.div`
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  width: 120px;
+  margin: 0 auto;
+  line-height: 30px;
+`;
+
+export const Signature = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  margin-left: auto;
+  line-height: 30px;
+`;
+
+export const Principal = styled.div`
+  font-size: 20px;
+  border-bottom: 1px solid #c4c4c4;
+  line-height: 30px;
+`;
+
+export const True = styled.div`
+  text-align: center;
+  line-height: 50px;
+`;
+
+export const Seal = styled.div`
+  text-align: end;
+  font-size: 20px;
+  margin-right: 40px;
 `;
