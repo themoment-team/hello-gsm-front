@@ -12,6 +12,7 @@ const ApplyPage: NextPage = () => {
   const [name, setName] = useState<string>('김형록');
   const [gender, setGender] = useState<string>('M');
   const [birth, setBirth] = useState<number>(20050228);
+  const [type, setType] = useState<number>(1);
 
   const readImg = (event: any) => {
     const reader = new FileReader();
@@ -83,6 +84,13 @@ const ApplyPage: NextPage = () => {
           >
             휴대폰 번호
           </S.BarElement>
+          <S.BarElement
+            css={css`
+              top: 1110px;
+            `}
+          >
+            전형
+          </S.BarElement>
         </S.BarBox>
         <S.ApplyPageContent>
           <S.Title>지원자 인적사항</S.Title>
@@ -132,6 +140,42 @@ const ApplyPage: NextPage = () => {
           </S.AddressBox>
           <S.HomeTelephone placeholder="집 전화번호를 입력해주세요." />
           <S.Cellphone placeholder="핸드폰 번호를 입력해주세요." />
+          <S.Title
+            css={css`
+              margin-top: 80px;
+            `}
+          >
+            지원자 현황
+          </S.Title>
+          <S.TypeBox>
+            <S.Type
+              css={css`
+                ${type === 1 &&
+                'background: #42BAFE; font-weight: 700; font-size: 20px; color: #F8F8F8;'}
+              `}
+              onClick={() => setType(1)}
+            >
+              일반전형
+            </S.Type>
+            <S.Type
+              css={css`
+                ${type === 2 &&
+                'background: #42BAFE; font-weight: 700; font-size: 20px; color: #F8F8F8;'}
+              `}
+              onClick={() => setType(2)}
+            >
+              사회통합전형
+            </S.Type>
+            <S.Type
+              css={css`
+                ${type === 3 &&
+                'background: #42BAFE; font-weight: 700; font-size: 20px; color: #F8F8F8;'}
+              `}
+              onClick={() => setType(3)}
+            >
+              특별전형
+            </S.Type>
+          </S.TypeBox>
         </S.ApplyPageContent>
       </S.ApplyPage>
     </>
