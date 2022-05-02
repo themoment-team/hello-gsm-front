@@ -51,7 +51,7 @@ const profile: ProfileType = {
 
 const ApplicationPage: NextPage = () => {
   useEffect(() => {
-    // window.print();
+    window.print();
   }, []);
   return (
     <>
@@ -85,10 +85,7 @@ const ApplicationPage: NextPage = () => {
                   </S.Subject>
                 </tr>
                 <tr>
-                  <S.Subject
-                    style={{ width: '3%', height: '14vh' }}
-                    rowSpan={3}
-                  >
+                  <S.Subject style={{ width: '3%' }} rowSpan={3}>
                     지원자
                   </S.Subject>
                   <S.Subject>성 명</S.Subject>
@@ -97,7 +94,13 @@ const ApplicationPage: NextPage = () => {
                   <td>{profile.gender}</td>
                   <S.Subject>생년월일</S.Subject>
                   <td>{profile.birth}</td>
-                  <td rowSpan={6}>
+                  <td
+                    rowSpan={6}
+                    style={{
+                      width: '19vh',
+                      height: '20vh',
+                    }}
+                  >
                     <img src={profile.photoUrl} alt="" />
                   </td>
                 </tr>

@@ -83,8 +83,8 @@ export const Table = styled.table`
 
   img {
     display: block;
-    width: 19vh;
-    height: 25vh;
+    width: 100%;
+    height: 100%;
   }
   font-size: 1.2vh;
   line-height: 2.2vh;
