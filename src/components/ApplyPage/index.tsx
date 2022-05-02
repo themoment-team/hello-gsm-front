@@ -69,6 +69,20 @@ const ApplyPage: NextPage = () => {
           >
             주소지
           </S.BarElement>
+          <S.BarElement
+            css={css`
+              top: 865px;
+            `}
+          >
+            집 전화
+          </S.BarElement>
+          <S.BarElement
+            css={css`
+              top: 920px;
+            `}
+          >
+            휴대폰 번호
+          </S.BarElement>
         </S.BarBox>
         <S.ApplyPageContent>
           <S.Title>지원자 인적사항</S.Title>
@@ -116,6 +130,8 @@ const ApplyPage: NextPage = () => {
             <S.AddressDescription>상세주소</S.AddressDescription>
             <S.DetailAddress placeholder="상세주소" />
           </S.AddressBox>
+          <S.HomeTelephone placeholder="집 전화번호를 입력해주세요." />
+          <S.Cellphone placeholder="핸드폰 번호를 입력해주세요." />
         </S.ApplyPageContent>
       </S.ApplyPage>
     </>
