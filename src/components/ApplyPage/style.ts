@@ -215,7 +215,7 @@ export const Type = styled.p`
 `;
 
 export const ErrorBox = styled.div`
-  width: 200px;
+  width: 220px;
 `;
 
 export const Error = styled.p`
@@ -223,4 +223,25 @@ export const Error = styled.p`
   font-weight: 400;
   font-size: 14px;
   position: relative;
+`;
+
+export const SocietyBox = styled.div`
+  width: 800px;
+  height: 55px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+`;
+
+export const Society = styled.div`
+  width: 390px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #a0a0a0;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 20px;
+  color: #f8f8f8;
 `;
