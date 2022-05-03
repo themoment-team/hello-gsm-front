@@ -152,7 +152,7 @@ export const AddressDescription = styled.p`
 `;
 
 export const FindAddressBox = styled.div`
-  width: 800px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   margin-top: 5px;
@@ -214,17 +214,6 @@ export const Type = styled.p`
   cursor: pointer;
 `;
 
-export const ErrorBox = styled.div`
-  width: 220px;
-`;
-
-export const Error = styled.p`
-  color: #ff5959;
-  font-weight: 400;
-  font-size: 14px;
-  position: relative;
-`;
-
 export const SocietyBox = styled.div`
   width: 800px;
   height: 55px;
@@ -244,4 +233,44 @@ export const Society = styled.div`
   font-weight: 700;
   font-size: 20px;
   color: #f8f8f8;
+`;
+
+export const SchoolBox = styled.div`
+  width: 800px;
+  height: 55px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+`;
+
+export const SchoolName = styled(Input)`
+  width: 615px;
+  :focus {
+    background: #484453;
+    border: none;
+  }
+  cursor: default;
+`;
+
+export const SchoolSearchButton = styled.div`
+  width: 170px;
+  height: 55px;
+  background: #42bafe;
+  border-radius: 6px;
+  color: #f8f8f8;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 17px 45px;
+  cursor: pointer;
+`;
+
+export const ErrorBox = styled.div`
+  width: 220px;
+`;
+
+export const Error = styled.p`
+  color: #ff5959;
+  font-weight: 400;
+  font-size: 14px;
+  position: relative;
 `;
