@@ -4,6 +4,7 @@ import * as S from './style';
 import * as I from '../../Assets/svg';
 import Header from 'components/Common/Header';
 import { css } from '@emotion/react';
+import axios from 'axios';
 
 const ApplyPage: NextPage = () => {
   const imgInput = useRef<HTMLInputElement>(null);
@@ -107,6 +108,13 @@ const ApplyPage: NextPage = () => {
           >
             사회통합전형의 대상
           </S.BarElement>
+          <S.BarElement
+            css={css`
+              top: 1280px;
+            `}
+          >
+            출신 중학교
+          </S.BarElement>
         </S.BarBox>
         <S.ApplyPageContent>
           <S.Title>지원자 인적사항</S.Title>
@@ -206,6 +214,10 @@ const ApplyPage: NextPage = () => {
               사회다양성전형
             </S.Society>
           </S.SocietyBox>
+          <S.SchoolBox>
+            <S.SchoolName readOnly />
+            <S.SchoolSearchButton>학교 검색</S.SchoolSearchButton>
+          </S.SchoolBox>
         </S.ApplyPageContent>
         <S.ErrorBox>
           <S.Error
