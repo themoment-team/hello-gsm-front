@@ -13,6 +13,8 @@ const ApplyPage: NextPage = () => {
   const [gender, setGender] = useState<string>('M');
   const [birth, setBirth] = useState<number>(20050228);
   const [type, setType] = useState<number>(1);
+  const [isSociety, setIsSociety] = useState<boolean>(true);
+  const [societyType, setSocietyType] = useState<number>(1);
 
   const readImg = (event: any) => {
     const reader = new FileReader();
@@ -27,8 +29,15 @@ const ApplyPage: NextPage = () => {
   };
 
   useEffect(() => {
-    console.log(imgInput.current.files[0]);
-  }, [imgURL]);
+    type === 2 ? setIsSociety(true) : setIsSociety(false);
+  }, [imgURL, type]);
+
+  const societySelectEffect = (index: number) => css`
+    ${isSociety && 'background: #484453; cursor: pointer;'}
+    ${isSociety &&
+    societyType === index &&
+    'background: #42BAFE; color: color: #f8f8f8;'}
+  `;
 
   return (
     <>
@@ -90,6 +99,13 @@ const ApplyPage: NextPage = () => {
             `}
           >
             전형
+          </S.BarElement>
+          <S.BarElement
+            css={css`
+              top: 1190px;
+            `}
+          >
+            사회통합전형의 대상
           </S.BarElement>
         </S.BarBox>
         <S.ApplyPageContent>
@@ -176,6 +192,20 @@ const ApplyPage: NextPage = () => {
               특별전형
             </S.Type>
           </S.TypeBox>
+          <S.SocietyBox>
+            <S.Society
+              css={societySelectEffect(1)}
+              onClick={() => isSociety && setSocietyType(1)}
+            >
+              기회균등전형
+            </S.Society>
+            <S.Society
+              css={societySelectEffect(2)}
+              onClick={() => isSociety && setSocietyType(2)}
+            >
+              사회다양성전형
+            </S.Society>
+          </S.SocietyBox>
         </S.ApplyPageContent>
         <S.ErrorBox>
           <S.Error
