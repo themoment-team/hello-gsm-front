@@ -35,7 +35,7 @@ const ApplyPage: NextPage = () => {
     type === 2 ? setIsSociety(true) : setIsSociety(false);
   }, [imgURL, type]);
 
-  const societySelectEffect = (index: number) => css`
+  const societySelectStyle = (index: number) => css`
     ${isSociety && 'background: #484453; cursor: pointer;'}
     ${isSociety &&
     societyType === index &&
@@ -215,13 +215,13 @@ const ApplyPage: NextPage = () => {
           </S.TypeBox>
           <S.SocietyBox>
             <S.Society
-              css={societySelectEffect(1)}
+              css={societySelectStyle(1)}
               onClick={() => isSociety && setSocietyType(1)}
             >
               기회균등전형
             </S.Society>
             <S.Society
-              css={societySelectEffect(2)}
+              css={societySelectStyle(2)}
               onClick={() => isSociety && setSocietyType(2)}
             >
               사회다양성전형
