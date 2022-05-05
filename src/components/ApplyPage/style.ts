@@ -264,6 +264,60 @@ export const SchoolSearchButton = styled.div`
   cursor: pointer;
 `;
 
+export const GraduatedBox = styled.div`
+  width: 800px;
+  height: 55px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+`;
+
+export const GraduatedDateBox = styled.div`
+  width: 380px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const GraduatedYear = styled.select`
+  width: 230px;
+  height: 100%;
+  background: #484453;
+  color: #9b98a1;
+  border-radius: 6px;
+  border: none;
+`;
+
+export const GraduateMonth = styled.select`
+  width: 130px;
+  height: 100%;
+  background: #484453;
+  color: #9b98a1;
+  border-radius: 6px;
+  border: none;
+`;
+
+export const GraduatedSelectBox = styled.div`
+  width: 370px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const GraduatedType = styled.div`
+  width: 115px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #484453;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 20px;
+  color: #9b98a1;
+`;
+
 export const ErrorBox = styled.div`
   width: 220px;
 `;
