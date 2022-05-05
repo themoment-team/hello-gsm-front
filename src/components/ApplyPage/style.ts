@@ -318,6 +318,43 @@ export const GraduatedType = styled.div`
   color: #9b98a1;
 `;
 
+export const DepartmentBox = styled.div`
+  width: 800px;
+  height: 90px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const DepartmentContentBox = styled.div`
+  width: 250px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const DepartmentSelectButton = styled.div`
+  width: 100%;
+  height: 55px;
+  background: #42bafe;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f8f8f8;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+`;
+
+export const DepartmentOrderDescription = styled.p`
+  font-weight: 400;
+  font-size: 14px;
+  color: #94929b;
+`;
+
 export const ErrorBox = styled.div`
   width: 220px;
 `;
