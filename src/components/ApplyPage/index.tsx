@@ -142,6 +142,13 @@ const ApplyPage: NextPage = () => {
           >
             이름
           </S.BarElement>
+          <S.BarElement
+            css={css`
+              top: 1710px;
+            `}
+          >
+            관계
+          </S.BarElement>
         </S.BarBox>
         <S.ApplyPageContent>
           <S.Title>지원자 인적사항</S.Title>
@@ -319,6 +326,7 @@ const ApplyPage: NextPage = () => {
             보호자
           </S.Title>
           <S.GuardianName placeholder="보호자분의 성명을 입력해주세요." />
+          <S.GuardianRelation placeholder="지원자분과의 관계를 입력해주세요." />
         </S.ApplyPageContent>
         <S.ErrorBox>
           <S.Error
