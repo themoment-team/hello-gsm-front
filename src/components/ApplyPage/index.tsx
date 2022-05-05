@@ -128,6 +128,13 @@ const ApplyPage: NextPage = () => {
           >
             졸업일
           </S.BarElement>
+          <S.BarElement
+            css={css`
+              top: 1420px;
+            `}
+          >
+            지원학과
+          </S.BarElement>
         </S.BarBox>
         <S.ApplyPageContent>
           <S.Title>지원자 인적사항</S.Title>
@@ -277,6 +284,26 @@ const ApplyPage: NextPage = () => {
               </S.GraduatedType>
             </S.GraduatedSelectBox>
           </S.GraduatedBox>
+          <S.DepartmentBox>
+            <S.DepartmentContentBox>
+              <S.DepartmentSelectButton>선택</S.DepartmentSelectButton>
+              <S.DepartmentOrderDescription>
+                (1지망)
+              </S.DepartmentOrderDescription>
+            </S.DepartmentContentBox>
+            <S.DepartmentContentBox>
+              <S.DepartmentSelectButton>선택</S.DepartmentSelectButton>
+              <S.DepartmentOrderDescription>
+                (2지망)
+              </S.DepartmentOrderDescription>
+            </S.DepartmentContentBox>
+            <S.DepartmentContentBox>
+              <S.DepartmentSelectButton>선택</S.DepartmentSelectButton>
+              <S.DepartmentOrderDescription>
+                (3지망)
+              </S.DepartmentOrderDescription>
+            </S.DepartmentContentBox>
+          </S.DepartmentBox>
         </S.ApplyPageContent>
         <S.ErrorBox>
           <S.Error
