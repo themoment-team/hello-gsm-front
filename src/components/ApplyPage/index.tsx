@@ -156,6 +156,13 @@ const ApplyPage: NextPage = () => {
           >
             집 전화
           </S.BarElement>
+          <S.BarElement
+            css={css`
+              top: 1855px;
+            `}
+          >
+            휴대폰 번호
+          </S.BarElement>
         </S.BarBox>
         <S.ApplyPageContent>
           <S.Title>지원자 인적사항</S.Title>
@@ -335,6 +342,7 @@ const ApplyPage: NextPage = () => {
           <S.GuardianName placeholder="보호자분의 성명을 입력해주세요." />
           <S.GuardianRelation placeholder="지원자분과의 관계를 입력해주세요." />
           <S.GuardianCellphone placeholder="보호자분의 집 전화 번호를 입력해주세요." />
+          <S.GuardianHomeTelephone placeholder="보호자분의 핸드폰 번호를 입력해주세요." />
         </S.ApplyPageContent>
         <S.ErrorBox>
           <S.Error
