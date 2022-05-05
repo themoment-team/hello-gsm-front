@@ -115,6 +115,13 @@ const ApplyPage: NextPage = () => {
           >
             출신 중학교
           </S.BarElement>
+          <S.BarElement
+            css={css`
+              top: 1335px;
+            `}
+          >
+            졸업일
+          </S.BarElement>
         </S.BarBox>
         <S.ApplyPageContent>
           <S.Title>지원자 인적사항</S.Title>
@@ -218,6 +225,17 @@ const ApplyPage: NextPage = () => {
             <S.SchoolName readOnly />
             <S.SchoolSearchButton>학교 검색</S.SchoolSearchButton>
           </S.SchoolBox>
+          <S.GraduatedBox>
+            <S.GraduatedDateBox>
+              <S.GraduatedYear></S.GraduatedYear>
+              <S.GraduateMonth></S.GraduateMonth>
+            </S.GraduatedDateBox>
+            <S.GraduatedSelectBox>
+              <S.GraduatedType>졸업예정</S.GraduatedType>
+              <S.GraduatedType>졸업</S.GraduatedType>
+              <S.GraduatedType>검정고시</S.GraduatedType>
+            </S.GraduatedSelectBox>
+          </S.GraduatedBox>
         </S.ApplyPageContent>
         <S.ErrorBox>
           <S.Error
