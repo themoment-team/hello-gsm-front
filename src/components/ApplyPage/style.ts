@@ -359,6 +359,10 @@ export const GuardianName = styled(Input)`
   margin-top: 50px;
 `;
 
+export const GuardianRelation = styled(Input)`
+  margin-top: 50px;
+`;
+
 export const ErrorBox = styled.div`
   width: 220px;
 `;
