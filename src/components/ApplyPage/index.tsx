@@ -135,6 +135,13 @@ const ApplyPage: NextPage = () => {
           >
             지원학과
           </S.BarElement>
+          <S.BarElement
+            css={css`
+              top: 1630px;
+            `}
+          >
+            이름
+          </S.BarElement>
         </S.BarBox>
         <S.ApplyPageContent>
           <S.Title>지원자 인적사항</S.Title>
@@ -304,6 +311,14 @@ const ApplyPage: NextPage = () => {
               </S.DepartmentOrderDescription>
             </S.DepartmentContentBox>
           </S.DepartmentBox>
+          <S.Title
+            css={css`
+              margin-top: 65px;
+            `}
+          >
+            보호자
+          </S.Title>
+          <S.GuardianName placeholder="보호자분의 성명을 입력해주세요." />
         </S.ApplyPageContent>
         <S.ErrorBox>
           <S.Error
