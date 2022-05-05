@@ -16,6 +16,8 @@ const ApplyPage: NextPage = () => {
   const [type, setType] = useState<number>(1);
   const [isSociety, setIsSociety] = useState<boolean>(true);
   const [societyType, setSocietyType] = useState<number>(1);
+  const [isGED, setIsGED] = useState<boolean>(true);
+  const [GEDType, setGEDType] = useState<number>(1);
 
   const readImg = (event: any) => {
     const reader = new FileReader();
@@ -37,7 +39,11 @@ const ApplyPage: NextPage = () => {
     ${isSociety && 'background: #484453; cursor: pointer;'}
     ${isSociety &&
     societyType === index &&
-    'background: #42BAFE; color: color: #f8f8f8;'}
+    'background: #42bafe; color: color: #f8f8f8;'}
+  `;
+
+  const GEDTypeSelectStyle = (index: number) => css`
+    ${GEDType === index && 'background: #42bafe; color: #f8f8f8;'}
   `;
 
   return (
@@ -222,8 +228,19 @@ const ApplyPage: NextPage = () => {
             </S.Society>
           </S.SocietyBox>
           <S.SchoolBox>
-            <S.SchoolName readOnly />
-            <S.SchoolSearchButton>학교 검색</S.SchoolSearchButton>
+            <S.SchoolName
+              css={css`
+                ${!isGED && 'background: rgba(118, 118, 118, 0.86);'}
+              `}
+              readOnly
+            />
+            <S.SchoolSearchButton
+              css={css`
+                ${!isGED && 'background: #a0a0a0; cursor: default;'}
+              `}
+            >
+              학교 검색
+            </S.SchoolSearchButton>
           </S.SchoolBox>
           <S.GraduatedBox>
             <S.GraduatedDateBox>
@@ -231,9 +248,33 @@ const ApplyPage: NextPage = () => {
               <S.GraduateMonth></S.GraduateMonth>
             </S.GraduatedDateBox>
             <S.GraduatedSelectBox>
-              <S.GraduatedType>졸업예정</S.GraduatedType>
-              <S.GraduatedType>졸업</S.GraduatedType>
-              <S.GraduatedType>검정고시</S.GraduatedType>
+              <S.GraduatedType
+                css={GEDTypeSelectStyle(1)}
+                onClick={() => {
+                  setGEDType(1);
+                  setIsGED(true);
+                }}
+              >
+                졸업예정
+              </S.GraduatedType>
+              <S.GraduatedType
+                css={GEDTypeSelectStyle(2)}
+                onClick={() => {
+                  setGEDType(2);
+                  setIsGED(true);
+                }}
+              >
+                졸업
+              </S.GraduatedType>
+              <S.GraduatedType
+                css={GEDTypeSelectStyle(3)}
+                onClick={() => {
+                  setGEDType(3);
+                  setIsGED(false);
+                }}
+              >
+                검정고시
+              </S.GraduatedType>
             </S.GraduatedSelectBox>
           </S.GraduatedBox>
         </S.ApplyPageContent>
