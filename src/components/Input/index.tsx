@@ -8,6 +8,7 @@ interface InputProps {
   type: string;
   register: UseFormRegisterReturn;
   bigWidth: boolean;
+  value?: string | null;
 }
 
 const Input: NextPage<InputProps> = ({
@@ -15,12 +16,14 @@ const Input: NextPage<InputProps> = ({
   type,
   register,
   bigWidth = true,
+  value,
 }) => (
   <S.Input
     placeholder={placeholder}
     type={type}
     {...register}
     style={{ width: bigWidth ? '800px' : '328px' }}
+    value={value}
   />
 );
 

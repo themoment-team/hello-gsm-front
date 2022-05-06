@@ -4,12 +4,14 @@ import * as S from './style';
 import Header from 'components/Common/Header';
 import { useForm } from 'react-hook-form';
 import Input from 'components/Input';
+import { watch } from 'fs';
 
 interface UserForm {
   email: string;
   checkEmail: string;
   name: string;
   id: string;
+  gender: string;
   password: string;
   checkPW: string;
   error: string;
@@ -29,8 +31,15 @@ const SignUpPage: NextPage = () => {
   } = useForm<UserForm>();
 
   const [value, setValue] = useState('');
-  const onValid = ({ name, id, password, checkPW, agree }: UserForm) => {
-    console.log(name, id, password, checkPW, agree);
+  const onValid = ({
+    name,
+    id,
+    password,
+    checkPW,
+    agree,
+    gender,
+  }: UserForm) => {
+    console.log(gender);
   };
   const Lines = [
     '이메일',
@@ -91,11 +100,21 @@ const SignUpPage: NextPage = () => {
             <S.Try>혹시 이메일이 오지 않으셨나요? | 재전송</S.Try>
             <S.LadioWrapper>
               <S.RadioLabel>
-                <input {...register('agree')} type="radio" id="gender" />
+                <input
+                  {...register('gender')}
+                  type="radio"
+                  id="gender"
+                  value="남자"
+                />
                 <div>남자</div>
               </S.RadioLabel>
               <S.RadioLabel>
-                <input {...register('agree')} type="radio" id="gender" />
+                <input
+                  {...register('gender')}
+                  type="radio"
+                  id="gender"
+                  value="여자"
+                />
                 <div>여자</div>
               </S.RadioLabel>
             </S.LadioWrapper>
@@ -104,14 +123,6 @@ const SignUpPage: NextPage = () => {
               type="text"
               bigWidth
               register={register('name', {
-                required: true,
-              })}
-            />
-            <Input
-              placeholder="아이디를 입력해주세요."
-              type="text"
-              bigWidth
-              register={register('id', {
                 required: true,
               })}
             />
