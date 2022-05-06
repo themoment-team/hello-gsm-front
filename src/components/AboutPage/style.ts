@@ -43,13 +43,8 @@ export const SubTitle = styled.p`
   margin-top: 400px;
 `;
 
-export const PickerSection = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const WheelPicker = styled.div`
+  width: 70vw;
   margin: 240px 120px 60px 0;
 `;
 

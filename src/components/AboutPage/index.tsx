@@ -3,7 +3,6 @@ import type { NextPage } from 'next';
 import Header from 'components/Common/Header';
 import * as S from './style';
 import * as I from '../../Assets/svg';
-import Think from '../../../public/Think.png';
 import Image from 'next/image';
 import {
   BackEnd,
@@ -31,22 +30,19 @@ const AboutPage: NextPage = () => {
         <S.Section>
           <S.SubTitle>비전</S.SubTitle>
           <S.Desc>더모먼트팀은 아래의 비전을 갖고 활동해요!</S.Desc>
-          <S.PickerSection>
-            <S.WheelPicker>
-              <S.PickerText>
-                사용자의 순간을 한층 더 혁신 <br /> 하는 데 최적의 장소.
-              </S.PickerText>
-              <S.PickerText>
-                사용자의 니즈를 고민하고 모든 일에 <br /> 높은 비즈니스 임팩트를
-                창출해요.
-              </S.PickerText>
-              <S.PickerText>
-                저희는 사용자의 순간을 깊이 통찰하고, <br /> 순간의 가치를
-                비춰내요!
-              </S.PickerText>
-            </S.WheelPicker>
-            <Image src={Think} alt="" />
-          </S.PickerSection>
+          <S.WheelPicker>
+            <S.PickerText>
+              사용자의 순간을 한층 더 혁신 <br /> 하는 데 최적의 장소.
+            </S.PickerText>
+            <S.PickerText>
+              사용자의 니즈를 고민하고 모든 일에 <br /> 높은 비즈니스 임팩트를
+              창출해요.
+            </S.PickerText>
+            <S.PickerText>
+              저희는 사용자의 순간을 깊이 통찰하고, <br /> 순간의 가치를
+              비춰내요!
+            </S.PickerText>
+          </S.WheelPicker>
           <S.GreenBall
             style={{
               width: '12vh',
@@ -65,8 +61,8 @@ const AboutPage: NextPage = () => {
                 <span className="DevOps">DevOps</span> Chapter
               </S.TeamTitle>
               <S.TeamSubTitle>
-                클라우드 아키텍쳐를 구성하고 운영하는데 <br /> 사용되는 기술들을
-                연구합니다.
+                클라우드 아키텍쳐를 구성하고 운영하는데 <br />
+                사용되는 기술들을 연구합니다.
               </S.TeamSubTitle>
               <hr />
               <S.ProfileSection>
@@ -93,7 +89,8 @@ const AboutPage: NextPage = () => {
                 <span className="Operating">Operating</span> Chapter
               </S.TeamTitle>
               <S.TeamSubTitle>
-                팀을 관리하고 개개인의 <br /> 역량을 끌어내는 팀이에요.
+                팀을 관리하고 개개인의 역량을 <br />
+                끌어낼 수 있는 최선의 방법을 연구합니다.
               </S.TeamSubTitle>
               <hr />
               <S.ProfileSection>
@@ -120,7 +117,8 @@ const AboutPage: NextPage = () => {
                 <span className="Design">Design</span> Chapter
               </S.TeamTitle>
               <S.TeamSubTitle>
-                사용자의 관점에서 <br /> 디자인하는 팀입니다.
+                사용자의 관점에서 <br />
+                디자인하는 팀입니다.
               </S.TeamSubTitle>
               <hr />
               <S.ProfileSection>
@@ -149,8 +147,9 @@ const AboutPage: NextPage = () => {
                 <span className="FrontEnd">FrontEnd</span> Chapter
               </S.TeamTitle>
               <S.TeamSubTitle>
-                화면을 구상하고, 제작하며 사용자에게 <br /> 더 나은 UI/UX를
-                제공하기 위해 끊임없이 <br /> 연구합니다.
+                화면을 구상하고, 제작하며 사용자에게 <br />
+                더 나은 UI/UX를 제공하기 위해 <br />
+                끊임없이 연구합니다.
               </S.TeamSubTitle>
               <hr />
               <S.ProfileSection>
@@ -177,9 +176,9 @@ const AboutPage: NextPage = () => {
                 <span className="BackEnd">BackEnd</span> Chapter
               </S.TeamTitle>
               <S.TeamSubTitle>
-                더모먼트팀의 서비스를 구상하기 위한 서버 <br /> 애플리케이션을
-                개발하고, 깊은 CS 지식을 통해 <br /> 안정적인 서비스를 만들어
-                나아갑니다.
+                더모먼트팀의 서비스를 구상하기 위한 서버 <br />
+                애플리케이션을 개발하고, 깊은 CS 지식을 통해 <br />
+                안정적인 서비스를 만들어 나아갑니다.
               </S.TeamSubTitle>
               <hr />
               <S.ProfileSection>
