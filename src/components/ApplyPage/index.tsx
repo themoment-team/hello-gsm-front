@@ -343,6 +343,13 @@ const ApplyPage: NextPage = () => {
           <S.GuardianRelation placeholder="지원자분과의 관계를 입력해주세요." />
           <S.GuardianCellphone placeholder="보호자분의 집 전화 번호를 입력해주세요." />
           <S.GuardianHomeTelephone placeholder="보호자분의 핸드폰 번호를 입력해주세요." />
+          <S.Title
+            css={css`
+              margin-top: 75px;
+            `}
+          >
+            담임 선생님
+          </S.Title>
         </S.ApplyPageContent>
         <S.ErrorBox>
           <S.Error
