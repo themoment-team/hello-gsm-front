@@ -170,6 +170,13 @@ const ApplyPage: NextPage = () => {
           >
             이름
           </S.BarElement>
+          <S.BarElement
+            css={css`
+              top: 2120px;
+            `}
+          >
+            연락처
+          </S.BarElement>
         </S.BarBox>
         <S.ApplyPageContent>
           <S.Title>지원자 인적사항</S.Title>
