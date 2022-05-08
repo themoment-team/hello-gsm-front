@@ -31,6 +31,7 @@ export const ApplyPage = styled.div`
 `;
 
 export const BarBox = styled.div`
+  height: 2600px;
   border-right: 3px solid rgba(255, 255, 255, 0.17);
 `;
 
@@ -377,6 +378,18 @@ export const TeacherName = styled(Input)`
 
 export const TeacherPhone = styled(Input)`
   margin-top: 50px;
+`;
+
+export const NextButton = styled.input`
+  width: 230px;
+  height: 65px;
+  background: #ffffff;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 28px;
+  color: #0f0921;
+  margin-top: 180px;
+  margin: 180px 0 200px;
 `;
 
 export const ErrorBox = styled.div`
