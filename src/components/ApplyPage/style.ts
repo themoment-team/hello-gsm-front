@@ -371,6 +371,10 @@ export const GuardianHomeTelephone = styled(Input)`
   margin-top: 20px;
 `;
 
+export const TeacherName = styled(Input)`
+  margin-top: 50px;
+`;
+
 export const ErrorBox = styled.div`
   width: 220px;
 `;
