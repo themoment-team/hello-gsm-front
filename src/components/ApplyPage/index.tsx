@@ -163,6 +163,13 @@ const ApplyPage: NextPage = () => {
           >
             휴대폰 번호
           </S.BarElement>
+          <S.BarElement
+            css={css`
+              top: 2035px;
+            `}
+          >
+            이름
+          </S.BarElement>
         </S.BarBox>
         <S.ApplyPageContent>
           <S.Title>지원자 인적사항</S.Title>
@@ -350,6 +357,7 @@ const ApplyPage: NextPage = () => {
           >
             담임 선생님
           </S.Title>
+          <S.TeacherName placeholder="담임선생님의 성명을 입력해주세요." />
         </S.ApplyPageContent>
         <S.ErrorBox>
           <S.Error
