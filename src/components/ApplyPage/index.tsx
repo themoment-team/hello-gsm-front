@@ -366,6 +366,7 @@ const ApplyPage: NextPage = () => {
           </S.Title>
           <S.TeacherName placeholder="담임선생님의 성명을 입력해주세요." />
           <S.TeacherPhone placeholder="담임선생님의 연락처를 입력해주세요." />
+          <S.NextButton type="submit" value="다음" />
         </S.ApplyPageContent>
         <S.ErrorBox>
           <S.Error
