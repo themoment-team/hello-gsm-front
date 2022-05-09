@@ -5,6 +5,8 @@ import * as I from '../../Assets/svg';
 import Header from 'components/Common/Header';
 import { css } from '@emotion/react';
 import axios from 'axios';
+import DepartmentModal from 'components/DepartmentModal';
+import useStore from 'Stores/StoreContainer';
 
 const ApplyPage: NextPage = () => {
   const imgInput = useRef<HTMLInputElement>(null);
@@ -18,6 +20,8 @@ const ApplyPage: NextPage = () => {
   const [societyType, setSocietyType] = useState<number>(1);
   const [isGED, setIsGED] = useState<boolean>(true);
   const [GEDType, setGEDType] = useState<number>(1);
+
+  const { showDepartmentModal, setShowDepartmentModal } = useStore();
 
   const readImg = (event: any) => {
     const reader = new FileReader();
@@ -52,6 +56,7 @@ const ApplyPage: NextPage = () => {
 
   return (
     <>
+      {showDepartmentModal && <DepartmentModal />}
       <Header />
       <S.ApplyPage>
         <S.BarBox>
@@ -333,19 +338,25 @@ const ApplyPage: NextPage = () => {
           </S.GraduatedBox>
           <S.DepartmentBox>
             <S.DepartmentContentBox>
-              <S.DepartmentSelectButton>선택</S.DepartmentSelectButton>
+              <S.DepartmentSelectButton onClick={setShowDepartmentModal}>
+                선택
+              </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (1지망)
               </S.DepartmentOrderDescription>
             </S.DepartmentContentBox>
             <S.DepartmentContentBox>
-              <S.DepartmentSelectButton>선택</S.DepartmentSelectButton>
+              <S.DepartmentSelectButton onClick={setShowDepartmentModal}>
+                선택
+              </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (2지망)
               </S.DepartmentOrderDescription>
             </S.DepartmentContentBox>
             <S.DepartmentContentBox>
-              <S.DepartmentSelectButton>선택</S.DepartmentSelectButton>
+              <S.DepartmentSelectButton onClick={setShowDepartmentModal}>
+                선택
+              </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (3지망)
               </S.DepartmentOrderDescription>
