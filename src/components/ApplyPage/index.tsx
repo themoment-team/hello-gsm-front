@@ -283,7 +283,8 @@ const ApplyPage: NextPage = () => {
           <S.SchoolBox>
             <S.SchoolName
               css={css`
-                ${!isGED && 'background: rgba(118, 118, 118, 0.86);'}
+                ${!isGED &&
+                'background: rgba(118, 118, 118, 0.86); &:focus { background: rgba(118, 118, 118, 0.86); }'}
               `}
               readOnly
             />
