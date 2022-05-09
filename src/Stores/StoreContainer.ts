@@ -8,6 +8,10 @@ interface storeType {
   mypageModalContent: string;
   isSearching: boolean;
   showDepartmentModal: boolean;
+  selectedChoice: number;
+  choice1: number;
+  choice2: number;
+  choice3: number;
 
   setShowFAQModal: () => void;
   setFAQModalTitle: (title: string) => void;
@@ -16,6 +20,10 @@ interface storeType {
   setMypageModalContent: (content: string) => void;
   setIsSearching: (trueOrFalse: boolean) => void;
   setShowDepartmentModal: () => void;
+  setSelectedChoice: (index: number) => void;
+  setChoice1: (type: number) => void;
+  setChoice2: (type: number) => void;
+  setChoice3: (type: number) => void;
 }
 
 const useStore = create<storeType>(set => ({
@@ -26,6 +34,10 @@ const useStore = create<storeType>(set => ({
   mypageModalContent: '',
   isSearching: false,
   showDepartmentModal: false,
+  selectedChoice: 0,
+  choice1: 0,
+  choice2: 0,
+  choice3: 0,
 
   setShowFAQModal: () => set(state => ({ showFAQModal: !state.showFAQModal })),
   setFAQModalTitle: title => set({ FAQModalTitle: title }),
@@ -36,6 +48,10 @@ const useStore = create<storeType>(set => ({
   setIsSearching: trueOrFalse => set({ isSearching: trueOrFalse }),
   setShowDepartmentModal: () =>
     set(state => ({ showDepartmentModal: !state.showDepartmentModal })),
+  setSelectedChoice: index => set({ selectedChoice: index }),
+  setChoice1: type => set({ choice1: type }),
+  setChoice2: type => set({ choice2: type }),
+  setChoice3: type => set({ choice3: type }),
 }));
 
 export default useStore;
