@@ -21,7 +21,14 @@ const ApplyPage: NextPage = () => {
   const [isGED, setIsGED] = useState<boolean>(true);
   const [GEDType, setGEDType] = useState<number>(1);
 
-  const { showDepartmentModal, setShowDepartmentModal } = useStore();
+  const {
+    showDepartmentModal,
+    setShowDepartmentModal,
+    setSelectedChoice,
+    choice1,
+    choice2,
+    choice3,
+  } = useStore();
 
   const readImg = (event: any) => {
     const reader = new FileReader();
@@ -351,24 +358,39 @@ const ApplyPage: NextPage = () => {
           </S.GraduatedBox>
           <S.DepartmentBox>
             <S.DepartmentContentBox>
-              <S.DepartmentSelectButton onClick={setShowDepartmentModal}>
-                {SelectedDepartment(1)}
+              <S.DepartmentSelectButton
+                onClick={() => {
+                  setShowDepartmentModal();
+                  setSelectedChoice(1);
+                }}
+              >
+                {SelectedDepartment(choice1)}
               </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (1지망)
               </S.DepartmentOrderDescription>
             </S.DepartmentContentBox>
             <S.DepartmentContentBox>
-              <S.DepartmentSelectButton onClick={setShowDepartmentModal}>
-                {SelectedDepartment(2)}
+              <S.DepartmentSelectButton
+                onClick={() => {
+                  setShowDepartmentModal();
+                  setSelectedChoice(2);
+                }}
+              >
+                {SelectedDepartment(choice2)}
               </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (2지망)
               </S.DepartmentOrderDescription>
             </S.DepartmentContentBox>
             <S.DepartmentContentBox>
-              <S.DepartmentSelectButton onClick={setShowDepartmentModal}>
-                {SelectedDepartment(3)}
+              <S.DepartmentSelectButton
+                onClick={() => {
+                  setShowDepartmentModal();
+                  setSelectedChoice(3);
+                }}
+              >
+                {SelectedDepartment(choice3)}
               </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (3지망)
