@@ -21,7 +21,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   const [keyword, setKeyword] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(1);
 
-  const { showModal, isSearching, setIsSearching } = useStore();
+  const { showFAQModal, isSearching, setIsSearching } = useStore();
 
   const searching = e => {
     setKeyword(e.target.value);
