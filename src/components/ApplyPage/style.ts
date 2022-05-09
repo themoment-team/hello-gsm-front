@@ -380,7 +380,7 @@ export const TeacherPhone = styled(Input)`
   margin-top: 50px;
 `;
 
-export const NextButton = styled.input`
+export const NextButton = styled.div`
   width: 230px;
   height: 65px;
   background: #ffffff;
@@ -390,15 +390,17 @@ export const NextButton = styled.input`
   color: #0f0921;
   margin-top: 180px;
   margin: 180px 0 200px;
+  padding: 17px 88px;
+  cursor: pointer;
 `;
 
 export const ErrorBox = styled.div`
-  width: 220px;
+  width: 240px;
 `;
 
 export const Error = styled.p`
-  color: #ff5959;
+  color: #ff4747;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 18px;
   position: relative;
 `;
