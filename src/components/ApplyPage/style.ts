@@ -57,7 +57,7 @@ export const BarElement = styled.p`
 `;
 
 export const ApplyPageContent = styled.div`
-  width: 900px;
+  width: 880px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -399,7 +399,7 @@ export const ErrorBox = styled.div`
 `;
 
 export const Error = styled.p`
-  color: #ff4747;
+  color: #ff4e4e;
   font-weight: 400;
   font-size: 18px;
   position: relative;
