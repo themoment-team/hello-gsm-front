@@ -17,6 +17,22 @@ export function GlobalStyle() {
           color: #ffffff;
         }
 
+        body::-webkit-scrollbar {
+          width: 16px;
+        }
+
+        body::-webkit-scrollbar-thumb {
+          background-color: #aba8a8;
+          border-radius: 10px;
+          border: 4px solid #000000;
+          height: 56px;
+          background-clip: content-box;
+        }
+
+        body::-webkit-scrollbar-thumb:hover {
+          background-color: #a5a3a3;
+        }
+
         *,
         *::after,
         *::before {
