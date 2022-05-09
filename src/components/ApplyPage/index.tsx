@@ -165,7 +165,7 @@ const ApplyPage: NextPage = () => {
               top: 1855px;
             `}
           >
-            휴대폰 번호
+            핸드폰 번호
           </S.BarElement>
           <S.BarElement
             css={css`
@@ -389,24 +389,87 @@ const ApplyPage: NextPage = () => {
           </S.Error>
           <S.Error
             css={css`
-              top: 940px;
+              top: 930px;
             `}
           >
             * 집 전화번호를 입력해주세요.
           </S.Error>
           <S.Error
             css={css`
-              top: 1000px;
+              top: 990px;
             `}
           >
-            * 휴대폰 번호를 입력해주세요.
+            * 핸드폰 번호를 입력해주세요.
           </S.Error>
           <S.Error
             css={css`
-              top: 1200px;
+              top: 1175px;
             `}
           >
-            * 전형을 선택해주세요.
+            * 지원 전형을 선택해주세요.
+          </S.Error>
+          <S.Error
+            css={css`
+              top: 1370px;
+            `}
+          >
+            * 출신 중학교를 입력해주세요.
+          </S.Error>
+          <S.Error
+            css={css`
+              top: 1425px;
+            `}
+          >
+            * 졸업일을 선택해주세요.
+          </S.Error>
+          <S.Error
+            css={css`
+              top: 1510px;
+            `}
+          >
+            * 지원학과를 선택해주세요.
+          </S.Error>
+          <S.Error
+            css={css`
+              top: 1725px;
+            `}
+          >
+            * 성명을 입력해주세요.
+          </S.Error>
+          <S.Error
+            css={css`
+              top: 1810px;
+            `}
+          >
+            * 관계를 입력해주세요.
+          </S.Error>
+          <S.Error
+            css={css`
+              top: 1900px;
+            `}
+          >
+            * 집 전화번호를 입력해주세요.
+          </S.Error>
+          <S.Error
+            css={css`
+              top: 1955px;
+            `}
+          >
+            * 핸드폰번호를 입력해주세요.
+          </S.Error>
+          <S.Error
+            css={css`
+              top: 2140px;
+            `}
+          >
+            * 성명을 입력해주세요.
+          </S.Error>
+          <S.Error
+            css={css`
+              top: 2230px;
+            `}
+          >
+            * 연락처를 입력해주세요.
           </S.Error>
         </S.ErrorBox>
       </S.ApplyPage>
