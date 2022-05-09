@@ -54,6 +54,19 @@ const ApplyPage: NextPage = () => {
     console.log('next level');
   };
 
+  const SelectedDepartment = (type: number) => {
+    switch (type) {
+      case 1:
+        return '인공지능 개발과';
+      case 2:
+        return '소프트웨어 개발과';
+      case 3:
+        return '스마트 iot과';
+      default:
+        return '선택';
+    }
+  };
+
   return (
     <>
       {showDepartmentModal && <DepartmentModal />}
@@ -339,7 +352,7 @@ const ApplyPage: NextPage = () => {
           <S.DepartmentBox>
             <S.DepartmentContentBox>
               <S.DepartmentSelectButton onClick={setShowDepartmentModal}>
-                선택
+                {SelectedDepartment(1)}
               </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (1지망)
@@ -347,7 +360,7 @@ const ApplyPage: NextPage = () => {
             </S.DepartmentContentBox>
             <S.DepartmentContentBox>
               <S.DepartmentSelectButton onClick={setShowDepartmentModal}>
-                선택
+                {SelectedDepartment(2)}
               </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (2지망)
@@ -355,7 +368,7 @@ const ApplyPage: NextPage = () => {
             </S.DepartmentContentBox>
             <S.DepartmentContentBox>
               <S.DepartmentSelectButton onClick={setShowDepartmentModal}>
-                선택
+                {SelectedDepartment(3)}
               </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (3지망)
