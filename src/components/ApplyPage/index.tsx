@@ -22,7 +22,7 @@ const ApplyPage: NextPage = () => {
   const readImg = (event: any) => {
     const reader = new FileReader();
 
-    reader.onload = function (event) {
+    reader.onload = (event: any) => {
       setImgURL(event.target.result);
     };
 
@@ -45,6 +45,10 @@ const ApplyPage: NextPage = () => {
   const GEDTypeSelectStyle = (index: number) => css`
     ${GEDType === index && 'background: #42bafe; color: #f8f8f8;'}
   `;
+
+  const toNext = () => {
+    console.log('next level');
+  };
 
   return (
     <>
@@ -366,7 +370,7 @@ const ApplyPage: NextPage = () => {
           </S.Title>
           <S.TeacherName placeholder="담임선생님의 성명을 입력해주세요." />
           <S.TeacherPhone placeholder="담임선생님의 연락처를 입력해주세요." />
-          <S.NextButton type="submit" value="다음" />
+          <S.NextButton onClick={toNext}>다음</S.NextButton>
         </S.ApplyPageContent>
         <S.ErrorBox>
           <S.Error
@@ -374,35 +378,35 @@ const ApplyPage: NextPage = () => {
               top: 100px;
             `}
           >
-            증명사진을 업로드해주세요.
+            * 증명사진을 업로드해주세요.
           </S.Error>
           <S.Error
             css={css`
               top: 730px;
             `}
           >
-            주소지를 입력해주세요.
+            * 주소지를 입력해주세요.
           </S.Error>
           <S.Error
             css={css`
               top: 940px;
             `}
           >
-            집 전화번호를 입력해주세요.
+            * 집 전화번호를 입력해주세요.
           </S.Error>
           <S.Error
             css={css`
               top: 1000px;
             `}
           >
-            휴대폰 번호를 입력해주세요.
+            * 휴대폰 번호를 입력해주세요.
           </S.Error>
           <S.Error
             css={css`
               top: 1200px;
             `}
           >
-            전형을 선택해주세요.
+            * 전형을 선택해주세요.
           </S.Error>
         </S.ErrorBox>
       </S.ApplyPage>
