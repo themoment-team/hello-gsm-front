@@ -12,6 +12,7 @@ interface storeType {
   choice1: number;
   choice2: number;
   choice3: number;
+  showFindSchoolModal: boolean;
 
   setShowFAQModal: () => void;
   setFAQModalTitle: (title: string) => void;
@@ -24,6 +25,7 @@ interface storeType {
   setChoice1: (type: number) => void;
   setChoice2: (type: number) => void;
   setChoice3: (type: number) => void;
+  setShowFindSchoolModal: () => void;
 }
 
 const useStore = create<storeType>(set => ({
@@ -38,6 +40,7 @@ const useStore = create<storeType>(set => ({
   choice1: 0,
   choice2: 0,
   choice3: 0,
+  showFindSchoolModal: false,
 
   setShowFAQModal: () => set(state => ({ showFAQModal: !state.showFAQModal })),
   setFAQModalTitle: title => set({ FAQModalTitle: title }),
@@ -52,6 +55,8 @@ const useStore = create<storeType>(set => ({
   setChoice1: type => set({ choice1: type }),
   setChoice2: type => set({ choice2: type }),
   setChoice3: type => set({ choice3: type }),
+  setShowFindSchoolModal: () =>
+    set(state => ({ showFindSchoolModal: !state.showFindSchoolModal })),
 }));
 
 export default useStore;
