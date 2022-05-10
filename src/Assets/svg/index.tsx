@@ -8,3 +8,5 @@ export { default as TMLogo } from './TMLogo';
 export { default as InputImg } from './InputImg';
 export { default as Woman } from './Woman';
 export { default as Man } from './Man';
+export { default as FindSchoolClose } from './FindSchoolClose';
+export { default as FindSchoolSearchIcon } from './FindSchoolSearchIcon';
