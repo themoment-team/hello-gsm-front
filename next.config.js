@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ['github.com'],
   },
+  env: {
+    NEIS_API_KEY: process.env.NEIS_API_KEY,
+  },
 };
 
 module.exports = nextConfig;
