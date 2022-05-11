@@ -7,6 +7,7 @@ import { css } from '@emotion/react';
 import axios from 'axios';
 import DepartmentModal from 'components/DepartmentModal';
 import useStore from 'Stores/StoreContainer';
+import FindSchoolModal from 'components/FindSchoolModal';
 
 const ApplyPage: NextPage = () => {
   const imgInput = useRef<HTMLInputElement>(null);
@@ -28,16 +29,22 @@ const ApplyPage: NextPage = () => {
     choice1,
     choice2,
     choice3,
+    showFindSchoolModal,
+    setShowFindSchoolModal,
+    schoolName,
+    setSchoolName,
   } = useStore();
 
-  const readImg = (event: any) => {
+  const readImg = (event: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
 
-    reader.onload = (event: any) => {
-      setImgURL(event.target.result);
+    reader.onload = (event: ProgressEvent<FileReader>) => {
+      if (typeof event.target?.result === 'string') {
+        setImgURL(event.target.result);
+      }
     };
 
-    if (event.target.files[0]) {
+    if (event.target.files) {
       reader.readAsDataURL(event.target.files[0]);
     }
   };
@@ -76,6 +83,7 @@ const ApplyPage: NextPage = () => {
 
   return (
     <>
+      {showFindSchoolModal && <FindSchoolModal />}
       {showDepartmentModal && <DepartmentModal />}
       <Header />
       <S.ApplyPage>
@@ -306,17 +314,12 @@ const ApplyPage: NextPage = () => {
             </S.Society>
           </S.SocietyBox>
           <S.SchoolBox>
-            <S.SchoolName
-              css={css`
-                ${!isGED &&
-                'background: rgba(118, 118, 118, 0.86); &:focus { background: rgba(118, 118, 118, 0.86); }'}
-              `}
-              readOnly
-            />
+            <S.SchoolName>{schoolName}</S.SchoolName>
             <S.SchoolSearchButton
               css={css`
                 ${!isGED && 'background: #a0a0a0; cursor: default;'}
               `}
+              onClick={setShowFindSchoolModal}
             >
               학교 검색
             </S.SchoolSearchButton>
@@ -350,6 +353,7 @@ const ApplyPage: NextPage = () => {
                 onClick={() => {
                   setGEDType(3);
                   setIsGED(false);
+                  setSchoolName('');
                 }}
               >
                 검정고시
