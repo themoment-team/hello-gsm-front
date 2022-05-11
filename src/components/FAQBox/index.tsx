@@ -8,7 +8,7 @@ type FAQBoxType = FAQType & {
 };
 
 const FAQBox: React.FC<FAQBoxType> = ({ question, answer, keyword }) => {
-  const { isSearching, setShowModal, setModalTitle, setModalContent } =
+  const { isSearching, setShowFAQModal, setFAQModalTitle, setFAQModalContent } =
     useStore();
 
   const showAnswer = () => {
