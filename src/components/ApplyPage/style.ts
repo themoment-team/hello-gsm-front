@@ -160,13 +160,16 @@ export const FindAddressBox = styled.div`
   margin-bottom: 10px;
 `;
 
-export const FindAddress = styled(Input)`
+export const FindAddress = styled.div`
   width: 615px;
-  :focus {
-    background: #484453;
-    border: none;
-  }
-  cursor: default;
+  height: 55px;
+  border-radius: 6px;
+  padding: 15px 25px;
+  font-weight: 400;
+  font-size: 20px;
+  background: #484453;
+  border: none;
+  color: #f8f8f8;
 `;
 
 export const FindAddressButton = styled.div`
@@ -244,13 +247,15 @@ export const SchoolBox = styled.div`
   margin-top: 50px;
 `;
 
-export const SchoolName = styled(Input)`
+export const SchoolName = styled.div`
   width: 615px;
-  :focus {
-    background: #484453;
-    border: none;
-  }
-  cursor: default;
+  height: 55px;
+  border-radius: 6px;
+  padding: 15px 25px;
+  font-weight: 400;
+  font-size: 20px;
+  background: #484453;
+  color: #f8f8f8;
 `;
 
 export const SchoolSearchButton = styled.div`
