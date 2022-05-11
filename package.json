@@ -15,6 +15,7 @@
     "emotion-reset": "^3.0.1",
     "next": "12.1.0",
     "react": "17.0.2",
+    "react-daum-postcode": "^3.0.1",
     "react-dom": "17.0.2",
     "react-hook-form": "^7.29.0",
     "victory": "^36.3.2",
