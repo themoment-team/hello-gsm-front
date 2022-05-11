@@ -8,6 +8,7 @@ import axios from 'axios';
 import DepartmentModal from 'components/DepartmentModal';
 import useStore from 'Stores/StoreContainer';
 import FindSchoolModal from 'components/FindSchoolModal';
+import FindAddressModal from 'components/FindAddressModal';
 
 const ApplyPage: NextPage = () => {
   const imgInput = useRef<HTMLInputElement>(null);
@@ -19,8 +20,8 @@ const ApplyPage: NextPage = () => {
   const [type, setType] = useState<number>(1);
   const [isSociety, setIsSociety] = useState<boolean>(true);
   const [societyType, setSocietyType] = useState<number>(1);
-  const [isGED, setIsGED] = useState<boolean>(true);
-  const [GEDType, setGEDType] = useState<number>(1);
+  const [isGED, setIsGED] = useState<boolean>(false);
+  const [GraduatedType, setGraduatedType] = useState<number>(1);
 
   const {
     showDepartmentModal,
@@ -33,6 +34,9 @@ const ApplyPage: NextPage = () => {
     setShowFindSchoolModal,
     schoolName,
     setSchoolName,
+    showFindAddressModal,
+    setShowFindAddressModal,
+    address,
   } = useStore();
 
   const readImg = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,8 +64,8 @@ const ApplyPage: NextPage = () => {
     'background: #42bafe; color: color: #f8f8f8;'}
   `;
 
-  const GEDTypeSelectStyle = (index: number) => css`
-    ${GEDType === index && 'background: #42bafe; color: #f8f8f8;'}
+  const GraduatedTypeSelectStyle = (index: number) => css`
+    ${GraduatedType === index && 'background: #42bafe; color: #f8f8f8;'}
   `;
 
   const toNext = () => {
@@ -83,6 +87,7 @@ const ApplyPage: NextPage = () => {
 
   return (
     <>
+      {showFindAddressModal && <FindAddressModal />}
       {showFindSchoolModal && <FindSchoolModal />}
       {showDepartmentModal && <DepartmentModal />}
       <Header />
@@ -255,8 +260,10 @@ const ApplyPage: NextPage = () => {
           <S.AddressBox>
             <S.AddressDescription>주소지 검색</S.AddressDescription>
             <S.FindAddressBox>
-              <S.FindAddress readOnly />
-              <S.FindAddressButton>주소 검색</S.FindAddressButton>
+              <S.FindAddress>{address}</S.FindAddress>
+              <S.FindAddressButton onClick={setShowFindAddressModal}>
+                주소 검색
+              </S.FindAddressButton>
             </S.FindAddressBox>
             <S.AddressDescription>상세주소</S.AddressDescription>
             <S.DetailAddress placeholder="상세주소" />
@@ -317,9 +324,9 @@ const ApplyPage: NextPage = () => {
             <S.SchoolName>{schoolName}</S.SchoolName>
             <S.SchoolSearchButton
               css={css`
-                ${!isGED && 'background: #a0a0a0; cursor: default;'}
+                ${isGED && 'background: #a0a0a0; cursor: default;'}
               `}
-              onClick={setShowFindSchoolModal}
+              onClick={() => !isGED && setShowFindSchoolModal()}
             >
               학교 검색
             </S.SchoolSearchButton>
@@ -331,28 +338,28 @@ const ApplyPage: NextPage = () => {
             </S.GraduatedDateBox>
             <S.GraduatedSelectBox>
               <S.GraduatedType
-                css={GEDTypeSelectStyle(1)}
+                css={GraduatedTypeSelectStyle(1)}
                 onClick={() => {
-                  setGEDType(1);
-                  setIsGED(true);
+                  setGraduatedType(1);
+                  setIsGED(false);
                 }}
               >
                 졸업예정
               </S.GraduatedType>
               <S.GraduatedType
-                css={GEDTypeSelectStyle(2)}
+                css={GraduatedTypeSelectStyle(2)}
                 onClick={() => {
-                  setGEDType(2);
-                  setIsGED(true);
+                  setGraduatedType(2);
+                  setIsGED(false);
                 }}
               >
                 졸업
               </S.GraduatedType>
               <S.GraduatedType
-                css={GEDTypeSelectStyle(3)}
+                css={GraduatedTypeSelectStyle(3)}
                 onClick={() => {
-                  setGEDType(3);
-                  setIsGED(false);
+                  setGraduatedType(3);
+                  setIsGED(true);
                   setSchoolName('');
                 }}
               >
