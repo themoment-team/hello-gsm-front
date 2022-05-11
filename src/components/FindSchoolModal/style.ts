@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const FindSchoolModal = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.51);
+  background: rgba(0, 0, 0, 0.51);
   display: flex;
   justify-content: center;
   align-items: center;
