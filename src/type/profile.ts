@@ -1,52 +1,67 @@
 export interface ProfileType {
-  id: number;
-  name: string;
-  gender: string;
-  address: string;
-  homeNumber: string;
-  phoneNumber: string;
-  birth: string;
-  middleSchool: string;
-  area: string;
-  photoUrl: string;
-  type: string;
-  graduated: string;
-  socialType?: string;
-  total: number;
-  class: ClassType;
+  applicant: ApplicantType;
   guardian: GuardianType;
   teacher: TeacherType;
-  subject: SubjectType;
-  nonSubject: nonSubjectType;
+  school: SchoolType;
+  screening: ScreeningType;
+  curriculum: CurriculumType;
+  nonCurriculum: NonCurriculumType;
+  scoreTotal: number;
+  major: MajorType;
 }
-interface ClassType {
-  firstClass: string;
-  secondClass: string;
-  thirdClass: string;
+
+interface ApplicantType {
+  registration_number: number;
+  name: string;
+  gender: '남자' | '여자';
+  birth: string;
+  address: string;
+  contact: {
+    telephone: string;
+    cellphone: string;
+  };
 }
 
 interface GuardianType {
   name: string;
   relation: string;
-  phoneNumber: string;
+  cellphone: string;
 }
 
 interface TeacherType {
-  phoneNumber: string;
+  name: string;
+  cellphone: string;
 }
 
-interface SubjectType {
-  one_one: number;
-  one_two: number;
-  two_one: number;
-  two_two: number;
-  three_one: number;
-  artsAndSports: number;
-  subTotal: number;
+interface SchoolType {
+  name: string;
+  educationStatus: string;
+  area: string;
 }
 
-interface nonSubjectType {
-  attendance: number;
-  volunteer: number;
-  subTotal: number;
+interface ScreeningType {
+  screening: '일반전형' | '사회특별전형' | '특별전형';
+  socialScreening: '기회균등전형' | '사회다양성전형'; 
+}
+
+interface CurriculumType {
+  score1_1: number;
+  score1_2: number;
+  score2_1: number;
+  score2_2: number;
+  score3_1: number;
+  artSportsScore: number;
+  curriculumScore: number;
+}
+
+interface NonCurriculumType {
+  attendanceScore: number;
+  volunteerScore: number;
+  nonCurriculumScore: number;
+}
+
+interface MajorType {
+  firstWantedMajor: '소프트웨어 개발과' | '스마트 IOT과' | '인공지능과';
+  secondWantedMajor: '소프트웨어 개발과' | '스마트 IOT과' | '인공지능과';
+  thirdWantedMajor: '소프트웨어 개발과' | '스마트 IOT과' | '인공지능과';
 }
