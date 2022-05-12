@@ -60,3 +60,16 @@ export const Content = styled.div`
   text-align: center;
   border-radius: 43px;
 `;
+
+export const Confirm = styled.a`
+  width: 230px;
+  height: 65px;
+  background: #19baff;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 28px;
+  color: #ffffff;
+  padding: 18px 87px;
+  margin: 200px 0;
+  cursor: pointer;
+`;
