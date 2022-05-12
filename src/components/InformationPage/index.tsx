@@ -3,12 +3,13 @@ import type { NextPage } from 'next';
 import Header from '../Common/Header';
 import Link from 'next/link';
 import * as S from './style';
+import { css } from '@emotion/react';
 
 const InformationPage: NextPage = () => {
   return (
-    <>
+    <S.InformationPage>
       <Header />
-      <S.InformationPage>
+      <S.InformationContent>
         <S.InformationBox>
           <S.Number>1.</S.Number>
           <S.Title>원서 작성</S.Title>
@@ -63,9 +64,7 @@ const InformationPage: NextPage = () => {
           <S.Title>2차 면접</S.Title>
           <S.Point />
           <S.Content>
-            인성과 문제해결 능력을
-            <br />
-            중심으로 시험을 치룹니다.
+            인성과 문제해결 능력을 중심으로 시험을 치룹니다.
           </S.Content>
         </S.InformationBox>
         <S.InformationBox>
@@ -79,8 +78,45 @@ const InformationPage: NextPage = () => {
         <Link href="/apply" passHref>
           <S.Confirm>확인</S.Confirm>
         </Link>
-      </S.InformationPage>
-    </>
+      </S.InformationContent>
+      <S.GreenBall
+        css={css`
+          top: 514px;
+          left: 14%;
+        `}
+      />
+      <S.BigBlueBall
+        css={css`
+          top: 438px;
+          left: 83.5%;
+        `}
+      />
+      <S.SmallBlueBall
+        css={css`
+          top: 1004px;
+          left: 22%;
+        `}
+      />
+      <S.LightBlueBall />
+      <S.BigBlueBall
+        css={css`
+          top: 2500px;
+          right: 80%;
+        `}
+      />
+      <S.SmallBlueBall
+        css={css`
+          top: 3152px;
+          left: 86%;
+        `}
+      />
+      <S.GreenBall
+        css={css`
+          top: 3247px;
+          left: 78%;
+        `}
+      />
+    </S.InformationPage>
   );
 };
 
