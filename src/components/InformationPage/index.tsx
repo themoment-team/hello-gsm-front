@@ -1,6 +1,7 @@
 import React from 'react';
 import type { NextPage } from 'next';
 import Header from '../Common/Header';
+import Link from 'next/link';
 import * as S from './style';
 
 const InformationPage: NextPage = () => {
@@ -75,6 +76,9 @@ const InformationPage: NextPage = () => {
             1차 서류 심사와 2차 면접을 통해 최종 합격자를 선출합니다.
           </S.Content>
         </S.InformationBox>
+        <Link href="/apply" passHref>
+          <S.Confirm>확인</S.Confirm>
+        </Link>
       </S.InformationPage>
     </>
   );
