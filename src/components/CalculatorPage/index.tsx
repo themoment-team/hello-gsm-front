@@ -3,9 +3,19 @@ import type { NextPage } from 'next';
 import Header from 'components/Common/Header';
 import * as S from './style';
 import * as I from '../../Assets/svg';
-import { useForm } from 'react-hook-form';
+import { useForm, useFieldArray, Controller, useWatch } from 'react-hook-form';
 
 const CalculatorPage: NextPage = () => {
+  const { register, handleSubmit, watch, control } = useForm();
+  const { fields, append, prepend, remove, swap, move, insert, replace } =
+    useFieldArray({
+      control,
+      name: 'test',
+    });
+  const onValid = validForm => {
+    console.log(validForm.과학 + validForm.수학);
+  };
+
   const Lines = ['일반교과', '체육•예술 교과', '비교과'];
   const subjects = [
     '국어',
@@ -25,11 +35,6 @@ const CalculatorPage: NextPage = () => {
     '2학년 2학기',
     '3학년 1학기',
   ];
-  const { register, handleSubmit, watch } = useForm();
-
-  const onValid = validForm => {
-    console.log(validForm.과학 + validForm.수학);
-  };
 
   return (
     <>
@@ -51,6 +56,7 @@ const CalculatorPage: NextPage = () => {
                 <S.Subject key={i}>{subject}</S.Subject>
               ))}
             </S.SemesterSection>
+
             <S.SemesterSection>
               <S.Semester>1학년 1학기</S.Semester>
               {subjects.map((subject, i) => (
