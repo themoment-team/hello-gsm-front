@@ -4,6 +4,7 @@ import Header from 'components/Common/Header';
 import * as S from './style';
 import Link from 'next/link';
 import Footer from 'components/Common/Footer';
+import MainPageDescription from 'components/MainPageDescription';
 
 const MainPage: NextPage = () => {
   const [selectIndex, setSelectIndex] = useState<number>(1);
@@ -81,6 +82,7 @@ const MainPage: NextPage = () => {
               최종 결과 발표
             </S.ContentSelect>
           </S.ContentHeader>
+          <MainPageDescription index={selectIndex} />
         </S.ContentBox>
       </S.MainContent>
       <S.GreenBall />
