@@ -5,24 +5,22 @@ import * as S from './style';
 import Link from 'next/link';
 import Footer from 'components/Common/Footer';
 import MainPageDescription from 'components/MainPageDescription';
+import { css } from '@emotion/react';
 
 const MainPage: NextPage = () => {
-  const [selectIndex, setSelectIndex] = useState<number>(1);
+  const [selectedIndex, setSelectedIndex] = useState<number>(1);
 
-  const selectedStyle = (index: number) => {
-    return (
-      selectIndex === index && {
-        color: '#ffffff',
-        fontWeight: 700,
-        fontSize: '24px',
-        '&:before, &:after': {
-          content: '"ㅣ"',
-        },
+  const selectedStyle = (index: number) =>
+    selectedIndex === index &&
+    css`
+      color: #ffffff;
+      font-weight: 700;
+      font-size: '24px';
+      &:before,
+      &:after {
+        content: 'ㅣ';
       }
-    );
-  };
-
-  const selecting = (index: number) => setSelectIndex(index);
+    `;
 
   return (
     <S.MainPage>
@@ -53,36 +51,36 @@ const MainPage: NextPage = () => {
           <S.ContentHeader>
             <S.ContentSelect
               css={selectedStyle(1)}
-              onClick={() => selecting(1)}
+              onClick={() => setSelectedIndex(1)}
             >
               원서 작성
             </S.ContentSelect>
             <S.ContentSelect
               css={selectedStyle(2)}
-              onClick={() => selecting(2)}
+              onClick={() => setSelectedIndex(2)}
             >
               원서 학교 제출
             </S.ContentSelect>
             <S.ContentSelect
               css={selectedStyle(3)}
-              onClick={() => selecting(3)}
+              onClick={() => setSelectedIndex(3)}
             >
               1차 서류 전형
             </S.ContentSelect>
             <S.ContentSelect
               css={selectedStyle(4)}
-              onClick={() => selecting(4)}
+              onClick={() => setSelectedIndex(4)}
             >
               2차 면접
             </S.ContentSelect>
             <S.ContentSelect
               css={selectedStyle(5)}
-              onClick={() => selecting(5)}
+              onClick={() => setSelectedIndex(5)}
             >
               최종 결과 발표
             </S.ContentSelect>
           </S.ContentHeader>
-          <MainPageDescription index={selectIndex} />
+          <MainPageDescription selectedIndex={selectedIndex} />
         </S.ContentBox>
       </S.MainContent>
       <S.GreenBall />
