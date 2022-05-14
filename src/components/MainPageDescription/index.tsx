@@ -1,22 +1,57 @@
+import { css } from '@emotion/react';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import * as S from './style';
 
 interface indexType {
-  index: number;
+  selectedIndex: number;
 }
 
-const MainPageDescription: React.FC<indexType> = ({ index }) => {
+const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
   const today = new Date();
-  console.log(index);
+  const [index, setIndex] = useState<number>(1);
+  const [logged, setLogged] = useState<boolean>(false);
+
+  useEffect(() => {
+    today > new Date('2023-03-01') ? setIndex(0) : setIndex(selectedIndex);
+  }, [selectedIndex]);
 
   switch (index) {
     case 1:
       return (
         <S.Description>
           <S.DescriptionLine>
-            2차 면접에서는 인성과 문제해결 능력을
+            1. 인터넷 접수 후 출력하여 작성교사, 지원자, 보호자 및 학교장 직인을
+            날인하여
           </S.DescriptionLine>
-          <S.DescriptionLine>중심으로 시험을 치룹니다.</S.DescriptionLine>
-          <S.PostScript>2022.11.09 면접 진행</S.PostScript>
+          <S.DescriptionLine>
+            원서접수 기간 내에 우편접수 또는 공문시행을 통해 제출하여야 합니다.
+          </S.DescriptionLine>
+          <S.DescriptionLine
+            css={css`
+              margin-top: 50px;
+            `}
+          >
+            2. 입력사항에 오류가 있거나 허위로 입력한 경우 접수가 취소될 수
+            있으며,
+          </S.DescriptionLine>
+          <S.DescriptionLine>
+            이에 따른 책임은 지원자에게 있습니다.
+          </S.DescriptionLine>
+          <S.DescriptionLine
+            css={css`
+              margin-top: 50px;
+            `}
+          >
+            3. 접수번호는 원서 최종 제출 후 자동으로 부여됩니다.
+          </S.DescriptionLine>
+          <S.PostScript
+            css={css`
+              margin-top: 50px;
+            `}
+          >
+            2022.10.17 ~ 2022.10.20
+          </S.PostScript>
         </S.Description>
       );
     case 2:
@@ -50,12 +85,31 @@ const MainPageDescription: React.FC<indexType> = ({ index }) => {
           <S.DescriptionLine>
             2차 면접에서는 인성과 문제해결 능력을
           </S.DescriptionLine>
-          <S.DescriptionLine>중심으로 인적성검사 치룹니다.</S.DescriptionLine>
+          <S.DescriptionLine>중심으로 인적성검사를 치룹니다.</S.DescriptionLine>
           <S.PostScript>2022.10.28 인적성 검사 진행</S.PostScript>
         </S.Description>
       );
     case 5:
-      return <S.Description></S.Description>;
+      return logged ? (
+        <S.Description>
+          <S.DescriptionLine>로그인 완료</S.DescriptionLine>
+        </S.Description>
+      ) : (
+        <S.Description>
+          <S.DescriptionLine>
+            결과 발표 확인을 위해선 로그인이 필요합니다.
+          </S.DescriptionLine>
+          <Link href="/auth/signin" passHref>
+            <S.Login>로그인</S.Login>
+          </Link>
+        </S.Description>
+      );
+    default:
+      return (
+        <S.DescriptionLine>
+          현재 2022년 신입생 모집이 종료되었습니다
+        </S.DescriptionLine>
+      );
   }
 };
 
