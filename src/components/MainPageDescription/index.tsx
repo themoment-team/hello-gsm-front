@@ -12,16 +12,19 @@ const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
   const today = new Date();
   const [index, setIndex] = useState<number>(1);
   const [logged, setLogged] = useState<boolean>(true);
-  const [pass, setPass] = useState<boolean>(true);
+  const [pass, setPass] = useState<boolean>(false);
   const [name, setName] = useState<string>('김형록');
   const [registrationNumber, setRegistrationNumber] = useState<number>(1001);
+  const [is1stPeriod, set1stPeriod] = useState<boolean>(false);
 
   useEffect(() => {
     today > new Date('2023-03-01') ? setIndex(0) : setIndex(selectedIndex);
+    today > new Date('2022-11-01') && set1stPeriod(false);
+    !logged && selectedIndex === 5 && setIndex(6);
     logged &&
-      today < new Date('2022-10-24') &&
+      today < new Date('2021-10-24') &&
       selectedIndex === 5 &&
-      setIndex(6);
+      setIndex(7);
   }, [selectedIndex]);
 
   switch (index) {
@@ -98,14 +101,14 @@ const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
         </S.Description>
       );
     case 5:
-      return logged ? (
+      return is1stPeriod ? (
         pass ? (
           <S.Description>
             <S.DescriptionLine>
               {name}님 2022학년도 광주소프트웨어마이스터고등학교
             </S.DescriptionLine>
             <S.DescriptionLine>
-              <S.Blue>최종 합격</S.Blue>하셨습니다.
+              <S.Blue>1차 합격</S.Blue>하셨습니다.
             </S.DescriptionLine>
             <S.PostScript>접수 번호 {registrationNumber}</S.PostScript>
             <S.Celebration>
@@ -123,7 +126,32 @@ const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
             <S.PostScript>접수 번호 {registrationNumber}</S.PostScript>
           </S.Description>
         )
+      ) : pass ? (
+        <S.Description>
+          <S.DescriptionLine>
+            {name}님 2022학년도 광주소프트웨어마이스터고등학교
+          </S.DescriptionLine>
+          <S.DescriptionLine>
+            <S.Blue>최종 합격</S.Blue>하셨습니다.
+          </S.DescriptionLine>
+          <S.PostScript>접수 번호 {registrationNumber}</S.PostScript>
+          <S.Celebration>
+            <I.Celebration />
+          </S.Celebration>
+        </S.Description>
       ) : (
+        <S.Description>
+          <S.DescriptionLine>
+            {name}님 2022학년도 광주소프트웨어마이스터고등학교
+          </S.DescriptionLine>
+          <S.DescriptionLine>
+            <S.Red>최종 불합격</S.Red>하셨습니다.
+          </S.DescriptionLine>
+          <S.PostScript>접수 번호 {registrationNumber}</S.PostScript>
+        </S.Description>
+      );
+    case 6:
+      return (
         <S.Description>
           <S.DescriptionLine>
             결과 발표 확인을 위해선 로그인이 필요합니다.
@@ -133,7 +161,7 @@ const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
           </Link>
         </S.Description>
       );
-    case 6:
+    case 7:
       return (
         <S.Description>
           <S.DescriptionLine>
