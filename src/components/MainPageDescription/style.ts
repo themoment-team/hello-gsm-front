@@ -41,3 +41,10 @@ export const Blue = styled.span`
 export const Red = styled.span`
   color: #fa4953;
 `;
+
+export const Celebration = styled.div`
+  position: absolute;
+  top: 350px;
+  left: 200px;
+  z-index: -1;
+`;
