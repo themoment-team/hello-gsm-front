@@ -10,7 +10,10 @@ interface indexType {
 const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
   const today = new Date();
   const [index, setIndex] = useState<number>(1);
-  const [logged, setLogged] = useState<boolean>(false);
+  const [logged, setLogged] = useState<boolean>(true);
+  const [pass, setPass] = useState<boolean>(false);
+  const [name, setName] = useState<string>('김형록');
+  const [registrationNumber, setRegistrationNumber] = useState<number>(1001);
 
   useEffect(() => {
     today > new Date('2023-03-01') ? setIndex(0) : setIndex(selectedIndex);
@@ -91,9 +94,19 @@ const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
       );
     case 5:
       return logged ? (
-        <S.Description>
-          <S.DescriptionLine>로그인 완료</S.DescriptionLine>
-        </S.Description>
+        pass ? (
+          <S.Description></S.Description>
+        ) : (
+          <S.Description>
+            <S.DescriptionLine>
+              {name}님 2022학년도 광주소프트웨어마이스터고등학교
+            </S.DescriptionLine>
+            <S.DescriptionLine>
+              1차 서류 심사 결과 <S.Red>불합격</S.Red>하셨습니다.
+            </S.DescriptionLine>
+            <S.PostScript>접수 번호 {registrationNumber}</S.PostScript>
+          </S.Description>
+        )
       ) : (
         <S.Description>
           <S.DescriptionLine>
