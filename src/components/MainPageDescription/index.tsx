@@ -18,6 +18,10 @@ const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
 
   useEffect(() => {
     today > new Date('2023-03-01') ? setIndex(0) : setIndex(selectedIndex);
+    logged &&
+      today < new Date('2022-10-24') &&
+      selectedIndex === 5 &&
+      setIndex(6);
   }, [selectedIndex]);
 
   switch (index) {
@@ -127,6 +131,15 @@ const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
           <Link href="/auth/signin" passHref>
             <S.Login>로그인</S.Login>
           </Link>
+        </S.Description>
+      );
+    case 6:
+      return (
+        <S.Description>
+          <S.DescriptionLine>
+            1차 서류 심사와 2차 면접을 통해 최종 합격자를 선출합니다.
+          </S.DescriptionLine>
+          <S.PostScript>2022.11.09 발표</S.PostScript>
         </S.Description>
       );
     default:
