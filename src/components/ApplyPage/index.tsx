@@ -193,21 +193,21 @@ const ApplyPage: NextPage = () => {
           </S.BarElement>
           <S.BarElement
             css={css`
-              top: 1765px;
+              top: 1800px;
             `}
           >
             핸드폰 번호
           </S.BarElement>
           <S.BarElement
             css={css`
-              top: 1950px;
+              top: 1980px;
             `}
           >
             이름
           </S.BarElement>
           <S.BarElement
             css={css`
-              top: 2035px;
+              top: 2065px;
             `}
           >
             연락처
@@ -326,8 +326,42 @@ const ApplyPage: NextPage = () => {
           </S.SchoolBox>
           <S.GraduatedBox>
             <S.GraduatedDateBox>
-              <S.GraduatedYear></S.GraduatedYear>
-              <S.GraduateMonth></S.GraduateMonth>
+              <S.GraduatedYear>
+                <option disabled selected>
+                  연도
+                </option>
+                <option>2010</option>
+                <option>2011</option>
+                <option>2012</option>
+                <option>2013</option>
+                <option>2014</option>
+                <option>2015</option>
+                <option>2016</option>
+                <option>2017</option>
+                <option>2018</option>
+                <option>2019</option>
+                <option>2020</option>
+                <option>2021</option>
+                <option>2022</option>
+                <option>2023</option>
+              </S.GraduatedYear>
+              <S.GraduateMonth>
+                <option disabled selected>
+                  월
+                </option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+              </S.GraduateMonth>
             </S.GraduatedDateBox>
             <S.GraduatedSelectBox>
               <S.GraduatedType
@@ -410,7 +444,7 @@ const ApplyPage: NextPage = () => {
           </S.Title>
           <S.GuardianName placeholder="보호자분의 성명을 입력해주세요." />
           <S.GuardianRelation placeholder="지원자분과의 관계를 입력해주세요." />
-          <S.GuardianHomeTelephone placeholder="보호자분의 핸드폰 번호를 입력해주세요." />
+          <S.GuardianCellphone placeholder="보호자분의 핸드폰 번호를 입력해주세요." />
           <S.Title
             css={css`
               margin-top: 75px;
@@ -488,21 +522,21 @@ const ApplyPage: NextPage = () => {
           </S.Error>
           <S.Error
             css={css`
-              top: 1885px;
+              top: 1915px;
             `}
           >
             * 핸드폰번호를 입력해주세요.
           </S.Error>
           <S.Error
             css={css`
-              top: 2075px;
+              top: 2100px;
             `}
           >
             * 성명을 입력해주세요.
           </S.Error>
           <S.Error
             css={css`
-              top: 2155px;
+              top: 2190px;
             `}
           >
             * 연락처를 입력해주세요.
