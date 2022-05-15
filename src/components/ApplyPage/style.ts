@@ -285,22 +285,33 @@ export const GraduatedDateBox = styled.div`
   justify-content: space-between;
 `;
 
-export const GraduatedYear = styled.select`
-  width: 230px;
+const Select = styled.select`
   height: 100%;
-  background: #484453;
   color: #9b98a1;
   border-radius: 6px;
   border: none;
+  -o-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  &::-ms-expand {
+    display: none;
+  }
+  background: #484453 url('/Images/SelectArrow.png') calc(100% - 20px) center
+    no-repeat;
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
 `;
 
-export const GraduateMonth = styled.select`
+export const GraduatedYear = styled(Select)`
+  width: 230px;
+`;
+
+export const GraduateMonth = styled(Select)`
   width: 130px;
-  height: 100%;
-  background: #484453;
-  color: #9b98a1;
-  border-radius: 6px;
-  border: none;
 `;
 
 export const GraduatedSelectBox = styled.div`
@@ -371,10 +382,6 @@ export const GuardianRelation = styled(Input)`
 
 export const GuardianCellphone = styled(Input)`
   margin-top: 50px;
-`;
-
-export const GuardianHomeTelephone = styled(Input)`
-  margin-top: 20px;
 `;
 
 export const TeacherName = styled(Input)`
