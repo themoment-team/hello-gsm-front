@@ -193,28 +193,21 @@ const ApplyPage: NextPage = () => {
           </S.BarElement>
           <S.BarElement
             css={css`
-              top: 1800px;
-            `}
-          >
-            집 전화
-          </S.BarElement>
-          <S.BarElement
-            css={css`
-              top: 1855px;
+              top: 1765px;
             `}
           >
             핸드폰 번호
           </S.BarElement>
           <S.BarElement
             css={css`
-              top: 2035px;
+              top: 1950px;
             `}
           >
             이름
           </S.BarElement>
           <S.BarElement
             css={css`
-              top: 2120px;
+              top: 2035px;
             `}
           >
             연락처
@@ -417,7 +410,6 @@ const ApplyPage: NextPage = () => {
           </S.Title>
           <S.GuardianName placeholder="보호자분의 성명을 입력해주세요." />
           <S.GuardianRelation placeholder="지원자분과의 관계를 입력해주세요." />
-          <S.GuardianCellphone placeholder="보호자분의 집 전화 번호를 입력해주세요." />
           <S.GuardianHomeTelephone placeholder="보호자분의 핸드폰 번호를 입력해주세요." />
           <S.Title
             css={css`
@@ -461,70 +453,56 @@ const ApplyPage: NextPage = () => {
           </S.Error>
           <S.Error
             css={css`
-              top: 1175px;
-            `}
-          >
-            * 지원 전형을 선택해주세요.
-          </S.Error>
-          <S.Error
-            css={css`
-              top: 1370px;
+              top: 1385px;
             `}
           >
             * 출신 중학교를 입력해주세요.
           </S.Error>
           <S.Error
             css={css`
-              top: 1425px;
+              top: 1440px;
             `}
           >
             * 졸업일을 선택해주세요.
           </S.Error>
           <S.Error
             css={css`
-              top: 1510px;
+              top: 1530px;
             `}
           >
             * 지원학과를 선택해주세요.
           </S.Error>
           <S.Error
             css={css`
-              top: 1725px;
+              top: 1740px;
             `}
           >
             * 성명을 입력해주세요.
           </S.Error>
           <S.Error
             css={css`
-              top: 1810px;
+              top: 1830px;
             `}
           >
             * 관계를 입력해주세요.
           </S.Error>
           <S.Error
             css={css`
-              top: 1900px;
-            `}
-          >
-            * 집 전화번호를 입력해주세요.
-          </S.Error>
-          <S.Error
-            css={css`
-              top: 1955px;
+              top: 1885px;
             `}
           >
             * 핸드폰번호를 입력해주세요.
           </S.Error>
           <S.Error
             css={css`
-              top: 2140px;
+              top: 2075px;
             `}
           >
             * 성명을 입력해주세요.
           </S.Error>
           <S.Error
             css={css`
-              top: 2230px;
+              top: 2155px;
             `}
           >
             * 연락처를 입력해주세요.
