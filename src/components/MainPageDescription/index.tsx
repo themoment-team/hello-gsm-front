@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import * as S from './style';
+import * as I from '../../Assets/svg';
 
 interface indexType {
   selectedIndex: number;
@@ -11,7 +12,7 @@ const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
   const today = new Date();
   const [index, setIndex] = useState<number>(1);
   const [logged, setLogged] = useState<boolean>(true);
-  const [pass, setPass] = useState<boolean>(false);
+  const [pass, setPass] = useState<boolean>(true);
   const [name, setName] = useState<string>('김형록');
   const [registrationNumber, setRegistrationNumber] = useState<number>(1001);
 
@@ -95,7 +96,18 @@ const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
     case 5:
       return logged ? (
         pass ? (
-          <S.Description></S.Description>
+          <S.Description>
+            <S.DescriptionLine>
+              {name}님 2022학년도 광주소프트웨어마이스터고등학교
+            </S.DescriptionLine>
+            <S.DescriptionLine>
+              <S.Blue>최종 합격</S.Blue>하셨습니다.
+            </S.DescriptionLine>
+            <S.PostScript>접수 번호 {registrationNumber}</S.PostScript>
+            <S.Celebration>
+              <I.Celebration />
+            </S.Celebration>
+          </S.Description>
         ) : (
           <S.Description>
             <S.DescriptionLine>
