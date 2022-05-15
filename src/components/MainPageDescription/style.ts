@@ -33,3 +33,11 @@ export const Login = styled.a`
   justify-content: center;
   cursor: pointer;
 `;
+
+export const Blue = styled.span`
+  color: #3796ff;
+`;
+
+export const Red = styled.span`
+  color: #fa4953;
+`;
