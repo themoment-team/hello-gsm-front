@@ -61,12 +61,12 @@ const CalculatorPage: NextPage = () => {
               <S.Semester>1학년 1학기</S.Semester>
               {subjects.map((subject, i) => (
                 <S.Select {...register(subject)}>
+                  <option selected>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
                   <option value={2}>D</option>
                   <option value={1}>E</option>
-                  <option value="자유학기제">자유학기제</option>
                 </S.Select>
               ))}
             </S.SemesterSection>
@@ -74,12 +74,12 @@ const CalculatorPage: NextPage = () => {
               <S.Semester>1학년 2학기</S.Semester>
               {subjects.map((subject, i) => (
                 <S.Select {...register(subject)}>
+                  <option selected>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
                   <option value={2}>D</option>
                   <option value={1}>E</option>
-                  <option value="자유학기제">자유학기제</option>
                 </S.Select>
               ))}
             </S.SemesterSection>
@@ -87,12 +87,13 @@ const CalculatorPage: NextPage = () => {
               <S.Semester>2학년 1학기</S.Semester>
               {subjects.map((subject, i) => (
                 <S.Select {...register(subject)}>
+                  <option selected>선택</option>
+
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
                   <option value={2}>D</option>
                   <option value={1}>E</option>
-                  <option value="자유학기제">자유학기제</option>
                 </S.Select>
               ))}
             </S.SemesterSection>
@@ -100,12 +101,12 @@ const CalculatorPage: NextPage = () => {
               <S.Semester>2학년 2학기</S.Semester>
               {subjects.map((subject, i) => (
                 <S.Select {...register(subject)}>
+                  <option selected>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
                   <option value={2}>D</option>
                   <option value={1}>E</option>
-                  <option value="자유학기제">자유학기제</option>
                 </S.Select>
               ))}
             </S.SemesterSection>
@@ -113,12 +114,12 @@ const CalculatorPage: NextPage = () => {
               <S.Semester>3학년 1학기</S.Semester>
               {subjects.map((subject, i) => (
                 <S.Select {...register(subject)}>
+                  <option selected>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
                   <option value={2}>D</option>
                   <option value={1}>E</option>
-                  <option value="자유학기제">자유학기제</option>
                 </S.Select>
               ))}
             </S.SemesterSection>
@@ -136,12 +137,12 @@ const CalculatorPage: NextPage = () => {
               <S.Semester>1학년 1학기</S.Semester>
               {nonSubjects.map((subject, i) => (
                 <S.Select {...register('1_1')}>
+                  <option selected>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
                   <option value={2}>D</option>
                   <option value={1}>E</option>
-                  <option value="자유학기제">자유학기제</option>
                 </S.Select>
               ))}
             </S.SemesterSection>
@@ -149,12 +150,12 @@ const CalculatorPage: NextPage = () => {
               <S.Semester>1학년 2학기</S.Semester>
               {nonSubjects.map((subject, i) => (
                 <S.Select {...register('1_1')}>
+                  <option selected>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
                   <option value={2}>D</option>
                   <option value={1}>E</option>
-                  <option value="자유학기제">자유학기제</option>
                 </S.Select>
               ))}
             </S.SemesterSection>
@@ -162,12 +163,12 @@ const CalculatorPage: NextPage = () => {
               <S.Semester>2학년 1학기</S.Semester>
               {nonSubjects.map((subject, i) => (
                 <S.Select {...register('1_1')}>
+                  <option selected>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
                   <option value={2}>D</option>
                   <option value={1}>E</option>
-                  <option value="자유학기제">자유학기제</option>
                 </S.Select>
               ))}
             </S.SemesterSection>
@@ -175,12 +176,12 @@ const CalculatorPage: NextPage = () => {
               <S.Semester>2학년 2학기</S.Semester>
               {nonSubjects.map((subject, i) => (
                 <S.Select {...register('1_1')}>
+                  <option selected>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
                   <option value={2}>D</option>
                   <option value={1}>E</option>
-                  <option value="자유학기제">자유학기제</option>
                 </S.Select>
               ))}
             </S.SemesterSection>
@@ -188,43 +189,89 @@ const CalculatorPage: NextPage = () => {
               <S.Semester>3학년 1학기</S.Semester>
               {nonSubjects.map((subject, i) => (
                 <S.Select {...register('1_1')}>
+                  <option selected>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
                   <option value={2}>D</option>
                   <option value={1}>E</option>
-                  <option value="자유학기제">자유학기제</option>
                 </S.Select>
               ))}
             </S.SemesterSection>
           </S.Section>
-          <S.Section style={{ height: 200 }}>
-            <S.SemesterSection>
-              <div>
-                <I.CrossRectangle />
-              </div>
-              {nonSubjects.map((subject, i) => (
-                <S.Subject key={i}>{subject}</S.Subject>
-              ))}
-            </S.SemesterSection>
-            <S.SemesterSection>
-              <S.Semester>1학년 1학기</S.Semester>
-              {nonSubjects.map((subject, i) => (
-                <S.Select {...register('1_1')}>
-                  <option value={5}>A</option>
-                  <option value={4}>B</option>
-                  <option value={3}>C</option>
-                  <option value={2}>D</option>
-                  <option value={1}>E</option>
-                  <option value="자유학기제">자유학기제</option>
-                </S.Select>
-              ))}
-            </S.SemesterSection>
+
+          <S.Section style={{ height: 260 }}>
+            <table style={{ height: 260 }}>
+              <tbody>
+                <tr>
+                  <S.Grade rowSpan={2}>학년</S.Grade>
+                  <S.Attendance colSpan={4}>출결상황</S.Attendance>
+                  <S.Attendance rowSpan={2}>봉사활동</S.Attendance>
+                </tr>
+                <tr>
+                  <S.Attendance>결석</S.Attendance>
+                  <S.Attendance>결석</S.Attendance>
+                  <S.Attendance>결석</S.Attendance>
+                  <S.Attendance>결석</S.Attendance>
+                </tr>
+                <tr>
+                  <S.Grade>1</S.Grade>
+                  <td>
+                    <S.AttendanceInput type="number" />
+                  </td>
+                  <td>
+                    <S.AttendanceInput type="number" />
+                  </td>
+                  <td>
+                    <S.AttendanceInput type="number" />
+                  </td>
+                  <td>
+                    <S.AttendanceInput type="number" />
+                  </td>
+                  <td>
+                    <S.AttendanceInput type="number" />
+                  </td>
+                </tr>
+                <tr>
+                  <S.Grade>2</S.Grade>
+                  <td>
+                    <S.AttendanceInput type="number" />
+                  </td>
+                  <td>
+                    <S.AttendanceInput type="number" />
+                  </td>
+                  <td>
+                    <S.AttendanceInput type="number" />
+                  </td>
+                  <td>
+                    <S.AttendanceInput type="number" />
+                  </td>
+                  <td>
+                    <S.AttendanceInput type="number" />
+                  </td>
+                </tr>
+                <tr>
+                  <S.Grade>3</S.Grade>
+                  <td>
+                    <S.AttendanceInput type="number" />
+                  </td>
+                  <td>
+                    <S.AttendanceInput type="number" />
+                  </td>
+                  <td>
+                    <S.AttendanceInput type="number" />
+                  </td>
+                  <td>
+                    <S.AttendanceInput type="number" />
+                  </td>
+                  <td>
+                    <S.AttendanceInput type="number" />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </S.Section>
-          <div>
-            <input type="submit" value="테스트" />
-            <button>..</button>
-          </div>
+          <S.Submit value="저장" type="submit" />
         </S.CalculateSection>
       </S.CalculatePage>
     </>
