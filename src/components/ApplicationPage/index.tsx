@@ -5,51 +5,57 @@ import { css } from '@emotion/react';
 import { ProfileType } from 'type/profile';
 
 const profile: ProfileType = {
-  id: 2022,
-  name: '유시온',
-  gender: '여자',
-  address: '광주광역시 서구 풍암동 우미광장아파트',
-  homeNumber: '062 681 7815',
-  phoneNumber: '010 9201 5487',
-  birth: '2022년 11월 09일',
-  middleSchool: '풍암중학교',
-  area: '광주광역시 서구',
-  photoUrl:
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrNSGTUntb7tiyrB0zEeemK8lJd3gGOSHILw&usqp=CAU',
-  type: '일반전형',
-  graduated: '2023년 졸업예정',
-  socialType: '',
-  class: {
-    firstClass: '소프트웨어개발과',
-    secondClass: '스마트IOT과',
-    thirdClass: '인공지능과',
+  user: {
+    name: '유시온',
+    birth: '2005년 11월 09일',
+    gender: '여자',
+    cellphoneNumber: '010-9201-5487',
   },
-  guardian: {
-    name: '울엄마',
-    relation: '지원자의 (모)',
-    phoneNumber: '010 1234 5678',
+  application: {
+    registrationNumber: 2022,
+    isDocumentReception: true,
+    isFinalSubmission: true,
+    isFirstResult: true,
+    isFinalResult: true,
+    idPhotoUrl:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrNSGTUntb7tiyrB0zEeemK8lJd3gGOSHILw&usqp=CAU',
+    guardianName: '우럼마',
+    guardianCellphoneNumber: '010-1111-5487',
+    teacherName: '황명희',
+    teacherCellphoneNumber: '010-2323-5487',
+    schoolLocation: '광주광역시 서구 풍암동',
+    schoolName: '풍암중학교',
+    screening: '일반전형',
+    socialScreening: '해당사항없음',
   },
-  teacher: {
-    phoneNumber: '010 9876 5432',
+  applicationDetails: {
+    address: '광주광역시 서구 풍암동 우미광장아파트',
+    telephoneNumber: '062-681-7815',
+    guardianRelation: '지원자의 (모)',
+    graduation_year: '2023년',
+    graduation_month: '2월',
+    educationStatus: '졸업예정',
+    schoolTelephoneNumber: '010-2224-2323',
+    score1_1: 20,
+    score1_2: 20,
+    score2_1: 20,
+    score2_2: 20,
+    score3_1: 20,
+    generalCurriculumScoreSubtotal: 100,
+    artSportsScore: 20,
+    curriculumScoreSubtotal: 120,
+    attendanceScore: 20,
+    volunteerScore: 20,
+    nonCurriculumScoreSubtotal: 40,
+    scoreTotal: 160,
+    firstWantedMajor: '소프트웨어 개발과',
+    secondWantedMajor: '스마트 IOT과',
+    thirdWantedMajor: '인공지능과',
   },
-  subject: {
-    one_one: 11,
-    one_two: 12,
-    two_one: 21,
-    two_two: 22,
-    three_one: 31,
-    artsAndSports: 32,
-    subTotal: 130,
-  },
-  nonSubject: {
-    attendance: 365,
-    volunteer: 20,
-    subTotal: 385,
-  },
-  total: 515,
 };
 
 const ApplicationPage: NextPage = () => {
+  const { user, application, applicationDetails } = profile;
   useEffect(() => {
     window.print();
   }, []);
@@ -73,7 +79,7 @@ const ApplicationPage: NextPage = () => {
             <S.SubTitle>2023학년도 신입생 입학전형</S.SubTitle>
             <S.Box>
               <S.ApplyNum>접수번호</S.ApplyNum>
-              <S.Content>{profile.id}</S.Content>
+              <S.Content>{application.registrationNumber}</S.Content>
             </S.Box>
           </S.Wrap>
           <S.Container>
@@ -89,11 +95,11 @@ const ApplicationPage: NextPage = () => {
                     지원자
                   </S.Subject>
                   <S.Subject>성 명</S.Subject>
-                  <td>{profile.name}</td>
+                  <td>{user.name}</td>
                   <S.Subject style={{ width: '3%' }}>성별</S.Subject>
-                  <td>{profile.gender}</td>
+                  <td>{user.gender}</td>
                   <S.Subject>생년월일</S.Subject>
-                  <td>{profile.birth}</td>
+                  <td>{user.birth}</td>
                   <td
                     rowSpan={6}
                     style={{
@@ -101,42 +107,42 @@ const ApplicationPage: NextPage = () => {
                       height: '20vh',
                     }}
                   >
-                    <img src={profile.photoUrl} alt="" />
+                    <img src={application.idPhotoUrl} alt="" />
                   </td>
                 </tr>
                 <tr>
                   <S.Subject>주 소</S.Subject>
-                  <td colSpan={5}>{profile.address}</td>
+                  <td colSpan={5}>{applicationDetails.address}</td>
                 </tr>
                 <tr>
                   <S.Subject>연락처</S.Subject>
                   <S.Subject>집전화</S.Subject>
-                  <td colSpan={2}>{profile.homeNumber}</td>
+                  <td colSpan={2}>{applicationDetails.telephoneNumber}</td>
                   <S.Subject>핸드폰</S.Subject>
-                  <td>{profile.phoneNumber}</td>
+                  <td>{user.cellphoneNumber}</td>
                 </tr>
                 <tr>
                   <S.Subject style={{ width: '3%' }} rowSpan={2}>
                     보호자
                   </S.Subject>
                   <S.Subject>성 명</S.Subject>
-                  <td colSpan={2}>{profile.guardian.name}</td>
+                  <td colSpan={2}>{application.guardianName}</td>
                   <S.Subject>지원자와의 관계</S.Subject>
-                  <td colSpan={2}>{profile.guardian.relation}</td>
+                  <td colSpan={2}>{applicationDetails.guardianRelation}</td>
                 </tr>
                 <tr>
                   <S.Subject>핸드폰</S.Subject>
-                  <td colSpan={5}>{profile.guardian.phoneNumber}</td>
+                  <td colSpan={5}>{application.guardianCellphoneNumber}</td>
                 </tr>
                 <tr>
                   <S.Subject colSpan={3}>
                     원서작성자(담임) <br /> 성명
                   </S.Subject>
                   <td colSpan={2} style={{ textAlign: 'end' }}>
-                    (인)
+                    {application.teacherName}(인)
                   </td>
                   <S.Subject>핸드폰</S.Subject>
-                  <td>{profile.teacher.phoneNumber}</td>
+                  <td>{applicationDetails.telephoneNumber}</td>
                 </tr>
               </thead>
             </S.Table>
@@ -154,20 +160,20 @@ const ApplicationPage: NextPage = () => {
                   <S.Subject colSpan={2} rowSpan={2}>
                     출신중학교
                   </S.Subject>
-                  <td colSpan={2}>{profile.middleSchool}</td>
-                  <td colSpan={6}>{profile.graduated}</td>
+                  <td colSpan={2}>{application.schoolLocation}</td>
+                  <td colSpan={6}>{applicationDetails.educationStatus}</td>
                 </tr>
                 <tr>
                   <S.Subject>지역명</S.Subject>
-                  <td colSpan={7}>{profile.area}</td>
+                  <td colSpan={7}>{applicationDetails.address}</td>
                 </tr>
                 <tr>
-                  <S.Subject colSpan={5}>전 형 구 분</S.Subject>
-                  <S.Subject colSpan={4}>사회통합전형의 대상 구분</S.Subject>
+                  <S.Subject colSpan={4}>전 형 구 분</S.Subject>
+                  <S.Subject colSpan={5}>사회통합전형의 대상 구분</S.Subject>
                 </tr>
                 <tr>
-                  <td colSpan={5}>{profile.type}</td>
-                  <td colSpan={4}>{profile.socialType}</td>
+                  <td colSpan={4}>{application.screening}</td>
+                  <td colSpan={5}>{application.socialScreening}</td>
                 </tr>
                 <tr>
                   <S.Subject rowSpan={2} style={{ width: '10%' }}>
@@ -183,13 +189,13 @@ const ApplicationPage: NextPage = () => {
                   <S.Subject rowSpan={2}>합계 (환산총점)</S.Subject>
                 </tr>
                 <tr>
-                  <td>{profile.subject.one_one}</td>
-                  <td>{profile.subject.one_two}</td>
-                  <td>{profile.subject.two_one}</td>
-                  <td>{profile.subject.two_two}</td>
-                  <td>{profile.subject.three_one}</td>
-                  <td>{profile.subject.artsAndSports}</td>
-                  <td>{profile.subject.subTotal}</td>
+                  <td>{applicationDetails.score1_1}</td>
+                  <td>{applicationDetails.score1_2}</td>
+                  <td>{applicationDetails.score2_1}</td>
+                  <td>{applicationDetails.score2_2}</td>
+                  <td>{applicationDetails.score3_1}</td>
+                  <td>{applicationDetails.artSportsScore}</td>
+                  <td>{applicationDetails.curriculumScoreSubtotal}</td>
                 </tr>
                 <tr>
                   <S.Subject rowSpan={2}>
@@ -198,12 +204,12 @@ const ApplicationPage: NextPage = () => {
                   <S.Subject colSpan={3}>출석</S.Subject>
                   <S.Subject colSpan={3}>봉사활동</S.Subject>
                   <S.Subject>소계</S.Subject>
-                  <td rowSpan={2}>{profile.total}</td>
+                  <td rowSpan={2}>{applicationDetails.scoreTotal}</td>
                 </tr>
                 <tr>
-                  <td colSpan={3}>{profile.nonSubject.attendance}</td>
-                  <td colSpan={3}>{profile.nonSubject.volunteer}</td>
-                  <td>{profile.nonSubject.subTotal}</td>
+                  <td colSpan={3}>{applicationDetails.attendanceScore}</td>
+                  <td colSpan={3}>{applicationDetails.volunteerScore}</td>
+                  <td>{applicationDetails.nonCurriculumScoreSubtotal}</td>
                 </tr>
                 <tr>
                   <S.Subject rowSpan={4} colSpan={2} style={{ height: '7vh' }}>
@@ -216,9 +222,9 @@ const ApplicationPage: NextPage = () => {
                   <td colSpan={3}>3지망 학과</td>
                 </tr>
                 <tr>
-                  <td colSpan={3}>{profile.class.firstClass}</td>
-                  <td colSpan={3}>{profile.class.secondClass}</td>
-                  <td colSpan={3}>{profile.class.thirdClass}</td>
+                  <td colSpan={3}>{applicationDetails.firstWantedMajor}</td>
+                  <td colSpan={3}>{applicationDetails.secondWantedMajor}</td>
+                  <td colSpan={3}>{applicationDetails.thirdWantedMajor}</td>
                 </tr>
                 <tr>
                   <td colSpan={9} style={{ textAlign: 'start' }}>

@@ -17,8 +17,8 @@ export const Document = styled.div`
     color: #e8e8e8;
     z-index: -1;
     text-align: center;
-
     transform: rotate(-30deg);
+    user-select: none;
   }
 `;
 

@@ -24,15 +24,17 @@ interface ApplicantType {
   teacherCellphoneNumber: string;
   schoolLocation: string;
   schoolName: string;
-  screening: '일반전형' | '사회특별전형' | '특별전형';
-  socialScreening: '기회균등전형' | '사회다양성전형';
+  screening: '일반전형' | '사회통합전형' | '특별전형';
+  socialScreening: '기회균등전형' | '사회다양성전형' | '해당사항없음';
 }
 
 interface ApplicationDetailsType {
   address: string;
   telephoneNumber?: string;
   guardianRelation: string;
-  educationStatus: string;
+  educationStatus: '졸업예정' | '졸업' | '검정고시';
+  graduation_year: string;
+  graduation_month: string;
   schoolTelephoneNumber: string;
   score1_1: number;
   score1_2: number;
