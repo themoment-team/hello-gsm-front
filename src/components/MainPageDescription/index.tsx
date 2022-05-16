@@ -22,7 +22,7 @@ const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
     today > new Date('2022-11-01') && setIsFirstPeriod(false);
     !logged && selectedIndex === 5 && setIndex(6);
     logged &&
-      today < new Date('2021-10-24') &&
+      today < new Date('2022-10-24') &&
       selectedIndex === 5 &&
       setIndex(7);
   }, [selectedIndex]);
