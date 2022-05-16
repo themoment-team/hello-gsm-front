@@ -95,6 +95,21 @@ export const FreeSemester = styled.input`
   line-height: 25px;
   text-align: center;
   color: rgba(255, 255, 255, 0.56);
+
+  div {
+    width: 380px;
+    height: 61px;
+    background-color: #484453;
+    color: rgba(255, 255, 255, 0.45);
+    border-radius: 6px;
+    font-size: 23px;
+    line-height: 61px;
+  }
+
+  input[type='radio']:checked + div {
+    background-color: #42bafe;
+    color: #ffffff;
+  }
 `;
 
 export const Select = styled.select`

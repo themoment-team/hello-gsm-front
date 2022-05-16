@@ -63,9 +63,11 @@ const CalculatorPage: NextPage = () => {
 
             <S.SemesterSection>
               <S.Semester>1학년 1학기</S.Semester>
-              <S.FreeSemester type="radio" onClick={FreeSemester('score_1_1')}>
-                자유학기제
-              </S.FreeSemester>
+              <label htmlFor="on">
+                <S.FreeSemester type="radio" id="on" />
+                <div id="on">자유학기제</div>
+              </label>
+
               {subjects.map((subject, i) => (
                 <div>
                   <S.Select {...register(subject)}>
