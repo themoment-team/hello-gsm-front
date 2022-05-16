@@ -18,6 +18,7 @@ const CalculatorPage: NextPage = () => {
 
   const Lines = ['일반교과', '체육•예술 교과', '비교과'];
   const subjects = [
+    '자유학기제',
     '국어',
     '도덕',
     '사회',
@@ -60,14 +61,16 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>1학년 1학기</S.Semester>
               {subjects.map((subject, i) => (
-                <S.Select {...register(subject)}>
-                  <option selected>선택</option>
-                  <option value={5}>A</option>
-                  <option value={4}>B</option>
-                  <option value={3}>C</option>
-                  <option value={2}>D</option>
-                  <option value={1}>E</option>
-                </S.Select>
+                <div>
+                  <S.Select {...register(subject)}>
+                    <option selected>선택</option>
+                    <option value={5}>A</option>
+                    <option value={4}>B</option>
+                    <option value={3}>C</option>
+                    <option value={2}>D</option>
+                    <option value={1}>E</option>
+                  </S.Select>
+                </div>
               ))}
             </S.SemesterSection>
             <S.SemesterSection>

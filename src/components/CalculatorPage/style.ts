@@ -9,13 +9,12 @@ export const Title = styled.h1`
 
 export const CalculatePage = styled.div`
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   width: 1800px;
-  margin: 0 auto;
+  padding-bottom: 100px;
 `;
 
 export const LineList = styled.div`
-  /* width: 180px; */
   padding-right: 30px;
   border-right: 3px solid rgba(255, 255, 255, 0.17);
   margin-right: 40px;
@@ -33,7 +32,7 @@ export const Line = styled.div`
     background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/White_Circle.svg/2048px-White_Circle.svg.png);
     position: relative;
     background-size: 10px 10px;
-    left: 170px;
+    left: 150px;
     top: -20px;
     width: 10px;
     height: 10px;
@@ -57,9 +56,7 @@ export const CalculateSection = styled.form`
 
 export const Section = styled.div`
   display: flex;
-  /* width: 800px; */
   height: 500px;
-  /* background-color: #ffffff; */
   margin: 70px 0 200px;
   justify-content: space-between;
   table {
@@ -147,7 +144,9 @@ export const Submit = styled.button`
   background: #ffffff;
   border-radius: 10px;
   margin: 0 auto;
-  color: #000000;
   text-align: center;
   color: #0f0921;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
 `;
