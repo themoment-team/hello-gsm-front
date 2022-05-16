@@ -85,6 +85,18 @@ export const Semester = styled.div`
   text-align: center;
 `;
 
+export const FreeSemester = styled.input`
+  width: 127px;
+  height: 37px;
+  background: #484453;
+  border-radius: 6px;
+  border: none;
+  font-weight: 500;
+  line-height: 25px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.56);
+`;
+
 export const Select = styled.select`
   width: 127px;
   height: 37px;
@@ -94,10 +106,7 @@ export const Select = styled.select`
   line-height: 25px;
   text-align: center;
   color: rgba(255, 255, 255, 0.73);
-
-  table tbody tr {
-    line-height: 100px;
-  }
+  border: none;
 `;
 
 export const SemesterSection = styled.div`

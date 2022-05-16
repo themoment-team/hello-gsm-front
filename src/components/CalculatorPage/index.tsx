@@ -18,7 +18,6 @@ const CalculatorPage: NextPage = () => {
 
   const Lines = ['일반교과', '체육•예술 교과', '비교과'];
   const subjects = [
-    '자유학기제',
     '국어',
     '도덕',
     '사회',
@@ -37,6 +36,9 @@ const CalculatorPage: NextPage = () => {
     '3학년 1학기',
   ];
 
+  const FreeSemester = () => {
+    console.log('hi');
+  };
   return (
     <>
       <Header />
@@ -53,6 +55,7 @@ const CalculatorPage: NextPage = () => {
               <div>
                 <I.CrossRectangle />
               </div>
+              <S.Subject>자유학기제</S.Subject>
               {subjects.map((subject, i) => (
                 <S.Subject key={i}>{subject}</S.Subject>
               ))}
@@ -60,6 +63,9 @@ const CalculatorPage: NextPage = () => {
 
             <S.SemesterSection>
               <S.Semester>1학년 1학기</S.Semester>
+              <S.FreeSemester type="radio" onClick={FreeSemester('score_1_1')}>
+                자유학기제
+              </S.FreeSemester>
               {subjects.map((subject, i) => (
                 <div>
                   <S.Select {...register(subject)}>

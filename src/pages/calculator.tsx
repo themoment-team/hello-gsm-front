@@ -3,11 +3,7 @@ import type { NextPage } from 'next';
 import CalculatePage from 'components/CalculatorPage';
 
 const Calculator: NextPage = () => {
-  return (
-    <>
-      <CalculatePage />
-    </>
-  );
+  return <CalculatePage />;
 };
 
 export default Calculator;
