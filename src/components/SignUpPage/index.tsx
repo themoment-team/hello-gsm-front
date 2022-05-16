@@ -18,6 +18,7 @@ interface UserForm {
   agree: boolean;
   formError: string;
   nonAgree: string;
+  domain: string;
 }
 
 const SignUpPage: NextPage = () => {
@@ -74,7 +75,7 @@ const SignUpPage: NextPage = () => {
               placeholder="직접 입력"
               type="text"
               bigWidth
-              register={register('test', {
+              register={register('domain', {
                 required: true,
               })}
               value={value ? value : null}
