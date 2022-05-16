@@ -15,11 +15,11 @@ const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
   const [pass, setPass] = useState<boolean>(false);
   const [name, setName] = useState<string>('김형록');
   const [registrationNumber, setRegistrationNumber] = useState<number>(1001);
-  const [is1stPeriod, set1stPeriod] = useState<boolean>(false);
+  const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(false);
 
   useEffect(() => {
     today > new Date('2023-03-01') ? setIndex(0) : setIndex(selectedIndex);
-    today > new Date('2022-11-01') && set1stPeriod(false);
+    today > new Date('2022-11-01') && setIsFirstPeriod(false);
     !logged && selectedIndex === 5 && setIndex(6);
     logged &&
       today < new Date('2021-10-24') &&
@@ -101,7 +101,7 @@ const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
         </S.Description>
       );
     case 5:
-      return is1stPeriod ? (
+      return isFirstPeriod ? (
         pass ? (
           <S.Description>
             <S.DescriptionLine>
