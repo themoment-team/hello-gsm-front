@@ -171,9 +171,9 @@ const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
         </S.Description>
       );
     default:
-      return (
+      return (                       
         <S.DescriptionLine>
-          현재 2022년 신입생 모집이 종료되었습니다
+          지금은 지원 기간이 아닙니다.
         </S.DescriptionLine>
       );
   }
