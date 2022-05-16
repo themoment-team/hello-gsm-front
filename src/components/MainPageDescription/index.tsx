@@ -11,7 +11,7 @@ interface indexType {
 const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
   const today = new Date();
   const [index, setIndex] = useState<number>(1);
-  const [logged, setLogged] = useState<boolean>(true);
+  const [logged, setLogged] = useState<boolean>(false);
   const [pass, setPass] = useState<boolean>(false);
   const [name, setName] = useState<string>('김형록');
   const [registrationNumber, setRegistrationNumber] = useState<number>(1001);
