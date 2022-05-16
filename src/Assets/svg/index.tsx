@@ -10,3 +10,4 @@ export { default as Woman } from './Woman';
 export { default as Man } from './Man';
 export { default as FindSchoolClose } from './FindSchoolClose';
 export { default as FindSchoolSearchIcon } from './FindSchoolSearchIcon';
+export { default as Celebration } from './Celebration';
