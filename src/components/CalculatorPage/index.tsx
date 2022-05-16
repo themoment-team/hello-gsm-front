@@ -271,7 +271,7 @@ const CalculatorPage: NextPage = () => {
               </tbody>
             </table>
           </S.Section>
-          <S.Submit value="저장" type="submit" />
+          <S.Submit type="submit">저장</S.Submit>
         </S.CalculateSection>
       </S.CalculatePage>
     </>

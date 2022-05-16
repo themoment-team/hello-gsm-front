@@ -9,13 +9,13 @@ export const Title = styled.h1`
 
 export const CalculatePage = styled.div`
   display: flex;
-  justify-content: center;
-  width: 1200px;
+  /* justify-content: center; */
+  width: 1800px;
   margin: 0 auto;
 `;
 
 export const LineList = styled.div`
-  width: 180px;
+  /* width: 180px; */
   padding-right: 30px;
   border-right: 3px solid rgba(255, 255, 255, 0.17);
   margin-right: 40px;
@@ -52,12 +52,12 @@ export const Line = styled.div`
 `;
 
 export const CalculateSection = styled.form`
-  width: 1000px;
+  width: 780px;
 `;
 
 export const Section = styled.div`
   display: flex;
-  width: 800px;
+  /* width: 800px; */
   height: 500px;
   /* background-color: #ffffff; */
   margin: 70px 0 200px;
@@ -147,4 +147,7 @@ export const Submit = styled.button`
   background: #ffffff;
   border-radius: 10px;
   margin: 0 auto;
+  color: #000000;
+  text-align: center;
+  color: #0f0921;
 `;
