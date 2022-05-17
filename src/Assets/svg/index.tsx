@@ -8,3 +8,4 @@ export { default as TMLogo } from './TMLogo';
 export { default as Woman } from './Woman';
 export { default as Man } from './Man';
 export { default as CrossRectangle } from './CrossRectangle';
+export { default as Celebration } from './Celebration';
