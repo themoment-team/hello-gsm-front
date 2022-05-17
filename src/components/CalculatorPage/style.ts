@@ -85,31 +85,15 @@ export const Semester = styled.div`
   text-align: center;
 `;
 
-export const FreeSemester = styled.input`
+export const FreeSemester = styled.div`
   width: 127px;
   height: 37px;
   background: #484453;
   border-radius: 6px;
-  border: none;
   font-weight: 500;
-  line-height: 25px;
   text-align: center;
   color: rgba(255, 255, 255, 0.56);
-
-  div {
-    width: 380px;
-    height: 61px;
-    background-color: #484453;
-    color: rgba(255, 255, 255, 0.45);
-    border-radius: 6px;
-    font-size: 23px;
-    line-height: 61px;
-  }
-
-  input[type='radio']:checked + div {
-    background-color: #42bafe;
-    color: #ffffff;
-  }
+  line-height: 37px;
 `;
 
 export const Select = styled.select`

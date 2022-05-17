@@ -1,20 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { NextPage } from 'next';
 import Header from 'components/Common/Header';
 import * as S from './style';
 import * as I from '../../Assets/svg';
 import { useForm, useFieldArray, Controller, useWatch } from 'react-hook-form';
+import { css } from '@emotion/react';
 
 const CalculatorPage: NextPage = () => {
   const { register, handleSubmit, watch, control } = useForm();
   const { fields, append, prepend, remove, swap, move, insert, replace } =
     useFieldArray({
       control,
-      name: 'test',
+      name: '12312',
     });
+
   const onValid = validForm => {
     console.log(validForm.과학 + validForm.수학);
   };
+  const [test, setTest] = useState(false);
 
   const Lines = ['일반교과', '체육•예술 교과', '비교과'];
   const subjects = [
@@ -59,33 +62,60 @@ const CalculatorPage: NextPage = () => {
               {subjects.map((subject, i) => (
                 <S.Subject key={i}>{subject}</S.Subject>
               ))}
+              <input type="text" onChange={e => {}} />
             </S.SemesterSection>
 
             <S.SemesterSection>
               <S.Semester>1학년 1학기</S.Semester>
-              <label htmlFor="on">
-                <S.FreeSemester type="radio" id="on" />
-                <div id="on">자유학기제</div>
-              </label>
 
-              {subjects.map((subject, i) => (
-                <div>
-                  <S.Select {...register(subject)}>
-                    <option selected>선택</option>
-                    <option value={5}>A</option>
-                    <option value={4}>B</option>
-                    <option value={3}>C</option>
-                    <option value={2}>D</option>
-                    <option value={1}>E</option>
-                  </S.Select>
-                </div>
-              ))}
+              {test ? (
+                <S.FreeSemester
+                  css={css`
+                    background: #19baff;
+                    color: #ffffff;
+                    cursor: pointer;
+                  `}
+                  onClick={() => setTest(!test)}
+                >
+                  ON
+                </S.FreeSemester>
+              ) : (
+                <S.FreeSemester
+                  css={css`
+                    cursor: pointer;
+                  `}
+                  onClick={() => setTest(!test)}
+                >
+                  자유학기제
+                </S.FreeSemester>
+              )}
+
+              {test ? (
+                <>
+                  {subjects.map((subject, i) => (
+                    <S.FreeSemester key={i}>자유학기제</S.FreeSemester>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {subjects.map((subject, i) => (
+                    <S.Select {...register(subject)} key={i}>
+                      <option>선택</option>
+                      <option value={5}>A</option>
+                      <option value={4}>B</option>
+                      <option value={3}>C</option>
+                      <option value={2}>D</option>
+                      <option value={1}>E</option>
+                    </S.Select>
+                  ))}
+                </>
+              )}
             </S.SemesterSection>
             <S.SemesterSection>
               <S.Semester>1학년 2학기</S.Semester>
               {subjects.map((subject, i) => (
-                <S.Select {...register(subject)}>
-                  <option selected>선택</option>
+                <S.Select {...register(subject)} key={i}>
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -97,8 +127,8 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>2학년 1학기</S.Semester>
               {subjects.map((subject, i) => (
-                <S.Select {...register(subject)}>
-                  <option selected>선택</option>
+                <S.Select {...register(subject)} key={i}>
+                  <option>선택</option>
 
                   <option value={5}>A</option>
                   <option value={4}>B</option>
@@ -111,8 +141,8 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>2학년 2학기</S.Semester>
               {subjects.map((subject, i) => (
-                <S.Select {...register(subject)}>
-                  <option selected>선택</option>
+                <S.Select {...register(subject)} key={i}>
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -124,8 +154,8 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>3학년 1학기</S.Semester>
               {subjects.map((subject, i) => (
-                <S.Select {...register(subject)}>
-                  <option selected>선택</option>
+                <S.Select {...register(subject)} key={i}>
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -147,8 +177,8 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>1학년 1학기</S.Semester>
               {nonSubjects.map((subject, i) => (
-                <S.Select {...register('1_1')}>
-                  <option selected>선택</option>
+                <S.Select {...register('1_1')} key={i}>
+                  key={i} <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -160,8 +190,8 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>1학년 2학기</S.Semester>
               {nonSubjects.map((subject, i) => (
-                <S.Select {...register('1_1')}>
-                  <option selected>선택</option>
+                <S.Select {...register('1_1')} key={i}>
+                  key={i} <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -173,8 +203,8 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>2학년 1학기</S.Semester>
               {nonSubjects.map((subject, i) => (
-                <S.Select {...register('1_1')}>
-                  <option selected>선택</option>
+                <S.Select {...register('1_1')} key={i}>
+                  key={i} <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -186,8 +216,8 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>2학년 2학기</S.Semester>
               {nonSubjects.map((subject, i) => (
-                <S.Select {...register('1_1')}>
-                  <option selected>선택</option>
+                <S.Select {...register('1_1')} key={i}>
+                  key={i} <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -199,8 +229,8 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>3학년 1학기</S.Semester>
               {nonSubjects.map((subject, i) => (
-                <S.Select {...register('1_1')}>
-                  <option selected>선택</option>
+                <S.Select {...register('1_1')} key={i}>
+                  key={i} <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
