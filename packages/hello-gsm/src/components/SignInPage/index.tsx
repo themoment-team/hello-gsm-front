@@ -1,9 +1,9 @@
 import React from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
-import Header from 'components/Common/Header';
+import Header from '../Common/Header';
 import Link from 'next/link';
-import Input from 'components/Input';
+import Input from '../Input';
 import { useForm } from 'react-hook-form';
 
 interface UserForm {

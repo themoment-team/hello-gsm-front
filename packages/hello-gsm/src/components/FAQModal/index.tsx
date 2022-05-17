@@ -1,6 +1,6 @@
 import * as S from './style';
 import * as I from '../../Assets/svg';
-import useStore from 'Stores/StoreContainer';
+import useStore from '../../Stores/StoreContainer';
 import { css, Global } from '@emotion/react';
 import { useCallback, MouseEvent } from 'react';
 

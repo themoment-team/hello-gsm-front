@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
-import Header from 'components/Common/Header';
+import Header from '../Common/Header';
 import * as S from './style';
-import Footer from 'components/Common/Footer';
+import Footer from '../Common/Footer';
 import Link from 'next/link';
 import { css } from '@emotion/react';
 import Graph from './Graph';

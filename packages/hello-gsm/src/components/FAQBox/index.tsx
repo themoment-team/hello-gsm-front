@@ -1,6 +1,6 @@
 import * as S from './style';
-import { FAQType } from 'components/FAQPage';
-import useStore from 'Stores/StoreContainer';
+import { FAQType } from '../FAQPage';
+import useStore from '../../Stores/StoreContainer';
 import { css } from '@emotion/react';
 
 type FAQBoxType = FAQType & {
