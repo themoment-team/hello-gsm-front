@@ -10,12 +10,11 @@ export const SignInPage = styled.div`
   z-index: 2;
 `;
 
-export const SignInForm = styled.form`
+export const SignInForm = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: 330px;
+  height: 300px;
 `;
 
 export const Title = styled.h1`
@@ -25,44 +24,28 @@ export const Title = styled.h1`
   line-height: 70px;
   color: #ffffff;
   border-bottom: 1px solid #fff;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 `;
 
-export const Submit = styled.button`
+export const SignInBtn = styled.div`
+  display: flex;
+  align-items: center;
   width: 328px;
   height: 45px;
+  background: #fee500;
   border-radius: 10px;
-  background: #ffffff;
-  font-weight: 700;
-  font-size: 21px;
-  line-height: 30px;
-  color: #000000;
   cursor: pointer;
-  margin: 17px 0 26px;
-  border: none;
-`;
-
-export const Forget = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  color: #ffffff;
-  a {
-    text-decoration: none;
-    color: #dee449;
+  color: #0f0921;
+  font-size: 20px;
+  p {
+    text-align: center;
+    line-height: 45px;
   }
-`;
-
-export const SignUp = styled.a`
-  display: block;
-  width: 72px;
-  border-top: 1px solid #ffffff;
-  text-align: center;
-  line-height: 30px;
-  margin-top: 10px;
+  svg {
+    width: 25px;
+    height: 45px;
+    margin: 0 60px 0 20px;
+  }
 `;
 
 export const BigBall = styled.div`
