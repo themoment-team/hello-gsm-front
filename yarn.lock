@@ -2092,6 +2092,101 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hello-gsm-admin@workspace:packages/hello-gsm-admin":
+  version: 0.0.0-use.local
+  resolution: "hello-gsm-admin@workspace:packages/hello-gsm-admin"
+  dependencies:
+    "@babel/core": ^7.17.7
+    "@babel/preset-react": ^7.16.7
+    "@emotion/babel-plugin": ^11.7.2
+    "@emotion/babel-preset-css-prop": ^11.2.0
+    "@emotion/react": ^11.8.2
+    "@emotion/styled": ^11.8.1
+    "@types/node": 17.0.21
+    "@types/react": 17.0.40
+    "@typescript-eslint/eslint-plugin": ^5.15.0
+    "@typescript-eslint/parser": ^5.15.0
+    emotion-reset: ^3.0.1
+    eslint: 8.11.0
+    eslint-config-next: 12.1.0
+    eslint-config-prettier: ^8.5.0
+    eslint-plugin-prettier: ^4.0.0
+    eslint-plugin-react: ^7.29.4
+    next: 12.1.0
+    prettier: ^2.6.0
+    react: 17.0.2
+    react-dom: 17.0.2
+    react-hook-form: ^7.31.1
+    typescript: 4.6.2
+  languageName: unknown
+  linkType: soft
+
+"hello-gsm-monorepo@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "hello-gsm-monorepo@workspace:."
+  dependencies:
+    "@babel/core": ^7.17.7
+    "@babel/preset-react": ^7.16.7
+    "@emotion/babel-plugin": ^11.7.2
+    "@emotion/babel-preset-css-prop": ^11.2.0
+    "@emotion/react": ^11.8.2
+    "@emotion/styled": ^11.8.1
+    "@types/node": 17.0.21
+    "@types/react": 17.0.40
+    "@typescript-eslint/eslint-plugin": ^5.15.0
+    "@typescript-eslint/parser": ^5.15.0
+    axios: ^0.26.1
+    emotion-reset: ^3.0.1
+    eslint: 8.11.0
+    eslint-config-next: 12.1.0
+    eslint-config-prettier: ^8.5.0
+    eslint-plugin-prettier: ^4.0.0
+    eslint-plugin-react: ^7.29.4
+    next: 12.1.0
+    prettier: ^2.6.0
+    react: 17.0.2
+    react-dom: 17.0.2
+    react-hook-form: ^7.29.0
+    typescript: 4.6.2
+    victory: ^36.3.2
+    victory-bar: ^36.3.2
+    zustand: ^3.7.2
+  languageName: unknown
+  linkType: soft
+
+"hello-gsm@workspace:packages/hello-gsm":
+  version: 0.0.0-use.local
+  resolution: "hello-gsm@workspace:packages/hello-gsm"
+  dependencies:
+    "@babel/core": ^7.17.7
+    "@babel/preset-react": ^7.16.7
+    "@emotion/babel-plugin": ^11.7.2
+    "@emotion/babel-preset-css-prop": ^11.2.0
+    "@emotion/react": ^11.8.2
+    "@emotion/styled": ^11.8.1
+    "@types/node": 17.0.21
+    "@types/react": 17.0.40
+    "@typescript-eslint/eslint-plugin": ^5.15.0
+    "@typescript-eslint/parser": ^5.15.0
+    axios: ^0.26.1
+    emotion-reset: ^3.0.1
+    eslint: 8.11.0
+    eslint-config-next: 12.1.0
+    eslint-config-prettier: ^8.5.0
+    eslint-plugin-prettier: ^4.0.0
+    eslint-plugin-react: ^7.29.4
+    next: 12.1.0
+    prettier: ^2.6.0
+    react: 17.0.2
+    react-dom: 17.0.2
+    react-hook-form: ^7.29.0
+    typescript: 4.6.2
+    victory: ^36.3.2
+    victory-bar: ^36.3.2
+    zustand: ^3.7.2
+  languageName: unknown
+  linkType: soft
+
 "hoist-non-react-statics@npm:^3.3.1":
   version: 3.3.2
   resolution: "hoist-non-react-statics@npm:3.3.2"
@@ -2528,39 +2623,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-template@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "next-template@workspace:."
-  dependencies:
-    "@babel/core": ^7.17.7
-    "@babel/preset-react": ^7.16.7
-    "@emotion/babel-plugin": ^11.7.2
-    "@emotion/babel-preset-css-prop": ^11.2.0
-    "@emotion/react": ^11.8.2
-    "@emotion/styled": ^11.8.1
-    "@types/node": 17.0.21
-    "@types/react": 17.0.40
-    "@typescript-eslint/eslint-plugin": ^5.15.0
-    "@typescript-eslint/parser": ^5.15.0
-    axios: ^0.26.1
-    emotion-reset: ^3.0.1
-    eslint: 8.11.0
-    eslint-config-next: 12.1.0
-    eslint-config-prettier: ^8.5.0
-    eslint-plugin-prettier: ^4.0.0
-    eslint-plugin-react: ^7.29.4
-    next: 12.1.0
-    prettier: ^2.6.0
-    react: 17.0.2
-    react-dom: 17.0.2
-    react-hook-form: ^7.29.0
-    typescript: 4.6.2
-    victory: ^36.3.2
-    victory-bar: ^36.3.2
-    zustand: ^3.7.2
-  languageName: unknown
-  linkType: soft
-
 "next@npm:12.1.0":
   version: 12.1.0
   resolution: "next@npm:12.1.0"
@@ -2911,6 +2973,15 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18
   checksum: 4379f972c916d01f4706c27c0fb207b1676b382fc4803ee557edf77cb2355ff320a659940325fda81c1f4fd799e685a6e228577c1050e5b8c32e815884d0defe
+  languageName: node
+  linkType: hard
+
+"react-hook-form@npm:^7.31.1":
+  version: 7.31.1
+  resolution: "react-hook-form@npm:7.31.1"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18
+  checksum: c387f81f0a740b610a601e06e148fce1abd466d353c9a5fd05253644d47270b69c8a0278cdc0f28a3adf5bef2c510adb4bcf37269892dc596750af8e8d062fb1
   languageName: node
   linkType: hard
 

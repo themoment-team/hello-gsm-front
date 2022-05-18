@@ -15,7 +15,6 @@
     "jsx": "preserve",
     "incremental": true,
     "types": ["@emotion/react/types/css-prop"],
-    "baseUrl": "./src",
     "paths": {
       "components/*": ["./components/*"],
       "hooks/*": ["./hooks/*"],
