@@ -36,7 +36,9 @@ const Header: React.FC = () => {
         {!logged ? (
           <S.MemberBox>
             <Link href="/auth/signin" passHref>
-              <S.MemberContent css={select('/auth/signin')}>로그인</S.MemberContent>
+              <S.MemberContent css={select('/auth/signin')}>
+                로그인
+              </S.MemberContent>
             </Link>
             <Link href="/auth/signup" passHref>
               <S.MemberContent css={select('/auth/signup')}>

@@ -5,8 +5,8 @@ import axios from 'axios';
 
 interface FaqType {
   data: {
-    title: string;
-    content: string;
+    question: string;
+    answer: string;
   }[];
 }
 
