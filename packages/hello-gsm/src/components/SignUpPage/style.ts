@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { redirect } from 'next/dist/server/api-utils';
 
 export const SignUpPage = styled.div`
   margin: 0 auto;
@@ -162,4 +163,7 @@ export const Option = styled.option``;
 
 export const ErrorMessage = styled.p`
   color: #ff4e4e;
+  position: absolute;
+  right: -250px;
+  width: 220px;
 `;

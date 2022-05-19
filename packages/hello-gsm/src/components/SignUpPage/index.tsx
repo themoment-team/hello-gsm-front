@@ -4,6 +4,7 @@ import Header from '../Common/Header';
 import { useForm } from 'react-hook-form';
 import Input from '../Input';
 import Select from 'components/Select';
+import { css } from '@emotion/react';
 
 interface UserForm {
   gender: string;
@@ -66,7 +67,13 @@ const SignUpPage: NextPage = () => {
               />
               <div>여자</div>
             </S.RadioLabel>
-            <S.ErrorMessage>{errors.gender?.message}</S.ErrorMessage>
+            <S.ErrorMessage
+              css={css`
+                top: 120px;
+              `}
+            >
+              {errors.gender?.message}
+            </S.ErrorMessage>
           </S.LadioSection>
           <Input
             placeholder="이름을 입력해주세요."
@@ -77,7 +84,13 @@ const SignUpPage: NextPage = () => {
             })}
           />
 
-          <S.ErrorMessage>{errors.name?.message}</S.ErrorMessage>
+          <S.ErrorMessage
+            css={css`
+              top: 255px;
+            `}
+          >
+            {errors.name?.message}
+          </S.ErrorMessage>
           <S.SelectSection>
             <Select register={register('year')}>
               {[...Array(10)].map((_, i) => (
@@ -112,11 +125,14 @@ const SignUpPage: NextPage = () => {
               required: '* 핸드폰 번호를 입력해주세요.',
             })}
           />
-
-          <S.ErrorMessage>{errors.cellphoneNumber?.message}</S.ErrorMessage>
-
+          <S.ErrorMessage
+            css={css`
+              top: 410px;
+            `}
+          >
+            {errors.cellphoneNumber?.message}
+          </S.ErrorMessage>
           <S.TosBox></S.TosBox>
-
           <S.CheckLabel htmlFor="check">
             <input
               {...register('agree', { required: '* 동의를 선택해주세요.' })}
@@ -125,9 +141,15 @@ const SignUpPage: NextPage = () => {
             />
             개인정보 이용약관을 확인했으며, 이에 동의합니다.
           </S.CheckLabel>
-          <S.ErrorMessage>{errors.agree?.message}</S.ErrorMessage>
+          <S.ErrorMessage
+            css={css`
+              top: 810px;
+            `}
+          >
+            {errors.agree?.message}
+          </S.ErrorMessage>
           <S.Button>가입하기</S.Button>
-          <S.LineList>
+          <S.LineList {...(errors.agree?.message ? 'd' : null)}>
             {Lines.map((line, i) => (
               <S.Line key={i}>{line}</S.Line>
             ))}
