@@ -73,14 +73,15 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
           />
         </S.SearchWrapper>
         <S.FAQList>
-          {faqList.map((faq: FAQType, index: number) => (
-            <FAQBox
-              key={index}
-              question={faq.question}
-              answer={faq.answer}
-              keyword={keyword}
-            />
-          ))}
+          {faqList &&
+            faqList.map((faq: FAQType, index: number) => (
+              <FAQBox
+                key={index}
+                question={faq.question}
+                answer={faq.answer}
+                keyword={keyword}
+              />
+            ))}
         </S.FAQList>
         {!isSearching && (
           <S.FAQListIndex>
