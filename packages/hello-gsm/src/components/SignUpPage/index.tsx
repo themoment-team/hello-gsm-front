@@ -3,7 +3,7 @@ import * as S from './style';
 import Header from '../Common/Header';
 import { useForm } from 'react-hook-form';
 import Input from '../Input';
-// import { ErrorMessage } from '@hookform/error-message';
+import Select from 'components/Select';
 
 interface UserForm {
   gender: string;
@@ -50,7 +50,7 @@ const SignUpPage: NextPage = () => {
           <S.LadioSection>
             <S.RadioLabel>
               <input
-                {...register('gender')}
+                {...register('gender', { required: '* 성별을 선택해주세요.' })}
                 type="radio"
                 id="gender"
                 value="남자"
@@ -59,14 +59,14 @@ const SignUpPage: NextPage = () => {
             </S.RadioLabel>
             <S.RadioLabel>
               <input
-                {...register('gender')}
+                {...register('gender', { required: '* 성별을 선택해주세요.' })}
                 type="radio"
                 id="gender"
                 value="여자"
               />
               <div>여자</div>
             </S.RadioLabel>
-            <S.ErrorMessage>{}</S.ErrorMessage>
+            <S.ErrorMessage>{errors.gender?.message}</S.ErrorMessage>
           </S.LadioSection>
           <Input
             placeholder="이름을 입력해주세요."
@@ -79,30 +79,29 @@ const SignUpPage: NextPage = () => {
 
           <S.ErrorMessage>{errors.name?.message}</S.ErrorMessage>
           <S.SelectSection>
-            <S.Select {...(register('year'), { required: true })}>
+            <Select register={register('year')}>
               {[...Array(10)].map((_, i) => (
                 <S.Option value={`200${i}년`} key={i}>
                   200{i}년
                 </S.Option>
               ))}
-            </S.Select>
+            </Select>
 
-            <S.Select {...(register('month'), { required: true })}>
-              <S.Option disabled>년</S.Option>
+            <Select register={register('month')}>
               {[...Array(12)].map((_, i) => (
                 <S.Option value={`${i + 1}월`} key={i}>
                   {i + 1}월
                 </S.Option>
               ))}
-            </S.Select>
+            </Select>
 
-            <S.Select {...(register('day'), { required: true })}>
+            <Select register={register('day')}>
               {[...Array(31)].map((_, i) => (
                 <S.Option key={i} value={`${i + 1}일`}>
                   {i + 1}일
                 </S.Option>
               ))}
-            </S.Select>
+            </Select>
           </S.SelectSection>
 
           <Input
@@ -113,15 +112,20 @@ const SignUpPage: NextPage = () => {
               required: '* 핸드폰 번호를 입력해주세요.',
             })}
           />
+
           <S.ErrorMessage>{errors.cellphoneNumber?.message}</S.ErrorMessage>
 
           <S.TosBox></S.TosBox>
 
           <S.CheckLabel htmlFor="check">
-            <input {...register('agree')} type="checkbox" id="check" />
+            <input
+              {...register('agree', { required: '* 동의를 선택해주세요.' })}
+              type="checkbox"
+              id="check"
+            />
             개인정보 이용약관을 확인했으며, 이에 동의합니다.
-            {errors.agree?.message}
           </S.CheckLabel>
+          <S.ErrorMessage>{errors.agree?.message}</S.ErrorMessage>
           <S.Button>가입하기</S.Button>
           <S.LineList>
             {Lines.map((line, i) => (
