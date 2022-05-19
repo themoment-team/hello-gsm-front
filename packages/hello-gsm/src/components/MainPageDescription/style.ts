@@ -2,8 +2,15 @@ import styled from '@emotion/styled';
 
 export const Description = styled.div`
   display: flex;
+  position: absolute;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 export const DescriptionLine = styled.p`
@@ -11,6 +18,7 @@ export const DescriptionLine = styled.p`
   font-size: 36px;
   margin-top: 15px;
   color: #ffffff;
+  text-align: center;
 `;
 
 export const PostScript = styled.p`
@@ -18,6 +26,7 @@ export const PostScript = styled.p`
   font-size: 20px;
   color: rgba(255, 255, 255, 0.7);
   margin-top: 15px;
+  text-align: center;
 `;
 
 export const Login = styled.a`
