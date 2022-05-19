@@ -28,7 +28,6 @@ export const Line = styled.div`
 
   &::after {
     display: block;
-    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/White_Circle.svg/2048px-White_Circle.svg.png);
     position: relative;
     background-size: 10px 10px;
     left: 180px;
@@ -36,15 +35,17 @@ export const Line = styled.div`
     width: 10px;
     height: 10px;
     content: '';
+    background-color: #ffffff;
+    border-radius: 50%;
   }
 
-  :nth-child(2) {
+  :nth-of-type(2) {
     margin: 90px 0 0;
   }
-  :nth-child(3) {
+  :nth-of-type(3) {
     margin: 30px 0;
   }
-  :nth-child(5) {
+  :nth-of-type(5) {
     margin: 100px 0;
   }
 `;

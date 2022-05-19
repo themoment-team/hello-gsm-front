@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import Input from '../Input';
 import Select from 'components/Select';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
 interface UserForm {
   gender: string;
@@ -18,6 +19,16 @@ interface UserForm {
 }
 
 const SignUpPage: NextPage = () => {
+  const ErrorStyle = {
+    marginTop: '10px',
+    backgroundColor: 'red',
+    '&::after': {
+      backgroundColor: 'red',
+    },
+    ':hover': {
+      color: 'blue',
+    },
+  };
   const {
     register,
     handleSubmit,
@@ -34,6 +45,7 @@ const SignUpPage: NextPage = () => {
   const inValid = errors => {
     console.log(errors);
   };
+
   const Lines = [
     '성별',
     '이름',
@@ -149,10 +161,48 @@ const SignUpPage: NextPage = () => {
             {errors.agree?.message}
           </S.ErrorMessage>
           <S.Button>가입하기</S.Button>
-          <S.LineList {...(errors.agree?.message ? 'd' : null)}>
-            {Lines.map((line, i) => (
-              <S.Line key={i}>{line}</S.Line>
-            ))}
+          <S.LineList>
+            <S.Line
+              css={css`
+                color: ${errors.gender ? 'red' : ''};
+                ::after {
+                  background-color: ${errors.gender ? 'red' : ''};
+                }
+              `}
+            >
+              성별
+            </S.Line>
+            <S.Line
+              css={css`
+                color: ${errors.name ? 'red' : ''};
+                ::after {
+                  background-color: ${errors.name ? 'red' : ''};
+                }
+              `}
+            >
+              이름
+            </S.Line>
+            <S.Line>생년월일</S.Line>
+            <S.Line
+              css={css`
+                color: ${errors.cellphoneNumber ? 'red' : ''};
+                ::after {
+                  background-color: ${errors.cellphoneNumber ? 'red' : ''};
+                }
+              `}
+            >
+              핸드폰 번호
+            </S.Line>
+            <S.Line
+              css={css`
+                color: ${errors.agree ? 'red' : ''};
+                ::after {
+                  background-color: ${errors.agree ? 'red' : ''};
+                }
+              `}
+            >
+              개인정보 이용약관
+            </S.Line>
           </S.LineList>
         </S.SignUpForm>
       </S.SignUpPage>
