@@ -171,10 +171,8 @@ const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
         </S.Description>
       );
     default:
-      return (                       
-        <S.DescriptionLine>
-          지금은 지원 기간이 아닙니다.
-        </S.DescriptionLine>
+      return (
+        <S.DescriptionLine>지금은 지원 기간이 아닙니다.</S.DescriptionLine>
       );
   }
 };
