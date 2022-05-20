@@ -13,21 +13,18 @@ interface employType {
 }
 
 const SchoolPage: NextPage = () => {
-  const [select, setSelect] = useState<number>(1);
+  const [select, setSelect] = useState<number>(0);
   const [EmoployRate, setEmployRate] = useState<employType[]>([]);
+  const [total, setTotal] = useState<number>(75);
 
   const data = [
     [
-      { x: '취업 성공', y: 35 },
-      { x: '취업 실패', y: 40 },
+      { x: '취업\n80%', y: 60 },
+      { x: '기타\n20%', y: 15 },
     ],
     [
-      { x: '취업 성공', y: 50 },
-      { x: '취업 실패', y: 30 },
-    ],
-    [
-      { x: '취업 성공', y: 20 },
-      { x: '취업 실패', y: 30 },
+      { x: '취업\n86.8%', y: 66 },
+      { x: '기타\n13.2%', y: 10 },
     ],
   ];
   const enterprises = [
@@ -62,7 +59,9 @@ const SchoolPage: NextPage = () => {
   const selecting = (index: number) => setSelect(index);
 
   useEffect(() => {
-    setEmployRate(data[select - 1]);
+    setEmployRate(data[select]);
+    select === 0 && setTotal(75);
+    select === 1 && setTotal(76);
   }, [select]);
 
   return (
@@ -117,27 +116,21 @@ const SchoolPage: NextPage = () => {
               <S.SelectBar />
               <S.SelectOptionBox>
                 <S.SelectOption
+                  css={selectStyle(0)}
+                  onClick={() => selecting(0)}
+                >
+                  2020년
+                </S.SelectOption>
+                <S.SelectOption
                   css={selectStyle(1)}
                   onClick={() => selecting(1)}
                 >
-                  1기
-                </S.SelectOption>
-                <S.SelectOption
-                  css={selectStyle(2)}
-                  onClick={() => selecting(2)}
-                >
-                  2기
-                </S.SelectOption>
-                <S.SelectOption
-                  css={selectStyle(3)}
-                  onClick={() => selecting(3)}
-                >
-                  3기
+                  2021년
                 </S.SelectOption>
               </S.SelectOptionBox>
             </S.SelectBox>
             <S.GraphBox>
-              <S.Title>총 80명</S.Title>
+              <S.Title>총 {total}명</S.Title>
               <S.Graph>
                 <Graph data={EmoployRate} />
               </S.Graph>
