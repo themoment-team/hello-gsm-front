@@ -46,7 +46,6 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
                 faqData.indexOf(faq) < pageIndex * 10,
             ),
         );
-    console.log(faqList);
   }, [keyword, pageIndex, isSearching]);
 
   const selectPage = (index: number) => setPageIndex(index);
