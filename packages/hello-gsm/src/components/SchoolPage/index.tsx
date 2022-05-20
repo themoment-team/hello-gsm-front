@@ -31,12 +31,29 @@ const SchoolPage: NextPage = () => {
     ],
   ];
   const enterprises = [
-    '/Enterprises/samsung-sdi.png',
-    '/Enterprises/samsung-sdi.png',
-    '/Enterprises/samsung-sdi.png',
-    '/Enterprises/samsung-sdi.png',
-    '/Enterprises/samsung-sdi.png',
-    '/Enterprises/samsung-sdi.png',
+    [
+      '/Enterprises/samsung-sdi.png',
+      '/Enterprises/samsung-sdi.png',
+      '/Enterprises/samsung-sdi.png',
+      '/Enterprises/samsung-sdi.png',
+      '/Enterprises/samsung-sdi.png',
+      '/Enterprises/samsung-sdi.png',
+    ],
+    [
+      '/Enterprises/samsung-sdi.png',
+      '/Enterprises/samsung-sdi.png',
+      '/Enterprises/samsung-sdi.png',
+      '/Enterprises/samsung-sdi.png',
+      '/Enterprises/samsung-sdi.png',
+      '/Enterprises/samsung-sdi.png',
+    ],
+    [
+      '/Enterprises/samsung-sdi.png',
+      '/Enterprises/samsung-sdi.png',
+      '/Enterprises/samsung-sdi.png',
+      '/Enterprises/samsung-sdi.png',
+      '/Enterprises/samsung-sdi.png',
+    ],
   ];
 
   const selectStyle = (index: number) =>
@@ -72,14 +89,24 @@ const SchoolPage: NextPage = () => {
           </Link>
         </S.Section1>
         <S.Section2>
+          <S.Section2Title>MOU 기업</S.Section2Title>
           <S.EnterpriseWrap>
             {enterprises.map((enterprise, index: number) => (
-              <S.Enterprise
+              <S.EnterpriseLine
                 key={index}
                 css={css`
-                  background-image: url(${enterprise});
+                  ${index === 2 && 'width: 935px'}
                 `}
-              />
+              >
+                {enterprise.map((name: string, index: number) => (
+                  <S.Enterprise
+                    key={index}
+                    css={css`
+                      background-image: url(${name});
+                    `}
+                  ></S.Enterprise>
+                ))}
+              </S.EnterpriseLine>
             ))}
           </S.EnterpriseWrap>
         </S.Section2>
