@@ -27,7 +27,7 @@ export const Title = styled.h1`
   margin-bottom: 30px;
 `;
 
-export const SignInBtn = styled.div`
+export const SignInBtn = styled.button`
   display: flex;
   align-items: center;
   width: 328px;
@@ -37,6 +37,7 @@ export const SignInBtn = styled.div`
   cursor: pointer;
   color: #0f0921;
   font-size: 20px;
+  border: none;
   p {
     text-align: center;
     line-height: 45px;
