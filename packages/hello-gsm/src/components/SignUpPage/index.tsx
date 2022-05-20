@@ -1,17 +1,26 @@
 import type { NextPage } from 'next';
 import * as S from './style';
 import Header from '../Common/Header';
-import { useForm } from 'react-hook-form';
+import { FieldErrors, useForm } from 'react-hook-form';
 import Input from '../Input';
 import Select from 'components/Select';
 import { css } from '@emotion/react';
-import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
 
 interface UserForm {
   gender: string;
   name: string;
   agree: boolean;
-  birth: string;
+  year: string;
+  month: string;
+  day: string;
+  cellphoneNumber: string;
+}
+
+interface UserErrorForm {
+  gender: string;
+  name: string;
+  agree: boolean;
   year: string;
   month: string;
   day: string;
@@ -19,16 +28,6 @@ interface UserForm {
 }
 
 const SignUpPage: NextPage = () => {
-  const ErrorStyle = {
-    marginTop: '10px',
-    backgroundColor: 'red',
-    '&::after': {
-      backgroundColor: 'red',
-    },
-    ':hover': {
-      color: 'blue',
-    },
-  };
   const {
     register,
     handleSubmit,
@@ -40,9 +39,10 @@ const SignUpPage: NextPage = () => {
 
   const onValid = (data: UserForm) => {
     console.log(data);
+    console.log('success');
   };
 
-  const inValid = errors => {
+  const inValid = (errors: FieldErrors) => {
     console.log(errors);
   };
 
@@ -130,8 +130,8 @@ const SignUpPage: NextPage = () => {
           </S.SelectSection>
 
           <Input
-            placeholder="핸드폰 번호를 입력해주세요."
-            type="text"
+            placeholder="핸드폰 번호를 입력해주세요. ( - ) 제외"
+            type="number"
             bigWidth
             register={register('cellphoneNumber', {
               required: '* 핸드폰 번호를 입력해주세요.',
