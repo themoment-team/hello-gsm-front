@@ -15,7 +15,7 @@ export const LineList = styled.div`
   padding-right: 30px;
   border-right: 3px solid rgba(255, 255, 255, 0.17);
   left: -240px;
-  height: 900px;
+  height: 800px;
   margin-top: 80px;
   padding-top: 40px;
 `;
@@ -98,7 +98,7 @@ export const CheckLabel = styled.label`
     border-radius: 1px;
     margin: 0 10px 0;
   }
-  margin-bottom: 200px;
+  margin-bottom: 150px;
 `;
 
 export const Button = styled.button`
@@ -110,7 +110,6 @@ export const Button = styled.button`
   font-weight: 700;
   border-radius: 10px;
   border: none;
-  margin: 40px auto;
   cursor: pointer;
 `;
 
