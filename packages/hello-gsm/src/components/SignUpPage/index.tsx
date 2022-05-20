@@ -5,19 +5,8 @@ import { FieldErrors, useForm } from 'react-hook-form';
 import Input from '../Input';
 import Select from 'components/Select';
 import { css } from '@emotion/react';
-import { useRouter } from 'next/router';
 
 interface UserForm {
-  gender: string;
-  name: string;
-  agree: boolean;
-  year: string;
-  month: string;
-  day: string;
-  cellphoneNumber: string;
-}
-
-interface UserErrorForm {
   gender: string;
   name: string;
   agree: boolean;
@@ -31,9 +20,6 @@ const SignUpPage: NextPage = () => {
   const {
     register,
     handleSubmit,
-    setError,
-    reset,
-    clearErrors,
     formState: { errors },
   } = useForm<UserForm>();
 
@@ -44,15 +30,18 @@ const SignUpPage: NextPage = () => {
 
   const inValid = (errors: FieldErrors) => {
     console.log(errors);
+    console.log('fail');
   };
 
-  const Lines = [
-    '성별',
-    '이름',
-    '생년월일',
-    '핸드폰 번호',
-    '개인정보 이용약관',
-  ];
+  const SelectError = (top?: number) =>
+    css({
+      color: 'red',
+      ':after': {
+        backgroundColor: 'red',
+      },
+      animation: `${S.shake} 0.3s`,
+      top: top,
+    });
 
   return (
     <>
@@ -79,11 +68,7 @@ const SignUpPage: NextPage = () => {
               />
               <div>여자</div>
             </S.RadioLabel>
-            <S.ErrorMessage
-              css={css`
-                top: 120px;
-              `}
-            >
+            <S.ErrorMessage css={errors.gender && SelectError(120)}>
               {errors.gender?.message}
             </S.ErrorMessage>
           </S.LadioSection>
@@ -95,53 +80,48 @@ const SignUpPage: NextPage = () => {
               required: '* 이름을 입력해주세요.',
             })}
           />
-
-          <S.ErrorMessage
-            css={css`
-              top: 255px;
-            `}
-          >
+          <S.ErrorMessage css={errors.name && SelectError(255)}>
             {errors.name?.message}
           </S.ErrorMessage>
           <S.SelectSection>
             <Select register={register('year')}>
               {[...Array(10)].map((_, i) => (
-                <S.Option value={`200${i}년`} key={i}>
+                <option value={`200${i}년`} key={i}>
                   200{i}년
-                </S.Option>
+                </option>
               ))}
             </Select>
 
             <Select register={register('month')}>
               {[...Array(12)].map((_, i) => (
-                <S.Option value={`${i + 1}월`} key={i}>
+                <option value={`${i + 1}월`} key={i}>
                   {i + 1}월
-                </S.Option>
+                </option>
               ))}
             </Select>
 
             <Select register={register('day')}>
               {[...Array(31)].map((_, i) => (
-                <S.Option key={i} value={`${i + 1}일`}>
+                <option key={i} value={`${i + 1}일`}>
                   {i + 1}일
-                </S.Option>
+                </option>
               ))}
             </Select>
           </S.SelectSection>
 
           <Input
+            type="text"
             placeholder="핸드폰 번호를 입력해주세요. ( - ) 제외"
-            type="number"
             bigWidth
             register={register('cellphoneNumber', {
               required: '* 핸드폰 번호를 입력해주세요.',
+              validate: {
+                notHypen: value =>
+                  !value.includes('-') || '( - )를 제외하고 입력해주세요.',
+              },
             })}
           />
-          <S.ErrorMessage
-            css={css`
-              top: 410px;
-            `}
-          >
+          <S.ErrorMessage css={errors.cellphoneNumber && SelectError(400)}>
             {errors.cellphoneNumber?.message}
           </S.ErrorMessage>
           <S.TosBox></S.TosBox>
@@ -153,54 +133,18 @@ const SignUpPage: NextPage = () => {
             />
             개인정보 이용약관을 확인했으며, 이에 동의합니다.
           </S.CheckLabel>
-          <S.ErrorMessage
-            css={css`
-              top: 810px;
-            `}
-          >
+          <S.ErrorMessage css={errors.agree && SelectError(810)}>
             {errors.agree?.message}
           </S.ErrorMessage>
           <S.Button>가입하기</S.Button>
           <S.LineList>
-            <S.Line
-              css={css`
-                color: ${errors.gender ? 'red' : ''};
-                ::after {
-                  background-color: ${errors.gender ? 'red' : ''};
-                }
-              `}
-            >
-              성별
-            </S.Line>
-            <S.Line
-              css={css`
-                color: ${errors.name ? 'red' : ''};
-                ::after {
-                  background-color: ${errors.name ? 'red' : ''};
-                }
-              `}
-            >
-              이름
-            </S.Line>
+            <S.Line css={errors.gender && SelectError()}>성별</S.Line>
+            <S.Line css={errors.name && SelectError()}>이름</S.Line>
             <S.Line>생년월일</S.Line>
-            <S.Line
-              css={css`
-                color: ${errors.cellphoneNumber ? 'red' : ''};
-                ::after {
-                  background-color: ${errors.cellphoneNumber ? 'red' : ''};
-                }
-              `}
-            >
+            <S.Line css={errors.cellphoneNumber && SelectError()}>
               핸드폰 번호
             </S.Line>
-            <S.Line
-              css={css`
-                color: ${errors.agree ? 'red' : ''};
-                ::after {
-                  background-color: ${errors.agree ? 'red' : ''};
-                }
-              `}
-            >
+            <S.Line css={errors.agree && SelectError()}>
               개인정보 이용약관
             </S.Line>
           </S.LineList>
