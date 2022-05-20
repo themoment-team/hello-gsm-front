@@ -2180,7 +2180,6 @@ __metadata:
     react: 17.0.2
     react-dom: 17.0.2
     react-hook-form: ^7.29.0
-    reshake: ^1.2.4
     typescript: 4.6.2
     victory: ^36.3.2
     victory-bar: ^36.3.2
@@ -3024,15 +3023,6 @@ __metadata:
   version: 3.2.0
   resolution: "regexpp@npm:3.2.0"
   checksum: a78dc5c7158ad9ddcfe01aa9144f46e192ddbfa7b263895a70a5c6c73edd9ce85faf7c0430e59ac38839e1734e275b9c3de5c57ee3ab6edc0e0b1bdebefccef8
-  languageName: node
-  linkType: hard
-
-"reshake@npm:^1.2.4":
-  version: 1.2.4
-  resolution: "reshake@npm:1.2.4"
-  peerDependencies:
-    styled-components: ^4.0.0 || ^5.0.0
-  checksum: c682c70467d60cc22398d4a98a539527a26b001acf92ef5d3a94f7a1b0073531403d662baeceb912d463ee7fcfc6e2b3d4c15e14ccf51048bb1defefbeb76aa8
   languageName: node
   linkType: hard
 
