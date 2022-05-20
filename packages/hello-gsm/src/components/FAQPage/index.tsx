@@ -32,13 +32,13 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
     keyword === '' && setIsSearching(false);
     isSearching
       ? setFaqList(
-          faqData.filter(
+          faqData?.filter(
             (faq: FAQType) =>
               faq.question.includes(keyword) || faq.answer.includes(keyword),
           ),
         )
       : setFaqList(
-          faqData.filter(
+          faqData?.filter(
             (faq: FAQType) =>
               (pageIndex - 1) * 10 <= faqData.indexOf(faq) &&
               faqData.indexOf(faq) < pageIndex * 10,
@@ -73,15 +73,14 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
           />
         </S.SearchWrapper>
         <S.FAQList>
-          {faqList &&
-            faqList.map((faq: FAQType, index: number) => (
-              <FAQBox
-                key={index}
-                question={faq.question}
-                answer={faq.answer}
-                keyword={keyword}
-              />
-            ))}
+          {faqList?.map((faq: FAQType, index: number) => (
+            <FAQBox
+              key={index}
+              question={faq.question}
+              answer={faq.answer}
+              keyword={keyword}
+            />
+          ))}
         </S.FAQList>
         {!isSearching && (
           <S.FAQListIndex>
