@@ -77,6 +77,14 @@ export const Enterprise = styled.div`
   height: 100%;
   border-radius: 17px;
   background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const EnterpriseImg = styled.div`
+  width: 140px;
+  height: 30px;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
