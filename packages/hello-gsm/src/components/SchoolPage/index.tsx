@@ -98,12 +98,13 @@ const SchoolPage: NextPage = () => {
                 `}
               >
                 {enterprise.map((name: string, index: number) => (
-                  <S.Enterprise
-                    key={index}
-                    css={css`
-                      background-image: url(${name});
-                    `}
-                  ></S.Enterprise>
+                  <S.Enterprise key={index}>
+                    <S.EnterpriseImg
+                      css={css`
+                        background-image: url(${name});
+                      `}
+                    />
+                  </S.Enterprise>
                 ))}
               </S.EnterpriseLine>
             ))}
