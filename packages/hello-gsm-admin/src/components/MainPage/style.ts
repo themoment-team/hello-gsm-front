@@ -62,7 +62,6 @@ export const HeaderElement = styled.div`
 
 export const ContentList = styled.div`
   width: 100%;
-  display: flex;
 `;
 
 export const ContentBox = styled.div`
@@ -89,4 +88,7 @@ export const Pass = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
 `;
