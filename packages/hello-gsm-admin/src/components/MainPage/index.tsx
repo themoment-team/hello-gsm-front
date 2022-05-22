@@ -11,7 +11,7 @@ const MainPage: NextPage = () => {
           <S.SearchInput placeholder="검색어를 입력하세요" />
           <S.SearchButton>검색</S.SearchButton>
         </S.Searchbox>
-        <S.ContentHeader>
+        <S.Header>
           <S.HeaderElement>지원자 번호</S.HeaderElement>
           <S.HeaderElement>성명</S.HeaderElement>
           <S.HeaderElement>전형</S.HeaderElement>
@@ -22,7 +22,16 @@ const MainPage: NextPage = () => {
           <S.HeaderElement>담임선생님연락처</S.HeaderElement>
           <S.HeaderElement>1차</S.HeaderElement>
           <S.HeaderElement>2차</S.HeaderElement>
-        </S.ContentHeader>
+        </S.Header>
+        <S.ContentList>
+          <S.ContentBox>
+            <S.Content>
+              
+            </S.Content>
+            <S.Pass>선택</S.Pass>
+            <S.Pass>선택</S.Pass>
+          </S.ContentBox>
+        </S.ContentList>
       </S.MainPageContent>
     </>
   );
