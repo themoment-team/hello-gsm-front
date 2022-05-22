@@ -15,7 +15,8 @@
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-hook-form": "^7.31.1"
+    "react-hook-form": "^7.31.1",
+    "zustand": "^4.0.0-rc.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.7",
