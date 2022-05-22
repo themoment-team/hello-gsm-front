@@ -43,7 +43,7 @@ export const SearchButton = styled.div`
   cursor: pointer;
 `;
 
-export const ContentHeader = styled.div`
+export const Header = styled.div`
   width: 100%;
   height: 60px;
   border-bottom: 2px solid rgba(255, 255, 255, 0.5);
@@ -58,4 +58,35 @@ export const HeaderElement = styled.div`
   font-weight: 700;
   font-size: 20px;
   color: #f8f8f8;
+`;
+
+export const ContentList = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
+export const ContentBox = styled.div`
+  width: 100%;
+  height: 50px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Content = styled.div`
+  width: 1320px;
+  height: 100%;
+  border-radius: 10px;
+  background: #ffffff;
+`;
+
+export const Pass = styled.div`
+  width: 90px;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 10px;
+  color: #19baff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
