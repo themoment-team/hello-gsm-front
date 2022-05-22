@@ -1,11 +1,14 @@
 import PassModal from 'components/PassModal';
 import type { NextPage } from 'next';
 import * as S from './style';
+import useStore from 'Stores/StoreContainer';
 
 const MainPage: NextPage = () => {
+  const { showPassModal, setShowPassModal } = useStore();
+
   return (
     <>
-      {/* <PassModal /> */}
+      {showPassModal && <PassModal />}
       <S.MainPageContent>
         <S.Searchbox>
           <S.SearchInput placeholder="검색어를 입력하세요" />
@@ -25,11 +28,9 @@ const MainPage: NextPage = () => {
         </S.Header>
         <S.ContentList>
           <S.ContentBox>
-            <S.Content>
-              
-            </S.Content>
-            <S.Pass>선택</S.Pass>
-            <S.Pass>선택</S.Pass>
+            <S.Content></S.Content>
+            <S.Pass onClick={setShowPassModal}>선택</S.Pass>
+            <S.Pass onClick={setShowPassModal}>선택</S.Pass>
           </S.ContentBox>
         </S.ContentList>
       </S.MainPageContent>
