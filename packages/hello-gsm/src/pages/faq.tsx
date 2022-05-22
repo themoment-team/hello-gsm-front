@@ -5,8 +5,8 @@ import axios from 'axios';
 
 interface FaqType {
   data: {
-    title: string;
-    content: string;
+    question: string;
+    answer: string;
   }[];
 }
 
@@ -14,7 +14,9 @@ const Faq: NextPage<FaqType> = ({ data }) => <FAQPage faqData={data} />;
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const { data } = await axios.get('http://localhost:3000/data/faq.json');
+    const { data } = await axios.get(
+      'https://hello-gsm.vercel.app/data/faq.json',
+    );
     return {
       props: {
         data,

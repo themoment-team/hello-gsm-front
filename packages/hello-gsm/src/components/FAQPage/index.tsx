@@ -23,7 +23,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
 
   const { showFAQModal, isSearching, setIsSearching } = useStore();
 
-  const searching = e => {
+  const searching = (e: any) => {
     setKeyword(e.target.value);
     e.target.value === '' ? setIsSearching(false) : setIsSearching(true);
   };
@@ -32,13 +32,13 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
     keyword === '' && setIsSearching(false);
     isSearching
       ? setFaqList(
-          faqData.filter(
+          faqData?.filter(
             (faq: FAQType) =>
               faq.question.includes(keyword) || faq.answer.includes(keyword),
           ),
         )
       : setFaqList(
-          faqData.filter(
+          faqData?.filter(
             (faq: FAQType) =>
               (pageIndex - 1) * 10 <= faqData.indexOf(faq) &&
               faqData.indexOf(faq) < pageIndex * 10,
@@ -73,7 +73,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
           />
         </S.SearchWrapper>
         <S.FAQList>
-          {faqList.map((faq: FAQType, index: number) => (
+          {faqList?.map((faq: FAQType, index: number) => (
             <FAQBox
               key={index}
               question={faq.question}
