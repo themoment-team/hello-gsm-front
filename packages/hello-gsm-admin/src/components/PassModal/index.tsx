@@ -1,15 +1,21 @@
 import { css, Global } from '@emotion/react';
-import React, { useState } from 'react';
+import React, { useCallback, useState, MouseEvent } from 'react';
 import * as S from './style';
+import useStore from 'Stores/StoreContainer';
 
 const PassModal: React.FC = () => {
-  const [showPassModal, setShowPassModal] = useState<boolean>(true);
   const [name, setName] = useState<string>('김형록');
   const [registrationNumber, setRegistrationNumber] = useState<number>(1001);
   const [firstPeriod, setFirstPeriod] = useState<boolean>(true);
 
+  const { showPassModal, setShowPassModal } = useStore();
+
+  const removeClick = useCallback((e: MouseEvent<HTMLDivElement>): void => {
+    e.stopPropagation();
+  }, []);
+
   return (
-    <S.PassModal>
+    <S.PassModal onClick={setShowPassModal}>
       <Global
         styles={css`
           body {
@@ -17,7 +23,7 @@ const PassModal: React.FC = () => {
           }
         `}
       />
-      <S.PassModalBox>
+      <S.PassModalBox onClick={removeClick}>
         <S.PassModalContent>
           <S.DescriptionBox>
             <S.RegistrationNumber>
@@ -28,8 +34,8 @@ const PassModal: React.FC = () => {
             </S.Description>
           </S.DescriptionBox>
           <S.ButtonWrap>
-            <S.Fail>불합격</S.Fail>
-            <S.Pass>합격</S.Pass>
+            <S.Fail onClick={setShowPassModal}>불합격</S.Fail>
+            <S.Pass onClick={setShowPassModal}>합격</S.Pass>
           </S.ButtonWrap>
         </S.PassModalContent>
       </S.PassModalBox>
