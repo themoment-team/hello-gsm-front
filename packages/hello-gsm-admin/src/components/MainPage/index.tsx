@@ -9,7 +9,7 @@ interface applicantsType {
   name: string;
   screening: string;
   schoolName: string;
-  isDocumentReception: true;
+  isDocumentReception: boolean;
   phoneNumber: string;
   guardianNumber: string;
   teacherNumber: string;
@@ -33,7 +33,7 @@ const MainPage: NextPage = () => {
       name: '김형록',
       screening: '사회통합전형',
       schoolName: '성덕중학교',
-      isDocumentReception: true,
+      isDocumentReception: false,
       phoneNumber: '010-1234-5678',
       guardianNumber: '010-1234-5678',
       teacherNumber: '010-1234-5678',
@@ -53,12 +53,16 @@ const MainPage: NextPage = () => {
       name: '김형록',
       screening: '사회통합전형',
       schoolName: '성덕중학교',
-      isDocumentReception: true,
+      isDocumentReception: false,
       phoneNumber: '010-1234-5678',
       guardianNumber: '010-1234-5678',
       teacherNumber: '010-1234-5678',
     },
   ];
+
+  const search = () => {
+    console.log('search');
+  };
 
   return (
     <S.MainPage>
@@ -66,7 +70,7 @@ const MainPage: NextPage = () => {
       <S.MainPageContent>
         <S.Searchbox>
           <S.SearchInput placeholder="검색어를 입력하세요" />
-          <S.SearchButton>검색</S.SearchButton>
+          <S.SearchButton onClick={search}>검색</S.SearchButton>
         </S.Searchbox>
         <S.Header>
           <S.HeaderElement>지원자 번호</S.HeaderElement>
