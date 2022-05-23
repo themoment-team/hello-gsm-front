@@ -7,7 +7,7 @@ import { useForm, useFieldArray } from 'react-hook-form';
 const CalculatorPage: NextPage = () => {
   const { register, handleSubmit, watch, control } = useForm();
 
-  const calculate = (array: any) => {
+  const calculate = (array: any, grade: number) => {
     let result = 0;
     let sum = 0;
     array.map((test, i) => {
@@ -18,14 +18,39 @@ const CalculatorPage: NextPage = () => {
     }
     sum = array.reduce((accumulator, curr) => accumulator + curr);
     console.log(sum);
-    result = 60 * (sum / (array.length * 5));
+
+    switch (grade) {
+      case 2:
+        result = 54 * (sum / (array.length * 5));
+        break;
+      case 3:
+        result = 72 * (sum / (array.length * 5));
+        break;
+      case 4:
+        result = 60 * (sum / (array.length * 5));
+        break;
+    }
+
     return result;
   };
 
   const onValid = validForm => {
     console.log(validForm);
-    const score2_1 = calculate(validForm.score2_1);
-    console.log(score2_1);
+    const score2_1 = calculate(validForm.score2_1, 2);
+    const score2_2 = calculate(validForm.score2_2, 2);
+    const score3_1 = calculate(validForm.score3_1, 3);
+
+    const generalCurriculumScoreSubtotal = score2_1 + score2_2 + score3_1;
+    const artSportsScore = calculate(validForm.artSportsScore, 4);
+    const curriculumScoreSubtotal =
+      generalCurriculumScoreSubtotal + artSportsScore;
+    console.log(
+      score2_1,
+      score2_2,
+      score3_1,
+      generalCurriculumScoreSubtotal,
+      artSportsScore,
+    );
   };
 
   const Lines = ['일반교과', '체육•예술 교과', '비교과'];
@@ -79,8 +104,9 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>2학년 2학기</S.Semester>
               {subjects.map((subject, i) => (
-                <S.Select {...register(`2_2.${i}`)} key={i}>
-                  <option>선택</option>
+                <S.Select {...register(`score2_2.${i}`)} key={i}>
+                  {/* <option>선택</option> */}
+
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -92,10 +118,11 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>3학년 1학기</S.Semester>
               {subjects.map((subject, i) => (
-                <S.Select {...register(`3_1.${i}`)} key={i}>
-                  <option>선택</option>
+                <S.Select {...register(`score3_1.${i}`)} key={i}>
+                  {/* <option>선택</option> */}
+
                   <option value={5}>A</option>
-                  <option value={4}>B</option>
+                  {/* <option value={4}>B</option> */}
                   <option value={3}>C</option>
                   <option value={2}>D</option>
                   <option value={1}>E</option>
@@ -115,8 +142,8 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>1학년 1학기</S.Semester>
               {nonSubjects.map((subject, i) => (
-                <S.Select key={i}>
-                  <option>선택</option>
+                <S.Select key={i} {...register(`artSportsScore.${i}`)}>
+                  {/* <option>선택</option> */}
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -126,8 +153,8 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>1학년 2학기</S.Semester>
               {nonSubjects.map((subject, i) => (
-                <S.Select key={i}>
-                  <option>선택</option>
+                <S.Select key={i} {...register(`artSportsScore.${3 + i}`)}>
+                  {/* <option>선택</option> */}
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -137,8 +164,8 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>2학년 1학기</S.Semester>
               {nonSubjects.map((subject, i) => (
-                <S.Select key={i}>
-                  <option>선택</option>
+                <S.Select key={i} {...register(`artSportsScore.${6 + i}`)}>
+                  {/* <option>선택</option> */}
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -148,8 +175,8 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>2학년 2학기</S.Semester>
               {nonSubjects.map((subject, i) => (
-                <S.Select key={i} {...register(`haha.${i}`)}>
-                  <option>선택</option>
+                <S.Select key={i} {...register(`artSportsScore.${9 + i}`)}>
+                  {/* <option>선택</option> */}
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -159,8 +186,8 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>3학년 1학기</S.Semester>
               {nonSubjects.map((subject, i) => (
-                <S.Select key={i}>
-                  <option>선택</option>
+                <S.Select key={i} {...register(`artSportsScore.${12 + i}`)}>
+                  {/* <option>선택</option> */}
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -248,3 +275,6 @@ const CalculatorPage: NextPage = () => {
 };
 
 export default CalculatorPage;
+function calculate(score2_1: any, arg1: number) {
+  throw new Error('Function not implemented.');
+}
