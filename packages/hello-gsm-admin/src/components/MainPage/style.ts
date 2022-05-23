@@ -109,6 +109,7 @@ export const Name = styled.p`
 `;
 
 export const Screening = styled.p`
+  width: 100px;
   font-weight: 500;
   font-size: 18px;
   color: rgba(38, 38, 38, 0.54);
