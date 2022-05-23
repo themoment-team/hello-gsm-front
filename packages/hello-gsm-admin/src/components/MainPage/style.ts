@@ -139,6 +139,7 @@ export const Checkbox = styled.span`
   height: 25px;
   background: #bdbdbd;
   border-radius: 5px;
+  cursor: pointer;
 `;
 
 const Number = styled.p`
