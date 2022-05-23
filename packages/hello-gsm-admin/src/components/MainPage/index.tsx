@@ -17,12 +17,22 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
     }
   };
 
+  const enterEvent = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      search();
+    }
+  };
+
   return (
     <S.MainPage>
       {showPassModal && <PassModal />}
       <S.MainPageContent>
         <S.Searchbox>
-          <S.SearchInput placeholder="검색어를 입력하세요" ref={searchRef} />
+          <S.SearchInput
+            placeholder="검색어를 입력하세요"
+            ref={searchRef}
+            onKeyPress={enterEvent}
+          />
           <S.SearchButton onClick={search}>검색</S.SearchButton>
         </S.Searchbox>
         <S.Header>
