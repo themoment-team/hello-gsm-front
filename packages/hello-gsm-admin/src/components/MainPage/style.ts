@@ -3,9 +3,12 @@ import styled from '@emotion/styled';
 export const MainPage = styled.div`
   width: 100vw;
   height: 100vh;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
 `;
 
 export const MainPageContent = styled.div`
@@ -169,4 +172,34 @@ export const Pass = styled.div`
   font-weight: 700;
   font-size: 20px;
   cursor: pointer;
+`;
+
+const Ball = styled.div`
+  border-radius: 100%;
+  position: absolute;
+  z-index: -1;
+`;
+
+export const BlueBall = styled(Ball)`
+  width: 920px;
+  height: 920px;
+  left: -450px;
+  bottom: -450px;
+  background: linear-gradient(
+    201.42deg,
+    rgba(123, 232, 255, 0.63) 13.47%,
+    rgba(63, 152, 255, 0.63) 33.16%,
+    rgba(0, 33, 65, 0.4284) 80.28%
+  );
+`;
+
+export const SkyBlueBall = styled(Ball)`
+  width: 280px;
+  height: 280px;
+  background: linear-gradient(
+    207.52deg,
+    rgba(210, 247, 255, 0.6) 13.95%,
+    rgba(97, 197, 219, 0.6) 37.16%,
+    rgba(0, 132, 201, 0.162) 91.31%
+  );
 `;
