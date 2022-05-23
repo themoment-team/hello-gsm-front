@@ -68,6 +68,7 @@ const CalculatorPage: NextPage = () => {
     '영어',
   ]);
   const [nonSubjects, setNonSubjects] = useState(['체육', '미술', '음악']);
+  const [grade, setGrade] = useState([1, 2, 3]);
 
   return (
     <>
@@ -210,62 +211,61 @@ const CalculatorPage: NextPage = () => {
                 </tr>
                 <tr>
                   <S.Attendance>결석</S.Attendance>
-                  <S.Attendance>결석</S.Attendance>
-                  <S.Attendance>결석</S.Attendance>
-                  <S.Attendance>결석</S.Attendance>
+                  <S.Attendance>지각</S.Attendance>
+                  <S.Attendance>조퇴</S.Attendance>
+                  <S.Attendance>결과</S.Attendance>
                 </tr>
                 <tr>
                   <S.Grade>1</S.Grade>
+                  {[...Array(4)].map((grades, i) => (
+                    <td key={i}>
+                      <S.AttendanceInput
+                        type="number"
+                        {...register(`attendanceScore.${i}`)}
+                      />
+                    </td>
+                  ))}
                   <td>
-                    <S.AttendanceInput type="number" />
-                  </td>
-                  <td>
-                    <S.AttendanceInput type="number" />
-                  </td>
-                  <td>
-                    <S.AttendanceInput type="number" />
-                  </td>
-                  <td>
-                    <S.AttendanceInput type="number" />
-                  </td>
-                  <td>
-                    <S.AttendanceInput type="number" />
+                    <S.AttendanceInput
+                      type="number"
+                      {...register(`volunteerScore.0`)}
+                    />
                   </td>
                 </tr>
+
                 <tr>
                   <S.Grade>2</S.Grade>
+                  {[...Array(4)].map((grades, i) => (
+                    <td key={i}>
+                      <S.AttendanceInput
+                        type="number"
+                        {...register(`attendanceScore.${4 + i}`)}
+                      />
+                    </td>
+                  ))}
                   <td>
-                    <S.AttendanceInput type="number" />
-                  </td>
-                  <td>
-                    <S.AttendanceInput type="number" />
-                  </td>
-                  <td>
-                    <S.AttendanceInput type="number" />
-                  </td>
-                  <td>
-                    <S.AttendanceInput type="number" />
-                  </td>
-                  <td>
-                    <S.AttendanceInput type="number" />
+                    <S.AttendanceInput
+                      type="number"
+                      {...register(`volunteerScore.1`)}
+                    />
                   </td>
                 </tr>
+
                 <tr>
                   <S.Grade>3</S.Grade>
+                  {[...Array(4)].map((grades, i) => (
+                    <td key={i}>
+                      <S.AttendanceInput
+                        type="number"
+                        {...register(`attendanceScore.${8 + i}`)}
+                      />
+                    </td>
+                  ))}
                   <td>
-                    <S.AttendanceInput type="number" />
-                  </td>
-                  <td>
-                    <S.AttendanceInput type="number" />
-                  </td>
-                  <td>
-                    <S.AttendanceInput type="number" />
-                  </td>
-                  <td>
-                    <S.AttendanceInput type="number" />
-                  </td>
-                  <td>
-                    <S.AttendanceInput type="number" />
+                    <S.AttendanceInput
+                      type="number"
+                      {...register(`volunteerScore.2`)}
+                    />
                   </td>
                 </tr>
               </tbody>
@@ -279,6 +279,3 @@ const CalculatorPage: NextPage = () => {
 };
 
 export default CalculatorPage;
-function Calculate(score2_1: any, arg1: number) {
-  throw new Error('Function not implemented.');
-}
