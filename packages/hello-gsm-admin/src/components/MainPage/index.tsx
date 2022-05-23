@@ -112,6 +112,8 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
             )}
         </S.ContentList>
       </S.MainPageContent>
+      <S.BlueBall />
+      <S.SkyBlueBall />
     </S.MainPage>
   );
 };
