@@ -4,9 +4,61 @@ import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { css } from '@emotion/react';
 
+interface applicantsType {
+  registrationNumber: number;
+  name: string;
+  screening: string;
+  schoolName: string;
+  isDocumentReception: true;
+  phoneNumber: string;
+  guardianNumber: string;
+  teacherNumber: string;
+}
+
 const MainPage: NextPage = () => {
   const { showPassModal, setShowPassModal } = useStore();
-  const is_document_reception = true;
+  const applicants: applicantsType[] = [
+    {
+      registrationNumber: 2001,
+      name: '김형록',
+      screening: '사회통합전형',
+      schoolName: '성덕중학교',
+      isDocumentReception: true,
+      phoneNumber: '010-1234-5678',
+      guardianNumber: '010-1234-5678',
+      teacherNumber: '010-1234-5678',
+    },
+    {
+      registrationNumber: 2002,
+      name: '김형록',
+      screening: '사회통합전형',
+      schoolName: '성덕중학교',
+      isDocumentReception: true,
+      phoneNumber: '010-1234-5678',
+      guardianNumber: '010-1234-5678',
+      teacherNumber: '010-1234-5678',
+    },
+    {
+      registrationNumber: 2003,
+      name: '김형록',
+      screening: '사회통합전형',
+      schoolName: '성덕중학교',
+      isDocumentReception: true,
+      phoneNumber: '010-1234-5678',
+      guardianNumber: '010-1234-5678',
+      teacherNumber: '010-1234-5678',
+    },
+    {
+      registrationNumber: 2003,
+      name: '김형록',
+      screening: '사회통합전형',
+      schoolName: '성덕중학교',
+      isDocumentReception: true,
+      phoneNumber: '010-1234-5678',
+      guardianNumber: '010-1234-5678',
+      teacherNumber: '010-1234-5678',
+    },
+  ];
 
   return (
     <S.MainPage>
@@ -47,26 +99,44 @@ const MainPage: NextPage = () => {
           </S.HeaderElement>
         </S.Header>
         <S.ContentList>
-          <S.ContentBox>
-            <S.Content>
-              <S.RegistrationNumber>2022</S.RegistrationNumber>
-              <S.Name>김형록</S.Name>
-              <S.Screening>사회통합전형</S.Screening>
-              <S.SchoolName>성덕중학교</S.SchoolName>
-              <S.isDocumentReception>
-                <S.Checkbox
-                  css={css`
-                    background: ${is_document_reception && '#19BAFF'};
-                  `}
-                />
-              </S.isDocumentReception>
-              <S.PhoneNumber>010-1234-5678</S.PhoneNumber>
-              <S.GuardianNumber>010-1234-5678</S.GuardianNumber>
-              <S.TeacherNumber>010-1234-5678</S.TeacherNumber>
-            </S.Content>
-            <S.Pass onClick={setShowPassModal}>선택</S.Pass>
-            <S.Pass onClick={setShowPassModal}>선택</S.Pass>
-          </S.ContentBox>
+          {applicants.map(
+            (
+              {
+                registrationNumber,
+                name,
+                screening,
+                schoolName,
+                isDocumentReception,
+                phoneNumber,
+                guardianNumber,
+                teacherNumber,
+              }: applicantsType,
+              index: number,
+            ) => (
+              <S.ContentBox key={index}>
+                <S.Content>
+                  <S.RegistrationNumber>
+                    {registrationNumber}
+                  </S.RegistrationNumber>
+                  <S.Name>{name}</S.Name>
+                  <S.Screening>{screening}</S.Screening>
+                  <S.SchoolName>{schoolName}</S.SchoolName>
+                  <S.isDocumentReception>
+                    <S.Checkbox
+                      css={css`
+                        background: ${isDocumentReception && '#19BAFF'};
+                      `}
+                    />
+                  </S.isDocumentReception>
+                  <S.PhoneNumber>{phoneNumber}</S.PhoneNumber>
+                  <S.GuardianNumber>{guardianNumber}</S.GuardianNumber>
+                  <S.TeacherNumber>{teacherNumber}</S.TeacherNumber>
+                </S.Content>
+                <S.Pass onClick={setShowPassModal}>선택</S.Pass>
+                <S.Pass onClick={setShowPassModal}>선택</S.Pass>
+              </S.ContentBox>
+            ),
+          )}
         </S.ContentList>
       </S.MainPageContent>
     </S.MainPage>
