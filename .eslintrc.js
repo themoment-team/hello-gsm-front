@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   env: {
     browser: true,
@@ -21,4 +23,30 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint'],
   rules: {},
+  overrides: [
+    {
+      files: ['packages/hello-gsm/**/*.ts?(x)'],
+      settings: {
+        'import/resolver': {
+          typescript: {
+            project: path.resolve(
+              `${__dirname}/packages/hello-gsm/tsconfig.json`,
+            ),
+          },
+        },
+      },
+    },
+    {
+      files: ['packages/hello-gsm-admin/**/*.ts?(x)'],
+      settings: {
+        'import/resolver': {
+          typescript: {
+            project: path.resolve(
+              `${__dirname}/packages/hello-gsm-admin/tsconfig.json`,
+            ),
+          },
+        },
+      },
+    },
+  ],
 };
