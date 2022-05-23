@@ -1,23 +1,32 @@
-import React, { useState } from 'react';
 import type { NextPage } from 'next';
 import Header from 'components/Common/Header';
 import * as S from './style';
 import * as I from '../../Assets/svg';
-import { useForm, useFieldArray, Controller, useWatch } from 'react-hook-form';
-import { css } from '@emotion/react';
+import { useForm, useFieldArray } from 'react-hook-form';
 
 const CalculatorPage: NextPage = () => {
   const { register, handleSubmit, watch, control } = useForm();
-  const { fields, append, prepend, remove, swap, move, insert, replace } =
-    useFieldArray({
-      control,
-      name: '12312',
+
+  const calculate = (array: any) => {
+    let result = 0;
+    let sum = 0;
+    array.map((test, i) => {
+      array[i] = Number(test);
     });
+    for (let i = 0; i < array.length; i++) {
+      sum += array[i];
+    }
+    sum = array.reduce((accumulator, curr) => accumulator + curr);
+    console.log(sum);
+    result = 60 * (sum / (array.length * 5));
+    return result;
+  };
 
   const onValid = validForm => {
-    console.log(validForm.과학 + validForm.수학);
+    console.log(validForm);
+    const score2_1 = calculate(validForm.score2_1);
+    console.log(score2_1);
   };
-  const [test, setTest] = useState(false);
 
   const Lines = ['일반교과', '체육•예술 교과', '비교과'];
   const subjects = [
@@ -31,17 +40,7 @@ const CalculatorPage: NextPage = () => {
     '영어',
   ];
   const nonSubjects = ['체육', '미술', '음악'];
-  const semester = [
-    '1학년 1학기',
-    '1학년 2학기',
-    '2학년 1학기',
-    '2학년 2학기',
-    '3학년 1학기',
-  ];
 
-  const FreeSemester = () => {
-    console.log('hi');
-  };
   return (
     <>
       <Header />
@@ -58,77 +57,16 @@ const CalculatorPage: NextPage = () => {
               <div>
                 <I.CrossRectangle />
               </div>
-              <S.Subject>자유학기제</S.Subject>
               {subjects.map((subject, i) => (
                 <S.Subject key={i}>{subject}</S.Subject>
               ))}
-              <input type="text" onChange={e => {}} />
             </S.SemesterSection>
 
-            <S.SemesterSection>
-              <S.Semester>1학년 1학기</S.Semester>
-
-              {test ? (
-                <S.FreeSemester
-                  css={css`
-                    background: #19baff;
-                    color: #ffffff;
-                    cursor: pointer;
-                  `}
-                  onClick={() => setTest(!test)}
-                >
-                  ON
-                </S.FreeSemester>
-              ) : (
-                <S.FreeSemester
-                  css={css`
-                    cursor: pointer;
-                  `}
-                  onClick={() => setTest(!test)}
-                >
-                  자유학기제
-                </S.FreeSemester>
-              )}
-
-              {test ? (
-                <>
-                  {subjects.map((subject, i) => (
-                    <S.FreeSemester key={i}>자유학기제</S.FreeSemester>
-                  ))}
-                </>
-              ) : (
-                <>
-                  {subjects.map((subject, i) => (
-                    <S.Select {...register(subject)} key={i}>
-                      <option>선택</option>
-                      <option value={5}>A</option>
-                      <option value={4}>B</option>
-                      <option value={3}>C</option>
-                      <option value={2}>D</option>
-                      <option value={1}>E</option>
-                    </S.Select>
-                  ))}
-                </>
-              )}
-            </S.SemesterSection>
-            <S.SemesterSection>
-              <S.Semester>1학년 2학기</S.Semester>
-              {subjects.map((subject, i) => (
-                <S.Select {...register(subject)} key={i}>
-                  <option>선택</option>
-                  <option value={5}>A</option>
-                  <option value={4}>B</option>
-                  <option value={3}>C</option>
-                  <option value={2}>D</option>
-                  <option value={1}>E</option>
-                </S.Select>
-              ))}
-            </S.SemesterSection>
             <S.SemesterSection>
               <S.Semester>2학년 1학기</S.Semester>
               {subjects.map((subject, i) => (
-                <S.Select {...register(subject)} key={i}>
-                  <option>선택</option>
+                <S.Select {...register(`score2_1.${i}`)} key={i}>
+                  {/* <option>선택</option> */}
 
                   <option value={5}>A</option>
                   <option value={4}>B</option>
@@ -141,7 +79,7 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>2학년 2학기</S.Semester>
               {subjects.map((subject, i) => (
-                <S.Select {...register(subject)} key={i}>
+                <S.Select {...register(`2_2.${i}`)} key={i}>
                   <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
@@ -154,7 +92,7 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>3학년 1학기</S.Semester>
               {subjects.map((subject, i) => (
-                <S.Select {...register(subject)} key={i}>
+                <S.Select {...register(`3_1.${i}`)} key={i}>
                   <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
@@ -177,65 +115,55 @@ const CalculatorPage: NextPage = () => {
             <S.SemesterSection>
               <S.Semester>1학년 1학기</S.Semester>
               {nonSubjects.map((subject, i) => (
-                <S.Select {...register('1_1')} key={i}>
-                  key={i} <option>선택</option>
+                <S.Select key={i}>
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
-                  <option value={2}>D</option>
-                  <option value={1}>E</option>
                 </S.Select>
               ))}
             </S.SemesterSection>
             <S.SemesterSection>
               <S.Semester>1학년 2학기</S.Semester>
               {nonSubjects.map((subject, i) => (
-                <S.Select {...register('1_1')} key={i}>
-                  key={i} <option>선택</option>
+                <S.Select key={i}>
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
-                  <option value={2}>D</option>
-                  <option value={1}>E</option>
                 </S.Select>
               ))}
             </S.SemesterSection>
             <S.SemesterSection>
               <S.Semester>2학년 1학기</S.Semester>
               {nonSubjects.map((subject, i) => (
-                <S.Select {...register('1_1')} key={i}>
-                  key={i} <option>선택</option>
+                <S.Select key={i}>
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
-                  <option value={2}>D</option>
-                  <option value={1}>E</option>
                 </S.Select>
               ))}
             </S.SemesterSection>
             <S.SemesterSection>
               <S.Semester>2학년 2학기</S.Semester>
               {nonSubjects.map((subject, i) => (
-                <S.Select {...register('1_1')} key={i}>
-                  key={i} <option>선택</option>
+                <S.Select key={i} {...register(`haha.${i}`)}>
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
-                  <option value={2}>D</option>
-                  <option value={1}>E</option>
                 </S.Select>
               ))}
             </S.SemesterSection>
             <S.SemesterSection>
               <S.Semester>3학년 1학기</S.Semester>
               {nonSubjects.map((subject, i) => (
-                <S.Select {...register('1_1')} key={i}>
-                  key={i} <option>선택</option>
+                <S.Select key={i}>
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
-                  <option value={2}>D</option>
-                  <option value={1}>E</option>
                 </S.Select>
               ))}
             </S.SemesterSection>
