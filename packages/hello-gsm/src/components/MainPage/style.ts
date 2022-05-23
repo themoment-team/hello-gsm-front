@@ -96,13 +96,10 @@ export const ContentBox = styled.div`
   margin: 0 auto;
   border-radius: 24px;
   position: relative;
-<<<<<<< HEAD
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-=======
->>>>>>> 08112daaa439a29f34c8c35163025e0b13d9c3cc
 `;
 
 export const ContentHeader = styled.div`
@@ -113,11 +110,8 @@ export const ContentHeader = styled.div`
   align-items: center;
   position: relative;
   z-index: 1;
-<<<<<<< HEAD
   position: fixed;
   top: 0;
-=======
->>>>>>> 08112daaa439a29f34c8c35163025e0b13d9c3cc
 `;
 
 export const ContentSelect = styled.p`
