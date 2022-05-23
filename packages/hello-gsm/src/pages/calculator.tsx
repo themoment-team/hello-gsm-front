@@ -1,9 +1,9 @@
 import React from 'react';
 import type { NextPage } from 'next';
-import CalculatePage from 'components/CalculatorPage';
+import CalculatorPage from '../components/CalculatorPage';
 
 const Calculator: NextPage = () => {
-  return <CalculatePage />;
+  return <CalculatorPage />;
 };
 
 export default Calculator;
