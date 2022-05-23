@@ -183,8 +183,8 @@ const Ball = styled.div`
 export const BlueBall = styled(Ball)`
   width: 920px;
   height: 920px;
-  left: -450px;
-  bottom: -450px;
+  left: -550px;
+  bottom: -370px;
   background: linear-gradient(
     201.42deg,
     rgba(123, 232, 255, 0.63) 13.47%,
@@ -196,6 +196,8 @@ export const BlueBall = styled(Ball)`
 export const SkyBlueBall = styled(Ball)`
   width: 280px;
   height: 280px;
+  bottom: -120px;
+  right: -60px;
   background: linear-gradient(
     207.52deg,
     rgba(210, 247, 255, 0.6) 13.95%,
