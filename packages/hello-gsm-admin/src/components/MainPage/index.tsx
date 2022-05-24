@@ -3,13 +3,16 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { css } from '@emotion/react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { applicantsType } from 'pages';
+import { useRouter } from 'next/router';
 
 const MainPage: NextPage<applicantsType> = ({ data }) => {
   const { showPassModal, setShowPassModal } = useStore();
   const searchRef = useRef<HTMLInputElement>(null);
   const [keyword, setKeyword] = useState<string>('');
+  const router = useRouter();
+  const logged = false;
 
   const search = () => {
     if (searchRef.current) {
@@ -22,6 +25,10 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
       search();
     }
   };
+
+  useEffect(() => {
+    !logged && router.push('/signin');
+  });
 
   return (
     <S.MainPage>
