@@ -43,7 +43,7 @@ export const Line = styled.div`
     margin: 90px 0 0;
   }
   :nth-of-type(3) {
-    margin: 30px 0;
+    margin: 40px 0 35px;
   }
   :nth-of-type(5) {
     margin: 100px 0;
