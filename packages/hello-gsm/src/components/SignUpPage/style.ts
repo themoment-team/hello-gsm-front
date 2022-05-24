@@ -164,11 +164,9 @@ export const ErrorMessage = styled.p`
   position: absolute;
   right: -250px;
   width: 220px;
-  animation-name: test;
 `;
 
 export const shake = keyframes`
-
   0% {
     transform: translate(1px, 1px) rotate(0deg);
   }
