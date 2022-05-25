@@ -339,90 +339,18 @@ const ApplyPage: NextPage = () => {
           <S.NextButton onClick={toNext}>다음</S.NextButton>
         </S.ApplyPageContent>
         <S.ErrorBox>
-          <S.Error
-            css={css`
-              top: 100px;
-            `}
-          >
-            * 증명사진을 업로드해주세요.
-          </S.Error>
-          <S.Error
-            css={css`
-              top: 730px;
-            `}
-          >
-            * 주소지를 입력해주세요.
-          </S.Error>
-          <S.Error
-            css={css`
-              top: 930px;
-            `}
-          >
-            * 집 전화번호를 입력해주세요.
-          </S.Error>
-          <S.Error
-            css={css`
-              top: 990px;
-            `}
-          >
-            * 핸드폰 번호를 입력해주세요.
-          </S.Error>
-          <S.Error
-            css={css`
-              top: 1280px;
-            `}
-          >
-            * 출신 중학교를 입력해주세요.
-          </S.Error>
-          <S.Error
-            css={css`
-              top: 1340px;
-            `}
-          >
-            * 졸업일을 선택해주세요.
-          </S.Error>
-          <S.Error
-            css={css`
-              top: 1420px;
-            `}
-          >
-            * 지원학과를 선택해주세요.
-          </S.Error>
-          <S.Error
-            css={css`
-              top: 1630px;
-            `}
-          >
-            * 성명을 입력해주세요.
-          </S.Error>
-          <S.Error
-            css={css`
-              top: 1720px;
-            `}
-          >
-            * 관계를 입력해주세요.
-          </S.Error>
-          <S.Error
-            css={css`
-              top: 1810px;
-            `}
-          >
-            * 핸드폰번호를 입력해주세요.
-          </S.Error>
-          <S.Error
-            css={css`
-              top: 1990px;
-            `}
-          >
-            * 성명을 입력해주세요.
-          </S.Error>
-          <S.Error
-            css={css`
-              top: 2080px;
-            `}
-          >
-            * 연락처를 입력해주세요.
-          </S.Error>
+          <S.Error>* 증명사진을 업로드해주세요.</S.Error>
+          <S.Error>* 주소지를 입력해주세요.</S.Error>
+          <S.Error>* 집 전화번호를 입력해주세요.</S.Error>
+          <S.Error>* 핸드폰 번호를 입력해주세요.</S.Error>
+          <S.Error>* 출신 중학교를 입력해주세요.</S.Error>
+          <S.Error>* 졸업일을 선택해주세요.</S.Error>
+          <S.Error>* 지원학과를 선택해주세요.</S.Error>
+          <S.Error>* 성명을 입력해주세요.</S.Error>
+          <S.Error>* 관계를 입력해주세요.</S.Error>
+          <S.Error>* 핸드폰번호를 입력해주세요.</S.Error>
+          <S.Error>* 성명을 입력해주세요.</S.Error>
+          <S.Error>* 연락처를 입력해주세요.</S.Error>
         </S.ErrorBox>
       </S.ApplyPage>
     </>
