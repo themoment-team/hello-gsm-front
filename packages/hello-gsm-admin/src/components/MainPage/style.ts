@@ -16,13 +16,33 @@ export const MainPageContent = styled.div`
   margin: 0 auto;
 `;
 
+export const FunctionBox = styled.div`
+  width: 100%;
+  height: 45px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Logout = styled.div`
+  width: 140px;
+  height: 100%;
+  background: #19baff;
+  border-radius: 10px;
+  color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+`;
+
 export const Searchbox = styled.div`
   width: 650px;
-  height: 45px;
+  height: 100%;
   background: #ffffff;
   border-radius: 10px;
   display: flex;
-  margin: 0 auto;
 `;
 
 export const SearchInput = styled.input`
