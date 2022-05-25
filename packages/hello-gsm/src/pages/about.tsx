@@ -1,6 +1,6 @@
 import React from 'react';
 import type { NextPage } from 'next';
-import AboutPage from 'components/AboutPage';
+import { AboutPage } from 'components';
 
 const About: NextPage = () => {
   return (

@@ -1,12 +1,11 @@
-import Header from '../Common/Header';
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import * as S from './style';
 import * as I from '../../Assets/svg';
 import { useState } from 'react';
 import { css } from '@emotion/react';
-import MypageModal from '../MypageModal';
 import useStore from '../../Stores/StoreContainer';
+import { Header, MypageModal } from 'components';
 
 const MyPage: NextPage = () => {
   const [gender, setGender] = useState<string>('W');

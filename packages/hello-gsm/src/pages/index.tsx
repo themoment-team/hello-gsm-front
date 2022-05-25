@@ -1,6 +1,6 @@
 import React from 'react';
 import type { NextPage } from 'next';
-import MainPage from 'components/MainPage';
+import { MainPage } from 'components';
 
 const Home: NextPage = () => <MainPage />;
 

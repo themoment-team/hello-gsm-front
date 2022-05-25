@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import type { NextPage } from 'next';
-import Header from '../Common/Header';
 import * as S from './style';
 import Link from 'next/link';
-import Footer from '../Common/Footer';
-import MainPageDescription from '../MainPageDescription';
+import { Header, Footer, MainPageDescription } from 'components';
 import { css } from '@emotion/react';
 
 const MainPage: NextPage = () => {
