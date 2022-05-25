@@ -31,6 +31,7 @@ export const ApplyPage = styled.div`
 `;
 
 export const BarBox = styled.div`
+  width: 200px;
   height: 2600px;
   border-right: 3px solid rgba(255, 255, 255, 0.17);
 `;
@@ -216,27 +217,6 @@ export const Type = styled.p`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-`;
-
-export const SocietyBox = styled.div`
-  width: 800px;
-  height: 55px;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 50px;
-`;
-
-export const Society = styled.div`
-  width: 390px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #a0a0a0;
-  border-radius: 6px;
-  font-weight: 700;
-  font-size: 20px;
-  color: #f8f8f8;
 `;
 
 export const SchoolBox = styled.div`
