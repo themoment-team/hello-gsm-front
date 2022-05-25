@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import MypagePage from 'components/MypagePage';
+import { MypagePage } from 'components';
 
 const MyPage: NextPage = () => {
   return <MypagePage />;
