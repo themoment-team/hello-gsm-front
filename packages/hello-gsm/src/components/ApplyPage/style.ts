@@ -105,7 +105,7 @@ export const BarElement = styled.p`
   }
 `;
 
-export const ApplyPageContent = styled.div`
+export const ApplyPageContent = styled.form`
   width: 880px;
   display: flex;
   flex-direction: column;
@@ -420,7 +420,7 @@ export const TeacherPhone = styled(Input)`
   margin-top: 50px;
 `;
 
-export const NextButton = styled.div`
+export const NextButton = styled.button`
   width: 230px;
   height: 65px;
   background: #ffffff;
