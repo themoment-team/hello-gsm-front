@@ -92,118 +92,22 @@ const ApplyPage: NextPage = () => {
       <Header />
       <S.ApplyPage>
         <S.BarBox>
-          <S.BarElement
-            css={css`
-              top: 100px;
-            `}
-          >
-            증명사진
-          </S.BarElement>
-          <S.BarElement
-            css={css`
-              top: 410px;
-            `}
-          >
-            이름
-          </S.BarElement>
-          <S.BarElement
-            css={css`
-              top: 500px;
-            `}
-          >
-            성별
-          </S.BarElement>
-          <S.BarElement
-            css={css`
-              top: 580px;
-            `}
-          >
-            생년월일
-          </S.BarElement>
-          <S.BarElement
-            css={css`
-              top: 665px;
-            `}
-          >
-            주소지
-          </S.BarElement>
-          <S.BarElement
-            css={css`
-              top: 865px;
-            `}
-          >
-            집 전화
-          </S.BarElement>
-          <S.BarElement
-            css={css`
-              top: 920px;
-            `}
-          >
-            휴대폰 번호
-          </S.BarElement>
-          <S.BarElement
-            css={css`
-              top: 1110px;
-            `}
-          >
-            전형
-          </S.BarElement>
-          <S.BarElement
-            css={css`
-              top: 1190px;
-            `}
-          >
-            출신 중학교
-          </S.BarElement>
-          <S.BarElement
-            css={css`
-              top: 1250px;
-            `}
-          >
-            졸업일
-          </S.BarElement>
-          <S.BarElement
-            css={css`
-              top: 1330px;
-            `}
-          >
-            지원학과
-          </S.BarElement>
-          <S.BarElement
-            css={css`
-              top: 1540px;
-            `}
-          >
-            이름
-          </S.BarElement>
-          <S.BarElement
-            css={css`
-              top: 1625px;
-            `}
-          >
-            관계
-          </S.BarElement>
-          <S.BarElement
-            css={css`
-              top: 1710px;
-            `}
-          >
-            핸드폰 번호
-          </S.BarElement>
-          <S.BarElement
-            css={css`
-              top: 1900px;
-            `}
-          >
-            이름
-          </S.BarElement>
-          <S.BarElement
-            css={css`
-              top: 1980px;
-            `}
-          >
-            연락처
-          </S.BarElement>
+          <S.BarElement>증명사진</S.BarElement>
+          <S.BarElement>이름</S.BarElement>
+          <S.BarElement>성별</S.BarElement>
+          <S.BarElement>생년월일</S.BarElement>
+          <S.BarElement>주소지</S.BarElement>
+          <S.BarElement>집 전화</S.BarElement>
+          <S.BarElement>휴대폰 번호</S.BarElement>
+          <S.BarElement>전형</S.BarElement>
+          <S.BarElement>출신 중학교</S.BarElement>
+          <S.BarElement>졸업일</S.BarElement>
+          <S.BarElement>지원학과</S.BarElement>
+          <S.BarElement>이름</S.BarElement>
+          <S.BarElement>관계</S.BarElement>
+          <S.BarElement>핸드폰 번호</S.BarElement>
+          <S.BarElement>이름</S.BarElement>
+          <S.BarElement>연락처</S.BarElement>
         </S.BarBox>
         <S.ApplyPageContent>
           <S.Title>지원자 인적사항</S.Title>
