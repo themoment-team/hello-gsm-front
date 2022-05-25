@@ -32,7 +32,7 @@ export const ApplyPage = styled.div`
 
 export const BarBox = styled.div`
   width: 200px;
-  height: 2600px;
+  height: 2400px;
   border-right: 3px solid rgba(255, 255, 255, 0.17);
 `;
 
