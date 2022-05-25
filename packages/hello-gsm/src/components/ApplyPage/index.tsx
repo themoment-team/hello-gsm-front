@@ -9,6 +9,7 @@ import DepartmentModal from 'components/DepartmentModal';
 import useStore from 'Stores/StoreContainer';
 import FindSchoolModal from 'components/FindSchoolModal';
 import FindAddressModal from 'components/FindAddressModal';
+import { useForm } from 'react-hook-form';
 
 const ApplyPage: NextPage = () => {
   const imgInput = useRef<HTMLInputElement>(null);
@@ -55,10 +56,6 @@ const ApplyPage: NextPage = () => {
     ${GraduatedType === index && 'background: #42bafe; color: #f8f8f8;'}
   `;
 
-  const toNext = () => {
-    console.log('next level');
-  };
-
   const SelectedDepartment = (type: number) => {
     switch (type) {
       case 1:
@@ -70,6 +67,12 @@ const ApplyPage: NextPage = () => {
       default:
         return '선택';
     }
+  };
+
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = data => {
+    console.log(data);
   };
 
   return (
@@ -97,7 +100,7 @@ const ApplyPage: NextPage = () => {
           <S.BarElement>이름</S.BarElement>
           <S.BarElement>연락처</S.BarElement>
         </S.BarBox>
-        <S.ApplyPageContent>
+        <S.ApplyPageContent onSubmit={handleSubmit(onSubmit)}>
           <S.Title>지원자 인적사항</S.Title>
           <S.ImgInputBox htmlFor="img-input">
             {imgURL === '' ? (
@@ -145,8 +148,14 @@ const ApplyPage: NextPage = () => {
             <S.AddressDescription>상세주소</S.AddressDescription>
             <S.DetailAddress placeholder="상세주소" />
           </S.AddressBox>
-          <S.HomeTelephone placeholder="집 전화번호를 입력해주세요." />
-          <S.Cellphone placeholder="핸드폰 번호를 입력해주세요." />
+          <S.HomeTelephone
+            {...register('homeTelephone')}
+            placeholder="집 전화번호를 입력해주세요."
+          />
+          <S.Cellphone
+            {...register('cellphone')}
+            placeholder="핸드폰 번호를 입력해주세요."
+          />
           <S.Title
             css={css`
               margin-top: 80px;
@@ -304,7 +313,7 @@ const ApplyPage: NextPage = () => {
           </S.Title>
           <S.TeacherName placeholder="담임선생님의 성명을 입력해주세요." />
           <S.TeacherPhone placeholder="담임선생님의 연락처를 입력해주세요." />
-          <S.NextButton onClick={toNext}>다음</S.NextButton>
+          <S.NextButton type="submit">다음</S.NextButton>
         </S.ApplyPageContent>
         <S.ErrorBox>
           <S.Error>* 증명사진을 업로드해주세요.</S.Error>
