@@ -55,6 +55,7 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
             />
             <S.SearchButton onClick={search}>검색</S.SearchButton>
           </S.Searchbox>
+          <S.Print>수험표 출력</S.Print>
         </S.FunctionBox>
         <S.Header>
           <S.HeaderElement>지원자 번호</S.HeaderElement>
