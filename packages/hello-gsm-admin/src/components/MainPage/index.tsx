@@ -8,11 +8,15 @@ import { applicantsType } from 'pages';
 import { useRouter } from 'next/router';
 
 const MainPage: NextPage<applicantsType> = ({ data }) => {
-  const { showPassModal, setShowPassModal } = useStore();
+  const {
+    showPassModal,
+    setShowPassModal,
+    setPassModalPeriod,
+    setPassModalName,
+    setPassModalRegistrationNumber,
+  } = useStore();
   const searchRef = useRef<HTMLInputElement>(null);
   const [keyword, setKeyword] = useState<string>('');
-  const router = useRouter();
-  const logged = false;
 
   const search = () => {
     if (searchRef.current) {
@@ -26,9 +30,16 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
     }
   };
 
-  useEffect(() => {
-    !logged && router.push('/signin');
-  });
+  const passOnclick = (
+    registrationNumber: number,
+    name: string,
+    period: number,
+  ) => {
+    setShowPassModal();
+    setPassModalRegistrationNumber(registrationNumber);
+    setPassModalName(name);
+    setPassModalPeriod(period);
+  };
 
   return (
     <S.MainPage>
@@ -112,8 +123,16 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
                     <S.GuardianNumber>{guardianNumber}</S.GuardianNumber>
                     <S.TeacherNumber>{teacherNumber}</S.TeacherNumber>
                   </S.Content>
-                  <S.Pass onClick={setShowPassModal}>선택</S.Pass>
-                  <S.Pass onClick={setShowPassModal}>선택</S.Pass>
+                  <S.Pass
+                    onClick={() => passOnclick(registrationNumber, name, 1)}
+                  >
+                    선택
+                  </S.Pass>
+                  <S.Pass
+                    onClick={() => passOnclick(registrationNumber, name, 2)}
+                  >
+                    선택
+                  </S.Pass>
                 </S.ContentBox>
               ),
             )}
