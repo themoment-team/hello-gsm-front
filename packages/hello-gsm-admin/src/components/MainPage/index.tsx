@@ -3,9 +3,8 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { css } from '@emotion/react';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { applicantsType } from 'pages';
-import { useRouter } from 'next/router';
 
 const MainPage: NextPage<applicantsType> = ({ data }) => {
   const {

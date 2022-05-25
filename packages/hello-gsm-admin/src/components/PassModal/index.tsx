@@ -1,5 +1,5 @@
 import { css, Global } from '@emotion/react';
-import React, { useCallback, useState, MouseEvent } from 'react';
+import React, { useCallback, MouseEvent } from 'react';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 
