@@ -443,4 +443,40 @@ export const Error = styled.p`
   font-weight: 400;
   font-size: 18px;
   position: relative;
+  :nth-of-type(1) {
+    top: 100px;
+  }
+  :nth-of-type(2) {
+    top: 730px;
+  }
+  :nth-of-type(3) {
+    top: 930px;
+  }
+  :nth-of-type(4) {
+    top: 990px;
+  }
+  :nth-of-type(5) {
+    top: 1280px;
+  }
+  :nth-of-type(6) {
+    top: 1340px;
+  }
+  :nth-of-type(7) {
+    top: 1420px;
+  }
+  :nth-of-type(8) {
+    top: 1630px;
+  }
+  :nth-of-type(9) {
+    top: 1720px;
+  }
+  :nth-of-type(10) {
+    top: 1810px;
+  }
+  :nth-of-type(11) {
+    top: 1990px;
+  }
+  :nth-of-type(12) {
+    top: 2080px;
+  }
 `;
