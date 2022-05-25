@@ -65,8 +65,8 @@ const CalculatorPage: NextPage = () => {
       <S.Title>성적입력</S.Title>
       <S.CalculatePage>
         <S.LineList>
-          {lines.map((line, i) => (
-            <S.Line key={i}>{line}</S.Line>
+          {lines.map(line => (
+            <S.Line key={line}>{line}</S.Line>
           ))}
         </S.LineList>
         <S.CalculateSection onSubmit={handleSubmit(onValid)}>
@@ -75,16 +75,15 @@ const CalculatorPage: NextPage = () => {
               <div>
                 <I.CrossRectangle />
               </div>
-              {subjects.map((subject, i) => (
-                <S.Subject key={i}>{subject}</S.Subject>
+              {subjects.map(subject => (
+                <S.Subject key={subject}>{subject}</S.Subject>
               ))}
             </S.ValueSection>
-
             <S.ValueSection>
               <S.Semester>2학년 1학기</S.Semester>
-              {subjects.map((subject, i) => (
-                <S.Select {...register(`score2_1.${i}`)} key={i}>
-                  {/* <option>선택</option> */}
+              {subjects.map((subject, i: number) => (
+                <S.Select key={subject} {...register(`score2_1.${i}`)}>
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -95,9 +94,9 @@ const CalculatorPage: NextPage = () => {
             </S.ValueSection>
             <S.ValueSection>
               <S.Semester>2학년 2학기</S.Semester>
-              {subjects.map((subject, i) => (
-                <S.Select {...register(`score2_2.${i}`)} key={i}>
-                  {/* <option>선택</option> */}
+              {subjects.map((subject, i: number) => (
+                <S.Select key={subject} {...register(`score2_2.${i}`)}>
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -108,9 +107,9 @@ const CalculatorPage: NextPage = () => {
             </S.ValueSection>
             <S.ValueSection>
               <S.Semester>3학년 1학기</S.Semester>
-              {subjects.map((subject, i) => (
-                <S.Select {...register(`score3_1.${i}`)} key={i}>
-                  {/* <option>선택</option> */}
+              {subjects.map((subject, i: number) => (
+                <S.Select key={subject} {...register(`score3_1.${i}`)}>
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -126,15 +125,15 @@ const CalculatorPage: NextPage = () => {
               <div>
                 <I.CrossRectangle />
               </div>
-              {nonSubjects.map((subject, i) => (
-                <S.Subject key={i}>{subject}</S.Subject>
+              {nonSubjects.map(subject => (
+                <S.Subject key={subject}>{subject}</S.Subject>
               ))}
             </S.ValueSection>
             <S.ValueSection>
               <S.Semester>1학년 1학기</S.Semester>
-              {nonSubjects.map((subject, i) => (
-                <S.Select key={i} {...register(`artSportsScore.${i}`)}>
-                  {/* <option>선택</option> */}
+              {nonSubjects.map((subject, i: number) => (
+                <S.Select key={subject} {...register(`artSportsScore.${i}`)}>
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -143,9 +142,12 @@ const CalculatorPage: NextPage = () => {
             </S.ValueSection>
             <S.ValueSection>
               <S.Semester>1학년 2학기</S.Semester>
-              {nonSubjects.map((subject, i) => (
-                <S.Select key={i} {...register(`artSportsScore.${3 + i}`)}>
-                  {/* <option>선택</option> */}
+              {nonSubjects.map((subject, i: number) => (
+                <S.Select
+                  key={subject}
+                  {...register(`artSportsScore.${3 + i}`)}
+                >
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -154,9 +156,12 @@ const CalculatorPage: NextPage = () => {
             </S.ValueSection>
             <S.ValueSection>
               <S.Semester>2학년 1학기</S.Semester>
-              {nonSubjects.map((subject, i) => (
-                <S.Select key={i} {...register(`artSportsScore.${6 + i}`)}>
-                  {/* <option>선택</option> */}
+              {nonSubjects.map((subject, i: number) => (
+                <S.Select
+                  key={subject}
+                  {...register(`artSportsScore.${6 + i}`)}
+                >
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -165,9 +170,12 @@ const CalculatorPage: NextPage = () => {
             </S.ValueSection>
             <S.ValueSection>
               <S.Semester>2학년 2학기</S.Semester>
-              {nonSubjects.map((subject, i) => (
-                <S.Select key={i} {...register(`artSportsScore.${9 + i}`)}>
-                  {/* <option>선택</option> */}
+              {nonSubjects.map((subject, i: number) => (
+                <S.Select
+                  key={subject}
+                  {...register(`artSportsScore.${9 + i}`)}
+                >
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -176,9 +184,12 @@ const CalculatorPage: NextPage = () => {
             </S.ValueSection>
             <S.ValueSection>
               <S.Semester>3학년 1학기</S.Semester>
-              {nonSubjects.map((subject, i) => (
-                <S.Select key={i} {...register(`artSportsScore.${12 + i}`)}>
-                  {/* <option>선택</option> */}
+              {nonSubjects.map((subject, i: number) => (
+                <S.Select
+                  key={subject}
+                  {...register(`artSportsScore.${12 + i}`)}
+                >
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -206,46 +217,46 @@ const CalculatorPage: NextPage = () => {
               </table>
               <S.AttendanceSection>
                 <S.ValueSection>
-                  {grades.map((grade, i) => (
-                    <S.AttendanceGrade key={i}>{grade}</S.AttendanceGrade>
+                  {grades.map(grade => (
+                    <S.AttendanceGrade key={grade}>{grade}</S.AttendanceGrade>
                   ))}
                 </S.ValueSection>
                 <S.ValueSection>
-                  {grades.map((_, i) => (
+                  {grades.map((grade, i: number) => (
                     <S.AttendanceInput
-                      key={i}
+                      key={grade}
                       {...register(`absentScore.${i}`)}
                     />
                   ))}
                 </S.ValueSection>
                 <S.ValueSection>
-                  {grades.map((_, i) => (
+                  {grades.map((grade, i: number) => (
                     <S.AttendanceInput
-                      key={i}
+                      key={grade}
                       {...register(`attendanceScore.${i}`)}
                     />
                   ))}
                 </S.ValueSection>
                 <S.ValueSection>
-                  {grades.map((_, i) => (
+                  {grades.map((grade, i: number) => (
                     <S.AttendanceInput
-                      key={i}
+                      key={grade}
                       {...register(`attendanceScore.${3 + i}`)}
                     />
                   ))}
                 </S.ValueSection>
                 <S.ValueSection>
-                  {grades.map((_, i) => (
+                  {grades.map((grade, i: number) => (
                     <S.AttendanceInput
-                      key={i}
+                      key={grade}
                       {...register(`attendanceScore.${6 + i}`)}
                     />
                   ))}
                 </S.ValueSection>
                 <S.ValueSection>
-                  {grades.map((_, i) => (
+                  {grades.map((grade, i: number) => (
                     <S.AttendanceInput
-                      key={i}
+                      key={grade}
                       {...register(`volunteerScore.${i}`)}
                     />
                   ))}
