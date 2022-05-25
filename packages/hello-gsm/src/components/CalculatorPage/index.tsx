@@ -45,7 +45,7 @@ const CalculatorPage: NextPage = () => {
     ); // 총합
   };
 
-  const lines = ['일반교과', '체육•예술 교과', '비교과'];
+  const lines = ['일반교과', '예체능 교과', '비교과'];
   const [subjects] = useState([
     '국어',
     '도덕',
