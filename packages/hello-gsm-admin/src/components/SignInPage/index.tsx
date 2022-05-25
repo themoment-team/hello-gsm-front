@@ -2,7 +2,7 @@ import React from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import Link from 'next/link';
-import Input from 'components/Input';
+import { Input } from 'components';
 import { useForm } from 'react-hook-form';
 
 interface UserForm {

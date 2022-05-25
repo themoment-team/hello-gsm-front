@@ -1,4 +1,4 @@
-import PassModal from 'components/PassModal';
+import { PassModal } from 'components';
 import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';

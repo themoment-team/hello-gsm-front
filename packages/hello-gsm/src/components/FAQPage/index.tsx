@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
-import Header from '../Common/Header';
 import * as I from '../../Assets/svg';
 import * as S from './style';
-import FAQBox from '../FAQBox';
-import FAQModal from '../FAQModal';
+import { Header, FAQBox, FAQModal } from 'components';
 import useStore from '../../Stores/StoreContainer';
 
 type FAQDataType = {

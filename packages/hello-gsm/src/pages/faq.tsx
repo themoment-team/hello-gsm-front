@@ -1,6 +1,6 @@
 import React from 'react';
 import type { GetStaticProps, NextPage } from 'next';
-import FAQPage from 'components/FAQPage';
+import { FAQPage } from 'components';
 import axios from 'axios';
 
 interface FaqType {
