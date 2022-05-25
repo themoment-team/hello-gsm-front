@@ -150,56 +150,56 @@ const ApplyPage: NextPage = () => {
           </S.BarElement>
           <S.BarElement
             css={css`
-              top: 1280px;
+              top: 1190px;
             `}
           >
             출신 중학교
           </S.BarElement>
           <S.BarElement
             css={css`
-              top: 1335px;
+              top: 1250px;
             `}
           >
             졸업일
           </S.BarElement>
           <S.BarElement
             css={css`
-              top: 1420px;
+              top: 1330px;
             `}
           >
             지원학과
           </S.BarElement>
           <S.BarElement
             css={css`
-              top: 1630px;
+              top: 1540px;
             `}
           >
             이름
           </S.BarElement>
           <S.BarElement
             css={css`
-              top: 1710px;
+              top: 1625px;
             `}
           >
             관계
           </S.BarElement>
           <S.BarElement
             css={css`
-              top: 1800px;
+              top: 1710px;
             `}
           >
             핸드폰 번호
           </S.BarElement>
           <S.BarElement
             css={css`
-              top: 1980px;
+              top: 1900px;
             `}
           >
             이름
           </S.BarElement>
           <S.BarElement
             css={css`
-              top: 2065px;
+              top: 1980px;
             `}
           >
             연락처
