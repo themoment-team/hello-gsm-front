@@ -1,8 +1,8 @@
 export const DevOps = [
   {
     name: '서채운',
-    imageURL: 'https://github.com/ChaeWoonSEO.png',
-    githubURL: 'https://github.com/ChaeWoonSEO',
+    imageURL: 'https://github.com/codnstj.png',
+    githubURL: 'https://github.com/codnstj',
   },
   {
     name: '노가성',

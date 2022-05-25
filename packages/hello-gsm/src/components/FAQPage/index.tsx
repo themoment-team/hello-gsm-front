@@ -23,7 +23,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
 
   const { showFAQModal, isSearching, setIsSearching } = useStore();
 
-  const searching = (e: any) => {
+  const searching = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
     e.target.value === '' ? setIsSearching(false) : setIsSearching(true);
   };
