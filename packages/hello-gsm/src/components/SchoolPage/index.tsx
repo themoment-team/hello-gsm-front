@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
-import Header from '../Common/Header';
 import * as S from './style';
-import Footer from '../Common/Footer';
 import Link from 'next/link';
 import { css } from '@emotion/react';
 import Graph from './Graph';
+import { Header, Footer } from 'components';
 
 interface employType {
   x: string;

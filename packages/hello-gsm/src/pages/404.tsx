@@ -1,6 +1,6 @@
 import React from 'react';
 import type { NextPage } from 'next';
-import NotFoundPage from 'components/NotFoundPage';
+import { NotFoundPage } from 'components';
 
 const NotFound: NextPage = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import type { NextPage } from 'next';
-import Header from '../Common/Header';
+import { Header } from 'components';
 import Link from 'next/link';
 import * as S from './style';
 import { css } from '@emotion/react';

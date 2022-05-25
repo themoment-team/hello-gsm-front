@@ -1,6 +1,6 @@
 import React from 'react';
 import type { NextPage } from 'next';
-import SignUpPage from 'components/SignUpPage';
+import { SignUpPage } from 'components';
 
 const SignUp: NextPage = () => {
   return (

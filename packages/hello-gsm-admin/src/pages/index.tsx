@@ -1,6 +1,6 @@
 import React from 'react';
 import type { GetServerSideProps, NextPage } from 'next';
-import MainPage from 'components/MainPage';
+import { MainPage } from 'components';
 import axios from 'axios';
 
 export interface applicantsType {

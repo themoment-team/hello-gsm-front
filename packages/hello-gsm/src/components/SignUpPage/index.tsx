@@ -1,9 +1,8 @@
 import type { NextPage } from 'next';
 import * as S from './style';
-import Header from '../Common/Header';
 import { FieldErrors, useForm } from 'react-hook-form';
 import Input from '../Input';
-import Select from 'components/Select';
+import { Select, Header } from 'components';
 import { css } from '@emotion/react';
 
 interface UserForm {

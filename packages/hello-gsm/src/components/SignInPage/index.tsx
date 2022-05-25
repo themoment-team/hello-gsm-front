@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import * as S from './style';
-import Header from '../Common/Header';
+import { Header } from 'components';
 import * as I from 'Assets/svg';
 
 const SignInPage: NextPage = () => {
