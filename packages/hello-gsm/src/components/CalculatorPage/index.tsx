@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Header from 'components/Common/Header';
 import * as S from './style';
 import * as I from '../../Assets/svg';
-import { useForm, useFieldArray } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 
 interface ScoreForm {
@@ -16,7 +16,7 @@ interface ScoreForm {
 }
 
 const CalculatorPage: NextPage = () => {
-  const { register, handleSubmit, watch, control } = useForm();
+  const { register, handleSubmit, watch, control } = useForm<ScoreForm>();
 
   const Rounds = (num: number) => {
     return Number(num.toFixed(4));
@@ -32,31 +32,28 @@ const CalculatorPage: NextPage = () => {
       attendance[i] = Number(arr);
     }); // 배열을 number형변환
     const absentSum = absent.reduce((accumulator, curr) => accumulator + curr); // 배열 총합계 저장
-    if (absentSum >= 10) {
-      return 0;
-    }
+    if (absentSum >= 10) return 0;
+
     const attendanceSum = Math.floor(
       attendance.reduce((accumulator, curr) => accumulator + curr) / 3,
     ); // 배열 총합계 저장, 소수점 버림
 
     result = result - 3 * (absentSum + attendanceSum);
-    if (result < 0) {
-      return 0;
-    } // 결과가 음수이면 0 반환
+    if (result < 0) return 0; // 결과가 음수이면 0 반환
     return result;
   };
 
   // 봉사점수 환산
   const Volunteer = (array: Array<number>) => {
     let result = 0;
-    for (let i = 0; i < array.length; i++) {
+    array.map((arr, i) => {
       const score = array[i];
       if (score >= 7) result += 10;
       else if (score >= 6) result += 8;
       else if (score >= 5) result += 6;
       else if (score >= 4) result += 4;
       else result += 2;
-    }
+    });
     return result;
   };
 
@@ -105,7 +102,7 @@ const CalculatorPage: NextPage = () => {
     );
   };
 
-  const Lines = ['일반교과', '체육•예술 교과', '비교과'];
+  const lines = ['일반교과', '체육•예술 교과', '비교과'];
   const [subjects] = useState([
     '국어',
     '도덕',
@@ -117,6 +114,7 @@ const CalculatorPage: NextPage = () => {
     '영어',
   ]);
   const [nonSubjects] = useState(['체육', '미술', '음악']);
+  const [grades] = useState([1, 2, 3]);
 
   return (
     <>
@@ -124,7 +122,7 @@ const CalculatorPage: NextPage = () => {
       <S.Title>성적입력</S.Title>
       <S.CalculatePage>
         <S.LineList>
-          {Lines.map((line, i) => (
+          {lines.map((line, i) => (
             <S.Line key={i}>{line}</S.Line>
           ))}
         </S.LineList>
@@ -144,7 +142,6 @@ const CalculatorPage: NextPage = () => {
               {subjects.map((subject, i) => (
                 <S.Select {...register(`score2_1.${i}`)} key={i}>
                   {/* <option>선택</option> */}
-
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -158,7 +155,6 @@ const CalculatorPage: NextPage = () => {
               {subjects.map((subject, i) => (
                 <S.Select {...register(`score2_2.${i}`)} key={i}>
                   {/* <option>선택</option> */}
-
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -172,7 +168,6 @@ const CalculatorPage: NextPage = () => {
               {subjects.map((subject, i) => (
                 <S.Select {...register(`score3_1.${i}`)} key={i}>
                   {/* <option>선택</option> */}
-
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -268,12 +263,12 @@ const CalculatorPage: NextPage = () => {
               </table>
               <S.AttendanceSection>
                 <S.ValueSection>
-                  {[...Array(3)].map((_, i) => (
-                    <S.AttendanceGrade key={i}>{i}</S.AttendanceGrade>
+                  {grades.map((grade, i) => (
+                    <S.AttendanceGrade key={i}>{grade}</S.AttendanceGrade>
                   ))}
                 </S.ValueSection>
                 <S.ValueSection>
-                  {[...Array(3)].map((_, i) => (
+                  {grades.map((_, i) => (
                     <S.AttendanceInput
                       key={i}
                       {...register(`absentScore.${i}`)}
@@ -281,7 +276,7 @@ const CalculatorPage: NextPage = () => {
                   ))}
                 </S.ValueSection>
                 <S.ValueSection>
-                  {[...Array(3)].map((_, i) => (
+                  {grades.map((_, i) => (
                     <S.AttendanceInput
                       key={i}
                       {...register(`attendanceScore.${i}`)}
@@ -289,7 +284,7 @@ const CalculatorPage: NextPage = () => {
                   ))}
                 </S.ValueSection>
                 <S.ValueSection>
-                  {[...Array(3)].map((_, i) => (
+                  {grades.map((_, i) => (
                     <S.AttendanceInput
                       key={i}
                       {...register(`attendanceScore.${3 + i}`)}
@@ -297,7 +292,7 @@ const CalculatorPage: NextPage = () => {
                   ))}
                 </S.ValueSection>
                 <S.ValueSection>
-                  {[...Array(3)].map((_, i) => (
+                  {grades.map((_, i) => (
                     <S.AttendanceInput
                       key={i}
                       {...register(`attendanceScore.${6 + i}`)}
@@ -305,7 +300,7 @@ const CalculatorPage: NextPage = () => {
                   ))}
                 </S.ValueSection>
                 <S.ValueSection>
-                  {[...Array(3)].map((_, i) => (
+                  {grades.map((_, i) => (
                     <S.AttendanceInput
                       key={i}
                       {...register(`volunteerScore.${i}`)}
