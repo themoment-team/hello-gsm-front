@@ -19,7 +19,6 @@ const ApplyPage: NextPage = () => {
   const [birth, setBirth] = useState<number>(20050228);
   const [type, setType] = useState<number>(1);
   const [isSociety, setIsSociety] = useState<boolean>(true);
-  const [societyType, setSocietyType] = useState<number>(1);
   const [isGED, setIsGED] = useState<boolean>(false);
   const [GraduatedType, setGraduatedType] = useState<number>(1);
 
@@ -148,13 +147,6 @@ const ApplyPage: NextPage = () => {
             `}
           >
             전형
-          </S.BarElement>
-          <S.BarElement
-            css={css`
-              top: 1190px;
-            `}
-          >
-            사회통합전형의 대상
           </S.BarElement>
           <S.BarElement
             css={css`
@@ -299,20 +291,6 @@ const ApplyPage: NextPage = () => {
               특별전형
             </S.Type>
           </S.TypeBox>
-          <S.SocietyBox>
-            <S.Society
-              css={societySelectStyle(1)}
-              onClick={() => isSociety && setSocietyType(1)}
-            >
-              기회균등전형
-            </S.Society>
-            <S.Society
-              css={societySelectStyle(2)}
-              onClick={() => isSociety && setSocietyType(2)}
-            >
-              사회다양성전형
-            </S.Society>
-          </S.SocietyBox>
           <S.SchoolBox>
             <S.SchoolName>{schoolName}</S.SchoolName>
             <S.SchoolSearchButton
