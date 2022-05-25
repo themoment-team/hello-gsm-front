@@ -45,14 +45,17 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
     <S.MainPage>
       {showPassModal && <PassModal />}
       <S.MainPageContent>
-        <S.Searchbox>
-          <S.SearchInput
-            placeholder="검색어를 입력하세요"
-            ref={searchRef}
-            onKeyPress={enterEvent}
-          />
-          <S.SearchButton onClick={search}>검색</S.SearchButton>
-        </S.Searchbox>
+        <S.FunctionBox>
+          <S.Logout>로그아웃</S.Logout>
+          <S.Searchbox>
+            <S.SearchInput
+              placeholder="검색어를 입력하세요"
+              ref={searchRef}
+              onKeyPress={enterEvent}
+            />
+            <S.SearchButton onClick={search}>검색</S.SearchButton>
+          </S.Searchbox>
+        </S.FunctionBox>
         <S.Header>
           <S.HeaderElement>지원자 번호</S.HeaderElement>
           <S.HeaderElement>성명</S.HeaderElement>
