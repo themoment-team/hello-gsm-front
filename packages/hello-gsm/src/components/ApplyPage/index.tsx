@@ -465,56 +465,56 @@ const ApplyPage: NextPage = () => {
           </S.Error>
           <S.Error
             css={css`
-              top: 1385px;
+              top: 1280px;
             `}
           >
             * 출신 중학교를 입력해주세요.
           </S.Error>
           <S.Error
             css={css`
-              top: 1440px;
+              top: 1340px;
             `}
           >
             * 졸업일을 선택해주세요.
           </S.Error>
           <S.Error
             css={css`
-              top: 1530px;
+              top: 1420px;
             `}
           >
             * 지원학과를 선택해주세요.
           </S.Error>
           <S.Error
             css={css`
-              top: 1740px;
+              top: 1630px;
             `}
           >
             * 성명을 입력해주세요.
           </S.Error>
           <S.Error
             css={css`
-              top: 1830px;
+              top: 1720px;
             `}
           >
             * 관계를 입력해주세요.
           </S.Error>
           <S.Error
             css={css`
-              top: 1915px;
+              top: 1810px;
             `}
           >
             * 핸드폰번호를 입력해주세요.
           </S.Error>
           <S.Error
             css={css`
-              top: 2100px;
+              top: 1990px;
             `}
           >
             * 성명을 입력해주세요.
           </S.Error>
           <S.Error
             css={css`
-              top: 2190px;
+              top: 2080px;
             `}
           >
             * 연락처를 입력해주세요.
