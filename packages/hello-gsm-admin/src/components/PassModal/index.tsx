@@ -4,11 +4,13 @@ import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 
 const PassModal: React.FC = () => {
-  const [name, setName] = useState<string>('김형록');
-  const [registrationNumber, setRegistrationNumber] = useState<number>(1001);
-  const [firstPeriod, setFirstPeriod] = useState<boolean>(true);
-
-  const { showPassModal, setShowPassModal } = useStore();
+  const {
+    showPassModal,
+    setShowPassModal,
+    passModalRegistrationNumber,
+    passModalName,
+    passModalPeriod,
+  } = useStore();
 
   const removeClick = useCallback((e: MouseEvent<HTMLDivElement>): void => {
     e.stopPropagation();
@@ -27,10 +29,10 @@ const PassModal: React.FC = () => {
         <S.PassModalContent>
           <S.DescriptionBox>
             <S.RegistrationNumber>
-              접수번호 {registrationNumber}
+              접수번호 {passModalRegistrationNumber}
             </S.RegistrationNumber>
             <S.Description>
-              {name}님의 {firstPeriod ? 1 : 2}차 합격 여부를 선택해주세요.
+              {passModalName}님의 {passModalPeriod}차 합격 여부를 선택해주세요.
             </S.Description>
           </S.DescriptionBox>
           <S.ButtonWrap>
