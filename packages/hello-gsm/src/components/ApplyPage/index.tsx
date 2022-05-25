@@ -2,13 +2,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import * as I from '../../Assets/svg';
-import Header from 'components/Common/Header';
 import { css } from '@emotion/react';
 import axios from 'axios';
-import DepartmentModal from 'components/DepartmentModal';
 import useStore from 'Stores/StoreContainer';
-import FindSchoolModal from 'components/FindSchoolModal';
-import FindAddressModal from 'components/FindAddressModal';
+import {
+  Header,
+  DepartmentModal,
+  FindAddressModal,
+  FindSchoolModal,
+} from 'components';
 import { useForm } from 'react-hook-form';
 
 const ApplyPage: NextPage = () => {
