@@ -18,7 +18,6 @@ const ApplyPage: NextPage = () => {
   const [gender, setGender] = useState<string>('M');
   const [birth, setBirth] = useState<number>(20050228);
   const [type, setType] = useState<number>(1);
-  const [isSociety, setIsSociety] = useState<boolean>(true);
   const [isGED, setIsGED] = useState<boolean>(false);
   const [GraduatedType, setGraduatedType] = useState<number>(1);
 
@@ -51,17 +50,6 @@ const ApplyPage: NextPage = () => {
       reader.readAsDataURL(event.target.files[0]);
     }
   };
-
-  useEffect(() => {
-    type === 2 ? setIsSociety(true) : setIsSociety(false);
-  }, [imgURL, type]);
-
-  const societySelectStyle = (index: number) => css`
-    ${isSociety && 'background: #484453; cursor: pointer;'}
-    ${isSociety &&
-    societyType === index &&
-    'background: #42bafe; color: color: #f8f8f8;'}
-  `;
 
   const GraduatedTypeSelectStyle = (index: number) => css`
     ${GraduatedType === index && 'background: #42bafe; color: #f8f8f8;'}
