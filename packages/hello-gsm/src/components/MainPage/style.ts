@@ -95,10 +95,7 @@ export const ContentBox = styled.div`
   backdrop-filter: blur(48px);
   margin: 0 auto;
   border-radius: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  position: relative;
 `;
 
 export const ContentHeader = styled.div`
@@ -107,8 +104,8 @@ export const ContentHeader = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  position: fixed;
-  top: 0;
+  position: relative;
+  z-index: 1;
 `;
 
 export const ContentSelect = styled.p`

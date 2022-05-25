@@ -42,23 +42,49 @@ export const LinkText = styled.a`
 `;
 
 export const Section2 = styled.div`
-  height: 600px;
+  height: 750px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
+export const Section2Title = styled.p`
+  font-weight: 700;
+  font-size: 24px;
+  color: #ffffff;
+  padding-bottom: 60px;
+`;
+
 export const EnterpriseWrap = styled.div`
   width: 1150px;
+  height: 210px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const EnterpriseLine = styled.div`
+  width: 100%;
+  height: 50px;
   display: flex;
   justify-content: space-between;
 `;
 
 export const Enterprise = styled.div`
   width: 170px;
-  height: 50px;
+  height: 100%;
   border-radius: 17px;
   background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const EnterpriseImg = styled.div`
+  width: 140px;
+  height: 30px;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;

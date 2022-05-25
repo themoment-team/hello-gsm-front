@@ -176,9 +176,9 @@ const AboutPage: NextPage = () => {
                 <span className="BackEnd">BackEnd</span> Chapter
               </S.TeamTitle>
               <S.TeamSubTitle>
-                더모먼트팀의 서비스를 구상하기 위한 서버 <br />
-                애플리케이션을 개발하고, 깊은 CS 지식을 통해 <br />
-                안정적인 서비스를 만들어 나아갑니다.
+                더모먼트팀의 다양한 백엔드 애플리케이션을 개발하고 <br />
+                CS 적인 사고를 통해 데이터를 안정적이고 <br />
+                유연하게 서빙 하는 것을 목표로 합니다.
               </S.TeamSubTitle>
               <hr />
               <S.ProfileSection>

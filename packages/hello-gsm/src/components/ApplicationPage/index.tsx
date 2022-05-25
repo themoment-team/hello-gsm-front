@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import { css } from '@emotion/react';
-import { ProfileType } from '../type/profile';
+import { ProfileType } from 'type/profile';
 
 const profile: ProfileType = {
   user: {
