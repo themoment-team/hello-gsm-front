@@ -212,37 +212,17 @@ const ApplyPage: NextPage = () => {
                 <option disabled selected>
                   연도
                 </option>
-                <option>2010</option>
-                <option>2011</option>
-                <option>2012</option>
-                <option>2013</option>
-                <option>2014</option>
-                <option>2015</option>
-                <option>2016</option>
-                <option>2017</option>
-                <option>2018</option>
-                <option>2019</option>
-                <option>2020</option>
-                <option>2021</option>
-                <option>2022</option>
-                <option>2023</option>
+                {[...Array(14)].map((_, index: number) => (
+                  <option key={index}>20{index + 10}</option>
+                ))}
               </S.GraduatedYear>
               <S.GraduateMonth>
                 <option disabled selected>
                   월
                 </option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
+                {[...Array(12)].map((_, index: number) => (
+                  <option key={index}>{index + 1}</option>
+                ))}
               </S.GraduateMonth>
             </S.GraduatedDateBox>
             <S.GraduatedSelectBox>
