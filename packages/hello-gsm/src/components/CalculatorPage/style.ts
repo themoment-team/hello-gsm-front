@@ -32,7 +32,7 @@ export const Line = styled.div`
     background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/White_Circle.svg/2048px-White_Circle.svg.png);
     position: relative;
     background-size: 10px 10px;
-    left: 150px;
+    left: 125px;
     top: -20px;
     width: 10px;
     height: 10px;
