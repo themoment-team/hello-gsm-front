@@ -51,13 +51,14 @@ export const Line = styled.div`
 `;
 
 export const CalculateSection = styled.form`
-  width: 780px;
+  width: 800px;
 `;
 
 export const Section = styled.div`
   display: flex;
   height: 500px;
   margin: 70px 0 200px;
+  padding: 10px;
   justify-content: space-between;
   table {
     border-collapse: separate;
@@ -108,41 +109,52 @@ export const Select = styled.select`
   border: none;
 `;
 
-export const SemesterSection = styled.div`
+export const ValueSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 `;
 
 export const Grade = styled.td`
-  width: 128px;
+  width: 124px;
   height: 37px;
   background: #19baff;
   border-radius: 6px;
   color: #f8f8f8;
   text-align: center;
   vertical-align: middle;
-  height: 10px;
 `;
 
-export const Attendance = styled.td`
-  width: 128px;
-  height: 37px;
+export const AttendanceSection = styled.div`
+  height: 135px;
+  display: flex;
+  margin: 5px;
+  justify-content: space-between;
+`;
+
+export const Attendance = styled(Grade)`
   background: #0c4680;
-  border-radius: 6px;
-  color: #f8f8f8;
-  text-align: center;
-  vertical-align: middle;
 `;
 
 export const AttendanceInput = styled.input`
-  width: 128px;
+  width: 124px;
   height: 37px;
   color: #ffffff;
   background: #484453;
   border-radius: 6px;
   border: none;
   padding: 0 10px;
+  text-align: center;
+`;
+
+export const AttendanceGrade = styled.div`
+  width: 124px;
+  height: 37px;
+  background: #19baff;
+  border-radius: 6px;
+  color: #f8f8f8;
+  text-align: center;
+  line-height: 37px;
 `;
 
 export const Submit = styled.button`
