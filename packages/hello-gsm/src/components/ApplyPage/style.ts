@@ -436,47 +436,48 @@ export const NextButton = styled.button`
 
 export const ErrorBox = styled.div`
   width: 240px;
+  position: relative;
 `;
 
 export const Error = styled.p`
   color: #ff4e4e;
   font-weight: 400;
   font-size: 18px;
-  position: relative;
+  position: absolute;
   :nth-of-type(1) {
     top: 100px;
   }
   :nth-of-type(2) {
-    top: 730px;
+    top: 745px;
   }
   :nth-of-type(3) {
-    top: 930px;
+    top: 960px;
   }
   :nth-of-type(4) {
-    top: 990px;
+    top: 1250px;
   }
   :nth-of-type(5) {
-    top: 1280px;
+    top: 1350px;
   }
   :nth-of-type(6) {
-    top: 1340px;
+    top: 1430px;
   }
   :nth-of-type(7) {
-    top: 1420px;
+    top: 1530px;
   }
   :nth-of-type(8) {
-    top: 1630px;
+    top: 1760px;
   }
   :nth-of-type(9) {
-    top: 1720px;
+    top: 1870px;
   }
   :nth-of-type(10) {
-    top: 1810px;
+    top: 1970px;
   }
   :nth-of-type(11) {
-    top: 1990px;
+    top: 2170px;
   }
   :nth-of-type(12) {
-    top: 2080px;
+    top: 2280px;
   }
 `;
