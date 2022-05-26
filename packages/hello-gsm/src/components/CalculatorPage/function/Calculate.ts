@@ -1,11 +1,9 @@
 import Rounds from './Rounds';
+import ToNum from './ToNum';
 
 // 성적 계산
 const Calculate = (array: Array<number>, grade: number) => {
-  array.map((arr, i) => {
-    array[i] = Number(arr);
-  }); // 배열을 number형변환
-
+  ToNum(array);
   const sum = array.reduce((accumulator, curr) => accumulator + curr); // 배열 총합계 저장
   let result = 0; // 결과
   switch (grade) {

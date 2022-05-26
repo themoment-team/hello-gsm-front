@@ -1,9 +1,9 @@
+import ToNum from './ToNum';
+
 // 봉사점수 환산
 const Volunteer = (array: Array<number>) => {
   let result = 0;
-  array.map((arr, i) => {
-    array[i] = Number(arr);
-  }); // 배열을 number형변환
+  ToNum(array);
   array.map((arr, i) => {
     const score = array[i];
     if (score >= 7) result += 10;
