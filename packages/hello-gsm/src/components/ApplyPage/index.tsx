@@ -13,16 +13,32 @@ import {
 } from 'components';
 import { useForm } from 'react-hook-form';
 
+interface ApplyFormType {
+  IDPhotoUrl: string;
+  addressDetails: string;
+  telephoneNumber: string;
+  graduationYear: string;
+  graduationMonth: string;
+  guardianName: string;
+  guardianRelation: string;
+  guardianCellphoneNumber: string;
+  teacherName: string;
+  teacherCellphoneNumber: string;
+}
+
 const ApplyPage: NextPage = () => {
   const imgInput = useRef<HTMLInputElement>(null);
-
   const [imgURL, setImgURL] = useState<string>('');
   const [name, setName] = useState<string>('김형록');
   const [gender, setGender] = useState<string>('M');
   const [birth, setBirth] = useState<number>(20050228);
+  const [cellphoneNumber, setCellphoneNumber] = useState<string>('01012341234');
   const [type, setType] = useState<number>(1);
   const [isGED, setIsGED] = useState<boolean>(false);
-  const [GraduatedType, setGraduatedType] = useState<number>(1);
+  const [graduatedType, setGraduatedType] = useState<number>(1);
+  const [isMajorSelected, setIsMajorSelected] = useState<boolean>(true);
+  const [isAddressExist, setIsAddressExist] = useState<boolean>(true);
+  const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(true);
 
   const {
     showDepartmentModal,
@@ -40,6 +56,12 @@ const ApplyPage: NextPage = () => {
     address,
   } = useStore();
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ApplyFormType>();
+
   const readImg = (event: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
 
@@ -54,8 +76,8 @@ const ApplyPage: NextPage = () => {
     }
   };
 
-  const GraduatedTypeSelectStyle = (index: number) => css`
-    ${GraduatedType === index && 'background: #42bafe; color: #f8f8f8;'}
+  const graduatedTypeSelectStyle = (index: number) => css`
+    ${graduatedType === index && 'background: #42bafe; color: #f8f8f8;'}
   `;
 
   const SelectedDepartment = (type: number) => {
@@ -71,10 +93,16 @@ const ApplyPage: NextPage = () => {
     }
   };
 
-  const { register, handleSubmit } = useForm();
-
   const onSubmit = data => {
     console.log(data);
+  };
+
+  const onClick = () => {
+    choice1 && choice2 && choice3
+      ? setIsMajorSelected(true)
+      : setIsMajorSelected(false);
+    address ? setIsAddressExist(true) : setIsAddressExist(false);
+    schoolName ? setIsSchoolNameExist(true) : setIsSchoolNameExist(false);
   };
 
   return (
@@ -148,16 +176,37 @@ const ApplyPage: NextPage = () => {
               </S.FindAddressButton>
             </S.FindAddressBox>
             <S.AddressDescription>상세주소</S.AddressDescription>
-            <S.DetailAddress placeholder="상세주소" />
+            <S.DetailAddress
+              placeholder="상세주소"
+              type="text"
+              {...register('addressDetails', {
+                required: false,
+                maxLength: {
+                  value: 50,
+                  message: '* 상세주소는 50글자 이하입니다.',
+                },
+              })}
+            />
           </S.AddressBox>
           <S.HomeTelephone
-            {...register('homeTelephone')}
+            {...register('telephoneNumber', {
+              required: false,
+              pattern: {
+                value: /^[0-9]+$/,
+                message: '* 숫자만 입력 가능합니다',
+              },
+              maxLength: {
+                value: 10,
+                message: '* 집 전화번호를 확인해주세요',
+              },
+              minLength: {
+                value: 10,
+                message: '* 집 전화번호를 확인해주세요',
+              },
+            })}
             placeholder="집 전화번호를 입력해주세요."
           />
-          <S.Cellphone
-            {...register('cellphone')}
-            placeholder="핸드폰 번호를 입력해주세요."
-          />
+          <S.Cellphone>{cellphoneNumber}</S.Cellphone>
           <S.Title
             css={css`
               margin-top: 80px;
@@ -207,26 +256,48 @@ const ApplyPage: NextPage = () => {
           </S.SchoolBox>
           <S.GraduatedBox>
             <S.GraduatedDateBox>
-              <S.GraduatedYear>
-                <option disabled selected>
+              <S.GraduatedYear
+                defaultValue={'default'}
+                {...register('graduationYear', {
+                  required: true,
+                  pattern: {
+                    value: /^[0-9]+$/,
+                    message: '* 졸업일을 선택해주세요',
+                  },
+                })}
+              >
+                <option disabled value="default">
                   연도
                 </option>
                 {[...Array(14)].map((_, index: number) => (
-                  <option key={index}>20{index + 10}</option>
+                  <option key={index} value={'20' + (index + 10)}>
+                    20{index + 10}
+                  </option>
                 ))}
               </S.GraduatedYear>
-              <S.GraduateMonth>
-                <option disabled selected>
+              <S.GraduateMonth
+                defaultValue={'default'}
+                {...register('graduationMonth', {
+                  required: true,
+                  pattern: {
+                    value: /^[0-9]+$/,
+                    message: '* 졸업일을 선택해주세요',
+                  },
+                })}
+              >
+                <option disabled value="default">
                   월
                 </option>
                 {[...Array(12)].map((_, index: number) => (
-                  <option key={index}>{index + 1}</option>
+                  <option key={index} value={index + 1}>
+                    {index + 1}
+                  </option>
                 ))}
               </S.GraduateMonth>
             </S.GraduatedDateBox>
             <S.GraduatedSelectBox>
               <S.GraduatedType
-                css={GraduatedTypeSelectStyle(1)}
+                css={graduatedTypeSelectStyle(1)}
                 onClick={() => {
                   setGraduatedType(1);
                   setIsGED(false);
@@ -235,7 +306,7 @@ const ApplyPage: NextPage = () => {
                 졸업예정
               </S.GraduatedType>
               <S.GraduatedType
-                css={GraduatedTypeSelectStyle(2)}
+                css={graduatedTypeSelectStyle(2)}
                 onClick={() => {
                   setGraduatedType(2);
                   setIsGED(false);
@@ -244,7 +315,7 @@ const ApplyPage: NextPage = () => {
                 졸업
               </S.GraduatedType>
               <S.GraduatedType
-                css={GraduatedTypeSelectStyle(3)}
+                css={graduatedTypeSelectStyle(3)}
                 onClick={() => {
                   setGraduatedType(3);
                   setIsGED(true);
@@ -303,9 +374,52 @@ const ApplyPage: NextPage = () => {
           >
             보호자
           </S.Title>
-          <S.GuardianName placeholder="보호자분의 성명을 입력해주세요." />
-          <S.GuardianRelation placeholder="지원자분과의 관계를 입력해주세요." />
-          <S.GuardianCellphone placeholder="보호자분의 핸드폰 번호를 입력해주세요." />
+          <S.GuardianName
+            {...register('guardianName', {
+              required: '* 성명을 입력해주세요',
+              pattern: {
+                value: /^[가-힣]+$/,
+                message: '* 성명을 확인해주세요',
+              },
+              maxLength: {
+                value: 20,
+                message: '* 성명을 확인해주세요',
+              },
+            })}
+            placeholder="보호자분의 성명을 입력해주세요."
+          />
+          <S.GuardianRelation
+            {...register('guardianRelation', {
+              required: '* 관계를 입력해주세요',
+              pattern: {
+                value: /^[가-힣]+$/,
+                message: '* 관계를 확인해주세요',
+              },
+              maxLength: {
+                value: 20,
+                message: '* 관계를 확인해주세요',
+              },
+            })}
+            placeholder="지원자분과의 관계를 입력해주세요."
+          />
+          <S.GuardianCellphone
+            {...register('guardianCellphoneNumber', {
+              required: '* 핸드폰 번호를 입력해주세요',
+              pattern: {
+                value: /^[0-9]+$/,
+                message: '* 숫자만 입력 가능합니다',
+              },
+              maxLength: {
+                value: 11,
+                message: '* 핸드폰 번호를 확인해주세요',
+              },
+              minLength: {
+                value: 11,
+                message: '* 핸드폰 번호를 확인해주세요',
+              },
+            })}
+            placeholder="보호자분의 핸드폰 번호를 입력해주세요."
+          />
           <S.Title
             css={css`
               margin-top: 75px;
@@ -313,23 +427,49 @@ const ApplyPage: NextPage = () => {
           >
             담임 선생님
           </S.Title>
-          <S.TeacherName placeholder="담임선생님의 성명을 입력해주세요." />
-          <S.TeacherPhone placeholder="담임선생님의 연락처를 입력해주세요." />
-          <S.NextButton type="submit">다음</S.NextButton>
+          <S.TeacherName
+            {...register('teacherName', {
+              required: '* 성함을 입력해주세요',
+              maxLength: {
+                value: 20,
+                message: '* 성함을 확인해주세요',
+              },
+            })}
+            placeholder="담임선생님의 성명을 입력해주세요."
+          />
+          <S.TeacherPhone
+            {...register('teacherCellphoneNumber', {
+              required: '* 연락처를 입력해주세요',
+              maxLength: {
+                value: 11,
+                message: '* 연락처를 확인해주세요',
+              },
+            })}
+            placeholder="담임선생님의 연락처를 입력해주세요."
+          />
+          <S.NextButton onClick={onClick} type="submit">
+            다음
+          </S.NextButton>
         </S.ApplyPageContent>
         <S.ErrorBox>
-          <S.Error>* 증명사진을 업로드해주세요.</S.Error>
-          <S.Error>* 주소지를 입력해주세요.</S.Error>
-          <S.Error>* 집 전화번호를 입력해주세요.</S.Error>
-          <S.Error>* 핸드폰 번호를 입력해주세요.</S.Error>
-          <S.Error>* 출신 중학교를 입력해주세요.</S.Error>
-          <S.Error>* 졸업일을 선택해주세요.</S.Error>
-          <S.Error>* 지원학과를 선택해주세요.</S.Error>
-          <S.Error>* 성명을 입력해주세요.</S.Error>
-          <S.Error>* 관계를 입력해주세요.</S.Error>
-          <S.Error>* 핸드폰번호를 입력해주세요.</S.Error>
-          <S.Error>* 성명을 입력해주세요.</S.Error>
-          <S.Error>* 연락처를 입력해주세요.</S.Error>
+          <S.Error>{errors.IDPhotoUrl?.message}</S.Error>
+          <S.Error>{!isAddressExist && '* 주소지를 입력해주세요.'}</S.Error>
+          <S.Error>{errors.addressDetails?.message}</S.Error>
+          <S.Error>{errors.telephoneNumber?.message}</S.Error>
+          <S.Error>
+            {!isSchoolNameExist && '* 출신 중학교를 입력해주세요.'}
+          </S.Error>
+          <S.Error>
+            {errors.graduationYear?.message
+              ? errors.graduationYear.message
+              : errors.graduationMonth?.message}
+          </S.Error>
+          <S.Error>{!isMajorSelected && '* 지원학과를 선택해주세요'}</S.Error>
+          <S.Error>{errors.guardianName?.message}</S.Error>
+          <S.Error>{errors.guardianRelation?.message}</S.Error>
+          <S.Error>{errors.guardianCellphoneNumber?.message}</S.Error>
+          <S.Error>{errors.teacherName?.message}</S.Error>
+          <S.Error>{errors.teacherCellphoneNumber?.message}</S.Error>
         </S.ErrorBox>
       </S.ApplyPage>
     </>
