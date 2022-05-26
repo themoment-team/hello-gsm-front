@@ -8,11 +8,16 @@ import axios from 'axios';
 interface schoolType {
   SCHUL_NM: string;
   ORG_RDNMA: string;
+  LCTN_SC_NM: string;
 }
 
 const FindSchoolModal: React.FC = () => {
-  const { showFindSchoolModal, setShowFindSchoolModal, setSchoolName } =
-    useStore();
+  const {
+    showFindSchoolModal,
+    setShowFindSchoolModal,
+    setSchoolName,
+    setSchoolLocation,
+  } = useStore();
 
   const [keyword, setKeyword] = useState<string>('');
   const [schools, setSchools] = useState<schoolType[]>([]);
@@ -53,6 +58,7 @@ const FindSchoolModal: React.FC = () => {
 
   const selectSchool = (index: number) => {
     setSchoolName(schools[index].SCHUL_NM);
+    setSchoolLocation(schools[index].LCTN_SC_NM);
     setShowFindSchoolModal();
   };
 
