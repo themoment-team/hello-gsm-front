@@ -51,6 +51,8 @@ const ApplyPage: NextPage = () => {
     setShowFindSchoolModal,
     schoolName,
     setSchoolName,
+    schoolLocation,
+    setSchoolLocation,
     showFindAddressModal,
     setShowFindAddressModal,
     address,
@@ -320,6 +322,8 @@ const ApplyPage: NextPage = () => {
                   setGraduatedType(3);
                   setIsGED(true);
                   setSchoolName('');
+                  setSchoolLocation('');
+                  t;
                 }}
               >
                 검정고시
