@@ -17,7 +17,11 @@ interface ScoreForm {
 }
 
 const CalculatorPage: NextPage = () => {
-  const { register, handleSubmit } = useForm<ScoreForm>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ScoreForm>();
 
   const onValid = (validForm: ScoreForm) => {
     const score2_1: number = Calculate(validForm.score2_1, 2); // 2학년 1학기
@@ -28,21 +32,34 @@ const CalculatorPage: NextPage = () => {
       score2_1 + score2_2 + score3_1,
     ); // 교과성적 소계
     const artSportsScore: number = Calculate(validForm.artSportsScore, 4); // 예체능
+    const curriculumScoreSubtotal: number = Rounds(
+      generalCurriculumScoreSubtotal + artSportsScore,
+    ); // 교과성적 + 예체능
+
     const attendanceScore: number = Attendance(
       validForm.absentScore,
       validForm.attendanceScore,
     ); // 출석점수
 
     const volunteerScore: number = Volunteer(validForm.volunteerScore); // 봉사점수
-    const curriculumScoreSubtotal: number = Rounds(
-      generalCurriculumScoreSubtotal + artSportsScore,
-    );
     const nonCurriculumScoreSubtotal: number = Rounds(
       attendanceScore + volunteerScore,
     ); //비교과 성적 소계
     const scoreTotal: number = Rounds(
       curriculumScoreSubtotal + nonCurriculumScoreSubtotal,
     ); // 총합
+    console.log(
+      `2학년 1학기 : ${score2_1}\n2학년 2학기 : ${score2_2}\n3학기 1학기 : ${score3_1}\n교과성적 소계 : ${generalCurriculumScoreSubtotal}\n`,
+    );
+    console.log(`예체능 점수 : ${artSportsScore}\n`);
+    console.log(`교과성적 + 예체능 점수 : ${curriculumScoreSubtotal}\n`);
+    console.log(
+      `출석 점수 : ${attendanceScore}\n봉사 점수 : ${volunteerScore}\n비교과 성적 소계 : ${nonCurriculumScoreSubtotal}\n`,
+    );
+    console.log(`총합 : ${scoreTotal}`);
+  };
+  const inValid = errors => {
+    console.log(errors);
   };
 
   const lines = ['일반교과', '예체능 교과', '비교과'];
@@ -69,7 +86,7 @@ const CalculatorPage: NextPage = () => {
             <S.Line key={line}>{line}</S.Line>
           ))}
         </S.LineList>
-        <S.CalculateSection onSubmit={handleSubmit(onValid)}>
+        <S.CalculateSection onSubmit={handleSubmit(onValid, inValid)}>
           <S.Section>
             <S.ValueSection>
               <div>
@@ -83,7 +100,7 @@ const CalculatorPage: NextPage = () => {
               <S.Semester>2학년 1학기</S.Semester>
               {subjects.map((subject, i: number) => (
                 <S.Select key={subject} {...register(`score2_1.${i}`)}>
-                  <option>선택</option>
+                  {/* <option>선택</option> */}
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -96,7 +113,7 @@ const CalculatorPage: NextPage = () => {
               <S.Semester>2학년 2학기</S.Semester>
               {subjects.map((subject, i: number) => (
                 <S.Select key={subject} {...register(`score2_2.${i}`)}>
-                  <option>선택</option>
+                  {/* <option>선택</option> */}
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -109,7 +126,7 @@ const CalculatorPage: NextPage = () => {
               <S.Semester>3학년 1학기</S.Semester>
               {subjects.map((subject, i: number) => (
                 <S.Select key={subject} {...register(`score3_1.${i}`)}>
-                  <option>선택</option>
+                  {/* <option>선택</option> */}
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -133,7 +150,7 @@ const CalculatorPage: NextPage = () => {
               <S.Semester>1학년 1학기</S.Semester>
               {nonSubjects.map((subject, i: number) => (
                 <S.Select key={subject} {...register(`artSportsScore.${i}`)}>
-                  <option>선택</option>
+                  {/* <option>선택</option> */}
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -147,7 +164,7 @@ const CalculatorPage: NextPage = () => {
                   key={subject}
                   {...register(`artSportsScore.${3 + i}`)}
                 >
-                  <option>선택</option>
+                  {/* <option>선택</option> */}
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -161,7 +178,7 @@ const CalculatorPage: NextPage = () => {
                   key={subject}
                   {...register(`artSportsScore.${6 + i}`)}
                 >
-                  <option>선택</option>
+                  {/* <option>선택</option> */}
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -175,7 +192,7 @@ const CalculatorPage: NextPage = () => {
                   key={subject}
                   {...register(`artSportsScore.${9 + i}`)}
                 >
-                  <option>선택</option>
+                  {/* <option>선택</option> */}
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -189,7 +206,7 @@ const CalculatorPage: NextPage = () => {
                   key={subject}
                   {...register(`artSportsScore.${12 + i}`)}
                 >
-                  <option>선택</option>
+                  {/* <option>선택</option> */}
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
