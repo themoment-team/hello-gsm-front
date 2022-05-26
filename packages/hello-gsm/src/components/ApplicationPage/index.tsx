@@ -56,7 +56,7 @@ const profile: ProfileType = {
 const ApplicationPage: NextPage = () => {
   const { user, application, applicationDetails } = profile;
   useEffect(() => {
-    window.print();
+    // window.print();
   }, []);
   return (
     <>
@@ -72,7 +72,7 @@ const ApplicationPage: NextPage = () => {
       >
         <S.Document>
           <div className="warterMark">견본</div>
-          <S.Template>[서식 1]</S.Template>
+          <p>[서식 1]</p>
           <S.Title>광주소프트웨어마이스터고등학교 입학원서</S.Title>
           <S.Wrap>
             <S.SubTitle>2023학년도 신입생 입학전형</S.SubTitle>
@@ -259,6 +259,271 @@ const ApplicationPage: NextPage = () => {
           <S.Materials>
             2차 전형 응시 준비물 : 신분증[학생증], 필기구 등
           </S.Materials>
+        </S.Document>
+      </S.ApplicationPage>
+      <S.ApplicationPage
+        css={css`
+          @media print {
+            -webkit-print-color-adjust: exact;
+            .warterMark {
+              display: none;
+            }
+          }
+        `}
+      >
+        <S.Document>
+          <div className="warterMark">견본</div>
+          <p>[서식 3]</p>
+          <S.Title style={{ fontSize: '2vh' }}>
+            2023학년도 광주소프트웨어마이스터고등학교 입학 전형성적 입력 확인서
+          </S.Title>
+          <S.Wrap>
+            <S.SubTitle>일반교과</S.SubTitle>
+            <S.Box>
+              <S.ApplyNum>접수번호</S.ApplyNum>
+              <S.Content>{application.registrationNumber}</S.Content>
+            </S.Box>
+          </S.Wrap>
+          <S.Table>
+            <tbody>
+              <tr>
+                <td className="backslash" rowSpan={2}>
+                  <div style={{ textAlign: 'right' }}>학년</div>
+                  <div style={{ textAlign: 'left' }}>과목</div>
+                </td>
+                <td>1학년 1학기</td>
+                <td>1학년 2학기</td>
+                <td>2학년 1학기</td>
+                <td>2학년 2학기</td>
+                <td>3학년 1학기</td>
+              </tr>
+              <tr>
+                <td>성취도/평어</td>
+                <td>성취도/평어</td>
+                <td>성취도/평어</td>
+                <td>성취도/평어</td>
+                <td>성취도/평어</td>
+              </tr>
+              <tr>
+                <td>국어</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>도덕</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>사회</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>역사</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>수학</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>과학</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>기술과정</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>영어</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>''</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>''</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>환산점</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </S.Table>
+          <S.SubTitle>체육예술교과</S.SubTitle>
+          <S.Table>
+            <tbody>
+              <tr>
+                <td className="backslash" rowSpan={2}>
+                  <div style={{ textAlign: 'right' }}>학년</div>
+                  <div style={{ textAlign: 'left' }}>과목</div>
+                </td>
+                <td>1학년 1학기</td>
+                <td>1학년 2학기</td>
+                <td>2학년 1학기</td>
+                <td>2학년 2학기</td>
+                <td>3학년 1학기</td>
+              </tr>
+              <tr>
+                <td>성취도/평어</td>
+                <td>성취도/평어</td>
+                <td>성취도/평어</td>
+                <td>성취도/평어</td>
+                <td>성취도/평어</td>
+              </tr>
+              <tr>
+                <td>체육</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>미술</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>음악</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>환산점</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </S.Table>
+          <S.SubTitle>비교과</S.SubTitle>
+          <S.Table>
+            <tr>
+              <td rowSpan={2}>학년</td>
+              <td colSpan={6}>출결상황</td>
+              <td colSpan={2}>봉사활동</td>
+            </tr>
+            <tr>
+              <td>결석</td>
+              <td>지각</td>
+              <td>조퇴</td>
+              <td>결과</td>
+              <td>환산일수</td>
+              <td>환산점</td>
+              <td>시간</td>
+              <td>환산점</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td rowSpan={3}>1</td>
+              <td>1</td>
+              <td rowSpan={3}>11</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+            </tr>
+          </S.Table>
+          <S.Table>
+            <tr>
+              <td colSpan={4}>입력자 확인</td>
+            </tr>
+            <tr>
+              <td>담임교사</td>
+              <td>(인)</td>
+              <td>지원자</td>
+              <td>(인)</td>
+            </tr>
+          </S.Table>
+          <S.Table>
+            <tr>
+              <td rowSpan={2}>접수자 확인</td>
+              <td>1차</td>
+              <td>(인)</td>
+            </tr>
+            <tr>
+              <td>2차</td>
+              <td>(인)</td>
+            </tr>
+          </S.Table>
+          <S.True>위와 같이 입력하고 확인하였음을 증명합니다.</S.True>
+          <S.Date>
+            <p>년</p> <p>월</p> <p>일</p>
+          </S.Date>
+          <S.Principal>광주소프트웨어마이스터고등학교장 귀하</S.Principal>
+          <S.Seal>중학교장[직인]</S.Seal>
         </S.Document>
       </S.ApplicationPage>
     </>

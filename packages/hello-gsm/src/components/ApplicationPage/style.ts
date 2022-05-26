@@ -8,9 +8,11 @@ export const ApplicationPage = styled.div`
   height: 100vh;
   overflow-x: hidden;
   overflow-y: hidden;
+  font-size: 1vh;
 `;
 
 export const Document = styled.div`
+  width: 63vh;
   position: relative;
   z-index: 1;
   .warterMark {
@@ -22,10 +24,6 @@ export const Document = styled.div`
     transform: rotate(-30deg);
     user-select: none;
   }
-`;
-
-export const Template = styled.div`
-  font-size: 1.4vh;
 `;
 
 export const Title = styled.div`
@@ -70,13 +68,13 @@ export const Content = styled.div`
 `;
 
 export const Container = styled.div`
-  border: 1px solid #000000;
+  border: 0.16vh solid #000000;
 `;
 
 export const Table = styled.table`
-  width: 63vh;
+  width: 100%;
   text-align: center;
-
+  border-collapse: collapse;
   td {
     vertical-align: middle;
     border: 0.08vh solid #000000;
@@ -88,8 +86,14 @@ export const Table = styled.table`
     width: 100%;
     height: 100%;
   }
+
   font-size: 1.2vh;
   line-height: 2.2vh;
+  .backslash {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
+    width: 9vh;
+    padding: 0.17vh;
+  }
 `;
 
 export const Subject = styled.td`
@@ -102,7 +106,6 @@ export const Subject = styled.td`
 `;
 
 export const Details = styled.div`
-  width: 63vh;
   padding: 0 0.4vh 2vh;
   border: 0.08vh solid #000000;
   border-top: none;
@@ -155,7 +158,7 @@ export const Seal = styled.div`
 `;
 
 export const Materials = styled.div`
-  border-top: 2px solid #000000;
-  margin-top: 50px;
-  line-height: 40px;
+  border-top: 0.17vh solid #000000;
+  margin-top: 4.4vh;
+  line-height: 3.5vh;
 `;
