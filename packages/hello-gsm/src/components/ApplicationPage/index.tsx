@@ -26,7 +26,6 @@ const profile: ProfileType = {
     schoolLocation: '광주광역시 서구 풍암동',
     schoolName: '풍암중학교',
     screening: '일반전형',
-    socialScreening: '해당사항없음',
   },
   applicationDetails: {
     address: '광주광역시 서구 풍암동 우미광장아파트',
@@ -57,7 +56,7 @@ const profile: ProfileType = {
 const ApplicationPage: NextPage = () => {
   const { user, application, applicationDetails } = profile;
   useEffect(() => {
-    window.print();
+    // window.print();
   }, []);
   return (
     <>
@@ -168,12 +167,10 @@ const ApplicationPage: NextPage = () => {
                   <td colSpan={7}>{applicationDetails.address}</td>
                 </tr>
                 <tr>
-                  <S.Subject colSpan={4}>전 형 구 분</S.Subject>
-                  <S.Subject colSpan={5}>사회통합전형의 대상 구분</S.Subject>
+                  <S.Subject colSpan={9}>전 형 구 분</S.Subject>
                 </tr>
                 <tr>
-                  <td colSpan={4}>{application.screening}</td>
-                  <td colSpan={5}>{application.socialScreening}</td>
+                  <td colSpan={9}>{application.screening}</td>
                 </tr>
                 <tr>
                   <S.Subject rowSpan={2} style={{ width: '10%' }}>
@@ -229,8 +226,8 @@ const ApplicationPage: NextPage = () => {
                 <tr>
                   <td colSpan={9} style={{ textAlign: 'start' }}>
                     1.(인공지능과/ 스마트IOT과/ 소프트웨어개발과) 중 지망 학과를
-                    순서대로 기록 <br />
-                    2. 지원학과는 희망 순에 따라 3개 학과를 모두 기록해야 한다.
+                    순서대로 기록. <br />
+                    2. 지원학과는 희망 순에 따라 3개 학과를 모두 기록해야 함.
                   </td>
                 </tr>
               </tbody>
@@ -259,6 +256,9 @@ const ApplicationPage: NextPage = () => {
               <S.Seal>중학교장[직인]</S.Seal>
             </S.Details>
           </S.Container>
+          <S.Materials>
+            2차 전형 응시 준비물 : 신분증[학생증], 필기구 등
+          </S.Materials>
         </S.Document>
       </S.ApplicationPage>
     </>

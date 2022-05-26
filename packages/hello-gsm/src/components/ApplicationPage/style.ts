@@ -151,3 +151,9 @@ export const Seal = styled.div`
   font-size: 1.7vh;
   margin-right: 3.5vh;
 `;
+
+export const Materials = styled.div`
+  border-top: 2px solid #000000;
+  margin-top: 20px;
+  line-height: 40px;
+`;
