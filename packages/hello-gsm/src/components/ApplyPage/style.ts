@@ -444,7 +444,7 @@ export const NextButton = styled.button`
 `;
 
 export const ErrorBox = styled.div`
-  width: 240px;
+  width: 250px;
   position: relative;
 `;
 
@@ -460,30 +460,33 @@ export const Error = styled.p`
     top: 745px;
   }
   :nth-of-type(3) {
-    top: 960px;
+    top: 830px;
   }
   :nth-of-type(4) {
-    top: 1350px;
+    top: 960px;
   }
   :nth-of-type(5) {
-    top: 1430px;
+    top: 1350px;
   }
   :nth-of-type(6) {
-    top: 1530px;
+    top: 1430px;
   }
   :nth-of-type(7) {
-    top: 1760px;
+    top: 1530px;
   }
   :nth-of-type(8) {
-    top: 1870px;
+    top: 1760px;
   }
   :nth-of-type(9) {
-    top: 1970px;
+    top: 1870px;
   }
   :nth-of-type(10) {
-    top: 2170px;
+    top: 1970px;
   }
   :nth-of-type(11) {
+    top: 2170px;
+  }
+  :nth-of-type(12) {
     top: 2280px;
   }
 `;
