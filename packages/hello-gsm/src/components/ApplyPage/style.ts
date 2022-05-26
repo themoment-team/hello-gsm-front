@@ -241,7 +241,16 @@ export const HomeTelephone = styled(Input)`
   margin-top: 80px;
 `;
 
-export const Cellphone = styled(Input)`
+export const Cellphone = styled.div`
+  width: 800px;
+  height: 55px;
+  border-radius: 6px;
+  background: #484453;
+  margin-top: 60px;
+  padding: 16px 20px;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 400;
+  font-size: 20px;
   margin-top: 20px;
 `;
 
@@ -454,30 +463,27 @@ export const Error = styled.p`
     top: 960px;
   }
   :nth-of-type(4) {
-    top: 1250px;
-  }
-  :nth-of-type(5) {
     top: 1350px;
   }
-  :nth-of-type(6) {
+  :nth-of-type(5) {
     top: 1430px;
   }
-  :nth-of-type(7) {
+  :nth-of-type(6) {
     top: 1530px;
   }
-  :nth-of-type(8) {
+  :nth-of-type(7) {
     top: 1760px;
   }
-  :nth-of-type(9) {
+  :nth-of-type(8) {
     top: 1870px;
   }
-  :nth-of-type(10) {
+  :nth-of-type(9) {
     top: 1970px;
   }
-  :nth-of-type(11) {
+  :nth-of-type(10) {
     top: 2170px;
   }
-  :nth-of-type(12) {
+  :nth-of-type(11) {
     top: 2280px;
   }
 `;
