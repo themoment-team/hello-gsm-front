@@ -56,7 +56,7 @@ const profile: ProfileType = {
 const ApplicationPage: NextPage = () => {
   const { user, application, applicationDetails } = profile;
   useEffect(() => {
-    // window.print();
+    window.print();
   }, []);
   return (
     <>

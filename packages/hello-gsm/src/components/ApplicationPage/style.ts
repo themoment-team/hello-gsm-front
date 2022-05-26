@@ -6,6 +6,8 @@ export const ApplicationPage = styled.div`
   background-color: #ffffff;
   padding: 2vh;
   height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
 `;
 
 export const Document = styled.div`
@@ -68,7 +70,7 @@ export const Content = styled.div`
 `;
 
 export const Container = styled.div`
-  border: 0.08vh solid #000000;
+  border: 1px solid #000000;
 `;
 
 export const Table = styled.table`
@@ -154,6 +156,6 @@ export const Seal = styled.div`
 
 export const Materials = styled.div`
   border-top: 2px solid #000000;
-  margin-top: 20px;
+  margin-top: 50px;
   line-height: 40px;
 `;
