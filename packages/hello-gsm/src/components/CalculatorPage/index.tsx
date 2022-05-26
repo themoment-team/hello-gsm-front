@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import { Header } from 'components';
 import * as S from './style';
 import * as I from '../../Assets/svg';
-import { useForm } from 'react-hook-form';
+import { FieldErrors, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { Calculate, Volunteer, Rounds, Attendance } from './function';
 
@@ -48,6 +48,7 @@ const CalculatorPage: NextPage = () => {
     const scoreTotal: number = Rounds(
       curriculumScoreSubtotal + nonCurriculumScoreSubtotal,
     ); // 총합
+    console.log(validForm);
     console.log(
       `2학년 1학기 : ${score2_1}\n2학년 2학기 : ${score2_2}\n3학기 1학기 : ${score3_1}\n교과성적 소계 : ${generalCurriculumScoreSubtotal}\n`,
     );
@@ -58,7 +59,7 @@ const CalculatorPage: NextPage = () => {
     );
     console.log(`총합 : ${scoreTotal}`);
   };
-  const inValid = errors => {
+  const inValid = (errors: FieldErrors) => {
     console.log(errors);
   };
 
@@ -99,8 +100,15 @@ const CalculatorPage: NextPage = () => {
             <S.ValueSection>
               <S.Semester>2학년 1학기</S.Semester>
               {subjects.map((subject, i: number) => (
-                <S.Select key={subject} {...register(`score2_1.${i}`)}>
-                  {/* <option>선택</option> */}
+                <S.Select
+                  key={subject}
+                  {...register(`score2_1.${i}`, {
+                    validate: {
+                      notNaN: value => !isNaN(value) || '선택해주세요.',
+                    },
+                  })}
+                >
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -112,8 +120,15 @@ const CalculatorPage: NextPage = () => {
             <S.ValueSection>
               <S.Semester>2학년 2학기</S.Semester>
               {subjects.map((subject, i: number) => (
-                <S.Select key={subject} {...register(`score2_2.${i}`)}>
-                  {/* <option>선택</option> */}
+                <S.Select
+                  key={subject}
+                  {...register(`score2_2.${i}`, {
+                    validate: {
+                      notNaN: value => !isNaN(value) || '선택해주세요.',
+                    },
+                  })}
+                >
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -125,8 +140,15 @@ const CalculatorPage: NextPage = () => {
             <S.ValueSection>
               <S.Semester>3학년 1학기</S.Semester>
               {subjects.map((subject, i: number) => (
-                <S.Select key={subject} {...register(`score3_1.${i}`)}>
-                  {/* <option>선택</option> */}
+                <S.Select
+                  key={subject}
+                  {...register(`score3_1.${i}`, {
+                    validate: {
+                      notNaN: value => !isNaN(value) || '선택해주세요.',
+                    },
+                  })}
+                >
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -149,8 +171,15 @@ const CalculatorPage: NextPage = () => {
             <S.ValueSection>
               <S.Semester>1학년 1학기</S.Semester>
               {nonSubjects.map((subject, i: number) => (
-                <S.Select key={subject} {...register(`artSportsScore.${i}`)}>
-                  {/* <option>선택</option> */}
+                <S.Select
+                  key={subject}
+                  {...register(`artSportsScore.${i}`, {
+                    validate: {
+                      notNaN: value => !isNaN(value) || '선택해주세요.',
+                    },
+                  })}
+                >
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -162,9 +191,13 @@ const CalculatorPage: NextPage = () => {
               {nonSubjects.map((subject, i: number) => (
                 <S.Select
                   key={subject}
-                  {...register(`artSportsScore.${3 + i}`)}
+                  {...register(`artSportsScore.${3 + i}`, {
+                    validate: {
+                      notNaN: value => !isNaN(value) || '선택해주세요.',
+                    },
+                  })}
                 >
-                  {/* <option>선택</option> */}
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -176,9 +209,13 @@ const CalculatorPage: NextPage = () => {
               {nonSubjects.map((subject, i: number) => (
                 <S.Select
                   key={subject}
-                  {...register(`artSportsScore.${6 + i}`)}
+                  {...register(`artSportsScore.${6 + i}`, {
+                    validate: {
+                      notNaN: value => !isNaN(value) || '선택해주세요.',
+                    },
+                  })}
                 >
-                  {/* <option>선택</option> */}
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -190,9 +227,13 @@ const CalculatorPage: NextPage = () => {
               {nonSubjects.map((subject, i: number) => (
                 <S.Select
                   key={subject}
-                  {...register(`artSportsScore.${9 + i}`)}
+                  {...register(`artSportsScore.${9 + i}`, {
+                    validate: {
+                      notNaN: value => !isNaN(value) || '선택해주세요.',
+                    },
+                  })}
                 >
-                  {/* <option>선택</option> */}
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -204,9 +245,13 @@ const CalculatorPage: NextPage = () => {
               {nonSubjects.map((subject, i: number) => (
                 <S.Select
                   key={subject}
-                  {...register(`artSportsScore.${12 + i}`)}
+                  {...register(`artSportsScore.${12 + i}`, {
+                    validate: {
+                      notNaN: value => !isNaN(value) || '선택해주세요.',
+                    },
+                  })}
                 >
-                  {/* <option>선택</option> */}
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -242,7 +287,8 @@ const CalculatorPage: NextPage = () => {
                   {grades.map((grade, i: number) => (
                     <S.AttendanceInput
                       key={grade}
-                      {...register(`absentScore.${i}`)}
+                      {...register(`absentScore.${i}`, { required: true })}
+                      placeholder="입력"
                     />
                   ))}
                 </S.ValueSection>
@@ -250,7 +296,10 @@ const CalculatorPage: NextPage = () => {
                   {grades.map((grade, i: number) => (
                     <S.AttendanceInput
                       key={grade}
-                      {...register(`attendanceScore.${i}`)}
+                      {...register(`attendanceScore.${i}`, {
+                        required: true,
+                      })}
+                      placeholder="입력"
                     />
                   ))}
                 </S.ValueSection>
@@ -258,7 +307,10 @@ const CalculatorPage: NextPage = () => {
                   {grades.map((grade, i: number) => (
                     <S.AttendanceInput
                       key={grade}
-                      {...register(`attendanceScore.${3 + i}`)}
+                      {...register(`attendanceScore.${3 + i}`, {
+                        required: true,
+                      })}
+                      placeholder="입력"
                     />
                   ))}
                 </S.ValueSection>
@@ -266,7 +318,10 @@ const CalculatorPage: NextPage = () => {
                   {grades.map((grade, i: number) => (
                     <S.AttendanceInput
                       key={grade}
-                      {...register(`attendanceScore.${6 + i}`)}
+                      {...register(`attendanceScore.${6 + i}`, {
+                        required: true,
+                      })}
+                      placeholder="입력"
                     />
                   ))}
                 </S.ValueSection>
@@ -274,7 +329,10 @@ const CalculatorPage: NextPage = () => {
                   {grades.map((grade, i: number) => (
                     <S.AttendanceInput
                       key={grade}
-                      {...register(`volunteerScore.${i}`)}
+                      {...register(`volunteerScore.${i}`, {
+                        required: true,
+                      })}
+                      placeholder="입력"
                     />
                   ))}
                 </S.ValueSection>
