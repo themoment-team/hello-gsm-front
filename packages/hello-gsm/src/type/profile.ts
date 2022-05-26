@@ -25,7 +25,6 @@ interface ApplicantType {
   schoolLocation: string;
   schoolName: string;
   screening: '일반전형' | '사회통합전형' | '특별전형';
-  socialScreening: '기회균등전형' | '사회다양성전형' | '해당사항없음';
 }
 
 interface ApplicationDetailsType {
