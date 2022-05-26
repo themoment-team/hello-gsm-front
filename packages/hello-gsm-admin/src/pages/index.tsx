@@ -20,7 +20,9 @@ const Home: NextPage<applicantsType> = ({ data }) => <MainPage data={data} />;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const { data } = await axios.get('http://localhost:3000/MockData.json');
+    const { data } = await axios.get(
+      'https://admin.hellogsm.kr/data/mockData.json',
+    );
     return {
       props: {
         data,
