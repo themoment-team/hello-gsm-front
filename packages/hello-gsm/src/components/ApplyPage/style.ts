@@ -117,6 +117,15 @@ export const Title = styled.p`
   font-size: 24px;
   color: #f8f8f8;
   text-align: center;
+  :nth-of-type(2) {
+    margin-top: 80px;
+  }
+  :nth-of-type(3) {
+    margin-top: 65px;
+  }
+  :nth-of-type(4) {
+    margin-top: 75px;
+  }
 `;
 
 export const ImgInputBox = styled.label`

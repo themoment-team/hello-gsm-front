@@ -209,13 +209,7 @@ const ApplyPage: NextPage = () => {
             placeholder="집 전화번호를 입력해주세요."
           />
           <S.Cellphone>{cellphoneNumber}</S.Cellphone>
-          <S.Title
-            css={css`
-              margin-top: 80px;
-            `}
-          >
-            지원자 현황
-          </S.Title>
+          <S.Title>지원자 현황</S.Title>
           <S.TypeBox>
             <S.Type
               css={css`
@@ -371,13 +365,7 @@ const ApplyPage: NextPage = () => {
               </S.DepartmentOrderDescription>
             </S.DepartmentContentBox>
           </S.DepartmentBox>
-          <S.Title
-            css={css`
-              margin-top: 65px;
-            `}
-          >
-            보호자
-          </S.Title>
+          <S.Title>보호자</S.Title>
           <S.GuardianName
             {...register('guardianName', {
               required: '* 성명을 입력해주세요',
@@ -424,13 +412,7 @@ const ApplyPage: NextPage = () => {
             })}
             placeholder="보호자분의 핸드폰 번호를 입력해주세요."
           />
-          <S.Title
-            css={css`
-              margin-top: 75px;
-            `}
-          >
-            담임 선생님
-          </S.Title>
+          <S.Title>담임 선생님</S.Title>
           <S.TeacherName
             {...register('teacherName', {
               required: '* 성함을 입력해주세요',
