@@ -56,7 +56,7 @@ const profile: ProfileType = {
 const ApplicationPage: NextPage = () => {
   const { user, application, applicationDetails } = profile;
   useEffect(() => {
-    // window.print();
+    window.print();
   }, []);
   return (
     <>
@@ -293,18 +293,18 @@ const ApplicationPage: NextPage = () => {
                   <div style={{ textAlign: 'right' }}>학년</div>
                   <div style={{ textAlign: 'left' }}>과목</div>
                 </td>
-                <td>1학년 1학기</td>
-                <td>1학년 2학기</td>
-                <td>2학년 1학기</td>
-                <td>2학년 2학기</td>
-                <td>3학년 1학기</td>
+                <S.Subject>1학년 1학기</S.Subject>
+                <S.Subject>1학년 2학기</S.Subject>
+                <S.Subject>2학년 1학기</S.Subject>
+                <S.Subject>2학년 2학기</S.Subject>
+                <S.Subject>3학년 1학기</S.Subject>
               </tr>
               <tr>
-                <td>성취도/평어</td>
-                <td>성취도/평어</td>
-                <td>성취도/평어</td>
-                <td>성취도/평어</td>
-                <td>성취도/평어</td>
+                <S.Subject>성취도/평어</S.Subject>
+                <S.Subject>성취도/평어</S.Subject>
+                <S.Subject>성취도/평어</S.Subject>
+                <S.Subject>성취도/평어</S.Subject>
+                <S.Subject>성취도/평어</S.Subject>
               </tr>
               <tr>
                 <td>국어</td>
@@ -339,7 +339,7 @@ const ApplicationPage: NextPage = () => {
                 <td></td>
               </tr>
               <tr>
-                <S.Subject>수학</S.Subject>
+                <td>수학</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -404,18 +404,18 @@ const ApplicationPage: NextPage = () => {
                   <div style={{ textAlign: 'right' }}>학년</div>
                   <div style={{ textAlign: 'left' }}>과목</div>
                 </td>
-                <td>1학년 1학기</td>
-                <td>1학년 2학기</td>
-                <td>2학년 1학기</td>
-                <td>2학년 2학기</td>
-                <td>3학년 1학기</td>
+                <S.Subject>1학년 1학기</S.Subject>
+                <S.Subject>1학년 2학기</S.Subject>
+                <S.Subject>2학년 1학기</S.Subject>
+                <S.Subject>2학년 2학기</S.Subject>
+                <S.Subject>3학년 1학기</S.Subject>
               </tr>
               <tr>
-                <td>성취도/평어</td>
-                <td>성취도/평어</td>
-                <td>성취도/평어</td>
-                <td>성취도/평어</td>
-                <td>성취도/평어</td>
+                <S.Subject>성취도/평어</S.Subject>
+                <S.Subject>성취도/평어</S.Subject>
+                <S.Subject>성취도/평어</S.Subject>
+                <S.Subject>성취도/평어</S.Subject>
+                <S.Subject>성취도/평어</S.Subject>
               </tr>
               <tr>
                 <td>체육</td>
@@ -454,19 +454,19 @@ const ApplicationPage: NextPage = () => {
           <S.SubTitle>비교과</S.SubTitle>
           <S.Table style={{ marginBottom: '1.5vh' }}>
             <tr>
-              <td rowSpan={2}>학년</td>
-              <td colSpan={6}>출결상황</td>
-              <td colSpan={2}>봉사활동</td>
+              <S.Subject rowSpan={2}>학년</S.Subject>
+              <S.Subject colSpan={6}>출결상황</S.Subject>
+              <S.Subject colSpan={2}>봉사활동</S.Subject>
             </tr>
             <tr>
-              <td>결석</td>
-              <td>지각</td>
-              <td>조퇴</td>
-              <td>결과</td>
-              <td>환산일수</td>
-              <td>환산점</td>
-              <td>시간</td>
-              <td>환산점</td>
+              <S.Subject>결석</S.Subject>
+              <S.Subject>지각</S.Subject>
+              <S.Subject>조퇴</S.Subject>
+              <S.Subject>결과</S.Subject>
+              <S.Subject>환산일수</S.Subject>
+              <S.Subject>환산점</S.Subject>
+              <S.Subject>시간</S.Subject>
+              <S.Subject>환산점</S.Subject>
             </tr>
             <tr>
               <td>1</td>
@@ -498,35 +498,37 @@ const ApplicationPage: NextPage = () => {
               <td>1</td>
             </tr>
           </S.Table>
-          <S.Table style={{ marginBottom: '1.5vh' }}>
+          <S.Table style={{ marginBottom: '1.5vh', width: '80%' }}>
             <tr>
-              <td colSpan={4}>입력자 확인</td>
+              <S.Subject colSpan={4}>입력자 확인</S.Subject>
             </tr>
             <tr>
-              <td>담임교사</td>
-              <td style={{ textAlign: 'end' }}>(인)</td>
-              <td>지원자</td>
-              <td style={{ textAlign: 'end' }}>(인)</td>
+              <S.Subject>담임교사</S.Subject>
+              <td style={{ textAlign: 'end', width: '25%' }}>(인)</td>
+              <S.Subject>지원자</S.Subject>
+              <td style={{ textAlign: 'end', width: '25%' }}>(인)</td>
             </tr>
           </S.Table>
-          <S.Table style={{ marginBottom: '1.5vh' }}>
+          <S.Table style={{ marginBottom: '1.5vh', width: '50%' }}>
             <tr>
-              <td rowSpan={2}>접수자 확인</td>
-              <td>1차</td>
-              <td style={{ textAlign: 'end' }}>(인)</td>
+              <S.Subject rowSpan={2}>접수자 확인</S.Subject>
+              <S.Subject>1차</S.Subject>
+              <td style={{ textAlign: 'end', width: '40%' }}>(인)</td>
             </tr>
             <tr>
-              <td>2차</td>
+              <S.Subject>2차</S.Subject>
               <td style={{ textAlign: 'end' }}>(인)</td>
             </tr>
           </S.Table>
           <S.ScoreDetails>
-            <p>위와 같이 입력하고 확인하였음을 증명합니다.</p>
+            <S.True>위와 같이 입력하고 확인하였음을 증명합니다.</S.True>
             <S.Date>
               <p>년</p> <p>월</p> <p>일</p>
             </S.Date>
-            <p>광주소프트웨어마이스터고등학교장 귀하</p>
-            <p>중학교장[직인]</p>
+            <S.SignatureSection>
+              <p>광주소프트웨어마이스터고등학교장 귀하</p>
+              <p>중학교장[직인]</p>
+            </S.SignatureSection>
           </S.ScoreDetails>
         </S.Document>
       </S.ApplicationPage>

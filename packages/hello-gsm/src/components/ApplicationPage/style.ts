@@ -18,7 +18,7 @@ export const Document = styled.div`
   .warterMark {
     position: absolute;
     font-size: 40vh;
-    color: #e8e8e8;
+    color: #f2f2f2;
     z-index: -1;
     text-align: center;
     transform: rotate(-30deg);
@@ -56,7 +56,7 @@ export const Box = styled.div`
 
 export const ApplyNum = styled.div`
   font-weight: 500;
-  background-color: #c4c4c4;
+  background-color: #e9e9e9;
   height: 100%;
   line-height: 2.2vh;
   padding: 0 1.3vh;
@@ -76,6 +76,8 @@ export const Table = styled.table`
   width: 100%;
   text-align: center;
   border-collapse: collapse;
+  font-size: 1.2vh;
+  line-height: 2.2vh;
   td {
     vertical-align: middle;
     border: 0.08vh solid #000000;
@@ -88,19 +90,17 @@ export const Table = styled.table`
     height: 100%;
   }
 
-  font-size: 1.2vh;
-  line-height: 2.2vh;
-
   .backslash {
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
     width: 9vh;
     padding: 0.17vh;
+    background-color: #e9e9e9;
   }
 `;
 
 export const Subject = styled.td`
   font-weight: 500;
-  background-color: #c4c4c4;
+  background-color: #e9e9e9;
   border-collapse: collapse;
   vertical-align: middle;
   border: 0.08vh solid #000000;
@@ -131,6 +131,7 @@ export const Date = styled.div`
   width: 10vh;
   margin: 0 auto;
   line-height: 2.6vh;
+  font-size: 1.5vh;
 `;
 
 export const Signature = styled.div`
@@ -151,6 +152,7 @@ export const Principal = styled.div`
 export const True = styled.div`
   text-align: center;
   line-height: 4.4vh;
+  font-size: 1.5vh;
 `;
 
 export const Seal = styled.div`
@@ -166,3 +168,10 @@ export const Materials = styled.div`
 `;
 
 export const ScoreDetails = styled.div``;
+
+export const SignatureSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5vh;
+  margin-top: 1.5vh;
+`;
