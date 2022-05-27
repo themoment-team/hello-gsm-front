@@ -82,7 +82,7 @@ const ApplyPage: NextPage = () => {
     ${graduatedType === index && 'background: #42bafe; color: #f8f8f8;'}
   `;
 
-  const SelectedDepartment = (type: number) => {
+  const selectedDepartment = (type: number) => {
     switch (type) {
       case 1:
         return '인공지능 개발과';
@@ -95,8 +95,14 @@ const ApplyPage: NextPage = () => {
     }
   };
 
-  const onSubmit = data => {
+  const onSubmit = (data: ApplyFormType) => {
     console.log(data);
+    onClick();
+  };
+
+  const onError = (errors) => {
+    console.log(errors);
+    onClick();
   };
 
   const onClick = () => {
@@ -132,7 +138,7 @@ const ApplyPage: NextPage = () => {
           <S.BarElement>이름</S.BarElement>
           <S.BarElement>연락처</S.BarElement>
         </S.BarBox>
-        <S.ApplyPageContent onSubmit={handleSubmit(onSubmit)}>
+        <S.ApplyPageContent onSubmit={handleSubmit(onSubmit, onError)}>
           <S.Title>지원자 인적사항</S.Title>
           <S.ImgInputBox htmlFor="img-input">
             {imgURL === '' ? (
@@ -317,7 +323,6 @@ const ApplyPage: NextPage = () => {
                   setIsGED(true);
                   setSchoolName('');
                   setSchoolLocation('');
-                  t;
                 }}
               >
                 검정고시
@@ -332,7 +337,7 @@ const ApplyPage: NextPage = () => {
                   setSelectedChoice(1);
                 }}
               >
-                {SelectedDepartment(choice1)}
+                {selectedDepartment(choice1)}
               </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (1지망)
@@ -345,7 +350,7 @@ const ApplyPage: NextPage = () => {
                   setSelectedChoice(2);
                 }}
               >
-                {SelectedDepartment(choice2)}
+                {selectedDepartment(choice2)}
               </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (2지망)
@@ -358,7 +363,7 @@ const ApplyPage: NextPage = () => {
                   setSelectedChoice(3);
                 }}
               >
-                {SelectedDepartment(choice3)}
+                {selectedDepartment(choice3)}
               </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (3지망)
@@ -433,9 +438,7 @@ const ApplyPage: NextPage = () => {
             })}
             placeholder="담임선생님의 연락처를 입력해주세요."
           />
-          <S.NextButton onClick={onClick} type="submit">
-            다음
-          </S.NextButton>
+          <S.NextButton type="submit">다음</S.NextButton>
         </S.ApplyPageContent>
         <S.ErrorBox>
           <S.Error>{errors.IDPhotoUrl?.message}</S.Error>
