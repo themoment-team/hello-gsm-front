@@ -75,7 +75,9 @@ const ApplicationPage: NextPage = () => {
           <p>[서식 1]</p>
           <S.Title>광주소프트웨어마이스터고등학교 입학원서</S.Title>
           <S.Wrap>
-            <S.SubTitle>2023학년도 신입생 입학전형</S.SubTitle>
+            <S.SubTitle style={{ fontSize: '1.5vh', fontWeight: 700 }}>
+              2023학년도 신입생 입학전형
+            </S.SubTitle>
             <S.Box>
               <S.ApplyNum>접수번호</S.ApplyNum>
               <S.Content>{application.registrationNumber}</S.Content>
@@ -246,10 +248,10 @@ const ApplicationPage: NextPage = () => {
                 <p>년</p> <p>월</p> <p>일</p>
               </S.Date>
               <S.Signature>
-                <p>지원자 :</p> <p>(인)</p>
+                <p>지원자 :</p> <p style={{ textAlign: 'end' }}>(인)</p>
               </S.Signature>
               <S.Signature>
-                <p>보호자 :</p> <p>(인)</p>
+                <p>보호자 :</p> <p style={{ textAlign: 'end' }}>(인)</p>
               </S.Signature>
               <S.Principal>광주소프트웨어마이스터고등학교장 귀하</S.Principal>
               <S.True>위 기재 사항이 사실과 같음을 확인합니다.</S.True>
@@ -337,7 +339,7 @@ const ApplicationPage: NextPage = () => {
                 <td></td>
               </tr>
               <tr>
-                <td>수학</td>
+                <S.Subject>수학</S.Subject>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -395,7 +397,7 @@ const ApplicationPage: NextPage = () => {
             </tbody>
           </S.Table>
           <S.SubTitle>체육예술교과</S.SubTitle>
-          <S.Table>
+          <S.Table style={{ marginBottom: '2vh' }}>
             <tbody>
               <tr>
                 <td className="backslash" rowSpan={2}>
@@ -450,7 +452,7 @@ const ApplicationPage: NextPage = () => {
             </tbody>
           </S.Table>
           <S.SubTitle>비교과</S.SubTitle>
-          <S.Table>
+          <S.Table style={{ marginBottom: '1.5vh' }}>
             <tr>
               <td rowSpan={2}>학년</td>
               <td colSpan={6}>출결상황</td>
@@ -496,34 +498,36 @@ const ApplicationPage: NextPage = () => {
               <td>1</td>
             </tr>
           </S.Table>
-          <S.Table>
+          <S.Table style={{ marginBottom: '1.5vh' }}>
             <tr>
               <td colSpan={4}>입력자 확인</td>
             </tr>
             <tr>
               <td>담임교사</td>
-              <td>(인)</td>
+              <td style={{ textAlign: 'end' }}>(인)</td>
               <td>지원자</td>
-              <td>(인)</td>
+              <td style={{ textAlign: 'end' }}>(인)</td>
             </tr>
           </S.Table>
-          <S.Table>
+          <S.Table style={{ marginBottom: '1.5vh' }}>
             <tr>
               <td rowSpan={2}>접수자 확인</td>
               <td>1차</td>
-              <td>(인)</td>
+              <td style={{ textAlign: 'end' }}>(인)</td>
             </tr>
             <tr>
               <td>2차</td>
-              <td>(인)</td>
+              <td style={{ textAlign: 'end' }}>(인)</td>
             </tr>
           </S.Table>
-          <S.True>위와 같이 입력하고 확인하였음을 증명합니다.</S.True>
-          <S.Date>
-            <p>년</p> <p>월</p> <p>일</p>
-          </S.Date>
-          <S.Principal>광주소프트웨어마이스터고등학교장 귀하</S.Principal>
-          <S.Seal>중학교장[직인]</S.Seal>
+          <S.ScoreDetails>
+            <p>위와 같이 입력하고 확인하였음을 증명합니다.</p>
+            <S.Date>
+              <p>년</p> <p>월</p> <p>일</p>
+            </S.Date>
+            <p>광주소프트웨어마이스터고등학교장 귀하</p>
+            <p>중학교장[직인]</p>
+          </S.ScoreDetails>
         </S.Document>
       </S.ApplicationPage>
     </>

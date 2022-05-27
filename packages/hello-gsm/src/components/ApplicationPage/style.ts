@@ -30,17 +30,18 @@ export const Title = styled.div`
   font-size: 3vh;
   text-align: center;
   font-weight: 700;
-  margin: 1.7vh 0 2.5vh;
-`;
-
-export const SubTitle = styled.div`
-  font-size: 1.7vh;
-  font-weight: 700;
 `;
 
 export const Wrap = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
+`;
+
+export const SubTitle = styled.div`
+  font-size: 1.2vh;
+  margin-top: 1.5vh;
+  line-height: 2vh;
 `;
 
 export const Box = styled.div`
@@ -89,6 +90,7 @@ export const Table = styled.table`
 
   font-size: 1.2vh;
   line-height: 2.2vh;
+
   .backslash {
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
     width: 9vh;
@@ -162,3 +164,5 @@ export const Materials = styled.div`
   margin-top: 4.4vh;
   line-height: 3.5vh;
 `;
+
+export const ScoreDetails = styled.div``;
