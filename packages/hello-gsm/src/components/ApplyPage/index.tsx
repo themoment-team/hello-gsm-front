@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import * as I from '../../Assets/svg';
@@ -17,8 +17,10 @@ interface ApplyFormType {
   IDPhotoUrl: string;
   addressDetails: string;
   telephoneNumber: string;
+  screening: string;
   graduationYear: string;
   graduationMonth: string;
+  educationStatus: string;
   guardianName: string;
   guardianRelation: string;
   guardianCellphoneNumber: string;
@@ -33,7 +35,6 @@ const ApplyPage: NextPage = () => {
   const [gender, setGender] = useState<string>('M');
   const [birth, setBirth] = useState<number>(20050228);
   const [cellphoneNumber, setCellphoneNumber] = useState<string>('01012341234');
-  const [type, setType] = useState<number>(1);
   const [isGED, setIsGED] = useState<boolean>(false);
   const [graduatedType, setGraduatedType] = useState<number>(1);
   const [isMajorSelected, setIsMajorSelected] = useState<boolean>(true);
@@ -61,8 +62,14 @@ const ApplyPage: NextPage = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
-  } = useForm<ApplyFormType>();
+  } = useForm<ApplyFormType>({
+    defaultValues: {
+      screening: '일반전형',
+      educationStatus: '졸업예정',
+    },
+  });
 
   const readImg = (event: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
@@ -77,10 +84,6 @@ const ApplyPage: NextPage = () => {
       reader.readAsDataURL(event.target.files[0]);
     }
   };
-
-  const graduatedTypeSelectStyle = (index: number) => css`
-    ${graduatedType === index && 'background: #42bafe; color: #f8f8f8;'}
-  `;
 
   const selectedDepartment = (type: number) => {
     switch (type) {
@@ -100,7 +103,7 @@ const ApplyPage: NextPage = () => {
     onClick();
   };
 
-  const onError = (errors) => {
+  const onError = errors => {
     console.log(errors);
     onClick();
   };
@@ -112,6 +115,8 @@ const ApplyPage: NextPage = () => {
     address ? setIsAddressExist(true) : setIsAddressExist(false);
     schoolName ? setIsSchoolNameExist(true) : setIsSchoolNameExist(false);
   };
+
+  console.log(watch());
 
   return (
     <>
@@ -218,32 +223,26 @@ const ApplyPage: NextPage = () => {
           <S.Title>지원자 현황</S.Title>
           <S.TypeBox>
             <S.Type
-              css={css`
-                ${type === 1 &&
-                'background: #42BAFE; font-weight: 700; font-size: 20px; color: #F8F8F8;'}
-              `}
-              onClick={() => setType(1)}
-            >
-              일반전형
-            </S.Type>
+              {...register('screening')}
+              type="radio"
+              value="일반전형"
+              id="common"
+            />
+            <S.TypeLabel htmlFor="common">일반전형</S.TypeLabel>
             <S.Type
-              css={css`
-                ${type === 2 &&
-                'background: #42BAFE; font-weight: 700; font-size: 20px; color: #F8F8F8;'}
-              `}
-              onClick={() => setType(2)}
-            >
-              사회통합전형
-            </S.Type>
+              {...register('screening')}
+              type="radio"
+              value="사회통합전형"
+              id="social"
+            />
+            <S.TypeLabel htmlFor="social">사회통합전형</S.TypeLabel>
             <S.Type
-              css={css`
-                ${type === 3 &&
-                'background: #42BAFE; font-weight: 700; font-size: 20px; color: #F8F8F8;'}
-              `}
-              onClick={() => setType(3)}
-            >
-              특별전형
-            </S.Type>
+              {...register('screening')}
+              type="radio"
+              value="특별전형"
+              id="special"
+            />
+            <S.TypeLabel htmlFor="special">특별전형</S.TypeLabel>
           </S.TypeBox>
           <S.SchoolBox>
             <S.SchoolName>{schoolName}</S.SchoolName>
@@ -298,35 +297,50 @@ const ApplyPage: NextPage = () => {
               </S.GraduateMonth>
             </S.GraduatedDateBox>
             <S.GraduatedSelectBox>
-              <S.GraduatedType
-                css={graduatedTypeSelectStyle(1)}
+              <S.GraduationType
+                {...register('educationStatus')}
+                type="radio"
+                value="졸업예정"
+                id="willGraduate"
+              />
+              <S.GraduatedTypeLabel
+                htmlFor="willGraduate"
                 onClick={() => {
-                  setGraduatedType(1);
                   setIsGED(false);
                 }}
               >
                 졸업예정
-              </S.GraduatedType>
-              <S.GraduatedType
-                css={graduatedTypeSelectStyle(2)}
+              </S.GraduatedTypeLabel>
+              <S.GraduationType
+                {...register('educationStatus')}
+                type="radio"
+                value="졸업"
+                id="graduated"
+              />
+              <S.GraduatedTypeLabel
+                htmlFor="graduated"
                 onClick={() => {
-                  setGraduatedType(2);
                   setIsGED(false);
                 }}
               >
                 졸업
-              </S.GraduatedType>
-              <S.GraduatedType
-                css={graduatedTypeSelectStyle(3)}
+              </S.GraduatedTypeLabel>
+              <S.GraduationType
+                {...register('educationStatus')}
+                type="radio"
+                value="검정고시"
+                id="GED"
+              />
+              <S.GraduatedTypeLabel
+                htmlFor="GED"
                 onClick={() => {
-                  setGraduatedType(3);
                   setIsGED(true);
                   setSchoolName('');
                   setSchoolLocation('');
                 }}
               >
                 검정고시
-              </S.GraduatedType>
+              </S.GraduatedTypeLabel>
             </S.GraduatedSelectBox>
           </S.GraduatedBox>
           <S.DepartmentBox>
