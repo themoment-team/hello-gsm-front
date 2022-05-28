@@ -271,7 +271,17 @@ export const TypeBox = styled.div`
   margin-top: 50px;
 `;
 
-export const Type = styled.p`
+export const Type = styled.input`
+  display: none;
+  &:checked + label {
+    background: #42bafe;
+    font-weight: 700;
+    font-size: 20px;
+    color: #f8f8f8;
+  }
+`;
+
+export const TypeLabel = styled.label`
   width: 250px;
   height: 100%;
   background: #484453;
@@ -367,7 +377,17 @@ export const GraduatedSelectBox = styled.div`
   justify-content: space-between;
 `;
 
-export const GraduatedType = styled.div`
+export const GraduationType = styled.input`
+  display: none;
+  &:checked + label {
+    background: #42bafe;
+    font-weight: 700;
+    font-size: 20px;
+    color: #f8f8f8;
+  }
+`;
+
+export const GraduatedTypeLabel = styled.label`
   width: 115px;
   height: 100%;
   display: flex;
