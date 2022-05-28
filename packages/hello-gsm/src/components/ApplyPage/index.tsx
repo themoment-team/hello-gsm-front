@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import * as I from '../../Assets/svg';
@@ -35,8 +35,6 @@ const ApplyPage: NextPage = () => {
   const [gender, setGender] = useState<string>('M');
   const [birth, setBirth] = useState<number>(20050228);
   const [cellphoneNumber, setCellphoneNumber] = useState<string>('01012341234');
-  const [isGED, setIsGED] = useState<boolean>(false);
-  const [graduatedType, setGraduatedType] = useState<number>(1);
   const [isMajorSelected, setIsMajorSelected] = useState<boolean>(true);
   const [isAddressExist, setIsAddressExist] = useState<boolean>(true);
   const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(true);
@@ -116,7 +114,15 @@ const ApplyPage: NextPage = () => {
     schoolName ? setIsSchoolNameExist(true) : setIsSchoolNameExist(false);
   };
 
-  console.log(watch());
+  const graduationStatus = watch('educationStatus');
+  console.log(watch('educationStatus'));
+
+  useEffect(() => {
+    if (graduationStatus === '검정고시') {
+      setSchoolLocation('');
+      setSchoolName('');
+    }
+  }, [graduationStatus]);
 
   return (
     <>
@@ -248,9 +254,12 @@ const ApplyPage: NextPage = () => {
             <S.SchoolName>{schoolName}</S.SchoolName>
             <S.SchoolSearchButton
               css={css`
-                ${isGED && 'background: #a0a0a0; cursor: default;'}
+                ${graduationStatus === '검정고시' &&
+                'background: #a0a0a0; cursor: default;'}
               `}
-              onClick={() => !isGED && setShowFindSchoolModal()}
+              onClick={() =>
+                graduationStatus !== '검정고시' && setShowFindSchoolModal()
+              }
             >
               학교 검색
             </S.SchoolSearchButton>
@@ -303,12 +312,7 @@ const ApplyPage: NextPage = () => {
                 value="졸업예정"
                 id="willGraduate"
               />
-              <S.GraduatedTypeLabel
-                htmlFor="willGraduate"
-                onClick={() => {
-                  setIsGED(false);
-                }}
-              >
+              <S.GraduatedTypeLabel htmlFor="willGraduate">
                 졸업예정
               </S.GraduatedTypeLabel>
               <S.GraduationType
@@ -317,12 +321,7 @@ const ApplyPage: NextPage = () => {
                 value="졸업"
                 id="graduated"
               />
-              <S.GraduatedTypeLabel
-                htmlFor="graduated"
-                onClick={() => {
-                  setIsGED(false);
-                }}
-              >
+              <S.GraduatedTypeLabel htmlFor="graduated">
                 졸업
               </S.GraduatedTypeLabel>
               <S.GraduationType
@@ -331,14 +330,7 @@ const ApplyPage: NextPage = () => {
                 value="검정고시"
                 id="GED"
               />
-              <S.GraduatedTypeLabel
-                htmlFor="GED"
-                onClick={() => {
-                  setIsGED(true);
-                  setSchoolName('');
-                  setSchoolLocation('');
-                }}
-              >
+              <S.GraduatedTypeLabel htmlFor="GED">
                 검정고시
               </S.GraduatedTypeLabel>
             </S.GraduatedSelectBox>
