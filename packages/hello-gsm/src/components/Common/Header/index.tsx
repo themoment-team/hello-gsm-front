@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
@@ -34,15 +35,14 @@ const Header: React.FC = () => {
           </Link>
         </S.NavBar>
         {!logged ? (
-          <S.MemberBox>
+          <S.MemberBox
+            css={css`
+              justify-content: center;
+            `}
+          >
             <Link href="/auth/signin" passHref>
               <S.MemberContent css={select('/auth/signin')}>
                 로그인
-              </S.MemberContent>
-            </Link>
-            <Link href="/auth/signup" passHref>
-              <S.MemberContent css={select('/auth/signup')}>
-                회원가입
               </S.MemberContent>
             </Link>
           </S.MemberBox>
