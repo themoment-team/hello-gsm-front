@@ -10,48 +10,12 @@ export const Title = styled.h1`
 export const CalculatePage = styled.div`
   display: flex;
   justify-content: center;
-  width: 1800px;
   padding-bottom: 100px;
-`;
-
-export const LineList = styled.div`
-  padding-right: 30px;
-  border-right: 3px solid rgba(255, 255, 255, 0.17);
-  margin-right: 40px;
-  height: 1295px;
-`;
-
-export const Line = styled.div`
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 29px;
-  color: #ffffff;
-  text-align: end;
-  &::after {
-    display: block;
-    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/White_Circle.svg/2048px-White_Circle.svg.png);
-    position: relative;
-    background-size: 10px 10px;
-    left: 125px;
-    top: -20px;
-    width: 10px;
-    height: 10px;
-    content: '';
-  }
-
-  :nth-child(1) {
-    margin-top: 70px;
-  }
-  :nth-child(2) {
-    margin: 700px 0 0;
-  }
-  :nth-child(3) {
-    margin: 350px 0 0;
-  }
 `;
 
 export const CalculateSection = styled.form`
   width: 800px;
+  position: relative;
 `;
 
 export const Section = styled.div`
@@ -169,4 +133,44 @@ export const Submit = styled.button`
   font-size: 20px;
   cursor: pointer;
   border: none;
+`;
+
+export const LineList = styled.div`
+  position: absolute;
+  padding-right: 30px;
+  border-right: 3px solid rgba(255, 255, 255, 0.17);
+  margin-right: 40px;
+  height: 1295px;
+  left: -200px;
+  top: 0;
+`;
+
+export const Line = styled.div`
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 29px;
+  color: #ffffff;
+  text-align: end;
+  &::after {
+    display: block;
+    background-color: #ffffff;
+    border-radius: 50%;
+    position: relative;
+    background-size: 10px 10px;
+    left: 119px;
+    top: -20px;
+    width: 10px;
+    height: 10px;
+    content: '';
+  }
+
+  :nth-child(1) {
+    margin-top: 70px;
+  }
+  :nth-child(2) {
+    margin: 700px 0 0;
+  }
+  :nth-child(3) {
+    margin: 350px 0 0;
+  }
 `;

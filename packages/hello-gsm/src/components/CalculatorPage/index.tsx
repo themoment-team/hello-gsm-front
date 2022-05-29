@@ -82,11 +82,6 @@ const CalculatorPage: NextPage = () => {
       <Header />
       <S.Title>성적입력</S.Title>
       <S.CalculatePage>
-        <S.LineList>
-          {lines.map(line => (
-            <S.Line key={line}>{line}</S.Line>
-          ))}
-        </S.LineList>
         <S.CalculateSection onSubmit={handleSubmit(onValid, inValid)}>
           <S.Section>
             <S.ValueSection>
@@ -340,6 +335,11 @@ const CalculatorPage: NextPage = () => {
             </div>
           </S.Section>
           <S.Submit type="submit">저장</S.Submit>
+          <S.LineList>
+            {lines.map(line => (
+              <S.Line key={line}>{line}</S.Line>
+            ))}
+          </S.LineList>
         </S.CalculateSection>
       </S.CalculatePage>
     </>
