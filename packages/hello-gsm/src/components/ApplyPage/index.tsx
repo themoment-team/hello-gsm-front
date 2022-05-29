@@ -165,6 +165,9 @@ const ApplyPage: NextPage = () => {
             type="file"
             id="img-input"
             accept="image/*"
+            {...register('IDPhotoUrl', {
+              required: '* 사진을 업로드 해주세요',
+            })}
             ref={imgInput}
             onChange={e => readImg(e)}
           />
