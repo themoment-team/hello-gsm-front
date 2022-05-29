@@ -98,12 +98,6 @@ const ApplyPage: NextPage = () => {
 
   const onSubmit = (data: ApplyFormType) => {
     console.log(data);
-    onClick();
-  };
-
-  const onError = errors => {
-    console.log(errors);
-    onClick();
   };
 
   const onClick = () => {
@@ -116,13 +110,6 @@ const ApplyPage: NextPage = () => {
 
   const graduationStatus = watch('educationStatus');
   console.log(watch('educationStatus'));
-
-  useEffect(() => {
-    if (graduationStatus === '검정고시') {
-      setSchoolLocation('');
-      setSchoolName('');
-    }
-  }, [graduationStatus]);
 
   return (
     <>
@@ -149,7 +136,7 @@ const ApplyPage: NextPage = () => {
           <S.BarElement>이름</S.BarElement>
           <S.BarElement>연락처</S.BarElement>
         </S.BarBox>
-        <S.ApplyPageContent onSubmit={handleSubmit(onSubmit, onError)}>
+        <S.ApplyPageContent onSubmit={handleSubmit(onSubmit)}>
           <S.Title>지원자 인적사항</S.Title>
           <S.ImgInputBox htmlFor="img-input">
             {imgURL === '' ? (
@@ -333,7 +320,13 @@ const ApplyPage: NextPage = () => {
                 value="검정고시"
                 id="GED"
               />
-              <S.GraduatedTypeLabel htmlFor="GED">
+              <S.GraduatedTypeLabel
+                htmlFor="GED"
+                onClick={() => {
+                  setSchoolLocation('');
+                  setSchoolName('');
+                }}
+              >
                 검정고시
               </S.GraduatedTypeLabel>
             </S.GraduatedSelectBox>
@@ -447,7 +440,9 @@ const ApplyPage: NextPage = () => {
             })}
             placeholder="담임선생님의 연락처를 입력해주세요."
           />
-          <S.NextButton type="submit">다음</S.NextButton>
+          <S.NextButton type="submit" onClick={onClick}>
+            다음
+          </S.NextButton>
         </S.ApplyPageContent>
         <S.ErrorBox>
           <S.Error>{errors.IDPhotoUrl?.message}</S.Error>
