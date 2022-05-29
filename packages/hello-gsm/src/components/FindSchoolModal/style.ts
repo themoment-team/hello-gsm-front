@@ -23,10 +23,9 @@ export const FindSchoolModalBox = styled.div`
 `;
 
 export const CancelButton = styled.div`
-  width: 800px;
-  display: flex;
-  justify-content: flex-end;
+  position: relative;
   cursor: pointer;
+  left: 380px;
 `;
 
 export const Title = styled.p`
