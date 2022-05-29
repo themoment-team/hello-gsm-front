@@ -1,5 +1,11 @@
 import { css, Global } from '@emotion/react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  MouseEvent,
+} from 'react';
 import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 import * as I from '../../Assets/svg';
@@ -62,8 +68,12 @@ const FindSchoolModal: React.FC = () => {
     setShowFindSchoolModal();
   };
 
+  const removeClick = useCallback((e: MouseEvent<HTMLDivElement>): void => {
+    e.stopPropagation();
+  }, []);
+
   return (
-    <S.FindSchoolModal>
+    <S.FindSchoolModal onClick={setShowFindSchoolModal}>
       <Global
         styles={css`
           body {
@@ -71,7 +81,7 @@ const FindSchoolModal: React.FC = () => {
           }
         `}
       />
-      <S.FindSchoolModalBox>
+      <S.FindSchoolModalBox onClick={removeClick}>
         <S.CancelButton onClick={setShowFindSchoolModal}>
           <I.FindSchoolClose />
         </S.CancelButton>
