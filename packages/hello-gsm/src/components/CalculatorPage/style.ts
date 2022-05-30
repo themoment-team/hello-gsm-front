@@ -18,6 +18,11 @@ export const CalculateSection = styled.form`
   position: relative;
 `;
 
+export const Plus = styled.div`
+  cursor: pointer;
+  color: #ffffff;
+`;
+
 export const Section = styled.div`
   display: flex;
   margin: 70px 0 200px;
@@ -170,7 +175,7 @@ export const Line = styled.div`
     border-radius: 50%;
     position: relative;
     background-size: 10px 10px;
-    left: 119px;
+    left: 124px;
     top: -20px;
     width: 10px;
     height: 10px;

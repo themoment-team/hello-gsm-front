@@ -87,7 +87,7 @@ const CalculatorPage: NextPage = () => {
       <S.Title>성적입력</S.Title>
       <S.CalculatePage>
         <S.CalculateSection onSubmit={handleSubmit(onValid, inValid)}>
-          <div onClick={() => setTest([...haha, '1'])}>과목추가</div>
+          <S.Plus onClick={() => setTest([...haha, '1'])}>과목추가</S.Plus>
           <S.Section>
             <S.ValueSection>
               <div>
