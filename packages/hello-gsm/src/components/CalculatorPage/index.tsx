@@ -10,14 +10,11 @@ interface ScoreForm {
   score2_1: number[];
   score2_2: number[];
   score3_1: number[];
-  newSubject: number[];
-  newScore2_1: number[];
-  newScore2_2: number[];
-  newScore3_1: number[];
   artSportsScore: number[];
   volunteerScore: number[];
   absentScore: number[];
   attendanceScore: number[];
+  newSubjects: string[];
 }
 
 const CalculatorPage: NextPage = () => {
@@ -28,30 +25,14 @@ const CalculatorPage: NextPage = () => {
   } = useForm<ScoreForm>();
 
   const onValid = (validForm: ScoreForm) => {
-    const score2_1: number = Calculate(
-      validForm.score2_1,
-      validForm.newScore2_1,
-      2,
-    ); // 2학년 1학기
-    const score2_2: number = Calculate(
-      validForm.score2_2,
-      validForm.newScore2_2,
-      2,
-    ); // 2학년 2학기
-    const score3_1: number = Calculate(
-      validForm.score3_1,
-      validForm.newScore3_1,
-      3,
-    ); // 3학년 1학기
+    const score2_1: number = Calculate(validForm.score2_1, 2); // 2학년 1학기
+    const score2_2: number = Calculate(validForm.score2_2, 2); // 2학년 2학기
+    const score3_1: number = Calculate(validForm.score3_1, 3); // 3학년 1학기
 
     const generalCurriculumScoreSubtotal: number = Rounds(
       score2_1 + score2_2 + score3_1,
     ); // 교과성적 소계
-    const artSportsScore: number = Calculate(
-      validForm.artSportsScore,
-      validForm.artSportsScore,
-      4,
-    ); // 예체능
+    const artSportsScore: number = Calculate(validForm.artSportsScore, 4); // 예체능
     const curriculumScoreSubtotal: number = Rounds(
       generalCurriculumScoreSubtotal + artSportsScore,
     ); // 교과성적 + 예체능
@@ -117,7 +98,7 @@ const CalculatorPage: NextPage = () => {
               ))}
               {haha.map((test, i) => (
                 <S.SubjectInput
-                  {...register('asd')}
+                  {...register(`newSubjects.${i}`)}
                   placeholder="추가과목입력"
                   key={i}
                 />
@@ -144,13 +125,17 @@ const CalculatorPage: NextPage = () => {
               ))}
 
               {haha.map((subject, i) => (
-                <S.Select key={i} {...register(`newScore2_1.${i}`)}>
+                <S.Select
+                  key={i}
+                  {...register(`score2_1.${subjects.length + i}`)}
+                >
                   <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
                   <option value={2}>D</option>
                   <option value={1}>E</option>
+                  <option>없음</option>
                 </S.Select>
               ))}
             </S.ValueSection>
@@ -175,13 +160,17 @@ const CalculatorPage: NextPage = () => {
                 </S.Select>
               ))}
               {haha.map((subject, i) => (
-                <S.Select key={i} {...register(`newScore2_2.${i}`)}>
+                <S.Select
+                  key={i}
+                  {...register(`score2_2.${subjects.length + i}`)}
+                >
                   <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
                   <option value={2}>D</option>
                   <option value={1}>E</option>
+                  <option>없음</option>
                 </S.Select>
               ))}
             </S.ValueSection>
@@ -206,13 +195,17 @@ const CalculatorPage: NextPage = () => {
                 </S.Select>
               ))}
               {haha.map((subject, i) => (
-                <S.Select key={i} {...register(`newScore3_1.${i}`)}>
+                <S.Select
+                  key={i}
+                  {...register(`score3_1.${subjects.length + i}`)}
+                >
                   <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
                   <option value={2}>D</option>
                   <option value={1}>E</option>
+                  <option>없음</option>
                 </S.Select>
               ))}
             </S.ValueSection>
