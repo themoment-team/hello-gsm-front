@@ -40,6 +40,17 @@ export const Subject = styled.div`
   text-align: center;
 `;
 
+export const SubjectInput = styled.input`
+  width: 100px;
+  height: 37px;
+  background-color: #19baff;
+  border-radius: 6px;
+  color: #f8f8f8;
+  line-height: 37px;
+  text-align: center;
+  border: none;
+`;
+
 export const Semester = styled.div`
   width: 127px;
   height: 55px;
