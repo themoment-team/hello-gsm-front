@@ -87,8 +87,8 @@ const CalculatorPage: NextPage = () => {
       <S.Title>성적입력</S.Title>
       <S.CalculatePage>
         <S.CalculateSection onSubmit={handleSubmit(onValid, inValid)}>
+          <div onClick={() => setTest([...haha, '1'])}>과목추가</div>
           <S.Section>
-            <div onClick={() => setTest([...haha, '1'])}>과목추가</div>
             <S.ValueSection>
               <div>
                 <I.CrossRectangle />
@@ -211,7 +211,7 @@ const CalculatorPage: NextPage = () => {
             </S.ValueSection>
           </S.Section>
 
-          <S.Section style={{ height: 230 }}>
+          <S.Section>
             <S.ValueSection>
               <div>
                 <I.CrossRectangle />

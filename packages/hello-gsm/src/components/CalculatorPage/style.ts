@@ -20,10 +20,10 @@ export const CalculateSection = styled.form`
 
 export const Section = styled.div`
   display: flex;
-  height: 500px;
   margin: 70px 0 200px;
   padding: 10px;
   justify-content: space-between;
+
   table {
     border-collapse: separate;
     border-spacing: 5px 10px;
@@ -38,6 +38,7 @@ export const Subject = styled.div`
   color: #f8f8f8;
   line-height: 37px;
   text-align: center;
+  margin-top: 15px;
 `;
 
 export const SubjectInput = styled.input`
@@ -49,6 +50,7 @@ export const SubjectInput = styled.input`
   line-height: 37px;
   text-align: center;
   border: none;
+  margin-top: 20px;
 `;
 
 export const Semester = styled.div`

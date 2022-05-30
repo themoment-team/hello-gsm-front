@@ -5,9 +5,8 @@ import ToNum from './ToNum';
 // 성적 계산
 const Calculate = (array: Array<number>, mode: number) => {
   ToNum(array);
-  array = array.filter(arr => {
-    return arr && !isNaN(arr);
-  }); // 배열에서 NaN 제거
+  array = array.filter(arr => arr && !isNaN(arr)); // 배열에서 NaN 제거
+  console.log(array);
   const arraySum = Sum(array);
 
   let result = 0; // 결과
