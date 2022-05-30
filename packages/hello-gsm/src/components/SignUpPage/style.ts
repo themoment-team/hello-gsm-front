@@ -123,11 +123,11 @@ export const LadioSection = styled.div`
 export const RadioLabel = styled.label`
   display: inline-block;
   text-align: center;
-  cursor: pointer;
   input {
     display: none;
   }
   div {
+    cursor: pointer;
     width: 380px;
     height: 61px;
     background-color: #484453;

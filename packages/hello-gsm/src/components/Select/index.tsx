@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import type { UseFormRegisterReturn } from 'react-hook-form';
