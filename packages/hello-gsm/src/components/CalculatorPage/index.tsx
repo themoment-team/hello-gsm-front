@@ -10,6 +10,10 @@ interface ScoreForm {
   score2_1: number[];
   score2_2: number[];
   score3_1: number[];
+  newSubject: number[];
+  newScore2_1: number[];
+  newScore2_2: number[];
+  newScore3_1: number[];
   artSportsScore: number[];
   volunteerScore: number[];
   absentScore: number[];
@@ -23,32 +27,31 @@ const CalculatorPage: NextPage = () => {
     formState: { errors },
   } = useForm<ScoreForm>();
 
-  const test = (arr1, arr2, arr3) => {
-    const score2_1 = ToNum(arr1).reduce(
-      (accumulator, curr) => accumulator + curr,
-    ); // 배열 총합계 저장
-    const score2_2 = ToNum(arr2).reduce(
-      (accumulator, curr) => accumulator + curr,
-    ); // 배열 총합계 저장
-    const score3_1 = ToNum(arr3).reduce(
-      (accumulator, curr) => accumulator + curr,
-    ); // 배열 총합계 저장
-    console.log(score2_1 + score2_2 + score3_1);
-    return score2_1 + score2_2 + score3_1;
-  };
   const onValid = (validForm: ScoreForm) => {
-    const score2_1: number = Calculate(validForm.score2_1, 2); // 2학년 1학기
-    const score2_2: number = Calculate(validForm.score2_2, 2); // 2학년 2학기
-    const score3_1: number = Calculate(validForm.score3_1, 3); // 3학년 1학기
-    const newScoreCalculate: number = test(
+    const score2_1: number = Calculate(
+      validForm.score2_1,
       validForm.newScore2_1,
+      2,
+    ); // 2학년 1학기
+    const score2_2: number = Calculate(
+      validForm.score2_2,
       validForm.newScore2_2,
+      2,
+    ); // 2학년 2학기
+    const score3_1: number = Calculate(
+      validForm.score3_1,
       validForm.newScore3_1,
-    );
+      3,
+    ); // 3학년 1학기
+
     const generalCurriculumScoreSubtotal: number = Rounds(
       score2_1 + score2_2 + score3_1,
     ); // 교과성적 소계
-    const artSportsScore: number = Calculate(validForm.artSportsScore, 4); // 예체능
+    const artSportsScore: number = Calculate(
+      validForm.artSportsScore,
+      validForm.artSportsScore,
+      4,
+    ); // 예체능
     const curriculumScoreSubtotal: number = Rounds(
       generalCurriculumScoreSubtotal + artSportsScore,
     ); // 교과성적 + 예체능
@@ -65,8 +68,9 @@ const CalculatorPage: NextPage = () => {
     const scoreTotal: number = Rounds(
       curriculumScoreSubtotal + nonCurriculumScoreSubtotal,
     ); // 총합
+
+    // console.log(score2_1);
     console.log(validForm);
-    console.log(validForm.newSubject.length);
     console.log(
       `2학년 1학기 : ${score2_1}\n2학년 2학기 : ${score2_2}\n3학기 1학기 : ${score3_1}\n교과성적 소계 : ${generalCurriculumScoreSubtotal}\n`,
     );
@@ -77,6 +81,7 @@ const CalculatorPage: NextPage = () => {
     );
     console.log(`총합 : ${scoreTotal}`);
   };
+
   const inValid = (errors: FieldErrors) => {
     console.log(errors);
   };
@@ -94,7 +99,7 @@ const CalculatorPage: NextPage = () => {
   ]);
   const [nonSubjects] = useState(['체육', '미술', '음악']);
   const [grades] = useState([1, 2, 3]);
-
+  const [haha, setTest] = useState<Array<string | null>>([]);
   return (
     <>
       <Header />
@@ -102,6 +107,7 @@ const CalculatorPage: NextPage = () => {
       <S.CalculatePage>
         <S.CalculateSection onSubmit={handleSubmit(onValid, inValid)}>
           <S.Section>
+            <div onClick={() => setTest([...haha, '1'])}>과목추가</div>
             <S.ValueSection>
               <div>
                 <I.CrossRectangle />
@@ -109,14 +115,13 @@ const CalculatorPage: NextPage = () => {
               {subjects.map(subject => (
                 <S.Subject key={subject}>{subject}</S.Subject>
               ))}
-              <S.SubjectInput
-                {...register('newSubject.0')}
-                placeholder="추가과목입력"
-              />
-              <S.SubjectInput
-                {...register('newSubject.1')}
-                placeholder="추가과목입력"
-              />
+              {haha.map((test, i) => (
+                <S.SubjectInput
+                  {...register('asd')}
+                  placeholder="추가과목입력"
+                  key={i}
+                />
+              ))}
             </S.ValueSection>
             <S.ValueSection>
               <S.Semester>2학년 1학기</S.Semester>
@@ -138,16 +143,9 @@ const CalculatorPage: NextPage = () => {
                 </S.Select>
               ))}
 
-              {[...Array(2)].map((subject, i) => (
-                <S.Select
-                  key={i}
-                  {...register(`newScore2_1.${i}`, {
-                    validate: {
-                      notNaN: value => !isNaN(value) || '선택해주세요.',
-                    },
-                  })}
-                >
-                  {/* <option>선택</option> */}
+              {haha.map((subject, i) => (
+                <S.Select key={i} {...register(`newScore2_1.${i}`)}>
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -176,16 +174,9 @@ const CalculatorPage: NextPage = () => {
                   <option value={1}>E</option>
                 </S.Select>
               ))}
-              {[...Array(2)].map((subject, i) => (
-                <S.Select
-                  key={i}
-                  {...register(`newScore2_2.${i}`, {
-                    validate: {
-                      notNaN: value => !isNaN(value) || '선택해주세요.',
-                    },
-                  })}
-                >
-                  {/* <option>선택</option> */}
+              {haha.map((subject, i) => (
+                <S.Select key={i} {...register(`newScore2_2.${i}`)}>
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -214,16 +205,9 @@ const CalculatorPage: NextPage = () => {
                   <option value={1}>E</option>
                 </S.Select>
               ))}
-              {[...Array(2)].map((subject, i) => (
-                <S.Select
-                  key={i}
-                  {...register(`newScore3_1.${i}`, {
-                    validate: {
-                      notNaN: value => !isNaN(value) || '선택해주세요.',
-                    },
-                  })}
-                >
-                  {/* <option>선택</option> */}
+              {haha.map((subject, i) => (
+                <S.Select key={i} {...register(`newScore3_1.${i}`)}>
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
