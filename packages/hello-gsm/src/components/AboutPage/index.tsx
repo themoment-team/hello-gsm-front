@@ -1,4 +1,3 @@
-import React from 'react';
 import type { NextPage } from 'next';
 import Header from '../Common/Header';
 import * as S from './style';
@@ -11,6 +10,7 @@ import {
   FrontEnd,
   Operating,
 } from '../../../public/data/about';
+import { Footer } from '../index';
 
 const AboutPage: NextPage = () => {
   return (
@@ -206,6 +206,7 @@ const AboutPage: NextPage = () => {
           <S.SmallBall style={{ left: '19vh', top: '209vh' }} />
         </S.Section>
       </S.AboutPage>
+      <Footer />
     </>
   );
 };
