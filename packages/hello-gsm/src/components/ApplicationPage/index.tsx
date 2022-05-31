@@ -355,7 +355,7 @@ const ApplicationPage: NextPage = () => {
                 <td></td>
               </tr>
               <tr>
-                <td>기술과정</td>
+                <td>기술가정</td>
                 <td></td>
                 <td></td>
                 <td></td>
