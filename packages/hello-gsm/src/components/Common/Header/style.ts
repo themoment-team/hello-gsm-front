@@ -35,11 +35,8 @@ export const NavBar = styled.div`
   }
 `;
 
-const Content = styled.a`
+export const NavContent = styled.a`
   font-size: 18px;
-`;
-
-export const NavContent = styled(Content)`
   font-weight: 700;
   color: #bdbdbd;
 `;
@@ -56,7 +53,8 @@ export const MemberBox = styled.div`
   }
 `;
 
-export const MemberContent = styled(Content)`
+export const MemberContent = styled.a`
+  font-size: 18px;
   color: #dddddd;
   font-weight: 400;
 `;
