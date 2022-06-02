@@ -27,7 +27,7 @@ export const Title = styled.h1`
   margin-bottom: 30px;
 `;
 
-export const SignInBtn = styled.button`
+export const SignInBtn = styled.a`
   display: flex;
   align-items: center;
   width: 328px;
