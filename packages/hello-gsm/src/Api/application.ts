@@ -48,4 +48,16 @@ class Application {
       return error;
     }
   }
+
+  patchFirstSubmission(data: applicationType) {
+    try {
+      return RequestApi({
+        method: 'PATCH',
+        url: ApplicationController.firstSubmission(),
+        data: data,
+      });
+    } catch (error) {
+      return error;
+    }
+  }
 }
