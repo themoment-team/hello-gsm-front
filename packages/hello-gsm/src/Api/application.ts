@@ -12,4 +12,15 @@ class Application {
       return error;
     }
   }
+
+  deleteInformation() {
+    try {
+      return RequestApi({
+        method: 'DELETE',
+        url: ApplicationController.information(),
+      });
+    } catch (error) {
+      return error;
+    }
+  }
 }
