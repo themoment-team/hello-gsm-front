@@ -2,14 +2,19 @@ import * as S from './style';
 import * as I from '../../Assets/svg';
 import useStore from '../../Stores/StoreContainer';
 import { css, Global } from '@emotion/react';
-import { useCallback, MouseEvent } from 'react';
+import { useCallback, MouseEvent, useState, useEffect } from 'react';
 
 const FAQModal: React.FC = () => {
+  const [widthSize, setWidthSize] = useState<number>(0);
   const { showFAQModal, setShowFAQModal, FAQModalTitle, FAQModalContent } =
     useStore();
 
   const removeClick = useCallback((e: MouseEvent<HTMLDivElement>): void => {
     e.stopPropagation();
+  }, []);
+
+  useEffect(() => {
+    setWidthSize(window.screen.availWidth);
   }, []);
 
   return (
@@ -22,15 +27,17 @@ const FAQModal: React.FC = () => {
         `}
       />
       <S.FAQModalBox onClick={removeClick}>
-        <S.CloseButton onClick={setShowFAQModal}>
-          <I.CloseButton />
-        </S.CloseButton>
+        <S.CloseButtonWrap>
+          <S.CloseButton onClick={setShowFAQModal}>
+            <I.CloseButton />
+          </S.CloseButton>
+        </S.CloseButtonWrap>
         <S.ContentBox>
           <S.QuestionBox>
             <S.QuestionTitle>
               <S.QuestionTitleContent>{FAQModalTitle}</S.QuestionTitleContent>
             </S.QuestionTitle>
-            <I.Questioner />
+            {widthSize > 640 ? <I.Questioner /> : <I.MobileQuestioner />}
           </S.QuestionBox>
           <S.AnswerBox>
             <S.AnswerContent>
