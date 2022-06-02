@@ -84,3 +84,5 @@ class Application {
     }
   }
 }
+
+export default new Application();
