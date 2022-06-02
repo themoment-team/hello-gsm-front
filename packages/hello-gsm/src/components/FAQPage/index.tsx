@@ -18,6 +18,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   const [faqList, setFaqList] = useState<FAQType[]>(faqData);
   const [keyword, setKeyword] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(1);
+  const [widthSize, setWidthSize] = useState<number>(0);
 
   const { showFAQModal, isSearching, setIsSearching } = useStore();
 
@@ -55,61 +56,58 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   const selectStyle = (index: number) =>
     pageIndex === index && { color: '#ffffff' };
 
+  useEffect(() => {
+    setWidthSize(window.screen.availWidth);
+  }, []);
+
   return (
     <>
       {showFAQModal && <FAQModal />}
       <Header />
       <S.FAQPage>
         <S.Title>자주 묻는 질문</S.Title>
-        <S.SearchWrapper>
-          <I.SearchIcon />
-          <S.Search
-            type="text"
-            placeholder="검색하실 질문을 입력해주세요"
-            onChange={searching}
-            value={keyword}
-          />
-        </S.SearchWrapper>
-        <S.FAQList>
-          {faqList?.map((faq: FAQType, index: number) => (
-            <FAQBox
-              key={index}
-              question={faq.question}
-              answer={faq.answer}
-              keyword={keyword}
+        <S.FAQContent>
+          <S.SearchWrapper>
+            {widthSize > 640 ? <I.SearchIcon /> : <I.MobileSearchIcon />}
+            <S.Search
+              type="text"
+              placeholder="검색하실 질문을 입력해주세요"
+              onChange={searching}
+              value={keyword}
             />
-          ))}
-        </S.FAQList>
-        {!isSearching && (
-          <S.FAQListIndex>
-            <S.ChangeAllowButton onClick={minusPageIndex}>
-              <I.LeftButton />
-            </S.ChangeAllowButton>
-            <S.FAQListIndexButtonWrapper>
-              <S.ChangeAllowButton
-                onClick={() => selectPage(1)}
-                css={selectStyle(1)}
-              >
-                1
+          </S.SearchWrapper>
+          <S.FAQList>
+            {faqList?.map((faq: FAQType, index: number) => (
+              <FAQBox
+                key={index}
+                question={faq.question}
+                answer={faq.answer}
+                keyword={keyword}
+              />
+            ))}
+          </S.FAQList>
+          {!isSearching && (
+            <S.FAQListIndex>
+              <S.ChangeAllowButton onClick={minusPageIndex}>
+                {widthSize > 640 ? <I.LeftButton /> : <I.MobileLeftButton />}
               </S.ChangeAllowButton>
-              <S.ChangeAllowButton
-                onClick={() => selectPage(2)}
-                css={selectStyle(2)}
-              >
-                2
+              <S.FAQListIndexButtonWrapper>
+                <S.ListIndex onClick={() => selectPage(1)} css={selectStyle(1)}>
+                  1
+                </S.ListIndex>
+                <S.ListIndex onClick={() => selectPage(2)} css={selectStyle(2)}>
+                  2
+                </S.ListIndex>
+                <S.ListIndex onClick={() => selectPage(3)} css={selectStyle(3)}>
+                  3
+                </S.ListIndex>
+              </S.FAQListIndexButtonWrapper>
+              <S.ChangeAllowButton onClick={plusPageIndex}>
+                {widthSize > 640 ? <I.RightButton /> : <I.MobileRightButton />}
               </S.ChangeAllowButton>
-              <S.ChangeAllowButton
-                onClick={() => selectPage(3)}
-                css={selectStyle(3)}
-              >
-                3
-              </S.ChangeAllowButton>
-            </S.FAQListIndexButtonWrapper>
-            <S.ChangeAllowButton onClick={plusPageIndex}>
-              <I.RightButton />
-            </S.ChangeAllowButton>
-          </S.FAQListIndex>
-        )}
+            </S.FAQListIndex>
+          )}
+        </S.FAQContent>
       </S.FAQPage>
       <S.SkyBlueBall />
       <S.BlueBall />
