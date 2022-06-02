@@ -60,4 +60,16 @@ class Application {
       return error;
     }
   }
+
+  patchSecondsSubmisson(data: scoreType) {
+    try {
+      return RequestApi({
+        method: 'PATCH',
+        url: ApplicationController.secondSubmission(),
+        data: data,
+      });
+    } catch (error) {
+      return error;
+    }
+  }
 }
