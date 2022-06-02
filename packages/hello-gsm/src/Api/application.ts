@@ -37,7 +37,7 @@ class Application {
     }
   }
 
-  postSecondsSubmisson(data: scoreType) {
+  postSecondSubmisson(data: scoreType) {
     try {
       return RequestApi({
         method: 'POST',
@@ -61,12 +61,23 @@ class Application {
     }
   }
 
-  patchSecondsSubmisson(data: scoreType) {
+  patchSecondSubmisson(data: scoreType) {
     try {
       return RequestApi({
         method: 'PATCH',
         url: ApplicationController.secondSubmission(),
         data: data,
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  patchFinalSubmission() {
+    try {
+      return RequestApi({
+        method: 'PATCH',
+        url: ApplicationController.finalSubmission(),
       });
     } catch (error) {
       return error;
