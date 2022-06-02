@@ -1,10 +1,10 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import * as S from './style';
-import * as I from '../../Assets/svg';
+import * as I from 'Assets/svg';
 import { useState } from 'react';
 import { css } from '@emotion/react';
-import useStore from '../../Stores/StoreContainer';
+import useStore from 'Stores/StoreContainer';
 import { Header, MypageModal } from 'components';
 
 const MyPage: NextPage = () => {
