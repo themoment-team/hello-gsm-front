@@ -1,7 +1,12 @@
 import Sum from './Sum';
 import ToNum from './ToNum';
 
-// 출석점수 환산
+/**
+ * @param absent - 결석점수
+ * @param attendance - 출석점수 (지각, 조퇴, 결과)
+ * @returns number - 출결점수 환선
+ */
+
 const Attendance = (absent: Array<number>, attendance: Array<number>) => {
   let result = 30;
   ToNum(absent);

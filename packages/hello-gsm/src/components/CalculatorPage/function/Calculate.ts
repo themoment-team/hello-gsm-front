@@ -2,14 +2,18 @@ import Rounds from './Rounds';
 import Sum from './Sum';
 import ToNum from './ToNum';
 
-// 성적 계산
+/**
+ *
+ * @param array - 2학년1학기, 2학년2학기, 3학년1학기, 예체능 점수 배열
+ * @param mode - 공식 구별
+ * @returns number - 교과 성적 계산
+ */
 const Calculate = (array: Array<number>, mode: number) => {
   ToNum(array);
   array = array.filter(arr => arr && !isNaN(arr)); // 배열에서 NaN 제거
-  console.log(array);
   const arraySum = Sum(array);
 
-  let result = 0; // 결과
+  let result = 0;
 
   switch (mode) {
     case 2:
