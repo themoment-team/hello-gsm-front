@@ -17,3 +17,16 @@ export interface applicationType {
   teacherName: string;
   TeacherNumber: string;
 }
+
+export interface scoreType {
+  score2_1: number;
+  score2_2: number;
+  score3_1: number;
+  generalCurriculumScoreSubtotal: number;
+  artSportsScore: number;
+  attendanceScore: number;
+  curriculumScoreSubtotal: number;
+  volunteerScore: number;
+  nonCurriculumScoreSubtotal: number;
+  scoreTotal: number;
+}
