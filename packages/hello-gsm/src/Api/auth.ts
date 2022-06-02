@@ -21,7 +21,7 @@ class Auth {
         data: data,
       });
     } catch (error) {
-      console.log(error);
+      return error;
     }
   }
 
@@ -32,7 +32,18 @@ class Auth {
         url: AuthController.logout(),
       });
     } catch (error) {
-      console.log(error);
+      return error;
+    }
+  }
+
+  refresh() {
+    try {
+      return RequestApi({
+        method: 'POST',
+        url: AuthController.refresh(),
+      });
+    } catch (error) {
+      return error;
     }
   }
 }
