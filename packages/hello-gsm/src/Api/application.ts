@@ -14,12 +14,11 @@ class Application {
     }
   }
 
-  deleteInformation(data: applicationType) {
+  deleteInformation() {
     try {
       return RequestApi({
         method: 'DELETE',
         url: ApplicationController.information(),
-        data: data,
       });
     } catch (error) {
       return error;
