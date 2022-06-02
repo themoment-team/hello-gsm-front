@@ -24,6 +24,17 @@ class Auth {
       console.log(error);
     }
   }
+
+  logout() {
+    try {
+      return RequestApi({
+        method: 'post',
+        url: AuthController.logout(),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new Auth();
