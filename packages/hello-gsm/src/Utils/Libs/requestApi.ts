@@ -8,6 +8,7 @@ const RequestApi = (p: AxiosRequestConfig) => {
       baseURL: BASE_URL,
       url: p.url,
       data: p.data,
+      withCredentials: true,
     });
     return res;
   } catch (error) {
