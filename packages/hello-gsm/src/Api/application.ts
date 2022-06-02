@@ -36,4 +36,16 @@ class Application {
       return error;
     }
   }
+
+  postSecondsSubmisson(data: scoreType) {
+    try {
+      return RequestApi({
+        method: 'POST',
+        url: ApplicationController.secondSubmission(),
+        data: data,
+      });
+    } catch (error) {
+      return error;
+    }
+  }
 }
