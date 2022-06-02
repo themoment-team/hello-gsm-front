@@ -7,7 +7,7 @@ interface storeType {
   showMypageModal: boolean;
   mypageModalContent: string;
   isSearching: boolean;
-  showSideBar: boolean | undefined;
+  showSideBar: boolean | null;
 
   setShowFAQModal: () => void;
   setFAQModalTitle: (title: string) => void;
@@ -25,7 +25,7 @@ const useStore = create<storeType>(set => ({
   showMypageModal: false,
   mypageModalContent: '',
   isSearching: false,
-  showSideBar: undefined,
+  showSideBar: null,
 
   setShowFAQModal: () => set(state => ({ showFAQModal: !state.showFAQModal })),
   setFAQModalTitle: title => set({ FAQModalTitle: title }),
