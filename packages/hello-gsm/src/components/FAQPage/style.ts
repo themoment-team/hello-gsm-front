@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import device from 'shared/config';
 
 export const FAQPage = styled.div`
   display: flex;
@@ -7,6 +8,9 @@ export const FAQPage = styled.div`
   align-items: center;
   position: relative;
   top: 150px;
+  @media ${device.mobile} {
+    top: 50px;
+  }
 `;
 
 export const Title = styled.p`
@@ -15,28 +19,50 @@ export const Title = styled.p`
   color: #ffffff;
 `;
 
+export const FAQContent = styled.div`
+  width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media ${device.mobile} {
+    width: 90%;
+  }
+`;
+
 export const SearchWrapper = styled.div`
-  width: 700px;
+  width: 100%;
   height: 50px;
   border-bottom: 1px solid #eeeeee;
   margin-top: 70px;
-  padding: 0 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media ${device.tablet} {
+    margin-top: 40px;
+  }
+  @media ${device.mobile} {
+    height: 40px;
+    margin-top: 20px;
+  }
 `;
 
 export const Search = styled.input`
-  width: 630px;
+  width: 93%;
   display: block;
   background-color: inherit;
   border: none;
   font-size: 22px;
   font-weight: 400;
   color: #ffffff;
+  @media ${device.mobile} {
+    font-size: 16px;
+  }
   &::placeholder {
     color: rgba(255, 255, 255, 0.72);
     opacity: 1;
+    @media ${device.mobile} {
+      font-size: 16px;
+    }
   }
   &:focus {
     outline: none;
@@ -48,8 +74,16 @@ export const Search = styled.input`
 `;
 
 export const FAQList = styled.div`
+  width: 100%;
   margin-top: 50px;
   margin-bottom: 100px;
+  @media ${device.tablet} {
+    margin-top: 15px;
+  }
+  @media ${device.mobile} {
+    margin-top: 0;
+    margin-bottom: 35px;
+  }
 `;
 
 export const FAQTitle = styled.div`
@@ -61,6 +95,9 @@ export const FAQListIndex = styled.div`
   margin-bottom: 70px;
   display: flex;
   justify-content: space-between;
+  @media ${device.mobile} {
+    width: 100px;
+  }
 `;
 
 export const FAQListIndexButtonWrapper = styled.div`
@@ -72,6 +109,10 @@ export const FAQListIndexButtonWrapper = styled.div`
   font-size: 24px;
   font-weight: 700;
   cursor: pointer;
+  @media ${device.mobile} {
+    font-size: 16px;
+    width: 50px;
+  }
 `;
 
 export const ChangeAllowButton = styled.div`
@@ -80,11 +121,24 @@ export const ChangeAllowButton = styled.div`
   align-items: flex-end;
 `;
 
-export const SkyBlueBall = styled.div`
-  width: 177px;
-  height: 177px;
+export const ListIndex = styled.p`
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+`;
+
+const Ball = styled.div`
   position: absolute;
   border-radius: 100%;
+  z-index: -1;
+  @media ${device.tablet} {
+    display: none;
+  }
+`;
+
+export const SkyBlueBall = styled(Ball)`
+  width: 177px;
+  height: 177px;
   background: linear-gradient(
     207.52deg,
     #d2f7ff 13.95%,
@@ -93,17 +147,13 @@ export const SkyBlueBall = styled.div`
   );
   top: 80vh;
   left: 3vw;
-  z-index: -1;
 `;
 
-export const BlueBall = styled.div`
-  position: absolute;
+export const BlueBall = styled(Ball)`
   width: 131px;
   height: 131px;
-  border-radius: 100%;
   top: 75vh;
   right: 4vw;
-  z-index: -1;
   background: linear-gradient(
     207.52deg,
     #5dc4ff 13.95%,
