@@ -18,9 +18,26 @@ export const CalculateSection = styled.form`
   position: relative;
 `;
 
-export const Plus = styled.div`
+export const CurriculumSection = styled.div`
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+`;
+
+export const CurriculumValue = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Plus = styled.button`
   cursor: pointer;
   color: #ffffff;
+  width: 100%;
+  height: 37px;
+  border: none;
+  background: #0c4680;
+  border-radius: 6px;
+  margin: 12px 0 150px;
 `;
 
 export const Section = styled.div`

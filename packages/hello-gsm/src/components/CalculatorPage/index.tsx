@@ -80,136 +80,138 @@ const CalculatorPage: NextPage = () => {
   ]);
   const [nonSubjects] = useState(['체육', '미술', '음악']);
   const [grades] = useState([1, 2, 3]);
-  const [haha, setTest] = useState<Array<string | null>>([]);
+  const [newsubjects, setNewSubjects] = useState<Array<string | null>>([]);
   return (
     <>
       <Header />
       <S.Title>성적입력</S.Title>
       <S.CalculatePage>
         <S.CalculateSection onSubmit={handleSubmit(onValid, inValid)}>
-          <S.Plus onClick={() => setTest([...haha, '1'])}>과목추가</S.Plus>
-          <S.Section>
-            <S.ValueSection>
-              <div>
-                <I.CrossRectangle />
-              </div>
-              {subjects.map(subject => (
-                <S.Subject key={subject}>{subject}</S.Subject>
-              ))}
-              {haha.map((test, i) => (
-                <S.SubjectInput
-                  {...register(`newSubjects.${i}`)}
-                  placeholder="추가과목입력"
-                  key={i}
-                />
-              ))}
-            </S.ValueSection>
-            <S.ValueSection>
-              <S.Semester>2학년 1학기</S.Semester>
-              {subjects.map((subject, i: number) => (
-                <S.Select
-                  key={subject}
-                  {...register(`score2_1.${i}`, {
-                    validate: {
-                      notNaN: value => !isNaN(value) || '선택해주세요.',
-                    },
-                  })}
-                >
-                  {/* <option>선택</option> */}
-                  <option value={5}>A</option>
-                  <option value={4}>B</option>
-                  <option value={3}>C</option>
-                  <option value={2}>D</option>
-                  <option value={1}>E</option>
-                </S.Select>
-              ))}
+          <S.CurriculumSection>
+            <S.CurriculumValue>
+              <S.ValueSection>
+                <div>
+                  <I.CrossRectangle />
+                </div>
+                {subjects.map(subject => (
+                  <S.Subject key={subject}>{subject}</S.Subject>
+                ))}
+                {newsubjects.map((test, i) => (
+                  <S.SubjectInput
+                    {...register(`newSubjects.${i}`)}
+                    placeholder="추가과목입력"
+                    key={i}
+                  />
+                ))}
+              </S.ValueSection>
+              <S.ValueSection>
+                <S.Semester>2학년 1학기</S.Semester>
+                {subjects.map((subject, i: number) => (
+                  <S.Select
+                    key={subject}
+                    {...register(`score2_1.${i}`, {
+                      validate: {
+                        notNaN: value => !isNaN(value) || '선택해주세요.',
+                      },
+                    })}
+                  >
+                    {/* <option>선택</option> */}
+                    <option value={5}>A</option>
+                    <option value={4}>B</option>
+                    <option value={3}>C</option>
+                    <option value={2}>D</option>
+                    <option value={1}>E</option>
+                  </S.Select>
+                ))}
+                {newsubjects.map((subject, i) => (
+                  <S.Select
+                    key={i}
+                    {...register(`score2_1.${subjects.length + i}`)}
+                  >
+                    <option>선택</option>
+                    <option value={5}>A</option>
+                    <option value={4}>B</option>
+                    <option value={3}>C</option>
+                    <option value={2}>D</option>
+                    <option value={1}>E</option>
+                    <option>없음</option>
+                  </S.Select>
+                ))}
+              </S.ValueSection>
+              <S.ValueSection>
+                <S.Semester>2학년 2학기</S.Semester>
+                {subjects.map((subject, i: number) => (
+                  <S.Select
+                    key={subject}
+                    {...register(`score2_2.${i}`, {
+                      validate: {
+                        notNaN: value => !isNaN(value) || '선택해주세요.',
+                      },
+                    })}
+                  >
+                    {/* <option>선택</option> */}
+                    <option value={5}>A</option>
+                    <option value={4}>B</option>
+                    <option value={3}>C</option>
+                    <option value={2}>D</option>
+                    <option value={1}>E</option>
+                  </S.Select>
+                ))}
+                {newsubjects.map((subject, i) => (
+                  <S.Select
+                    key={i}
+                    {...register(`score2_2.${subjects.length + i}`)}
+                  >
+                    <option>선택</option>
+                    <option value={5}>A</option>
+                    <option value={4}>B</option>
+                    <option value={3}>C</option>
+                    <option value={2}>D</option>
+                    <option value={1}>E</option>
+                    <option>없음</option>
+                  </S.Select>
+                ))}
+              </S.ValueSection>
+              <S.ValueSection>
+                <S.Semester>3학년 1학기</S.Semester>
+                {subjects.map((subject, i: number) => (
+                  <S.Select
+                    key={subject}
+                    {...register(`score3_1.${i}`, {
+                      validate: {
+                        notNaN: value => !isNaN(value) || '선택해주세요.',
+                      },
+                    })}
+                  >
+                    {/* <option>선택</option> */}
+                    <option value={5}>A</option>
+                    <option value={4}>B</option>
+                    <option value={3}>C</option>
+                    <option value={2}>D</option>
+                    <option value={1}>E</option>
+                  </S.Select>
+                ))}
+                {newsubjects.map((subject, i) => (
+                  <S.Select
+                    key={i}
+                    {...register(`score3_1.${subjects.length + i}`)}
+                  >
+                    <option>선택</option>
+                    <option value={5}>A</option>
+                    <option value={4}>B</option>
+                    <option value={3}>C</option>
+                    <option value={2}>D</option>
+                    <option value={1}>E</option>
+                    <option>없음</option>
+                  </S.Select>
+                ))}
+              </S.ValueSection>
+            </S.CurriculumValue>
 
-              {haha.map((subject, i) => (
-                <S.Select
-                  key={i}
-                  {...register(`score2_1.${subjects.length + i}`)}
-                >
-                  <option>선택</option>
-                  <option value={5}>A</option>
-                  <option value={4}>B</option>
-                  <option value={3}>C</option>
-                  <option value={2}>D</option>
-                  <option value={1}>E</option>
-                  <option>없음</option>
-                </S.Select>
-              ))}
-            </S.ValueSection>
-
-            <S.ValueSection>
-              <S.Semester>2학년 2학기</S.Semester>
-              {subjects.map((subject, i: number) => (
-                <S.Select
-                  key={subject}
-                  {...register(`score2_2.${i}`, {
-                    validate: {
-                      notNaN: value => !isNaN(value) || '선택해주세요.',
-                    },
-                  })}
-                >
-                  {/* <option>선택</option> */}
-                  <option value={5}>A</option>
-                  <option value={4}>B</option>
-                  <option value={3}>C</option>
-                  <option value={2}>D</option>
-                  <option value={1}>E</option>
-                </S.Select>
-              ))}
-              {haha.map((subject, i) => (
-                <S.Select
-                  key={i}
-                  {...register(`score2_2.${subjects.length + i}`)}
-                >
-                  <option>선택</option>
-                  <option value={5}>A</option>
-                  <option value={4}>B</option>
-                  <option value={3}>C</option>
-                  <option value={2}>D</option>
-                  <option value={1}>E</option>
-                  <option>없음</option>
-                </S.Select>
-              ))}
-            </S.ValueSection>
-
-            <S.ValueSection>
-              <S.Semester>3학년 1학기</S.Semester>
-              {subjects.map((subject, i: number) => (
-                <S.Select
-                  key={subject}
-                  {...register(`score3_1.${i}`, {
-                    validate: {
-                      notNaN: value => !isNaN(value) || '선택해주세요.',
-                    },
-                  })}
-                >
-                  {/* <option>선택</option> */}
-                  <option value={5}>A</option>
-                  <option value={4}>B</option>
-                  <option value={3}>C</option>
-                  <option value={2}>D</option>
-                  <option value={1}>E</option>
-                </S.Select>
-              ))}
-              {haha.map((subject, i) => (
-                <S.Select
-                  key={i}
-                  {...register(`score3_1.${subjects.length + i}`)}
-                >
-                  <option>선택</option>
-                  <option value={5}>A</option>
-                  <option value={4}>B</option>
-                  <option value={3}>C</option>
-                  <option value={2}>D</option>
-                  <option value={1}>E</option>
-                  <option>없음</option>
-                </S.Select>
-              ))}
-            </S.ValueSection>
-          </S.Section>
+            <S.Plus onClick={() => setNewSubjects([...newsubjects, ''])}>
+              +과목추가
+            </S.Plus>
+          </S.CurriculumSection>
 
           <S.Section>
             <S.ValueSection>
