@@ -12,4 +12,15 @@ class User {
       return error;
     }
   }
+
+  info() {
+    try {
+      return RequestApi({
+        method: 'GET',
+        url: UserController.info(),
+      });
+    } catch (error) {
+      return error;
+    }
+  }
 }
