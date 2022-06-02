@@ -28,7 +28,7 @@ class Auth {
   logout() {
     try {
       return RequestApi({
-        method: 'post',
+        method: 'POST',
         url: AuthController.logout(),
       });
     } catch (error) {
