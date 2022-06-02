@@ -3,18 +3,15 @@ import { NavContent } from 'components/Common/Header/style';
 import device from 'shared/config';
 
 export const Background = styled.div`
-  @media ${device.laptop} {
-    display: none;
-  }
-  display: block;
   position: fixed;
   top: 0;
   background: rgba(0, 0, 0, 0.51);
   width: 100vw;
   height: 100vh;
   z-index: 3;
-  animation-duration: 1.5s;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
+
   @keyframes in {
     to {
       background: rgba(0, 0, 0, 0.51);
@@ -28,20 +25,18 @@ export const Background = styled.div`
 
     to {
       background: none;
-      display: none;
       z-index: -1;
     }
+  }
+
+  @media (min-width: 1040px) {
+    display: none;
   }
 `;
 
 export const SideBar = styled.div`
-  @media ${device.laptop} {
-    display: none;
-  }
   @media ${device.tablet} {
-    display: flex;
     padding: 17px 17px 50px;
-    justify-content: space-between;
     height: 100vh;
     width: 50vw;
     background-color: red;
@@ -51,7 +46,7 @@ export const SideBar = styled.div`
     top: 0;
   }
 
-  animation-duration: 1.5s;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
   @keyframes slidein {
     from {
@@ -71,8 +66,11 @@ export const SideBar = styled.div`
 
     to {
       right: -500px;
-      display: none;
     }
+  }
+
+  @media (min-width: 1040px) {
+    display: none;
   }
 `;
 
@@ -86,6 +84,7 @@ export const NavSection = styled.div`
   justify-content: space-between;
   text-align: end;
   padding-top: 100px;
+  height: 100%;
 `;
 
 export const LinkWrapper = styled.div`

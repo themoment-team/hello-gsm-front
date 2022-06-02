@@ -27,7 +27,6 @@ const SideBar: NextPage = () => {
         css={css`
           animation-name: ${showSideBar ? 'slidein' : 'slideout'};
           display: ${showSideBar == null && 'none'};
-          display: ${showSideBar && 'flex'};
         `}
       >
         <S.CloseSideBar onClick={setShowSideBar}>
