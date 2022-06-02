@@ -3,6 +3,9 @@ import RequestApi from 'Utils/Libs/requestApi';
 import { ApplicationController } from 'Utils/Libs/requestUrls';
 
 class Application {
+  /**
+   * @returns 원서에 저장된 정보를 반환한다
+   */
   getInformation() {
     try {
       return RequestApi({
@@ -14,6 +17,9 @@ class Application {
     }
   }
 
+  /**
+   * 원서 삭제를 위한 api
+   */
   deleteInformation() {
     try {
       return RequestApi({
@@ -25,6 +31,9 @@ class Application {
     }
   }
 
+  /**
+   * @param data - 1차 제출(인적 사항) 파라미터
+   */
   postFirstSubmission(data: applicationType) {
     try {
       return RequestApi({
@@ -37,6 +46,9 @@ class Application {
     }
   }
 
+  /**
+   * @param data - 2차 제출(성적) 파라미터
+   */
   postSecondSubmisson(data: scoreType) {
     try {
       return RequestApi({
@@ -49,6 +61,9 @@ class Application {
     }
   }
 
+  /**
+   * @param data - 1차 수정(인적 사항) 파라미터
+   */
   patchFirstSubmission(data: applicationType) {
     try {
       return RequestApi({
@@ -61,6 +76,9 @@ class Application {
     }
   }
 
+  /**
+   * @param data - 2차 수정(성적) 파라미터
+   */
   patchSecondSubmisson(data: scoreType) {
     try {
       return RequestApi({
@@ -73,6 +91,9 @@ class Application {
     }
   }
 
+  /**
+   * 최종 제출을 위한 api
+   */
   patchFinalSubmission() {
     try {
       return RequestApi({
