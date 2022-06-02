@@ -1,20 +1,21 @@
 import { BASE_URL } from 'shared/config';
+import { signUpType } from 'type/signup';
 import RequestApi from 'Utils/Libs/requestApi';
 import { AuthController } from 'Utils/Libs/requestUrls';
 
 class Auth {
+  /**
+   * @returns 카카오 로그인 URL을 반환한다
+   */
   signin() {
     return BASE_URL + AuthController.signin();
   }
 
-  signup(name: string, cellphoneNumber: string, birth: Date, gender: string) {
+  /**
+   * @param data - 회원가입에 필요한 파라미터 
+   */
+  signup(data: signUpType) {
     try {
-      const data = {
-        name,
-        cellphoneNumber,
-        birth,
-        gender,
-      };
       return RequestApi({
         method: 'POST',
         url: AuthController.signup(),
@@ -25,6 +26,9 @@ class Auth {
     }
   }
 
+  /**
+   * 로그아웃을 위한 api
+   */
   logout() {
     try {
       return RequestApi({
@@ -36,6 +40,9 @@ class Auth {
     }
   }
 
+  /**
+   * 토큰 재발급을 위한 api
+   */
   refresh() {
     try {
       return RequestApi({
