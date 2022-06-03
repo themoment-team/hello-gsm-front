@@ -45,6 +45,10 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
         );
   }, [keyword, pageIndex, isSearching]);
 
+  useEffect(() => {
+    setWidthSize(window.screen.availWidth);
+  }, []);
+
   const selectPage = (index: number) => setPageIndex(index);
 
   const plusPageIndex = () =>
@@ -55,10 +59,6 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
 
   const selectStyle = (index: number) =>
     pageIndex === index && { color: '#ffffff' };
-
-  useEffect(() => {
-    setWidthSize(window.screen.availWidth);
-  }, []);
 
   return (
     <>
