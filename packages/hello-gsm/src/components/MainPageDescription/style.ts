@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import device from 'shared/config';
 
 export const Description = styled.div`
   display: flex;
@@ -19,6 +20,14 @@ export const DescriptionLine = styled.p`
   margin-top: 15px;
   color: #ffffff;
   text-align: center;
+  @media ${device.tablet} {
+    font-size: 19px;
+    margin-top: 10px;
+  }
+  @media ${device.mobile} {
+    font-size: 10px;
+    margin-top: 5px;
+  }
 `;
 
 export const PostScript = styled.p`
@@ -27,6 +36,13 @@ export const PostScript = styled.p`
   color: rgba(255, 255, 255, 0.7);
   margin-top: 15px;
   text-align: center;
+  @media ${device.tablet} {
+    font-size: 17px;
+  }
+  @media ${device.mobile} {
+    font-size: 15px;
+    margin-top: 10px;
+  }
 `;
 
 export const Login = styled.a`
