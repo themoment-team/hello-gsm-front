@@ -5,6 +5,8 @@ import { Select, Header, Input } from 'components';
 import { css } from '@emotion/react';
 import dayjs from 'dayjs';
 import auth from 'Api/auth';
+import { AxiosError } from 'axios';
+import TosBox from './TosBox';
 
 interface UserForm {
   gender: '남자' | '여자';
@@ -40,11 +42,12 @@ const SignUpPage: NextPage = () => {
     const register = async () => {
       try {
         auth.signup({ birth, name, gender, cellphoneNumber });
-      } catch (e) {
+      } catch (e: any) {
         console.error(e);
       }
     };
-    return register;
+
+    register();
   };
 
   const inValid = (errors: FieldErrors) => {
@@ -143,7 +146,7 @@ const SignUpPage: NextPage = () => {
           <S.ErrorMessage css={errors.cellphoneNumber && SelectError(400)}>
             {errors.cellphoneNumber?.message}
           </S.ErrorMessage>
-          <S.TosBox></S.TosBox>
+          <TosBox />
           <S.CheckLabel htmlFor="check">
             <input
               {...register('agree', { required: '* 동의를 선택해주세요.' })}
