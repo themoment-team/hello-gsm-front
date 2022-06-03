@@ -28,20 +28,18 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData = [] }) => {
 
   useEffect(() => {
     keyword === '' && setIsSearching(false);
-    isSearching
-      ? setFaqList(
-          faqData?.filter(
+    setFaqList(
+      isSearching
+        ? faqData?.filter(
             (faq: FAQType) =>
               faq.question.includes(keyword) || faq.answer.includes(keyword),
-          ),
-        )
-      : setFaqList(
-          faqData?.filter(
+          )
+        : faqData?.filter(
             (faq: FAQType) =>
               (pageIndex - 1) * 10 <= faqData.indexOf(faq) &&
               faqData.indexOf(faq) < pageIndex * 10,
           ),
-        );
+    );
   }, [keyword, pageIndex, isSearching]);
 
   const selectPage = (index: number) => setPageIndex(index);
