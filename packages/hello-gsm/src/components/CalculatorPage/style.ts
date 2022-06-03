@@ -4,7 +4,7 @@ export const Title = styled.h1`
   font-size: 24px;
   color: #ffffff;
   text-align: center;
-  margin-top: 100px;
+  margin: 100px 0;
 `;
 
 export const CalculatePage = styled.div`

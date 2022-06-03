@@ -144,7 +144,7 @@ const CalculatorPage: NextPage = () => {
                       },
                     })}
                   >
-                    {/* <option>선택</option> */}
+                    <option>선택</option>
                     <option value={5}>A</option>
                     <option value={4}>B</option>
                     <option value={3}>C</option>
@@ -178,7 +178,7 @@ const CalculatorPage: NextPage = () => {
                       },
                     })}
                   >
-                    {/* <option>선택</option> */}
+                    <option>선택</option>
                     <option value={5}>A</option>
                     <option value={4}>B</option>
                     <option value={3}>C</option>
@@ -212,7 +212,7 @@ const CalculatorPage: NextPage = () => {
                       },
                     })}
                   >
-                    {/* <option>선택</option> */}
+                    <option>선택</option>
                     <option value={5}>A</option>
                     <option value={4}>B</option>
                     <option value={3}>C</option>
@@ -262,7 +262,7 @@ const CalculatorPage: NextPage = () => {
                     },
                   })}
                 >
-                  {/* <option>선택</option> */}
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -280,7 +280,7 @@ const CalculatorPage: NextPage = () => {
                     },
                   })}
                 >
-                  {/* <option>선택</option> */}
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -298,7 +298,7 @@ const CalculatorPage: NextPage = () => {
                     },
                   })}
                 >
-                  {/* <option>선택</option> */}
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -316,7 +316,7 @@ const CalculatorPage: NextPage = () => {
                     },
                   })}
                 >
-                  {/* <option>선택</option> */}
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -334,7 +334,7 @@ const CalculatorPage: NextPage = () => {
                     },
                   })}
                 >
-                  {/* <option>선택</option> */}
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -371,7 +371,7 @@ const CalculatorPage: NextPage = () => {
                     <S.AttendanceInput
                       key={grade}
                       {...register(`absentScore.${i}`, {
-                        // required: true,
+                        required: true,
                       })}
                       placeholder="입력"
                     />
@@ -382,7 +382,7 @@ const CalculatorPage: NextPage = () => {
                     <S.AttendanceInput
                       key={grade}
                       {...register(`attendanceScore.${i}`, {
-                        // required: true,
+                        required: true,
                       })}
                       placeholder="입력"
                     />
@@ -393,7 +393,7 @@ const CalculatorPage: NextPage = () => {
                     <S.AttendanceInput
                       key={grade}
                       {...register(`attendanceScore.${3 + i}`, {
-                        // required: true,
+                        required: true,
                       })}
                       placeholder="입력"
                     />
@@ -404,7 +404,7 @@ const CalculatorPage: NextPage = () => {
                     <S.AttendanceInput
                       key={grade}
                       {...register(`attendanceScore.${6 + i}`, {
-                        // required: true,
+                        required: true,
                       })}
                       placeholder="입력"
                     />
@@ -415,7 +415,7 @@ const CalculatorPage: NextPage = () => {
                     <S.AttendanceInput
                       key={grade}
                       {...register(`volunteerScore.${i}`, {
-                        // required: true,
+                        required: true,
                       })}
                       placeholder="입력"
                     />
