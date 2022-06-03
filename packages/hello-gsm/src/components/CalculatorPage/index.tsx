@@ -4,7 +4,9 @@ import * as S from './style';
 import * as I from '../../Assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { Calculate, Volunteer, Rounds, Attendance, ToNum } from './function';
+import { Calculate, Volunteer, Rounds, Attendance } from './function';
+import application from 'Api/application';
+import Result from '../Result';
 
 interface ScoreForm {
   score2_1: number[];
@@ -24,7 +26,10 @@ const CalculatorPage: NextPage = () => {
     formState: { errors },
   } = useForm<ScoreForm>();
 
-  const onValid = (validForm: ScoreForm) => {
+  const [showResult, setShowResult] = useState(false);
+  const [resultArray, setResultArray] = useState<Array<number>>([]);
+
+  const onValid = async (validForm: ScoreForm) => {
     const score2_1: number = Calculate(validForm.score2_1, 2); // 2학년 1학기
     const score2_2: number = Calculate(validForm.score2_2, 2); // 2학년 2학기
     const score3_1: number = Calculate(validForm.score3_1, 3); // 3학년 1학기
@@ -41,16 +46,15 @@ const CalculatorPage: NextPage = () => {
       validForm.absentScore,
       validForm.attendanceScore,
     ); // 출석점수
-
     const volunteerScore: number = Volunteer(validForm.volunteerScore); // 봉사점수
     const nonCurriculumScoreSubtotal: number = Rounds(
       attendanceScore + volunteerScore,
     ); //비교과 성적 소계
-    const scoreTotal: number = Rounds(
+    const scoreTotal = Rounds(
       curriculumScoreSubtotal + nonCurriculumScoreSubtotal,
     ); // 총합
 
-    // console.log(score2_1);
+    console.log(score2_1);
     console.log(validForm);
     console.log(
       `2학년 1학기 : ${score2_1}\n2학년 2학기 : ${score2_2}\n3학기 1학기 : ${score3_1}\n교과성적 소계 : ${generalCurriculumScoreSubtotal}\n`,
@@ -61,6 +65,30 @@ const CalculatorPage: NextPage = () => {
       `출석 점수 : ${attendanceScore}\n봉사 점수 : ${volunteerScore}\n비교과 성적 소계 : ${nonCurriculumScoreSubtotal}\n`,
     );
     console.log(`총합 : ${scoreTotal}`);
+    setResultArray([
+      generalCurriculumScoreSubtotal,
+      artSportsScore,
+      nonCurriculumScoreSubtotal,
+      scoreTotal,
+    ]);
+    try {
+      // await application.postSecondSubmisson({
+      //   score2_1,
+      //   score2_2,
+      //   score3_1,
+      //   generalCurriculumScoreSubtotal,
+      //   artSportsScore,
+      //   attendanceScore,
+      //   curriculumScoreSubtotal,
+      //   volunteerScore,
+      //   nonCurriculumScoreSubtotal,
+      //   scoreTotal,
+      // });
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setShowResult(true);
+    }
   };
 
   const inValid = (errors: FieldErrors) => {
@@ -84,6 +112,7 @@ const CalculatorPage: NextPage = () => {
   return (
     <>
       <Header />
+      {showResult && <Result result={resultArray} />}
       <S.Title>성적입력</S.Title>
       <S.CalculatePage>
         <S.CalculateSection onSubmit={handleSubmit(onValid, inValid)}>
