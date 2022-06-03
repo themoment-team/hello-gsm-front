@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import * as I from 'Assets/svg';
 import * as S from './style';
-import { Header, FAQBox, FAQModal } from 'components';
+import { Header, FAQBox, FAQModal, SEOHelmet } from 'components';
 import useStore from 'Stores/StoreContainer';
-import SEOHelmet from 'components/SEOHelmet';
 
 type FAQDataType = {
   faqData: FAQType[];

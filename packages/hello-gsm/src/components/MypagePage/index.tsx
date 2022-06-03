@@ -5,8 +5,7 @@ import * as I from 'Assets/svg';
 import { useState } from 'react';
 import { css } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
-import { Header, MypageModal } from 'components';
-import SEOHelmet from 'components/SEOHelmet';
+import { Header, MypageModal, SEOHelmet } from 'components';
 
 const MyPage: NextPage = () => {
   const [gender, setGender] = useState<string>('W');

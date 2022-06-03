@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import { css } from '@emotion/react';
 import { ProfileType } from 'type/profile';
-import SEOHelmet from 'components/SEOHelmet';
+import { SEOHelmet } from 'components';
 
 const profile: ProfileType = {
   user: {

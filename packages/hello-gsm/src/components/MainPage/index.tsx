@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import Link from 'next/link';
-import { Header, Footer, MainPageDescription } from 'components';
+import { Header, Footer, MainPageDescription, SEOHelmet } from 'components';
 import { css } from '@emotion/react';
-import SEOHelmet from 'components/SEOHelmet';
 
 const MainPage: NextPage = () => {
   const [selectedIndex, setSelectedIndex] = useState<number>(1);

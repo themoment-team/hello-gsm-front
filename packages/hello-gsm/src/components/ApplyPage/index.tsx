@@ -1,6 +1,6 @@
 import React from 'react';
 import type { NextPage } from 'next';
-import SEOHelmet from 'components/SEOHelmet';
+import { SEOHelmet } from 'components';
 
 // import * as S from './style';
 

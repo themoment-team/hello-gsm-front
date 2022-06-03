@@ -17,4 +17,4 @@ export { default as SchoolPage } from './SchoolPage';
 export { default as Select } from './Select';
 export { default as SignInPage } from './SignInPage';
 export { default as SignUpPage } from './SignUpPage';
-export { default as SEOHelmet } from './SEOHelmet';
+export { default as SEOHelmet } from './Common/SEOHelmet';

@@ -1,9 +1,8 @@
 import React from 'react';
 import type { NextPage } from 'next';
-import { Header } from 'components';
+import { Header, SEOHelmet } from 'components';
 import * as S from './style';
 import * as I from 'Assets/svg';
-import SEOHelmet from 'components/SEOHelmet';
 
 const NotFoundPage: NextPage = () => {
   return (

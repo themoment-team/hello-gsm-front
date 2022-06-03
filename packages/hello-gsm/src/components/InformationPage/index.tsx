@@ -1,10 +1,9 @@
 import React from 'react';
 import type { NextPage } from 'next';
-import { Header } from 'components';
+import { Header, SEOHelmet } from 'components';
 import Link from 'next/link';
 import * as S from './style';
 import { css } from '@emotion/react';
-import SEOHelmet from 'components/SEOHelmet';
 
 const InformationPage: NextPage = () => {
   return (

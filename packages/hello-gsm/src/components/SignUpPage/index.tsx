@@ -2,9 +2,8 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import { FieldErrors, useForm } from 'react-hook-form';
 import Input from 'components/Input';
-import { Select, Header } from 'components';
+import { Select, Header, SEOHelmet } from 'components';
 import { css } from '@emotion/react';
-import SEOHelmet from 'components/SEOHelmet';
 
 interface UserForm {
   gender: string;

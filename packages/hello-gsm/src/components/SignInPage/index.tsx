@@ -1,9 +1,8 @@
 import type { NextPage } from 'next';
 import * as S from './style';
-import { Header } from 'components';
+import { Header, SEOHelmet } from 'components';
 import * as I from 'Assets/svg';
 import auth from 'Api/auth';
-import SEOHelmet from 'components/SEOHelmet';
 
 const SignInPage: NextPage = () => {
   return (

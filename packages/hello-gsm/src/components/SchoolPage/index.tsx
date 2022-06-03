@@ -4,8 +4,7 @@ import * as S from './style';
 import Link from 'next/link';
 import { css } from '@emotion/react';
 import Graph from './Graph';
-import { Header, Footer } from 'components';
-import SEOHelmet from 'components/SEOHelmet';
+import { Header, Footer, SEOHelmet } from 'components';
 
 interface employType {
   x: string;
