@@ -29,7 +29,7 @@ export const CurriculumValue = styled.div`
   justify-content: space-between;
 `;
 
-export const Plus = styled.button`
+export const Plus = styled.div`
   cursor: pointer;
   color: #ffffff;
   width: 100%;
@@ -38,6 +38,8 @@ export const Plus = styled.button`
   background: #0c4680;
   border-radius: 6px;
   margin: 12px 0 150px;
+  text-align: center;
+  line-height: 37px;
 `;
 
 export const Section = styled.div`
