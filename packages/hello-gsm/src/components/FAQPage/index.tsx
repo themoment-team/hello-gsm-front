@@ -14,7 +14,7 @@ export type FAQType = {
   answer: string;
 };
 
-const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
+const FAQPage: NextPage<FAQDataType> = ({ faqData = [] }) => {
   const [faqList, setFaqList] = useState<FAQType[]>(faqData);
   const [keyword, setKeyword] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(1);
