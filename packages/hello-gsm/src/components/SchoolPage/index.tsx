@@ -90,12 +90,7 @@ const SchoolPage: NextPage = () => {
           <S.Section2Title>MOU 기업</S.Section2Title>
           <S.EnterpriseWrap>
             {enterprises.map((enterprise, index: number) => (
-              <S.EnterpriseLine
-                key={index}
-                css={css`
-                  ${index === 2 && 'width: 935px'}
-                `}
-              >
+              <S.EnterpriseLine key={index}>
                 {enterprise.map((name: string, index: number) => (
                   <S.Enterprise key={index}>
                     <S.EnterpriseImg
