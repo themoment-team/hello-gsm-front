@@ -96,7 +96,7 @@ export const EnterpriseLine = styled.div`
   :nth-of-type(3) {
     width: 935px;
     @media ${device.tablet} {
-      width: 600px;
+      width: 75%;
     }
   }
 `;
