@@ -19,6 +19,9 @@ export const MainContent = styled.div`
     margin-top: 100px;
     margin-bottom: 200px;
   }
+  @media ${device.mobile} {
+    height: 900px;
+  }
 `;
 
 export const TitleWrap = styled.div`
@@ -31,6 +34,12 @@ export const TitleWrap = styled.div`
   @media ${device.tablet} {
     align-items: center;
   }
+  @media ${device.mobile} {
+    height: 400px;
+  }
+  @media (max-width: 430px) {
+    height: 350px;
+  }
 `;
 
 export const TitleBox = styled.div`
@@ -42,12 +51,29 @@ export const TitleBox = styled.div`
     align-items: center;
     text-align: center;
   }
+  @media ${device.mobile} {
+    height: 230px;
+  }
+  @media (max-width: 430px) {
+    height: 180px;
+  }
 `;
 
 export const Title = styled.p`
   font-weight: 700;
   font-size: 96px;
   line-height: 110px;
+  @media (max-width: 805px) {
+    font-size: 75px;
+  }
+  @media ${device.mobile} {
+    font-size: 50px;
+    line-height: 64px;
+  }
+  @media (max-width: 430px) {
+    font-size: 40px;
+    line-height: 50px;
+  }
 `;
 
 export const Description = styled.p`
@@ -56,6 +82,11 @@ export const Description = styled.p`
   font-size: 24px;
   line-height: 35px;
   color: rgba(255, 255, 255, 0.66);
+  @media (max-width: 430px) {
+    width: 280px;
+    font-size: 20px;
+    line-height: 30px;
+  }
 `;
 
 export const ApplyBox = styled.div`
@@ -110,7 +141,10 @@ export const ContentBox = styled.div`
   border-radius: 24px;
   position: relative;
   @media ${device.tablet} {
-    height: 600px;
+    height: 550px;
+  }
+  @media ${device.mobile} {
+    height: 400px;
   }
 `;
 
@@ -122,8 +156,16 @@ export const ContentHeader = styled.div`
   align-items: center;
   position: relative;
   z-index: 1;
+  @media ${device.mobile} {
+    height: 90px;
+  }
 `;
 
+export const ContentHeaderLine = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+`;
 export const ContentSelect = styled.p`
   font-weight: 400;
   font-size: 20px;
@@ -131,6 +173,9 @@ export const ContentSelect = styled.p`
   cursor: pointer;
   @media ${device.tablet} {
     font-size: 18px;
+  }
+  @media ${device.mobile} {
+    font-size: 11px;
   }
 `;
 
