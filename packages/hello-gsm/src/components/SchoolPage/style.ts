@@ -3,6 +3,9 @@ import device from 'shared/config';
 
 export const SchoolPage = styled.div`
   margin-top: 70px;
+  @media ${device.mobile} {
+    margin-top: 30px;
+  }
 `;
 
 export const Section1 = styled.div`
@@ -14,12 +17,18 @@ export const Section1 = styled.div`
   @media ${device.tablet} {
     height: 600px;
   }
+  @media ${device.mobile} {
+    height: 300px;
+  }
 `;
 
 export const SchoolName = styled.p`
   color: #ffffff;
   font-weight: 700;
   font-size: 40px;
+  @media ${device.mobile} {
+    font-size: 16px;
+  }
 `;
 
 export const VideoBox = styled.div`
@@ -43,12 +52,19 @@ export const ToHomepage = styled.a`
   align-items: center;
   cursor: pointer;
   background: #ededed;
+  @media ${device.mobile} {
+    width: 90px;
+    height: 30px;
+  }
 `;
 
 export const LinkText = styled.a`
   font-weight: 700;
   font-size: 22px;
   color: #0f0921;
+  @media ${device.mobile} {
+    font-size: 15px;
+  }
 `;
 
 export const Section2 = styled.div`
@@ -60,6 +76,9 @@ export const Section2 = styled.div`
   @media ${device.tablet} {
     height: 400px;
   }
+  @media ${device.mobile} {
+    height: 250px;
+  }
 `;
 
 export const Section2Title = styled.p`
@@ -67,6 +86,10 @@ export const Section2Title = styled.p`
   font-size: 24px;
   color: #ffffff;
   padding-bottom: 60px;
+  @media ${device.mobile} {
+    font-size: 16px;
+    padding-bottom: 30px;
+  }
 `;
 
 export const EnterpriseWrap = styled.div`
@@ -82,6 +105,9 @@ export const EnterpriseWrap = styled.div`
   @media ${device.tablet} {
     width: 100%;
     height: 150px;
+  }
+  @media ${device.mobile} {
+    height: 100px;
   }
 `;
 
@@ -114,6 +140,11 @@ export const Enterprise = styled.div`
     height: 30px;
     border-radius: 10px;
   }
+  @media ${device.mobile} {
+    width: 50px;
+    height: 20px;
+    border-radius: 5px;
+  }
 `;
 
 export const EnterpriseImg = styled.div`
@@ -126,6 +157,10 @@ export const EnterpriseImg = styled.div`
     width: 70px;
     height: 20px;
   }
+  @media ${device.mobile} {
+    width: 35px;
+    height: 18px;
+  }
 `;
 
 export const Section3 = styled.div`
@@ -137,6 +172,7 @@ export const Section3 = styled.div`
   margin-bottom: 200px;
   @media ${device.tablet} {
     height: 500px;
+    margin-bottom: 50px;
   }
 `;
 
@@ -144,6 +180,10 @@ export const Section3Title = styled.div`
   font-weight: 700;
   font-size: 24px;
   color: #ffffff;
+  @media ${device.mobile} {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const GraphWrap = styled.div`
@@ -156,11 +196,20 @@ export const GraphWrap = styled.div`
     width: 90%;
     padding-left: 50px;
   }
+  @media ${device.mobile} {
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+    height: 500px;
+  }
 `;
 
 export const SelectBox = styled.div`
   display: flex;
   align-items: flex-start;
+  @media ${device.mobile} {
+    flex-direction: column;
+  }
 `;
 
 export const SelectBar = styled.div`
@@ -168,6 +217,13 @@ export const SelectBar = styled.div`
   border: 3px solid #9a9a9a;
   @media ${device.tablet} {
     height: 250px;
+  }
+  @media ${device.mobile} {
+    width: 90vw;
+    height: 0;
+    border: 1.5px solid #9a9a9a;
+    position: relative;
+    top: 5px;
   }
 `;
 
@@ -181,6 +237,12 @@ export const SelectOptionBox = styled.div`
   @media ${device.tablet} {
     height: 150px;
   }
+  @media ${device.mobile} {
+    width: 100%;
+    height: 30px;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 `;
 
 export const SelectOption = styled.div`
@@ -189,6 +251,13 @@ export const SelectOption = styled.div`
   font-size: 20px;
   color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
+  @media ${device.mobile} {
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
   &::before {
     width: 10px;
     height: 10px;
@@ -198,6 +267,10 @@ export const SelectOption = styled.div`
     content: '';
     margin-right: 30px;
     vertical-align: top;
+    @media ${device.mobile} {
+      width: 7px;
+      height: 7px;
+    }
   }
 `;
 
@@ -260,6 +333,13 @@ export const BlueBall = styled(Ball)`
   @media ${device.tablet} {
     display: none;
   }
+  @media ${device.mobile} {
+    display: block;
+    width: 32px;
+    height: 32px;
+    top: 380px;
+    left: 85%;
+  }
 `;
 
 export const SkyBlueBall = styled(Ball)`
@@ -275,6 +355,13 @@ export const SkyBlueBall = styled(Ball)`
   left: 6%;
   @media ${device.tablet} {
     display: none;
+  }
+  @media ${device.mobile} {
+    display: block;
+    width: 75px;
+    height: 75px;
+    top: 360px;
+    left: 2%;
   }
 `;
 
@@ -295,5 +382,11 @@ export const SmallBlueBall = styled(Ball)`
     height: 45px;
     top: 1250px;
     left: 3%;
+  }
+  @media ${device.mobile} {
+    width: 38px;
+    height: 38px;
+    top: 850px;
+    left: 2%;
   }
 `;
