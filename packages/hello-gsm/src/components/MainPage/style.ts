@@ -166,6 +166,7 @@ export const ContentHeaderLine = styled.div`
   display: flex;
   justify-content: space-evenly;
 `;
+
 export const ContentSelect = styled.p`
   font-weight: 400;
   font-size: 20px;
