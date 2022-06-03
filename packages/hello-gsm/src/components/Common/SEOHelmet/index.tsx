@@ -4,6 +4,11 @@ interface SEOHelmetProps {
   seoTitle: string;
 }
 
+/**
+ *
+ * @param seoTitle - head title 값
+ * @returns 검색엔진 최적화를 위한 HEAD태그
+ */
 const SEOHelmet = ({ seoTitle }: SEOHelmetProps) => {
   return (
     <Head>
