@@ -4,6 +4,7 @@ import { FieldErrors, useForm } from 'react-hook-form';
 import Input from 'components/Input';
 import { Select, Header } from 'components';
 import { css } from '@emotion/react';
+import dayjs from 'dayjs';
 
 interface UserForm {
   gender: string;
@@ -37,9 +38,13 @@ const SignUpPage: NextPage = () => {
     day,
     cellphoneNumber,
   }: UserForm) => {
-    const birth = makeDate(year, month, day);
-    console.log(birth);
+    // const birth = makeDate(year, month, day);
+    // console.log(birth);
     console.log('success');
+    const birthtest = dayjs(year, day, month);
+    console.log(birthtest);
+    const test = dayjs(year, day, month).format('YYYY-MM-0D');
+    console.log(test);
   };
 
   const inValid = (errors: FieldErrors) => {
