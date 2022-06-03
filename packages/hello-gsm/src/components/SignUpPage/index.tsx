@@ -5,7 +5,6 @@ import { Select, Header, Input } from 'components';
 import { css } from '@emotion/react';
 import dayjs from 'dayjs';
 import auth from 'Api/auth';
-import { AxiosError } from 'axios';
 import TosBox from './TosBox';
 
 interface UserForm {
@@ -33,6 +32,10 @@ const SignUpPage: NextPage = () => {
     day,
     cellphoneNumber,
   }: UserForm) => {
+    /**
+     * dayjs 라이브러리를 사용하여 YYYY-MM-DD 형식에 맞게 포맷 ㅇ
+     * 월은 0부터 시작
+     */
     const birth = dayjs()
       .set('year', Number(year))
       .set('month', Number(month))
@@ -55,6 +58,11 @@ const SignUpPage: NextPage = () => {
     console.log('fail');
   };
 
+  /**
+   *
+   * @param top : 각 컴포넌트 높이;
+   * @returns css - 에러가 있으면 애니메이션, 스타일 추가
+   */
   const SelectError = (top?: number) =>
     css({
       color: 'red',

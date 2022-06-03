@@ -1,6 +1,10 @@
 import type { NextPage } from 'next';
 import * as S from './style';
 
+/**
+ *
+ * @returns 개인정보 이용 약관 컴포넌트
+ */
 const TosBox: NextPage = () => {
   return (
     <S.TosBox>
