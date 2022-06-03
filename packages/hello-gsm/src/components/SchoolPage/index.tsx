@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { css } from '@emotion/react';
 import Graph from './Graph';
 import { Header, Footer } from 'components';
+import SEOHelmet from 'components/SEOHelmet';
 
 interface employType {
   x: string;
@@ -65,6 +66,7 @@ const SchoolPage: NextPage = () => {
 
   return (
     <>
+      <SEOHelmet seoTitle="학교 소개" />
       <Header />
       <S.SchoolPage>
         <S.Section1>

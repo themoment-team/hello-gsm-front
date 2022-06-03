@@ -3,10 +3,12 @@ import * as S from './style';
 import { Header } from 'components';
 import * as I from 'Assets/svg';
 import auth from 'Api/auth';
+import SEOHelmet from 'components/SEOHelmet';
 
 const SignInPage: NextPage = () => {
   return (
     <>
+      <SEOHelmet seoTitle="로그인" />
       <Header />
       <S.SignInPage>
         <S.BigBall />

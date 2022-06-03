@@ -3,6 +3,7 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import { css } from '@emotion/react';
 import { ProfileType } from 'type/profile';
+import SEOHelmet from 'components/SEOHelmet';
 
 const profile: ProfileType = {
   user: {
@@ -61,6 +62,7 @@ const ApplicationPage: NextPage = () => {
   }, []);
   return (
     <>
+      <SEOHelmet seoTitle="원서 출력" />
       <S.ApplicationPage
         css={css`
           @media print {

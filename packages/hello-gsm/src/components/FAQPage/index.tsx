@@ -4,6 +4,7 @@ import * as I from 'Assets/svg';
 import * as S from './style';
 import { Header, FAQBox, FAQModal } from 'components';
 import useStore from 'Stores/StoreContainer';
+import SEOHelmet from 'components/SEOHelmet';
 
 type FAQDataType = {
   faqData: FAQType[];
@@ -57,6 +58,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
 
   return (
     <>
+      <SEOHelmet seoTitle="자주 묻는 질문" />
       {showFAQModal && <FAQModal />}
       <Header />
       <S.FAQPage>

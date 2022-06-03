@@ -3,10 +3,12 @@ import type { NextPage } from 'next';
 import { Header } from 'components';
 import * as S from './style';
 import * as I from 'Assets/svg';
+import SEOHelmet from 'components/SEOHelmet';
 
 const NotFoundPage: NextPage = () => {
   return (
     <>
+      <SEOHelmet seoTitle="NOT FOUND" />
       <Header />
       <S.NotFoundPage>
         <S.SkyBlueBall />
