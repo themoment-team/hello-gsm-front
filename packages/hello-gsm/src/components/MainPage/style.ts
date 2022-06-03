@@ -40,8 +40,8 @@ export const TitleBox = styled.div`
   justify-content: space-between;
   @media ${device.tablet} {
     align-items: center;
+    text-align: center;
   }
-  text-align: center;
 `;
 
 export const Title = styled.p`
