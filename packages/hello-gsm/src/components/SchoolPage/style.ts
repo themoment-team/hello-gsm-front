@@ -33,7 +33,7 @@ export const VideoBox = styled.div`
   }
 `;
 
-export const ToHomepage = styled.div`
+export const ToHomepage = styled.a`
   width: 281px;
   height: 63px;
   border: 1px solid #ffffff;
