@@ -23,12 +23,6 @@ const SignUpPage: NextPage = () => {
     formState: { errors },
   } = useForm<UserForm>();
 
-  const makeDate = (year: string, month: string, day: string) => {
-    if (month.length == 1) month = '0' + month;
-    if (day.length == 1) day = '0' + day;
-    return [year, month, day].join('-');
-  };
-
   const onValid = ({
     gender,
     name,
@@ -38,13 +32,11 @@ const SignUpPage: NextPage = () => {
     day,
     cellphoneNumber,
   }: UserForm) => {
-    // const birth = makeDate(year, month, day);
-    // console.log(birth);
-    console.log('success');
-    const birthtest = dayjs(year, day, month);
-    console.log(birthtest);
-    const test = dayjs(year, day, month).format('YYYY-MM-0D');
-    console.log(test);
+    const birth = dayjs()
+      .set('year', Number(year))
+      .set('month', Number(month))
+      .set('date', Number(day))
+      .format('YYYY-MM-DD');
   };
 
   const inValid = (errors: FieldErrors) => {
@@ -113,7 +105,7 @@ const SignUpPage: NextPage = () => {
 
             <Select register={register('month')}>
               {[...Array(12)].map((_, i) => (
-                <option value={`${i + 1}`} key={i}>
+                <option value={`${i}`} key={i}>
                   {i + 1}월
                 </option>
               ))}
