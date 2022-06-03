@@ -14,9 +14,7 @@ const Faq: NextPage<FaqType> = ({ data }) => <FAQPage faqData={data} />;
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const { data } = await axios.get(
-      'https://hello-gsm.vercel.app/data/faq.json',
-    );
+    const { data } = await axios.get('https://hellogsm.kr/data/faq.json');
     return {
       props: {
         data,

@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import * as S from './style';
 import { FieldErrors, useForm } from 'react-hook-form';
-import Input from '../Input';
+import Input from 'components/Input';
 import { Select, Header } from 'components';
 import { css } from '@emotion/react';
 
@@ -22,8 +22,23 @@ const SignUpPage: NextPage = () => {
     formState: { errors },
   } = useForm<UserForm>();
 
-  const onValid = (data: UserForm) => {
-    console.log(data);
+  const makeDate = (year: string, month: string, day: string) => {
+    if (month.length == 1) month = '0' + month;
+    if (day.length == 1) day = '0' + day;
+    return [year, month, day].join('-');
+  };
+
+  const onValid = ({
+    gender,
+    name,
+    agree,
+    year,
+    month,
+    day,
+    cellphoneNumber,
+  }: UserForm) => {
+    const birth = makeDate(year, month, day);
+    console.log(birth);
     console.log('success');
   };
 
@@ -85,7 +100,7 @@ const SignUpPage: NextPage = () => {
           <S.SelectSection>
             <Select register={register('year')}>
               {[...Array(10)].map((_, i) => (
-                <option value={`200${i}년`} key={i}>
+                <option value={`200${i}`} key={i}>
                   200{i}년
                 </option>
               ))}
@@ -93,7 +108,7 @@ const SignUpPage: NextPage = () => {
 
             <Select register={register('month')}>
               {[...Array(12)].map((_, i) => (
-                <option value={`${i + 1}월`} key={i}>
+                <option value={`${i + 1}`} key={i}>
                   {i + 1}월
                 </option>
               ))}
@@ -101,7 +116,7 @@ const SignUpPage: NextPage = () => {
 
             <Select register={register('day')}>
               {[...Array(31)].map((_, i) => (
-                <option key={i} value={`${i + 1}일`}>
+                <option key={i} value={`${i + 1}`}>
                   {i + 1}일
                 </option>
               ))}
