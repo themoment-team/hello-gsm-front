@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import * as S from './style';
+
 interface ResultType {
   result: number[];
 }

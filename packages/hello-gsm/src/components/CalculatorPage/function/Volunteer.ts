@@ -4,7 +4,6 @@ import ToNum from './ToNum';
  * @param array - 공식 적용할 배열
  * @returns number - 봉사점수 환산
  */
-// 봉사점수 환산
 const Volunteer = (array: Array<number>) => {
   let result = 0;
   ToNum(array);

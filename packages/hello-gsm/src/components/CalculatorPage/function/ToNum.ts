@@ -4,7 +4,6 @@
  * @returns number - string형인 배열을 number로 변환
  */
 
-// 배열을 number로 형변환
 const ToNum = (array: Array<number>) => {
   return array?.map((arr, i) => (array[i] = Number(arr)));
 };
