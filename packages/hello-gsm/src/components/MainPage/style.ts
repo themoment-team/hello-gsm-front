@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import device from 'shared/config';
 
 export const MainPage = styled.div`
   position: relative;
@@ -13,6 +14,11 @@ export const MainContent = styled.div`
   align-items: center;
   margin-bottom: 300px;
   margin-top: 230px;
+  @media ${device.tablet} {
+    height: 1300px;
+    margin-top: 100px;
+    margin-bottom: 200px;
+  }
 `;
 
 export const TitleWrap = styled.div`
@@ -22,6 +28,9 @@ export const TitleWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media ${device.tablet} {
+    align-items: center;
+  }
 `;
 
 export const TitleBox = styled.div`
@@ -29,6 +38,10 @@ export const TitleBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media ${device.tablet} {
+    align-items: center;
+  }
+  text-align: center;
 `;
 
 export const Title = styled.p`
@@ -96,6 +109,9 @@ export const ContentBox = styled.div`
   margin: 0 auto;
   border-radius: 24px;
   position: relative;
+  @media ${device.tablet} {
+    height: 600px;
+  }
 `;
 
 export const ContentHeader = styled.div`
@@ -113,6 +129,9 @@ export const ContentSelect = styled.p`
   font-size: 20px;
   color: #d6d6d6;
   cursor: pointer;
+  @media ${device.tablet} {
+    font-size: 18px;
+  }
 `;
 
 const Ball = styled.div`
@@ -132,6 +151,12 @@ export const GreenBall = styled(Ball)`
   );
   top: 200px;
   right: 23%;
+  @media ${device.tablet} {
+    width: 80px;
+    height: 80px;
+    top: 720px;
+    right: 24%;
+  }
 `;
 
 export const BigBlueBall = styled(Ball)`
@@ -146,6 +171,12 @@ export const BigBlueBall = styled(Ball)`
   box-shadow: -12px -12px 24px rgba(0, 0, 0, 0.25);
   top: 450px;
   left: 67%;
+  @media ${device.tablet} {
+    width: 331px;
+    height: 331px;
+    top: 728px;
+    left: 78%;
+  }
 `;
 
 export const YellowBall = styled(Ball)`
@@ -161,6 +192,9 @@ export const YellowBall = styled(Ball)`
   box-shadow: 4px 4px 31px rgba(0, 0, 0, 0.25);
   top: 1350px;
   left: 88%;
+  @media ${device.tablet} {
+    display: none;
+  }
 `;
 
 export const OrangeBall = styled(Ball)`
@@ -170,6 +204,11 @@ export const OrangeBall = styled(Ball)`
   filter: blur(10px);
   top: 1351px;
   left: 26%;
+  @media ${device.tablet} {
+    width: 118px;
+    height: 118px;
+    top: 1065px;
+  }
 `;
 
 export const SmallBlueBall = styled(Ball)`
@@ -184,6 +223,11 @@ export const SmallBlueBall = styled(Ball)`
   filter: blur(10px);
   left: 54%;
   top: 1650px;
+  @media ${device.tablet} {
+    width: 86px;
+    height: 86px;
+    top: 1188px;
+  }
 `;
 
 export const MintBall = styled(Ball)`
@@ -197,6 +241,11 @@ export const MintBall = styled(Ball)`
   );
   top: 1750px;
   left: -70px;
+  @media ${device.tablet} {
+    width: 225px;
+    height: 225px;
+    top: 1351px;
+  }
 `;
 
 export const NanoBlueBall = styled(Ball)`
@@ -211,4 +260,9 @@ export const NanoBlueBall = styled(Ball)`
   box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.25);
   top: 2000px;
   left: 24%;
+  @media ${device.tablet} {
+    width: 66px;
+    height: 66px;
+    top: 1450px;
+  }
 `;
