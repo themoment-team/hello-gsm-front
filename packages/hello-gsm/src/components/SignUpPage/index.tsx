@@ -1,13 +1,13 @@
 import type { NextPage } from 'next';
 import * as S from './style';
 import { FieldErrors, useForm } from 'react-hook-form';
-import Input from 'components/Input';
-import { Select, Header } from 'components';
+import { Select, Header, Input } from 'components';
 import { css } from '@emotion/react';
 import dayjs from 'dayjs';
+import auth from 'Api/auth';
 
 interface UserForm {
-  gender: string;
+  gender: '남자' | '여자';
   name: string;
   agree: boolean;
   year: string;
@@ -26,7 +26,6 @@ const SignUpPage: NextPage = () => {
   const onValid = ({
     gender,
     name,
-    agree,
     year,
     month,
     day,
@@ -37,6 +36,15 @@ const SignUpPage: NextPage = () => {
       .set('month', Number(month))
       .set('date', Number(day))
       .format('YYYY-MM-DD');
+
+    const register = async () => {
+      try {
+        auth.signup({ birth, name, gender, cellphoneNumber });
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    return register;
   };
 
   const inValid = (errors: FieldErrors) => {
