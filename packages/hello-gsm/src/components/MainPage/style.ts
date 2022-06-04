@@ -20,7 +20,9 @@ export const MainContent = styled.div`
     margin-bottom: 200px;
   }
   @media ${device.mobile} {
-    height: 900px;
+    height: 800px;
+    margin-top: 50px;
+    margin-bottom: 100px;
   }
 `;
 
@@ -140,11 +142,15 @@ export const ContentBox = styled.div`
   margin: 0 auto;
   border-radius: 24px;
   position: relative;
+  @media ${device.laptop} {
+    width: 90%;
+  }
   @media ${device.tablet} {
+    width: 95%;
     height: 550px;
   }
   @media ${device.mobile} {
-    height: 400px;
+    height: 350px;
   }
 `;
 
@@ -203,6 +209,12 @@ export const GreenBall = styled(Ball)`
     top: 720px;
     right: 24%;
   }
+  @media ${device.mobile} {
+    width: 66px;
+    height: 66px;
+    top: 330px;
+    left: 90%;
+  }
 `;
 
 export const BigBlueBall = styled(Ball)`
@@ -223,6 +235,12 @@ export const BigBlueBall = styled(Ball)`
     top: 728px;
     left: 78%;
   }
+  @media ${device.mobile} {
+    width: 276px;
+    height: 276px;
+    top: 477px;
+    left: 80%;
+  }
 `;
 
 export const YellowBall = styled(Ball)`
@@ -241,6 +259,12 @@ export const YellowBall = styled(Ball)`
   @media ${device.tablet} {
     display: none;
   }
+  @media ${device.mobile} {
+    width: 127px;
+    height: 127px;
+    top: 935px;
+    left: 5%;
+  }
 `;
 
 export const OrangeBall = styled(Ball)`
@@ -253,7 +277,7 @@ export const OrangeBall = styled(Ball)`
   @media ${device.tablet} {
     width: 118px;
     height: 118px;
-    top: 1065px;
+    top: 700px;
   }
 `;
 
@@ -274,6 +298,12 @@ export const SmallBlueBall = styled(Ball)`
     height: 86px;
     top: 1188px;
   }
+  @media ${device.mobile} {
+    width: 93px;
+    height: 93px;
+    top: 880px;
+    left: 90%;
+  }
 `;
 
 export const MintBall = styled(Ball)`
@@ -291,6 +321,9 @@ export const MintBall = styled(Ball)`
     width: 225px;
     height: 225px;
     top: 1351px;
+  }
+  @media ${device.mobile} {
+    display: none;
   }
 `;
 
@@ -310,5 +343,8 @@ export const NanoBlueBall = styled(Ball)`
     width: 66px;
     height: 66px;
     top: 1450px;
+  }
+  @media ${device.mobile} {
+    display: none;
   }
 `;
