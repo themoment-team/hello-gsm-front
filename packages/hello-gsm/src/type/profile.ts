@@ -35,8 +35,6 @@ interface ApplicationDetailsType {
   graduation_year: string;
   graduation_month: string;
   schoolTelephoneNumber: string;
-  score1_1: number;
-  score1_2: number;
   score2_1: number;
   score2_2: number;
   score3_1: number;
