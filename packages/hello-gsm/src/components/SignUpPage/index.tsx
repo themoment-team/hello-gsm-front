@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 import auth from 'Api/auth';
 import TosBox from './TosBox';
 import SignInResultModal from 'components/Modals/SignInResultModal';
+import { useState } from 'react';
 
 interface UserForm {
   gender: '남자' | '여자';
@@ -19,6 +20,7 @@ interface UserForm {
 }
 
 const SignUpPage: NextPage = () => {
+  const [showResult, setShowResult] = useState(false);
   const {
     register,
     handleSubmit,
@@ -45,10 +47,15 @@ const SignUpPage: NextPage = () => {
 
     const register = async () => {
       try {
-        const res = auth.signup({ birth, name, gender, cellphoneNumber });
-        console.log(res);
+        // const res = auth.signup({ birth, name, gender, cellphoneNumber });
+        // console.log(res);
       } catch (e: any) {
         console.error(e);
+      } finally {
+        setShowResult(true);
+        setTimeout(() => {
+          setShowResult(false);
+        }, 3000);
       }
     };
     register();
@@ -77,7 +84,7 @@ const SignUpPage: NextPage = () => {
   return (
     <>
       <Header />
-      <SignInResultModal />
+      {showResult && <SignInResultModal />}
       <S.SignUpPage>
         <S.SignUpForm onSubmit={handleSubmit(onValid, inValid)}>
           <S.Title>회원가입</S.Title>
