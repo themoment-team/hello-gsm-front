@@ -6,6 +6,7 @@ import { css } from '@emotion/react';
 import dayjs from 'dayjs';
 import auth from 'Api/auth';
 import TosBox from './TosBox';
+import SignInResultModal from 'components/Modals/SignInResultModal';
 
 interface UserForm {
   gender: '남자' | '여자';
@@ -33,7 +34,7 @@ const SignUpPage: NextPage = () => {
     cellphoneNumber,
   }: UserForm) => {
     /**
-     * dayjs 라이브러리를 사용하여 YYYY-MM-DD 형식에 맞게 포맷 ㅇ
+     * dayjs 라이브러리를 사용하여 YYYY-MM-DD 형식에 맞게 포맷
      * 월은 0부터 시작
      */
     const birth = dayjs()
@@ -44,12 +45,12 @@ const SignUpPage: NextPage = () => {
 
     const register = async () => {
       try {
-        auth.signup({ birth, name, gender, cellphoneNumber });
+        const res = auth.signup({ birth, name, gender, cellphoneNumber });
+        console.log(res);
       } catch (e: any) {
         console.error(e);
       }
     };
-
     register();
   };
 
@@ -76,6 +77,7 @@ const SignUpPage: NextPage = () => {
   return (
     <>
       <Header />
+      <SignInResultModal />
       <S.SignUpPage>
         <S.SignUpForm onSubmit={handleSubmit(onValid, inValid)}>
           <S.Title>회원가입</S.Title>
