@@ -4,7 +4,7 @@ export const ApplicationPage = styled.div`
   display: flex;
   justify-content: center;
   background-color: #ffffff;
-  padding: 2vh;
+  padding: 1vh;
   height: 100vh;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -82,6 +82,7 @@ export const Table = styled.table`
     vertical-align: middle;
     border: 0.08vh solid #000000;
     border-collapse: collapse;
+    overflow: hidden;
   }
 
   img {
@@ -90,11 +91,49 @@ export const Table = styled.table`
     height: 100%;
   }
 
-  .backslash {
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
-    width: 9vh;
-    padding: 0.17vh;
-    background-color: #e9e9e9;
+  .diagonalCross {
+    position: relative;
+    background: linear-gradient(
+      to left top,
+      #ffffff 0%,
+      #ffffff 49.9%,
+      #5e5e5e 50%,
+      #5e5e5e 51%,
+      #ffffff 51.1%,
+      #ffffff 100%
+    ) !important;
+    background-color: transparent;
+  }
+
+  /* The real diagonal line */
+  .diagonalCross:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* Rising diagonal line */
+    background: linear-gradient(
+      to right bottom,
+      #ffffff,
+      #ffffff 48%,
+      #5e5e5e 49%,
+      #5e5e5e 51%,
+      #ffffff 52%,
+      #ffffff
+    ) !important;
+    background: linear-gradient(
+      to left top,
+      #ffffff,
+      #ffffff 48%,
+      #5e5e5e 49%,
+      #5e5e5e 51%,
+      #ffffff 52%,
+      #ffffff
+    ) !important;
   }
 `;
 
