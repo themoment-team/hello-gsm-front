@@ -185,8 +185,8 @@ const ApplicationPage: NextPage = () => {
                   <S.Subject rowSpan={2}>합계 (환산총점)</S.Subject>
                 </tr>
                 <tr>
-                  <td className="diagonalCross"></td>
-                  <td className="diagonalCross"></td>
+                  <td className="slash"></td>
+                  <td className="slash"></td>
                   <td>{applicationDetails.score2_1}</td>
                   <td>{applicationDetails.score2_2}</td>
                   <td>{applicationDetails.score3_1}</td>
@@ -286,7 +286,7 @@ const ApplicationPage: NextPage = () => {
           <S.Table>
             <tbody>
               <tr>
-                <td className="backslash" rowSpan={2}>
+                <td className="backSlash" rowSpan={2}>
                   <div style={{ textAlign: 'right' }}>학년</div>
                   <div style={{ textAlign: 'left' }}>과목</div>
                 </td>
@@ -305,8 +305,8 @@ const ApplicationPage: NextPage = () => {
               </tr>
               <tr>
                 <td>국어</td>
-                <td rowSpan={10} className="diagonalCross"></td>
-                <td rowSpan={10} className="diagonalCross"></td>
+                <td rowSpan={10} className="slash"></td>
+                <td rowSpan={10} className="slash"></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -376,10 +376,10 @@ const ApplicationPage: NextPage = () => {
             </tbody>
           </S.Table>
           <S.SubTitle>체육예술교과</S.SubTitle>
-          <S.Table style={{ marginBottom: '2vh' }}>
+          <S.Table style={{ marginBottom: '1vh' }}>
             <tbody>
               <tr>
-                <td className="backslash" rowSpan={2}>
+                <td className="backSlash" rowSpan={2}>
                   <div style={{ textAlign: 'right' }}>학년</div>
                   <div style={{ textAlign: 'left' }}>과목</div>
                 </td>
@@ -398,8 +398,8 @@ const ApplicationPage: NextPage = () => {
               </tr>
               <tr>
                 <td>체육</td>
-                <td rowSpan={3} className="diagonalCross"></td>
-                <td rowSpan={3} className="diagonalCross"></td>
+                <td rowSpan={3} className="slash"></td>
+                <td rowSpan={3} className="slash"></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -427,7 +427,7 @@ const ApplicationPage: NextPage = () => {
             </tbody>
           </S.Table>
           <S.SubTitle>비교과</S.SubTitle>
-          <S.Table style={{ marginBottom: '1.5vh' }}>
+          <S.Table style={{ marginBottom: '1vh' }}>
             <tbody>
               <tr>
                 <S.Subject rowSpan={2}>학년</S.Subject>
@@ -476,7 +476,7 @@ const ApplicationPage: NextPage = () => {
               </tr>
             </tbody>
           </S.Table>
-          <S.Table style={{ marginBottom: '1.5vh', width: '80%' }}>
+          <S.Table style={{ marginBottom: '1vh', width: '80%' }}>
             <tbody>
               <tr>
                 <S.Subject colSpan={4}>입력자 확인</S.Subject>
@@ -489,7 +489,7 @@ const ApplicationPage: NextPage = () => {
               </tr>
             </tbody>
           </S.Table>
-          <S.Table style={{ marginBottom: '1.5vh', width: '50%' }}>
+          <S.Table style={{ width: '50%' }}>
             <tbody>
               <tr>
                 <S.Subject rowSpan={2}>접수자 확인</S.Subject>

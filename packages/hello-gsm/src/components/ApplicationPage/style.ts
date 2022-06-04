@@ -78,6 +78,7 @@ export const Table = styled.table`
   border-collapse: collapse;
   font-size: 1.2vh;
   line-height: 2.2vh;
+  margin: 0 auto;
   td {
     vertical-align: middle;
     border: 0.08vh solid #000000;
@@ -90,50 +91,12 @@ export const Table = styled.table`
     width: 100%;
     height: 100%;
   }
-
-  .diagonalCross {
-    position: relative;
-    background: linear-gradient(
-      to left top,
-      #ffffff 0%,
-      #ffffff 49.9%,
-      #5e5e5e 50%,
-      #5e5e5e 51%,
-      #ffffff 51.1%,
-      #ffffff 100%
-    ) !important;
-    background-color: transparent;
+  .slash {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="100%" x2="100%" y2="0" stroke="gray" /></svg>');
   }
 
-  /* The real diagonal line */
-  .diagonalCross:after {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    /* Rising diagonal line */
-    background: linear-gradient(
-      to right bottom,
-      #ffffff,
-      #ffffff 48%,
-      #5e5e5e 49%,
-      #5e5e5e 51%,
-      #ffffff 52%,
-      #ffffff
-    ) !important;
-    background: linear-gradient(
-      to left top,
-      #ffffff,
-      #ffffff 48%,
-      #5e5e5e 49%,
-      #5e5e5e 51%,
-      #ffffff 52%,
-      #ffffff
-    ) !important;
+  .backSlash {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
   }
 `;
 
