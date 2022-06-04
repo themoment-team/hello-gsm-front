@@ -40,7 +40,7 @@ export const PostScript = styled.p`
     font-size: 17px;
   }
   @media ${device.mobile} {
-    font-size: 15px;
+    font-size: 12px;
     margin-top: 10px;
   }
 `;
@@ -72,4 +72,12 @@ export const Celebration = styled.div`
   top: 350px;
   left: 200px;
   z-index: -1;
+  @media ${device.tablet} {
+    top: 350px;
+    left: 50%;
+    transform: translate(-50%);
+  }
+  @media ${device.mobile} {
+    top: 200px;
+  }
 `;
