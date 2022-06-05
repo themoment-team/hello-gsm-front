@@ -5,16 +5,20 @@ import * as I from '../../Assets/svg';
 import { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import useStore from '../../Stores/StoreContainer';
-import { Header, MypageModal } from 'components';
+import { Header, MypageModal, SuccessModal } from 'components';
 
 const MyPage: NextPage = () => {
-  const [gender, setGender] = useState<string>('W');
+  const [gender, setGender] = useState<string>('M');
   const [saved, setSaved] = useState<boolean>(true);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [isPC, setIsPC] = useState<boolean>(true);
 
-  const { showMypageModal, setShowMypageModal, setMypageModalContent } =
-    useStore();
+  const {
+    showMypageModal,
+    setShowMypageModal,
+    setMypageModalContent,
+    showSuccessModal,
+  } = useStore();
 
   const showModal = (content: string) => {
     setShowMypageModal();
@@ -32,10 +36,17 @@ const MyPage: NextPage = () => {
   return (
     <S.MyPage>
       {showMypageModal && <MypageModal />}
+      {showSuccessModal && <SuccessModal />}
       <Header />
       <S.Content>
         <S.UserBox>
-          {gender === 'W' ? <I.Woman /> : <I.Man />}
+          {showSuccessModal ? (
+            <S.EmptiedProfile />
+          ) : gender === 'W' ? (
+            <I.Woman />
+          ) : (
+            <I.Man />
+          )}
           <S.Name>김형록님</S.Name>
         </S.UserBox>
         {isPC ? (
