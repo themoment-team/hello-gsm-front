@@ -25,6 +25,13 @@ export const UserBox = styled.div`
   justify-content: space-between;
 `;
 
+export const EmptiedProfile = styled.div`
+  width: 140px;
+  height: 140px;
+  border-radius: 100%;
+  background: #ffffff;
+`;
+
 export const Name = styled.p`
   font-weight: 700;
   font-size: 18px;
