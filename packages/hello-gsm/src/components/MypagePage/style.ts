@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
+import device from 'shared/config';
 
 export const MyPage = styled.div`
   height: 100vh;
   position: relative;
-  overflow-y: hidden;
+  overflow: hidden;
 `;
 
 export const Content = styled.div`
@@ -50,10 +51,45 @@ export const Button = styled.a`
   cursor: pointer;
 `;
 
+export const IsNotPCWrap = styled.div`
+  height: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  @media ${device.mobile} {
+    height: 70px;
+  }
+`;
+
+export const Point = styled.div`
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.87);
+  border-radius: 100%;
+`;
+
+export const IsNotPC = styled.p`
+  width: 260px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 29px;
+  color: #bcbac1;
+  @media ${device.mobile} {
+    width: 230px;
+    font-size: 18px;
+    line-height: 26px;
+  }
+`;
+
 const Ball = styled.div`
   border-radius: 100%;
   z-index: -1;
   position: absolute;
+  @media ${device.mobile} {
+    display: none;
+  }
 `;
 
 export const GreenBall = styled(Ball)`
@@ -67,6 +103,12 @@ export const GreenBall = styled(Ball)`
   );
   top: 500px;
   left: 85%;
+  @media ${device.tablet} {
+    width: 130px;
+    height: 130px;
+    top: 680px;
+    left: 91%;
+  }
 `;
 
 export const BigBlueBall = styled(Ball)`
@@ -80,6 +122,12 @@ export const BigBlueBall = styled(Ball)`
   );
   bottom: -500px;
   left: -300px;
+  @media ${device.tablet} {
+    width: 462px;
+    height: 462px;
+    top: 777px;
+    right: 90%;
+  }
 `;
 
 export const MiddleBlueBall = styled(Ball)`
@@ -93,6 +141,12 @@ export const MiddleBlueBall = styled(Ball)`
   );
   top: 830px;
   left: 75%;
+  @media ${device.tablet} {
+    width: 83px;
+    height: 83px;
+    top: 854px;
+    left: 70%;
+  }
 `;
 
 export const SmallBlueBall = styled(Ball)`
@@ -106,4 +160,10 @@ export const SmallBlueBall = styled(Ball)`
   );
   top: 850px;
   left: 90%;
+  @media ${device.tablet} {
+    width: 38px;
+    height: 38px;
+    top: 868px;
+    left: 97%;
+  }
 `;
