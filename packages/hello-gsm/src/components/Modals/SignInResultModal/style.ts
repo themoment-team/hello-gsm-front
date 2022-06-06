@@ -11,18 +11,18 @@ export const Background = styled.div`
   top: 0;
   background: rgba(0, 0, 0, 0.66);
   z-index: 2;
-  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 2s; /* Firefox < 16 */
-  -ms-animation: fadein 2s; /* Internet Explorer */
-  -o-animation: fadein 2s; /* Opera < 12.1 */
+
   animation: fadein 2s;
-  animation: fadein 2s;
+  animation-fill-mode: forwards;
   @keyframes fadein {
-    from {
+    0% {
       opacity: 0;
     }
-    to {
+    50% {
       opacity: 1;
+    }
+    100% {
+      opacity: 0;
     }
   }
 `;
