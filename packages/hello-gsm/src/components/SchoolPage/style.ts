@@ -124,6 +124,10 @@ export const EnterpriseLine = styled.div`
     @media ${device.tablet} {
       width: 75%;
     }
+    @media ${device.mobile} {
+      justify-content: space-evenly;
+      width: 90%;
+    }
   }
 `;
 
@@ -141,7 +145,7 @@ export const Enterprise = styled.div`
     border-radius: 10px;
   }
   @media ${device.mobile} {
-    width: 50px;
+    width: 15%;
     height: 20px;
     border-radius: 5px;
   }
@@ -158,7 +162,7 @@ export const EnterpriseImg = styled.div`
     height: 20px;
   }
   @media ${device.mobile} {
-    width: 35px;
+    width: 70%;
     height: 18px;
   }
 `;
@@ -173,6 +177,9 @@ export const Section3 = styled.div`
   @media ${device.tablet} {
     height: 500px;
     margin-bottom: 50px;
+  }
+  @media (max-width: 300px) {
+    height: 300px;
   }
 `;
 
@@ -200,7 +207,6 @@ export const GraphWrap = styled.div`
     padding: 0;
     flex-direction: column;
     align-items: center;
-    height: 500px;
   }
 `;
 
@@ -284,6 +290,10 @@ export const GraphBox = styled.div`
   @media ${device.tablet} {
     width: 300px;
     height: 350px;
+  }
+  @media (max-width: 300px) {
+    width: 90%;
+    height: 80%;
   }
 `;
 
