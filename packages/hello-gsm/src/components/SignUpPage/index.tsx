@@ -8,6 +8,7 @@ import auth from 'Api/auth';
 import TosBox from './TosBox';
 import SignInResultModal from 'components/Modals/SignInResultModal';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 interface UserForm {
   gender: '남자' | '여자';
@@ -21,6 +22,7 @@ interface UserForm {
 
 const SignUpPage: NextPage = () => {
   const [showResult, setShowResult] = useState(false);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -54,7 +56,7 @@ const SignUpPage: NextPage = () => {
       } finally {
         setShowResult(true);
         setTimeout(() => {
-          setShowResult(false);
+          router.replace('/mypage');
         }, 3000);
       }
     };
