@@ -28,18 +28,20 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData = [] }) => {
 
   useEffect(() => {
     keyword === '' && setIsSearching(false);
-    setFaqList(
-      isSearching
-        ? faqData?.filter(
-            (faq: FAQType) =>
-              faq.question.includes(keyword) || faq.answer.includes(keyword),
-          )
-        : faqData?.filter(
-            (faq: FAQType) =>
-              (pageIndex - 1) * 10 <= faqData.indexOf(faq) &&
-              faqData.indexOf(faq) < pageIndex * 10,
-          ),
-    );
+    setFaqList(list => {
+      if (isSearching) {
+        return list.filter(
+          (faq: FAQType) =>
+            faq.question.includes(keyword) || faq.answer.includes(keyword),
+        );
+      } else {
+        return list.filter(
+          (faq: FAQType) =>
+            (pageIndex - 1) * 10 <= faqData.indexOf(faq) &&
+            faqData.indexOf(faq) < pageIndex * 10,
+        );
+      }
+    });
   }, [keyword, pageIndex, isSearching]);
 
   const selectPage = (index: number) => setPageIndex(index);
