@@ -57,7 +57,7 @@ const SignUpPage: NextPage = () => {
         setShowResult(true);
         setTimeout(() => {
           router.replace('/mypage');
-        }, 3000);
+        }, 2000);
       }
     };
     register();
