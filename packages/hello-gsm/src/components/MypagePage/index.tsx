@@ -5,7 +5,7 @@ import * as I from 'Assets/svg';
 import { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import useStore from '../../Stores/StoreContainer';
-import { Header, MypageModal, SuccessModal } from 'components';
+import { Header, MypageModal, MypageSuccessModal } from 'components';
 
 const MyPage: NextPage = () => {
   const [gender, setGender] = useState<string>('M');
@@ -17,7 +17,7 @@ const MyPage: NextPage = () => {
     showMypageModal,
     setShowMypageModal,
     setMypageModalContent,
-    showSuccessModal,
+    showMypageSuccessModal,
   } = useStore();
 
   const showModal = (content: string) => {
@@ -36,11 +36,11 @@ const MyPage: NextPage = () => {
   return (
     <S.MyPage>
       {showMypageModal && <MypageModal />}
-      {showSuccessModal && <SuccessModal />}
+      {showMypageSuccessModal && <MypageSuccessModal />}
       <Header />
       <S.Content>
         <S.UserBox>
-          {showSuccessModal ? (
+          {showMypageSuccessModal ? (
             <S.EmptiedProfile />
           ) : gender === 'W' ? (
             <I.Woman />

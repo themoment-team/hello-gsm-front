@@ -4,10 +4,10 @@ import React, { useEffect } from 'react';
 import useStore from 'Stores/StoreContainer';
 
 const SuccessModal: React.FC = () => {
-  const { setShowSuccessModal } = useStore();
+  const { setShowMypageSuccessModal } = useStore();
 
   useEffect(() => {
-    setTimeout(() => setShowSuccessModal(), 5000);
+    setTimeout(() => setShowMypageSuccessModal(), 5000);
   }, []);
 
   return (

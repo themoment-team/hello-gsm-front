@@ -4,12 +4,12 @@ import useStore from 'Stores/StoreContainer';
 import { css } from '@emotion/react';
 
 const MypageModal: React.FC = () => {
-  const { setShowMypageModal, mypageModalContent, setShowSuccessModal } =
+  const { setShowMypageModal, mypageModalContent, setShowMypageSuccessModal } =
     useStore();
 
   const AllowButton = () => {
     setShowMypageModal();
-    mypageModalContent === 'final' && setShowSuccessModal();
+    mypageModalContent === 'final' && setShowMypageSuccessModal();
   };
 
   return (
