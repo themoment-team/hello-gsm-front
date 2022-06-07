@@ -280,6 +280,9 @@ export const OrangeBall = styled(Ball)`
   @media ${device.tablet} {
     width: 118px;
     height: 118px;
+    top: 1100px;
+  }
+  @media ${device.mobile} {
     top: 700px;
   }
 `;
