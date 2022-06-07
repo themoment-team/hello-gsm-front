@@ -34,8 +34,9 @@ export const SideBar = styled.div<AnimationProps>`
   display: ${props => (props.animation == null ? 'none' : 'flex')};
   padding: 17px 17px 50px;
   justify-content: space-between;
-  height: 100vh;
   width: 50vw;
+  height: 100vh;
+  background: #20212f;
   position: fixed;
   z-index: 3;
   right: 0;
