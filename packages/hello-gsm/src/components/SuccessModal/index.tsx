@@ -7,7 +7,7 @@ const SuccessModal: React.FC = () => {
   const { setShowSuccessModal } = useStore();
 
   useEffect(() => {
-    setTimeout(() => setShowSuccessModal(), 3000);
+    setTimeout(() => setShowSuccessModal(), 5000);
   }, []);
 
   return (
