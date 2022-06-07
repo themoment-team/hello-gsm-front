@@ -85,13 +85,7 @@ const MainPage: NextPage = () => {
               </S.ContentSelect>
             </S.ContentHeader>
           ) : (
-            <S.ContentHeader
-              css={css`
-                flex-direction: column;
-                justify-content: space-evenly;
-                align-items: baseline;
-              `}
-            >
+            <S.ContentHeader>
               <S.ContentHeaderLine>
                 <S.ContentSelect
                   css={selectedStyle(1)}

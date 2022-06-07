@@ -164,6 +164,9 @@ export const ContentHeader = styled.div`
   z-index: 1;
   @media ${device.mobile} {
     height: 90px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: baseline;
   }
 `;
 
