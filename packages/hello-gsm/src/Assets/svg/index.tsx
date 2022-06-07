@@ -8,7 +8,6 @@ export { default as TMLogo } from './TMLogo';
 export { default as Woman } from './Woman';
 export { default as Man } from './Man';
 export { default as MobileLeftButton } from './MobileLeftButton';
-export { default as MobileSearchIcon } from './MobileSearchIcon';
 export { default as MobileRightButton } from './MoblieRightButton';
 export { default as Celebration } from './Celebration';
 export { default as KakaoLogo } from './KakaoLogo';
