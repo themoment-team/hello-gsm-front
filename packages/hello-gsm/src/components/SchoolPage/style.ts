@@ -18,7 +18,7 @@ export const Section1 = styled.div`
     height: 600px;
   }
   @media ${device.mobile} {
-    height: 300px;
+    height: 400px;
   }
 `;
 
@@ -347,7 +347,7 @@ export const BlueBall = styled(Ball)`
     display: block;
     width: 32px;
     height: 32px;
-    top: 380px;
+    top: 450px;
     left: 85%;
   }
 `;
@@ -370,7 +370,7 @@ export const SkyBlueBall = styled(Ball)`
     display: block;
     width: 75px;
     height: 75px;
-    top: 360px;
+    top: 430px;
     left: 2%;
   }
 `;
