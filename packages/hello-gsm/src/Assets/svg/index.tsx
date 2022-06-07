@@ -12,5 +12,4 @@ export { default as MobileSearchIcon } from './MobileSearchIcon';
 export { default as MobileRightButton } from './MoblieRightButton';
 export { default as Celebration } from './Celebration';
 export { default as KakaoLogo } from './KakaoLogo';
-export { default as SmallCelebration } from './SmallCelebration';
 export { default as Success } from './Success';
