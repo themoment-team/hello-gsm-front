@@ -1,19 +1,16 @@
 import type { NextPage } from 'next';
-
 import * as S from './style';
 import * as I from 'Assets/svg';
 import { useEffect, useState } from 'react';
 import useStore from 'Stores/StoreContainer';
-import { css } from '@emotion/react';
 import NavLink from './NavLink';
 
 const SideBar: NextPage = () => {
   const [logged, setLogged] = useState(true);
-
   const { showSideBar, setShowSideBar } = useStore();
 
   /**
-   * table 크기 이상이면 sidebar 애니메이션 없앰
+   * table 크기 이상이면 sidebar 애니메이션 없앰, sidebar display:none 시킴
    */
   useEffect(() => {
     window.onresize = () => {
@@ -22,18 +19,8 @@ const SideBar: NextPage = () => {
   }, [showSideBar, setShowSideBar]);
   return (
     <>
-      <S.Background
-        animation={showSideBar}
-        css={css`
-          display: ${showSideBar == null && 'none'};
-        `}
-      />
-      <S.SideBar
-        css={css`
-          display: ${showSideBar == null && 'none'};
-        `}
-        animation={showSideBar}
-      >
+      <S.Background animation={showSideBar} />
+      <S.SideBar animation={showSideBar}>
         <S.CloseSideBar onClick={() => setShowSideBar(false)}>
           <I.SideBarButton />
         </S.CloseSideBar>

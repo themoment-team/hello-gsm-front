@@ -9,7 +9,6 @@ import SideBar from 'components/SideBar';
 
 const Header: React.FC = () => {
   const { pathname } = useRouter();
-
   const [logged, setLogged] = useState(true);
 
   const select = (navPath: string) =>

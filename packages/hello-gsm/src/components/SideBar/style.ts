@@ -1,63 +1,49 @@
 import styled from '@emotion/styled';
 import { NavContent } from 'components/Common/Header/style';
-import device from 'shared/config';
 
 interface AnimationProps {
   animation: boolean | null;
 }
 
 export const Background = styled.div<AnimationProps>`
-  @media (min-width: 960px) {
-    display: none;
-  }
-
-  display: block;
+  display: ${props => (props.animation == null ? 'none' : 'block')};
   position: fixed;
   top: 0;
   background: rgba(0, 0, 0, 0.51);
   width: 100vw;
   height: 100vh;
   z-index: 3;
-  animation-name: ${props => (props.animation ? 'in' : 'out')};
+  animation-name: ${props => (props.animation ? 'showin' : 'showout')};
   animation-duration: 1s;
   animation-fill-mode: forwards;
 
-  @keyframes in {
+  @keyframes showin {
     to {
       background: rgba(0, 0, 0, 0.51);
     }
   }
-  @keyframes out {
-    from {
-      background: rgba(0, 0, 0, 0.51);
-    }
+  @keyframes showout {
     to {
       background: none;
-      display: none;
       z-index: -1;
     }
   }
 `;
 
 export const SideBar = styled.div<AnimationProps>`
-  @media (min-width: 960px) {
-    display: none;
-  }
-  @media ${device.tablet} {
-    padding: 17px 17px 50px;
-    justify-content: space-between;
-    height: 100vh;
-    width: 50vw;
-    background-color: red;
-    position: fixed;
-    z-index: 3;
-    right: 0;
-    top: 0;
-  }
-  display: flex;
+  display: ${props => (props.animation == null ? 'none' : 'flex')};
+  padding: 17px 17px 50px;
+  justify-content: space-between;
+  height: 100vh;
+  width: 50vw;
+  position: fixed;
+  z-index: 3;
+  right: 0;
+  top: 0;
   animation-name: ${props => (props.animation ? 'slidein' : 'slideout')};
   animation-duration: 1s;
   animation-fill-mode: forwards;
+
   @keyframes slidein {
     from {
       right: -500px;
@@ -69,11 +55,9 @@ export const SideBar = styled.div<AnimationProps>`
   @keyframes slideout {
     from {
       right: 0;
-      display: block;
     }
     to {
       right: -500px;
-      display: none;
     }
   }
 `;
