@@ -23,7 +23,6 @@ const useStore = create<storeType>(set => ({
   showMypageModal: false,
   mypageModalContent: '',
   isSearching: false,
-  showSideBar: null,
 
   setShowFAQModal: () => set(state => ({ showFAQModal: !state.showFAQModal })),
   setFAQModalTitle: title => set({ FAQModalTitle: title }),
