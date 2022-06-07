@@ -1,14 +1,5 @@
-import { keyframes } from '@emotion/react';
+import { fadeInAndOut } from 'shared/Styles/Animations';
 import styled from '@emotion/styled';
-
-const fadeout = keyframes`
-  from {
-      opacity: 1;
-  }
-  to {
-      opacity: 0;
-  }
-`;
 
 export const SuccessModal = styled.div`
   width: 100%;
@@ -18,7 +9,8 @@ export const SuccessModal = styled.div`
   background: rgba(0, 0, 0, 0.51);
   position: absolute;
   z-index: 5;
-  animation: ${fadeout} 1s 2s;
+  animation: ${fadeInAndOut} 5s;
+  animation-fill-mode: forwards;
 `;
 
 export const Content = styled.div`
