@@ -15,7 +15,7 @@ const Header: React.FC = () => {
   const select = (navPath: string) =>
     navPath === pathname && { color: '#ffffff' };
 
-  const { showSideBar, setShowSideBar } = useStore();
+  const { setShowSideBar } = useStore();
   return (
     <>
       <S.HeaderWrap>
@@ -58,11 +58,11 @@ const Header: React.FC = () => {
             </S.MemberContent>
           </S.MemberBox>
         )}
-        <S.HamBurger onClick={setShowSideBar}>
+        <S.HamBurger onClick={() => setShowSideBar(true)}>
           <I.HamburgerButton />
         </S.HamBurger>
       </S.HeaderWrap>
-      {showSideBar && <SideBar />}
+      <SideBar />
     </>
   );
 };
