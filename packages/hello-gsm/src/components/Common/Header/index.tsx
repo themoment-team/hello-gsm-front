@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import * as S from './style';
+import * as I from 'Assets/svg';
+import useStore from 'Stores/StoreContainer';
 
 const Header: React.FC = () => {
   const { pathname } = useRouter();
@@ -13,13 +15,11 @@ const Header: React.FC = () => {
     navPath === pathname && { color: '#ffffff' };
 
   return (
-    <S.Header>
+    <>
       <S.HeaderWrap>
-        <S.Logo>
-          <Link href="/" passHref>
-            <S.LogoContent>Hello, GSM</S.LogoContent>
-          </Link>
-        </S.Logo>
+        <Link href="/" passHref>
+          <S.LogoContent>Hello, GSM</S.LogoContent>
+        </Link>
         <S.NavBar>
           <Link href="/" passHref>
             <S.NavContent css={select('/')}>홈으로</S.NavContent>
@@ -56,8 +56,11 @@ const Header: React.FC = () => {
             </S.MemberContent>
           </S.MemberBox>
         )}
+        <S.HamBurger>
+          <I.HamburgerButton />
+        </S.HamBurger>
       </S.HeaderWrap>
-    </S.Header>
+    </>
   );
 };
 
