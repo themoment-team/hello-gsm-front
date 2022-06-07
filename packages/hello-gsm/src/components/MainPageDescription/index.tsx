@@ -114,7 +114,7 @@ const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
             </S.DescriptionLine>
             <S.PostScript>접수 번호 {registrationNumber}</S.PostScript>
             <S.Celebration>
-              {widthSize > 960 ? <I.Celebration /> : <I.SmallCelebration />}
+              <I.Celebration />
             </S.Celebration>
           </S.Description>
         ) : (
@@ -138,7 +138,7 @@ const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
           </S.DescriptionLine>
           <S.PostScript>접수 번호 {registrationNumber}</S.PostScript>
           <S.Celebration>
-            {widthSize > 960 ? <I.Celebration /> : <I.SmallCelebration />}
+            <I.Celebration />
           </S.Celebration>
         </S.Description>
       ) : (
