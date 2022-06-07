@@ -4,10 +4,8 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import * as S from './style';
 import * as I from 'Assets/svg';
-import useStore from 'Stores/StoreContainer';
 import dynamic from 'next/dynamic';
 
-const SideBar = dynamic(() => import('components/SideBar'));
 const Header: React.FC = () => {
   const { pathname } = useRouter();
 
@@ -16,14 +14,9 @@ const Header: React.FC = () => {
   const select = (navPath: string) =>
     navPath === pathname && { color: '#ffffff' };
 
-  const { showSideBar, setShowSideBar } = useStore();
   return (
     <>
-      <S.HeaderWrap
-        css={css`
-          background-color: ${showSideBar ? 'red' : 'blue'};
-        `}
-      >
+      <S.HeaderWrap>
         <Link href="/" passHref>
           <S.LogoContent>Hello, GSM</S.LogoContent>
         </Link>
@@ -63,11 +56,10 @@ const Header: React.FC = () => {
             </S.MemberContent>
           </S.MemberBox>
         )}
-        <S.HamBurger onClick={setShowSideBar}>
+        <S.HamBurger>
           <I.HamburgerButton />
         </S.HamBurger>
       </S.HeaderWrap>
-      <SideBar />
     </>
   );
 };

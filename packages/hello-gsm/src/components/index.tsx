@@ -17,4 +17,3 @@ export { default as SchoolPage } from './SchoolPage';
 export { default as Select } from './Select';
 export { default as SignInPage } from './SignInPage';
 export { default as SignUpPage } from './SignUpPage';
-export { default as SideBar } from './SideBar';
