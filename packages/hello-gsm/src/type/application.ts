@@ -1,4 +1,4 @@
-export interface applicationType {
+export interface ApplicationType {
   address: string;
   addressDetails: string;
   telephoneNumber: string;
@@ -18,7 +18,7 @@ export interface applicationType {
   TeacherNumber: string;
 }
 
-export interface scoreType {
+export interface ScoreType {
   score2_1: number;
   score2_2: number;
   score3_1: number;

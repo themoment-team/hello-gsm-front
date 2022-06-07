@@ -1,6 +1,6 @@
 import create from 'zustand';
 
-interface storeType {
+interface StoreType {
   showFAQModal: boolean;
   FAQModalTitle: string;
   FAQModalContent: string;
@@ -16,7 +16,7 @@ interface storeType {
   setIsSearching: (trueOrFalse: boolean) => void;
 }
 
-const useStore = create<storeType>(set => ({
+const useStore = create<StoreType>(set => ({
   showFAQModal: false,
   FAQModalTitle: '',
   FAQModalContent: '',

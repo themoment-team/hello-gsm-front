@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react';
 import * as S from './style';
 import * as I from 'Assets/svg';
 
-interface indexType {
+interface IndexType {
   selectedIndex: number;
 }
 
-const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
+const MainPageDescription: React.FC<IndexType> = ({ selectedIndex }) => {
   const today = new Date();
   const [index, setIndex] = useState<number>(1);
   const [logged, setLogged] = useState<boolean>(false);

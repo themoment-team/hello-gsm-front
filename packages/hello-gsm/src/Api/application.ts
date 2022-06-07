@@ -1,4 +1,4 @@
-import { applicationType, scoreType } from 'type/application';
+import { ApplicationType, ScoreType } from 'type/application';
 import RequestApi from 'Utils/Libs/requestApi';
 import { ApplicationController } from 'Utils/Libs/requestUrls';
 
@@ -34,7 +34,7 @@ class Application {
   /**
    * @param data - 1차 제출(인적 사항) 파라미터
    */
-  postFirstSubmission(data: applicationType) {
+  postFirstSubmission(data: ApplicationType) {
     try {
       return RequestApi({
         method: 'POST',
@@ -49,7 +49,7 @@ class Application {
   /**
    * @param data - 2차 제출(성적) 파라미터
    */
-  postSecondSubmisson(data: scoreType) {
+  postSecondSubmisson(data: ScoreType) {
     try {
       return RequestApi({
         method: 'POST',
@@ -64,7 +64,7 @@ class Application {
   /**
    * @param data - 1차 수정(인적 사항) 파라미터
    */
-  patchFirstSubmission(data: applicationType) {
+  patchFirstSubmission(data: ApplicationType) {
     try {
       return RequestApi({
         method: 'PATCH',
@@ -79,7 +79,7 @@ class Application {
   /**
    * @param data - 2차 수정(성적) 파라미터
    */
-  patchSecondSubmisson(data: scoreType) {
+  patchSecondSubmisson(data: ScoreType) {
     try {
       return RequestApi({
         method: 'PATCH',

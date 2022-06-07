@@ -3,7 +3,7 @@ import type { GetServerSideProps, NextPage } from 'next';
 import { MainPage } from 'components';
 import axios from 'axios';
 
-export interface applicantsType {
+export interface ApplicantsType {
   data: {
     registrationNumber: number;
     name: string;
@@ -16,7 +16,7 @@ export interface applicantsType {
   }[];
 }
 
-const Home: NextPage<applicantsType> = ({ data }) => <MainPage data={data} />;
+const Home: NextPage<ApplicantsType> = ({ data }) => <MainPage data={data} />;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {

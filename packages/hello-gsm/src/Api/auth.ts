@@ -1,5 +1,5 @@
 import { BASE_URL } from 'shared/config';
-import { signUpType } from 'type/signup';
+import { SignUpType } from 'type/signup';
 import RequestApi from 'Utils/Libs/requestApi';
 import { AuthController } from 'Utils/Libs/requestUrls';
 
@@ -14,7 +14,7 @@ class Auth {
   /**
    * @param data - 회원가입에 필요한 파라미터 
    */
-  signup(data: signUpType) {
+  signup(data: SignUpType) {
     try {
       return RequestApi({
         method: 'POST',
