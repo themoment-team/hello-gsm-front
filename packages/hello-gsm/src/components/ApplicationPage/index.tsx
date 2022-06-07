@@ -64,6 +64,12 @@ const ApplicationPage: NextPage = () => {
             .warterMark {
               display: none;
             }
+            @page {
+              margin: 0;
+            }
+            body {
+              margin: 1.6cm;
+            }
           }
         `}
       >
