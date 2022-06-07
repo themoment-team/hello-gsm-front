@@ -18,7 +18,6 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   const [faqList, setFaqList] = useState<FAQType[]>(faqData);
   const [keyword, setKeyword] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(1);
-  const [widthSize, setWidthSize] = useState<number>(0);
 
   const { showFAQModal, isSearching, setIsSearching } = useStore();
 
@@ -44,10 +43,6 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
           ),
         );
   }, [keyword, pageIndex, isSearching]);
-
-  useEffect(() => {
-    setWidthSize(window.screen.availWidth);
-  }, []);
 
   const selectPage = (index: number) => setPageIndex(index);
 
@@ -89,7 +84,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
           {!isSearching && (
             <S.FAQListIndex>
               <S.ChangeAllowButton onClick={minusPageIndex}>
-                {widthSize > 640 ? <I.LeftButton /> : <I.MobileLeftButton />}
+                <I.LeftButton />
               </S.ChangeAllowButton>
               <S.FAQListIndexButtonWrapper>
                 <S.ListIndex onClick={() => selectPage(1)} css={selectStyle(1)}>
@@ -103,7 +98,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
                 </S.ListIndex>
               </S.FAQListIndexButtonWrapper>
               <S.ChangeAllowButton onClick={plusPageIndex}>
-                {widthSize > 640 ? <I.RightButton /> : <I.MobileRightButton />}
+                <I.RightButton />
               </S.ChangeAllowButton>
             </S.FAQListIndex>
           )}
