@@ -73,11 +73,14 @@ export const Celebration = styled.div`
   left: 200px;
   z-index: -1;
   @media ${device.tablet} {
-    top: 350px;
+    top: 300px;
     left: 50%;
     transform: translate(-50%);
+    svg {
+      width: 100px;
+    }
   }
   @media ${device.mobile} {
-    top: 200px;
+    top: 150px;
   }
 `;
