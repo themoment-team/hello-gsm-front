@@ -39,6 +39,11 @@ export const CloseButtonWrap = styled.div`
 
 export const CloseButton = styled.div`
   cursor: pointer;
+  @media ${device.mobile} {
+    svg {
+      width: 6px;
+    }
+  }
 `;
 
 export const ContentBox = styled.div`
@@ -60,6 +65,9 @@ export const QuestionBox = styled.div`
   align-items: center;
   @media ${device.mobile} {
     height: 50px;
+    svg {
+      width: 67px;
+    }
   }
 `;
 

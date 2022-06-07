@@ -37,7 +37,7 @@ const FAQModal: React.FC = () => {
             <S.QuestionTitle>
               <S.QuestionTitleContent>{FAQModalTitle}</S.QuestionTitleContent>
             </S.QuestionTitle>
-            {widthSize > 640 ? <I.Questioner /> : <I.MobileQuestioner />}
+            <I.Questioner />
           </S.QuestionBox>
           <S.AnswerBox>
             <S.AnswerContent>
