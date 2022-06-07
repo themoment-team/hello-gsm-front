@@ -68,7 +68,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
         <S.Title>자주 묻는 질문</S.Title>
         <S.FAQContent>
           <S.SearchWrapper>
-            {widthSize > 640 ? <I.SearchIcon /> : <I.MobileSearchIcon />}
+            <I.SearchIcon />
             <S.Search
               type="text"
               placeholder="검색하실 질문을 입력해주세요"

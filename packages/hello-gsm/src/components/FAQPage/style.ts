@@ -43,6 +43,9 @@ export const SearchWrapper = styled.div`
   @media ${device.mobile} {
     height: 40px;
     margin-top: 20px;
+    svg {
+      width: 15px;
+    }
   }
 `;
 
