@@ -122,6 +122,11 @@ export const ChangeAllowButton = styled.div`
   cursor: pointer;
   display: flex;
   align-items: flex-end;
+  @media ${device.mobile} {
+    svg {
+      width: 4px;
+    }
+  }
 `;
 
 export const ListIndex = styled.p`
