@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import * as S from './style';
 import * as I from 'Assets/svg';
 import useStore from 'Stores/StoreContainer';
+import SideBar from 'components/SideBar';
 
 const Header: React.FC = () => {
   const { pathname } = useRouter();
@@ -14,6 +15,7 @@ const Header: React.FC = () => {
   const select = (navPath: string) =>
     navPath === pathname && { color: '#ffffff' };
 
+  const { showSideBar, setShowSideBar } = useStore();
   return (
     <>
       <S.HeaderWrap>
@@ -56,10 +58,11 @@ const Header: React.FC = () => {
             </S.MemberContent>
           </S.MemberBox>
         )}
-        <S.HamBurger>
+        <S.HamBurger onClick={setShowSideBar}>
           <I.HamburgerButton />
         </S.HamBurger>
       </S.HeaderWrap>
+      {showSideBar && <SideBar />}
     </>
   );
 };
