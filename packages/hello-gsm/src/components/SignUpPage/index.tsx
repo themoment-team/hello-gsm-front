@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import { FieldErrors, useForm } from 'react-hook-form';
 import Input from 'components/Input';
-import { Select, Header, SEOHelmet } from 'components';
+import { Select, Header } from 'components';
 import { css } from '@emotion/react';
 
 interface UserForm {
@@ -59,7 +59,6 @@ const SignUpPage: NextPage = () => {
 
   return (
     <>
-      <SEOHelmet seoTitle="회원가입" />
       <Header />
       <S.SignUpPage>
         <S.SignUpForm onSubmit={handleSubmit(onValid, inValid)}>
