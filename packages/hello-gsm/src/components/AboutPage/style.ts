@@ -15,6 +15,10 @@ export const AboutPage = styled.div`
     width: 22vh;
     height: 22vh;
   }
+
+  @media ${device.laptop} {
+    padding: 8vh 0 22vh;
+  }
 `;
 
 export const Section = styled.div`
@@ -28,6 +32,11 @@ export const Title = styled.h1`
   font-weight: 700;
   font-size: 60px;
   line-height: 87px;
+
+  @media ${device.laptop} {
+    font-size: 30px;
+    line-height: 43px;
+  }
 `;
 
 export const Desc = styled.p`
@@ -37,6 +46,9 @@ export const Desc = styled.p`
   color: rgba(255, 255, 255, 0.64);
   @media ${device.laptop} {
     font-size: 20px;
+  }
+  @media ${device.mobile} {
+    font-size: 14px;
   }
 `;
 
@@ -50,6 +62,7 @@ export const SubTitle = styled.p`
   }
   @media ${device.mobile} {
     font-size: 24px;
+    margin-top: 120px;
   }
 `;
 
@@ -106,7 +119,8 @@ export const PickerText = styled.div`
     }
   }
   @media ${device.mobile} {
-    font-size: 30px;
+    font-size: 22px;
+    line-height: 35px;
   }
 `;
 
@@ -115,14 +129,12 @@ export const Row = styled.div`
   justify-content: space-around;
   width: 100vw;
   padding: 0px 4vw;
-  margin-top: 70px;
-  :nth-of-type(1) {
-    margin-top: 160px;
-  }
+  margin-top: 100px;
+
   @media ${device.laptop} {
     flex-direction: column;
     gap: 140px;
-    margin-top: 140px;
+    /* margin-top: 140px; */
   }
 `;
 
