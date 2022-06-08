@@ -5,7 +5,7 @@ import * as I from 'Assets/svg';
 import { useState } from 'react';
 import { css } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
-import { Header, MypageModal, SEOHelmet } from 'components';
+import { Header, MypageModal } from 'components';
 
 const MyPage: NextPage = () => {
   const [gender, setGender] = useState<string>('W');
@@ -22,7 +22,6 @@ const MyPage: NextPage = () => {
 
   return (
     <>
-      <SEOHelmet seoTitle="내 정보" />
       <S.MyPage>
         <Header />
         {showMypageModal && <MypageModal />}

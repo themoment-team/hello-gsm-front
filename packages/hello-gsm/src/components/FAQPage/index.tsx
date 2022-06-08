@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import * as I from 'Assets/svg';
 import * as S from './style';
-import { Header, FAQBox, FAQModal, SEOHelmet } from 'components';
+import { Header, FAQBox, FAQModal } from 'components';
 import useStore from 'Stores/StoreContainer';
 
 type FAQDataType = {
@@ -57,7 +57,6 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
 
   return (
     <>
-      <SEOHelmet seoTitle="자주 묻는 질문" />
       {showFAQModal && <FAQModal />}
       <Header />
       <S.FAQPage>

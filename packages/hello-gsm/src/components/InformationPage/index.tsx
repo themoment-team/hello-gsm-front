@@ -1,6 +1,5 @@
-import React from 'react';
 import type { NextPage } from 'next';
-import { Header, SEOHelmet } from 'components';
+import { Header } from 'components';
 import Link from 'next/link';
 import * as S from './style';
 import { css } from '@emotion/react';
@@ -8,7 +7,6 @@ import { css } from '@emotion/react';
 const InformationPage: NextPage = () => {
   return (
     <>
-      <SEOHelmet seoTitle="유의사항 및 입학 절차" />
       <S.InformationPage>
         <Header />
         <S.InformationContent>

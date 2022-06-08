@@ -9,12 +9,11 @@ import {
   FrontEnd,
   Operating,
 } from '@/public/data/about';
-import { Header, SEOHelmet } from 'components';
+import { Header } from 'components';
 
 const AboutPage: NextPage = () => {
   return (
     <>
-      <SEOHelmet seoTitle="팀 소개" />
       <Header />
       <S.AboutPage>
         <S.Section>

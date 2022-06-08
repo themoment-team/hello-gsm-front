@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import Link from 'next/link';
-import { Header, Footer, MainPageDescription, SEOHelmet } from 'components';
+import { Header, Footer, MainPageDescription } from 'components';
 import { css } from '@emotion/react';
 
 const MainPage: NextPage = () => {
@@ -22,7 +22,6 @@ const MainPage: NextPage = () => {
 
   return (
     <>
-      <SEOHelmet seoTitle="홈" />
       <S.MainPage>
         <Header />
         <S.MainContent>

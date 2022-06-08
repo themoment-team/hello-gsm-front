@@ -1,10 +1,12 @@
-import React from 'react';
 import type { NextPage } from 'next';
-import { SignInPage } from 'components';
+import { SEOHelmet, SignInPage } from 'components';
 
 const SignIn: NextPage = () => {
+  const seoTitle = '로그인';
+  const desc = '로그인 페이지입니다.';
   return (
     <>
+      <SEOHelmet seoTitle={seoTitle} desc={desc} />
       <SignInPage />
     </>
   );

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import Link from 'next/link';
 import { css } from '@emotion/react';
 import Graph from './Graph';
-import { Header, Footer, SEOHelmet } from 'components';
+import { Header, Footer } from 'components';
 
 interface employType {
   x: string;
@@ -65,7 +65,6 @@ const SchoolPage: NextPage = () => {
 
   return (
     <>
-      <SEOHelmet seoTitle="학교 소개" />
       <Header />
       <S.SchoolPage>
         <S.Section1>
