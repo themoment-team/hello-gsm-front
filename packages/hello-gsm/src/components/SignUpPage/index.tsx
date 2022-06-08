@@ -1,12 +1,10 @@
 import type { NextPage } from 'next';
 import * as S from './style';
 import { FieldErrors, useForm } from 'react-hook-form';
-import { Select, Header, Input } from 'components';
+import { Select, Header, Input, TosBox, SignInResultModal } from 'components';
 import { css } from '@emotion/react';
 import dayjs from 'dayjs';
 import auth from 'Api/auth';
-import TosBox from './TosBox';
-import SignInResultModal from 'components/Modals/SignInResultModal';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
