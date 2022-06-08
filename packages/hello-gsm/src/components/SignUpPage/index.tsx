@@ -49,15 +49,13 @@ const SignUpPage: NextPage = () => {
 
     const register = async () => {
       try {
-        // const res = auth.signup({ birth, name, gender, cellphoneNumber });
-        // console.log(res);
-      } catch (e: any) {
-        console.error(e);
-      } finally {
+        await auth.signup({ birth, name, gender, cellphoneNumber });
         setShowResult(true);
         setTimeout(() => {
           router.replace('/mypage');
         }, 2000);
+      } catch (e: any) {
+        console.error(e);
       }
     };
     register();
