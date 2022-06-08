@@ -5,7 +5,6 @@ import useStore from 'Stores/StoreContainer';
 import { css } from '@emotion/react';
 import { useRef, useState } from 'react';
 import { applicantsType } from 'pages';
-import SEOHelmet from 'components/SEOHelmet';
 
 const MainPage: NextPage<applicantsType> = ({ data }) => {
   const {
@@ -43,7 +42,6 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
 
   return (
     <>
-      <SEOHelmet seoTitle="홈" />
       <S.MainPage>
         {showPassModal && <PassModal />}
         <S.MainPageContent>

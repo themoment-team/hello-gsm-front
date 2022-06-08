@@ -1,10 +1,8 @@
-import React from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import Link from 'next/link';
 import { Input } from 'components';
 import { useForm } from 'react-hook-form';
-import SEOHelmet from 'components/SEOHelmet';
 
 interface UserForm {
   id: string;
@@ -18,7 +16,6 @@ const SignInPage: NextPage = () => {
   };
   return (
     <>
-      <SEOHelmet seoTitle="로그인" />
       <S.SignInPage>
         <S.BigBall />
         <S.SmallBall />
