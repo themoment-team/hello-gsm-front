@@ -6,8 +6,13 @@ import { useState } from 'react';
 import { css } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
 import { Header, MypageModal } from 'components';
+import { StatusType } from 'type/user';
 
-const MyPage: NextPage = () => {
+interface UserStatusType {
+  status: StatusType;
+}
+
+const MyPage: NextPage<UserStatusType> = ({ status }) => {
   const [gender, setGender] = useState<string>('W');
   const [saved, setSaved] = useState<boolean>(true);
   const [submitted, setSubmitted] = useState<boolean>(false);
