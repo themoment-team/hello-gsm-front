@@ -16,10 +16,8 @@ const MainPageDescription: React.FC<indexType> = ({ selectedIndex }) => {
   const [name, setName] = useState<string>('김형록');
   const [registrationNumber, setRegistrationNumber] = useState<number>(1001);
   const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(false);
-  const [widthSize, setWidthSize] = useState<number>(0);
 
   useEffect(() => {
-    setWidthSize(window.screen.availWidth);
     today > new Date('2023-03-01') ? setIndex(0) : setIndex(selectedIndex);
     today > new Date('2022-11-01') && setIsFirstPeriod(false);
     !logged && selectedIndex === 5 && setIndex(6);
