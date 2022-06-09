@@ -3,7 +3,7 @@ import { Header } from 'components';
 import * as S from './style';
 import * as I from '../../Assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Calculate, Volunteer, Rounds, Attendance } from './function';
 import application from 'Api/application';
 import Result from '../Result';
@@ -71,6 +71,9 @@ const CalculatorPage: NextPage = () => {
       nonCurriculumScoreSubtotal,
       scoreTotal,
     ]);
+
+    window.localStorage.setItem('score2_1', JSON.stringify(validForm.score2_1));
+
     try {
       // await application.postSecondSubmisson({
       //   score2_1,
@@ -144,7 +147,7 @@ const CalculatorPage: NextPage = () => {
                       },
                     })}
                   >
-                    <option>선택</option>
+                    {/* <option>선택</option> */}
                     <option value={5}>A</option>
                     <option value={4}>B</option>
                     <option value={3}>C</option>
@@ -157,7 +160,7 @@ const CalculatorPage: NextPage = () => {
                     key={i}
                     {...register(`score2_1.${subjects.length + i}`)}
                   >
-                    <option>선택</option>
+                    {/* <option>선택</option> */}
                     <option value={5}>A</option>
                     <option value={4}>B</option>
                     <option value={3}>C</option>
@@ -178,7 +181,7 @@ const CalculatorPage: NextPage = () => {
                       },
                     })}
                   >
-                    <option>선택</option>
+                    {/* <option>선택</option> */}
                     <option value={5}>A</option>
                     <option value={4}>B</option>
                     <option value={3}>C</option>
@@ -191,7 +194,7 @@ const CalculatorPage: NextPage = () => {
                     key={i}
                     {...register(`score2_2.${subjects.length + i}`)}
                   >
-                    <option>선택</option>
+                    {/* <option>선택</option> */}
                     <option value={5}>A</option>
                     <option value={4}>B</option>
                     <option value={3}>C</option>
@@ -212,7 +215,7 @@ const CalculatorPage: NextPage = () => {
                       },
                     })}
                   >
-                    <option>선택</option>
+                    {/* <option>선택</option> */}
                     <option value={5}>A</option>
                     <option value={4}>B</option>
                     <option value={3}>C</option>
@@ -225,7 +228,7 @@ const CalculatorPage: NextPage = () => {
                     key={i}
                     {...register(`score3_1.${subjects.length + i}`)}
                   >
-                    <option>선택</option>
+                    {/* <option>선택</option> */}
                     <option value={5}>A</option>
                     <option value={4}>B</option>
                     <option value={3}>C</option>
@@ -262,7 +265,7 @@ const CalculatorPage: NextPage = () => {
                     },
                   })}
                 >
-                  <option>선택</option>
+                  {/* <option>선택</option> */}
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -280,7 +283,7 @@ const CalculatorPage: NextPage = () => {
                     },
                   })}
                 >
-                  <option>선택</option>
+                  {/* <option>선택</option> */}
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -298,7 +301,7 @@ const CalculatorPage: NextPage = () => {
                     },
                   })}
                 >
-                  <option>선택</option>
+                  {/* <option>선택</option> */}
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -316,7 +319,7 @@ const CalculatorPage: NextPage = () => {
                     },
                   })}
                 >
-                  <option>선택</option>
+                  {/* <option>선택</option> */}
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
@@ -334,7 +337,7 @@ const CalculatorPage: NextPage = () => {
                     },
                   })}
                 >
-                  <option>선택</option>
+                  {/* <option>선택</option> */}
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
