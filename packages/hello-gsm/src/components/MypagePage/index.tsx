@@ -32,7 +32,7 @@ const MyPage: NextPage<UserStatusType> = ({ status }) => {
     setSubmitted(status.application?.isFinalSubmission === true ? true : false);
     setImgURL(status.userImg);
     setName(status.name);
-  });
+  },[]);
 
   return (
     <S.MyPage>
