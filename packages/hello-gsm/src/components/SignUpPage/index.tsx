@@ -50,7 +50,7 @@ const SignUpPage: NextPage = () => {
         await auth.signup({ birth, name, gender, cellphoneNumber });
         setShowResult(true);
         setTimeout(() => {
-          router.replace('/mypage');
+          router.replace('/auth/signin');
         }, 2000);
       } catch (e: any) {
         console.error(e);
