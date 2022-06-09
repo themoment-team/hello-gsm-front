@@ -76,6 +76,11 @@ export const TosBox = styled.div`
   background: #484453;
   border-radius: 10px;
   margin-top: 50px;
+  padding: 20px;
+  overflow: scroll;
+  line-height: 20px;
+  color: #ffffff;
+  font-size: 16px;
 `;
 
 export const CheckLabel = styled.label`
