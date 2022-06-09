@@ -2,18 +2,20 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import * as S from './style';
 import * as I from 'Assets/svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
 import { Header, MypageModal } from 'components';
 import { StatusType } from 'type/user';
+import Image from 'next/image';
 
 interface UserStatusType {
   status: StatusType;
 }
 
 const MyPage: NextPage<UserStatusType> = ({ status }) => {
-  const [gender, setGender] = useState<string>('W');
+  const [name, setName] = useState<string>('');
+  const [imgURL, setImgURL] = useState<string>('');
   const [saved, setSaved] = useState<boolean>(true);
   const [submitted, setSubmitted] = useState<boolean>(false);
 
@@ -25,14 +27,27 @@ const MyPage: NextPage<UserStatusType> = ({ status }) => {
     setMypageModalContent(content);
   };
 
+  useEffect(() => {
+    setSaved(status.application === null ? false : true);
+    setSubmitted(status.application?.isFinalSubmission === true ? true : false);
+    setImgURL(status.userImg);
+    setName(status.name);
+  });
+
   return (
     <S.MyPage>
       {showMypageModal && <MypageModal />}
       <Header />
       <S.Content>
         <S.UserBox>
-          {gender === 'W' ? <I.Woman /> : <I.Man />}
-          <S.Name>김형록님</S.Name>
+          <Image
+            src={imgURL}
+            alt="image"
+            width="140"
+            height="140"
+            css={{ borderRadius: '100%' }}
+          />
+          <S.Name>{name}</S.Name>
         </S.UserBox>
         {saved ? (
           submitted ? (
