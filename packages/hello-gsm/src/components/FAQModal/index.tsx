@@ -5,16 +5,11 @@ import { css, Global } from '@emotion/react';
 import { useCallback, MouseEvent, useState, useEffect } from 'react';
 
 const FAQModal: React.FC = () => {
-  const [widthSize, setWidthSize] = useState<number>(0);
   const { showFAQModal, setShowFAQModal, FAQModalTitle, FAQModalContent } =
     useStore();
 
   const removeClick = useCallback((e: MouseEvent<HTMLDivElement>): void => {
     e.stopPropagation();
-  }, []);
-
-  useEffect(() => {
-    setWidthSize(window.screen.availWidth);
   }, []);
 
   return (
