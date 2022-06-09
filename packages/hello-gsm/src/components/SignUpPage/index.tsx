@@ -1,12 +1,15 @@
 import type { NextPage } from 'next';
 import * as S from './style';
 import { FieldErrors, useForm } from 'react-hook-form';
-import Input from 'components/Input';
-import { Select, Header } from 'components';
+import { Select, Header, Input, TosBox, SignInResultModal } from 'components';
 import { css } from '@emotion/react';
+import dayjs from 'dayjs';
+import auth from 'Api/auth';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 interface UserForm {
-  gender: string;
+  gender: '남자' | '여자';
   name: string;
   agree: boolean;
   year: string;
@@ -16,30 +19,44 @@ interface UserForm {
 }
 
 const SignUpPage: NextPage = () => {
+  const [showResult, setShowResult] = useState(false);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<UserForm>();
 
-  const makeDate = (year: string, month: string, day: string) => {
-    if (month.length == 1) month = '0' + month;
-    if (day.length == 1) day = '0' + day;
-    return [year, month, day].join('-');
-  };
-
   const onValid = ({
     gender,
     name,
-    agree,
     year,
     month,
     day,
     cellphoneNumber,
   }: UserForm) => {
-    const birth = makeDate(year, month, day);
-    console.log(birth);
-    console.log('success');
+    /**
+     * dayjs 라이브러리를 사용하여 YYYY-MM-DD 형식에 맞게 포맷
+     * 월은 0부터 시작
+     */
+    const birth = dayjs()
+      .set('year', Number(year))
+      .set('month', Number(month))
+      .set('date', Number(day))
+      .format('YYYY-MM-DD');
+
+    const register = async () => {
+      try {
+        await auth.signup({ birth, name, gender, cellphoneNumber });
+        setShowResult(true);
+        setTimeout(() => {
+          router.replace('/mypage');
+        }, 2000);
+      } catch (e: any) {
+        console.error(e);
+      }
+    };
+    register();
   };
 
   const inValid = (errors: FieldErrors) => {
@@ -47,6 +64,11 @@ const SignUpPage: NextPage = () => {
     console.log('fail');
   };
 
+  /**
+   *
+   * @param top : 각 컴포넌트 높이;
+   * @returns css - 에러가 있으면 애니메이션, 스타일 추가
+   */
   const SelectError = (top?: number) =>
     css({
       color: 'red',
@@ -60,6 +82,7 @@ const SignUpPage: NextPage = () => {
   return (
     <>
       <Header />
+      {showResult && <SignInResultModal />}
       <S.SignUpPage>
         <S.SignUpForm onSubmit={handleSubmit(onValid, inValid)}>
           <S.Title>회원가입</S.Title>
@@ -108,7 +131,7 @@ const SignUpPage: NextPage = () => {
 
             <Select register={register('month')}>
               {[...Array(12)].map((_, i) => (
-                <option value={`${i + 1}`} key={i}>
+                <option value={`${i}`} key={i}>
                   {i + 1}월
                 </option>
               ))}
@@ -138,7 +161,7 @@ const SignUpPage: NextPage = () => {
           <S.ErrorMessage css={errors.cellphoneNumber && SelectError(400)}>
             {errors.cellphoneNumber?.message}
           </S.ErrorMessage>
-          <S.TosBox></S.TosBox>
+          <TosBox />
           <S.CheckLabel htmlFor="check">
             <input
               {...register('agree', { required: '* 동의를 선택해주세요.' })}
