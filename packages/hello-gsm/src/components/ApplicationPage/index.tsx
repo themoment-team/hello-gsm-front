@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import { css } from '@emotion/react';
