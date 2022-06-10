@@ -1797,6 +1797,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["dayjs", [\
+        ["npm:1.11.2", {\
+          "packageLocation": "./.yarn/cache/dayjs-npm-1.11.2-644b12fe04-78f8bd04a9.zip/node_modules/dayjs/",\
+          "packageDependencies": [\
+            ["dayjs", "npm:1.11.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["debug", [\
         ["npm:2.6.9", {\
           "packageLocation": "./.yarn/cache/debug-npm-2.6.9-7d4cb597dc-d2f51589ca.zip/node_modules/debug/",\
@@ -2853,6 +2862,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/eslint-plugin", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:5.15.0"],\
             ["@typescript-eslint/parser", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:5.15.0"],\
             ["axios", "npm:0.26.1"],\
+            ["dayjs", "npm:1.11.2"],\
             ["emotion-reset", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:3.0.1"],\
             ["eslint", "npm:8.11.0"],\
             ["eslint-config-next", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:12.1.0"],\

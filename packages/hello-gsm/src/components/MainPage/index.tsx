@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import Link from 'next/link';

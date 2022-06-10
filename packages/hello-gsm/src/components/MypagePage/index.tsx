@@ -22,8 +22,8 @@ const MyPage: NextPage = () => {
 
   return (
     <S.MyPage>
-      {showMypageModal && <MypageModal />}
       <Header />
+      {showMypageModal && <MypageModal />}
       <S.Content>
         <S.UserBox>
           {gender === 'W' ? <I.Woman /> : <I.Man />}
