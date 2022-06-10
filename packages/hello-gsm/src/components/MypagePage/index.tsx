@@ -16,7 +16,7 @@ interface UserStatusType {
 const MyPage: NextPage<UserStatusType> = ({ status }) => {
   const [name, setName] = useState<string>('');
   const [imgURL, setImgURL] = useState<string>('');
-  const [saved, setSaved] = useState<boolean>(true);
+  const [saved, setSaved] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
 
   const { showMypageModal, setShowMypageModal, setMypageModalContent } =
@@ -32,7 +32,7 @@ const MyPage: NextPage<UserStatusType> = ({ status }) => {
     setSubmitted(status.application?.isFinalSubmission === true ? true : false);
     setImgURL(status.userImg);
     setName(status.name);
-  },[]);
+  }, []);
 
   return (
     <S.MyPage>
@@ -80,7 +80,7 @@ const MyPage: NextPage<UserStatusType> = ({ status }) => {
               width: 160px;
             `}
           >
-            <Link href="/apply" passHref>
+            <Link href="/information" passHref>
               <S.Button>원서 작성</S.Button>
             </Link>
           </S.ButtonBox>
