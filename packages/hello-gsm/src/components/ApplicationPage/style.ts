@@ -99,6 +99,17 @@ export const Table = styled.table`
   }
 `;
 
+export const ScoreTable = styled(Table)`
+  tbody {
+    display: flex;
+    flex-direction: column;
+  }
+
+  th,
+  td {
+    display: block;
+  }
+`;
 export const Subject = styled.td`
   font-weight: 500;
   background-color: #e9e9e9;

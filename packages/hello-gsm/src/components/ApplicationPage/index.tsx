@@ -50,8 +50,8 @@ const profile: ProfileType = {
   },
 };
 
-const useLocalstorage = (key: string) => {
-  const [getItem, setItem] = useState<Array<number> | null>();
+const useLocalstorage = (key: string): Array<number> | undefined => {
+  const [getItem, setItem] = useState<Array<number>>();
   useEffect(() => {
     const result = window.localStorage.getItem(key);
     if (result !== null) setItem(JSON.parse(result));
@@ -61,9 +61,10 @@ const useLocalstorage = (key: string) => {
 };
 
 const ApplicationPage: NextPage = () => {
-  const [haha, setHaha] = useState<Array<number> | null | undefined>(undefined);
+  const score2_1 = useLocalstorage('score2_1');
+  const score2_2 = useLocalstorage('score2_2');
+  const score3_1 = useLocalstorage('score3_1');
 
-  setHaha(useLocalstorage('score2_1'));
   const { user, application, applicationDetails } = profile;
 
   return (
@@ -86,11 +87,8 @@ const ApplicationPage: NextPage = () => {
       >
         <S.Document>
           <div className="warterMark">견본</div>
-          <S.Template>[서식 1]</S.Template>
-          <S.Title>
-            광주소프트웨어마이스터고등학교 입학원서
-            {haha && haha[0]}
-          </S.Title>
+          <p>[서식 1]</p>
+          <S.Title>광주소프트웨어마이스터고등학교 입학원서</S.Title>
           <S.Wrap>
             <S.SubTitle style={{ fontSize: '1.5vh', fontWeight: 700 }}>
               2023학년도 신입생 입학전형
@@ -303,7 +301,7 @@ const ApplicationPage: NextPage = () => {
               <S.Content>{application.registrationNumber}</S.Content>
             </S.Box>
           </S.Wrap>
-          <S.Table>
+          <S.ScoreTable>
             <tbody>
               <tr>
                 <td className="backSlash" rowSpan={2}>
@@ -394,9 +392,9 @@ const ApplicationPage: NextPage = () => {
                 <td></td>
               </tr>
             </tbody>
-          </S.Table>
+          </S.ScoreTable>
           <S.SubTitle>체육예술교과</S.SubTitle>
-          <S.Table style={{ marginBottom: '1vh' }}>
+          <S.ScoreTable style={{ marginBottom: '1vh' }}>
             <tbody>
               <tr>
                 <td className="backSlash" rowSpan={2}>
@@ -445,9 +443,9 @@ const ApplicationPage: NextPage = () => {
                 <td></td>
               </tr>
             </tbody>
-          </S.Table>
+          </S.ScoreTable>
           <S.SubTitle>비교과</S.SubTitle>
-          <S.Table style={{ marginBottom: '1vh' }}>
+          <S.ScoreTable style={{ marginBottom: '1vh' }}>
             <tbody>
               <tr>
                 <S.Subject rowSpan={2}>학년</S.Subject>
@@ -495,7 +493,7 @@ const ApplicationPage: NextPage = () => {
                 <td>1</td>
               </tr>
             </tbody>
-          </S.Table>
+          </S.ScoreTable>
           <S.Table style={{ marginBottom: '1vh', width: '80%' }}>
             <tbody>
               <tr>
