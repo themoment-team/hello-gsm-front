@@ -9,7 +9,8 @@ const RequestApi = (p: AxiosRequestConfig) => {
 
   const refresh = async () => {
     try {
-      await axios.post(AuthController.refresh(), {
+      // url 추가
+      await axios.post(BASE_URL + AuthController.refresh(), {
         headers: {
           Cookie: refreshToken,
         },
