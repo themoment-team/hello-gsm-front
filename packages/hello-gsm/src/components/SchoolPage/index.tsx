@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { css } from '@emotion/react';
 import Graph from './Graph';
 import { Header, Footer } from 'components';
+import user from 'Api/user';
 
 interface employType {
   x: string;
@@ -61,7 +62,17 @@ const SchoolPage: NextPage = () => {
     setEmployRate(data[select]);
     select === 0 && setTotal(75);
     select === 1 && setTotal(76);
+    getTest();
   }, [select]);
+
+  const getTest = async () => {
+    try {
+      const res = await user.status();
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <>
