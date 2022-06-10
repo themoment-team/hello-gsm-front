@@ -54,17 +54,20 @@ const profile: ProfileType = {
   },
 };
 
-const useLocalstorage = (value: string) => {
-  const [getItem, setItem] = useState<Array<number> | null | undefined>();
+const useLocalstorage = (key: string) => {
+  const [getItem, setItem] = useState<Array<number> | null>();
   useEffect(() => {
-    const result = window.localStorage.getItem(value);
+    const result = window.localStorage.getItem(key);
     if (result !== null) setItem(JSON.parse(result));
   }, []);
+  console.log(getItem);
   return getItem;
 };
+
 const ApplicationPage: NextPage = () => {
-  const test = useLocalstorage('score2_1');
-  console.log(test);
+  const [haha, setHaha] = useState<Array<number> | null | undefined>(undefined);
+
+  setHaha(useLocalstorage('score2_1'));
   const { user, application, applicationDetails } = profile;
 
   return (
@@ -82,7 +85,10 @@ const ApplicationPage: NextPage = () => {
         <S.Document>
           <div className="warterMark">견본</div>
           <S.Template>[서식 1]</S.Template>
-          <S.Title>광주소프트웨어마이스터고등학교 입학원서{test[0]}</S.Title>
+          <S.Title>
+            광주소프트웨어마이스터고등학교 입학원서
+            {haha && haha[0]}
+          </S.Title>
           <S.Wrap>
             <S.SubTitle>2023학년도 신입생 입학전형</S.SubTitle>
             <S.Box>
