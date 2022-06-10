@@ -21,60 +21,56 @@ const MyPage: NextPage = () => {
   };
 
   return (
-    <>
-      <S.MyPage>
-        <Header />
-        {showMypageModal && <MypageModal />}
-        <S.Content>
-          <S.UserBox>
-            {gender === 'W' ? <I.Woman /> : <I.Man />}
-            <S.Name>김형록님</S.Name>
-          </S.UserBox>
-          {saved ? (
-            submitted ? (
-              <S.ButtonBox
-                css={css`
-                  width: 335px;
-                `}
-              >
-                <S.Button>원서 다운</S.Button>
-                <S.Button onClick={() => showModal('download')}>
-                  제출 서류 다운
-                </S.Button>
-              </S.ButtonBox>
-            ) : (
-              <S.ButtonBox
-                css={css`
-                  width: 510px;
-                `}
-              >
-                <S.Button onClick={() => showModal('cancel')}>
-                  원서 삭제
-                </S.Button>
-                <Link href="/apply" passHref>
-                  <S.Button>원서 수정</S.Button>
-                </Link>
-                <S.Button onClick={() => showModal('final')}>최종제출</S.Button>
-              </S.ButtonBox>
-            )
+    <S.MyPage>
+      <Header />
+      {showMypageModal && <MypageModal />}
+      <S.Content>
+        <S.UserBox>
+          {gender === 'W' ? <I.Woman /> : <I.Man />}
+          <S.Name>김형록님</S.Name>
+        </S.UserBox>
+        {saved ? (
+          submitted ? (
+            <S.ButtonBox
+              css={css`
+                width: 335px;
+              `}
+            >
+              <S.Button>원서 다운</S.Button>
+              <S.Button onClick={() => showModal('download')}>
+                제출 서류 다운
+              </S.Button>
+            </S.ButtonBox>
           ) : (
             <S.ButtonBox
               css={css`
-                width: 160px;
+                width: 510px;
               `}
             >
+              <S.Button onClick={() => showModal('cancel')}>원서 삭제</S.Button>
               <Link href="/apply" passHref>
-                <S.Button>원서 작성</S.Button>
+                <S.Button>원서 수정</S.Button>
               </Link>
+              <S.Button onClick={() => showModal('final')}>최종제출</S.Button>
             </S.ButtonBox>
-          )}
-        </S.Content>
-        <S.GreenBall />
-        <S.BigBlueBall />
-        <S.MiddleBlueBall />
-        <S.SmallBlueBall />
-      </S.MyPage>
-    </>
+          )
+        ) : (
+          <S.ButtonBox
+            css={css`
+              width: 160px;
+            `}
+          >
+            <Link href="/apply" passHref>
+              <S.Button>원서 작성</S.Button>
+            </Link>
+          </S.ButtonBox>
+        )}
+      </S.Content>
+      <S.GreenBall />
+      <S.BigBlueBall />
+      <S.MiddleBlueBall />
+      <S.SmallBlueBall />
+    </S.MyPage>
   );
 };
 
