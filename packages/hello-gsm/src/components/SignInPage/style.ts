@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import device from 'shared/config';
 
 export const SignInPage = styled.div`
   position: relative;
@@ -49,34 +50,37 @@ export const SignInBtn = styled.a`
   }
 `;
 
-export const BigBall = styled.div`
+const Ball = styled.div`
   position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  @media ${device.tablet} {
+    display: none;
+  }
+`;
+
+export const BigBall = styled(Ball)`
   width: 93vh;
   height: 93vh;
   left: -30vh;
   top: 43vh;
-  border-radius: 50%;
   background: linear-gradient(
     201.42deg,
     #7be8ff 13.47%,
     #3f98ff 33.16%,
     rgba(0, 33, 65, 0.68) 80.28%
   );
-  z-index: -1;
 `;
 
-export const SmallBall = styled.div`
-  position: absolute;
+export const SmallBall = styled(Ball)`
   width: 25vh;
   height: 25vh;
   right: -5vh;
   top: 77vh;
-  border-radius: 50%;
   background: linear-gradient(
     207.52deg,
     #d2f7ff 13.95%,
     #61c5db 37.16%,
     rgba(0, 132, 201, 0.27) 91.31%
   );
-  z-index: -1;
 `;

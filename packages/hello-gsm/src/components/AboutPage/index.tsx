@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import Header from 'components/Common/Header';
+import { Header, Footer } from 'components';
 import * as S from './style';
 import * as I from 'Assets/svg';
 import Image from 'next/image';
@@ -205,6 +205,7 @@ const AboutPage: NextPage = () => {
           <S.SmallBall style={{ left: '19vh', top: '209vh' }} />
         </S.Section>
       </S.AboutPage>
+      <Footer />
     </>
   );
 };
