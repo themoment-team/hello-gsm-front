@@ -6,8 +6,7 @@ export const ApplicationPage = styled.div`
   background-color: #ffffff;
   padding: 1vh;
   height: 100vh;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
   font-size: 1vh;
 `;
 
