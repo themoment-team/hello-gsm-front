@@ -37,7 +37,6 @@ const MyPage: NextPage = () => {
     <S.MyPage>
       {showMypageModal && <MypageModal />}
       {showMypageSuccessModal && <MypageSuccessModal />}
-      <Header />
       <S.Content>
         <S.UserBox>
           {showMypageSuccessModal ? (
