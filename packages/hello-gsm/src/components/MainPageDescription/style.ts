@@ -57,6 +57,11 @@ export const Login = styled.a`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  @media ${device.mobile} {
+    width: 125px;
+    height: 35px;
+    font-size: 17px;
+  }
 `;
 
 export const Blue = styled.span`
