@@ -27,7 +27,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
       },
     };
   } catch (e) {
-    console.error(e);
     return {
       props: {},
       redirect: {
