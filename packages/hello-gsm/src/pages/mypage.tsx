@@ -4,24 +4,27 @@ import user from 'Api/user';
 import { StatusType } from 'type/user';
 
 interface DataType {
-  data: StatusType;
+  res: { data: StatusType };
 }
 
-const MyPage: NextPage<DataType> = ({ data }) => {
-  return <MypagePage status={data} />;
+const MyPage: NextPage<DataType> = ({ res }) => {
+  return <MypagePage status={res.data} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const { data } = await user.status();
+    const res = await user.status();
     return {
       props: {
-        data,
+        res,
       },
     };
   } catch (e) {
     return {
       props: {},
+      redirect: {
+        destination: '/auth/signin',
+      },
     };
   }
 };
