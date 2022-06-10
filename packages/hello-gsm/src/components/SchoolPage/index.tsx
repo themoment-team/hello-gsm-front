@@ -80,7 +80,7 @@ const SchoolPage: NextPage = () => {
             />
           </S.VideoBox>
           <S.ToHomepage href="http://gsm.gen.hs.kr/main/main.php">
-            <S.LinkText>홈페이지</S.LinkText>
+            홈페이지
           </S.ToHomepage>
         </S.Section1>
         <S.Section2>

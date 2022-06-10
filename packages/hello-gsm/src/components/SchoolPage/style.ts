@@ -52,17 +52,12 @@ export const ToHomepage = styled.a`
   align-items: center;
   cursor: pointer;
   background: #ededed;
-  @media ${device.mobile} {
-    width: 90px;
-    height: 30px;
-  }
-`;
-
-export const LinkText = styled.a`
   font-weight: 700;
   font-size: 22px;
   color: #0f0921;
   @media ${device.mobile} {
+    width: 90px;
+    height: 30px;
     font-size: 15px;
   }
 `;
