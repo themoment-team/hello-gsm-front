@@ -15,8 +15,10 @@ const RequestApi = (p: AxiosRequestConfig) => {
           Cookie: refreshToken,
         },
       });
+      console.log('get refresh');
       RequestApi(p);
     } catch (error) {
+      console.log(error);
       return error;
     }
   };
@@ -39,6 +41,7 @@ const RequestApi = (p: AxiosRequestConfig) => {
         return error;
       }
     } else {
+      console.log('no accesstoken');
       refresh();
     }
   }
