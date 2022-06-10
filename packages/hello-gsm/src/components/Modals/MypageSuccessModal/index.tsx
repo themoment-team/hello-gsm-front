@@ -13,7 +13,7 @@ const SuccessModal: React.FC = () => {
   return (
     <S.SuccessModal>
       <S.Content>
-        <I.Success />
+        <I.MypageSuccess />
         <S.DescriptionWrap>
           <S.Description>원서 제출에 성공했습니다.</S.Description>
           <S.PostScript>

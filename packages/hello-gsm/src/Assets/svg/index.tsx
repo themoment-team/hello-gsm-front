@@ -9,4 +9,4 @@ export { default as Woman } from './Woman';
 export { default as Man } from './Man';
 export { default as Celebration } from './Celebration';
 export { default as KakaoLogo } from './KakaoLogo';
-export { default as Success } from './Success';
+export { default as MypageSuccess } from './MypageSuccess';
