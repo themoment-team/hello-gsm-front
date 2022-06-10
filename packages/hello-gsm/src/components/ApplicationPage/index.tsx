@@ -64,7 +64,11 @@ const ApplicationPage: NextPage = () => {
   const score2_1 = useLocalstorage('score2_1');
   const score2_2 = useLocalstorage('score2_2');
   const score3_1 = useLocalstorage('score3_1');
-
+  const artSportsScore = useLocalstorage('artSportsScore');
+  const absentScore = useLocalstorage('absentScore');
+  const attendanceScore = useLocalstorage('attendanceScore');
+  const volunteerScore = useLocalstorage('volunteerScore');
+  const subjects = useLocalstorage('subjects');
   const { user, application, applicationDetails } = profile;
 
   return (
@@ -313,6 +317,9 @@ const ApplicationPage: NextPage = () => {
                 <S.Subject>2학년 1학기</S.Subject>
                 <S.Subject>2학년 2학기</S.Subject>
                 <S.Subject>3학년 1학기</S.Subject>
+                {subjects?.map(subject => (
+                  <td key={subject}>{subject}</td>
+                ))}
               </tr>
               <tr>
                 <S.Subject>성취도/평어</S.Subject>

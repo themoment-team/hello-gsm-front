@@ -73,7 +73,25 @@ const CalculatorPage: NextPage = () => {
     ]);
 
     window.localStorage.setItem('score2_1', JSON.stringify(validForm.score2_1));
-
+    window.localStorage.setItem('score2_2', JSON.stringify(validForm.score2_2));
+    window.localStorage.setItem('score3_1', JSON.stringify(validForm.score3_1));
+    window.localStorage.setItem(
+      'artSportsScore',
+      JSON.stringify(validForm.artSportsScore),
+    );
+    window.localStorage.setItem(
+      'absentScore',
+      JSON.stringify(validForm.absentScore),
+    );
+    window.localStorage.setItem(
+      'attendanceScore',
+      JSON.stringify(validForm.attendanceScore),
+    );
+    window.localStorage.setItem(
+      'volunteerScore',
+      JSON.stringify(validForm.volunteerScore),
+    );
+    window.localStorage.setItem('subjects', JSON.stringify(subjects));
     try {
       // await application.postSecondSubmisson({
       //   score2_1,
@@ -374,7 +392,7 @@ const CalculatorPage: NextPage = () => {
                     <S.AttendanceInput
                       key={grade}
                       {...register(`absentScore.${i}`, {
-                        required: true,
+                        // required: true,
                       })}
                       placeholder="입력"
                     />
@@ -385,7 +403,7 @@ const CalculatorPage: NextPage = () => {
                     <S.AttendanceInput
                       key={grade}
                       {...register(`attendanceScore.${i}`, {
-                        required: true,
+                        // required: true,
                       })}
                       placeholder="입력"
                     />
@@ -396,7 +414,7 @@ const CalculatorPage: NextPage = () => {
                     <S.AttendanceInput
                       key={grade}
                       {...register(`attendanceScore.${3 + i}`, {
-                        required: true,
+                        // required: true,
                       })}
                       placeholder="입력"
                     />
@@ -407,7 +425,7 @@ const CalculatorPage: NextPage = () => {
                     <S.AttendanceInput
                       key={grade}
                       {...register(`attendanceScore.${6 + i}`, {
-                        required: true,
+                        // required: true,
                       })}
                       placeholder="입력"
                     />
@@ -418,7 +436,7 @@ const CalculatorPage: NextPage = () => {
                     <S.AttendanceInput
                       key={grade}
                       {...register(`volunteerScore.${i}`, {
-                        required: true,
+                        // required: true,
                       })}
                       placeholder="입력"
                     />
