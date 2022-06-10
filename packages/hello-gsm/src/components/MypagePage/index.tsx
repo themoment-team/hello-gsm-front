@@ -12,7 +12,7 @@ interface UserStatusType {
   status: StatusType;
 }
 
-const MyPage: NextPage<UserStatusType> = ({ status }) => {
+const MyPage: NextPage = () => {
   const [name, setName] = useState<string>('');
   const [imgURL, setImgURL] = useState<string>('');
   const [saved, setSaved] = useState<boolean>(false);
@@ -27,10 +27,10 @@ const MyPage: NextPage<UserStatusType> = ({ status }) => {
   };
 
   useEffect(() => {
-    setSaved(status.application === null ? false : true);
-    setSubmitted(status.application?.isFinalSubmission === true ? true : false);
-    setImgURL(status.userImg);
-    setName(status.name);
+    // setSaved(status.application === null ? false : true);
+    // setSubmitted(status.application?.isFinalSubmission === true ? true : false);
+    // setImgURL(status.userImg);
+    // setName(status.name);
   }, []);
 
   return (
@@ -39,13 +39,13 @@ const MyPage: NextPage<UserStatusType> = ({ status }) => {
       {showMypageModal && <MypageModal />}
       <S.Content>
         <S.UserBox>
-          <Image
-            src={imgURL}
+          {/* <Image
+            src=""
             alt="image"
             width="140"
             height="140"
             css={{ borderRadius: '100%' }}
-          />
+          /> */}
           <S.Name>{name}</S.Name>
         </S.UserBox>
         {saved ? (
