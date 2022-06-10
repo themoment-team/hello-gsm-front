@@ -92,6 +92,10 @@ const CalculatorPage: NextPage = () => {
       JSON.stringify(validForm.volunteerScore),
     );
     window.localStorage.setItem('subjects', JSON.stringify(subjects));
+    window.localStorage.setItem(
+      'newSubjects',
+      JSON.stringify(validForm.newSubjects),
+    );
     try {
       // await application.postSecondSubmisson({
       //   score2_1,
@@ -129,7 +133,7 @@ const CalculatorPage: NextPage = () => {
   ]);
   const [nonSubjects] = useState(['체육', '미술', '음악']);
   const [grades] = useState([1, 2, 3]);
-  const [newsubjects, setNewSubjects] = useState<Array<string | null>>([]);
+  const [newSubjects, setNewSubjects] = useState<Array<string | null>>([]);
   return (
     <>
       <Header />
@@ -146,7 +150,7 @@ const CalculatorPage: NextPage = () => {
                 {subjects.map(subject => (
                   <S.Subject key={subject}>{subject}</S.Subject>
                 ))}
-                {newsubjects.map((test, i) => (
+                {newSubjects.map((test, i) => (
                   <S.SubjectInput
                     {...register(`newSubjects.${i}`)}
                     placeholder="추가과목입력"
@@ -173,7 +177,7 @@ const CalculatorPage: NextPage = () => {
                     <option value={1}>E</option>
                   </S.Select>
                 ))}
-                {newsubjects.map((subject, i) => (
+                {newSubjects.map((subject, i) => (
                   <S.Select
                     key={i}
                     {...register(`score2_1.${subjects.length + i}`)}
@@ -207,7 +211,7 @@ const CalculatorPage: NextPage = () => {
                     <option value={1}>E</option>
                   </S.Select>
                 ))}
-                {newsubjects.map((subject, i) => (
+                {newSubjects.map((subject, i) => (
                   <S.Select
                     key={i}
                     {...register(`score2_2.${subjects.length + i}`)}
@@ -241,7 +245,7 @@ const CalculatorPage: NextPage = () => {
                     <option value={1}>E</option>
                   </S.Select>
                 ))}
-                {newsubjects.map((subject, i) => (
+                {newSubjects.map((subject, i) => (
                   <S.Select
                     key={i}
                     {...register(`score3_1.${subjects.length + i}`)}
@@ -258,7 +262,7 @@ const CalculatorPage: NextPage = () => {
               </S.ValueSection>
             </S.CurriculumValue>
 
-            <S.Plus onClick={() => setNewSubjects([...newsubjects, ''])}>
+            <S.Plus onClick={() => setNewSubjects([...newSubjects, ''])}>
               +과목추가
             </S.Plus>
           </S.CurriculumSection>

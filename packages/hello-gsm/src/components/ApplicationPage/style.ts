@@ -102,9 +102,11 @@ export const Table = styled.table`
 export const ScoreTable = styled(Table)`
   tbody {
     display: flex;
-    flex-direction: column;
   }
 
+  tr {
+    width: 100%;
+  }
   th,
   td {
     display: block;

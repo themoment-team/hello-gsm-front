@@ -69,6 +69,7 @@ const ApplicationPage: NextPage = () => {
   const attendanceScore = useLocalstorage('attendanceScore');
   const volunteerScore = useLocalstorage('volunteerScore');
   const subjects = useLocalstorage('subjects');
+  const newSubjects = useLocalstorage('newSubjects');
   const { user, application, applicationDetails } = profile;
 
   return (
@@ -312,91 +313,42 @@ const ApplicationPage: NextPage = () => {
                   <div style={{ textAlign: 'right' }}>학년</div>
                   <div style={{ textAlign: 'left' }}>과목</div>
                 </td>
-                <S.Subject>1학년 1학기</S.Subject>
-                <S.Subject>1학년 2학기</S.Subject>
-                <S.Subject>2학년 1학기</S.Subject>
-                <S.Subject>2학년 2학기</S.Subject>
-                <S.Subject>3학년 1학기</S.Subject>
                 {subjects?.map(subject => (
                   <td key={subject}>{subject}</td>
                 ))}
+                {newSubjects?.map(newSubject => (
+                  <td key={newSubject}>{newSubject}</td>
+                ))}
               </tr>
               <tr>
+                <S.Subject>1학년 1학기</S.Subject>
                 <S.Subject>성취도/평어</S.Subject>
+                <td rowSpan={5}>asdsad</td>
+              </tr>
+              <tr>
+                <S.Subject>1학년 2학기</S.Subject>
                 <S.Subject>성취도/평어</S.Subject>
+              </tr>
+              <tr>
+                <S.Subject>2학년 1학기</S.Subject>
                 <S.Subject>성취도/평어</S.Subject>
+                {score2_1?.map(score => (
+                  <td key={score}>{score}</td>
+                ))}
+              </tr>
+              <tr>
+                <S.Subject>2학년 2학기</S.Subject>
                 <S.Subject>성취도/평어</S.Subject>
+                {score2_2?.map(score => (
+                  <td key={score}>{score}</td>
+                ))}
+              </tr>
+              <tr>
+                <S.Subject>3학년 1학기</S.Subject>
                 <S.Subject>성취도/평어</S.Subject>
-              </tr>
-              <tr>
-                <td>국어</td>
-                <td rowSpan={10} className="slash"></td>
-                <td rowSpan={10} className="slash"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>도덕</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>사회</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>역사</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>수학</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>과학</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>기술가정</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>영어</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>ㅁㄴㅇ</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>ㅁㄴㅇ</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>환산점</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                {score3_1?.map(score => (
+                  <td key={score}>{score}</td>
+                ))}
               </tr>
             </tbody>
           </S.ScoreTable>
@@ -408,46 +360,31 @@ const ApplicationPage: NextPage = () => {
                   <div style={{ textAlign: 'right' }}>학년</div>
                   <div style={{ textAlign: 'left' }}>과목</div>
                 </td>
-                <S.Subject>1학년 1학기</S.Subject>
-                <S.Subject>1학년 2학기</S.Subject>
-                <S.Subject>2학년 1학기</S.Subject>
-                <S.Subject>2학년 2학기</S.Subject>
-                <S.Subject>3학년 1학기</S.Subject>
-              </tr>
-              <tr>
-                <S.Subject>성취도/평어</S.Subject>
-                <S.Subject>성취도/평어</S.Subject>
-                <S.Subject>성취도/평어</S.Subject>
-                <S.Subject>성취도/평어</S.Subject>
-                <S.Subject>성취도/평어</S.Subject>
-              </tr>
-              <tr>
                 <td>체육</td>
-                <td rowSpan={3} className="slash"></td>
-                <td rowSpan={3} className="slash"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
                 <td>미술</td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
                 <td>음악</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>환산점</td>
               </tr>
               <tr>
-                <td>환산점</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <S.Subject>1학년 1학기</S.Subject>
+                <S.Subject>성취도/평어</S.Subject>
+                <td rowSpan={5}>00</td>
+              </tr>
+              <tr>
+                <S.Subject>1학년 2학기</S.Subject>
+                <S.Subject>성취도/평어</S.Subject>
+              </tr>
+              <tr>
+                <S.Subject>2학년 1학기</S.Subject>
+                <S.Subject>성취도/평어</S.Subject>
+              </tr>
+              <tr>
+                <S.Subject>2학년 2학기</S.Subject>
+                <S.Subject>성취도/평어</S.Subject>
+              </tr>
+              <tr>
+                <S.Subject>3학년 1학기</S.Subject>
+                <S.Subject>성취도/평어</S.Subject>
               </tr>
             </tbody>
           </S.ScoreTable>
@@ -456,48 +393,31 @@ const ApplicationPage: NextPage = () => {
             <tbody>
               <tr>
                 <S.Subject rowSpan={2}>학년</S.Subject>
-                <S.Subject colSpan={6}>출결상황</S.Subject>
-                <S.Subject colSpan={2}>봉사활동</S.Subject>
-              </tr>
-              <tr>
-                <S.Subject>결석</S.Subject>
-                <S.Subject>지각</S.Subject>
-                <S.Subject>조퇴</S.Subject>
-                <S.Subject>결과</S.Subject>
-                <S.Subject>환산일수</S.Subject>
-                <S.Subject>환산점</S.Subject>
-                <S.Subject>시간</S.Subject>
-                <S.Subject>환산점</S.Subject>
-              </tr>
-              <tr>
                 <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td rowSpan={3}>1</td>
-                {/* 환산일수 */}
-                <td rowSpan={3}>1</td>
-                {/* 출결상황환산점 */}
-                <td>1</td>
-                <td rowSpan={3}>11</td>
-                {/* 봉사활동 환산점 */}
-              </tr>
-              <tr>
                 <td>2</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
+                <td>3</td>
               </tr>
               <tr>
-                <td>3</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
+                <S.Subject colSpan={6}>출결상황</S.Subject>
+                <S.Subject>결석</S.Subject>
+              </tr>
+              <tr>
+                <S.Subject>지각</S.Subject>
+              </tr>
+              <tr>
+                <S.Subject>조퇴</S.Subject>
+              </tr>
+              <tr>
+                <S.Subject>결과</S.Subject>
+              </tr>
+              <tr>
+                <S.Subject>환산일수</S.Subject>
+              </tr>
+              <tr>
+                <S.Subject>환산점</S.Subject>
+              </tr>
+              <tr>
+                <S.Subject>봉사활동</S.Subject>
               </tr>
             </tbody>
           </S.ScoreTable>
