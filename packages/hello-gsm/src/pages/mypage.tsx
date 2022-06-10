@@ -22,6 +22,7 @@ const MyPage: NextPage<DataType> = ({ res }) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const res = await user.status();
+    console.log(res);
     return {
       props: {
         res,
