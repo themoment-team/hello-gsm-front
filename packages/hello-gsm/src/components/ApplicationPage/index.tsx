@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import { css } from '@emotion/react';
 import { ProfileType } from 'type/profile';
+import useLocalstorage from 'hooks/useLocalstorage';
 const profile: ProfileType = {
   user: {
     name: '유시온',
@@ -48,16 +48,6 @@ const profile: ProfileType = {
     secondWantedMajor: '스마트 IOT과',
     thirdWantedMajor: '인공지능과',
   },
-};
-
-const useLocalstorage = (key: string): Array<number> | undefined => {
-  const [getItem, setItem] = useState<Array<number>>();
-  useEffect(() => {
-    const result = window.localStorage.getItem(key);
-    if (result !== null) setItem(JSON.parse(result));
-  }, []);
-  console.log(getItem);
-  return getItem;
 };
 
 const ApplicationPage: NextPage = () => {
