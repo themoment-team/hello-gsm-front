@@ -35,8 +35,8 @@ const MyPage: NextPage<UserStatusType> = ({ status }) => {
 
   return (
     <S.MyPage>
-      {showMypageModal && <MypageModal />}
       <Header />
+      {showMypageModal && <MypageModal />}
       <S.Content>
         <S.UserBox>
           <Image
