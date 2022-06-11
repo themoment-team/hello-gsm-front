@@ -26,6 +26,7 @@ const RequestApi = (p: AxiosRequestConfig) => {
   if (refreshToken) {
     if (accessToken) {
       try {
+        console.log('accesstoken exist');
         const res = axios({
           method: p.method,
           baseURL: BASE_URL,
@@ -36,8 +37,10 @@ const RequestApi = (p: AxiosRequestConfig) => {
             Cookie: accessToken,
           },
         });
+        console.log('accesstoken exist and get success');
         return res;
       } catch (error) {
+        console.log('accesstoken exist error');
         return error;
       }
     } else {
