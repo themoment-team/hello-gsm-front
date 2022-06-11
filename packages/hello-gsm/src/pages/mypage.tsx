@@ -67,6 +67,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     const res = await axios.get('https://server.hellogsm.kr/user', {
       headers: { cookie: accessToken },
     });
+    console.log(res);
     return {
       props: {
         res,
