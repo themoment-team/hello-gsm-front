@@ -14,7 +14,7 @@ class User {
         },
         accessToken,
       );
-    } catch (error) {
+    } catch (error: any) {
       return error;
     }
   }
