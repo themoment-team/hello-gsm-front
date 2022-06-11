@@ -2,20 +2,20 @@ import { BASE_URL } from 'shared/config';
 import axios, { AxiosRequestConfig } from 'axios';
 import { getAccessToken, getRefreshToken } from 'Utils/cookies';
 import { AuthController } from './requestUrls';
+import { useCookies } from 'react-cookie';
 
 const RequestApi = (p: AxiosRequestConfig) => {
-  const accessToken = getAccessToken();
-  const refreshToken = getRefreshToken();
+  const [cookies] = useCookies(['accessToken', 'refreshToken']);
 
-  console.log('accessToken : ' + accessToken);
-  console.log('refreshToken : ' + refreshToken);
+  console.log('accessToken : ' + cookies.accessToken);
+  console.log('refreshToken : ' + cookies.refreshToken);
 
   const refresh = async () => {
     try {
       // url 추가
       await axios.post(BASE_URL + AuthController.refresh(), {
         headers: {
-          Cookie: refreshToken,
+          Cookie: cookies.accessToken,
         },
       });
       console.log('get refresh');
@@ -26,8 +26,8 @@ const RequestApi = (p: AxiosRequestConfig) => {
     }
   };
 
-  if (refreshToken) {
-    if (accessToken) {
+  if (cookies.refreshToken) {
+    if (cookies.accessToken) {
       try {
         console.log('accesstoken exist');
         const res = axios({
@@ -37,7 +37,7 @@ const RequestApi = (p: AxiosRequestConfig) => {
           data: p.data,
           withCredentials: true,
           headers: {
-            Cookie: accessToken,
+            Cookie: cookies.accessToken,
           },
         });
         console.log('accesstoken exist and get success');
