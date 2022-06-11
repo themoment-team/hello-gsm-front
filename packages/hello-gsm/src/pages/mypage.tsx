@@ -42,7 +42,9 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     } else {
       try {
         await auth.refresh(refreshToken);
-        return getServerSideProps(ctx);
+        return {
+          props: {},
+        };
       } catch (error) {
         console.log(error);
         return {
