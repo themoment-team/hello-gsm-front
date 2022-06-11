@@ -6,7 +6,7 @@ import auth from 'Api/auth';
 import axios from 'axios';
 
 interface DataType {
-  data: any;
+  data: StatusType;
 }
 
 const MyPage: NextPage<DataType> = ({ data }) => {
@@ -15,70 +15,50 @@ const MyPage: NextPage<DataType> = ({ data }) => {
 
   console.log(data);
 
-  return <div>test</div>;
-  // return (
-  //   <>
-  //     <SEOHelmet seoTitle={seoTitle} desc={desc} />
-  //     <MypagePage status={res.data} />
-  //   </>
-  // );
+  return (
+    <>
+      <SEOHelmet seoTitle={seoTitle} desc={desc} />
+      <MypagePage status={data} />
+    </>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
   const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
 
-  // if (ctx.req.cookies.refreshToken) {
-  //   if (ctx.req.cookies.accessToken) {
-  //     try {
-  //       const res = await user.status(accessToken);
-  //       console.log(res);
-  //       return {
-  //         props: {
-  //           res,
-  //         },
-  //       };
-  //     } catch (error) {
-  //       console.log(error);
-  //       return {
-  //         props: {},
-  //       };
-  //     }
-  //   } else {
-  //     try {
-  //       await auth.refresh(refreshToken);
-  //       return getServerSideProps(ctx);
-  //     } catch (error) {
-  //       console.log(error);
-  //       return {
-  //         props: {},
-  //       };
-  //     }
-  //   }
-  // } else {
-  //   return {
-  //     props: {},
-  //     redirect: {
-  //       destination: '/auth/signin',
-  //     },
-  //   };
-  // } 히히 형록이 코드 재밌다
-  try {
-    const { data } = await axios.get('https://server.hellogsm.kr/user', {
-      headers: { cookie: accessToken },
-    });
-
-    console.log(data);
-
-    return {
-      props: {
-        data,
-      },
-    };
-  } catch (error) {
-    console.log(error);
+  if (ctx.req.cookies.refreshToken) {
+    if (ctx.req.cookies.accessToken) {
+      try {
+        const { data }: DataType = await user.status(accessToken);
+        return {
+          props: {
+            data,
+          },
+        };
+      } catch (error) {
+        console.log(error);
+        return {
+          props: {},
+        };
+      }
+    } else {
+      try {
+        await auth.refresh(refreshToken);
+        return getServerSideProps(ctx);
+      } catch (error) {
+        console.log(error);
+        return {
+          props: {},
+        };
+      }
+    }
+  } else {
     return {
       props: {},
+      redirect: {
+        destination: '/auth/signin',
+      },
     };
   }
 };
