@@ -5,12 +5,15 @@ class User {
   /**
    * @returns 유저의 상태를 반환한다
    */
-  status() {
+  status(accessToken: string) {
     try {
-      return RequestApi({
-        method: 'GET',
-        url: UserController.status(),
-      });
+      return RequestApi(
+        {
+          method: 'GET',
+          url: UserController.status(),
+        },
+        accessToken,
+      );
     } catch (error) {
       return error;
     }
