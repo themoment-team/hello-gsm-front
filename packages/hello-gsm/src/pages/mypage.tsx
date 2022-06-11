@@ -21,8 +21,8 @@ const MyPage: NextPage<DataType> = ({ res }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const accessToken: string = ctx.req.cookies.accessToken;
-  const refreshToken: string = ctx.req.cookies.refreshToken;
+  const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
+  const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
 
   if (refreshToken) {
     if (accessToken) {
