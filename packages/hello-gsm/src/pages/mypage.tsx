@@ -28,9 +28,6 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
   const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
 
-  console.log(accessToken);
-  console.log(refreshToken);
-
   // if (ctx.req.cookies.refreshToken) {
   //   if (ctx.req.cookies.accessToken) {
   //     try {
@@ -67,6 +64,8 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   //   };
   // } 히히 형록이 코드 재밌다
   try {
+    console.log(accessToken);
+    console.log(refreshToken);
     const res = await axios.get('https://server.hellogsm.kr/user', {
       headers: { cookie: accessToken },
     });
