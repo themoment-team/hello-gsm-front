@@ -3,7 +3,6 @@ import { MypagePage, SEOHelmet } from 'components';
 import user from 'Api/user';
 import { StatusType } from 'type/user';
 import auth from 'Api/auth';
-import axios from 'axios';
 
 interface DataType {
   data: StatusType;
@@ -12,8 +11,6 @@ interface DataType {
 const MyPage: NextPage<DataType> = ({ data }) => {
   const seoTitle = '내 정보';
   const desc = '원서 삭제, 원서 수정, 최종 제출 등을 할 수 있습니다. ';
-
-  console.log(data);
 
   return (
     <>
