@@ -53,7 +53,7 @@ const RequestApi = (p: AxiosRequestConfig, getToken?: string) => {
       data: p.data,
       withCredentials: true,
       headers: {
-        Cookies: token,
+        cookie: token,
       },
     });
     return res;
