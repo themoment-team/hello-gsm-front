@@ -2,6 +2,7 @@ import type { GetServerSideProps, NextPage } from 'next';
 import { MypagePage, SEOHelmet } from 'components';
 import user from 'Api/user';
 import { StatusType } from 'type/user';
+import auth from 'Api/auth';
 
 interface DataType {
   res: { data: StatusType };
@@ -20,17 +21,37 @@ const MyPage: NextPage<DataType> = ({ res }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  console.log(ctx.req.cookies);
+  const accessToken: string = ctx.req.cookies.accessToken;
+  const refreshToken: string = ctx.req.cookies.refreshToken;
 
-  try {
-    const res = await user.status();
-    console.log(res);
-    return {
-      props: {
-        res,
-      },
-    };
-  } catch (e) {
+  if (refreshToken) {
+    if (accessToken) {
+      try {
+        const res = await user.status(accessToken);
+        console.log(res);
+        return {
+          props: {
+            res,
+          },
+        };
+      } catch (error) {
+        console.log(error);
+        return {
+          props: {},
+        };
+      }
+    } else {
+      try {
+        await auth.refresh(refreshToken);
+        return getServerSideProps(ctx);
+      } catch (error) {
+        console.log(error);
+        return {
+          props: {},
+        };
+      }
+    }
+  } else {
     return {
       props: {},
       redirect: {
