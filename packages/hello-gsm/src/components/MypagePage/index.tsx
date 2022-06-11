@@ -7,13 +7,12 @@ import useStore from 'Stores/StoreContainer';
 import { Header, MypageModal } from 'components';
 import { StatusType } from 'type/user';
 import Image from 'next/image';
-import user from 'Api/user';
 
 interface UserStatusType {
   status: StatusType;
 }
 
-const MyPage: NextPage = () => {
+const MyPage: NextPage<UserStatusType> = ({ status }) => {
   const [name, setName] = useState<string>('');
   const [imgURL, setImgURL] = useState<string>('');
   const [saved, setSaved] = useState<boolean>(false);
@@ -28,10 +27,10 @@ const MyPage: NextPage = () => {
   };
 
   useEffect(() => {
-    // setSaved(status.application === null ? false : true);
-    // setSubmitted(status.application?.isFinalSubmission === true ? true : false);
-    // setImgURL(status.userImg);
-    // setName(status.name);
+    setSaved(status.application === null ? false : true);
+    setSubmitted(status.application?.isFinalSubmission === true ? true : false);
+    setImgURL(status.userImg);
+    setName(status.name);
   }, []);
 
   return (
@@ -40,13 +39,13 @@ const MyPage: NextPage = () => {
       {showMypageModal && <MypageModal />}
       <S.Content>
         <S.UserBox>
-          {/* <Image
-            src=""
+          <Image
+            src={imgURL}
             alt="image"
             width="140"
             height="140"
             css={{ borderRadius: '100%' }}
-          /> */}
+          />
           <S.Name>{name}</S.Name>
         </S.UserBox>
         {saved ? (
