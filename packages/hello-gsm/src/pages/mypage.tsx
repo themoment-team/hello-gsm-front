@@ -6,14 +6,14 @@ import auth from 'Api/auth';
 import axios from 'axios';
 
 interface DataType {
-  res: any;
+  data: any;
 }
 
-const MyPage: NextPage<DataType> = ({ res }) => {
+const MyPage: NextPage<DataType> = ({ data }) => {
   const seoTitle = '내 정보';
   const desc = '원서 삭제, 원서 수정, 최종 제출 등을 할 수 있습니다. ';
 
-  console.log(res);
+  console.log(data);
 
   return <div>test</div>;
   // return (
@@ -27,8 +27,6 @@ const MyPage: NextPage<DataType> = ({ res }) => {
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
   const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
-
-  console.log('log test');
 
   // if (ctx.req.cookies.refreshToken) {
   //   if (ctx.req.cookies.accessToken) {
@@ -66,13 +64,15 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   //   };
   // } 히히 형록이 코드 재밌다
   try {
-    const res = await axios.get('https://server.hellogsm.kr/user', {
+    const { data } = await axios.get('https://server.hellogsm.kr/user', {
       headers: { cookie: accessToken },
     });
-    console.log(res);
+
+    console.log(data);
+
     return {
       props: {
-        res,
+        data,
       },
     };
   } catch (error) {
