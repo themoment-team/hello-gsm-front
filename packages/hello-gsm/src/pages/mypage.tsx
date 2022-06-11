@@ -6,7 +6,7 @@ import auth from 'Api/auth';
 import axios from 'axios';
 
 interface DataType {
-  res: { data: StatusType };
+  res: any;
 }
 
 const MyPage: NextPage<DataType> = ({ res }) => {
