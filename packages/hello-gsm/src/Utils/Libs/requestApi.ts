@@ -7,6 +7,9 @@ const RequestApi = (p: AxiosRequestConfig) => {
   const accessToken = getAccessToken();
   const refreshToken = getRefreshToken();
 
+  console.log('accessToken : ' + accessToken);
+  console.log('refreshToken : ' + refreshToken);
+
   const refresh = async () => {
     try {
       // url 추가
