@@ -7,6 +7,7 @@ import useStore from 'Stores/StoreContainer';
 import { Header, MypageModal } from 'components';
 import { StatusType } from 'type/user';
 import Image from 'next/image';
+import user from 'Api/user';
 
 interface UserStatusType {
   status: StatusType;
@@ -31,7 +32,18 @@ const MyPage: NextPage = () => {
     // setSubmitted(status.application?.isFinalSubmission === true ? true : false);
     // setImgURL(status.userImg);
     // setName(status.name);
+    getTest();
   }, []);
+
+  const getTest = async () => {
+    try {
+      const res = await user.status();
+      console.log(res);
+    } catch (e) {
+      console.log('csr 실패');
+      console.log(e);
+    }
+  };
 
   return (
     <S.MyPage>
