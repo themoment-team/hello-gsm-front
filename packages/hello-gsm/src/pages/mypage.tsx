@@ -8,6 +8,10 @@ interface DataType {
   data: StatusType;
 }
 
+interface HeaderType {
+  headers: { 'set-cookie': string[] };
+}
+
 const MyPage: NextPage<DataType> = ({ data }) => {
   const seoTitle = '내 정보';
   const desc = '원서 삭제, 원서 수정, 최종 제출 등을 할 수 있습니다. ';
@@ -20,48 +24,38 @@ const MyPage: NextPage<DataType> = ({ data }) => {
   );
 };
 
+const getStatus = async (accessToken: string) => {
+  try {
+    const { data }: DataType = await user.status(accessToken);
+    return {
+      props: {
+        data,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      props: {},
+    };
+  }
+};
+
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
   const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
 
   if (ctx.req.cookies.refreshToken) {
     if (ctx.req.cookies.accessToken) {
-      try {
-        const { data }: DataType = await user.status(accessToken);
-        return {
-          props: {
-            data,
-          },
-        };
-      } catch (error) {
-        console.log(error);
-        return {
-          props: {},
-        };
-      }
+      return getStatus(accessToken);
     } else {
       try {
-        const { headers }: any = await auth.refresh(refreshToken);
+        const { headers }: HeaderType = await auth.refresh(refreshToken);
 
-        console.log(headers['set-cookie'][0].split(';')[0]);
+        const accessToken = headers['set-cookie'][0].split(';')[0];
 
         ctx.res.setHeader('set-cookie', headers['set-cookie']);
 
-        try {
-          const { data }: DataType = await user.status(
-            headers['set-cookie'][0].split(';')[0],
-          );
-          return {
-            props: {
-              data,
-            },
-          };
-        } catch (error) {
-          console.log(error);
-          return {
-            props: {},
-          };
-        }
+        return getStatus(accessToken);
       } catch (error) {
         console.log(error);
         return {
