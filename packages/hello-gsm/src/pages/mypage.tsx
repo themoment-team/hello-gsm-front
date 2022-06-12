@@ -3,30 +3,23 @@ import { MypagePage, SEOHelmet } from 'components';
 import user from 'Api/user';
 import { StatusType } from 'type/user';
 import auth from 'Api/auth';
+import { HeaderType } from 'type/header';
 
-interface DataType {
-  data: StatusType;
-}
-
-interface HeaderType {
-  headers: { 'set-cookie': string[] };
-}
-
-const MyPage: NextPage<DataType> = ({ data }) => {
+const MyPage: NextPage<StatusType> = ({ data }) => {
   const seoTitle = '내 정보';
   const desc = '원서 삭제, 원서 수정, 최종 제출 등을 할 수 있습니다. ';
 
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
-      <MypagePage status={data} />
+      <MypagePage data={data} />
     </>
   );
 };
 
 const getStatus = async (accessToken: string) => {
   try {
-    const { data }: DataType = await user.status(accessToken);
+    const { data }: StatusType = await user.status(accessToken);
     return {
       props: {
         data,
@@ -50,11 +43,8 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     } else {
       try {
         const { headers }: HeaderType = await auth.refresh(refreshToken);
-
         const accessToken = headers['set-cookie'][0].split(';')[0];
-
         ctx.res.setHeader('set-cookie', headers['set-cookie']);
-
         return getStatus(accessToken);
       } catch (error) {
         console.log(error);
