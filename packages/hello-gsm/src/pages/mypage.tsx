@@ -4,6 +4,7 @@ import user from 'Api/user';
 import { StatusType } from 'type/user';
 import auth from 'Api/auth';
 import { HeaderType } from 'type/header';
+import axios from 'axios';
 
 const MyPage: NextPage<StatusType> = ({ data }) => {
   const seoTitle = '내 정보';
@@ -39,7 +40,17 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
 
   if (ctx.req.cookies.refreshToken) {
     if (ctx.req.cookies.accessToken) {
-      return getStatus(accessToken);
+      const { data } = await axios.get('https://server.hellogsm.kr/user', {
+        headers: { cookie: accessToken },
+      });
+
+      return {
+        props: {
+          data,
+        },
+      };
+
+      // return getStatus(accessToken);
     } else {
       try {
         const { headers }: HeaderType = await auth.refresh(refreshToken);
