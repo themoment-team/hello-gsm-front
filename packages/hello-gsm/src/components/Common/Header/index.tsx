@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import useStore from 'Stores/StoreContainer';
-import { getAccessToken, getRefreshToken } from 'Utils/cookies';
 import * as S from './style';
 
 const Header: React.FC = () => {
@@ -20,7 +19,13 @@ const Header: React.FC = () => {
       await auth.logout();
       window.location.reload();
     } catch (error: any) {
-      console.log(error.response?.status);
+      if (error.response.status === 401) {
+        try {
+          await auth.refresh();
+        } catch (error) {
+          console.log(error);
+        }
+      }
       console.log(error);
     }
   };
