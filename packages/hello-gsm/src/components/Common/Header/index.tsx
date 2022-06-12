@@ -17,7 +17,6 @@ const Header: React.FC = () => {
   const logout = async () => {
     try {
       await auth.logout();
-      setLogged(false);
     } catch (error) {
       console.log(error);
     }
