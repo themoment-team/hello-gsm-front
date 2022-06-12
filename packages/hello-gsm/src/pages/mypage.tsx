@@ -41,20 +41,13 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
       }
     } else {
       try {
-        await auth.refresh(refreshToken);
-        try {
-          const { data }: DataType = await user.status(accessToken);
-          return {
-            props: {
-              data,
-            },
-          };
-        } catch (error) {
-          console.log(error);
-          return {
-            props: {},
-          };
-        }
+        const { headers }: any = await auth.refresh(refreshToken);
+
+        console.log(headers);
+
+        ctx.res.setHeader('set-cookie', headers['set-cookie']);
+
+        return getServerSideProps(ctx);
       } catch (error) {
         console.log(error);
         return {
