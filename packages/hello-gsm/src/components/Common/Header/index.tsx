@@ -19,7 +19,8 @@ const Header: React.FC = () => {
     try {
       await auth.logout();
       window.location.reload();
-    } catch (error) {
+    } catch (error: any) {
+      console.log(error.response?.status);
       console.log(error);
     }
   };
