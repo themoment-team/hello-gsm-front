@@ -47,25 +47,25 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
 
         ctx.res.setHeader('set-cookie', headers['set-cookie']);
 
-        return {
-          props: {},
-        };
+        // return {
+        //   props: {},
+        // };
 
-        // try {
-        //   const { data }: DataType = await user.status(
-        //     `accessToken=${headers['set-cookie']['accessToken']}`,
-        //   );
-        //   return {
-        //     props: {
-        //       data,
-        //     },
-        //   };
-        // } catch (error) {
-        //   console.log(error);
-        //   return {
-        //     props: {},
-        //   };
-        // }
+        try {
+          const { data }: DataType = await user.status(
+            headers['set-cookie'][0],
+          );
+          return {
+            props: {
+              data,
+            },
+          };
+        } catch (error) {
+          console.log(error);
+          return {
+            props: {},
+          };
+        }
       } catch (error) {
         console.log(error);
         return {
