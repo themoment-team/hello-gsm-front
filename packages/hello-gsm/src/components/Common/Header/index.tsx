@@ -2,13 +2,14 @@ import { css } from '@emotion/react';
 import auth from 'Api/auth';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React from 'react';
+import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 
 const Header: React.FC = () => {
   const { pathname } = useRouter();
 
-  const [logged, setLogged] = useState(true);
+  const { logged, setLogged } = useStore();
 
   const select = (navPath: string) =>
     navPath === pathname && { color: '#ffffff' };
