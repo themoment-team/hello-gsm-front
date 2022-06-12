@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import useStore from 'Stores/StoreContainer';
+import { getAccessToken, getRefreshToken } from 'Utils/cookies';
 import * as S from './style';
 
 const Header: React.FC = () => {
@@ -15,12 +16,14 @@ const Header: React.FC = () => {
     navPath === pathname && { color: '#ffffff' };
 
   const logout = async () => {
-    try {
-      await auth.logout();
-      window.location.reload();
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   await auth.logout();
+    //   window.location.reload();
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    console.log(getRefreshToken());
+    console.log(getAccessToken());
   };
 
   return (
