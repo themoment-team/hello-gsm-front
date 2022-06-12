@@ -109,10 +109,9 @@ const CalculatorPage: NextPage = () => {
       //   nonCurriculumScoreSubtotal,
       //   scoreTotal,
       // });
+      setShowResult(true);
     } catch (e) {
       console.error(e);
-    } finally {
-      setShowResult(true);
     }
   };
 
@@ -276,8 +275,9 @@ const CalculatorPage: NextPage = () => {
                 <S.Subject key={subject}>{subject}</S.Subject>
               ))}
             </S.ValueSection>
+
             <S.ValueSection>
-              <S.Semester>1학년 1학기</S.Semester>
+              <S.Semester>2학년 1학기</S.Semester>
               {nonSubjects.map((subject, i: number) => (
                 <S.Select
                   key={subject}
@@ -295,7 +295,7 @@ const CalculatorPage: NextPage = () => {
               ))}
             </S.ValueSection>
             <S.ValueSection>
-              <S.Semester>1학년 2학기</S.Semester>
+              <S.Semester>2학년 2학기</S.Semester>
               {nonSubjects.map((subject, i: number) => (
                 <S.Select
                   key={subject}
@@ -313,47 +313,11 @@ const CalculatorPage: NextPage = () => {
               ))}
             </S.ValueSection>
             <S.ValueSection>
-              <S.Semester>2학년 1학기</S.Semester>
-              {nonSubjects.map((subject, i: number) => (
-                <S.Select
-                  key={subject}
-                  {...register(`artSportsScore.${6 + i}`, {
-                    validate: {
-                      notNaN: value => !isNaN(value) || '선택해주세요.',
-                    },
-                  })}
-                >
-                  {/* <option>선택</option> */}
-                  <option value={5}>A</option>
-                  <option value={4}>B</option>
-                  <option value={3}>C</option>
-                </S.Select>
-              ))}
-            </S.ValueSection>
-            <S.ValueSection>
-              <S.Semester>2학년 2학기</S.Semester>
-              {nonSubjects.map((subject, i: number) => (
-                <S.Select
-                  key={subject}
-                  {...register(`artSportsScore.${9 + i}`, {
-                    validate: {
-                      notNaN: value => !isNaN(value) || '선택해주세요.',
-                    },
-                  })}
-                >
-                  {/* <option>선택</option> */}
-                  <option value={5}>A</option>
-                  <option value={4}>B</option>
-                  <option value={3}>C</option>
-                </S.Select>
-              ))}
-            </S.ValueSection>
-            <S.ValueSection>
               <S.Semester>3학년 1학기</S.Semester>
               {nonSubjects.map((subject, i: number) => (
                 <S.Select
                   key={subject}
-                  {...register(`artSportsScore.${12 + i}`, {
+                  {...register(`artSportsScore.${6 + i}`, {
                     validate: {
                       notNaN: value => !isNaN(value) || '선택해주세요.',
                     },
