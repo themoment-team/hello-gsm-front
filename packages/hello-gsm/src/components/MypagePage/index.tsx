@@ -8,11 +8,7 @@ import { Header, MypageModal } from 'components';
 import { StatusType } from 'type/user';
 import Image from 'next/image';
 
-interface UserStatusType {
-  status: StatusType;
-}
-
-const MyPage: NextPage<UserStatusType> = ({ status }) => {
+const MyPage: NextPage<StatusType> = ({ data }) => {
   const [name, setName] = useState<string>('');
   const [imgURL, setImgURL] = useState<string>('');
   const [saved, setSaved] = useState<boolean>(false);
@@ -27,10 +23,10 @@ const MyPage: NextPage<UserStatusType> = ({ status }) => {
   };
 
   useEffect(() => {
-    setSaved(status.application === null ? false : true);
-    setSubmitted(status.application?.isFinalSubmission === true ? true : false);
-    setImgURL(status.userImg);
-    setName(status.name);
+    setSaved(data.application === null ? false : true);
+    setSubmitted(data.application?.isFinalSubmission === true ? true : false);
+    setImgURL(data.userImg);
+    setName(data.name);
   }, []);
 
   return (
