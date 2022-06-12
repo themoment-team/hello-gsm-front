@@ -52,7 +52,7 @@ class Auth {
         },
         refreshToken,
       );
-    } catch (error) {
+    } catch (error: any) {
       return error;
     }
   }
