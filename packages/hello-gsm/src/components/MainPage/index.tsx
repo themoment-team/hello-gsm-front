@@ -22,6 +22,7 @@ const MainPage: NextPage = () => {
     `;
 
   useEffect(() => {
+    setIsMobile(window.innerWidth < 640 ? true : false);
     window.onresize = () => {
       setIsMobile(window.innerWidth < 640 ? true : false);
     };
