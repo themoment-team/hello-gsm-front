@@ -16,14 +16,12 @@ const Header: React.FC = () => {
     navPath === pathname && { color: '#ffffff' };
 
   const logout = async () => {
-    // try {
-    //   await auth.logout();
-    //   window.location.reload();
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    console.log(getRefreshToken());
-    console.log(getAccessToken());
+    try {
+      await auth.logout();
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
