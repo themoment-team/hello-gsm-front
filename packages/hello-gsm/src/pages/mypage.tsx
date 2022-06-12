@@ -49,7 +49,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
 
         try {
           const { data }: DataType = await user.status(
-            headers['set-cookie'].accessToken,
+            headers['set-cookie']['accessToken'],
           );
           return {
             props: {
