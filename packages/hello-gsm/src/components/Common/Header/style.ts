@@ -55,3 +55,10 @@ export const MemberContent = styled.a`
   font-weight: 400;
   font-size: 18px;
 `;
+
+export const Logout = styled.p`
+  color: #dddddd;
+  font-weight: 400;
+  font-size: 18px;
+  cursor: pointer;
+`;
