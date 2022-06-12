@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import auth from 'Api/auth';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
@@ -11,6 +12,15 @@ const Header: React.FC = () => {
 
   const select = (navPath: string) =>
     navPath === pathname && { color: '#ffffff' };
+
+  const logout = async () => {
+    try {
+      await auth.logout();
+      setLogged(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <S.Header>
@@ -51,9 +61,7 @@ const Header: React.FC = () => {
             <Link href="/mypage" passHref>
               <S.MemberContent css={select('/mypage')}>내 정보</S.MemberContent>
             </Link>
-            <S.MemberContent onClick={() => setLogged(false)}>
-              로그아웃
-            </S.MemberContent>
+            <S.MemberContent onClick={logout}>로그아웃</S.MemberContent>
           </S.MemberBox>
         )}
       </S.HeaderWrap>
