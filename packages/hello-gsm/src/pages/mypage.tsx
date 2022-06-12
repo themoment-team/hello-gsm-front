@@ -42,12 +42,19 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     } else {
       try {
         await auth.refresh(refreshToken);
-        const { data }: DataType = await user.status(accessToken);
-        return {
-          props: {
-            data,
-          },
-        };
+        try {
+          const { data }: DataType = await user.status(accessToken);
+          return {
+            props: {
+              data,
+            },
+          };
+        } catch (error) {
+          console.log(error);
+          return {
+            props: {},
+          };
+        }
       } catch (error) {
         console.log(error);
         return {
