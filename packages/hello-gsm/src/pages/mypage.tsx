@@ -43,7 +43,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
       try {
         const { headers }: any = await auth.refresh(refreshToken);
 
-        console.log(headers);
+        console.log('log checking');
 
         ctx.res.setHeader('set-cookie', headers['set-cookie']);
 
