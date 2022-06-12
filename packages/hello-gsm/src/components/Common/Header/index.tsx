@@ -9,7 +9,7 @@ import * as S from './style';
 const Header: React.FC = () => {
   const { pathname } = useRouter();
 
-  const { logged, setLogged } = useStore();
+  const { logged } = useStore();
 
   const select = (navPath: string) =>
     navPath === pathname && { color: '#ffffff' };
@@ -17,6 +17,7 @@ const Header: React.FC = () => {
   const logout = async () => {
     try {
       await auth.logout();
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -61,7 +62,7 @@ const Header: React.FC = () => {
             <Link href="/mypage" passHref>
               <S.MemberContent css={select('/mypage')}>내 정보</S.MemberContent>
             </Link>
-            <S.MemberContent onClick={logout}>로그아웃</S.MemberContent>
+            <S.Logout onClick={logout}>로그아웃</S.Logout>
           </S.MemberBox>
         )}
       </S.HeaderWrap>
