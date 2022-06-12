@@ -15,17 +15,22 @@ const Header: React.FC = () => {
     navPath === pathname && { color: '#ffffff' };
 
   const logout = async () => {
+    // try {
+    //   await auth.logout();
+    //   window.location.reload();
+    // } catch (error: any) {
+    //   if (error.response.status === 401) {
+    //     try {
+    //       await auth.refresh();
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    //   }
+    //   console.log(error);
+    // }
     try {
-      await auth.logout();
-      window.location.reload();
-    } catch (error: any) {
-      if (error.response.status === 401) {
-        try {
-          await auth.refresh();
-        } catch (error) {
-          console.log(error);
-        }
-      }
+      await auth.refresh();
+    } catch (error) {
       console.log(error);
     }
   };
