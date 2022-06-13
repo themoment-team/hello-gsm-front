@@ -85,11 +85,11 @@ export const Table = styled.table`
     overflow: hidden;
   }
 
-  img {
-    display: block;
+  svg {
     width: 100%;
     height: 100%;
   }
+
   .slash {
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="100%" x2="100%" y2="0" stroke="gray" /></svg>');
   }
@@ -106,12 +106,57 @@ export const ScoreTable = styled(Table)`
 
   tr {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
   }
   th,
   td {
     display: block;
   }
 `;
+
+export const TestTable = styled.div`
+  display: flex;
+  height: 400px;
+`;
+
+export const Test = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: 0.08vh solid #000000;
+  border-collapse: collapse;
+  width: 100%;
+`;
+
+export const Value = styled.div`
+  border-bottom: 0.08vh solid #000000;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Empty = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const TestSubject = styled.div`
+  font-weight: 500;
+  background-color: #e9e9e9;
+  border-collapse: collapse;
+  vertical-align: middle;
+  border: 0.08vh solid #000000;
+  padding: 0 0.2vh;
+  height: 25px;
+`;
+
+export const TestSlash = styled.div`
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
+`;
+
 export const Subject = styled.td`
   font-weight: 500;
   background-color: #e9e9e9;
@@ -188,4 +233,10 @@ export const SignatureSection = styled.div`
   justify-content: space-between;
   font-size: 1.5vh;
   margin-top: 1.5vh;
+`;
+
+export const Slash = styled.td`
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwEx_d8_3x5_Ldi_xGmZrFDoNwWm-1g42zYw&usqp=CAU');
+  background-size: contain;
+  background-repeat: no-repeat;
 `;

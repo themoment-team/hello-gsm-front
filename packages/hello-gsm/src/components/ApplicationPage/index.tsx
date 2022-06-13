@@ -296,57 +296,78 @@ const ApplicationPage: NextPage = () => {
               <S.Content>{application.registrationNumber}</S.Content>
             </S.Box>
           </S.Wrap>
-          <S.ScoreTable>
-            <tbody>
-              <tr>
-                <td className="backSlash" rowSpan={2}>
-                  <div style={{ textAlign: 'right' }}>학년</div>
-                  <div style={{ textAlign: 'left' }}>과목</div>
-                </td>
-                {subjects?.map(subject => (
-                  <td key={subject}>{subject}</td>
-                ))}
-                {newSubjects?.map(newSubject => (
-                  <td key={newSubject}>{newSubject}</td>
-                ))}
-              </tr>
-              <tr>
-                <S.Subject>1학년 1학기</S.Subject>
-                <S.Subject>성취도/평어</S.Subject>
-                <td rowSpan={5}>asdsad</td>
-              </tr>
-              <tr>
-                <S.Subject>1학년 2학기</S.Subject>
-                <S.Subject>성취도/평어</S.Subject>
-              </tr>
-              <tr>
-                <S.Subject>2학년 1학기</S.Subject>
-                <S.Subject>성취도/평어</S.Subject>
-                {score2_1?.map(score => (
-                  <td key={score}>{score}</td>
-                ))}
-              </tr>
-              <tr>
-                <S.Subject>2학년 2학기</S.Subject>
-                <S.Subject>성취도/평어</S.Subject>
-                {score2_2?.map(score => (
-                  <td key={score}>{score}</td>
-                ))}
-              </tr>
-              <tr>
-                <S.Subject>3학년 1학기</S.Subject>
-                <S.Subject>성취도/평어</S.Subject>
-                {score3_1?.map(score => (
-                  <td key={score}>{score}</td>
-                ))}
-              </tr>
-            </tbody>
-          </S.ScoreTable>
+
+          <S.TestTable>
+            <S.Test>
+              <S.Empty>
+                <S.TestSubject style={{ textAlign: 'right' }}>
+                  학년
+                </S.TestSubject>
+                <S.TestSubject style={{ textAlign: 'left' }}>
+                  과목
+                </S.TestSubject>
+              </S.Empty>
+              {subjects?.map(subject => (
+                <S.Value key={subject}>{subject}</S.Value>
+              ))}
+              {newSubjects?.map(subject => (
+                <S.Value key={subject}>{subject}</S.Value>
+              ))}
+              <S.Value>환산점</S.Value>
+            </S.Test>
+            <S.Test>
+              <S.Empty>
+                <S.Empty>
+                  <S.TestSubject>2학년 2학기</S.TestSubject>
+                  <S.TestSubject>성취도/평어</S.TestSubject>
+                </S.Empty>
+              </S.Empty>
+              <S.TestSlash></S.TestSlash>
+            </S.Test>
+            <S.Test>
+              <S.Empty>
+                <S.TestSubject>2학년 2학기</S.TestSubject>
+                <S.TestSubject>성취도/평어</S.TestSubject>
+              </S.Empty>
+              <S.TestSlash></S.TestSlash>
+            </S.Test>
+            <S.Test>
+              <S.Empty>
+                <S.TestSubject>2학년 2학기</S.TestSubject>
+                <S.TestSubject>성취도/평어</S.TestSubject>
+              </S.Empty>
+              {score2_1?.map((score, i) => (
+                <S.Value key={i}>{score}</S.Value>
+              ))}
+              <S.Value>환산점</S.Value>
+            </S.Test>
+            <S.Test>
+              <S.Empty>
+                <S.TestSubject>2학년 2학기</S.TestSubject>
+                <S.TestSubject>성취도/평어</S.TestSubject>
+              </S.Empty>
+              {score2_2?.map((score, i) => (
+                <S.Value key={i}>{score}</S.Value>
+              ))}
+              <S.Value>환산점</S.Value>
+            </S.Test>
+            <S.Test>
+              <S.Empty>
+                <S.TestSubject>2학년 2학기</S.TestSubject>
+                <S.TestSubject>성취도/평어</S.TestSubject>
+              </S.Empty>
+              {score3_1?.map((score, i) => (
+                <S.Value key={i}>{score}</S.Value>
+              ))}
+              <S.Value>환산점</S.Value>
+            </S.Test>
+          </S.TestTable>
+
           <S.SubTitle>체육예술교과</S.SubTitle>
           <S.ScoreTable style={{ marginBottom: '1vh' }}>
             <tbody>
               <tr>
-                <td className="backSlash" rowSpan={2}>
+                <td className="backSlash">
                   <div style={{ textAlign: 'right' }}>학년</div>
                   <div style={{ textAlign: 'left' }}>과목</div>
                 </td>
@@ -358,59 +379,95 @@ const ApplicationPage: NextPage = () => {
               <tr>
                 <S.Subject>1학년 1학기</S.Subject>
                 <S.Subject>성취도/평어</S.Subject>
-                <td rowSpan={5}>00</td>
+                <td style={{ height: '100%' }}>
+                  <svg xmlns="http://www.w3.org/2000/svg">
+                    <line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" />
+                  </svg>
+                </td>
               </tr>
               <tr>
                 <S.Subject>1학년 2학기</S.Subject>
                 <S.Subject>성취도/평어</S.Subject>
+                <td style={{ height: '100%' }}>
+                  <svg xmlns="http://www.w3.org/2000/svg">
+                    <line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" />
+                  </svg>
+                </td>
               </tr>
               <tr>
                 <S.Subject>2학년 1학기</S.Subject>
                 <S.Subject>성취도/평어</S.Subject>
+                <td>{artSportsScore && artSportsScore[0]}</td>
+                <td>{artSportsScore && artSportsScore[1]}</td>
+                <td>{artSportsScore && artSportsScore[2]}</td>
+                <td>환산점</td>
               </tr>
               <tr>
                 <S.Subject>2학년 2학기</S.Subject>
                 <S.Subject>성취도/평어</S.Subject>
+                <td>{artSportsScore && artSportsScore[3]}</td>
+                <td>{artSportsScore && artSportsScore[4]}</td>
+                <td>{artSportsScore && artSportsScore[5]}</td>
+                <td>환산점</td>
               </tr>
               <tr>
                 <S.Subject>3학년 1학기</S.Subject>
                 <S.Subject>성취도/평어</S.Subject>
+                <td>{artSportsScore && artSportsScore[6]}</td>
+                <td>{artSportsScore && artSportsScore[7]}</td>
+                <td>{artSportsScore && artSportsScore[8]}</td>
+                <td>환산점</td>
               </tr>
             </tbody>
           </S.ScoreTable>
           <S.SubTitle>비교과</S.SubTitle>
-          <S.ScoreTable style={{ marginBottom: '1vh' }}>
+          <S.Table style={{ marginBottom: '1.2vh' }}>
             <tbody>
               <tr>
                 <S.Subject rowSpan={2}>학년</S.Subject>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-              </tr>
-              <tr>
                 <S.Subject colSpan={6}>출결상황</S.Subject>
+                <S.Subject colSpan={2}>봉사활동</S.Subject>
+              </tr>
+              <tr>
                 <S.Subject>결석</S.Subject>
-              </tr>
-              <tr>
                 <S.Subject>지각</S.Subject>
-              </tr>
-              <tr>
                 <S.Subject>조퇴</S.Subject>
-              </tr>
-              <tr>
                 <S.Subject>결과</S.Subject>
-              </tr>
-              <tr>
                 <S.Subject>환산일수</S.Subject>
-              </tr>
-              <tr>
+                <S.Subject>환산점</S.Subject>
+                <S.Subject>시간</S.Subject>
                 <S.Subject>환산점</S.Subject>
               </tr>
               <tr>
-                <S.Subject>봉사활동</S.Subject>
+                <td>1</td>
+                <td>{absentScore && absentScore[0]}</td>
+                <td>{attendanceScore && attendanceScore[0]}</td>
+                <td>{attendanceScore && attendanceScore[3]}</td>
+                <td>{attendanceScore && attendanceScore[6]}</td>
+                <td rowSpan={3}>asdas</td>
+                <td rowSpan={3}>asdas</td>
+                <td>{volunteerScore && volunteerScore[0]}</td>
+                <td rowSpan={3}>asdas</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>{absentScore && absentScore[1]}</td>
+                <td>{attendanceScore && attendanceScore[1]}</td>
+                <td>{attendanceScore && attendanceScore[4]}</td>
+                <td>{attendanceScore && attendanceScore[7]}</td>
+                <td>{volunteerScore && volunteerScore[1]}</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>{absentScore && absentScore[2]}</td>
+                <td>{attendanceScore && attendanceScore[2]}</td>
+                <td>{attendanceScore && attendanceScore[5]}</td>
+                <td>{attendanceScore && attendanceScore[8]}</td>
+                <td>{volunteerScore && volunteerScore[2]}</td>
               </tr>
             </tbody>
-          </S.ScoreTable>
+          </S.Table>
+
           <S.Table style={{ marginBottom: '1vh', width: '80%' }}>
             <tbody>
               <tr>
