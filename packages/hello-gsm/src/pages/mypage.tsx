@@ -37,6 +37,8 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
   const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
 
+  console.log(ctx);
+
   if (ctx.req.cookies.refreshToken) {
     if (ctx.req.cookies.accessToken) {
       return getStatus(accessToken);
