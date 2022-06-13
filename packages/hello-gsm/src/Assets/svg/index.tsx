@@ -10,3 +10,4 @@ export { default as Man } from './Man';
 export { default as CrossRectangle } from './CrossRectangle';
 export { default as Celebration } from './Celebration';
 export { default as KakaoLogo } from './KakaoLogo';
+export { default as MypageSuccess } from './MypageSuccess';

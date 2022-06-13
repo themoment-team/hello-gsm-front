@@ -2,68 +2,99 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import * as S from './style';
 import * as I from 'Assets/svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
-import useStore from 'Stores/StoreContainer';
-import { Header, MypageModal } from 'components';
+import useStore from '../../Stores/StoreContainer';
+import { Header, MypageModal, MypageSuccessModal } from 'components';
 
 const MyPage: NextPage = () => {
-  const [gender, setGender] = useState<string>('W');
+  const [gender, setGender] = useState<string>('M');
   const [saved, setSaved] = useState<boolean>(true);
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const [isPC, setIsPC] = useState<boolean>(true);
 
-  const { showMypageModal, setShowMypageModal, setMypageModalContent } =
-    useStore();
+  const {
+    showMypageModal,
+    setShowMypageModal,
+    setMypageModalContent,
+    showMypageSuccessModal,
+  } = useStore();
 
   const showModal = (content: string) => {
     setShowMypageModal();
     setMypageModalContent(content);
   };
 
+  useEffect(() => {
+    setIsPC(
+      !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(
+        navigator.userAgent,
+      ),
+    );
+  });
+
   return (
     <S.MyPage>
-      <Header />
       {showMypageModal && <MypageModal />}
+      {showMypageSuccessModal && <MypageSuccessModal />}
+      <Header />
       <S.Content>
         <S.UserBox>
-          {gender === 'W' ? <I.Woman /> : <I.Man />}
+          {showMypageSuccessModal ? (
+            <S.EmptiedProfile />
+          ) : gender === 'W' ? (
+            <I.Woman />
+          ) : (
+            <I.Man />
+          )}
           <S.Name>김형록님</S.Name>
         </S.UserBox>
-        {saved ? (
-          submitted ? (
-            <S.ButtonBox
-              css={css`
-                width: 335px;
-              `}
-            >
-              <S.Button>원서 다운</S.Button>
-              <S.Button onClick={() => showModal('download')}>
-                제출 서류 다운
-              </S.Button>
-            </S.ButtonBox>
+        {isPC ? (
+          saved ? (
+            submitted ? (
+              <S.ButtonBox
+                css={css`
+                  width: 335px;
+                `}
+              >
+                <S.Button>원서 다운</S.Button>
+                <S.Button onClick={() => showModal('download')}>
+                  제출 서류 다운
+                </S.Button>
+              </S.ButtonBox>
+            ) : (
+              <S.ButtonBox
+                css={css`
+                  width: 510px;
+                `}
+              >
+                <S.Button onClick={() => showModal('cancel')}>
+                  원서 삭제
+                </S.Button>
+                <Link href="/apply" passHref>
+                  <S.Button>원서 수정</S.Button>
+                </Link>
+                <S.Button onClick={() => showModal('final')}>최종제출</S.Button>
+              </S.ButtonBox>
+            )
           ) : (
             <S.ButtonBox
               css={css`
-                width: 510px;
+                width: 160px;
               `}
             >
-              <S.Button onClick={() => showModal('cancel')}>원서 삭제</S.Button>
               <Link href="/apply" passHref>
-                <S.Button>원서 수정</S.Button>
+                <S.Button>원서 작성</S.Button>
               </Link>
-              <S.Button onClick={() => showModal('final')}>최종제출</S.Button>
             </S.ButtonBox>
           )
         ) : (
-          <S.ButtonBox
-            css={css`
-              width: 160px;
-            `}
-          >
-            <Link href="/apply" passHref>
-              <S.Button>원서 작성</S.Button>
-            </Link>
-          </S.ButtonBox>
+          <S.IsNotPCWrap>
+            <S.Point />
+            <S.IsNotPC>
+              원서 삭제 및 수정, 최종 제출은 PC로만 할 수 있습니다
+            </S.IsNotPC>
+          </S.IsNotPCWrap>
         )}
       </S.Content>
       <S.GreenBall />

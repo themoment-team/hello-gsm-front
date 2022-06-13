@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import device from 'shared/config';
 
 export const MainPage = styled.div`
   position: relative;
@@ -13,6 +14,16 @@ export const MainContent = styled.div`
   align-items: center;
   margin-bottom: 300px;
   margin-top: 230px;
+  @media ${device.tablet} {
+    height: 1300px;
+    margin-top: 100px;
+    margin-bottom: 200px;
+  }
+  @media ${device.mobile} {
+    height: 800px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+  }
 `;
 
 export const TitleWrap = styled.div`
@@ -22,6 +33,15 @@ export const TitleWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media ${device.tablet} {
+    align-items: center;
+  }
+  @media ${device.mobile} {
+    height: 400px;
+  }
+  @media (max-width: 430px) {
+    height: 350px;
+  }
 `;
 
 export const TitleBox = styled.div`
@@ -29,12 +49,33 @@ export const TitleBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media ${device.tablet} {
+    align-items: center;
+    text-align: center;
+  }
+  @media ${device.mobile} {
+    height: 230px;
+  }
+  @media (max-width: 430px) {
+    height: 180px;
+  }
 `;
 
 export const Title = styled.p`
   font-weight: 700;
   font-size: 96px;
   line-height: 110px;
+  @media (max-width: 805px) {
+    font-size: 75px;
+  }
+  @media ${device.mobile} {
+    font-size: 50px;
+    line-height: 64px;
+  }
+  @media (max-width: 430px) {
+    font-size: 40px;
+    line-height: 50px;
+  }
 `;
 
 export const Description = styled.p`
@@ -43,6 +84,11 @@ export const Description = styled.p`
   font-size: 24px;
   line-height: 35px;
   color: rgba(255, 255, 255, 0.66);
+  @media (max-width: 430px) {
+    width: 280px;
+    font-size: 20px;
+    line-height: 30px;
+  }
 `;
 
 export const ApplyBox = styled.div`
@@ -100,6 +146,16 @@ export const ContentBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media ${device.laptop} {
+    width: 90%;
+  }
+  @media ${device.tablet} {
+    width: 95%;
+    height: 550px;
+  }
+  @media ${device.mobile} {
+    height: 350px;
+  }
 `;
 
 export const ContentHeader = styled.div`
@@ -112,6 +168,18 @@ export const ContentHeader = styled.div`
   z-index: 1;
   position: fixed;
   top: 0;
+  @media ${device.mobile} {
+    height: 90px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: baseline;
+  }
+`;
+
+export const ContentHeaderLine = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
 `;
 
 export const ContentSelect = styled.p`
@@ -119,6 +187,12 @@ export const ContentSelect = styled.p`
   font-size: 20px;
   color: #d6d6d6;
   cursor: pointer;
+  @media ${device.tablet} {
+    font-size: 18px;
+  }
+  @media ${device.mobile} {
+    font-size: 11px;
+  }
 `;
 
 const Ball = styled.div`
@@ -138,6 +212,18 @@ export const GreenBall = styled(Ball)`
   );
   top: 200px;
   right: 23%;
+  @media ${device.tablet} {
+    width: 80px;
+    height: 80px;
+    top: 720px;
+    right: 24%;
+  }
+  @media ${device.mobile} {
+    width: 66px;
+    height: 66px;
+    top: 330px;
+    left: 90%;
+  }
 `;
 
 export const BigBlueBall = styled(Ball)`
@@ -152,6 +238,18 @@ export const BigBlueBall = styled(Ball)`
   box-shadow: -12px -12px 24px rgba(0, 0, 0, 0.25);
   top: 450px;
   left: 67%;
+  @media ${device.tablet} {
+    width: 331px;
+    height: 331px;
+    top: 728px;
+    left: 78%;
+  }
+  @media ${device.mobile} {
+    width: 276px;
+    height: 276px;
+    top: 477px;
+    left: 80%;
+  }
 `;
 
 export const YellowBall = styled(Ball)`
@@ -167,6 +265,15 @@ export const YellowBall = styled(Ball)`
   box-shadow: 4px 4px 31px rgba(0, 0, 0, 0.25);
   top: 1350px;
   left: 88%;
+  @media ${device.tablet} {
+    display: none;
+  }
+  @media ${device.mobile} {
+    width: 127px;
+    height: 127px;
+    top: 935px;
+    left: 5%;
+  }
 `;
 
 export const OrangeBall = styled(Ball)`
@@ -176,6 +283,14 @@ export const OrangeBall = styled(Ball)`
   filter: blur(10px);
   top: 1351px;
   left: 26%;
+  @media ${device.tablet} {
+    width: 118px;
+    height: 118px;
+    top: 1100px;
+  }
+  @media ${device.mobile} {
+    top: 700px;
+  }
 `;
 
 export const SmallBlueBall = styled(Ball)`
@@ -190,6 +305,17 @@ export const SmallBlueBall = styled(Ball)`
   filter: blur(10px);
   left: 54%;
   top: 1650px;
+  @media ${device.tablet} {
+    width: 86px;
+    height: 86px;
+    top: 1188px;
+  }
+  @media ${device.mobile} {
+    width: 93px;
+    height: 93px;
+    top: 880px;
+    left: 90%;
+  }
 `;
 
 export const MintBall = styled(Ball)`
@@ -203,6 +329,14 @@ export const MintBall = styled(Ball)`
   );
   top: 1750px;
   left: -70px;
+  @media ${device.tablet} {
+    width: 225px;
+    height: 225px;
+    top: 1351px;
+  }
+  @media ${device.mobile} {
+    display: none;
+  }
 `;
 
 export const NanoBlueBall = styled(Ball)`
@@ -217,4 +351,12 @@ export const NanoBlueBall = styled(Ball)`
   box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.25);
   top: 2000px;
   left: 24%;
+  @media ${device.tablet} {
+    width: 66px;
+    height: 66px;
+    top: 1450px;
+  }
+  @media ${device.mobile} {
+    display: none;
+  }
 `;
