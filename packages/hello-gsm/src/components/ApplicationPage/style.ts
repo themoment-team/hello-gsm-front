@@ -145,9 +145,9 @@ export const Empty = styled.div`
 export const TestSubject = styled.div`
   font-weight: 500;
   background-color: #e9e9e9;
-  border-collapse: collapse;
-  vertical-align: middle;
-  border: 0.08vh solid #000000;
+  border-bottom: 0.08vh solid #000000;
+  line-height: 25px;
+  text-align: center;
   padding: 0 0.2vh;
   height: 25px;
 `;
