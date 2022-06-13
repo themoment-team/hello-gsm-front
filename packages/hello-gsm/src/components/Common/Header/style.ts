@@ -10,9 +10,6 @@ export const HeaderWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  @media ${device.laptop} {
-    padding: 0 30px;
-  }
 `;
 
 export const LogoContent = styled.a`
