@@ -99,50 +99,6 @@ export const Table = styled.table`
   }
 `;
 
-export const ScoreTable = styled.div`
-  display: flex;
-  height: 330px;
-  border: 0.08vh solid #000000;
-`;
-
-export const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  border: 0.08vh solid #000000;
-  border-collapse: collapse;
-  width: 100%;
-  justify-content: stretch;
-  border-bottom: none;
-`;
-
-export const Value = styled.div`
-  border-bottom: 0.08vh solid #000000;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const Semester = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const DivSubject = styled.div`
-  font-weight: 500;
-  background-color: #e9e9e9;
-  border-bottom: 0.08vh solid #000000;
-  line-height: 25px;
-  text-align: center;
-  padding: 0 0.2vh;
-  height: 25px;
-`;
-
-export const TestSlash = styled.div`
-  height: 100%;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
-`;
-
 export const Subject = styled.td`
   font-weight: 500;
   background-color: #e9e9e9;
@@ -221,8 +177,86 @@ export const SignatureSection = styled.div`
   margin-top: 1.5vh;
 `;
 
-export const Slash = styled.td`
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwEx_d8_3x5_Ldi_xGmZrFDoNwWm-1g42zYw&usqp=CAU');
-  background-size: contain;
-  background-repeat: no-repeat;
+export const ScoreTable = styled.div`
+  display: flex;
+  height: 330px;
+  border: 0.08vh solid #000000;
+  .slash {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="100%" x2="100%" y2="0" stroke="gray" /></svg>');
+  }
+
+  .backSlash {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
+  }
+`;
+
+export const GradeAndSubject = styled.div`
+  position: relative;
+  z-index: 2;
+  border-bottom: 0.08vh solid #000000;
+  div {
+    height: 25px;
+  }
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
+`;
+
+export const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: 0.08vh solid #000000;
+  border-collapse: collapse;
+  width: 100%;
+  border-bottom: none;
+`;
+
+export const Value = styled.div`
+  border-bottom: 0.08vh solid #000000;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Semester = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const DivSubject = styled.div`
+  font-weight: 500;
+  background-color: #e9e9e9;
+  border-bottom: 0.08vh solid #000000;
+  line-height: 25px;
+  text-align: center;
+  padding: 0 0.2vh;
+  height: 25px;
+`;
+
+export const Slash = styled.div`
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
+  border-bottom: 0.08vh solid #000000;
+`;
+
+export const TestTable = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 330px;
+`;
+
+export const ColumnWrapper = styled.div`
+  display: flex;
+  height: 100%;
+  border: 0.08vh solid #000000;
+  border-bottom: none;
+  width: 100%;
+`;
+
+export const Test = styled.div`
+  display: flex;
+  text-align: center;
+  border: 0.08vh solid #000000;
+  border-top: 0;
+  height: 30px;
+  line-height: 30px;
 `;

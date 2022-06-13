@@ -300,10 +300,10 @@ const ApplicationPage: NextPage = () => {
 
           <S.ScoreTable>
             <S.Column>
-              <S.Semester>
-                <S.DivSubject style={{ textAlign: 'right' }}>학년</S.DivSubject>
-                <S.DivSubject style={{ textAlign: 'left' }}>과목</S.DivSubject>
-              </S.Semester>
+              <S.GradeAndSubject>
+                <div style={{ textAlign: 'right' }}>학년</div>
+                <div style={{ textAlign: 'left' }}>과목</div>
+              </S.GradeAndSubject>
               {subjects?.map(subject => (
                 <S.Value key={subject}>{subject}</S.Value>
               ))}
@@ -314,21 +314,21 @@ const ApplicationPage: NextPage = () => {
             </S.Column>
             <S.Column>
               <S.Semester>
-                <S.DivSubject>2학년 2학기</S.DivSubject>
+                <S.DivSubject>1학년 1학기</S.DivSubject>
                 <S.DivSubject>성취도/평어</S.DivSubject>
               </S.Semester>
-              <S.TestSlash></S.TestSlash>
+              <S.Slash></S.Slash>
             </S.Column>
             <S.Column>
               <S.Semester>
-                <S.DivSubject>2학년 2학기</S.DivSubject>
+                <S.DivSubject>1학년 2학기</S.DivSubject>
                 <S.DivSubject>성취도/평어</S.DivSubject>
               </S.Semester>
-              <S.TestSlash></S.TestSlash>
+              <S.Slash></S.Slash>
             </S.Column>
             <S.Column>
               <S.Semester>
-                <S.DivSubject>2학년 2학기</S.DivSubject>
+                <S.DivSubject>2학년 1학기</S.DivSubject>
                 <S.DivSubject>성취도/평어</S.DivSubject>
               </S.Semester>
               {score2_1?.map((score, i) => (
@@ -348,7 +348,7 @@ const ApplicationPage: NextPage = () => {
             </S.Column>
             <S.Column>
               <S.Semester>
-                <S.DivSubject>2학년 2학기</S.DivSubject>
+                <S.DivSubject>3학년 1학기</S.DivSubject>
                 <S.DivSubject>성취도/평어</S.DivSubject>
               </S.Semester>
               {score3_1?.map((score, i) => (
@@ -359,63 +359,68 @@ const ApplicationPage: NextPage = () => {
           </S.ScoreTable>
 
           <S.SubTitle>체육예술교과</S.SubTitle>
-          <S.ScoreTable style={{ height: 200 }}>
-            <S.Column>
-              <S.Semester>
-                <S.DivSubject style={{ textAlign: 'right' }}>학년</S.DivSubject>
-                <S.DivSubject style={{ textAlign: 'left' }}>과목</S.DivSubject>
-              </S.Semester>
-              <S.Value>1</S.Value>
-              <S.Value>2</S.Value>
-              <S.Value>3</S.Value>
-            </S.Column>
-            <S.Column>
-              <S.Semester>
+          <S.TestTable style={{ height: 200 }}>
+            <S.ColumnWrapper>
+              <S.Column>
+                <S.GradeAndSubject>
+                  <div style={{ textAlign: 'right' }}>학년</div>
+                  <div style={{ textAlign: 'left' }}>과목</div>
+                </S.GradeAndSubject>
+                <S.Value>1</S.Value>
+                <S.Value>2</S.Value>
+                <S.Value>3</S.Value>
+              </S.Column>
+              <S.Column>
+                <S.Semester>
+                  <S.Semester>
+                    <S.DivSubject>1학년 1학기</S.DivSubject>
+                    <S.DivSubject>성취도/평어</S.DivSubject>
+                  </S.Semester>
+                </S.Semester>
+                <S.Slash></S.Slash>
+              </S.Column>
+              <S.Column>
+                <S.Semester>
+                  <S.Semester>
+                    <S.DivSubject>1학년 2학기</S.DivSubject>
+                    <S.DivSubject>성취도/평어</S.DivSubject>
+                  </S.Semester>
+                </S.Semester>
+                <S.Slash></S.Slash>
+              </S.Column>
+              <S.Column>
+                <S.Semester>
+                  <S.DivSubject>2학년 1학기</S.DivSubject>
+                  <S.DivSubject>성취도/평어</S.DivSubject>
+                </S.Semester>
+                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
+                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
+                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
+              </S.Column>
+              <S.Column>
                 <S.Semester>
                   <S.DivSubject>2학년 2학기</S.DivSubject>
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
-              </S.Semester>
-              <S.TestSlash></S.TestSlash>
-            </S.Column>
-            <S.Column>
-              <S.Semester>
+                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
+                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
+                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
+              </S.Column>
+              <S.Column>
                 <S.Semester>
-                  <S.DivSubject>2학년 2학기</S.DivSubject>
+                  <S.DivSubject>3학년 1학기</S.DivSubject>
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
-              </S.Semester>
-              <S.TestSlash></S.TestSlash>
-            </S.Column>
-            <S.Column>
-              <S.Semester>
-                <S.DivSubject>2학년 2학기</S.DivSubject>
-                <S.DivSubject>성취도/평어</S.DivSubject>
-              </S.Semester>
-              <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-              <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-              <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-            </S.Column>
-            <S.Column>
-              <S.Semester>
-                <S.DivSubject>2학년 2학기</S.DivSubject>
-                <S.DivSubject>성취도/평어</S.DivSubject>
-              </S.Semester>
-              <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-              <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-              <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-            </S.Column>
-            <S.Column>
-              <S.Semester>
-                <S.DivSubject>2학년 2학기</S.DivSubject>
-                <S.DivSubject>성취도/평어</S.DivSubject>
-              </S.Semester>
-              <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-              <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-              <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-            </S.Column>
-          </S.ScoreTable>
-          <div>환산점</div>
+                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
+                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
+                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
+              </S.Column>
+            </S.ColumnWrapper>
+            <S.Test>
+              <S.Column style={{ width: '20%' }}>환산점</S.Column>
+              <S.Column>환산점</S.Column>
+            </S.Test>
+          </S.TestTable>
           <S.SubTitle>비교과</S.SubTitle>
 
           <S.Table style={{ marginBottom: '1.2vh' }}>
