@@ -12,7 +12,7 @@ class Auth {
   }
 
   /**
-   * @param data - 회원가입에 필요한 파라미터 
+   * @param data - 회원가입에 필요한 파라미터
    */
   signup(data: signUpType) {
     try {
@@ -43,13 +43,16 @@ class Auth {
   /**
    * 토큰 재발급을 위한 api
    */
-  refresh() {
+  refresh(refreshToken: string) {
     try {
-      return RequestApi({
-        method: 'POST',
-        url: AuthController.refresh(),
-      });
-    } catch (error) {
+      return RequestApi(
+        {
+          method: 'POST',
+          url: AuthController.refresh(),
+        },
+        refreshToken,
+      );
+    } catch (error: any) {
       return error;
     }
   }

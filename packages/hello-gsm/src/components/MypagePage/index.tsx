@@ -4,12 +4,15 @@ import * as S from './style';
 import * as I from 'Assets/svg';
 import { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
-import useStore from '../../Stores/StoreContainer';
+import useStore from 'Stores/StoreContainer';
+import { StatusType } from 'type/user';
+import Image from 'next/image';
 import { Header, MypageModal, MypageSuccessModal } from 'components';
 
-const MyPage: NextPage = () => {
-  const [gender, setGender] = useState<string>('M');
-  const [saved, setSaved] = useState<boolean>(true);
+const MyPage: NextPage<StatusType> = ({ data }) => {
+  const [name, setName] = useState<string>('');
+  const [imgURL, setImgURL] = useState<string>('');
+  const [saved, setSaved] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [isPC, setIsPC] = useState<boolean>(true);
 
@@ -17,6 +20,7 @@ const MyPage: NextPage = () => {
     showMypageModal,
     setShowMypageModal,
     setMypageModalContent,
+    setLogged,
     showMypageSuccessModal,
   } = useStore();
 
@@ -26,12 +30,17 @@ const MyPage: NextPage = () => {
   };
 
   useEffect(() => {
+    setLogged(true);
+    setSaved(data.application === null ? false : true);
+    setSubmitted(data.application?.isFinalSubmission === true ? true : false);
+    setImgURL(data.userImg);
+    setName(data.name);
     setIsPC(
       !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(
         navigator.userAgent,
       ),
     );
-  });
+  }, []);
 
   return (
     <S.MyPage>
@@ -40,14 +49,14 @@ const MyPage: NextPage = () => {
       <Header />
       <S.Content>
         <S.UserBox>
-          {showMypageSuccessModal ? (
-            <S.EmptiedProfile />
-          ) : gender === 'W' ? (
-            <I.Woman />
-          ) : (
-            <I.Man />
-          )}
-          <S.Name>김형록님</S.Name>
+          <Image
+            src={imgURL}
+            alt="image"
+            width="140"
+            height="140"
+            css={{ borderRadius: '100%' }}
+          />
+          <S.Name>{name}</S.Name>
         </S.UserBox>
         {isPC ? (
           saved ? (
