@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
-import Link from 'next/link';
 import { css } from '@emotion/react';
 import Graph from './Graph';
 import { Header, Footer } from 'components';
@@ -80,22 +79,15 @@ const SchoolPage: NextPage = () => {
               allowFullScreen
             />
           </S.VideoBox>
-          <Link href="http://gsm.gen.hs.kr/main/main.php" passHref>
-            <S.ToHomepage>
-              <S.LinkText>홈페이지</S.LinkText>
-            </S.ToHomepage>
-          </Link>
+          <S.ToHomepage href="http://gsm.gen.hs.kr/main/main.php">
+            홈페이지
+          </S.ToHomepage>
         </S.Section1>
         <S.Section2>
           <S.Section2Title>MOU 기업</S.Section2Title>
           <S.EnterpriseWrap>
             {enterprises.map((enterprise, index: number) => (
-              <S.EnterpriseLine
-                key={index}
-                css={css`
-                  ${index === 2 && 'width: 935px'}
-                `}
-              >
+              <S.EnterpriseLine key={index}>
                 {enterprise.map((name: string, index: number) => (
                   <S.Enterprise key={index}>
                     <S.EnterpriseImg

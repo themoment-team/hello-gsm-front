@@ -17,6 +17,7 @@ export { default as SchoolPage } from './SchoolPage';
 export { default as Select } from './Select';
 export { default as SignInPage } from './SignInPage';
 export { default as SignUpPage } from './SignUpPage';
+export { default as MypageSuccessModal } from './Modals/MypageSuccessModal';
 export { default as SEOHelmet } from './Common/SEOHelmet';
 export { default as SignInResultModal } from './Modals/SignInResultModal';
 export { default as TosBox } from './SignUpPage/TosBox';
