@@ -273,6 +273,7 @@ const ApplicationPage: NextPage = () => {
           </S.Materials>
         </S.Document>
       </S.ApplicationPage>
+
       <S.ApplicationPage
         css={css`
           @media print {
@@ -297,16 +298,12 @@ const ApplicationPage: NextPage = () => {
             </S.Box>
           </S.Wrap>
 
-          <S.TestTable>
-            <S.Test>
-              <S.Empty>
-                <S.TestSubject style={{ textAlign: 'right' }}>
-                  학년
-                </S.TestSubject>
-                <S.TestSubject style={{ textAlign: 'left' }}>
-                  과목
-                </S.TestSubject>
-              </S.Empty>
+          <S.ScoreTable>
+            <S.Column>
+              <S.Semester>
+                <S.DivSubject style={{ textAlign: 'right' }}>학년</S.DivSubject>
+                <S.DivSubject style={{ textAlign: 'left' }}>과목</S.DivSubject>
+              </S.Semester>
               {subjects?.map(subject => (
                 <S.Value key={subject}>{subject}</S.Value>
               ))}
@@ -314,121 +311,111 @@ const ApplicationPage: NextPage = () => {
                 <S.Value key={subject}>{subject}</S.Value>
               ))}
               <S.Value>환산점</S.Value>
-            </S.Test>
-            <S.Test>
-              <S.Empty>
-                <S.Empty>
-                  <S.TestSubject>2학년 2학기</S.TestSubject>
-                  <S.TestSubject>성취도/평어</S.TestSubject>
-                </S.Empty>
-              </S.Empty>
+            </S.Column>
+            <S.Column>
+              <S.Semester>
+                <S.DivSubject>2학년 2학기</S.DivSubject>
+                <S.DivSubject>성취도/평어</S.DivSubject>
+              </S.Semester>
               <S.TestSlash></S.TestSlash>
-            </S.Test>
-            <S.Test>
-              <S.Empty>
-                <S.TestSubject>2학년 2학기</S.TestSubject>
-                <S.TestSubject>성취도/평어</S.TestSubject>
-              </S.Empty>
+            </S.Column>
+            <S.Column>
+              <S.Semester>
+                <S.DivSubject>2학년 2학기</S.DivSubject>
+                <S.DivSubject>성취도/평어</S.DivSubject>
+              </S.Semester>
               <S.TestSlash></S.TestSlash>
-            </S.Test>
-            <S.Test>
-              <S.Empty>
-                <S.TestSubject>2학년 2학기</S.TestSubject>
-                <S.TestSubject>성취도/평어</S.TestSubject>
-              </S.Empty>
+            </S.Column>
+            <S.Column>
+              <S.Semester>
+                <S.DivSubject>2학년 2학기</S.DivSubject>
+                <S.DivSubject>성취도/평어</S.DivSubject>
+              </S.Semester>
               {score2_1?.map((score, i) => (
                 <S.Value key={i}>{score}</S.Value>
               ))}
               <S.Value>환산점</S.Value>
-            </S.Test>
-            <S.Test>
-              <S.Empty>
-                <S.TestSubject>2학년 2학기</S.TestSubject>
-                <S.TestSubject>성취도/평어</S.TestSubject>
-              </S.Empty>
+            </S.Column>
+            <S.Column>
+              <S.Semester>
+                <S.DivSubject>2학년 2학기</S.DivSubject>
+                <S.DivSubject>성취도/평어</S.DivSubject>
+              </S.Semester>
               {score2_2?.map((score, i) => (
                 <S.Value key={i}>{score}</S.Value>
               ))}
               <S.Value>환산점</S.Value>
-            </S.Test>
-            <S.Test>
-              <S.Empty>
-                <S.TestSubject>2학년 2학기</S.TestSubject>
-                <S.TestSubject>성취도/평어</S.TestSubject>
-              </S.Empty>
+            </S.Column>
+            <S.Column>
+              <S.Semester>
+                <S.DivSubject>2학년 2학기</S.DivSubject>
+                <S.DivSubject>성취도/평어</S.DivSubject>
+              </S.Semester>
               {score3_1?.map((score, i) => (
                 <S.Value key={i}>{score}</S.Value>
               ))}
               <S.Value>환산점</S.Value>
-            </S.Test>
-          </S.TestTable>
+            </S.Column>
+          </S.ScoreTable>
 
           <S.SubTitle>체육예술교과</S.SubTitle>
-          <S.TestTable style={{ height: 200 }}>
-            <S.Test>
-              <S.Empty>
-                <S.TestSubject style={{ textAlign: 'right' }}>
-                  학년
-                </S.TestSubject>
-                <S.TestSubject style={{ textAlign: 'left' }}>
-                  과목
-                </S.TestSubject>
-              </S.Empty>
+          <S.ScoreTable style={{ height: 200 }}>
+            <S.Column>
+              <S.Semester>
+                <S.DivSubject style={{ textAlign: 'right' }}>학년</S.DivSubject>
+                <S.DivSubject style={{ textAlign: 'left' }}>과목</S.DivSubject>
+              </S.Semester>
               <S.Value>1</S.Value>
               <S.Value>2</S.Value>
               <S.Value>3</S.Value>
-              <S.Value>환산점</S.Value>
-            </S.Test>
-            <S.Test>
-              <S.Empty>
-                <S.Empty>
-                  <S.TestSubject>2학년 2학기</S.TestSubject>
-                  <S.TestSubject>성취도/평어</S.TestSubject>
-                </S.Empty>
-              </S.Empty>
+            </S.Column>
+            <S.Column>
+              <S.Semester>
+                <S.Semester>
+                  <S.DivSubject>2학년 2학기</S.DivSubject>
+                  <S.DivSubject>성취도/평어</S.DivSubject>
+                </S.Semester>
+              </S.Semester>
               <S.TestSlash></S.TestSlash>
-            </S.Test>
-            <S.Test>
-              <S.Empty>
-                <S.Empty>
-                  <S.TestSubject>2학년 2학기</S.TestSubject>
-                  <S.TestSubject>성취도/평어</S.TestSubject>
-                </S.Empty>
-              </S.Empty>
+            </S.Column>
+            <S.Column>
+              <S.Semester>
+                <S.Semester>
+                  <S.DivSubject>2학년 2학기</S.DivSubject>
+                  <S.DivSubject>성취도/평어</S.DivSubject>
+                </S.Semester>
+              </S.Semester>
               <S.TestSlash></S.TestSlash>
-            </S.Test>
-            <S.Test>
-              <S.Empty>
-                <S.TestSubject>2학년 2학기</S.TestSubject>
-                <S.TestSubject>성취도/평어</S.TestSubject>
-              </S.Empty>
+            </S.Column>
+            <S.Column>
+              <S.Semester>
+                <S.DivSubject>2학년 2학기</S.DivSubject>
+                <S.DivSubject>성취도/평어</S.DivSubject>
+              </S.Semester>
               <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
               <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
               <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-              <S.Value>환산점</S.Value>
-            </S.Test>
-            <S.Test>
-              <S.Empty>
-                <S.TestSubject>2학년 2학기</S.TestSubject>
-                <S.TestSubject>성취도/평어</S.TestSubject>
-              </S.Empty>
+            </S.Column>
+            <S.Column>
+              <S.Semester>
+                <S.DivSubject>2학년 2학기</S.DivSubject>
+                <S.DivSubject>성취도/평어</S.DivSubject>
+              </S.Semester>
               <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
               <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
               <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-              <S.Value>환산점</S.Value>
-            </S.Test>
-            <S.Test>
-              <S.Empty>
-                <S.TestSubject>2학년 2학기</S.TestSubject>
-                <S.TestSubject>성취도/평어</S.TestSubject>
-              </S.Empty>
+            </S.Column>
+            <S.Column>
+              <S.Semester>
+                <S.DivSubject>2학년 2학기</S.DivSubject>
+                <S.DivSubject>성취도/평어</S.DivSubject>
+              </S.Semester>
               <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
               <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
               <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-              <S.Value>환산점</S.Value>
-            </S.Test>
-          </S.TestTable>
-
+            </S.Column>
+          </S.ScoreTable>
+          <div>환산점</div>
           <S.SubTitle>비교과</S.SubTitle>
 
           <S.Table style={{ marginBottom: '1.2vh' }}>

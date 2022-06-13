@@ -99,34 +99,20 @@ export const Table = styled.table`
   }
 `;
 
-export const ScoreTable = styled(Table)`
-  tbody {
-    display: flex;
-  }
-
-  tr {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-  th,
-  td {
-    display: block;
-  }
-`;
-
-export const TestTable = styled.div`
+export const ScoreTable = styled.div`
   display: flex;
-  height: 400px;
+  height: 330px;
+  border: 0.08vh solid #000000;
 `;
 
-export const Test = styled.div`
+export const Column = styled.div`
   display: flex;
   flex-direction: column;
   border: 0.08vh solid #000000;
   border-collapse: collapse;
   width: 100%;
+  justify-content: stretch;
+  border-bottom: none;
 `;
 
 export const Value = styled.div`
@@ -137,12 +123,12 @@ export const Value = styled.div`
   justify-content: center;
 `;
 
-export const Empty = styled.div`
+export const Semester = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-export const TestSubject = styled.div`
+export const DivSubject = styled.div`
   font-weight: 500;
   background-color: #e9e9e9;
   border-bottom: 0.08vh solid #000000;
