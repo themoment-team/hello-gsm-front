@@ -7,15 +7,14 @@ interface storeType {
   showMypageModal: boolean;
   mypageModalContent: string;
   isSearching: boolean;
-
   showSideBar: boolean | null;
+  
   setShowFAQModal: () => void;
   setFAQModalTitle: (title: string) => void;
   setFAQModalContent: (content: string) => void;
   setShowMypageModal: () => void;
   setMypageModalContent: (content: string) => void;
   setIsSearching: (trueOrFalse: boolean) => void;
-
   setShowSideBar: (value: boolean | null) => void;
 }
 
