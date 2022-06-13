@@ -35,13 +35,13 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
       {showMypageModal && <MypageModal />}
       <S.Content>
         <S.UserBox>
-          <Image
+          {/* <Image
             src={imgURL}
             alt="image"
             width="140"
             height="140"
             css={{ borderRadius: '100%' }}
-          />
+          /> */}
           <S.Name>{name}</S.Name>
         </S.UserBox>
         {saved ? (
