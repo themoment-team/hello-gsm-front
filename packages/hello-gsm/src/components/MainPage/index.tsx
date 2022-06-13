@@ -4,8 +4,9 @@ import * as S from './style';
 import Link from 'next/link';
 import { Header, Footer, MainPageDescription } from 'components';
 import { css } from '@emotion/react';
+import { StatusType } from 'type/user';
 
-const MainPage: NextPage = () => {
+const MainPage: NextPage<StatusType> = ({ data }) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(1);
 
   const selectedStyle = (index: number) =>
@@ -78,7 +79,7 @@ const MainPage: NextPage = () => {
               최종 결과 발표
             </S.ContentSelect>
           </S.ContentHeader>
-          <MainPageDescription selectedIndex={selectedIndex} />
+          <MainPageDescription selectedIndex={selectedIndex} data={data} />
         </S.ContentBox>
       </S.MainContent>
       <S.GreenBall />
