@@ -5,11 +5,11 @@ export const HeaderWrap = styled.div`
   color: #ffffff;
   user-select: none;
   height: 70px;
-  padding: 0px 5vw;
-  width: 100vw;
+  width: 88%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 auto;
   @media ${device.laptop} {
     padding: 0 30px;
   }
