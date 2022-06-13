@@ -14,8 +14,12 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
   const [saved, setSaved] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
 
-  const { showMypageModal, setShowMypageModal, setMypageModalContent } =
-    useStore();
+  const {
+    showMypageModal,
+    setShowMypageModal,
+    setMypageModalContent,
+    setLogged,
+  } = useStore();
 
   const showModal = (content: string) => {
     setShowMypageModal();
@@ -23,6 +27,7 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
   };
 
   useEffect(() => {
+    setLogged(true);
     setSaved(data.application === null ? false : true);
     setSubmitted(data.application?.isFinalSubmission === true ? true : false);
     setImgURL(data.userImg);
