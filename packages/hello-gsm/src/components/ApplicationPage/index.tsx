@@ -3,6 +3,7 @@ import * as S from './style';
 import { css } from '@emotion/react';
 import { ProfileType } from 'type/profile';
 import useLocalstorage from 'hooks/useLocalstorage';
+
 const profile: ProfileType = {
   user: {
     name: '유시온',
@@ -50,7 +51,7 @@ const profile: ProfileType = {
   },
 };
 
-const ApplicationPage: NextPage = () => {
+const ApplicationPage: NextPage = ({data}) => {
   const score2_1 = useLocalstorage('score2_1');
   const score2_2 = useLocalstorage('score2_2');
   const score3_1 = useLocalstorage('score3_1');
