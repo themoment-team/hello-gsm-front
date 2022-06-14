@@ -1,7 +1,11 @@
 import styled from '@emotion/styled';
+import device from 'shared/config';
 
 export const SchoolPage = styled.div`
   margin-top: 70px;
+  @media ${device.mobile} {
+    margin-top: 30px;
+  }
 `;
 
 export const Section1 = styled.div`
@@ -10,12 +14,21 @@ export const Section1 = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 1000px;
+  @media ${device.tablet} {
+    height: 600px;
+  }
+  @media ${device.mobile} {
+    height: 400px;
+  }
 `;
 
 export const SchoolName = styled.p`
   color: #ffffff;
   font-weight: 700;
   font-size: 40px;
+  @media ${device.mobile} {
+    font-size: 16px;
+  }
 `;
 
 export const VideoBox = styled.div`
@@ -23,9 +36,13 @@ export const VideoBox = styled.div`
   height: 35vw;
   background: rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(48px);
+  @media ${device.tablet} {
+    width: 95%;
+    height: 50vw;
+  }
 `;
 
-export const ToHomepage = styled.div`
+export const ToHomepage = styled.a`
   width: 281px;
   height: 63px;
   border: 1px solid #ffffff;
@@ -34,11 +51,15 @@ export const ToHomepage = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-`;
-
-export const LinkText = styled.a`
+  background: #ededed;
   font-weight: 700;
   font-size: 22px;
+  color: #0f0921;
+  @media ${device.mobile} {
+    width: 90px;
+    height: 30px;
+    font-size: 15px;
+  }
 `;
 
 export const Section2 = styled.div`
@@ -47,6 +68,12 @@ export const Section2 = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media ${device.tablet} {
+    height: 400px;
+  }
+  @media ${device.mobile} {
+    height: 250px;
+  }
 `;
 
 export const Section2Title = styled.p`
@@ -54,6 +81,10 @@ export const Section2Title = styled.p`
   font-size: 24px;
   color: #ffffff;
   padding-bottom: 60px;
+  @media ${device.mobile} {
+    font-size: 16px;
+    padding-bottom: 30px;
+  }
 `;
 
 export const EnterpriseWrap = styled.div`
@@ -63,6 +94,16 @@ export const EnterpriseWrap = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  @media ${device.laptop} {
+    width: 1000px;
+  }
+  @media ${device.tablet} {
+    width: 100%;
+    height: 150px;
+  }
+  @media ${device.mobile} {
+    height: 100px;
+  }
 `;
 
 export const EnterpriseLine = styled.div`
@@ -70,6 +111,19 @@ export const EnterpriseLine = styled.div`
   height: 50px;
   display: flex;
   justify-content: space-between;
+  @media ${device.tablet} {
+    width: 90%;
+  }
+  :nth-of-type(3) {
+    width: 935px;
+    @media ${device.tablet} {
+      width: 75%;
+    }
+    @media ${device.mobile} {
+      justify-content: space-evenly;
+      width: 90%;
+    }
+  }
 `;
 
 export const Enterprise = styled.div`
@@ -80,6 +134,16 @@ export const Enterprise = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media ${device.tablet} {
+    width: 107px;
+    height: 30px;
+    border-radius: 10px;
+  }
+  @media ${device.mobile} {
+    width: 15%;
+    height: 20px;
+    border-radius: 5px;
+  }
 `;
 
 export const EnterpriseImg = styled.div`
@@ -88,6 +152,14 @@ export const EnterpriseImg = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
+  @media ${device.tablet} {
+    width: 70px;
+    height: 20px;
+  }
+  @media ${device.mobile} {
+    width: 70%;
+    height: 18px;
+  }
 `;
 
 export const Section3 = styled.div`
@@ -97,30 +169,63 @@ export const Section3 = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 200px;
+  @media ${device.tablet} {
+    height: 500px;
+    margin-bottom: 50px;
+  }
+  @media (max-width: 300px) {
+    height: 300px;
+  }
 `;
 
 export const Section3Title = styled.div`
   font-weight: 700;
   font-size: 24px;
   color: #ffffff;
+  @media ${device.mobile} {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const GraphWrap = styled.div`
-  width: 1200px;
+  width: 62.5%;
   height: 600px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media ${device.tablet} {
+    width: 90%;
+    padding-left: 50px;
+  }
+  @media ${device.mobile} {
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const SelectBox = styled.div`
   display: flex;
   align-items: flex-start;
+  @media ${device.mobile} {
+    flex-direction: column;
+  }
 `;
 
 export const SelectBar = styled.div`
   height: 450px;
   border: 3px solid #9a9a9a;
+  @media ${device.tablet} {
+    height: 250px;
+  }
+  @media ${device.mobile} {
+    width: 90vw;
+    height: 0;
+    border: 1.5px solid #9a9a9a;
+    position: relative;
+    top: 5px;
+  }
 `;
 
 export const SelectOptionBox = styled.div`
@@ -130,6 +235,15 @@ export const SelectOptionBox = styled.div`
   justify-content: space-between;
   position: relative;
   left: -8px;
+  @media ${device.tablet} {
+    height: 150px;
+  }
+  @media ${device.mobile} {
+    width: 100%;
+    height: 30px;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 `;
 
 export const SelectOption = styled.div`
@@ -138,6 +252,13 @@ export const SelectOption = styled.div`
   font-size: 20px;
   color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
+  @media ${device.mobile} {
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
   &::before {
     width: 10px;
     height: 10px;
@@ -147,6 +268,10 @@ export const SelectOption = styled.div`
     content: '';
     margin-right: 30px;
     vertical-align: top;
+    @media ${device.mobile} {
+      width: 7px;
+      height: 7px;
+    }
   }
 `;
 
@@ -157,6 +282,14 @@ export const GraphBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  @media ${device.tablet} {
+    width: 300px;
+    height: 350px;
+  }
+  @media (max-width: 300px) {
+    width: 90%;
+    height: 80%;
+  }
 `;
 
 export const Title = styled.div`
@@ -167,7 +300,6 @@ export const Title = styled.div`
 
 export const Graph = styled.div`
   width: 100%;
-  width: 500px;
 `;
 
 const Ball = styled.div`
@@ -187,6 +319,9 @@ export const GreenBall = styled(Ball)`
   );
   top: 400px;
   left: 59%;
+  @media ${device.tablet} {
+    display: none;
+  }
 `;
 
 export const BlueBall = styled(Ball)`
@@ -200,6 +335,16 @@ export const BlueBall = styled(Ball)`
   );
   top: 900px;
   left: 82%;
+  @media ${device.tablet} {
+    display: none;
+  }
+  @media ${device.mobile} {
+    display: block;
+    width: 32px;
+    height: 32px;
+    top: 450px;
+    left: 85%;
+  }
 `;
 
 export const SkyBlueBall = styled(Ball)`
@@ -213,6 +358,16 @@ export const SkyBlueBall = styled(Ball)`
   );
   top: 800px;
   left: 6%;
+  @media ${device.tablet} {
+    display: none;
+  }
+  @media ${device.mobile} {
+    display: block;
+    width: 75px;
+    height: 75px;
+    top: 430px;
+    left: 2%;
+  }
 `;
 
 export const SmallBlueBall = styled(Ball)`
@@ -227,4 +382,16 @@ export const SmallBlueBall = styled(Ball)`
   box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.25);
   top: 2000px;
   left: 8%;
+  @media ${device.tablet} {
+    width: 45px;
+    height: 45px;
+    top: 1250px;
+    left: 3%;
+  }
+  @media ${device.mobile} {
+    width: 38px;
+    height: 38px;
+    top: 850px;
+    left: 2%;
+  }
 `;
