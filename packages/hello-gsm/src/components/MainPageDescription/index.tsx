@@ -14,7 +14,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   const [index, setIndex] = useState<number>(1);
   const [pass, setPass] = useState<boolean>(false);
   const [name, setName] = useState<string>('김형록');
-  const [registrationNumber, setRegistrationNumber] = useState<number>(1001);
+  const [registrationNumber, setRegistrationNumber] = useState<number | null>();
   const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(true);
 
   const { setLogged } = useStore();
@@ -33,6 +33,11 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
           return data.application?.finalResultScreening ? true : false;
         }
       });
+      setRegistrationNumber(
+        data.application?.registrationNumber
+          ? data.application.registrationNumber
+          : null,
+      );
     } else {
       setLogged(false);
       selectedIndex === 5 && setIndex(6);
