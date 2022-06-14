@@ -16,7 +16,7 @@ const Application: NextPage<ProfileType> = ({ data }) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const { data }: ProfileType = await application.getInformation();
+    const { data } = await application.getInformation();
     return {
       props: {
         data,
