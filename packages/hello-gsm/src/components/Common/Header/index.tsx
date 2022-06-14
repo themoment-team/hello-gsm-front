@@ -5,11 +5,14 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import useStore from 'Stores/StoreContainer';
 import * as S from './style';
+import * as I from 'Assets/svg';
+import useStore from 'Stores/StoreContainer';
+import SideBar from 'components/SideBar';
 
 const Header: React.FC = () => {
   const { pathname } = useRouter();
 
-  const { logged } = useStore();
+  const { logged, setShowSideBar } = useStore();
 
   const select = (navPath: string) =>
     navPath === pathname && { color: '#ffffff' };
@@ -35,13 +38,11 @@ const Header: React.FC = () => {
   };
 
   return (
-    <S.Header>
+    <>
       <S.HeaderWrap>
-        <S.Logo>
-          <Link href="/" passHref>
-            <S.LogoContent>Hello, GSM</S.LogoContent>
-          </Link>
-        </S.Logo>
+        <Link href="/" passHref>
+          <S.LogoContent>Hello, GSM</S.LogoContent>
+        </Link>
         <S.NavBar>
           <Link href="/" passHref>
             <S.NavContent css={select('/')}>홈으로</S.NavContent>
@@ -76,8 +77,12 @@ const Header: React.FC = () => {
             <S.Logout onClick={logout}>로그아웃</S.Logout>
           </S.MemberBox>
         )}
+        <S.HamBurger onClick={() => setShowSideBar(true)}>
+          <I.HamburgerButton />
+        </S.HamBurger>
       </S.HeaderWrap>
-    </S.Header>
+      <SideBar />
+    </>
   );
 };
 
