@@ -51,7 +51,7 @@ const profile: ProfileType = {
   },
 };
 
-const ApplicationPage: NextPage = ({data}) => {
+const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
   const score2_1 = useLocalstorage('score2_1');
   const score2_2 = useLocalstorage('score2_2');
   const score3_1 = useLocalstorage('score3_1');
