@@ -15,24 +15,20 @@ const Header: React.FC = () => {
     navPath === pathname && { color: '#ffffff' };
 
   const logout = async () => {
-    // try {
-    //   await auth.logout();
-    //   window.location.reload();
-    // } catch (error: any) {
-    //   if (error.response.status === 401) {
-    //     try {
-    //       await auth.refresh();
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    //   }
-    //   console.log(error);
-    // }
     try {
-      console.log('start try');
       await auth.logout();
-      console.log('success');
-    } catch (error) {
+      // 새로고침
+      window.location.reload();
+    } catch (error: any) {
+      // accessToken 없을 시에 accessToken 발급 후 logout 요청
+      if (error.response.status === 401) {
+        try {
+          await auth.refresh();
+          logout();
+        } catch (error) {
+          console.log(error);
+        }
+      }
       console.log(error);
     }
   };
