@@ -21,6 +21,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
 
   useEffect(() => {
     today > new Date('2022-11-01') && setIsFirstPeriod(false);
+    today > new Date('2023-03-01') ? setIndex(0) : setIndex(selectedIndex);
     if (data) {
       setLogged(true);
       today < new Date('2022-10-24') && selectedIndex === 5 && setIndex(7);
@@ -36,7 +37,6 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
       setLogged(false);
       selectedIndex === 5 && setIndex(6);
     }
-    today > new Date('2023-03-01') ? setIndex(0) : setIndex(selectedIndex);
   }, [selectedIndex]);
 
   switch (index) {
