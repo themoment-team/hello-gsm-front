@@ -15,12 +15,11 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   const [pass, setPass] = useState<boolean>(false);
   const [name, setName] = useState<string>('김형록');
   const [registrationNumber, setRegistrationNumber] = useState<number>(1001);
-  const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(false);
+  const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(true);
 
   const { setLogged } = useStore();
 
   useEffect(() => {
-    today > new Date('2023-03-01') ? setIndex(0) : setIndex(selectedIndex);
     today > new Date('2022-11-01') && setIsFirstPeriod(false);
     if (data) {
       setLogged(true);
@@ -28,14 +27,16 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
       setName(data.name);
       setPass(() => {
         if (isFirstPeriod) {
-          return data?.application?.finalResultScreening ? true : false;
+          return data.application?.finalResultScreening ? true : false;
         } else {
-          return data?.application?.finalResultScreening ? true : false;
+          return data.application?.finalResultScreening ? true : false;
         }
       });
     } else {
+      setLogged(false);
       selectedIndex === 5 && setIndex(6);
     }
+    today > new Date('2022-03-01') ? setIndex(0) : setIndex(selectedIndex);
   }, [selectedIndex]);
 
   switch (index) {
@@ -183,7 +184,9 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
       );
     default:
       return (
-        <S.DescriptionLine>지금은 지원 기간이 아닙니다.</S.DescriptionLine>
+        <S.Description>
+          <S.DescriptionLine>지금은 지원 기간이 아닙니다.</S.DescriptionLine>
+        </S.Description>
       );
   }
 };
