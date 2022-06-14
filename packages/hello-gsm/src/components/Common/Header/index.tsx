@@ -30,7 +30,7 @@ const Header: React.FC = () => {
     // }
     try {
       console.log('start try');
-      await auth.refresh();
+      await auth.logout();
       console.log('success');
     } catch (error) {
       console.log(error);
