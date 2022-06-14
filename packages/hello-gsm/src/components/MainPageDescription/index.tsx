@@ -36,7 +36,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
       setLogged(false);
       selectedIndex === 5 && setIndex(6);
     }
-    today > new Date('2022-03-01') ? setIndex(0) : setIndex(selectedIndex);
+    today > new Date('2023-03-01') ? setIndex(0) : setIndex(selectedIndex);
   }, [selectedIndex]);
 
   switch (index) {
