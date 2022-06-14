@@ -1,57 +1,66 @@
 import styled from '@emotion/styled';
-
-export const Header = styled.div`
-  -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  height: 70px;
-  background-color: #0f0921;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-`;
+import device from 'shared/config';
 
 export const HeaderWrap = styled.div`
+  color: #ffffff;
+  user-select: none;
+  height: 70px;
   width: 88%;
   display: flex;
   justify-content: space-between;
-`;
-
-export const Logo = styled.div`
-  display: flex;
   align-items: center;
+  margin: 0 auto;
 `;
 
 export const LogoContent = styled.a`
   font-size: 30px;
   font-weight: 700;
+  @media ${device.tablet} {
+    font-size: 24px;
+  }
 `;
 
 export const NavBar = styled.div`
-  width: 700px;
-  height: 100%;
+  width: 660px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  @media (max-width: 1200px) {
+    width: 400px;
+  }
+  @media ${device.tablet} {
+    display: none;
+  }
 `;
 
 export const NavContent = styled.a`
-  font-weight: 700;
   font-size: 18px;
+  font-weight: 700;
   color: #bdbdbd;
 `;
 
 export const MemberBox = styled.div`
   width: 150px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  @media ${device.laptop} {
+    width: 130px;
+  }
+  @media ${device.tablet} {
+    display: none;
+  }
 `;
 
 export const MemberContent = styled.a`
+  font-size: 18px;
   color: #dddddd;
   font-weight: 400;
-  font-size: 18px;
+`;
+
+export const HamBurger = styled.div`
+  display: none;
+  height: 14px;
+  cursor: pointer;
+  @media ${device.tablet} {
+    display: block;
+  }
 `;
