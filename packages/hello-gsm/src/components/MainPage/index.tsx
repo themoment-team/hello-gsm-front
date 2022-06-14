@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import Link from 'next/link';
@@ -8,6 +8,7 @@ import { StatusType } from 'type/user';
 
 const MainPage: NextPage<StatusType> = ({ data }) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(1);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   const selectedStyle = (index: number) =>
     selectedIndex === index &&
@@ -20,6 +21,13 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
         content: 'ㅣ';
       }
     `;
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 640 ? true : false);
+    window.onresize = () => {
+      setIsMobile(window.innerWidth < 640 ? true : false);
+    };
+  }, []);
 
   return (
     <S.MainPage>
@@ -47,38 +55,77 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
           </S.ApplyBox>
         </S.TitleWrap>
         <S.ContentBox>
-          <S.ContentHeader>
-            <S.ContentSelect
-              css={selectedStyle(1)}
-              onClick={() => setSelectedIndex(1)}
-            >
-              원서 작성
-            </S.ContentSelect>
-            <S.ContentSelect
-              css={selectedStyle(2)}
-              onClick={() => setSelectedIndex(2)}
-            >
-              원서 학교 제출
-            </S.ContentSelect>
-            <S.ContentSelect
-              css={selectedStyle(3)}
-              onClick={() => setSelectedIndex(3)}
-            >
-              1차 서류 전형
-            </S.ContentSelect>
-            <S.ContentSelect
-              css={selectedStyle(4)}
-              onClick={() => setSelectedIndex(4)}
-            >
-              2차 면접
-            </S.ContentSelect>
-            <S.ContentSelect
-              css={selectedStyle(5)}
-              onClick={() => setSelectedIndex(5)}
-            >
-              최종 결과 발표
-            </S.ContentSelect>
-          </S.ContentHeader>
+          {!isMobile ? (
+            <S.ContentHeader>
+              <S.ContentSelect
+                css={selectedStyle(1)}
+                onClick={() => setSelectedIndex(1)}
+              >
+                원서 작성
+              </S.ContentSelect>
+              <S.ContentSelect
+                css={selectedStyle(2)}
+                onClick={() => setSelectedIndex(2)}
+              >
+                원서 학교 제출
+              </S.ContentSelect>
+              <S.ContentSelect
+                css={selectedStyle(3)}
+                onClick={() => setSelectedIndex(3)}
+              >
+                1차 서류 전형
+              </S.ContentSelect>
+              <S.ContentSelect
+                css={selectedStyle(4)}
+                onClick={() => setSelectedIndex(4)}
+              >
+                2차 면접
+              </S.ContentSelect>
+              <S.ContentSelect
+                css={selectedStyle(5)}
+                onClick={() => setSelectedIndex(5)}
+              >
+                결과 발표
+              </S.ContentSelect>
+            </S.ContentHeader>
+          ) : (
+            <S.ContentHeader>
+              <S.ContentHeaderLine>
+                <S.ContentSelect
+                  css={selectedStyle(1)}
+                  onClick={() => setSelectedIndex(1)}
+                >
+                  원서 작성
+                </S.ContentSelect>
+                <S.ContentSelect
+                  css={selectedStyle(2)}
+                  onClick={() => setSelectedIndex(2)}
+                >
+                  원서 학교 제출
+                </S.ContentSelect>
+                <S.ContentSelect
+                  css={selectedStyle(3)}
+                  onClick={() => setSelectedIndex(3)}
+                >
+                  1차 서류 전형
+                </S.ContentSelect>
+              </S.ContentHeaderLine>
+              <S.ContentHeaderLine>
+                <S.ContentSelect
+                  css={selectedStyle(4)}
+                  onClick={() => setSelectedIndex(4)}
+                >
+                  2차 면접
+                </S.ContentSelect>
+                <S.ContentSelect
+                  css={selectedStyle(5)}
+                  onClick={() => setSelectedIndex(5)}
+                >
+                  결과 발표
+                </S.ContentSelect>
+              </S.ContentHeaderLine>
+            </S.ContentHeader>
+          )}
           <MainPageDescription selectedIndex={selectedIndex} data={data} />
         </S.ContentBox>
       </S.MainContent>
