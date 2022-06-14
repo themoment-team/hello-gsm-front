@@ -45,7 +45,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
             </S.Description>
           </S.TitleBox>
           <S.ApplyBox>
-            <Link href="/apply" passHref>
+            <Link href="/information" passHref>
               <S.ToApply>
                 <S.ToApplyText>원서 접수</S.ToApplyText>
               </S.ToApply>
