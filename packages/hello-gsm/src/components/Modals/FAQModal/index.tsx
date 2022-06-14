@@ -1,8 +1,8 @@
 import * as S from './style';
-import * as I from '../../Assets/svg';
-import useStore from '../../Stores/StoreContainer';
+import * as I from 'Assets/svg';
+import useStore from 'Stores/StoreContainer';
 import { css, Global } from '@emotion/react';
-import { useCallback, MouseEvent } from 'react';
+import { useCallback, MouseEvent, useState, useEffect } from 'react';
 
 const FAQModal: React.FC = () => {
   const { showFAQModal, setShowFAQModal, FAQModalTitle, FAQModalContent } =
@@ -22,9 +22,11 @@ const FAQModal: React.FC = () => {
         `}
       />
       <S.FAQModalBox onClick={removeClick}>
-        <S.CloseButton onClick={setShowFAQModal}>
-          <I.CloseButton />
-        </S.CloseButton>
+        <S.CloseButtonWrap>
+          <S.CloseButton onClick={setShowFAQModal}>
+            <I.CloseButton />
+          </S.CloseButton>
+        </S.CloseButtonWrap>
         <S.ContentBox>
           <S.QuestionBox>
             <S.QuestionTitle>

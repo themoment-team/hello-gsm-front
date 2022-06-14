@@ -12,3 +12,4 @@ export { default as FindSchoolClose } from './FindSchoolClose';
 export { default as FindSchoolSearchIcon } from './FindSchoolSearchIcon';
 export { default as Celebration } from './Celebration';
 export { default as KakaoLogo } from './KakaoLogo';
+export { default as MypageSuccess } from './MypageSuccess';

@@ -1,6 +1,6 @@
 import React from 'react';
 import type { GetServerSideProps, NextPage } from 'next';
-import { MainPage } from 'components';
+import { MainPage, SEOHelmet } from 'components';
 import axios from 'axios';
 
 export interface applicantsType {
@@ -16,7 +16,16 @@ export interface applicantsType {
   }[];
 }
 
-const Home: NextPage<applicantsType> = ({ data }) => <MainPage data={data} />;
+const Home: NextPage<applicantsType> = ({ data }) => {
+  const seoTitle = '홈';
+  const desc = '지원자들의 정보를 확인합니다.';
+  return (
+    <>
+      <SEOHelmet seoTitle={seoTitle} desc={desc} />
+      <MainPage data={data} />
+    </>
+  );
+};
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {

@@ -1,10 +1,16 @@
 import * as S from './style';
-import * as I from '../../Assets/svg';
-import useStore from '../../Stores/StoreContainer';
+import * as I from 'Assets/svg';
+import useStore from 'Stores/StoreContainer';
 import { css } from '@emotion/react';
 
 const MypageModal: React.FC = () => {
-  const { setShowMypageModal, mypageModalContent } = useStore();
+  const { setShowMypageModal, mypageModalContent, setShowMypageSuccessModal } =
+    useStore();
+
+  const AllowButton = () => {
+    setShowMypageModal();
+    mypageModalContent === 'final' && setShowMypageSuccessModal();
+  };
 
   return (
     <S.MypageModal>
@@ -55,6 +61,7 @@ const MypageModal: React.FC = () => {
             css={css`
               ${mypageModalContent === 'cancel' && 'background: #FB1834'};
             `}
+            onClick={AllowButton}
           >
             {mypageModalContent === 'cancel' && '원서 삭제'}
             {mypageModalContent === 'final' && '최종제출'}

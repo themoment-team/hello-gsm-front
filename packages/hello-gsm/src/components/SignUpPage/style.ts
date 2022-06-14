@@ -76,6 +76,11 @@ export const TosBox = styled.div`
   background: #484453;
   border-radius: 10px;
   margin-top: 50px;
+  padding: 20px;
+  overflow: scroll;
+  line-height: 20px;
+  color: #ffffff;
+  font-size: 16px;
 `;
 
 export const CheckLabel = styled.label`
@@ -123,11 +128,11 @@ export const LadioSection = styled.div`
 export const RadioLabel = styled.label`
   display: inline-block;
   text-align: center;
-  cursor: pointer;
   input {
     display: none;
   }
   div {
+    cursor: pointer;
     width: 380px;
     height: 61px;
     background-color: #484453;

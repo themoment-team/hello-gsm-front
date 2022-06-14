@@ -1,8 +1,7 @@
-import React from 'react';
 import type { NextPage } from 'next';
-import Header from '../Common/Header';
+import { Header, Footer } from 'components';
 import * as S from './style';
-import * as I from '../../Assets/svg';
+import * as I from 'Assets/svg';
 import Image from 'next/image';
 import {
   BackEnd,
@@ -10,7 +9,7 @@ import {
   DevOps,
   FrontEnd,
   Operating,
-} from '../../../public/data/about';
+} from '@/public/data/about';
 
 const AboutPage: NextPage = () => {
   return (
@@ -206,6 +205,7 @@ const AboutPage: NextPage = () => {
           <S.SmallBall style={{ left: '19vh', top: '209vh' }} />
         </S.Section>
       </S.AboutPage>
+      <Footer />
     </>
   );
 };
