@@ -12,6 +12,7 @@ import {
   FindSchoolModal,
 } from 'components';
 import { useForm } from 'react-hook-form';
+import application from 'Api/application';
 
 interface ApplyFormType {
   IDPhotoUrl: string;
@@ -68,6 +69,12 @@ const ApplyPage: NextPage = () => {
       educationStatus: '졸업예정',
     },
   });
+
+  const apply = async () => {
+    try {
+      application.postFirstSubmission
+    }
+  }
 
   const readImg = (event: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
