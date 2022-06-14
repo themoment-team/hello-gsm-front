@@ -4,17 +4,20 @@ export const ApplicationPage = styled.div`
   display: flex;
   justify-content: center;
   background-color: #ffffff;
-  padding: 2vh;
+  padding: 1vh;
   height: 100vh;
+  overflow: hidden;
+  font-size: 1vh;
 `;
 
 export const Document = styled.div`
+  width: 63vh;
   position: relative;
   z-index: 1;
   .warterMark {
     position: absolute;
     font-size: 40vh;
-    color: #e8e8e8;
+    color: #f2f2f2;
     z-index: -1;
     text-align: center;
     transform: rotate(-30deg);
@@ -22,25 +25,22 @@ export const Document = styled.div`
   }
 `;
 
-export const Template = styled.div`
-  font-size: 1.4vh;
-`;
-
 export const Title = styled.div`
   font-size: 3vh;
   text-align: center;
-  font-weight: 700;
-  margin: 1.7vh 0 2.5vh;
-`;
-
-export const SubTitle = styled.div`
-  font-size: 1.7vh;
   font-weight: 700;
 `;
 
 export const Wrap = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
+`;
+
+export const SubTitle = styled.div`
+  font-size: 1.2vh;
+  margin-top: 1.5vh;
+  line-height: 2vh;
 `;
 
 export const Box = styled.div`
@@ -55,7 +55,7 @@ export const Box = styled.div`
 
 export const ApplyNum = styled.div`
   font-weight: 500;
-  background-color: #c4c4c4;
+  background-color: #e9e9e9;
   height: 100%;
   line-height: 2.2vh;
   padding: 0 1.3vh;
@@ -68,17 +68,21 @@ export const Content = styled.div`
 `;
 
 export const Container = styled.div`
-  border: 0.08vh solid #000000;
+  border: 0.16vh solid #000000;
 `;
 
 export const Table = styled.table`
-  width: 63vh;
+  width: 100%;
   text-align: center;
-
+  border-collapse: collapse;
+  font-size: 1.2vh;
+  line-height: 2.2vh;
+  margin: 0 auto;
   td {
     vertical-align: middle;
     border: 0.08vh solid #000000;
     border-collapse: collapse;
+    overflow: hidden;
   }
 
   img {
@@ -86,13 +90,18 @@ export const Table = styled.table`
     width: 100%;
     height: 100%;
   }
-  font-size: 1.2vh;
-  line-height: 2.2vh;
+  .slash {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="100%" x2="100%" y2="0" stroke="gray" /></svg>');
+  }
+
+  .backSlash {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
+  }
 `;
 
 export const Subject = styled.td`
   font-weight: 500;
-  background-color: #c4c4c4;
+  background-color: #e9e9e9;
   border-collapse: collapse;
   vertical-align: middle;
   border: 0.08vh solid #000000;
@@ -100,7 +109,6 @@ export const Subject = styled.td`
 `;
 
 export const Details = styled.div`
-  width: 63vh;
   padding: 0 0.4vh 2vh;
   border: 0.08vh solid #000000;
   border-top: none;
@@ -124,6 +132,7 @@ export const Date = styled.div`
   width: 10vh;
   margin: 0 auto;
   line-height: 2.6vh;
+  font-size: 1.5vh;
 `;
 
 export const Signature = styled.div`
@@ -144,10 +153,26 @@ export const Principal = styled.div`
 export const True = styled.div`
   text-align: center;
   line-height: 4.4vh;
+  font-size: 1.5vh;
 `;
 
 export const Seal = styled.div`
   text-align: end;
   font-size: 1.7vh;
   margin-right: 3.5vh;
+`;
+
+export const Materials = styled.div`
+  border-top: 0.17vh solid #000000;
+  margin-top: 4.4vh;
+  line-height: 3.5vh;
+`;
+
+export const ScoreDetails = styled.div``;
+
+export const SignatureSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5vh;
+  margin-top: 1.5vh;
 `;

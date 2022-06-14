@@ -1,7 +1,7 @@
 import { BASE_URL } from 'shared/config';
 import axios, { AxiosRequestConfig } from 'axios';
 
-const RequestApi = (p: AxiosRequestConfig) => {
+const RequestApi = (p: AxiosRequestConfig, token?: string) => {
   try {
     const res = axios({
       method: p.method,
@@ -9,6 +9,9 @@ const RequestApi = (p: AxiosRequestConfig) => {
       url: p.url,
       data: p.data,
       withCredentials: true,
+      headers: {
+        cookie: token || '',
+      },
     });
     return res;
   } catch (error) {
