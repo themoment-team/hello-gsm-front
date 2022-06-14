@@ -63,7 +63,7 @@ const Header: React.FC = () => {
             `}
           >
             <Link href="/auth/signin" passHref>
-              <S.MemberContent css={select('/auth/signin')}>
+              <S.MemberContent css={select('/auth/signin')} onClick={logout}>
                 로그인
               </S.MemberContent>
             </Link>

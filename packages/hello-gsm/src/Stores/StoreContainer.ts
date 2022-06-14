@@ -23,7 +23,7 @@ interface storeType {
 }
 
 const useStore = create<storeType>(set => ({
-  logged: true,
+  logged: false,
   showFAQModal: false,
   FAQModalTitle: '',
   FAQModalContent: '',
