@@ -6,6 +6,7 @@ interface StatusDataType {
     finalResultScreening: boolean;
     isFinalSubmission: boolean;
     isDocumentReception: boolean;
+    registrationNumber: null | number;
   };
 }
 
