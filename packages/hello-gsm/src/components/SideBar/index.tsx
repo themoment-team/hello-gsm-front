@@ -1,13 +1,13 @@
 import type { NextPage } from 'next';
 import * as S from './style';
 import * as I from 'Assets/svg';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useStore from 'Stores/StoreContainer';
 import NavLink from './NavLink';
+import auth from 'Api/auth';
 
 const SideBar: NextPage = () => {
-  const [logged, setLogged] = useState(true);
-  const { showSideBar, setShowSideBar } = useStore();
+  const { logged, showSideBar, setShowSideBar } = useStore();
 
   /**
    * table 크기 이상이면 sidebar 애니메이션 없앰, sidebar display:none 시킴
@@ -17,6 +17,27 @@ const SideBar: NextPage = () => {
       window.innerWidth > 960 && setShowSideBar(null);
     };
   }, [showSideBar, setShowSideBar]);
+
+  const logout = async () => {
+    try {
+      await auth.logout();
+      // 새로고침
+      window.location.reload();
+    } catch (error: any) {
+      // accessToken 없을 시에 accessToken 발급 후 logout 요청
+      if (error.response.status === 401) {
+        try {
+          // accessToken 발급
+          await auth.refresh();
+          logout();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <S.Background animation={showSideBar} />
@@ -32,9 +53,8 @@ const SideBar: NextPage = () => {
             <NavLink href="/faq">자주 묻는 질문</NavLink>
             {logged && <NavLink href="/mypage">내정보</NavLink>}
           </S.LinkWrapper>
-
           {logged ? (
-            <S.LogOut onClick={() => setLogged(false)}>로그아웃</S.LogOut>
+            <S.LogOut onClick={logout}>로그아웃</S.LogOut>
           ) : (
             <S.Auth>
               <NavLink href="/auth/signin">로그인</NavLink>
