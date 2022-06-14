@@ -15,6 +15,7 @@ export { default as MypagePage } from './MypagePage';
 export { default as NotFoundPage } from './NotFoundPage';
 export { default as SchoolPage } from './SchoolPage';
 export { default as Select } from './Select';
+export { default as SideBar } from './SideBar';
 export { default as SignInPage } from './SignInPage';
 export { default as SignUpPage } from './SignUpPage';
 export { default as MypageSuccessModal } from './Modals/MypageSuccessModal';

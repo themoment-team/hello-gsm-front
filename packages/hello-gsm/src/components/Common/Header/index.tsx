@@ -6,8 +6,7 @@ import React from 'react';
 import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 import * as I from 'Assets/svg';
-import useStore from 'Stores/StoreContainer';
-import SideBar from 'components/SideBar';
+import { SideBar } from 'components';
 
 const Header: React.FC = () => {
   const { pathname } = useRouter();
