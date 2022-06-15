@@ -1,12 +1,12 @@
 import type { NextPage } from 'next';
 import { Header } from 'components';
 import * as S from './style';
-import * as I from '../../Assets/svg';
+import * as I from 'Assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { Calculate, Volunteer, Rounds, Attendance } from './function';
 import application from 'Api/application';
-import Result from '../Result';
+import Result from 'components/Modals/ScoreResultModal';
 
 interface ScoreForm {
   score2_1: number[];
@@ -26,8 +26,16 @@ const CalculatorPage: NextPage = () => {
     formState: { errors },
   } = useForm<ScoreForm>();
 
-  const [showResult, setShowResult] = useState(false);
-  const [resultArray, setResultArray] = useState<Array<number>>([]);
+  const [showResult, setShowResult] = useState(false); // 결과 모달 제어
+  const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
+  const [isSubmission, setIsSubmission] = useState<string | null>();
+
+  useEffect(() => {
+    /**
+     * 사용자가 이전에 성적 제출을 했는지 확인
+     */
+    setIsSubmission(window.localStorage.getItem('isSubmission'));
+  }, []);
 
   const onValid = async (validForm: ScoreForm) => {
     const score2_1: number = Calculate(validForm.score2_1, 2); // 2학년 1학기
@@ -75,6 +83,7 @@ const CalculatorPage: NextPage = () => {
     window.localStorage.setItem('score2_1', JSON.stringify(validForm.score2_1));
     window.localStorage.setItem('score2_2', JSON.stringify(validForm.score2_2));
     window.localStorage.setItem('score3_1', JSON.stringify(validForm.score3_1));
+
     window.localStorage.setItem(
       'artSportsScore',
       JSON.stringify(validForm.artSportsScore),
@@ -96,19 +105,33 @@ const CalculatorPage: NextPage = () => {
       'newSubjects',
       JSON.stringify(validForm.newSubjects),
     );
+    window.localStorage.setItem('isSubmission', 'true');
     try {
-      // await application.postSecondSubmisson({
-      //   score2_1,
-      //   score2_2,
-      //   score3_1,
-      //   generalCurriculumScoreSubtotal,
-      //   artSportsScore,
-      //   attendanceScore,
-      //   curriculumScoreSubtotal,
-      //   volunteerScore,
-      //   nonCurriculumScoreSubtotal,
-      //   scoreTotal,
-      // });
+      isSubmission
+        ? await application.patchSecondSubmisson({
+            score2_1,
+            score2_2,
+            score3_1,
+            generalCurriculumScoreSubtotal,
+            artSportsScore,
+            attendanceScore,
+            curriculumScoreSubtotal,
+            volunteerScore,
+            nonCurriculumScoreSubtotal,
+            scoreTotal,
+          })
+        : await application.postSecondSubmisson({
+            score2_1,
+            score2_2,
+            score3_1,
+            generalCurriculumScoreSubtotal,
+            artSportsScore,
+            attendanceScore,
+            curriculumScoreSubtotal,
+            volunteerScore,
+            nonCurriculumScoreSubtotal,
+            scoreTotal,
+          });
       setShowResult(true);
     } catch (e) {
       console.error(e);

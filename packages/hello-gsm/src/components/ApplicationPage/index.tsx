@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 import { ProfileType } from 'type/profile';
 import useLocalstorage from 'hooks/useLocalstorage';
 import useToString from 'hooks/useToString';
+import { useEffect } from 'react';
 
 const profile: ProfileType = {
   user: {
@@ -63,7 +64,9 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
   const subjects = useLocalstorage('subjects');
   const newSubjects = useLocalstorage('newSubjects');
   const { user, application, applicationDetails } = profile;
-
+  useEffect(() => {
+    window.print();
+  }, []);
   return (
     <>
       <S.ApplicationPage
@@ -448,7 +451,8 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                 <td>{attendanceScore && attendanceScore[0]}</td>
                 <td>{attendanceScore && attendanceScore[3]}</td>
                 <td>{attendanceScore && attendanceScore[6]}</td>
-                <td rowSpan={3}>asdas</td>
+                <td rowSpan={3}>{(30 - 27) / 3}</td>
+                {/* 환산일수 구하기 */}
                 <td rowSpan={3}>asdas</td>
                 <td>{volunteerScore && volunteerScore[0]}</td>
                 <td rowSpan={3}>asdas</td>
