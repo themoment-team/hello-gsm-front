@@ -9,7 +9,7 @@ import * as I from 'Assets/svg';
 import { SideBar } from 'components';
 
 const Header: React.FC = () => {
-  const { pathname } = useRouter();
+  const { pathname, replace } = useRouter();
 
   const { logged, setShowSideBar } = useStore();
 
@@ -19,8 +19,7 @@ const Header: React.FC = () => {
   const logout = async () => {
     try {
       await auth.logout();
-      // 새로고침
-      window.location.reload();
+      replace('/');
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 logout 요청
       if (error.response.status === 401) {
