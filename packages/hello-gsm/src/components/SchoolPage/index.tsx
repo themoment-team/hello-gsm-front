@@ -32,7 +32,7 @@ const SchoolPage: NextPage = () => {
       '/Enterprises/AICA.jpg',
       '/Enterprises/MIDAS.jpg',
       '/Enterprises/GJKorcham.jpg',
-      '/Enterprises/MindLogic.jpg',
+      '/Enterprises/Mindlogic.jpg',
     ],
     [
       '/Enterprises/RFA.jpg',

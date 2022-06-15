@@ -64,3 +64,10 @@ export const HamBurger = styled.div`
     display: block;
   }
 `;
+
+export const Logout = styled.p`
+  color: #dddddd;
+  font-weight: 400;
+  font-size: 18px;
+  cursor: pointer;
+`;

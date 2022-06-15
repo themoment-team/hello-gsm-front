@@ -1,20 +1,40 @@
 import { css } from '@emotion/react';
+import auth from 'Api/auth';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React from 'react';
+import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 import * as I from 'Assets/svg';
-import useStore from 'Stores/StoreContainer';
-import SideBar from 'components/SideBar';
+import { SideBar } from 'components';
 
 const Header: React.FC = () => {
-  const { pathname } = useRouter();
-  const [logged, setLogged] = useState(true);
+  const { pathname, replace } = useRouter();
+
+  const { logged, setShowSideBar } = useStore();
 
   const select = (navPath: string) =>
     navPath === pathname && { color: '#ffffff' };
 
-  const { setShowSideBar } = useStore();
+  const logout = async () => {
+    try {
+      await auth.logout();
+      replace('/');
+    } catch (error: any) {
+      // accessToken 없을 시에 accessToken 발급 후 logout 요청
+      if (error.response.status === 401) {
+        try {
+          // accessToken 발급
+          await auth.refresh();
+          logout();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <S.HeaderWrap>
@@ -52,9 +72,7 @@ const Header: React.FC = () => {
             <Link href="/mypage" passHref>
               <S.MemberContent css={select('/mypage')}>내 정보</S.MemberContent>
             </Link>
-            <S.MemberContent onClick={() => setLogged(false)}>
-              로그아웃
-            </S.MemberContent>
+            <S.Logout onClick={logout}>로그아웃</S.Logout>
           </S.MemberBox>
         )}
         <S.HamBurger onClick={() => setShowSideBar(true)}>
