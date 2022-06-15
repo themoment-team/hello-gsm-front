@@ -3,6 +3,7 @@ import * as S from './style';
 import { css } from '@emotion/react';
 import { ProfileType } from 'type/profile';
 import useLocalstorage from 'hooks/useLocalstorage';
+import useToString from 'hooks/useToString';
 
 const profile: ProfileType = {
   user: {
@@ -52,10 +53,10 @@ const profile: ProfileType = {
 };
 
 const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
-  const score2_1 = useLocalstorage('score2_1');
-  const score2_2 = useLocalstorage('score2_2');
-  const score3_1 = useLocalstorage('score3_1');
-  const artSportsScore = useLocalstorage('artSportsScore');
+  const score2_1 = useToString(useLocalstorage('score2_1'));
+  const score2_2 = useToString(useLocalstorage('score2_2'));
+  const score3_1 = useToString(useLocalstorage('score3_1'));
+  const artSportsScore = useToString(useLocalstorage('artSportsScore'));
   const absentScore = useLocalstorage('absentScore');
   const attendanceScore = useLocalstorage('attendanceScore');
   const volunteerScore = useLocalstorage('volunteerScore');
@@ -395,26 +396,26 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
                 <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
+                <S.Value>{artSportsScore && artSportsScore[1]}</S.Value>
+                <S.Value>{artSportsScore && artSportsScore[2]}</S.Value>
               </S.Column>
               <S.Column>
                 <S.Semester>
                   <S.DivSubject>2학년 2학기</S.DivSubject>
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
-                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
+                <S.Value>{artSportsScore && artSportsScore[3]}</S.Value>
+                <S.Value>{artSportsScore && artSportsScore[4]}</S.Value>
+                <S.Value>{artSportsScore && artSportsScore[5]}</S.Value>
               </S.Column>
               <S.Column>
                 <S.Semester>
                   <S.DivSubject>3학년 1학기</S.DivSubject>
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
-                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
+                <S.Value>{artSportsScore && artSportsScore[6]}</S.Value>
+                <S.Value>{artSportsScore && artSportsScore[7]}</S.Value>
+                <S.Value>{artSportsScore && artSportsScore[8]}</S.Value>
               </S.Column>
             </S.ColumnWrapper>
             <S.Test>
