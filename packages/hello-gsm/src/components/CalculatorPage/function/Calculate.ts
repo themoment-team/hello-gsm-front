@@ -11,22 +11,22 @@ import ToNum from './ToNum';
 const Calculate = (array: Array<number>, mode: number) => {
   ToNum(array);
   array = array.filter(arr => arr && !isNaN(arr)); // 배열에서 NaN 제거
-  const arraySum = Sum(array);
+  const arraySum = Sum(array); // 배열 합계 구하기
 
   let result = 0;
 
   switch (mode) {
     case 2:
-      result = 54 * (arraySum / (array.length * 5)); // 2학년 공식 적용
+      result = Rounds(54 * (arraySum / (array.length * 5))); // 2학년 공식 적용
       break;
     case 3:
-      result = 72 * (arraySum / (array.length * 5)); // 3학년 공식 적용
+      result = Rounds(72 * (arraySum / (array.length * 5))); // 3학년 공식 적용
       break;
     case 4:
-      result = 60 * (arraySum / (array.length * 5)); // 예체능 공식 적용
+      result = Rounds(60 * (arraySum / (array.length * 5))); // 예체능 공식 적용
       break;
   }
-  return Rounds(result);
+  return result;
 };
 
 export default Calculate;
