@@ -11,7 +11,7 @@ import { SideBar } from 'components';
 const Header: React.FC = () => {
   const { pathname, replace } = useRouter();
 
-  const { logged, setShowSideBar } = useStore();
+  const { logged, setLogged, setShowSideBar } = useStore();
 
   const select = (navPath: string) =>
     navPath === pathname && { color: '#ffffff' };
@@ -19,6 +19,7 @@ const Header: React.FC = () => {
   const logout = async () => {
     try {
       await auth.logout();
+      setLogged(false);
       replace('/');
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 logout 요청
