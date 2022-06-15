@@ -16,7 +16,7 @@ const Header: React.FC = () => {
   const select = (navPath: string) =>
     navPath === pathname && { color: '#ffffff' };
 
-  const logout = async (): v => {
+  const logout = async () => {
     try {
       await auth.logout();
       setLogged(false);
