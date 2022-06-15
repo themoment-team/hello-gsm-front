@@ -43,7 +43,7 @@ class Auth {
   /**
    * 토큰 재발급을 위한 api
    */
-  refresh(refreshToken: string) {
+  refresh(refreshToken?: string) {
     try {
       return RequestApi(
         {
