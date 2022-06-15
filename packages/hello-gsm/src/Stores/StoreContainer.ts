@@ -8,6 +8,7 @@ interface storeType {
   showMypageModal: boolean;
   mypageModalContent: string;
   isSearching: boolean;
+  showSideBar: boolean | null;
   showMypageSuccessModal: boolean;
 
   setLogged: (isLogged: boolean) => void;
@@ -17,6 +18,7 @@ interface storeType {
   setShowMypageModal: () => void;
   setMypageModalContent: (content: string) => void;
   setIsSearching: (trueOrFalse: boolean) => void;
+  setShowSideBar: (value: boolean | null) => void;
   setShowMypageSuccessModal: () => void;
 }
 
@@ -28,6 +30,7 @@ const useStore = create<storeType>(set => ({
   showMypageModal: false,
   mypageModalContent: '',
   isSearching: false,
+  showSideBar: null,
   showMypageSuccessModal: false,
 
   setLogged: isLogged => set({ logged: isLogged }),
@@ -38,6 +41,7 @@ const useStore = create<storeType>(set => ({
     set(state => ({ showMypageModal: !state.showMypageModal })),
   setMypageModalContent: content => set({ mypageModalContent: content }),
   setIsSearching: trueOrFalse => set({ isSearching: trueOrFalse }),
+  setShowSideBar: value => set({ showSideBar: value }),
   setShowMypageSuccessModal: () =>
     set(state => ({ showMypageSuccessModal: !state.showMypageSuccessModal })),
 }));
