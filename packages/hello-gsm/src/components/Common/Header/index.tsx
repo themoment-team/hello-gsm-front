@@ -27,7 +27,7 @@ const Header: React.FC = () => {
         try {
           // accessToken 발급
           await auth.refresh();
-          return logout();
+          logout();
         } catch (error) {
           console.log(error);
         }
