@@ -92,7 +92,7 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
                 width: 160px;
               `}
             >
-              <Link href="/apply" passHref>
+              <Link href="/information" passHref>
                 <S.Button>원서 작성</S.Button>
               </Link>
             </S.ButtonBox>
