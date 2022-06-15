@@ -16,7 +16,7 @@ const Header: React.FC = () => {
   const select = (navPath: string) =>
     navPath === pathname && { color: '#ffffff' };
 
-  const logout = async () => {
+  const logout = async (): v => {
     try {
       await auth.logout();
       setLogged(false);
@@ -27,12 +27,13 @@ const Header: React.FC = () => {
         try {
           // accessToken 발급
           await auth.refresh();
-          logout();
+          return logout();
         } catch (error) {
           console.log(error);
         }
+      } else {
+        console.log(error);
       }
-      console.log(error);
     }
   };
 
