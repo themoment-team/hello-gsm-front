@@ -11,7 +11,7 @@ const RequestApi = (p: AxiosRequestConfig, token?: string) => {
           data: p.data,
           withCredentials: true,
           headers: {
-            cookie: token || '',
+            cookie: token,
           },
         })
       : axios({
