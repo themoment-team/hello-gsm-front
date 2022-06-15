@@ -12,7 +12,7 @@ class Application {
         method: 'GET',
         url: ApplicationController.information(),
       });
-    } catch (error) {
+    } catch (error: any) {
       return error;
     }
   }
