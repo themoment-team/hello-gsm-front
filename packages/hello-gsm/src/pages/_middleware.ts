@@ -8,7 +8,7 @@ import auth from 'Api/auth';
  */
 export async function middleware(req: NextRequest) {
   console.log(req.ua);
-  await auth.check(req.cookies.accessToken);
+
   if (req.ua?.browser.name === 'Safari') {
     return new Response('Chrome 사용을 권장합니다.');
   }
