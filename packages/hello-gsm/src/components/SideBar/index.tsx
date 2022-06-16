@@ -60,7 +60,6 @@ const SideBar: NextPage = () => {
           ) : (
             <S.Auth>
               <NavLink href="/auth/signin">로그인</NavLink>
-              <NavLink href="/auth/signup">회원가입</NavLink>
             </S.Auth>
           )}
         </S.NavSection>
