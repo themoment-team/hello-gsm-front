@@ -8,9 +8,9 @@ import auth from 'Api/auth';
 import { useRouter } from 'next/router';
 
 const SideBar: NextPage = () => {
-  const { logged, showSideBar, setShowSideBar } = useStore();
+  const { logged, setLogged, showSideBar, setShowSideBar } = useStore();
 
-  const { replace } = useRouter();
+  const { pathname, replace } = useRouter();
 
   /**
    * table 크기 이상이면 sidebar 애니메이션 없앰, sidebar display:none 시킴
@@ -24,7 +24,9 @@ const SideBar: NextPage = () => {
   const logout = async () => {
     try {
       await auth.logout();
+      setLogged(false);
       replace('/');
+      pathname === '/' && location.reload();
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 logout 요청
       if (error.response.status === 401) {
@@ -35,8 +37,9 @@ const SideBar: NextPage = () => {
         } catch (error) {
           console.log(error);
         }
+      } else {
+        console.log(error);
       }
-      console.log(error);
     }
   };
 
