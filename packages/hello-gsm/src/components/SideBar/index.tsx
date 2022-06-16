@@ -72,7 +72,3 @@ const SideBar: NextPage = () => {
 };
 
 export default SideBar;
-function setLogged(arg0: boolean) {
-  throw new Error('Function not implemented.');
-}
-
