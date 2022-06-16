@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 const SideBar: NextPage = () => {
   const { logged, setLogged, showSideBar, setShowSideBar } = useStore();
 
-  const { replace } = useRouter();
+  const { pathname, replace } = useRouter();
 
   /**
    * table 크기 이상이면 sidebar 애니메이션 없앰, sidebar display:none 시킴
@@ -26,7 +26,7 @@ const SideBar: NextPage = () => {
       await auth.logout();
       setLogged(false);
       replace('/');
-      location.reload();
+      pathname === '/' && location.reload();
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 logout 요청
       if (error.response.status === 401) {
