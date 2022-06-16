@@ -12,6 +12,9 @@ export const AuthController = {
   refresh: () => {
     return `/auth/refresh`;
   },
+  check: () => {
+    return `/auth/check`;
+  },
 };
 
 // 유저 상태

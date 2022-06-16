@@ -22,13 +22,16 @@ class User {
   /**
    * @returns 회원가입 시에 기입한 유저의 정보를 반환한다
    */
-  info() {
+  info(accessToken: string) {
     try {
-      return RequestApi({
-        method: 'GET',
-        url: UserController.info(),
-      });
-    } catch (error) {
+      return RequestApi(
+        {
+          method: 'GET',
+          url: UserController.info(),
+        },
+        accessToken,
+      );
+    } catch (error: any) {
       return error;
     }
   }
