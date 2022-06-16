@@ -24,7 +24,6 @@ const SideBar: NextPage = () => {
   const logout = async () => {
     try {
       await auth.logout();
-      location.reload();
       replace('/');
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 logout 요청
