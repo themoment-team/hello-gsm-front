@@ -8,7 +8,7 @@ import auth from 'Api/auth';
 import { useRouter } from 'next/router';
 
 const SideBar: NextPage = () => {
-  const { logged, showSideBar, setShowSideBar } = useStore();
+  const { logged, setLogged, showSideBar, setShowSideBar } = useStore();
 
   const { replace } = useRouter();
 
@@ -24,6 +24,7 @@ const SideBar: NextPage = () => {
   const logout = async () => {
     try {
       await auth.logout();
+      setLogged(false);
       replace('/');
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 logout 요청
