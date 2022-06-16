@@ -44,6 +44,10 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
     }
   }, [selectedIndex, logged]);
 
+  useEffect(() => {
+    location.reload();
+  }, [logged]);
+
   switch (index) {
     case 1:
       return (
