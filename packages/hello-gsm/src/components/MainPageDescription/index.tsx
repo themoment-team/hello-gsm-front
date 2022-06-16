@@ -17,7 +17,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   const [registrationNumber, setRegistrationNumber] = useState<number | null>();
   const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(true);
 
-  const { logged, setLogged } = useStore();
+  const { setLogged } = useStore();
 
   useEffect(() => {
     today > new Date('2022-11-01') && setIsFirstPeriod(false);
@@ -42,7 +42,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
       setLogged(false);
       selectedIndex === 5 && setIndex(6);
     }
-  }, [selectedIndex, logged]);
+  }, [selectedIndex]);
 
   switch (index) {
     case 1:
