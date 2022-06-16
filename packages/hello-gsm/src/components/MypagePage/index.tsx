@@ -77,7 +77,7 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
                   width: 510px;
                 `}
               >
-                <S.Button onClick={() => showModal('cancel')}>
+                <S.Button onClick={() => showModal('delete')}>
                   원서 삭제
                 </S.Button>
                 <Link href="/apply" passHref>
