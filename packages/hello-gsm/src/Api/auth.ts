@@ -56,6 +56,25 @@ class Auth {
       return error;
     }
   }
+
+  /**
+   *
+   * @param accessToken - api 요청을 하기 위한 토큰
+   * @returns - 로그인 여부 확인
+   */
+  check(accessToken?: string) {
+    try {
+      return RequestApi(
+        {
+          method: 'GET',
+          url: AuthController.check(),
+        },
+        accessToken,
+      );
+    } catch (error: any) {
+      return error;
+    }
+  }
 }
 
 export default new Auth();
