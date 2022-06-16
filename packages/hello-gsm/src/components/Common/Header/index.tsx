@@ -11,7 +11,7 @@ import { SideBar } from 'components';
 const Header: React.FC = () => {
   const { pathname, replace } = useRouter();
 
-  const { logged, setLogged, setShowSideBar } = useStore();
+  const { logged, setShowSideBar } = useStore();
 
   const select = (navPath: string) =>
     navPath === pathname && { color: '#ffffff' };
@@ -19,7 +19,6 @@ const Header: React.FC = () => {
   const logout = async () => {
     try {
       await auth.logout();
-      setLogged(false);
       replace('/');
       location.reload();
     } catch (error: any) {

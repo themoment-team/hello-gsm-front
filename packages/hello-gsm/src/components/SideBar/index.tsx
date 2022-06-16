@@ -25,6 +25,7 @@ const SideBar: NextPage = () => {
     try {
       await auth.logout();
       replace('/');
+      location.reload();
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 logout 요청
       if (error.response.status === 401) {
@@ -35,8 +36,9 @@ const SideBar: NextPage = () => {
         } catch (error) {
           console.log(error);
         }
+      } else {
+        console.log(error);
       }
-      console.log(error);
     }
   };
 
@@ -70,3 +72,7 @@ const SideBar: NextPage = () => {
 };
 
 export default SideBar;
+function setLogged(arg0: boolean) {
+  throw new Error('Function not implemented.');
+}
+
