@@ -2,14 +2,65 @@ import * as S from './style';
 import * as I from 'Assets/svg';
 import useStore from 'Stores/StoreContainer';
 import { css } from '@emotion/react';
+import application from 'Api/application';
+import auth from 'Api/auth';
+import { useRouter } from 'next/router';
 
 const MypageModal: React.FC = () => {
   const { setShowMypageModal, mypageModalContent, setShowMypageSuccessModal } =
     useStore();
 
+  const { push } = useRouter();
+
+  // 최종 제출
+  const finalSubmission = async () => {
+    try {
+      await application.patchFinalSubmission();
+      window.location.reload();
+    } catch (error: any) {
+      if (error.response.status === 401) {
+        try {
+          // accessToken 발급
+          await auth.refresh();
+          finalSubmission();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+  };
+
+  // 원서 삭제
+  const deleteApplication = async () => {
+    try {
+      await application.deleteInformation();
+      window.location.reload();
+    } catch (error: any) {
+      if (error.response.status === 401) {
+        try {
+          // accessToken 발급
+          await auth.refresh();
+          deleteApplication();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+  };
+
   const AllowButton = () => {
     setShowMypageModal();
     mypageModalContent === 'final' && setShowMypageSuccessModal();
+    switch (mypageModalContent) {
+      case 'delete':
+        deleteApplication();
+        break;
+      case 'final':
+        finalSubmission();
+        break;
+      case 'download':
+        push('/application');
+    }
   };
 
   return (
@@ -21,7 +72,7 @@ const MypageModal: React.FC = () => {
               ${mypageModalContent === 'download' && 'height: 180px;'}
             `}
           >
-            {mypageModalContent === 'cancel' && (
+            {mypageModalContent === 'delete' && (
               <S.ExplanationTitleContent
                 css={css`
                   width: 310px;
@@ -59,11 +110,11 @@ const MypageModal: React.FC = () => {
           <S.CancelButton onClick={setShowMypageModal}>취소</S.CancelButton>
           <S.AllowButton
             css={css`
-              ${mypageModalContent === 'cancel' && 'background: #FB1834'};
+              ${mypageModalContent === 'delete' && 'background: #FB1834'};
             `}
             onClick={AllowButton}
           >
-            {mypageModalContent === 'cancel' && '원서 삭제'}
+            {mypageModalContent === 'delete' && '원서 삭제'}
             {mypageModalContent === 'final' && '최종제출'}
             {mypageModalContent === 'download' && '제출 서류 다운'}
           </S.AllowButton>
