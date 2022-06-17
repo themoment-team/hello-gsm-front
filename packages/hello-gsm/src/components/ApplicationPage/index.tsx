@@ -3,7 +3,7 @@ import * as S from './style';
 import { css } from '@emotion/react';
 import { ProfileType } from 'type/profile';
 import useLocalstorage from 'hooks/useLocalstorage';
-import useToString from 'hooks/useToString';
+import useToString from 'Utils/Calculate/ToString';
 import { useEffect } from 'react';
 
 const profile: ProfileType = {

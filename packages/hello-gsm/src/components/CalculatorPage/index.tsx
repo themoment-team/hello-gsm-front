@@ -4,7 +4,7 @@ import * as S from './style';
 import * as I from 'Assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
-import { Calculate, Volunteer, Rounds, Attendance } from './function';
+import { Calculate, Volunteer, Rounds, Attendance } from 'Utils/Calculate';
 import application from 'Api/application';
 import Result from 'components/Modals/ScoreResultModal';
 
