@@ -13,6 +13,7 @@ import {
 } from 'components';
 import { useForm } from 'react-hook-form';
 import application from 'Api/application';
+import { ApplicationType } from 'type/application';
 
 interface ApplyFormType {
   IDPhotoUrl: string;
@@ -70,11 +71,37 @@ const ApplyPage: NextPage = () => {
     },
   });
 
-  const apply = async () => {
+  const apply = async (submitData: ApplyFormType) => {
+    const data: ApplicationType = {
+      photo: imgURL,
+      application: {
+        teacherCellphoneNumber: submitData.teacherCellphoneNumber,
+        schoolName: schoolName,
+        guardianCellphoneNumber: submitData.guardianCellphoneNumber,
+        screening: submitData.screening,
+      },
+      applicationDetail: {
+        telephoneNumber: submitData.telephoneNumber,
+        address: address,
+        addressDetails: submitData.addressDetails,
+        guardianName: submitData.guardianName,
+        guardianRelation: submitData.guardianRelation,
+        educationStatus: submitData.educationStatus,
+        graduationYear: submitData.graduationYear,
+        graduationMonth: submitData.graduationMonth,
+        firstWantedMajor: choice1,
+        secondWantedMajor: choice2,
+        thirdWantedMajor: choice3,
+        teacherName: submitData.teacherName,
+        schoolLocation: schoolLocation,
+      },
+    };
     try {
-      application.postFirstSubmission
+      application.postFirstSubmission(data);
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
 
   const readImg = (event: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
@@ -90,21 +117,9 @@ const ApplyPage: NextPage = () => {
     }
   };
 
-  const selectedDepartment = (type: number) => {
-    switch (type) {
-      case 1:
-        return '인공지능 개발과';
-      case 2:
-        return '소프트웨어 개발과';
-      case 3:
-        return '스마트 iot과';
-      default:
-        return '선택';
-    }
-  };
-
   const onSubmit = (data: ApplyFormType) => {
     console.log(data);
+    apply(data);
   };
 
   const onClick = () => {
@@ -346,7 +361,7 @@ const ApplyPage: NextPage = () => {
                   setSelectedChoice(1);
                 }}
               >
-                {selectedDepartment(choice1)}
+                {choice1 || '선택'}
               </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (1지망)
@@ -359,7 +374,7 @@ const ApplyPage: NextPage = () => {
                   setSelectedChoice(2);
                 }}
               >
-                {selectedDepartment(choice2)}
+                {choice2 || '선택'}
               </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (2지망)
@@ -372,7 +387,7 @@ const ApplyPage: NextPage = () => {
                   setSelectedChoice(3);
                 }}
               >
-                {selectedDepartment(choice3)}
+                {choice3 || '선택'}
               </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (3지망)
