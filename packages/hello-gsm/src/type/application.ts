@@ -1,24 +1,29 @@
-export interface applicationType {
-  address: string;
-  addressDetails: string;
-  telephoneNumber: string;
-  screening: '일반전형' | '사회통합전형' | '특별전형';
-  schoolName: string;
-  schoolLocation: string;
-  graduationYear: string;
-  graduationMonth: string;
-  educationStatus: '졸업예정' | '졸업' | '검정고시';
-  firstWantedMajor: '소프트웨어 개발과' | '스마트 IOT과' | '인공지능과';
-  secondWantedMajor: '소프트웨어 개발과' | '스마트 IOT과' | '인공지능과';
-  thirdWantedMajor: '소프트웨어 개발과' | '스마트 IOT과' | '인공지능과';
-  guardianName: string;
-  guardianRelation: string;
-  guardianCellphoneNumber: string;
-  teacherName: string;
-  TeacherNumber: string;
+export interface ApplicationType {
+  photo: string;
+  application: {
+    teacherCellphoneNumber: string;
+    schoolName: string;
+    guardianCellphoneNumber: string;
+    screening: string;
+  };
+  applicationDetail: {
+    telephoneNumber: string;
+    address: string;
+    addressDetails: string;
+    guardianName: string;
+    guardianRelation: string;
+    educationStatus: string;
+    graduationYear: string;
+    graduationMonth: string;
+    firstWantedMajor: string;
+    secondWantedMajor: string;
+    thirdWantedMajor: string;
+    teacherName: string;
+    schoolLocation: string;
+  };
 }
 
-export interface scoreType {
+export interface ScoreType {
   score2_1: number;
   score2_2: number;
   score3_1: number;
