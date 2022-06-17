@@ -4,10 +4,14 @@ import * as S from './style';
 import Link from 'next/link';
 import { Header, Footer, MainPageDescription } from 'components';
 import { css } from '@emotion/react';
+import { StatusType } from 'type/user';
+import useStore from 'Stores/StoreContainer';
 
-const MainPage: NextPage = () => {
+const MainPage: NextPage<StatusType> = ({ data }) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(1);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  const { logged } = useStore();
 
   const selectedStyle = (index: number) =>
     selectedIndex === index &&
@@ -44,7 +48,7 @@ const MainPage: NextPage = () => {
             </S.Description>
           </S.TitleBox>
           <S.ApplyBox>
-            <Link href="/information" passHref>
+            <Link href={logged ? '/information' : '/auth/signin'} passHref>
               <S.ToApply>
                 <S.ToApplyText>원서 접수</S.ToApplyText>
               </S.ToApply>
@@ -125,7 +129,7 @@ const MainPage: NextPage = () => {
               </S.ContentHeaderLine>
             </S.ContentHeader>
           )}
-          <MainPageDescription selectedIndex={selectedIndex} />
+          <MainPageDescription selectedIndex={selectedIndex} data={data} />
         </S.ContentBox>
       </S.MainContent>
       <S.GreenBall />

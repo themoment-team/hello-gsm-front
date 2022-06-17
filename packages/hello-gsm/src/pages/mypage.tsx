@@ -65,6 +65,9 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
         console.log(error);
         return {
           props: {},
+          redirect: {
+            destination: '/auth/signin',
+          },
         };
       }
     }

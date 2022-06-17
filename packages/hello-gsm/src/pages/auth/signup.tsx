@@ -1,4 +1,4 @@
-import type { NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
 import { SEOHelmet, SignUpPage } from 'components';
 
 const SignUp: NextPage = () => {
@@ -11,5 +11,20 @@ const SignUp: NextPage = () => {
     </>
   );
 };
+
+// export const getServerSideProps: GetServerSideProps = async ctx => {
+//   if (ctx.req.cookies.registerToken) {
+//     return {
+//       props: {},
+//     };
+//   } else {
+//     return {
+//       props: {},
+//       redirect: {
+//         destination: '/',
+//       },
+//     };
+//   }
+// };
 
 export default SignUp;
