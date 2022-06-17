@@ -10,9 +10,9 @@ interface storeType {
   isSearching: boolean;
   showDepartmentModal: boolean;
   selectedChoice: number;
-  choice1: number;
-  choice2: number;
-  choice3: number;
+  choice1: string;
+  choice2: string;
+  choice3: string;
   showFindSchoolModal: boolean;
   schoolName: string;
   schoolLocation: string;
@@ -29,9 +29,9 @@ interface storeType {
   setIsSearching: (trueOrFalse: boolean) => void;
   setShowDepartmentModal: () => void;
   setSelectedChoice: (index: number) => void;
-  setChoice1: (type: number) => void;
-  setChoice2: (type: number) => void;
-  setChoice3: (type: number) => void;
+  setChoice1: (type: string) => void;
+  setChoice2: (type: string) => void;
+  setChoice3: (type: string) => void;
   setShowFindSchoolModal: () => void;
   setSchoolName: (name: string) => void;
   setSchoolLocation: (location: string) => void;
@@ -50,9 +50,9 @@ const useStore = create<storeType>(set => ({
   isSearching: false,
   showDepartmentModal: false,
   selectedChoice: 0,
-  choice1: 0,
-  choice2: 0,
-  choice3: 0,
+  choice1: '',
+  choice2: '',
+  choice3: '',
   showFindSchoolModal: false,
   schoolName: '',
   schoolLocation: '',
