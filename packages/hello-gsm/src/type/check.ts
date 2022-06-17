@@ -1,3 +1,3 @@
 export interface CheckType {
-  data: boolean;
+  check: boolean;
 }

@@ -3,17 +3,14 @@ import { AboutPage, SEOHelmet } from 'components';
 import auth from 'Api/auth';
 import useStore from 'Stores/StoreContainer';
 import { useEffect } from 'react';
+import { CheckType } from 'type/check';
 
-interface CheckType {
-  data: boolean;
-}
-
-const About: NextPage<CheckType> = ({ data }) => {
+const About: NextPage<CheckType> = ({ check }) => {
   const seoTitle = '팀 소개';
   const desc = 'Hello, GSM 서비스를 제작한 themoment-team을 소개합니다.';
   const { setLogged } = useStore();
   useEffect(() => {
-    setLogged(data);
+    setLogged(check);
   }, []);
   return (
     <>
@@ -29,13 +26,13 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     await auth.check(accessToken);
     return {
       props: {
-        data: true,
+        check: true,
       },
     };
   } catch (error: any) {
     return {
       props: {
-        data: false,
+        check: false,
       },
     };
   }
