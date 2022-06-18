@@ -3,7 +3,6 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import * as I from '../../Assets/svg';
 import { css } from '@emotion/react';
-import axios from 'axios';
 import useStore from 'Stores/StoreContainer';
 import {
   Header,
@@ -14,6 +13,7 @@ import {
 import { useForm } from 'react-hook-form';
 import application from 'Api/application';
 import { ApplicationType } from 'type/application';
+import auth from 'Api/auth';
 
 interface ApplyFormType {
   IDPhotoUrl: string;
@@ -97,9 +97,20 @@ const ApplyPage: NextPage = () => {
       },
     };
     try {
-      application.postFirstSubmission(data);
-    } catch (error) {
-      console.log(error);
+      await application.postFirstSubmission(data);
+    } catch (error: any) {
+      // accessToken 없을 시에 accessToken 발급 후 logout 요청
+      if (error.response.status === 401) {
+        try {
+          // accessToken 발급
+          await auth.refresh();
+          apply(submitData);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        console.log(error);
+      }
     }
   };
 
@@ -131,7 +142,6 @@ const ApplyPage: NextPage = () => {
   };
 
   const graduationStatus = watch('educationStatus');
-  console.log(watch('educationStatus'));
 
   return (
     <>
