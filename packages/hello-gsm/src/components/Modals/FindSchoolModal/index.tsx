@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import useStore from 'Stores/StoreContainer';
 import * as S from './style';
-import * as I from '../../Assets/svg';
+import * as I from 'Assets/svg';
 import axios from 'axios';
 
 interface schoolType {
