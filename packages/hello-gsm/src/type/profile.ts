@@ -45,7 +45,7 @@ interface ApplicationDetailsType {
   volunteerScore: number;
   nonCurriculumScoreSubtotal: number;
   scoreTotal: number;
-  firstWantedMajor: '소프트웨어 개발과' | '스마트 IOT과' | '인공지능과';
-  secondWantedMajor: '소프트웨어 개발과' | '스마트 IOT과' | '인공지능과';
-  thirdWantedMajor: '소프트웨어 개발과' | '스마트 IOT과' | '인공지능과';
+  firstWantedMajor: '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
+  secondWantedMajor: '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
+  thirdWantedMajor: '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
 }
