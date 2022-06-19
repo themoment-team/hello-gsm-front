@@ -6,13 +6,16 @@ class Application {
   /**
    * @returns 원서에 저장된 정보를 반환한다
    */
-  getInformation() {
+  getInformation(accessToken?: string) {
     try {
-      return RequestApi({
-        method: 'GET',
-        url: ApplicationController.information(),
-      });
-    } catch (error) {
+      return RequestApi(
+        {
+          method: 'GET',
+          url: ApplicationController.information(),
+        },
+        accessToken,
+      );
+    } catch (error: any) {
       return error;
     }
   }
