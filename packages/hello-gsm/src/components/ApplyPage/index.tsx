@@ -34,6 +34,7 @@ interface ApplyFormType {
 const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const imgInput = useRef<HTMLInputElement>(null);
   const [imgURL, setImgURL] = useState<string>('');
+  const [imgValue, setImgValue] = useState<File>();
   const [name, setName] = useState<string>('');
   const [gender, setGender] = useState<'남자' | '여자'>();
   const [birthYear, setBirthYear] = useState<number>();
@@ -96,7 +97,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
 
   const apply = async (submitData: ApplyFormType) => {
     const data: ApplicationType = {
-      photo: imgInput?.current?.files[0],
+      photo: imgValue,
       application: {
         teacherCellphoneNumber: submitData.teacherCellphoneNumber,
         schoolName: schoolName,
@@ -153,6 +154,9 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   };
 
   const onSubmit = async (data: ApplyFormType) => {
+    if (imgInput.current?.files) {
+      setImgValue(imgInput.current?.files[0]);
+    }
     onClick();
     if (isMajorSelected && isAddressExist && isSchoolNameExist) {
       await apply(data);
