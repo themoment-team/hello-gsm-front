@@ -16,7 +16,9 @@ const DepartmentModal: React.FC = () => {
     setChoice3,
   } = useStore();
 
-  const choiceDepartment = (choice: string) => {
+  const choiceDepartment = (
+    choice: '소프트웨어개발과' | '스마트IOT과' | '인공지능과' | '',
+  ) => {
     setShowDepartmentModal();
     switch (selectedChoice) {
       case 1:
