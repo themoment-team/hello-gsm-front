@@ -127,7 +127,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       } else {
         await application.patchFirstSubmission(data);
       }
-      push('/calculator');
+      // push('/calculator');
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 logout 요청
       if (error.response.status === 401) {
