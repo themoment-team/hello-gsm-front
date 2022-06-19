@@ -165,7 +165,6 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     onClick();
     if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
       await apply(data);
-      push('/calculator');
     } else {
       return;
     }
