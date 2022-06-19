@@ -1,5 +1,5 @@
 export interface ApplicationType {
-  photo: File;
+  photo: File | undefined;
   application: {
     teacherCellphoneNumber: string;
     schoolName: string;
