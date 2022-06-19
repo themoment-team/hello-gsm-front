@@ -189,13 +189,22 @@ export const GenderSelect = styled.div`
 export const BirthBox = styled.div`
   width: 800px;
   height: 55px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Birth = styled.div`
+  width: 250px;
+  height: 100%;
   border-radius: 6px;
   background: #484453;
-  margin-top: 50px;
-  padding: 16px 20px;
   color: rgba(255, 255, 255, 0.45);
   font-weight: 400;
   font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const AddressBox = styled.div`
