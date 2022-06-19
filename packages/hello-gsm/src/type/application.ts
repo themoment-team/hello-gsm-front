@@ -35,3 +35,47 @@ export interface ScoreType {
   nonCurriculumScoreSubtotal: number;
   scoreTotal: number;
 }
+
+export interface GetApplicationType {
+  data: {
+    userIdx: number;
+    userImg: string;
+    name: string;
+    birth: Date;
+    gender: '남자' | '여자';
+    cellphoneNumber: string;
+    application: null | {
+      applicationIdx: number;
+      registrationNumber: null | number;
+      isFinalSubmission: null | boolean;
+      isDocumentReception: null | boolean;
+      firstResultScreening: null | string;
+      finalResultScreening: null | string;
+      guardianCellphoneNumber: string;
+      teacherCellphoneNumber: null | string;
+      schoolName: null | string;
+      screening: null | string;
+      user_idx: number;
+      application_score: null | number;
+      application_details: {
+        applicationIdx: number;
+        idPhotoUrl: string;
+        address: string;
+        addressDetails: string;
+        telephoneNumber: string;
+        guardianName: string;
+        guardianRelation: string;
+        teacherName: null | string;
+        schoolLocation: null | string;
+        educationStatus: null | string;
+        graduationYear: number;
+        graduationMonth: number;
+        schoolTelephoneNumber: null | string;
+        firstWantedMajor: '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
+        secondWantedMajor: '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
+        thirdWantedMajor: '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
+        majorResult: null | string;
+      };
+    };
+  };
+}
