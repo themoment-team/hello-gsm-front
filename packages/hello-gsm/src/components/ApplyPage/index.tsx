@@ -122,7 +122,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     };
 
     try {
-      if (isEdit) {
+      if (!isEdit) {
         await application.postFirstSubmission(data);
       } else {
         await application.patchFirstSubmission(data);
