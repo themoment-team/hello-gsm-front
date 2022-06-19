@@ -495,8 +495,8 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                 <td>{attendanceScore && attendanceScore[3]}</td>
                 <td>{attendanceScore && attendanceScore[6]}</td>
                 <td rowSpan={3}>
-                  {data.application?.applicationScore?.attendanceScore &&
-                    (30 - data.application?.applicationScore?.attendanceScore) /
+                  {data.application?.applicationScore.attendanceScore &&
+                    (30 - data.application?.applicationScore.attendanceScore) /
                       3}
                 </td>
                 {/* 환산일수 구하기 */}

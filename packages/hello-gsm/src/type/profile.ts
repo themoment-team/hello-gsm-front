@@ -22,7 +22,7 @@ interface ApplicantType {
   schoolName: string;
   screening: '일반전형' | '사회통합전형' | '특별전형';
   userIdx: number;
-  applicationScore?: ApplicantScoreType;
+  applicationScore: ApplicantScoreType;
   applicationDetails: ApplicantDetailsType;
 }
 
