@@ -30,9 +30,15 @@ interface storeType {
   setIsSearching: (trueOrFalse: boolean) => void;
   setShowDepartmentModal: () => void;
   setSelectedChoice: (index: number) => void;
-  setChoice1: (type: '소프트웨어개발과' | '스마트IOT과' | '인공지능과') => void;
-  setChoice2: (type: '소프트웨어개발과' | '스마트IOT과' | '인공지능과') => void;
-  setChoice3: (type: '소프트웨어개발과' | '스마트IOT과' | '인공지능과') => void;
+  setChoice1: (
+    type: '소프트웨어개발과' | '스마트IOT과' | '인공지능과' | '',
+  ) => void;
+  setChoice2: (
+    type: '소프트웨어개발과' | '스마트IOT과' | '인공지능과' | '',
+  ) => void;
+  setChoice3: (
+    type: '소프트웨어개발과' | '스마트IOT과' | '인공지능과' | '',
+  ) => void;
   setShowFindSchoolModal: () => void;
   setSchoolName: (name: string) => void;
   setSchoolLocation: (location: string) => void;
