@@ -17,7 +17,6 @@ import auth from 'Api/auth';
 import { useRouter } from 'next/router';
 
 interface ApplyFormType {
-  IDPhotoUrl: string;
   addressDetails: string;
   telephoneNumber: string;
   screening: string;
@@ -41,6 +40,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const [birthMonth, setBirthMonth] = useState<number>();
   const [birthDate, setBirthDate] = useState<number>();
   const [cellphoneNumber, setCellphoneNumber] = useState<string>('');
+  const [isIdPhoto, setIsIdPhoto] = useState<boolean>(true);
   const [isMajorSelected, setIsMajorSelected] = useState<boolean>(true);
   const [isAddressExist, setIsAddressExist] = useState<boolean>(true);
   const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(true);
@@ -122,7 +122,12 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     };
 
     try {
-      await application.postFirstSubmission(data);
+      if (isEdit) {
+        await application.postFirstSubmission(data);
+      } else {
+        await application.patchFirstSubmission(data);
+      }
+      push('/calculator');
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 logout 요청
       if (error.response.status === 401) {
@@ -172,6 +177,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       : setIsMajorSelected(false);
     address ? setIsAddressExist(true) : setIsAddressExist(false);
     schoolName ? setIsSchoolNameExist(true) : setIsSchoolNameExist(false);
+    imgURL ? setIsIdPhoto(true) : setIsIdPhoto(false);
   };
 
   return (
@@ -215,9 +221,6 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             type="file"
             id="img-input"
             accept="image/*"
-            {...register('IDPhotoUrl', {
-              required: '* 사진을 업로드 해주세요',
-            })}
             ref={imgInput}
             onChange={e => readImg(e)}
           />
@@ -512,7 +515,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
           </S.NextButton>
         </S.ApplyPageContent>
         <S.ErrorBox>
-          <S.Error>{errors.IDPhotoUrl?.message}</S.Error>
+          <S.Error>{!isIdPhoto && '* 증명사진을 등록해주세요'}</S.Error>
           <S.Error>{!isAddressExist && '* 주소지를 입력해주세요.'}</S.Error>
           <S.Error>{errors.addressDetails?.message}</S.Error>
           <S.Error>{errors.telephoneNumber?.message}</S.Error>
