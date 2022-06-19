@@ -19,10 +19,10 @@ import { useRouter } from 'next/router';
 interface ApplyFormType {
   addressDetails: string;
   telephoneNumber: string;
-  screening: string;
+  screening: '일반전형' | '사회통합전형' | '특별전형';
   graduationYear: string;
   graduationMonth: string;
-  educationStatus: string;
+  educationStatus: '졸업예정' | '졸업' | '검정고시';
   guardianName: string;
   guardianRelation: string;
   guardianCellphoneNumber: string;
@@ -163,7 +163,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       setImgValue(imgInput.current?.files[0]);
     }
     onClick();
-    if (isMajorSelected && isAddressExist && isSchoolNameExist) {
+    if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
       await apply(data);
       push('/calculator');
     } else {
