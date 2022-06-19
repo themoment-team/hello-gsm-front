@@ -1,6 +1,10 @@
 import React from 'react';
-import type { NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
 import { ApplyPage, SEOHelmet } from 'components';
+import { GetApplicationType } from 'type/application';
+import application from 'Api/application';
+import { HeaderType } from 'type/header';
+import auth from 'Api/auth';
 
 const Apply: NextPage = () => {
   const seoTitle = '입학 지원';
@@ -11,6 +15,58 @@ const Apply: NextPage = () => {
       <ApplyPage />
     </>
   );
+};
+
+const getApplication = async (accessToken: string) => {
+  try {
+    const { data }: GetApplicationType = await application.getInformation(
+      accessToken,
+    );
+    return {
+      props: {
+        data,
+      },
+    };
+  } catch (error) {
+    return {
+      props: {},
+      redirect: {
+        destination: '/auth/signin',
+      },
+    };
+  }
+};
+
+export const getServerSideProps: GetServerSideProps = async ctx => {
+  const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
+  const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
+
+  if (ctx.req.cookies.refreshToken) {
+    if (ctx.req.cookies.accessToken) {
+      return getApplication(accessToken);
+    } else {
+      try {
+        const { headers }: HeaderType = await auth.refresh(refreshToken);
+        const accessToken = headers['set-cookie'][0].split(';')[0];
+        ctx.res.setHeader('set-cookie', headers['set-cookie']);
+        return getApplication(accessToken);
+      } catch (error) {
+        return {
+          props: {},
+          redirect: {
+            destination: '/auth/signin',
+          },
+        };
+      }
+    }
+  } else {
+    return {
+      props: {},
+      redirect: {
+        destination: '/auth/signin',
+      },
+    };
+  }
 };
 
 export default Apply;
