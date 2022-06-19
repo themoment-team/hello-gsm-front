@@ -44,8 +44,8 @@ const profile: ProfileType = {
     volunteerScore: 20,
     nonCurriculumScoreSubtotal: 40,
     scoreTotal: 160,
-    firstWantedMajor: '소프트웨어 개발과',
-    secondWantedMajor: '스마트 IOT과',
+    firstWantedMajor: '소프트웨어개발과',
+    secondWantedMajor: '스마트IOT과',
     thirdWantedMajor: '인공지능과',
   },
 };
