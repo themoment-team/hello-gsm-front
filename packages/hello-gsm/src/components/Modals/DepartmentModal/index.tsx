@@ -58,16 +58,14 @@ const DepartmentModal: React.FC = () => {
       <S.FAQModalBox>
         <S.Title>원하시는 과를 골라주세요</S.Title>
         <S.SelectBox>
-          <S.SelectContent onClick={() => choiceDepartment('인공지능 개발과')}>
-            인공지능 개발과
+          <S.SelectContent onClick={() => choiceDepartment('인공지능과')}>
+            인공지능과
           </S.SelectContent>
-          <S.SelectContent
-            onClick={() => choiceDepartment('소프트웨어 개발과')}
-          >
-            소프트웨어 개발과
+          <S.SelectContent onClick={() => choiceDepartment('소프트웨어개발과')}>
+            소프트웨어개발과
           </S.SelectContent>
-          <S.SelectContent onClick={() => choiceDepartment('스마트 iot과')}>
-            스마트 iot과
+          <S.SelectContent onClick={() => choiceDepartment('스마트IOT과')}>
+            스마트IOT과
           </S.SelectContent>
         </S.SelectBox>
       </S.FAQModalBox>
