@@ -12,8 +12,9 @@ import {
 } from 'components';
 import { useForm } from 'react-hook-form';
 import application from 'Api/application';
-import { ApplicationType } from 'type/application';
+import { ApplicationType, GetApplicationType } from 'type/application';
 import auth from 'Api/auth';
+import { useRouter } from 'next/router';
 
 interface ApplyFormType {
   IDPhotoUrl: string;
@@ -30,16 +31,21 @@ interface ApplyFormType {
   teacherCellphoneNumber: string;
 }
 
-const ApplyPage: NextPage = () => {
+const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const imgInput = useRef<HTMLInputElement>(null);
   const [imgURL, setImgURL] = useState<string>('');
-  const [name, setName] = useState<string>('김형록');
-  const [gender, setGender] = useState<string>('M');
-  const [birth, setBirth] = useState<number>(20050228);
-  const [cellphoneNumber, setCellphoneNumber] = useState<string>('01012341234');
+  const [name, setName] = useState<string>('');
+  const [gender, setGender] = useState<'남자' | '여자'>();
+  const [birthYear, setBirthYear] = useState<number>();
+  const [birthMonth, setBirthMonth] = useState<number>();
+  const [birthDate, setBirthDate] = useState<number>();
+  const [cellphoneNumber, setCellphoneNumber] = useState<string>('');
   const [isMajorSelected, setIsMajorSelected] = useState<boolean>(true);
   const [isAddressExist, setIsAddressExist] = useState<boolean>(true);
   const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(true);
+  const [isEdit, setIsEdit] = useState<boolean>(false);
+
+  const { push } = useRouter();
 
   const {
     showDepartmentModal,
@@ -71,9 +77,26 @@ const ApplyPage: NextPage = () => {
     },
   });
 
+  const graduationStatus = watch('educationStatus');
+
+  useEffect(() => {
+    const userBirth = new Date(data.birth);
+    if (data.application !== null) {
+      setIsEdit(true);
+    } else {
+      setIsEdit(false);
+    }
+    setName(data.name);
+    setGender(data.gender);
+    setBirthYear(userBirth.getFullYear());
+    setBirthMonth(userBirth.getMonth() + 1);
+    setBirthDate(userBirth.getDate());
+    setCellphoneNumber(data.cellphoneNumber);
+  }, []);
+
   const apply = async (submitData: ApplyFormType) => {
     const data: ApplicationType = {
-      photo: imgURL,
+      photo: imgInput?.current?.files[0],
       application: {
         teacherCellphoneNumber: submitData.teacherCellphoneNumber,
         schoolName: schoolName,
@@ -96,6 +119,7 @@ const ApplyPage: NextPage = () => {
         schoolLocation: schoolLocation,
       },
     };
+
     try {
       await application.postFirstSubmission(data);
     } catch (error: any) {
@@ -124,13 +148,18 @@ const ApplyPage: NextPage = () => {
     };
 
     if (event.target.files) {
-      reader.readAsDataURL(event.target.files[0]);
+      event.target.files[0] && reader.readAsDataURL(event.target.files[0]);
     }
   };
 
-  const onSubmit = (data: ApplyFormType) => {
-    console.log(data);
-    apply(data);
+  const onSubmit = async (data: ApplyFormType) => {
+    onClick();
+    if (isMajorSelected && isAddressExist && isSchoolNameExist) {
+      await apply(data);
+      push('/calculator');
+    } else {
+      return;
+    }
   };
 
   const onClick = () => {
@@ -140,8 +169,6 @@ const ApplyPage: NextPage = () => {
     address ? setIsAddressExist(true) : setIsAddressExist(false);
     schoolName ? setIsSchoolNameExist(true) : setIsSchoolNameExist(false);
   };
-
-  const graduationStatus = watch('educationStatus');
 
   return (
     <>
@@ -194,20 +221,24 @@ const ApplyPage: NextPage = () => {
           <S.GenderBox>
             <S.GenderSelect
               css={css`
-                background: ${gender === 'M' && '#42bafe'};
+                background: ${gender === '남자' && '#42bafe'};
               `}
             >
               남자
             </S.GenderSelect>
             <S.GenderSelect
               css={css`
-                background: ${gender === 'W' && '#42bafe'};
+                background: ${gender === '여자' && '#42bafe'};
               `}
             >
               여자
             </S.GenderSelect>
           </S.GenderBox>
-          <S.BirthBox>{birth}</S.BirthBox>
+          <S.BirthBox>
+            <S.Birth>{birthYear}</S.Birth>
+            <S.Birth>{birthMonth}</S.Birth>
+            <S.Birth>{birthDate}</S.Birth>
+          </S.BirthBox>
           <S.AddressBox>
             <S.AddressDescription>주소지 검색</S.AddressDescription>
             <S.FindAddressBox>
