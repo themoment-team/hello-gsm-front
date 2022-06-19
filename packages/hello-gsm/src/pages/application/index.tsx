@@ -4,6 +4,8 @@ import application from 'Api/application';
 import { ProfileType } from 'type/profile';
 import { StatusType } from 'type/user';
 import user from 'Api/user';
+import { HeaderType } from 'type/header';
+import auth from 'Api/auth';
 
 const Application: NextPage<ProfileType> = ({ data }) => {
   const seoTitle = '원서출력';
@@ -16,18 +18,32 @@ const Application: NextPage<ProfileType> = ({ data }) => {
   );
 };
 
-const getInfo = async () => {
-  try {
-    const { data }: ProfileType = await application.getInformation();
-    return {
-      props: {
-        data,
-      },
-    };
-  } catch (err: any) {
-    console.error(err);
+const getInfo = async (accessToken: string) => {
+  const { data }: StatusType = await user.status(accessToken);
+  if (data.application?.isFinalSubmission) {
+    // 최종제출이 완료 되었으면 원서 정보 요청
+    try {
+      const { data }: ProfileType = await application.getInformation(
+        accessToken,
+      );
+      return {
+        props: {
+          data,
+        },
+      };
+    } catch (err: any) {
+      console.error(err);
+      return {
+        props: {},
+      };
+    }
+  } else {
+    // 최종제출이 안되어 있으면 mypage로 이동
     return {
       props: {},
+      redirect: {
+        destination: '/mypage',
+      },
     };
   }
 };
@@ -38,25 +54,29 @@ const getInfo = async () => {
  * 비완료 시 마이페이지로 이동
  */
 export const getServerSideProps: GetServerSideProps = async ctx => {
+  const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
   const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
 
-  const { data }: StatusType = await user.status(accessToken);
-  if (data.application?.isFinalSubmission) {
-    try {
-      return getInfo();
-    } catch (err: any) {
-      return {
-        props: {},
-        redirect: {
-          destination: '/auth/signin',
-        },
-      };
+  if (ctx.req.cookies.refreshToken) {
+    //로그인 O
+    if (ctx.req.cookies.accessToken) {
+      return getInfo(accessToken);
+    } else {
+      // accessToken 만료 시 refresh 요청 후 다시 요청
+      const { headers }: HeaderType = await auth.refresh(refreshToken);
+      // headers의 set-cookie의 첫번째 요소 (accessToken)을 가져와 저장한다.
+      const accessToken = headers['set-cookie'][0].split(';')[0];
+      // 브라우저에 쿠키들을 저장한다
+      ctx.res.setHeader('set-cookie', headers['set-cookie']);
+      // headers에서 가져온 accessToken을 담아 요청을 보낸다
+      return getInfo(accessToken);
     }
   } else {
     return {
+      // 로그인 X
       props: {},
       redirect: {
-        destination: '/mypage',
+        destination: '/auth/signin',
       },
     };
   }
