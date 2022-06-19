@@ -26,12 +26,13 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
 
   try {
-    const { data } = await auth.check(accessToken);
+    await auth.check(accessToken);
     return {
       props: {},
     };
   } catch (err) {
-    if (refreshToken) {
+    //accessToken 만료시 refresh 요청
+    if (ctx.req.cookies.refreshToken) {
       // 요청 헤더를 가저온다
       const { headers }: HeaderType = await auth.refresh(refreshToken);
       // 브라우저에 쿠키들을 저장한다

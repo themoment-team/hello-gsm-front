@@ -21,8 +21,8 @@ const Application: NextPage<ProfileType> = ({ data }) => {
 const getInfo = async (accessToken: string) => {
   const { data }: StatusType = await user.status(accessToken);
   if (data.application?.isFinalSubmission) {
-    // 최종제출이 완료 되었으면 원서 정보 요청
     try {
+      // 최종제출이 완료 되었으면 원서 정보를 props로 보냄
       const { data }: ProfileType = await application.getInformation(
         accessToken,
       );
@@ -57,12 +57,13 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
   const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
 
-  if (ctx.req.cookies.refreshToken) {
-    //로그인 O
-    if (ctx.req.cookies.accessToken) {
-      return getInfo(accessToken);
-    } else {
-      // accessToken 만료 시 refresh 요청 후 다시 요청
+  try {
+    await auth.check(accessToken);
+    return getInfo(accessToken);
+  } catch (err) {
+    //accessToken 만료시 refresh 요청
+    if (ctx.req.cookies.refreshToken) {
+      // 요청 헤더를 가저온다
       const { headers }: HeaderType = await auth.refresh(refreshToken);
       // headers의 set-cookie의 첫번째 요소 (accessToken)을 가져와 저장한다.
       const accessToken = headers['set-cookie'][0].split(';')[0];
@@ -70,15 +71,15 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
       ctx.res.setHeader('set-cookie', headers['set-cookie']);
       // headers에서 가져온 accessToken을 담아 요청을 보낸다
       return getInfo(accessToken);
-    }
-  } else {
-    return {
+    } else {
       // 로그인 X
-      props: {},
-      redirect: {
-        destination: '/auth/signin',
-      },
-    };
+      return {
+        props: {},
+        redirect: {
+          destination: '/auth/signin',
+        },
+      };
+    }
   }
 };
 
