@@ -121,7 +121,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   }
 
   const apply = async (submitData: ApplyFormType) => {
-    const data: ApplicationType = {
+    const applicationData: ApplicationType = {
       photo: imgValue,
       application: {
         teacherCellphoneNumber: submitData.teacherCellphoneNumber,
@@ -146,7 +146,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       },
     };
 
-    objToFormData(data);
+    const data = objToFormData(applicationData);
 
     try {
       if (!isEdit) {
