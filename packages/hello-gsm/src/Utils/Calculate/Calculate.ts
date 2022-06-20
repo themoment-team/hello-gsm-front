@@ -17,13 +17,13 @@ const Calculate = (array: Array<number>, mode: number) => {
 
   switch (mode) {
     case 2:
-      result = Rounds(54 * (arraySum / (array.length * 5))); // 2학년 공식 적용
+      result = Rounds(54 * Rounds(arraySum / (array.length * 5), 5), 3); // 2학년 공식 적용
       break;
     case 3:
-      result = Rounds(72 * (arraySum / (array.length * 5))); // 3학년 공식 적용
+      result = Rounds(72 * Rounds(arraySum / (array.length * 5), 5), 3); // 3학년 공식 적용      break;
       break;
     case 4:
-      result = Rounds(60 * (arraySum / (array.length * 5))); // 예체능 공식 적용
+      result = Rounds(60 * Rounds(arraySum / (array.length * 5), 3), 5); // 예체능 공식 적용
       break;
   }
   return result;

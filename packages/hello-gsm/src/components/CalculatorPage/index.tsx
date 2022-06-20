@@ -42,25 +42,26 @@ const CalculatorPage: NextPage = () => {
     const score2_2: number = Calculate(validForm.score2_2, 2); // 2학년 2학기
     const score3_1: number = Calculate(validForm.score3_1, 3); // 3학년 1학기
 
-    const generalCurriculumScoreSubtotal: number = Rounds(
-      score2_1 + score2_2 + score3_1,
-    ); // 교과성적 소계
+    const generalCurriculumScoreSubtotal: number =
+      score2_1 + score2_2 + score3_1;
+    // 교과성적 소계
     const artSportsScore: number = Calculate(validForm.artSportsScore, 4); // 예체능
-    const curriculumScoreSubtotal: number = Rounds(
-      generalCurriculumScoreSubtotal + artSportsScore,
-    ); // 교과성적 + 예체능
+    const curriculumScoreSubtotal: number =
+      generalCurriculumScoreSubtotal + artSportsScore;
+    // 교과성적 + 예체능
 
     const attendanceScore: number = Attendance(
       validForm.absentScore,
       validForm.attendanceScore,
     ); // 출석점수
     const volunteerScore: number = Volunteer(validForm.volunteerScore); // 봉사점수
-    const nonCurriculumScoreSubtotal: number = Rounds(
-      attendanceScore + volunteerScore,
-    ); //비교과 성적 소계
+    const nonCurriculumScoreSubtotal: number = attendanceScore + volunteerScore;
+    //비교과 성적 소계
     const scoreTotal = Rounds(
       curriculumScoreSubtotal + nonCurriculumScoreSubtotal,
-    ); // 총합
+      3,
+    );
+    // 총합
 
     console.log(score2_1);
     console.log(validForm);
@@ -106,36 +107,36 @@ const CalculatorPage: NextPage = () => {
       JSON.stringify(validForm.newSubjects),
     );
     window.localStorage.setItem('isSubmission', 'true');
-    try {
-      isSubmission
-        ? await application.patchSecondSubmisson({
-            score2_1,
-            score2_2,
-            score3_1,
-            generalCurriculumScoreSubtotal,
-            artSportsScore,
-            attendanceScore,
-            curriculumScoreSubtotal,
-            volunteerScore,
-            nonCurriculumScoreSubtotal,
-            scoreTotal,
-          })
-        : await application.postSecondSubmisson({
-            score2_1,
-            score2_2,
-            score3_1,
-            generalCurriculumScoreSubtotal,
-            artSportsScore,
-            attendanceScore,
-            curriculumScoreSubtotal,
-            volunteerScore,
-            nonCurriculumScoreSubtotal,
-            scoreTotal,
-          });
-      setShowResult(true);
-    } catch (e) {
-      console.error(e);
-    }
+    // try {
+    //   isSubmission
+    //     ? await application.patchSecondSubmisson({
+    //         score2_1,
+    //         score2_2,
+    //         score3_1,
+    //         generalCurriculumScoreSubtotal,
+    //         artSportsScore,
+    //         attendanceScore,
+    //         curriculumScoreSubtotal,
+    //         volunteerScore,
+    //         nonCurriculumScoreSubtotal,
+    //         scoreTotal,
+    //       })
+    //     : await application.postSecondSubmisson({
+    //         score2_1,
+    //         score2_2,
+    //         score3_1,
+    //         generalCurriculumScoreSubtotal,
+    //         artSportsScore,
+    //         attendanceScore,
+    //         curriculumScoreSubtotal,
+    //         volunteerScore,
+    //         nonCurriculumScoreSubtotal,
+    //         scoreTotal,
+    //       });
+    setShowResult(true);
+    // } catch (e) {
+    //   console.error(e);
+    // }
   };
 
   const inValid = (errors: FieldErrors) => {
