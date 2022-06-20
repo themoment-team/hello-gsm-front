@@ -1,10 +1,9 @@
 export interface ApplicationType {
-  photo: File | undefined;
   application: {
     teacherCellphoneNumber: string;
     schoolName: string;
     guardianCellphoneNumber: string;
-    screening: string;
+    screening: '일반전형' | '사회통합전형' | '특별전형';
   };
   applicationDetail: {
     telephoneNumber: string;
@@ -12,12 +11,12 @@ export interface ApplicationType {
     addressDetails: string;
     guardianName: string;
     guardianRelation: string;
-    educationStatus: string;
+    educationStatus: '졸업예정' | '졸업' | '검정고시';
     graduationYear: string;
     graduationMonth: string;
-    firstWantedMajor: string;
-    secondWantedMajor: string;
-    thirdWantedMajor: string;
+    firstWantedMajor: '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
+    secondWantedMajor: '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
+    thirdWantedMajor: '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
     teacherName: string;
     schoolLocation: string;
   };
