@@ -23,9 +23,10 @@ const Calculate = (array: Array<number>, mode: number) => {
       result = Rounds(72 * Rounds(arraySum / (array.length * 5), 5), 3); // 3학년 공식 적용      break;
       break;
     case 4:
-      result = Rounds(60 * Rounds(arraySum / (array.length * 5), 3), 5); // 예체능 공식 적용
+      result = Rounds(60 * Rounds(arraySum / (array.length * 5), 3), 3); // 예체능 공식 적용
       break;
   }
+
   return result;
 };
 
