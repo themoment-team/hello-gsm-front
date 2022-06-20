@@ -14,9 +14,9 @@ export interface ApplicationType {
     educationStatus: '졸업예정' | '졸업' | '검정고시';
     graduationYear: string;
     graduationMonth: string;
-    firstWantedMajor: '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
-    secondWantedMajor: '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
-    thirdWantedMajor: '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
+    firstWantedMajor: '' | '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
+    secondWantedMajor: '' | '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
+    thirdWantedMajor: '' | '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
     teacherName: string;
     schoolLocation: string;
   };
