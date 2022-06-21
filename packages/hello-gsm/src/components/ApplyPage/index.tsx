@@ -95,34 +95,8 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     setCellphoneNumber(data.cellphoneNumber);
   }, []);
 
-  function objToFormData(
-    this: any,
-    obj: ApplicationType,
-    formData = new FormData(),
-  ) {
-    this.formData = formData;
-
-    this.createFormData = function (obj: any, subKeyStr = '') {
-      for (const i in obj) {
-        const value = obj[i];
-        const subKeyStrTrans = subKeyStr ? subKeyStr + '[' + i + ']' : i;
-
-        if (typeof value === 'string' || typeof value === 'number') {
-          this.formData.append(subKeyStrTrans, value);
-        } else if (typeof value === 'object') {
-          this.createFormData(value, subKeyStrTrans);
-        }
-      }
-    };
-
-    this.createFormData(obj);
-
-    return this.formData;
-  }
-
   const apply = async (submitData: ApplyFormType) => {
-    const applicationData: ApplicationType = {
-      photo: imgValue,
+    const data: ApplicationType = {
       application: {
         teacherCellphoneNumber: submitData.teacherCellphoneNumber,
         schoolName: schoolName,
@@ -145,8 +119,6 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
         schoolLocation: schoolLocation,
       },
     };
-
-    const data = objToFormData(applicationData);
 
     try {
       if (!isEdit) {
