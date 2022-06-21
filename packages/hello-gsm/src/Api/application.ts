@@ -107,6 +107,21 @@ class Application {
       return error;
     }
   }
+
+  /**
+   * 증명사진 저장 및 수정을 위한 api
+   */
+  postImage(data: object) {
+    try {
+      return RequestApi({
+        method: 'POST',
+        url: ApplicationController.image(),
+        data: data,
+      });
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 export default new Application();
