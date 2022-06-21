@@ -2,7 +2,7 @@ import { NextRequest } from 'next/server';
 import { redirect } from 'next/dist/server/api-utils';
 
 /**
- * @param req - 요청 req.ua -> 사용자의
+ * @param req - 요청 req.ua -> 사용자의 정보
  * @returns - 브라우저가 사파리라면 chrome 브라우저 권장 메시지
  */
 export function middleware(req: NextRequest) {
