@@ -74,17 +74,10 @@ const CalculatorPage: NextPage = () => {
       `출석 점수 : ${attendanceScore}\n봉사 점수 : ${volunteerScore}\n비교과 성적 소계 : ${nonCurriculumScoreSubtotal}\n`,
     );
     console.log(`총합 : ${scoreTotal}`);
-    setResultArray([
-      generalCurriculumScoreSubtotal,
-      artSportsScore,
-      nonCurriculumScoreSubtotal,
-      scoreTotal,
-    ]);
 
     window.localStorage.setItem('score2_1', JSON.stringify(validForm.score2_1));
     window.localStorage.setItem('score2_2', JSON.stringify(validForm.score2_2));
     window.localStorage.setItem('score3_1', JSON.stringify(validForm.score3_1));
-
     window.localStorage.setItem(
       'artSportsScore',
       JSON.stringify(validForm.artSportsScore),
@@ -108,20 +101,7 @@ const CalculatorPage: NextPage = () => {
     );
     window.localStorage.setItem('isSubmission', 'true');
     // try {
-    //   isSubmission
-    //     ? await application.patchSecondSubmisson({
-    //         score2_1,
-    //         score2_2,
-    //         score3_1,
-    //         generalCurriculumScoreSubtotal,
-    //         artSportsScore,
-    //         attendanceScore,
-    //         curriculumScoreSubtotal,
-    //         volunteerScore,
-    //         nonCurriculumScoreSubtotal,
-    //         scoreTotal,
-    //       })
-    //     : await application.postSecondSubmisson({
+    //         await application.postSecondSubmisson({
     //         score2_1,
     //         score2_2,
     //         score3_1,
@@ -133,6 +113,12 @@ const CalculatorPage: NextPage = () => {
     //         nonCurriculumScoreSubtotal,
     //         scoreTotal,
     //       });
+    setResultArray([
+      generalCurriculumScoreSubtotal,
+      artSportsScore,
+      nonCurriculumScoreSubtotal,
+      scoreTotal,
+    ]);
     setShowResult(true);
     // } catch (e) {
     //   console.error(e);
