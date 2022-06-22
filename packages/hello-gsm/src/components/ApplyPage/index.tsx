@@ -97,8 +97,8 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const apply = async (submitData: ApplyFormType) => {
     const data: ApplicationType = {
       application: {
-        teacherCellphoneNumber: submitData.teacherCellphoneNumber,
-        schoolName: schoolName,
+        teacherCellphoneNumber: submitData.teacherCellphoneNumber || undefined,
+        schoolName: schoolName || undefined,
         guardianCellphoneNumber: submitData.guardianCellphoneNumber,
         screening: submitData.screening,
       },
@@ -114,8 +114,8 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
         firstWantedMajor: choice1,
         secondWantedMajor: choice2,
         thirdWantedMajor: choice3,
-        teacherName: submitData.teacherName,
-        schoolLocation: schoolLocation,
+        teacherName: submitData.teacherName || undefined,
+        schoolLocation: schoolLocation || undefined,
       },
     };
 
