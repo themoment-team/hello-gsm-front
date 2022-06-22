@@ -10,6 +10,7 @@ const About: NextPage<CheckType> = ({ check }) => {
   const seoTitle = '팀 소개';
   const desc = 'Hello, GSM 서비스를 제작한 themoment-team을 소개합니다.';
   const { setLogged } = useStore();
+  console.log(check);
   useEffect(() => {
     setLogged(check);
   }, []);
