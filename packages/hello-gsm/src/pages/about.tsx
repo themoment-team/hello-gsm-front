@@ -22,10 +22,7 @@ const About: NextPage<CheckType> = ({ check }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ctx => {
-  const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
-  const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
-
+const check = async (accessToken: string) => {
   try {
     await auth.check(accessToken);
     return {
@@ -33,29 +30,40 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
         check: true,
       },
     };
-  } catch (err) {
-    //accessToken 만료시 refresh 요청
-    if (ctx.req.cookies.refreshToken) {
-      // 요청 헤더를 가저온다
-      const { headers }: HeaderType = await auth.refresh(refreshToken);
-      // headers의 set-cookie의 첫번째 요소 (accessToken)을 가져와 저장한다.
-      const accessToken = headers['set-cookie'][0].split(';')[0];
-      // 브라우저에 쿠키들을 저장한다
-      ctx.res.setHeader('set-cookie', headers['set-cookie']);
-      // headers에서 가져온 accessToken을 담아 요청을 보낸다
-      await auth.check(accessToken);
-      return {
-        props: {
-          check: true,
-        },
-      };
+  } catch (error) {
+    return {
+      props: {},
+    };
+  }
+};
+
+export const getServerSideProps: GetServerSideProps = async ctx => {
+  const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
+  const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
+
+  if (ctx.req.cookies.refreshToken) {
+    if (ctx.req.cookies.accessToken) {
+      return check(accessToken);
     } else {
-      return {
-        props: {
-          check: false,
-        },
-      };
+      try {
+        const { headers }: HeaderType = await auth.refresh(refreshToken);
+        // headers의 set-cookie의 첫번째 요소 (accessToken)을 가져와 저장한다.
+        const accessToken = headers['set-cookie'][0].split(';')[0];
+        // 브라우저에 쿠키들을 저장한다
+        ctx.res.setHeader('set-cookie', headers['set-cookie']);
+        // headers에서 가져온 accessToken을 담아 요청을 보낸다
+        return check(accessToken);
+      } catch (errer) {
+        return {
+          props: { check: false },
+          redirect: {},
+        };
+      }
     }
+  } else {
+    return {
+      props: { check: false },
+    };
   }
 };
 
