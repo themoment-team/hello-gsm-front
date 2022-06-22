@@ -12,7 +12,7 @@ const About: NextPage<CheckType> = ({ check }) => {
   const { logged, setLogged } = useStore();
   useEffect(() => {
     setLogged(check);
-  }, []);
+  }, [check, setLogged]);
   console.log(logged);
   return (
     <>
