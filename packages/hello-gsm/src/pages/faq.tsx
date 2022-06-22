@@ -1,11 +1,9 @@
-import type { GetServerSideProps, GetStaticProps, NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 import { FAQPage, SEOHelmet } from 'components';
 import axios from 'axios';
 import auth from 'Api/auth';
 import { useEffect } from 'react';
 import useStore from 'Stores/StoreContainer';
-import { CheckType } from 'type/check';
-import { HeaderType } from 'type/header';
 
 interface FaqType {
   data: {
