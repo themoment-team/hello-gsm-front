@@ -33,7 +33,6 @@ interface ApplyFormType {
 const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const imgInput = useRef<HTMLInputElement>(null);
   const [imgURL, setImgURL] = useState<string>('');
-  const [imgValue, setImgValue] = useState<File>();
   const [name, setName] = useState<string>('');
   const [gender, setGender] = useState<'남자' | '여자'>();
   const [birthYear, setBirthYear] = useState<number>();
@@ -104,9 +103,9 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
         screening: submitData.screening,
       },
       applicationDetail: {
-        telephoneNumber: submitData.telephoneNumber,
+        telephoneNumber: submitData.telephoneNumber || undefined,
         address: address,
-        addressDetails: submitData.addressDetails,
+        addressDetails: submitData.addressDetails || undefined,
         guardianName: submitData.guardianName,
         guardianRelation: submitData.guardianRelation,
         educationStatus: submitData.educationStatus,
@@ -123,10 +122,12 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     try {
       if (!isEdit) {
         await application.postFirstSubmission(data);
-        imgValue && (await application.postImage(imgValue));
+        imgInput.current?.files &&
+          (await application.postImage(imgInput.current?.files[0]));
       } else {
         await application.patchFirstSubmission(data);
-        imgValue && (await application.postImage(imgValue));
+        imgInput.current?.files &&
+          (await application.postImage(imgInput.current?.files[0]));
       }
       // push('/calculator');
     } catch (error: any) {
@@ -160,9 +161,6 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   };
 
   const onSubmit = async (data: ApplyFormType) => {
-    if (imgInput.current?.files) {
-      setImgValue(imgInput.current?.files[0]);
-    }
     onClick();
     if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
       await apply(data);
@@ -176,7 +174,9 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       ? setIsMajorSelected(true)
       : setIsMajorSelected(false);
     address ? setIsAddressExist(true) : setIsAddressExist(false);
-    schoolName ? setIsSchoolNameExist(true) : setIsSchoolNameExist(false);
+    schoolName || graduationStatus === '검정고시'
+      ? setIsSchoolNameExist(true)
+      : setIsSchoolNameExist(false);
     imgURL ? setIsIdPhoto(true) : setIsIdPhoto(false);
   };
 
@@ -271,19 +271,11 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             {...register('telephoneNumber', {
               required: false,
               pattern: {
-                value: /^[0-9]+$/,
-                message: '* 숫자만 입력 가능합니다',
-              },
-              maxLength: {
-                value: 10,
-                message: '* 집 전화번호를 확인해주세요',
-              },
-              minLength: {
-                value: 10,
+                value: /^[0-9]{10}$/,
                 message: '* 집 전화번호를 확인해주세요',
               },
             })}
-            placeholder="집 전화번호를 입력해주세요."
+            placeholder="집 전화번호를 입력해주세요.('-'제외 10자리)"
           />
           <S.Cellphone>{cellphoneNumber}</S.Cellphone>
           <S.Title>지원자 현황</S.Title>
