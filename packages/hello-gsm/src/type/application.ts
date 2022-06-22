@@ -1,7 +1,7 @@
 export interface ApplicationType {
   application: {
-    teacherCellphoneNumber: string;
-    schoolName: string;
+    teacherCellphoneNumber?: string;
+    schoolName?: string;
     guardianCellphoneNumber: string;
     screening: '일반전형' | '사회통합전형' | '특별전형';
   };
@@ -17,8 +17,8 @@ export interface ApplicationType {
     firstWantedMajor: '' | '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
     secondWantedMajor: '' | '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
     thirdWantedMajor: '' | '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
-    teacherName: string;
-    schoolLocation: string;
+    teacherName?: string;
+    schoolLocation?: string;
   };
 }
 
