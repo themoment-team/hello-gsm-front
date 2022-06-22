@@ -123,8 +123,10 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     try {
       if (!isEdit) {
         await application.postFirstSubmission(data);
+        imgValue && (await application.postImage(imgValue));
       } else {
         await application.patchFirstSubmission(data);
+        imgValue && (await application.postImage(imgValue));
       }
       // push('/calculator');
     } catch (error: any) {
