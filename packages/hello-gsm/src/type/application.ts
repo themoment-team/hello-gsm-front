@@ -6,9 +6,9 @@ export interface ApplicationType {
     screening: '일반전형' | '사회통합전형' | '특별전형';
   };
   applicationDetail: {
-    telephoneNumber: string;
+    telephoneNumber?: string;
     address: string;
-    addressDetails: string;
+    addressDetails?: string;
     guardianName: string;
     guardianRelation: string;
     educationStatus: '졸업예정' | '졸업' | '검정고시';
