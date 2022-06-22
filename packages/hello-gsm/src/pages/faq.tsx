@@ -52,6 +52,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
           ctx.res.setHeader('set-cookie', headers['set-cookie']);
           return {
             props: {
+              data,
               check: true,
             },
           };
