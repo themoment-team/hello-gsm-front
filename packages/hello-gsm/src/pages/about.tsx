@@ -43,7 +43,11 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
 
   if (ctx.req.cookies.refreshToken) {
     if (ctx.req.cookies.accessToken) {
-      return check(accessToken);
+      return {
+        props: {
+          check: true,
+        },
+      };
     } else {
       try {
         const { headers }: HeaderType = await auth.refresh(refreshToken);
@@ -52,7 +56,11 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
         // 브라우저에 쿠키들을 저장한다
         ctx.res.setHeader('set-cookie', headers['set-cookie']);
         // headers에서 가져온 accessToken을 담아 요청을 보낸다
-        return check(accessToken);
+        return {
+          props: {
+            check: true,
+          },
+        };
       } catch (errer) {
         return {
           props: { check: false },
