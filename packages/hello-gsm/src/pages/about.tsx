@@ -9,11 +9,11 @@ import { HeaderType } from 'type/header';
 const About: NextPage<CheckType> = ({ check }) => {
   const seoTitle = '팀 소개';
   const desc = 'Hello, GSM 서비스를 제작한 themoment-team을 소개합니다.';
-  const { setLogged } = useStore();
-  console.log(check);
+  const { logged, setLogged } = useStore();
   useEffect(() => {
     setLogged(check);
   }, []);
+  console.log(logged);
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
@@ -64,7 +64,6 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
       } catch (errer) {
         return {
           props: { check: false },
-          redirect: {},
         };
       }
     }
