@@ -4,6 +4,7 @@ import * as I from 'Assets/svg';
 import * as S from './style';
 import { Header, FAQBox, FAQModal } from 'components';
 import useStore from 'Stores/StoreContainer';
+import auth from 'Api/auth';
 
 type FAQDataType = {
   faqData: FAQType[];
@@ -15,6 +16,26 @@ export type FAQType = {
 };
 
 const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
+  const { setLogged } = useStore();
+  useEffect(() => {
+    const checkLogin = async () => {
+      try {
+        await auth.check();
+        setLogged(true);
+      } catch (error: any) {
+        if (error.response.status === 401) {
+          try {
+            // accessToken 발급
+            await auth.refresh();
+            setLogged(true);
+          } catch (error) {
+            setLogged(false);
+          }
+        }
+      }
+    };
+    checkLogin();
+  }, []);
   const [faqList, setFaqList] = useState<FAQType[]>(faqData);
   const [keyword, setKeyword] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(1);

@@ -1,9 +1,6 @@
 import type { GetStaticProps, NextPage } from 'next';
 import { FAQPage, SEOHelmet } from 'components';
 import axios from 'axios';
-import auth from 'Api/auth';
-import { useEffect } from 'react';
-import useStore from 'Stores/StoreContainer';
 
 interface FaqType {
   data: {
@@ -15,27 +12,7 @@ interface FaqType {
 const Faq: NextPage<FaqType> = ({ data }) => {
   const seoTitle = '자주 묻는 질문';
   const desc = '매년 지원자들이 궁금해 하는 질문들을 보여줍니다.';
-  const { setLogged } = useStore();
 
-  useEffect(() => {
-    const checkLogin = async () => {
-      try {
-        await auth.check();
-        setLogged(true);
-      } catch (error: any) {
-        if (error.response.status === 401) {
-          try {
-            // accessToken 발급
-            await auth.refresh();
-            setLogged(true);
-          } catch (error) {
-            setLogged(false);
-          }
-        }
-      }
-    };
-    checkLogin();
-  }, []);
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
