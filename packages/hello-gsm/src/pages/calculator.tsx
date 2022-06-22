@@ -1,12 +1,22 @@
 import auth from 'Api/auth';
 import { SEOHelmet } from 'components';
 import type { GetServerSideProps, NextPage } from 'next';
+import { useEffect } from 'react';
+import useStore from 'Stores/StoreContainer';
 import { HeaderType } from 'type/header';
 import CalculatorPage from '../components/CalculatorPage';
 
-const Calculator: NextPage = () => {
+interface test {
+  check: boolean;
+}
+
+const Calculator: NextPage<test> = ({ check }) => {
   const seoTitle = '성적 입력';
   const desc = '지원자의 성적을 기재합니다.';
+  const { setLogged } = useStore();
+  useEffect(() => {
+    setLogged(check);
+  }, []);
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
@@ -25,29 +35,37 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
   const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
 
-  try {
-    await auth.check(accessToken);
+  if (ctx.req.cookies.refreshToken) {
+    try {
+      // 로그인 O
+      await auth.check(accessToken);
+      return {
+        props: { check: true },
+      };
+    } catch (err) {
+      try {
+        // accessToken 만료시
+        const { headers }: HeaderType = await auth.refresh(refreshToken);
+        // 브라우저에 쿠키들을 저장한다
+        ctx.res.setHeader('set-cookie', headers['set-cookie']);
+        return {
+          props: { check: true },
+        };
+      } catch (err) {
+        // 로그인 실패
+        return {
+          props: { check: false },
+        };
+      }
+    }
+  } else {
+    // 로그인 X
     return {
       props: {},
+      redirect: {
+        destination: '/auth/signin',
+      },
     };
-  } catch (err) {
-    //accessToken 만료시 refresh 요청
-    if (ctx.req.cookies.refreshToken) {
-      // 요청 헤더를 가저온다
-      const { headers }: HeaderType = await auth.refresh(refreshToken);
-      // 브라우저에 쿠키들을 저장한다
-      ctx.res.setHeader('set-cookie', headers['set-cookie']);
-      return {
-        props: {},
-      };
-    } else {
-      return {
-        props: {},
-        redirect: {
-          destination: '/auth/signin',
-        },
-      };
-    }
   }
 };
 
