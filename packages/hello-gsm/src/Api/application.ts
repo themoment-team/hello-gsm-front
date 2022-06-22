@@ -111,7 +111,7 @@ class Application {
   /**
    * 증명사진 저장 및 수정을 위한 api
    */
-  postImage(data: object) {
+  postImage(data: File) {
     try {
       return RequestApi({
         method: 'POST',
