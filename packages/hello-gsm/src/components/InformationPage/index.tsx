@@ -3,8 +3,16 @@ import { Header } from 'components';
 import Link from 'next/link';
 import * as S from './style';
 import { css } from '@emotion/react';
+import useStore from 'Stores/StoreContainer';
+import { useEffect } from 'react';
 
 const InformationPage: NextPage = () => {
+  const { setLogged } = useStore();
+
+  useEffect(() => {
+    setLogged(true);
+  }, []);
+
   return (
     <S.InformationPage>
       <Header />
