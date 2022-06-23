@@ -1,13 +1,15 @@
 import type { GetServerSideProps, NextPage } from 'next';
-import { MainPage, SEOHelmet } from 'components';
+import { SEOHelmet } from 'components';
 import user from 'Api/user';
 import { StatusType } from 'type/user';
 import { HeaderType } from 'type/header';
 import auth from 'Api/auth';
+import { MainPage } from 'PageContainer';
 
 const Home: NextPage<StatusType> = ({ data }) => {
   const seoTitle = '홈';
   const desc = '입학 일정을 설명합니다.';
+
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
