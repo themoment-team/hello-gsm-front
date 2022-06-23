@@ -12,6 +12,7 @@ interface FaqType {
 const Faq: NextPage<FaqType> = ({ data }) => {
   const seoTitle = '자주 묻는 질문';
   const desc = '매년 지원자들이 궁금해 하는 질문들을 보여줍니다.';
+
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
