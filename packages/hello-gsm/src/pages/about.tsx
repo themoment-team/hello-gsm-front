@@ -1,10 +1,11 @@
 import type { GetServerSideProps, NextPage } from 'next';
-import { AboutPage, SEOHelmet } from 'components';
+import { SEOHelmet } from 'components';
 import auth from 'Api/auth';
 import useStore from 'Stores/StoreContainer';
 import { useEffect } from 'react';
 import { CheckType } from 'type/check';
 import { HeaderType } from 'type/header';
+import { AboutPage } from 'PageContainer';
 
 const About: NextPage<CheckType> = ({ check }) => {
   const seoTitle = '팀 소개';

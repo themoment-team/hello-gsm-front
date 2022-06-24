@@ -1,14 +1,16 @@
 import React from 'react';
 import type { GetServerSideProps, NextPage } from 'next';
-import { ApplyPage, SEOHelmet } from 'components';
+import { SEOHelmet } from 'components';
 import { GetApplicationType } from 'type/application';
 import application from 'Api/application';
 import { HeaderType } from 'type/header';
 import auth from 'Api/auth';
+import { ApplyPage } from 'PageContainer';
 
 const Apply: NextPage<GetApplicationType> = ({ data }) => {
   const seoTitle = '입학 지원';
   const desc = '지원자의 인적사항을 기재합니다.';
+
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />

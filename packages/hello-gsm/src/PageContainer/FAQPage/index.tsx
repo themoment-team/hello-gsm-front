@@ -5,14 +5,10 @@ import * as S from './style';
 import { Header, FAQBox, FAQModal } from 'components';
 import useStore from 'Stores/StoreContainer';
 import auth from 'Api/auth';
+import { FAQType } from 'type/faq';
 
 type FAQDataType = {
   faqData: FAQType[];
-};
-
-export type FAQType = {
-  question: string;
-  answer: string;
 };
 
 const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
