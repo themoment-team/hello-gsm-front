@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
-import { SEOHelmet, SignInPage } from 'components';
+import { SEOHelmet } from 'components';
+import { SignInPage } from 'PageContainer';
 
 const SignIn: NextPage = () => {
   const seoTitle = '로그인';

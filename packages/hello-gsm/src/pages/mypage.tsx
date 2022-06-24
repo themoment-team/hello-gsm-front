@@ -1,9 +1,10 @@
 import type { GetServerSideProps, NextPage } from 'next';
-import { MypagePage, SEOHelmet } from 'components';
+import { SEOHelmet } from 'components';
 import user from 'Api/user';
 import { StatusType } from 'type/user';
 import auth from 'Api/auth';
 import { HeaderType } from 'type/header';
+import { MypagePage } from 'PageContainer';
 
 const MyPage: NextPage<StatusType> = ({ data }) => {
   const seoTitle = '내 정보';
