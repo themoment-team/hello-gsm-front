@@ -1,3 +1,4 @@
+export { default as ApplyBarBox } from './ApplyBarBox';
 export { default as Header } from './Common/Header';
 export { default as Footer } from './Common/Footer';
 export { default as SEOHelmet } from './Common/SEOHelmet';
