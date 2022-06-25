@@ -53,7 +53,7 @@ export interface GetApplicationType {
       guardianCellphoneNumber: string;
       teacherCellphoneNumber: null | string;
       schoolName: null | string;
-      screening: null | string;
+      screening: '일반전형' | '사회통합전형' | '특별전형';
       user_idx: number;
       application_score: null | number;
       application_details: {
@@ -66,10 +66,9 @@ export interface GetApplicationType {
         guardianRelation: string;
         teacherName: null | string;
         schoolLocation: null | string;
-        educationStatus: null | string;
-        graduationYear: number;
-        graduationMonth: number;
-        schoolTelephoneNumber: null | string;
+        educationStatus: '졸업예정' | '졸업' | '검정고시';
+        graduationYear: string;
+        graduationMonth: string;
         firstWantedMajor: '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
         secondWantedMajor: '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
         thirdWantedMajor: '소프트웨어개발과' | '스마트IOT과' | '인공지능과';
@@ -77,4 +76,18 @@ export interface GetApplicationType {
       };
     };
   };
+}
+
+export interface ApplyFormType {
+  addressDetails: string;
+  telephoneNumber: string;
+  screening: '일반전형' | '사회통합전형' | '특별전형';
+  graduationYear: string;
+  graduationMonth: string;
+  educationStatus: '졸업예정' | '졸업' | '검정고시';
+  guardianName: string;
+  guardianRelation: string;
+  guardianCellphoneNumber: string;
+  teacherName: string | null;
+  teacherCellphoneNumber: string | null;
 }
