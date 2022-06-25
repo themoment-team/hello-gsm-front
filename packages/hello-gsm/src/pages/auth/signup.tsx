@@ -1,5 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next';
-import { SEOHelmet, SignUpPage } from 'components';
+import { SEOHelmet } from 'components';
+import { SignUpPage } from 'PageContainer';
 
 const SignUp: NextPage = () => {
   const seoTitle = '회원가입';

@@ -4,14 +4,11 @@ import * as I from 'Assets/svg';
 import * as S from './style';
 import { Header, FAQBox, FAQModal } from 'components';
 import useStore from 'Stores/StoreContainer';
+import auth from 'Api/auth';
+import { FAQType } from 'type/faq';
 
 type FAQDataType = {
   faqData: FAQType[];
-};
-
-export type FAQType = {
-  question: string;
-  answer: string;
 };
 
 const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
@@ -19,7 +16,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   const [keyword, setKeyword] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(1);
 
-  const { showFAQModal, isSearching, setIsSearching } = useStore();
+  const { showFAQModal, isSearching, setIsSearching, setLogged } = useStore();
 
   const searching = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
@@ -43,6 +40,26 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
           ),
         );
   }, [keyword, pageIndex, isSearching]);
+
+  useEffect(() => {
+    const checkLogin = async () => {
+      try {
+        await auth.check();
+        setLogged(true);
+      } catch (error: any) {
+        if (error.response.status === 401) {
+          try {
+            // accessToken 발급
+            await auth.refresh();
+            setLogged(true);
+          } catch (error) {
+            setLogged(false);
+          }
+        }
+      }
+    };
+    checkLogin();
+  }, []);
 
   const selectPage = (index: number) => setPageIndex(index);
 

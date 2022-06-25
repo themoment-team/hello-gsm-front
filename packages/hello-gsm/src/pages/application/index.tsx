@@ -1,5 +1,4 @@
 import type { GetServerSideProps, NextPage } from 'next';
-import { ApplicationPage, SEOHelmet } from 'components';
 import application from 'Api/application';
 import { ProfileType } from 'type/profile';
 import { StatusType } from 'type/user';
@@ -8,6 +7,8 @@ import { HeaderType } from 'type/header';
 import auth from 'Api/auth';
 import { useEffect } from 'react';
 import useStore from 'Stores/StoreContainer';
+import { SEOHelmet } from 'components';
+import { ApplicationPage } from 'PageContainer';
 
 interface test2 extends ProfileType {
   check: boolean;
@@ -20,6 +21,7 @@ const Application: NextPage<test2> = ({ data, check }) => {
   useEffect(() => {
     setLogged(check);
   }, []);
+
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
