@@ -1,3 +1,4 @@
+import React from 'react';
 import * as S from './style';
 
 const ApplyBarBox: React.FC = () => {
@@ -23,4 +24,4 @@ const ApplyBarBox: React.FC = () => {
   );
 };
 
-export default ApplyBarBox;
+export default React.memo(ApplyBarBox);
