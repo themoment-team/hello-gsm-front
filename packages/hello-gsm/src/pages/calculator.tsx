@@ -4,7 +4,7 @@ import type { GetServerSideProps, NextPage } from 'next';
 import { useEffect } from 'react';
 import useStore from 'Stores/StoreContainer';
 import { HeaderType } from 'type/header';
-import CalculatorPage from '../components/CalculatorPage';
+import CalculatorPage from 'PageContainer/CalculatorPage';
 
 interface test {
   check: boolean;
