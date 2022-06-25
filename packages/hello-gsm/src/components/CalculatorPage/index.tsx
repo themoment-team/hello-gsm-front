@@ -178,12 +178,13 @@ const CalculatorPage: NextPage = () => {
                       },
                     })}
                   >
-                    {/* <option>선택</option> */}
+                    <option>선택</option>
                     <option value={5}>A</option>
                     <option value={4}>B</option>
                     <option value={3}>C</option>
                     <option value={2}>D</option>
                     <option value={1}>E</option>
+                    <option>없음</option>
                   </S.Select>
                 ))}
                 {newSubjects.map((newSubject, i) => (
@@ -191,7 +192,7 @@ const CalculatorPage: NextPage = () => {
                     key={i}
                     {...register(`score2_1.${subjects.length + i}`)} // 기존 2_1 점수 배열에 추가과목 점수 추가
                   >
-                    {/* <option>선택</option> */}
+                    <option>선택</option>
                     <option value={5}>A</option>
                     <option value={4}>B</option>
                     <option value={3}>C</option>
@@ -213,12 +214,13 @@ const CalculatorPage: NextPage = () => {
                       },
                     })}
                   >
-                    {/* <option>선택</option> */}
+                    <option>선택</option>
                     <option value={5}>A</option>
                     <option value={4}>B</option>
                     <option value={3}>C</option>
                     <option value={2}>D</option>
                     <option value={1}>E</option>
+                    <option>없음</option>
                   </S.Select>
                 ))}
                 {newSubjects.map((newSubject, i) => (
@@ -226,7 +228,7 @@ const CalculatorPage: NextPage = () => {
                     key={i}
                     {...register(`score2_2.${subjects.length + i}`)}
                   >
-                    {/* <option>선택</option> */}
+                    <option>선택</option>
                     <option value={5}>A</option>
                     <option value={4}>B</option>
                     <option value={3}>C</option>
@@ -248,12 +250,13 @@ const CalculatorPage: NextPage = () => {
                       },
                     })}
                   >
-                    {/* <option>선택</option> */}
+                    <option>선택</option>
                     <option value={5}>A</option>
                     <option value={4}>B</option>
                     <option value={3}>C</option>
                     <option value={2}>D</option>
                     <option value={1}>E</option>
+                    <option>없음</option>
                   </S.Select>
                 ))}
                 {newSubjects.map((newSubject, i) => (
@@ -261,7 +264,7 @@ const CalculatorPage: NextPage = () => {
                     key={i}
                     {...register(`score3_1.${subjects.length + i}`)}
                   >
-                    {/* <option>선택</option> */}
+                    <option>선택</option>
                     <option value={5}>A</option>
                     <option value={4}>B</option>
                     <option value={3}>C</option>
@@ -302,6 +305,7 @@ const CalculatorPage: NextPage = () => {
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
+                  <option>없음</option>
                 </S.Select>
               ))}
             </S.ValueSection>
@@ -317,10 +321,11 @@ const CalculatorPage: NextPage = () => {
                     },
                   })}
                 >
-                  {/* <option>선택</option> */}
+                  <option>선택</option>
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
+                  <option>없음</option>
                 </S.Select>
               ))}
             </S.ValueSection>
@@ -340,6 +345,7 @@ const CalculatorPage: NextPage = () => {
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
+                  <option>없음</option>
                 </S.Select>
               ))}
             </S.ValueSection>
@@ -374,7 +380,9 @@ const CalculatorPage: NextPage = () => {
                     <S.AttendanceInput
                       key={grade}
                       {...register(`absentScore.${i}`, {
-                        // required: true,
+                        validate: {
+                          notNaN: value => !isNaN(value),
+                        },
                       })}
                       placeholder="입력"
                     />
@@ -386,7 +394,7 @@ const CalculatorPage: NextPage = () => {
                     <S.AttendanceInput
                       key={grade}
                       {...register(`attendanceScore.${i}`, {
-                        // required: true,
+                        required: true,
                       })}
                       placeholder="입력"
                     />
@@ -398,7 +406,7 @@ const CalculatorPage: NextPage = () => {
                     <S.AttendanceInput
                       key={grade}
                       {...register(`attendanceScore.${3 + i}`, {
-                        // required: true,
+                        required: true,
                       })}
                       placeholder="입력"
                     />
@@ -410,7 +418,7 @@ const CalculatorPage: NextPage = () => {
                     <S.AttendanceInput
                       key={grade}
                       {...register(`attendanceScore.${6 + i}`, {
-                        // required: true,
+                        required: true,
                       })}
                       placeholder="입력"
                     />
@@ -422,7 +430,7 @@ const CalculatorPage: NextPage = () => {
                     <S.AttendanceInput
                       key={grade}
                       {...register(`volunteerScore.${i}`, {
-                        // required: true,
+                        required: true,
                       })}
                       placeholder="입력"
                     />
