@@ -110,15 +110,18 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       },
     };
 
+    const formData = new FormData();
+
+    imgInput.current?.files &&
+      formData.append('photo', imgInput.current?.files[0]);
+
     try {
       if (!isEdit) {
         await application.postFirstSubmission(data);
-        imgInput.current?.files &&
-          (await application.postImage(imgInput.current?.files[0]));
+        imgInput.current?.files && (await application.postImage(formData));
       } else {
         await application.patchFirstSubmission(data);
-        imgInput.current?.files &&
-          (await application.postImage(imgInput.current?.files[0]));
+        imgInput.current?.files && (await application.postImage(formData));
       }
       // push('/calculator');
     } catch (error: any) {
@@ -152,6 +155,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   };
 
   const onSubmit = async (data: ApplyFormType) => {
+    console.log('hi');
     onClick();
     if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
       await apply(data);
