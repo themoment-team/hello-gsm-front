@@ -13,23 +13,13 @@ import {
 } from 'components';
 import { useForm } from 'react-hook-form';
 import application from 'Api/application';
-import { ApplicationType, GetApplicationType } from 'type/application';
+import {
+  ApplicationType,
+  ApplyFormType,
+  GetApplicationType,
+} from 'type/application';
 import auth from 'Api/auth';
 import { useRouter } from 'next/router';
-
-interface ApplyFormType {
-  addressDetails: string;
-  telephoneNumber: string;
-  screening: '일반전형' | '사회통합전형' | '특별전형';
-  graduationYear: string;
-  graduationMonth: string;
-  educationStatus: '졸업예정' | '졸업' | '검정고시';
-  guardianName: string;
-  guardianRelation: string;
-  guardianCellphoneNumber: string;
-  teacherName: string;
-  teacherCellphoneNumber: string;
-}
 
 const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const imgInput = useRef<HTMLInputElement>(null);
@@ -474,17 +464,27 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
                 message: '* 성함을 확인해주세요',
               },
             })}
-            placeholder="담임선생님의 성명을 입력해주세요."
+            placeholder={
+              graduationStatus === '검정고시'
+                ? ''
+                : '담임선생님의 연락처를 입력해주세요.'
+            }
+            disabled={graduationStatus === '검정고시'}
           />
           <S.TeacherPhone
             {...register('teacherCellphoneNumber', {
-              required: '* 연락처를 입력해주세요',
+              required: '* 성함을 입력해주세요',
               maxLength: {
                 value: 11,
                 message: '* 연락처를 확인해주세요',
               },
             })}
-            placeholder="담임선생님의 연락처를 입력해주세요."
+            placeholder={
+              graduationStatus === '검정고시'
+                ? ''
+                : '담임선생님의 연락처를 입력해주세요.'
+            }
+            disabled={graduationStatus === '검정고시'}
           />
           <S.NextButton type="submit" onClick={onClick}>
             다음
