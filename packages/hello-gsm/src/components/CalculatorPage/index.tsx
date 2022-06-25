@@ -63,7 +63,6 @@ const CalculatorPage: NextPage = () => {
     );
     // 총합
 
-    console.log(score2_1);
     console.log(validForm);
     console.log(
       `2학년 1학기 : ${score2_1}\n2학년 2학기 : ${score2_2}\n3학기 1학기 : ${score3_1}\n교과성적 소계 : ${generalCurriculumScoreSubtotal}\n`,
@@ -75,6 +74,7 @@ const CalculatorPage: NextPage = () => {
     );
     console.log(`총합 : ${scoreTotal}`);
 
+    // 원서 파일 페이지에서 불러오기 위해 localstorage에 저장
     window.localStorage.setItem('score2_1', JSON.stringify(validForm.score2_1));
     window.localStorage.setItem('score2_2', JSON.stringify(validForm.score2_2));
     window.localStorage.setItem('score3_1', JSON.stringify(validForm.score3_1));
@@ -184,7 +184,7 @@ const CalculatorPage: NextPage = () => {
                     <option value={3}>C</option>
                     <option value={2}>D</option>
                     <option value={1}>E</option>
-                    <option>없음</option>
+                    <option value={0}>없음</option>
                   </S.Select>
                 ))}
                 {newSubjects.map((newSubject, i) => (
@@ -198,7 +198,7 @@ const CalculatorPage: NextPage = () => {
                     <option value={3}>C</option>
                     <option value={2}>D</option>
                     <option value={1}>E</option>
-                    <option>없음</option>
+                    <option value={0}>없음</option>
                   </S.Select>
                 ))}
               </S.ValueSection>
@@ -220,7 +220,7 @@ const CalculatorPage: NextPage = () => {
                     <option value={3}>C</option>
                     <option value={2}>D</option>
                     <option value={1}>E</option>
-                    <option>없음</option>
+                    <option value={0}>없음</option>
                   </S.Select>
                 ))}
                 {newSubjects.map((newSubject, i) => (
@@ -234,7 +234,7 @@ const CalculatorPage: NextPage = () => {
                     <option value={3}>C</option>
                     <option value={2}>D</option>
                     <option value={1}>E</option>
-                    <option>없음</option>
+                    <option value={0}>없음</option>
                   </S.Select>
                 ))}
               </S.ValueSection>
@@ -256,7 +256,7 @@ const CalculatorPage: NextPage = () => {
                     <option value={3}>C</option>
                     <option value={2}>D</option>
                     <option value={1}>E</option>
-                    <option>없음</option>
+                    <option value={0}>없음</option>
                   </S.Select>
                 ))}
                 {newSubjects.map((newSubject, i) => (
@@ -270,7 +270,7 @@ const CalculatorPage: NextPage = () => {
                     <option value={3}>C</option>
                     <option value={2}>D</option>
                     <option value={1}>E</option>
-                    <option>없음</option>
+                    <option value={0}>없음</option>
                   </S.Select>
                 ))}
               </S.ValueSection>
@@ -305,7 +305,7 @@ const CalculatorPage: NextPage = () => {
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
-                  <option>없음</option>
+                  <option value={0}>없음</option>
                 </S.Select>
               ))}
             </S.ValueSection>
@@ -325,7 +325,7 @@ const CalculatorPage: NextPage = () => {
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
-                  <option>없음</option>
+                  <option value={0}>없음</option>
                 </S.Select>
               ))}
             </S.ValueSection>
@@ -345,7 +345,7 @@ const CalculatorPage: NextPage = () => {
                   <option value={5}>A</option>
                   <option value={4}>B</option>
                   <option value={3}>C</option>
-                  <option>없음</option>
+                  <option value={0}>없음</option>
                 </S.Select>
               ))}
             </S.ValueSection>
@@ -380,9 +380,7 @@ const CalculatorPage: NextPage = () => {
                     <S.AttendanceInput
                       key={grade}
                       {...register(`absentScore.${i}`, {
-                        validate: {
-                          notNaN: value => !isNaN(value),
-                        },
+                        required: true,
                       })}
                       placeholder="입력"
                     />

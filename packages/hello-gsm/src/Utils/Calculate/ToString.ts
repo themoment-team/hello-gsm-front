@@ -1,3 +1,9 @@
+/**
+ *
+ * @param scores - localStorage에 있는 배열
+ * @returns - 숫자로 되어있는 성적 배열을 등급으로 표시
+ */
+
 const useToString = (scores: Array<number | string> | undefined) => {
   scores?.map((score, i) => {
     switch (score) {
@@ -16,7 +22,7 @@ const useToString = (scores: Array<number | string> | undefined) => {
       case 1:
         scores[i] = 'E';
         break;
-      case null:
+      case 0:
         scores[i] = '없음';
         break;
     }
