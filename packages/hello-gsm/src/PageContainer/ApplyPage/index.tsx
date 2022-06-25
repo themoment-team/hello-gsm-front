@@ -458,7 +458,10 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
           <S.Title>담임 선생님</S.Title>
           <S.TeacherName
             {...register('teacherName', {
-              required: '* 성함을 입력해주세요',
+              required:
+                graduationStatus !== '검정고시'
+                  ? '* 성함을 입력해주세요'
+                  : false,
               maxLength: {
                 value: 20,
                 message: '* 성함을 확인해주세요',
@@ -473,7 +476,10 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
           />
           <S.TeacherPhone
             {...register('teacherCellphoneNumber', {
-              required: '* 성함을 입력해주세요',
+              required:
+                graduationStatus !== '검정고시'
+                  ? '* 연락처를 입력해주세요'
+                  : false,
               maxLength: {
                 value: 11,
                 message: '* 연락처를 확인해주세요',
