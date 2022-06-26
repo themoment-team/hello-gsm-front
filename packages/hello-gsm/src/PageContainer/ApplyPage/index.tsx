@@ -35,6 +35,8 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const [isAddressExist, setIsAddressExist] = useState<boolean>(true);
   const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(true);
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [teacherName, setTeacherName] = useState<string | null>('');
+  const [teacherNumber, setTeacherNumber] = useState<string | null>('');
 
   const { push } = useRouter();
 
@@ -63,8 +65,18 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     formState: { errors },
   } = useForm<ApplyFormType>({
     defaultValues: {
-      screening: '일반전형',
-      educationStatus: '졸업예정',
+      addressDetails: data.application?.application_details.addressDetails,
+      telephoneNumber: data.application?.application_details.telephoneNumber,
+      screening: data.application?.screening || '일반전형',
+      graduationYear: data.application?.application_details.graduationYear,
+      graduationMonth: data.application?.application_details.graduationMonth,
+      educationStatus:
+        data.application?.application_details.educationStatus || '졸업예정',
+      guardianName: data.application?.application_details.guardianName,
+      guardianRelation: data.application?.application_details.guardianRelation,
+      guardianCellphoneNumber: data.application?.guardianCellphoneNumber,
+      teacherName: teacherName,
+      teacherCellphoneNumber: teacherNumber,
     },
   });
 
@@ -74,6 +86,8 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     const userBirth = new Date(data.birth);
     if (data.application !== null) {
       setIsEdit(true);
+      setTeacherName(data.application.application_details.teacherName);
+      setTeacherNumber(data.application.teacherCellphoneNumber);
     } else {
       setIsEdit(false);
     }
@@ -249,11 +263,11 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             {...register('telephoneNumber', {
               required: false,
               pattern: {
-                value: /^[0-9]{10}$/,
+                value: /^[0-9]{9,10}$/,
                 message: '* 집 전화번호를 확인해주세요',
               },
             })}
-            placeholder="집 전화번호를 입력해주세요.('-'제외 10자리)"
+            placeholder="집 전화번호를 입력해주세요. ('-'제외 9~10자리)"
           />
           <S.Cellphone>{cellphoneNumber}</S.Cellphone>
           <S.Title>지원자 현황</S.Title>
@@ -365,6 +379,8 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
                 onClick={() => {
                   setSchoolLocation('');
                   setSchoolName('');
+                  setTeacherName('');
+                  setTeacherNumber('');
                 }}
               >
                 검정고시
@@ -445,19 +461,11 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             {...register('guardianCellphoneNumber', {
               required: '* 핸드폰 번호를 입력해주세요',
               pattern: {
-                value: /^[0-9]+$/,
-                message: '* 숫자만 입력 가능합니다',
-              },
-              maxLength: {
-                value: 11,
-                message: '* 핸드폰 번호를 확인해주세요',
-              },
-              minLength: {
-                value: 11,
+                value: /^[0-9]{11}$/,
                 message: '* 핸드폰 번호를 확인해주세요',
               },
             })}
-            placeholder="보호자분의 핸드폰 번호를 입력해주세요."
+            placeholder="보호자분의 핸드폰 번호를 입력해주세요. ('-'제외 11자리)"
           />
           <S.Title>담임 선생님</S.Title>
           <S.TeacherName
@@ -474,7 +482,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             placeholder={
               graduationStatus === '검정고시'
                 ? ''
-                : '담임선생님의 연락처를 입력해주세요.'
+                : '담임선생님의 성함을 입력해주세요.'
             }
             disabled={graduationStatus === '검정고시'}
           />
@@ -484,15 +492,15 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
                 graduationStatus !== '검정고시'
                   ? '* 연락처를 입력해주세요'
                   : false,
-              maxLength: {
-                value: 11,
-                message: '* 연락처를 확인해주세요',
+              pattern: {
+                value: /^[0-9]{11}$/,
+                message: '* 핸드폰 번호를 확인해주세요',
               },
             })}
             placeholder={
               graduationStatus === '검정고시'
                 ? ''
-                : '담임선생님의 연락처를 입력해주세요.'
+                : "담임선생님의 연락처를 입력해주세요. ('-'제외 9~10자리)"
             }
             disabled={graduationStatus === '검정고시'}
           />
