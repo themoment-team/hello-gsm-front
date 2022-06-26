@@ -35,8 +35,6 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const [isAddressExist, setIsAddressExist] = useState<boolean>(true);
   const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(true);
   const [isEdit, setIsEdit] = useState<boolean>(false);
-  const [teacherName, setTeacherName] = useState<string | null>('');
-  const [teacherNumber, setTeacherNumber] = useState<string | null>('');
 
   const { push } = useRouter();
 
@@ -81,8 +79,8 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       guardianName: data.application?.application_details.guardianName,
       guardianRelation: data.application?.application_details.guardianRelation,
       guardianCellphoneNumber: data.application?.guardianCellphoneNumber,
-      teacherName: teacherName,
-      teacherCellphoneNumber: teacherNumber,
+      teacherName: data.application?.application_details.teacherName,
+      teacherCellphoneNumber: data.application?.teacherCellphoneNumber,
     },
   });
 
