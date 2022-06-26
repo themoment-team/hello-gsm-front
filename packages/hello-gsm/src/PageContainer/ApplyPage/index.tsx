@@ -394,8 +394,6 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
                 onClick={() => {
                   setSchoolLocation('');
                   setSchoolName('');
-                  setTeacherName('');
-                  setTeacherNumber('');
                 }}
               >
                 검정고시
