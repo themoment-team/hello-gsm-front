@@ -43,6 +43,9 @@ export interface GetApplicationType {
     birth: Date;
     gender: '남자' | '여자';
     cellphoneNumber: string;
+    application_image: {
+      IdPhotoUrl: string;
+    };
     application: null | {
       applicationIdx: number;
       registrationNumber: null | number;
@@ -58,7 +61,6 @@ export interface GetApplicationType {
       application_score: null | number;
       application_details: {
         applicationIdx: number;
-        idPhotoUrl: string;
         address: string;
         addressDetails: string;
         telephoneNumber: string;
