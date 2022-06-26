@@ -90,8 +90,6 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     const userBirth = new Date(data.birth);
     if (data.application !== null) {
       setIsEdit(true);
-      setTeacherName(data.application.application_details.teacherName);
-      setTeacherNumber(data.application.teacherCellphoneNumber);
     } else {
       setIsEdit(false);
     }
