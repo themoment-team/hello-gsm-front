@@ -45,8 +45,11 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     setShowDepartmentModal,
     setSelectedChoice,
     choice1,
+    setChoice1,
     choice2,
+    setChoice2,
     choice3,
+    setChoice3,
     showFindSchoolModal,
     setShowFindSchoolModal,
     schoolName,
@@ -56,6 +59,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     showFindAddressModal,
     setShowFindAddressModal,
     address,
+    setAddress,
   } = useStore();
 
   const {
@@ -65,8 +69,10 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     formState: { errors },
   } = useForm<ApplyFormType>({
     defaultValues: {
-      addressDetails: data.application?.application_details.addressDetails,
-      telephoneNumber: data.application?.application_details.telephoneNumber,
+      addressDetails:
+        data.application?.application_details.addressDetails || '',
+      telephoneNumber:
+        data.application?.application_details.telephoneNumber || '',
       screening: data.application?.screening || '일반전형',
       graduationYear: data.application?.application_details.graduationYear,
       graduationMonth: data.application?.application_details.graduationMonth,
@@ -97,6 +103,15 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     setBirthMonth(userBirth.getMonth() + 1);
     setBirthDate(userBirth.getDate());
     setCellphoneNumber(data.cellphoneNumber);
+    setImgURL(data.application_image.IdPhotoUrl || '');
+    setChoice1(data.application?.application_details.firstWantedMajor || '');
+    setChoice2(data.application?.application_details.secondWantedMajor || '');
+    setChoice3(data.application?.application_details.thirdWantedMajor || '');
+    setSchoolName(data.application?.schoolName || '');
+    setSchoolLocation(
+      data.application?.application_details.schoolLocation || '',
+    );
+    setAddress(data.application?.application_details.address || '');
   }, []);
 
   const apply = async (submitData: ApplyFormType) => {
@@ -157,14 +172,18 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const readImg = (event: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
 
+    if (event.target.files) {
+      event.target.files[0] && reader.readAsDataURL(event.target.files[0]);
+    }
+
     reader.onload = (event: ProgressEvent<FileReader>) => {
       if (typeof event.target?.result === 'string') {
         setImgURL(event.target.result);
       }
     };
 
-    if (event.target.files) {
-      event.target.files[0] && reader.readAsDataURL(event.target.files[0]);
+    if (imgInput.current?.files && imgInput.current?.files[0] === undefined) {
+      setImgURL('');
     }
   };
 
