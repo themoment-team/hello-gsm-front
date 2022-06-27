@@ -63,7 +63,12 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
   const volunteerScore = useLocalstorage('volunteerScore');
   const subjects = useLocalstorage('subjects');
   const newSubjects = useLocalstorage('newSubjects');
+  // 환산일수
+  const conversionDays =
+    data?.application?.applicationScore?.attendanceScore &&
+    30 - 3 * data?.application?.applicationScore?.attendanceScore;
 
+  console.log(conversionDays);
   useEffect(() => {
     window.print();
   }, []);
@@ -95,7 +100,7 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
             </S.SubTitle>
             <S.Box>
               <S.ApplyNum>접수번호</S.ApplyNum>
-              <S.Content>{data.userIdx}</S.Content>
+              <S.Content>{data?.userIdx}</S.Content>
             </S.Box>
           </S.Wrap>
           <S.Container>
@@ -111,11 +116,11 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                     지원자
                   </S.Subject>
                   <S.Subject>성 명</S.Subject>
-                  <td>{data.name}</td>
+                  <td>{data?.name}</td>
                   <S.Subject style={{ width: '3%' }}>성별</S.Subject>
-                  <td>{data.gender}</td>
+                  <td>{data?.gender}</td>
                   <S.Subject>생년월일</S.Subject>
-                  <td>{data.birth}</td>
+                  <td>{data?.birth}</td>
                   <td
                     rowSpan={6}
                     style={{
@@ -124,7 +129,7 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                     }}
                   >
                     <img
-                      src={data.application?.applicationDetails?.idPhotoUrl}
+                      src={data?.application?.applicationDetails?.idPhotoUrl}
                       alt=""
                     />
                   </td>
@@ -132,17 +137,17 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                 <tr>
                   <S.Subject>주 소</S.Subject>
                   <td colSpan={5}>
-                    {data.application?.applicationDetails?.address}
+                    {data?.application?.applicationDetails?.address}
                   </td>
                 </tr>
                 <tr>
                   <S.Subject>연락처</S.Subject>
                   <S.Subject>집전화</S.Subject>
                   <td colSpan={2}>
-                    {data.application?.applicationDetails?.telephoneNumber}
+                    {data?.application?.applicationDetails?.telephoneNumber}
                   </td>
                   <S.Subject>핸드폰</S.Subject>
-                  <td>{data.cellphoneNumber}</td>
+                  <td>{data?.cellphoneNumber}</td>
                 </tr>
                 <tr>
                   <S.Subject style={{ width: '3%' }} rowSpan={2}>
@@ -150,17 +155,17 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                   </S.Subject>
                   <S.Subject>성 명</S.Subject>
                   <td colSpan={2}>
-                    {data.application?.applicationDetails?.guardianName}
+                    {data?.application?.applicationDetails?.guardianName}
                   </td>
                   <S.Subject>지원자와의 관계</S.Subject>
                   <td colSpan={2}>
-                    {data.application?.applicationDetails?.guardianRelation}
+                    {data?.application?.applicationDetails?.guardianRelation}
                   </td>
                 </tr>
                 <tr>
                   <S.Subject>핸드폰</S.Subject>
                   <td colSpan={5}>
-                    {data.application?.guardianCellphoneNumber}
+                    {data?.application?.guardianCellphoneNumber}
                   </td>
                 </tr>
                 <tr>
@@ -168,11 +173,11 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                     원서작성자(담임) <br /> 성명
                   </S.Subject>
                   <td colSpan={2} style={{ textAlign: 'end' }}>
-                    {data.application?.applicationDetails?.teacherName}(인)
+                    {data?.application?.applicationDetails?.teacherName}(인)
                   </td>
                   <S.Subject>핸드폰</S.Subject>
                   <td>
-                    {data.application?.applicationDetails?.telephoneNumber}
+                    {data?.application?.applicationDetails?.telephoneNumber}
                   </td>
                 </tr>
               </thead>
@@ -192,23 +197,23 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                     출신중학교
                   </S.Subject>
                   <td colSpan={2}>
-                    {data.application?.applicationDetails?.schoolLocation}
+                    {data?.application?.applicationDetails?.schoolLocation}
                   </td>
                   <td colSpan={6}>
-                    {data.application?.applicationDetails?.educationStatus}
+                    {data?.application?.applicationDetails?.educationStatus}
                   </td>
                 </tr>
                 <tr>
                   <S.Subject>지역명</S.Subject>
                   <td colSpan={7}>
-                    {data.application?.applicationDetails?.schoolLocation}
+                    {data?.application?.applicationDetails?.schoolLocation}
                   </td>
                 </tr>
                 <tr>
                   <S.Subject colSpan={9}>전 형 구 분</S.Subject>
                 </tr>
                 <tr>
-                  <td colSpan={9}>{data.application?.screening}</td>
+                  <td colSpan={9}>{data?.application?.screening}</td>
                 </tr>
                 <tr>
                   <S.Subject rowSpan={2} style={{ width: '10%' }}>
@@ -226,13 +231,13 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                 <tr>
                   <td className="slash"></td>
                   <td className="slash"></td>
-                  <td>{data.application?.applicationScore?.score2_1}</td>
-                  <td>{data.application?.applicationScore?.score2_2}</td>
-                  <td>{data.application?.applicationScore?.score3_1}</td>
-                  <td>{data.application?.applicationScore?.artSportsScore}</td>
+                  <td>{data?.application?.applicationScore?.score2_1}</td>
+                  <td>{data?.application?.applicationScore?.score2_2}</td>
+                  <td>{data?.application?.applicationScore?.score3_1}</td>
+                  <td>{data?.application?.applicationScore?.artSportsScore}</td>
                   <td>
                     {
-                      data.application?.applicationScore
+                      data?.application?.applicationScore
                         ?.curriculumScoreSubtotal
                     }
                   </td>
@@ -245,19 +250,19 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                   <S.Subject colSpan={3}>봉사활동</S.Subject>
                   <S.Subject>소계</S.Subject>
                   <td rowSpan={2}>
-                    {data.application?.applicationScore?.scoreTotal}
+                    {data?.application?.applicationScore?.scoreTotal}
                   </td>
                 </tr>
                 <tr>
                   <td colSpan={3}>
-                    {data.application?.applicationScore?.attendanceScore}
+                    {data?.application?.applicationScore?.attendanceScore}
                   </td>
                   <td colSpan={3}>
-                    {data.application?.applicationScore?.volunteerScore}
+                    {data?.application?.applicationScore?.volunteerScore}
                   </td>
                   <td>
                     {
-                      data.application?.applicationScore
+                      data?.application?.applicationScore
                         ?.nonCurriculumScoreSubtotal
                     }
                   </td>
@@ -274,13 +279,13 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                 </tr>
                 <tr>
                   <td colSpan={3}>
-                    {data.application?.applicationDetails?.firstWantedMajor}
+                    {data?.application?.applicationDetails?.firstWantedMajor}
                   </td>
                   <td colSpan={3}>
-                    {data.application?.applicationDetails?.secondWantedMajor}
+                    {data?.application?.applicationDetails?.secondWantedMajor}
                   </td>
                   <td colSpan={3}>
-                    {data.application?.applicationDetails?.thirdWantedMajor}
+                    {data?.application?.applicationDetails?.thirdWantedMajor}
                   </td>
                 </tr>
                 <tr>
@@ -342,7 +347,7 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
             <S.SubTitle>일반교과</S.SubTitle>
             <S.Box>
               <S.ApplyNum>접수번호</S.ApplyNum>
-              <S.Content>{data.userIdx}</S.Content>
+              <S.Content>{data?.userIdx}</S.Content>
             </S.Box>
           </S.Wrap>
 
@@ -441,7 +446,7 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                   <S.DivSubject>2학년 1학기</S.DivSubject>
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
-                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
+                <S.Value>{artSportsScore[0]}</S.Value>
                 <S.Value>{artSportsScore && artSportsScore[1]}</S.Value>
                 <S.Value>{artSportsScore && artSportsScore[2]}</S.Value>
               </S.Column>
@@ -495,14 +500,16 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                 <td>{attendanceScore && attendanceScore[3]}</td>
                 <td>{attendanceScore && attendanceScore[6]}</td>
                 <td rowSpan={3}>
-                  {data.application?.applicationScore?.attendanceScore &&
-                    (30 - data.application?.applicationScore?.attendanceScore) /
-                      3}
+                  {/* 환산일수 구하기 */}
+                  {conversionDays}
                 </td>
-                {/* 환산일수 구하기 */}
-                <td rowSpan={3}>asdas</td>
+                <td rowSpan={3}>
+                  {data?.application?.applicationScore?.attendanceScore}
+                </td>
                 <td>{volunteerScore && volunteerScore[0]}</td>
-                <td rowSpan={3}>asdas</td>
+                <td rowSpan={3}>
+                  {data?.application?.applicationScore?.volunteerScore}
+                </td>
               </tr>
               <tr>
                 <td>2</td>
