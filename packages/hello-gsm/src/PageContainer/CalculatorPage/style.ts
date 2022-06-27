@@ -177,7 +177,7 @@ export const LineList = styled.div`
   padding-right: 30px;
   border-right: 3px solid rgba(255, 255, 255, 0.17);
   margin-right: 40px;
-  height: 80%;
+  height: 90%;
   left: -200px;
   top: 0;
 `;
@@ -206,8 +206,7 @@ export const Line = styled.div`
     top: 7%;
   }
   :nth-child(2) {
-    top: 55%;
-    padding-top: 30%;
+    top: 52%;
   }
   :nth-child(3) {
     top: 80%;
