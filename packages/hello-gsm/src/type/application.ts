@@ -43,7 +43,7 @@ export interface GetApplicationType {
     birth: Date;
     gender: '남자' | '여자';
     cellphoneNumber: string;
-    application_image: {
+    application_image?: {
       idPhotoUrl: string;
     };
     application: null | {
