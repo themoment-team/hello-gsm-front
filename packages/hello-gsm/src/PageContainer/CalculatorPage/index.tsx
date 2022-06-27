@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react';
 import { Calculate, Volunteer, Rounds, Attendance } from 'Utils/Calculate';
 import application from 'Api/application';
 import Result from 'components/Modals/ScoreResultModal';
+import useToString from 'Utils/Calculate/ToString';
+import useLocalstorage from 'hooks/useLocalstorage';
 
 interface ScoreForm {
   score2_1: number[];
@@ -36,6 +38,18 @@ const CalculatorPage: NextPage = () => {
      */
     setIsSubmission(window.localStorage.getItem('isSubmission'));
   }, []);
+
+  const score2_1 = useLocalstorage('score2_1');
+  const score2_2 = useLocalstorage('score2_2');
+  const score3_1 = useLocalstorage('score3_1');
+  const artSportsScore = useLocalstorage('artSportsScore');
+  const absentScore = useLocalstorage('absentScore');
+  const attendanceScore = useLocalstorage('attendanceScore');
+  const volunteerScore = useLocalstorage('volunteerScore');
+  const getSubjects = useLocalstorage('subjects');
+  const getNewSubjects = useLocalstorage('newSubjects');
+  console.log(isSubmission);
+  console.log(score2_1);
 
   const onValid = async (validForm: ScoreForm) => {
     const score2_1: number = Calculate(validForm.score2_1, 2); // 2학년 1학기
@@ -143,6 +157,7 @@ const CalculatorPage: NextPage = () => {
   const [nonSubjects, setNonSubjects] = useState(['체육', '미술', '음악']);
   const [grades, setGrades] = useState([1, 2, 3]);
   const [newSubjects, setNewSubjects] = useState<Array<string | null>>([]);
+
   return (
     <>
       <Header />
@@ -179,12 +194,24 @@ const CalculatorPage: NextPage = () => {
                     })}
                   >
                     <option>선택</option>
-                    <option value={5}>A</option>
-                    <option value={4}>B</option>
-                    <option value={3}>C</option>
-                    <option value={2}>D</option>
-                    <option value={1}>E</option>
-                    <option value={0}>없음</option>
+                    <option value={5} selected={score2_1 && score2_1[i] === 5}>
+                      A
+                    </option>
+                    <option value={4} selected={score2_1 && score2_1[i] === 4}>
+                      B
+                    </option>
+                    <option value={3} selected={score2_1 && score2_1[i] === 3}>
+                      C
+                    </option>
+                    <option value={2} selected={score2_1 && score2_1[i] === 2}>
+                      D
+                    </option>
+                    <option value={1} selected={score2_1 && score2_1[i] === 1}>
+                      E
+                    </option>
+                    <option value={0} selected={score2_1 && score2_1[i] === 0}>
+                      없음
+                    </option>
                   </S.Select>
                 ))}
                 {newSubjects.map((newSubject, i) => (
@@ -383,6 +410,7 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                       })}
                       placeholder="입력"
+                      value={absentScore ? absentScore[i] : ''}
                     />
                   ))}
                 </S.ValueSection>
@@ -395,6 +423,7 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                       })}
                       placeholder="입력"
+                      value={attendanceScore ? attendanceScore[i] : ''}
                     />
                   ))}
                 </S.ValueSection>
@@ -407,6 +436,7 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                       })}
                       placeholder="입력"
+                      value={attendanceScore ? attendanceScore[3 + i] : ''}
                     />
                   ))}
                 </S.ValueSection>
@@ -419,10 +449,10 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                       })}
                       placeholder="입력"
+                      value={attendanceScore ? attendanceScore[6 + i] : ''}
                     />
                   ))}
                 </S.ValueSection>
-
                 <S.ValueSection>
                   {grades.map((grade, i) => (
                     <S.AttendanceInput
@@ -431,6 +461,7 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                       })}
                       placeholder="입력"
+                      value={volunteerScore ? volunteerScore[i] : ''}
                     />
                   ))}
                 </S.ValueSection>
