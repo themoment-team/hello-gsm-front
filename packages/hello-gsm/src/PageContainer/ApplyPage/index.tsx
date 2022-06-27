@@ -518,7 +518,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             placeholder={
               graduationStatus === '검정고시'
                 ? ''
-                : "담임선생님의 연락처를 입력해주세요. ('-'제외 9~10자리)"
+                : "담임선생님의 연락처를 입력해주세요. ('-'제외 11자리)"
             }
             disabled={graduationStatus === '검정고시'}
           />
