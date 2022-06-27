@@ -100,7 +100,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     setBirthMonth(userBirth.getMonth() + 1);
     setBirthDate(userBirth.getDate());
     setCellphoneNumber(data.cellphoneNumber);
-    setImgURL(data.application_image.IdPhotoUrl || '');
+    setImgURL(data.application_image.idPhotoUrl || '');
     setChoice1(data.application?.application_details.firstWantedMajor || '');
     setChoice2(data.application?.application_details.secondWantedMajor || '');
     setChoice3(data.application?.application_details.thirdWantedMajor || '');

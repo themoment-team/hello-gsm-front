@@ -44,7 +44,7 @@ export interface GetApplicationType {
     gender: '남자' | '여자';
     cellphoneNumber: string;
     application_image: {
-      IdPhotoUrl: string;
+      idPhotoUrl: string;
     };
     application: null | {
       applicationIdx: number;
