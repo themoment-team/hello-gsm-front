@@ -104,16 +104,16 @@ export const ToApply = styled.a`
   width: 100%;
   height: 60px;
   display: block;
-  border: 1px solid #ffffff;
   box-sizing: border-box;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ededed;
+  background: #dbe44e;
+  box-shadow: 0px 5px 20px 0px #dbe44e;
   :hover {
-    transition: background 0.4s;
-    background: #dbe44e;
+    transition: box-shadow 0.5s;
+    box-shadow: 0px 0px 50px 0px #dbe44e;
   }
 `;
 

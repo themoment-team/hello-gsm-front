@@ -53,7 +53,8 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             날인하여
           </S.DescriptionLine>
           <S.DescriptionLine>
-            원서접수 기간 내에 우편접수 또는 공문시행을 통해 제출하여야 합니다.
+            원서접수 기간 내에 공문시행, 등기 우편, 방문 제출 중 한가지의
+            방법으로 제출하여야 합니다.
           </S.DescriptionLine>
           <S.DescriptionLine
             css={css`
