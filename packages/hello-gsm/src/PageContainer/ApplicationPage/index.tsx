@@ -387,7 +387,7 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
               {score2_1?.map((score, i) => (
                 <S.Value key={i}>{score}</S.Value>
               ))}
-              <S.Value>환산점</S.Value>
+              <S.Value>{data?.application?.applicationScore?.score2_1}</S.Value>
             </S.Column>
             <S.Column>
               <S.Semester>
@@ -397,7 +397,7 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
               {score2_2?.map((score, i) => (
                 <S.Value key={i}>{score}</S.Value>
               ))}
-              <S.Value>환산점</S.Value>
+              <S.Value>{data?.application?.applicationScore?.score2_2}</S.Value>
             </S.Column>
             <S.Column>
               <S.Semester>
@@ -407,7 +407,7 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
               {score3_1?.map((score, i) => (
                 <S.Value key={i}>{score}</S.Value>
               ))}
-              <S.Value>환산점</S.Value>
+              <S.Value>{data?.application?.applicationScore?.score3_1}</S.Value>
             </S.Column>
           </S.ScoreTable>
 
@@ -446,7 +446,7 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                   <S.DivSubject>2학년 1학기</S.DivSubject>
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
-                <S.Value>{artSportsScore[0]}</S.Value>
+                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
                 <S.Value>{artSportsScore && artSportsScore[1]}</S.Value>
                 <S.Value>{artSportsScore && artSportsScore[2]}</S.Value>
               </S.Column>
@@ -471,7 +471,7 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
             </S.ColumnWrapper>
             <S.Test>
               <S.Column style={{ width: '20%' }}>환산점</S.Column>
-              <S.Column>환산점</S.Column>
+              <S.Value>{data?.application?.applicationScore?.artSportsScore}</S.Value>
             </S.Test>
           </S.TestTable>
           <S.SubTitle>비교과</S.SubTitle>
