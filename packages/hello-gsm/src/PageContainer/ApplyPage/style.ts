@@ -190,7 +190,7 @@ export const Cellphone = styled.div`
   border-radius: 6px;
   background: #484453;
   margin-top: 60px;
-  padding: 16px 20px;
+  padding: 15px 25px;
   color: rgba(255, 255, 255, 0.45);
   font-weight: 400;
   font-size: 20px;
@@ -402,7 +402,9 @@ export const NextButton = styled.button`
   color: #0f0921;
   margin-top: 180px;
   margin: 180px 0 200px;
-  padding: 17px 88px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 `;
 
