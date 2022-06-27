@@ -64,6 +64,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<ApplyFormType>({
     defaultValues: {
@@ -394,6 +395,8 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
                 onClick={() => {
                   setSchoolLocation('');
                   setSchoolName('');
+                  setValue('teacherName', '');
+                  setValue('teacherCellphoneNumber', '');
                 }}
               >
                 검정고시
