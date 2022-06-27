@@ -147,7 +147,9 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
         imgInput.current?.files && (await application.postImage(formData));
       } else {
         await application.patchFirstSubmission(data);
-        imgInput.current?.files && (await application.postImage(formData));
+        imgInput.current?.files &&
+          imgInput.current.files[0] !== undefined &&
+          (await application.postImage(formData));
       }
       // push('/calculator');
     } catch (error: any) {
