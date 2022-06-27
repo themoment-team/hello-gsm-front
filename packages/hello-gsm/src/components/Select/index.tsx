@@ -3,12 +3,12 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import type { UseFormRegisterReturn } from 'react-hook-form';
 
-interface Test {
+interface SelectProps {
   children: React.ReactNode;
   register: UseFormRegisterReturn;
 }
 
-const Select: NextPage<Test> = ({ children, register }: Test) => {
+const Select: NextPage<SelectProps> = ({ children, register }: SelectProps) => {
   return <S.Select {...register}>{children}</S.Select>;
 };
 
