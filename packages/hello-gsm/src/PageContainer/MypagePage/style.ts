@@ -8,7 +8,7 @@ export const MyPage = styled.div`
 `;
 
 export const Content = styled.div`
-  height: 300px;
+  height: 270px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,7 +18,7 @@ export const Content = styled.div`
 `;
 
 export const UserBox = styled.div`
-  height: 200px;
+  height: 175px;
   display: flex;
   flex-direction: column;
   align-items: center;
