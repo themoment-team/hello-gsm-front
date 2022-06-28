@@ -10,3 +10,4 @@ export { default as MypageSuccessModal } from './Modals/MypageSuccessModal';
 export { default as SignInResultModal } from './Modals/SignInResultModal';
 export { default as Select } from './Select';
 export { default as SideBar } from './SideBar';
+export { default as ScoreSelect } from './ScoreSelect';
