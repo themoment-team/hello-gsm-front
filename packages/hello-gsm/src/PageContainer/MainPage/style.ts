@@ -98,6 +98,12 @@ export const ApplyBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  @media ${device.tablet} {
+    width: 350px;
+  }
+  @media ${device.mobile} {
+    width: 240px;
+  }
 `;
 
 export const ToApply = styled.a`
@@ -115,12 +121,29 @@ export const ToApply = styled.a`
     transition: box-shadow 0.5s;
     box-shadow: 0px 0px 50px 0px #dbe44e;
   }
+  @media ${device.tablet} {
+    height: 65px;
+    background: #615d6c;
+    box-shadow: none;
+    :hover {
+      box-shadow: none;
+    }
+  }
+  @media ${device.mobile} {
+    height: 43px;
+  }
 `;
 
 export const ToApplyText = styled.p`
   font-weight: 700;
   font-size: 24px;
   color: #303030;
+  @media ${device.tablet} {
+    color: #2c2a34;
+  }
+  @media ${device.mobile} {
+    font-size: 16px;
+  }
 `;
 
 export const ApplyTerm = styled.p`
