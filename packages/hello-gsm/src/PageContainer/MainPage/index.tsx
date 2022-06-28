@@ -57,18 +57,12 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
             {isPC ? (
               <Link href={logged ? '/information' : '/auth/signin'} passHref>
                 <S.ToApply>
-                  <S.ToApplyText>
-                    {isPC
-                      ? '원서 접수 하러가기'
-                      : '원서 접수는 pc로만 가능해요'}
-                  </S.ToApplyText>
+                  <S.ToApplyText>원서 접수 하러가기</S.ToApplyText>
                 </S.ToApply>
               </Link>
             ) : (
               <S.ToApply>
-                <S.ToApplyText>
-                  {isPC ? '원서 접수 하러가기' : '원서 접수는 pc로만 가능해요'}
-                </S.ToApplyText>
+                <S.ToApplyText>원서 접수는 pc로만 가능해요</S.ToApplyText>
               </S.ToApply>
             )}
             <S.ApplyTerm>접수 기간: 10.18~10.21</S.ApplyTerm>
