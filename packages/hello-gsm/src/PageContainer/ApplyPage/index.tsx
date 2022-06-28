@@ -451,11 +451,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             {...register('guardianName', {
               required: '* 성명을 입력해주세요',
               pattern: {
-                value: /^[가-힣]+$/,
-                message: '* 성명을 확인해주세요',
-              },
-              maxLength: {
-                value: 20,
+                value: /^[가-힣]{1,20}$/,
                 message: '* 성명을 확인해주세요',
               },
             })}
@@ -465,11 +461,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             {...register('guardianRelation', {
               required: '* 관계를 입력해주세요',
               pattern: {
-                value: /^[가-힣]+$/,
-                message: '* 관계를 확인해주세요',
-              },
-              maxLength: {
-                value: 20,
+                value: /^[가-힣]{1,20}$/,
                 message: '* 관계를 확인해주세요',
               },
             })}
@@ -492,8 +484,8 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
                 graduationStatus !== '검정고시'
                   ? '* 성함을 입력해주세요'
                   : false,
-              maxLength: {
-                value: 20,
+              pattern: {
+                value: /^[가-힣]{1,20}$/,
                 message: '* 성함을 확인해주세요',
               },
             })}
