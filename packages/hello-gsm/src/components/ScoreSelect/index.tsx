@@ -17,7 +17,7 @@ const ScoreSelect: NextPage<ScoreSelectProps> = ({
 }: ScoreSelectProps) => {
   return (
     <S.Select {...register}>
-      <option disabled={isSubmission === 'true' ? true : false}>선택</option>
+      <option>선택</option>
       <option value={5} selected={scoreArray && scoreArray[index] === 5}>
         A
       </option>

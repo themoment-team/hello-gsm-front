@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { Header } from 'components';
+import { Header, ScoreSelect } from 'components';
 import * as S from './style';
 import * as I from 'Assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import { Calculate, Volunteer, Rounds, Attendance } from 'Utils/Calculate';
 import application from 'Api/application';
 import Result from 'components/Modals/ScoreResultModal';
-import useToString from 'Utils/Calculate/ToString';
 import useLocalstorage from 'hooks/useLocalstorage';
 
 interface ScoreForm {
@@ -25,19 +24,14 @@ const CalculatorPage: NextPage = () => {
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors },
   } = useForm<ScoreForm>();
 
   const [showResult, setShowResult] = useState(false); // 결과 모달 제어
   const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
   const [isSubmission, setIsSubmission] = useState<string | null>();
-
-  useEffect(() => {
-    /**
-     * 사용자가 이전에 성적 제출을 했는지 확인
-     */
-    setIsSubmission(window.localStorage.getItem('isSubmission'));
-  }, []);
 
   const score2_1 = useLocalstorage('score2_1');
   const score2_2 = useLocalstorage('score2_2');
@@ -46,19 +40,49 @@ const CalculatorPage: NextPage = () => {
   const absentScore = useLocalstorage('absentScore');
   const attendanceScore = useLocalstorage('attendanceScore');
   const volunteerScore = useLocalstorage('volunteerScore');
-  const getSubjects = useLocalstorage('subjects');
-  const getNewSubjects = useLocalstorage('newSubjects');
-  console.log(isSubmission);
-  console.log(score2_1);
+  const getSubjects = useLocalstorage('newSubjects');
+
+  const lines = ['일반교과', '예체능 교과', '비교과'];
+  const [subjects, setSubjects] = useState([
+    '국어',
+    '도덕',
+    '사회',
+    '역사',
+    '수학',
+    '과학',
+    '기술가정',
+    '영어',
+  ]);
+  const [nonSubjects, setNonSubjects] = useState(['체육', '미술', '음악']);
+  const [grades, setGrades] = useState([1, 2, 3]);
+  const [newSubjects, setNewSubjects] = useState<Array<string | null>>([]);
+
+  console.log(getSubjects);
+  useEffect(() => {
+    /**
+     * 사용자가 이전에 성적 제출을 했는지 확인
+     */
+    setIsSubmission(window.localStorage.getItem('isSubmission'));
+
+    score2_1 !== undefined && setValue('score2_1', score2_1);
+    score2_2 !== undefined && setValue('score2_2', score2_2);
+    score3_1 !== undefined && setValue('score3_1', score3_1);
+    artSportsScore !== undefined && setValue('artSportsScore', artSportsScore);
+    absentScore !== undefined && setValue('absentScore', absentScore);
+    attendanceScore !== undefined &&
+      setValue('attendanceScore', attendanceScore);
+    volunteerScore !== undefined && setValue('volunteerScore', volunteerScore);
+    getSubjects !== undefined && setNewSubjects(getSubjects);
+  }, [score2_1, score2_2, score3_1, setValue, getSubjects]);
 
   const onValid = async (validForm: ScoreForm) => {
     const score2_1: number = Calculate(validForm.score2_1, 2); // 2학년 1학기
     const score2_2: number = Calculate(validForm.score2_2, 2); // 2학년 2학기
     const score3_1: number = Calculate(validForm.score3_1, 3); // 3학년 1학기
-
     const generalCurriculumScoreSubtotal: number =
       score2_1 + score2_2 + score3_1;
     // 교과성적 소계
+
     const artSportsScore: number = Calculate(validForm.artSportsScore, 4); // 예체능
     const curriculumScoreSubtotal: number =
       generalCurriculumScoreSubtotal + artSportsScore;
@@ -71,6 +95,7 @@ const CalculatorPage: NextPage = () => {
     const volunteerScore: number = Volunteer(validForm.volunteerScore); // 봉사점수
     const nonCurriculumScoreSubtotal: number = attendanceScore + volunteerScore;
     //비교과 성적 소계
+
     const scoreTotal = Rounds(
       curriculumScoreSubtotal + nonCurriculumScoreSubtotal,
       3,
@@ -143,20 +168,8 @@ const CalculatorPage: NextPage = () => {
     console.log(errors);
   };
 
-  const lines = ['일반교과', '예체능 교과', '비교과'];
-  const [subjects, setSubjects] = useState([
-    '국어',
-    '도덕',
-    '사회',
-    '역사',
-    '수학',
-    '과학',
-    '기술가정',
-    '영어',
-  ]);
-  const [nonSubjects, setNonSubjects] = useState(['체육', '미술', '음악']);
-  const [grades, setGrades] = useState([1, 2, 3]);
-  const [newSubjects, setNewSubjects] = useState<Array<string | null>>([]);
+  console.log(watch('newSubjects'));
+  console.log(newSubjects);
 
   return (
     <>
@@ -173,11 +186,12 @@ const CalculatorPage: NextPage = () => {
                   <S.Subject key={subject}>{subject}</S.Subject>
                 ))}
 
-                {newSubjects.map((newSubject, i) => (
+                {newSubjects?.map((newSubject, i) => (
                   <S.SubjectInput
                     {...register(`newSubjects.${i}`)}
                     placeholder="추가과목입력"
                     key={i}
+                    defaultValue={newSubject}
                   />
                 ))}
               </S.ValueSection>
@@ -185,36 +199,18 @@ const CalculatorPage: NextPage = () => {
               <S.ValueSection>
                 <S.Semester>2학년 1학기</S.Semester>
                 {subjects.map((subject, i) => (
-                  <S.Select
+                  <ScoreSelect
                     key={subject}
-                    {...register(`score2_1.${i}`, {
+                    register={register(`score2_1.${i}`, {
                       validate: {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
-                  >
-                    <option>선택</option>
-                    <option value={5} selected={score2_1 && score2_1[i] === 5}>
-                      A
-                    </option>
-                    <option value={4} selected={score2_1 && score2_1[i] === 4}>
-                      B
-                    </option>
-                    <option value={3} selected={score2_1 && score2_1[i] === 3}>
-                      C
-                    </option>
-                    <option value={2} selected={score2_1 && score2_1[i] === 2}>
-                      D
-                    </option>
-                    <option value={1} selected={score2_1 && score2_1[i] === 1}>
-                      E
-                    </option>
-                    <option value={0} selected={score2_1 && score2_1[i] === 0}>
-                      없음
-                    </option>
-                  </S.Select>
+                    index={i}
+                    scoreArray={watch('score2_1')}
+                  />
                 ))}
-                {newSubjects.map((newSubject, i) => (
+                {newSubjects?.map((newSubject, i) => (
                   <S.Select
                     key={i}
                     {...register(`score2_1.${subjects.length + i}`)} // 기존 2_1 점수 배열에 추가과목 점수 추가
@@ -233,24 +229,18 @@ const CalculatorPage: NextPage = () => {
               <S.ValueSection>
                 <S.Semester>2학년 2학기</S.Semester>
                 {subjects.map((subject, i) => (
-                  <S.Select
+                  <ScoreSelect
                     key={subject}
-                    {...register(`score2_2.${i}`, {
+                    register={register(`score2_2.${i}`, {
                       validate: {
-                        notNaN: value => !isNaN(value),
+                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
-                  >
-                    <option>선택</option>
-                    <option value={5}>A</option>
-                    <option value={4}>B</option>
-                    <option value={3}>C</option>
-                    <option value={2}>D</option>
-                    <option value={1}>E</option>
-                    <option value={0}>없음</option>
-                  </S.Select>
+                    index={i}
+                    scoreArray={watch('score2_2')}
+                  />
                 ))}
-                {newSubjects.map((newSubject, i) => (
+                {newSubjects?.map((newSubject, i) => (
                   <S.Select
                     key={i}
                     {...register(`score2_2.${subjects.length + i}`)}
@@ -269,24 +259,18 @@ const CalculatorPage: NextPage = () => {
               <S.ValueSection>
                 <S.Semester>3학년 1학기</S.Semester>
                 {subjects.map((subject, i) => (
-                  <S.Select
+                  <ScoreSelect
                     key={subject}
-                    {...register(`score3_1.${i}`, {
+                    register={register(`score3_1.${i}`, {
                       validate: {
-                        notNaN: value => !isNaN(value),
+                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
-                  >
-                    <option>선택</option>
-                    <option value={5}>A</option>
-                    <option value={4}>B</option>
-                    <option value={3}>C</option>
-                    <option value={2}>D</option>
-                    <option value={1}>E</option>
-                    <option value={0}>없음</option>
-                  </S.Select>
+                    index={i}
+                    scoreArray={watch('score3_1')}
+                  />
                 ))}
-                {newSubjects.map((newSubject, i) => (
+                {newSubjects?.map((newSubject, i) => (
                   <S.Select
                     key={i}
                     {...register(`score3_1.${subjects.length + i}`)}
@@ -320,60 +304,48 @@ const CalculatorPage: NextPage = () => {
             <S.ValueSection>
               <S.Semester>2학년 1학기</S.Semester>
               {nonSubjects.map((subject, i) => (
-                <S.Select
+                <ScoreSelect
                   key={subject}
-                  {...register(`artSportsScore.${i}`, {
+                  register={register(`artSportsScore.${i}`, {
                     validate: {
                       notNaN: value => !isNaN(value),
                     },
                   })}
-                >
-                  <option>선택</option>
-                  <option value={5}>A</option>
-                  <option value={4}>B</option>
-                  <option value={3}>C</option>
-                  <option value={0}>없음</option>
-                </S.Select>
+                  index={i}
+                  scoreArray={artSportsScore}
+                />
               ))}
             </S.ValueSection>
 
             <S.ValueSection>
               <S.Semester>2학년 2학기</S.Semester>
               {nonSubjects.map((subject, i) => (
-                <S.Select
+                <ScoreSelect
                   key={subject}
-                  {...register(`artSportsScore.${3 + i}`, {
+                  register={register(`artSportsScore.${3 + i}`, {
                     validate: {
                       notNaN: value => !isNaN(value),
                     },
                   })}
-                >
-                  <option>선택</option>
-                  <option value={5}>A</option>
-                  <option value={4}>B</option>
-                  <option value={3}>C</option>
-                  <option value={0}>없음</option>
-                </S.Select>
+                  index={3 + i}
+                  scoreArray={artSportsScore}
+                />
               ))}
             </S.ValueSection>
 
             <S.ValueSection>
               <S.Semester>3학년 1학기</S.Semester>
               {nonSubjects.map((subject, i) => (
-                <S.Select
+                <ScoreSelect
                   key={subject}
-                  {...register(`artSportsScore.${6 + i}`, {
+                  register={register(`artSportsScore.${6 + i}`, {
                     validate: {
                       notNaN: value => !isNaN(value),
                     },
                   })}
-                >
-                  <option>선택</option>
-                  <option value={5}>A</option>
-                  <option value={4}>B</option>
-                  <option value={3}>C</option>
-                  <option value={0}>없음</option>
-                </S.Select>
+                  index={6 + i}
+                  scoreArray={artSportsScore}
+                />
               ))}
             </S.ValueSection>
           </S.Section>
@@ -410,7 +382,7 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                       })}
                       placeholder="입력"
-                      value={absentScore ? absentScore[i] : ''}
+                      defaultValue={absentScore ? absentScore[i] : ''}
                     />
                   ))}
                 </S.ValueSection>
@@ -423,7 +395,7 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                       })}
                       placeholder="입력"
-                      value={attendanceScore ? attendanceScore[i] : ''}
+                      defaultValue={attendanceScore ? attendanceScore[i] : ''}
                     />
                   ))}
                 </S.ValueSection>
@@ -436,7 +408,9 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                       })}
                       placeholder="입력"
-                      value={attendanceScore ? attendanceScore[3 + i] : ''}
+                      defaultValue={
+                        attendanceScore ? attendanceScore[3 + i] : ''
+                      }
                     />
                   ))}
                 </S.ValueSection>
@@ -449,7 +423,9 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                       })}
                       placeholder="입력"
-                      value={attendanceScore ? attendanceScore[6 + i] : ''}
+                      defaultValue={
+                        attendanceScore ? attendanceScore[6 + i] : ''
+                      }
                     />
                   ))}
                 </S.ValueSection>
@@ -461,7 +437,7 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                       })}
                       placeholder="입력"
-                      value={volunteerScore ? volunteerScore[i] : ''}
+                      defaultValue={volunteerScore ? volunteerScore[i] : ''}
                     />
                   ))}
                 </S.ValueSection>
