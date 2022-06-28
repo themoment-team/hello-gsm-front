@@ -47,7 +47,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
         await auth.check();
         setLogged(true);
       } catch (error: any) {
-        if (error.response.status === 401) {
+        if (error.response?.status === 401) {
           try {
             // accessToken 발급
             await auth.refresh();
@@ -55,6 +55,8 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
           } catch (error) {
             setLogged(false);
           }
+        } else {
+          console.log(error);
         }
       }
     };
