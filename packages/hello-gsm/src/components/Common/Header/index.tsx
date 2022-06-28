@@ -51,11 +51,11 @@ const Header: React.FC = () => {
           <Link href="/school" passHref>
             <S.NavContent css={select('/school')}>학교소개</S.NavContent>
           </Link>
-          <Link href="/about" passHref>
-            <S.NavContent css={select('/about')}>팀소개</S.NavContent>
-          </Link>
           <Link href="/faq" passHref>
             <S.NavContent css={select('/faq')}>자주 묻는 질문</S.NavContent>
+          </Link>
+          <Link href="/about" passHref>
+            <S.NavContent css={select('/about')}>팀소개</S.NavContent>
           </Link>
         </S.NavBar>
         {!logged ? (
