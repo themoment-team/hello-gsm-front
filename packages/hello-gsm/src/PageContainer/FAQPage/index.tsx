@@ -55,8 +55,6 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
           } catch (error) {
             setLogged(false);
           }
-        } else {
-          console.log(error);
         }
       }
     };
