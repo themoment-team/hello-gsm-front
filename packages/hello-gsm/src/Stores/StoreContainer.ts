@@ -10,9 +10,9 @@ interface storeType {
   isSearching: boolean;
   showDepartmentModal: boolean;
   selectedChoice: number;
-  choice1: '소프트웨어개발과' | '스마트IOT과' | '인공지능과' | '';
-  choice2: '소프트웨어개발과' | '스마트IOT과' | '인공지능과' | '';
-  choice3: '소프트웨어개발과' | '스마트IOT과' | '인공지능과' | '';
+  choice1: '소프트웨어개발과' | '스마트IoT과' | '인공지능과' | '';
+  choice2: '소프트웨어개발과' | '스마트IoT과' | '인공지능과' | '';
+  choice3: '소프트웨어개발과' | '스마트IoT과' | '인공지능과' | '';
   showFindSchoolModal: boolean;
   schoolName: string;
   schoolLocation: string;
@@ -31,13 +31,13 @@ interface storeType {
   setShowDepartmentModal: () => void;
   setSelectedChoice: (index: number) => void;
   setChoice1: (
-    type: '소프트웨어개발과' | '스마트IOT과' | '인공지능과' | '',
+    type: '소프트웨어개발과' | '스마트IoT과' | '인공지능과' | '',
   ) => void;
   setChoice2: (
-    type: '소프트웨어개발과' | '스마트IOT과' | '인공지능과' | '',
+    type: '소프트웨어개발과' | '스마트IoT과' | '인공지능과' | '',
   ) => void;
   setChoice3: (
-    type: '소프트웨어개발과' | '스마트IOT과' | '인공지능과' | '',
+    type: '소프트웨어개발과' | '스마트IoT과' | '인공지능과' | '',
   ) => void;
   setShowFindSchoolModal: () => void;
   setSchoolName: (name: string) => void;
