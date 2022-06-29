@@ -40,6 +40,7 @@ const CalculatorPage: NextPage = () => {
   const volunteerScore = useLocalstorage('volunteerScore');
   const getSubjects = useLocalstorage('newSubjects');
 
+  console.log(getSubjects);
   const lines = ['일반교과', '예체능 교과', '비교과'];
   const [subjects, setSubjects] = useState([
     '국어',
@@ -209,7 +210,6 @@ const CalculatorPage: NextPage = () => {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
-                    scoreArray={watch('score2_1')}
                     index={subjects.length + i}
                   />
                 ))}
@@ -237,7 +237,6 @@ const CalculatorPage: NextPage = () => {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
-                    scoreArray={watch('score2_2')}
                     index={subjects.length + i}
                   />
                 ))}
@@ -265,7 +264,6 @@ const CalculatorPage: NextPage = () => {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
-                    scoreArray={watch('score3_1')}
                     index={subjects.length + i}
                   />
                 ))}
