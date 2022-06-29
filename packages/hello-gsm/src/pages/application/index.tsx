@@ -10,11 +10,11 @@ import useStore from 'Stores/StoreContainer';
 import { SEOHelmet } from 'components';
 import { ApplicationPage } from 'PageContainer';
 
-interface test2 extends ProfileType {
+interface ProfileCheckType extends ProfileType {
   check: boolean;
 }
 
-const Application: NextPage<test2> = ({ data, check }) => {
+const Application: NextPage<ProfileCheckType> = ({ data, check }) => {
   const seoTitle = '원서출력';
   const desc = '지원자의 입학 원서 파일을 출력해줍니다.';
   const { setLogged } = useStore();

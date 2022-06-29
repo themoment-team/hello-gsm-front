@@ -4,7 +4,7 @@ import type { GetServerSideProps, NextPage } from 'next';
 import { useEffect } from 'react';
 import useStore from 'Stores/StoreContainer';
 import { HeaderType } from 'type/header';
-import CalculatorPage from 'PageContainer/CalculatorPage';
+import { CalculatorPage } from 'PageContainer';
 import { CheckType } from 'type/check';
 
 const Calculator: NextPage<CheckType> = ({ check }) => {

@@ -5,7 +5,6 @@ import * as I from 'Assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { Calculate, Volunteer, Rounds, Attendance } from 'Utils/Calculate';
-import application from 'Api/application';
 import Result from 'components/Modals/ScoreResultModal';
 import useLocalstorage from 'hooks/useLocalstorage';
 
@@ -31,7 +30,6 @@ const CalculatorPage: NextPage = () => {
 
   const [showResult, setShowResult] = useState(false); // 결과 모달 제어
   const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
-  const [isSubmission, setIsSubmission] = useState<string | null>();
 
   const score2_1 = useLocalstorage('score2_1');
   const score2_2 = useLocalstorage('score2_2');
@@ -55,15 +53,10 @@ const CalculatorPage: NextPage = () => {
   ]);
   const [nonSubjects, setNonSubjects] = useState(['체육', '미술', '음악']);
   const [grades, setGrades] = useState([1, 2, 3]);
-  const [newSubjects, setNewSubjects] = useState<Array<string | null>>([]);
+  const [newSubjects, setNewSubjects] = useState<Array<string>>([]);
 
-  console.log(getSubjects);
+  // console.log(getSubjects);
   useEffect(() => {
-    /**
-     * 사용자가 이전에 성적 제출을 했는지 확인
-     */
-    setIsSubmission(window.localStorage.getItem('isSubmission'));
-
     score2_1 !== undefined && setValue('score2_1', score2_1);
     score2_2 !== undefined && setValue('score2_2', score2_2);
     score3_1 !== undefined && setValue('score3_1', score3_1);
@@ -138,7 +131,6 @@ const CalculatorPage: NextPage = () => {
       'newSubjects',
       JSON.stringify(validForm.newSubjects),
     );
-    window.localStorage.setItem('isSubmission', 'true');
     // try {
     //         await application.postSecondSubmisson({
     //         score2_1,
@@ -167,10 +159,7 @@ const CalculatorPage: NextPage = () => {
   const inValid = (errors: FieldErrors) => {
     console.log(errors);
   };
-
-  console.log(watch('newSubjects'));
-  console.log(newSubjects);
-
+  // console.log(subjects.length);
   return (
     <>
       <Header />
@@ -188,10 +177,12 @@ const CalculatorPage: NextPage = () => {
 
                 {newSubjects?.map((newSubject, i) => (
                   <S.SubjectInput
-                    {...register(`newSubjects.${i}`)}
+                    {...register(`newSubjects.${i}`, {
+                      required: true,
+                    })}
                     placeholder="추가과목입력"
                     key={i}
-                    defaultValue={newSubject}
+                    defaultValue={newSubject ? newSubject : ''}
                   />
                 ))}
               </S.ValueSection>
@@ -211,18 +202,16 @@ const CalculatorPage: NextPage = () => {
                   />
                 ))}
                 {newSubjects?.map((newSubject, i) => (
-                  <S.Select
+                  <ScoreSelect
                     key={i}
-                    {...register(`score2_1.${subjects.length + i}`)} // 기존 2_1 점수 배열에 추가과목 점수 추가
-                  >
-                    <option>선택</option>
-                    <option value={5}>A</option>
-                    <option value={4}>B</option>
-                    <option value={3}>C</option>
-                    <option value={2}>D</option>
-                    <option value={1}>E</option>
-                    <option value={0}>없음</option>
-                  </S.Select>
+                    register={register(`score2_1.${subjects.length + i}`, {
+                      validate: {
+                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                      },
+                    })}
+                    scoreArray={watch('score2_1')}
+                    index={subjects.length + i}
+                  />
                 ))}
               </S.ValueSection>
 
@@ -241,18 +230,16 @@ const CalculatorPage: NextPage = () => {
                   />
                 ))}
                 {newSubjects?.map((newSubject, i) => (
-                  <S.Select
+                  <ScoreSelect
                     key={i}
-                    {...register(`score2_2.${subjects.length + i}`)}
-                  >
-                    <option>선택</option>
-                    <option value={5}>A</option>
-                    <option value={4}>B</option>
-                    <option value={3}>C</option>
-                    <option value={2}>D</option>
-                    <option value={1}>E</option>
-                    <option value={0}>없음</option>
-                  </S.Select>
+                    register={register(`score2_2.${subjects.length + i}`, {
+                      validate: {
+                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                      },
+                    })}
+                    scoreArray={watch('score2_2')}
+                    index={subjects.length + i}
+                  />
                 ))}
               </S.ValueSection>
 
@@ -271,18 +258,16 @@ const CalculatorPage: NextPage = () => {
                   />
                 ))}
                 {newSubjects?.map((newSubject, i) => (
-                  <S.Select
+                  <ScoreSelect
                     key={i}
-                    {...register(`score3_1.${subjects.length + i}`)}
-                  >
-                    <option>선택</option>
-                    <option value={5}>A</option>
-                    <option value={4}>B</option>
-                    <option value={3}>C</option>
-                    <option value={2}>D</option>
-                    <option value={1}>E</option>
-                    <option value={0}>없음</option>
-                  </S.Select>
+                    register={register(`score3_1.${subjects.length + i}`, {
+                      validate: {
+                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                      },
+                    })}
+                    scoreArray={watch('score3_1')}
+                    index={subjects.length + i}
+                  />
                 ))}
               </S.ValueSection>
             </S.CurriculumValue>

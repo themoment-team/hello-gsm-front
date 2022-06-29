@@ -13,7 +13,6 @@ const ScoreSelect: NextPage<ScoreSelectProps> = ({
   register,
   scoreArray,
   index,
-  isSubmission,
 }: ScoreSelectProps) => {
   return (
     <S.Select {...register}>
