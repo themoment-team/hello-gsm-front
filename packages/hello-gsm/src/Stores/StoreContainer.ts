@@ -7,7 +7,7 @@ interface storeType {
   FAQModalContent: string;
   showMypageModal: boolean;
   mypageModalContent: string;
-  isSearching: boolean;
+  isFAQSearching: boolean;
   showDepartmentModal: boolean;
   selectedChoice: number;
   choice1: '소프트웨어개발과' | '스마트IoT과' | '인공지능과' | '';
@@ -27,7 +27,7 @@ interface storeType {
   setFAQModalContent: (content: string) => void;
   setShowMypageModal: () => void;
   setMypageModalContent: (content: string) => void;
-  setIsSearching: (trueOrFalse: boolean) => void;
+  setIsFAQSearching: (trueOrFalse: boolean) => void;
   setShowDepartmentModal: () => void;
   setSelectedChoice: (index: number) => void;
   setChoice1: (
@@ -55,7 +55,7 @@ const useStore = create<storeType>(set => ({
   FAQModalContent: '',
   showMypageModal: false,
   mypageModalContent: '',
-  isSearching: false,
+  isFAQSearching: false,
   showDepartmentModal: false,
   selectedChoice: 0,
   choice1: '',
@@ -76,7 +76,7 @@ const useStore = create<storeType>(set => ({
   setShowMypageModal: () =>
     set(state => ({ showMypageModal: !state.showMypageModal })),
   setMypageModalContent: content => set({ mypageModalContent: content }),
-  setIsSearching: trueOrFalse => set({ isSearching: trueOrFalse }),
+  setIsFAQSearching: trueOrFalse => set({ isFAQSearching: trueOrFalse }),
   setShowDepartmentModal: () =>
     set(state => ({ showDepartmentModal: !state.showDepartmentModal })),
   setSelectedChoice: index => set({ selectedChoice: index }),
