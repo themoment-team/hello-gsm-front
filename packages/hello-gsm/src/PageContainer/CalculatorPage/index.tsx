@@ -53,9 +53,8 @@ const CalculatorPage: NextPage = () => {
   ]);
   const [nonSubjects, setNonSubjects] = useState(['체육', '미술', '음악']);
   const [grades, setGrades] = useState([1, 2, 3]);
-  const [newSubjects, setNewSubjects] = useState<Array<string>>([]);
+  const [newSubjects, setNewSubjects] = useState<Array<string | number>>([]);
 
-  // console.log(getSubjects);
   useEffect(() => {
     score2_1 !== undefined && setValue('score2_1', score2_1);
     score2_2 !== undefined && setValue('score2_2', score2_2);
@@ -66,7 +65,17 @@ const CalculatorPage: NextPage = () => {
       setValue('attendanceScore', attendanceScore);
     volunteerScore !== undefined && setValue('volunteerScore', volunteerScore);
     getSubjects !== undefined && setNewSubjects(getSubjects);
-  }, [score2_1, score2_2, score3_1, setValue, getSubjects]);
+  }, [
+    score2_1,
+    score2_2,
+    score3_1,
+    setValue,
+    getSubjects,
+    artSportsScore,
+    absentScore,
+    attendanceScore,
+    volunteerScore,
+  ]);
 
   const onValid = async (validForm: ScoreForm) => {
     const score2_1: number = Calculate(validForm.score2_1, 2); // 2학년 1학기
@@ -159,7 +168,7 @@ const CalculatorPage: NextPage = () => {
   const inValid = (errors: FieldErrors) => {
     console.log(errors);
   };
-  // console.log(subjects.length);
+
   return (
     <>
       <Header />
@@ -209,7 +218,6 @@ const CalculatorPage: NextPage = () => {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
-                    scoreArray={watch('score2_1')}
                     index={subjects.length + i}
                   />
                 ))}
@@ -237,7 +245,6 @@ const CalculatorPage: NextPage = () => {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
-                    scoreArray={watch('score2_2')}
                     index={subjects.length + i}
                   />
                 ))}
@@ -265,7 +272,6 @@ const CalculatorPage: NextPage = () => {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
-                    scoreArray={watch('score3_1')}
                     index={subjects.length + i}
                   />
                 ))}
