@@ -296,11 +296,11 @@ const Select = styled.select`
   text-align: center;
 `;
 
-export const GraduatedYear = styled(Select)`
+export const GraduationYear = styled(Select)`
   width: 230px;
 `;
 
-export const GraduateMonth = styled(Select)`
+export const GraduationMonth = styled(Select)`
   width: 130px;
 `;
 
