@@ -4,7 +4,7 @@ import type { UseFormRegisterReturn } from 'react-hook-form';
 
 interface ScoreSelectProps {
   register: UseFormRegisterReturn;
-  scoreArray: number[] | undefined;
+  scoreArray?: number[] | undefined;
   index: number;
   isSubmission?: string | null;
 }

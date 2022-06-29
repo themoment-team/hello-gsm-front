@@ -117,6 +117,7 @@ const TestCalculatorPage: NextPage = () => {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
+                    index={i}
                   />
                 ))}
                 {newSubjects?.map((newSubject, i) => (
@@ -145,6 +146,7 @@ const TestCalculatorPage: NextPage = () => {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
+                    index={i}
                   />
                 ))}
                 {newSubjects?.map((newSubject, i) => (
@@ -173,6 +175,7 @@ const TestCalculatorPage: NextPage = () => {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
+                    index={i}
                   />
                 ))}
                 {newSubjects?.map((newSubject, i) => (
@@ -216,6 +219,7 @@ const TestCalculatorPage: NextPage = () => {
                       notNaN: value => !isNaN(value),
                     },
                   })}
+                  index={i}
                 />
               ))}
             </S.ValueSection>
@@ -230,6 +234,7 @@ const TestCalculatorPage: NextPage = () => {
                       notNaN: value => !isNaN(value),
                     },
                   })}
+                  index={i}
                 />
               ))}
             </S.ValueSection>
@@ -244,6 +249,7 @@ const TestCalculatorPage: NextPage = () => {
                       notNaN: value => !isNaN(value),
                     },
                   })}
+                  index={i}
                 />
               ))}
             </S.ValueSection>
