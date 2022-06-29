@@ -58,6 +58,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     setShowFindAddressModal,
     applicantAddress,
     setApplicantAddress,
+    setLogged,
   } = useStore();
 
   const {
@@ -88,6 +89,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const graduationStatus = watch('educationStatus');
 
   useEffect(() => {
+    setLogged(true);
     const userBirth = new Date(data.birth);
     if (data.application !== null) {
       setIsEdit(true);
