@@ -56,8 +56,8 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     setSchoolLocation,
     showFindAddressModal,
     setShowFindAddressModal,
-    address,
-    setAddress,
+    applicantAddress,
+    setApplicantAddress,
   } = useStore();
 
   const {
@@ -108,7 +108,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     setSchoolLocation(
       data.application?.application_details.schoolLocation || '',
     );
-    setAddress(data.application?.application_details.address || '');
+    setApplicantAddress(data.application?.application_details.address || '');
   }, []);
 
   const apply = async (submitData: ApplyFormType) => {
@@ -121,7 +121,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       },
       applicationDetail: {
         telephoneNumber: submitData.telephoneNumber || undefined,
-        address: address,
+        address: applicantAddress,
         addressDetails: submitData.addressDetails || undefined,
         guardianName: submitData.guardianName,
         guardianRelation: submitData.guardianRelation,
@@ -199,7 +199,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     choice1 && choice2 && choice3
       ? setIsMajorSelected(true)
       : setIsMajorSelected(false);
-    address ? setIsAddressExist(true) : setIsAddressExist(false);
+    applicantAddress ? setIsAddressExist(true) : setIsAddressExist(false);
     schoolName || graduationStatus === '검정고시'
       ? setIsSchoolNameExist(true)
       : setIsSchoolNameExist(false);
@@ -258,7 +258,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
           <S.AddressBox>
             <S.AddressDescription>주소지 검색</S.AddressDescription>
             <S.FindAddressBox>
-              <S.FindAddress>{address}</S.FindAddress>
+              <S.FindAddress>{applicantAddress}</S.FindAddress>
               <S.FindAddressButton onClick={setShowFindAddressModal}>
                 주소 검색
               </S.FindAddressButton>
