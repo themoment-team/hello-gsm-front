@@ -5,7 +5,7 @@ import { css, Global } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
 
 const FindAddressModal: React.FC = () => {
-  const { showFindAddressModal, setShowFindAddressModal, setAddress } =
+  const { showFindAddressModal, setShowFindAddressModal, setApplicantAddress } =
     useStore();
 
   const modalStyle = {
@@ -14,7 +14,7 @@ const FindAddressModal: React.FC = () => {
   };
 
   const onComplete = ({ address }: { address: string }) => {
-    setAddress(address);
+    setApplicantAddress(address);
     setShowFindAddressModal();
   };
 
