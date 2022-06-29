@@ -496,6 +496,9 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
                 : '담임선생님의 성함을 입력해주세요.'
             }
             disabled={graduationStatus === '검정고시'}
+            css={css`
+              background: ${graduationStatus === '검정고시' && '#8B8B8B'};
+            `}
           />
           <S.TeacherPhone
             {...register('teacherCellphoneNumber', {
@@ -514,6 +517,9 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
                 : "담임선생님의 연락처를 입력해주세요. ('-'제외 11자리)"
             }
             disabled={graduationStatus === '검정고시'}
+            css={css`
+              background: ${graduationStatus === '검정고시' && '#8B8B8B'};
+            `}
           />
           <S.NextButton type="submit" onClick={onClick}>
             다음
