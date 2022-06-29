@@ -72,4 +72,5 @@ export const Confirm = styled.a`
   line-height: 40px;
   border-radius: 10px;
   margin-top: 50px;
+  cursor: pointer;
 `;
