@@ -17,7 +17,7 @@ interface storeType {
   schoolName: string;
   schoolLocation: string;
   showFindAddressModal: boolean;
-  address: string;
+  applicantAddress: string;
   showSideBar: boolean | null;
   showMypageSuccessModal: boolean;
 
@@ -43,7 +43,7 @@ interface storeType {
   setSchoolName: (name: string) => void;
   setSchoolLocation: (location: string) => void;
   setShowFindAddressModal: () => void;
-  setAddress: (residence: string) => void;
+  setApplicantAddress: (residence: string) => void;
   setShowSideBar: (value: boolean | null) => void;
   setShowMypageSuccessModal: () => void;
 }
@@ -65,7 +65,7 @@ const useStore = create<storeType>(set => ({
   schoolName: '',
   schoolLocation: '',
   showFindAddressModal: false,
-  address: '',
+  applicantAddress: '',
   showSideBar: null,
   showMypageSuccessModal: false,
 
@@ -89,7 +89,7 @@ const useStore = create<storeType>(set => ({
   setSchoolLocation: location => set({ schoolLocation: location }),
   setShowFindAddressModal: () =>
     set(state => ({ showFindAddressModal: !state.showFindAddressModal })),
-  setAddress: residence => set({ address: residence }),
+  setApplicantAddress: residence => set({ applicantAddress: residence }),
   setShowSideBar: value => set({ showSideBar: value }),
   setShowMypageSuccessModal: () =>
     set(state => ({ showMypageSuccessModal: !state.showMypageSuccessModal })),
