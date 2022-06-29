@@ -61,7 +61,16 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
                 </S.ToApply>
               </Link>
             ) : (
-              <S.ToApply>
+              <S.ToApply
+                css={css`
+                  height: 65px;
+                  background: #615d6c;
+                  box-shadow: none;
+                  :hover {
+                    box-shadow: none;
+                  }
+                `}
+              >
                 <S.ToApplyText>원서 접수는 pc로만 가능해요</S.ToApplyText>
               </S.ToApply>
             )}
