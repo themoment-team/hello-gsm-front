@@ -40,6 +40,7 @@ const CalculatorPage: NextPage = () => {
   const volunteerScore = useLocalstorage('volunteerScore');
   const getSubjects = useLocalstorage('newSubjects');
 
+  console.log(getSubjects);
   const lines = ['일반교과', '예체능 교과', '비교과'];
   const [subjects, setSubjects] = useState([
     '국어',
