@@ -5,12 +5,9 @@ import { useEffect } from 'react';
 import useStore from 'Stores/StoreContainer';
 import { HeaderType } from 'type/header';
 import CalculatorPage from 'PageContainer/CalculatorPage';
+import { CheckType } from 'type/check';
 
-interface test {
-  check: boolean;
-}
-
-const Calculator: NextPage<test> = ({ check }) => {
+const Calculator: NextPage<CheckType> = ({ check }) => {
   const seoTitle = '성적 입력';
   const desc = '지원자의 성적을 기재합니다.';
   const { setLogged } = useStore();
