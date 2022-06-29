@@ -140,8 +140,8 @@ export const AddressBox = styled.div`
 export const AddressDescription = styled.p`
   font-weight: 400;
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.45);
   margin-left: 10px;
+  color: #c8c8c8;
 `;
 
 export const FindAddressBox = styled.div`
@@ -369,7 +369,7 @@ export const DepartmentSelectButton = styled.div`
 export const DepartmentOrderDescription = styled.p`
   font-weight: 400;
   font-size: 14px;
-  color: #94929b;
+  color: #c8c8c8;
 `;
 
 export const GuardianName = styled(Input)`
