@@ -327,7 +327,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
           </S.SchoolBox>
           <S.GraduatedBox>
             <S.GraduatedDateBox>
-              <S.GraduatedYear
+              <S.GraduationYear
                 defaultValue={'default'}
                 {...register('graduationYear', {
                   required: true,
@@ -345,8 +345,8 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
                     20{index + 10}
                   </option>
                 ))}
-              </S.GraduatedYear>
-              <S.GraduateMonth
+              </S.GraduationYear>
+              <S.GraduationMonth
                 defaultValue={'default'}
                 {...register('graduationMonth', {
                   required: true,
@@ -364,7 +364,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
                     {index + 1}
                   </option>
                 ))}
-              </S.GraduateMonth>
+              </S.GraduationMonth>
             </S.GraduatedDateBox>
             <S.GraduatedSelectBox>
               <S.GraduationType
