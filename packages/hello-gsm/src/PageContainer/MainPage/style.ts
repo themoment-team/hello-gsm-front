@@ -33,7 +33,7 @@ export const TitleWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     align-items: center;
   }
   @media ${device.mobile} {
@@ -49,7 +49,7 @@ export const TitleBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     align-items: center;
     text-align: center;
   }
@@ -98,7 +98,7 @@ export const ApplyBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     width: 350px;
   }
   @media ${device.mobile} {
@@ -120,14 +120,6 @@ export const ToApply = styled.a`
   :hover {
     transition: box-shadow 0.5s;
     box-shadow: 0px 0px 50px 0px #dbe44e;
-  }
-  @media ${device.tablet} {
-    height: 65px;
-    background: #615d6c;
-    box-shadow: none;
-    :hover {
-      box-shadow: none;
-    }
   }
   @media ${device.mobile} {
     height: 43px;
