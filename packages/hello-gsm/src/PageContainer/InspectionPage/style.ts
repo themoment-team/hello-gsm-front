@@ -7,6 +7,8 @@ export const InspectionPage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  overflow: hidden;
 `;
 
 export const ContentWrap = styled.div`
@@ -17,17 +19,29 @@ export const ContentWrap = styled.div`
   justify-content: space-between;
   position: relative;
   z-index: 5;
+  @media ${device.mobile} {
+    height: 230px;
+    justify-content: start;
+  }
 `;
 
 export const InspectionDesc = styled.p`
   font-weight: 500;
   font-size: 34px;
   color: #ffffff;
+  @media ${device.mobile} {
+    font-size: 24px;
+    position: relative;
+    bottom: 20px;
+  }
 `;
 
 export const InspectionUnderBar = styled.div`
   width: 130px;
   border: 2px solid #fafafa;
+  @media ${device.mobile} {
+    width: 45px;
+  }
 `;
 
 const Ball = styled.div`
@@ -47,6 +61,17 @@ export const SkyBlueBall = styled(Ball)`
   );
   top: 42%;
   left: 44%;
+  @media ${device.tablet} {
+    width: 50px;
+    height: 50px;
+    top: 40%;
+    left: 40%;
+  }
+  @media ${device.mobile} {
+    width: 28px;
+    height: 28px;
+    top: 36%;
+  }
 `;
 
 export const BlueBall = styled(Ball)`
@@ -58,6 +83,14 @@ export const BlueBall = styled(Ball)`
     #2978d6 37.16%,
     #0a244a 91.31%
   );
+  @media ${device.tablet} {
+    width: 52px;
+    height: 52px;
+  }
+  @media ${device.mobile} {
+    width: 28px;
+    height: 28px;
+  }
 `;
 
 export const GreenBall = styled(Ball)`
@@ -71,4 +104,16 @@ export const GreenBall = styled(Ball)`
   );
   top: 60%;
   left: 65%;
+  @media ${device.tablet} {
+    width: 102px;
+    height: 101px;
+    top: 48%;
+    left: 65%;
+  }
+  @media ${device.mobile} {
+    width: 45px;
+    height: 45px;
+    top: 50%;
+    left: 75%;
+  }
 `;
