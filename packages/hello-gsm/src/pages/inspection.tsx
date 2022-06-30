@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import { InspectionPage } from 'PageContainer';
 
 const Inspection: NextPage = () => {
-  const seoTitle = 'Inspection';
+  const seoTitle = '점검 중';
   const desc = '점검 중 입니다.';
 
   return (
