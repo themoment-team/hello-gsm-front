@@ -16,7 +16,7 @@ const InspectionPage: NextPage = () => {
             }
           `}
         />
-        <S.InspectionDesc>점검 중 입니다</S.InspectionDesc>
+        <S.InspectionDesc>점검 중 입니다.</S.InspectionDesc>
         <S.InspectionUnderBar />
       </S.ContentWrap>
       <S.SkyBlueBall />
