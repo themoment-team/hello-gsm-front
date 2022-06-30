@@ -173,23 +173,26 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const readImg = (event: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
 
+    // 파일의 url을 읽는다.
     if (event.target.files) {
       event.target.files[0] && reader.readAsDataURL(event.target.files[0]);
     }
 
+    // 읽기 동작 성공 시 미리보기 이미지 url 설정
     reader.onload = (event: ProgressEvent<FileReader>) => {
       if (typeof event.target?.result === 'string') {
         setImgURL(event.target.result);
       }
     };
 
+    // 사용자가 이미지 선택 단계에서 취소 시 등록된 이미지가 삭제되므로 미리보기 제거
     if (imgInput.current?.files && imgInput.current?.files[0] === undefined) {
       setImgURL('');
     }
   };
 
   const onSubmit = async (data: ApplyFormType) => {
-    onClick();
+    validate();
     if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
       await apply(data);
     } else {
@@ -197,7 +200,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     }
   };
 
-  const onClick = () => {
+  const validate = () => {
     choice1 && choice2 && choice3
       ? setIsMajorSelected(true)
       : setIsMajorSelected(false);
@@ -521,7 +524,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
               background: ${graduationStatus === '검정고시' && '#8B8B8B'};
             `}
           />
-          <S.NextButton type="submit" onClick={onClick}>
+          <S.NextButton type="submit" onClick={validate}>
             다음
           </S.NextButton>
         </S.ApplyPageContent>
