@@ -6,4 +6,6 @@ export function middleware(req: NextRequest) {
   if (process.env.OPERATIONAL_STATUS !== 'inspection') {
     return NextResponse.redirect(origin);
   }
+
+  return NextResponse.next();
 }

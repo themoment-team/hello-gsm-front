@@ -8,7 +8,7 @@ export function middleware(req: NextRequest) {
     pathname !== '/inspection'
   ) {
     return NextResponse.redirect(`${origin}/inspection`);
-  } else {
-    return NextResponse.next();
   }
+
+  return NextResponse.next();
 }
