@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ['github.com', 'k.kakaocdn.net'],
   },
+  env: {
+    OPERATIONAL_STATUS: process.env.OPERATIONAL_STATUS,
+  },
 };
 
 module.exports = nextConfig;
