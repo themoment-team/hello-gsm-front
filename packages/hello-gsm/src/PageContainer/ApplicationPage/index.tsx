@@ -44,8 +44,8 @@ const profile: ProfileType = {
     volunteerScore: 20,
     nonCurriculumScoreSubtotal: 40,
     scoreTotal: 160,
-    firstWantedMajor: '소프트웨어 개발과',
-    secondWantedMajor: '스마트 IOT과',
+    firstWantedMajor: '소프트웨어개발과',
+    secondWantedMajor: '스마트IoT과',
     thirdWantedMajor: '인공지능과',
   },
 };
@@ -230,7 +230,7 @@ const ApplicationPage: NextPage = () => {
                 </tr>
                 <tr>
                   <td colSpan={9} style={{ textAlign: 'start' }}>
-                    1.(인공지능과/ 스마트IOT과/ 소프트웨어개발과) 중 지망 학과를
+                    1.(인공지능과/ 스마트IoT과/ 소프트웨어개발과) 중 지망 학과를
                     순서대로 기록. <br />
                     2. 지원학과는 희망 순에 따라 3개 학과를 모두 기록해야 함.
                   </td>

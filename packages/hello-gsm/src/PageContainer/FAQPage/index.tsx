@@ -16,16 +16,17 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   const [keyword, setKeyword] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(1);
 
-  const { showFAQModal, isSearching, setIsSearching, setLogged } = useStore();
+  const { showFAQModal, isFAQSearching, setIsFAQSearching, setLogged } =
+    useStore();
 
   const searching = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
-    e.target.value === '' ? setIsSearching(false) : setIsSearching(true);
+    e.target.value === '' ? setIsFAQSearching(false) : setIsFAQSearching(true);
   };
 
   useEffect(() => {
-    keyword === '' && setIsSearching(false);
-    isSearching
+    keyword === '' && setIsFAQSearching(false);
+    isFAQSearching
       ? setFaqList(
           faqData?.filter(
             (faq: FAQType) =>
@@ -39,7 +40,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
               faqData.indexOf(faq) < pageIndex * 10,
           ),
         );
-  }, [keyword, pageIndex, isSearching]);
+  }, [keyword, pageIndex, isFAQSearching]);
 
   useEffect(() => {
     const checkLogin = async () => {
@@ -98,7 +99,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
               />
             ))}
           </S.FAQList>
-          {!isSearching && (
+          {!isFAQSearching && (
             <S.FAQListIndex>
               <S.ChangeAllowButton onClick={minusPageIndex}>
                 <I.LeftButton />
