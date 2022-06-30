@@ -176,11 +176,13 @@ export const ContentHeaderLine = styled.div`
   justify-content: space-evenly;
 `;
 
-export const ContentSelect = styled.p`
+export const ContentSelect = styled.button`
   font-weight: 400;
   font-size: 20px;
   color: #d6d6d6;
   cursor: pointer;
+  background: none;
+  border: none;
   @media ${device.tablet} {
     font-size: 18px;
   }

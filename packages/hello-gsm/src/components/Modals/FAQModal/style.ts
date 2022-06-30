@@ -37,8 +37,11 @@ export const CloseButtonWrap = styled.div`
   z-index: 5;
 `;
 
-export const CloseButton = styled.div`
+export const CloseButton = styled.button`
   cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
   @media ${device.mobile} {
     svg {
       width: 6px;
