@@ -2154,6 +2154,7 @@ __metadata:
     next: 12.1.0
     prettier: ^2.6.0
     react: 17.0.2
+    react-daum-postcode: ^3.0.1
     react-dom: 17.0.2
     react-hook-form: ^7.29.0
     typescript: 4.6.2
@@ -2188,6 +2189,7 @@ __metadata:
     next: 12.1.0
     prettier: ^2.6.0
     react: 17.0.2
+    react-daum-postcode: ^3.0.1
     react-dom: 17.0.2
     react-hook-form: ^7.29.0
     typescript: 4.6.2
@@ -2932,7 +2934,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.5.8, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.5.8, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -2954,6 +2956,16 @@ __metadata:
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
   checksum: b676f8c040cdc5b12723ad2f91414d267605b26419d5c821ff03befa817ddd10e238d22b25d604920340fd73efd8ba795465a0377c4adf45a4a41e4234e42dc4
+  languageName: node
+  linkType: hard
+
+"react-daum-postcode@npm:^3.0.1":
+  version: 3.0.3
+  resolution: "react-daum-postcode@npm:3.0.3"
+  dependencies:
+    prop-types: ^15.7.2
+    react: ^17.0.2
+  checksum: f988c35f521e92a05f3a020f3ddf68202ea8448f4a0de102ee11f28d568fd9e8dae2388282805eb60386ba26ef0350d04f7bbedd50c5ac62b2535620d1e77a3a
   languageName: node
   linkType: hard
 
@@ -3002,7 +3014,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:17.0.2":
+"react@npm:17.0.2, react@npm:^17.0.2":
   version: 17.0.2
   resolution: "react@npm:17.0.2"
   dependencies:

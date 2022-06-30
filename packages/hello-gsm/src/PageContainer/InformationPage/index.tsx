@@ -82,6 +82,44 @@ const InformationPage: NextPage = () => {
             1차 서류 심사와 2차 면접을 통해 최종 합격자를 선출합니다.
           </S.Content>
         </S.InformationBox>
+        <S.InformationBox
+          css={css`
+            height: 540px;
+          `}
+        >
+          <S.Title>지원자 유의사항</S.Title>
+          <S.Point />
+          <S.Content
+            css={css`
+              height: 450px;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              padding: 70px 0;
+            `}
+          >
+            <p>
+              1. 본교 최종 합격자는 당해 학년도에는 다른 고등학교 입학전형에
+              <br />
+              지원할 수 없음.
+            </p>
+            <p>
+              2.본교는 소프트웨어 영마이스터를 양성하기 위해 교육부와
+              과학기술정보
+              <br />
+              통신부에서 지정, 운영하는 산업수요맞춤형고등학교로 취업을 목표로
+              하며
+              <br />
+              대학 진학을 희망하는 학생은 본교에 지원할 수 없음.
+            </p>
+            <p>
+              3.기숙사 생활관은 평일 교육과정을 위하여 운영하는 것을 원칙으로
+              함.
+              <br />
+              (주말과 공휴일 등 학교 휴무일에 기숙사를 운영하지 않음.)
+            </p>
+          </S.Content>
+        </S.InformationBox>
         <Link href="/apply" passHref>
           <S.Confirm>확인</S.Confirm>
         </Link>
