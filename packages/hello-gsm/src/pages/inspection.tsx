@@ -1,0 +1,17 @@
+import { SEOHelmet } from 'components';
+import { NextPage } from 'next';
+import { InspectionPage } from 'PageContainer';
+
+const Inspection: NextPage = () => {
+  const seoTitle = 'Inspection';
+  const desc = '점검 중 입니다.';
+
+  return (
+    <>
+      <SEOHelmet seoTitle={seoTitle} desc={desc} />
+      <InspectionPage />
+    </>
+  );
+};
+
+export default Inspection;
