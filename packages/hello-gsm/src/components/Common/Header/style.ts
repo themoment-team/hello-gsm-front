@@ -65,9 +65,12 @@ export const HamBurger = styled.div`
   }
 `;
 
-export const Logout = styled.p`
+export const Logout = styled.button`
   color: #dddddd;
   font-weight: 400;
   font-size: 18px;
   cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
 `;

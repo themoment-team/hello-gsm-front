@@ -33,7 +33,7 @@ export const TitleWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     align-items: center;
   }
   @media ${device.mobile} {
@@ -49,7 +49,7 @@ export const TitleBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  @media ${device.tablet} {
+  @media ${device.laptop} {
     align-items: center;
     text-align: center;
   }
@@ -98,22 +98,31 @@ export const ApplyBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  @media ${device.laptop} {
+    width: 350px;
+  }
+  @media ${device.mobile} {
+    width: 240px;
+  }
 `;
 
 export const ToApply = styled.a`
   width: 100%;
   height: 60px;
   display: block;
-  border: 1px solid #ffffff;
   box-sizing: border-box;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ededed;
+  background: #dbe44e;
+  box-shadow: 0px 5px 20px 0px #dbe44e;
   :hover {
-    transition: background 0.4s;
-    background: #dbe44e;
+    transition: box-shadow 0.5s;
+    box-shadow: 0px 0px 50px 0px #dbe44e;
+  }
+  @media ${device.mobile} {
+    height: 43px;
   }
 `;
 
@@ -121,6 +130,12 @@ export const ToApplyText = styled.p`
   font-weight: 700;
   font-size: 24px;
   color: #303030;
+  @media ${device.tablet} {
+    color: #2c2a34;
+  }
+  @media ${device.mobile} {
+    font-size: 16px;
+  }
 `;
 
 export const ApplyTerm = styled.p`
@@ -182,11 +197,13 @@ export const ContentHeaderLine = styled.div`
   justify-content: space-evenly;
 `;
 
-export const ContentSelect = styled.p`
+export const ContentSelect = styled.button`
   font-weight: 400;
   font-size: 20px;
   color: #d6d6d6;
   cursor: pointer;
+  background: none;
+  border: none;
   @media ${device.tablet} {
     font-size: 18px;
   }

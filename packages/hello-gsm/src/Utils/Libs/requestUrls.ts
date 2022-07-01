@@ -44,4 +44,8 @@ export const ApplicationController = {
   finalSubmission: () => {
     return `/application/finalSubmission`;
   },
+  // post 증명사진 저장 및 수정
+  image: () => {
+    return `/application/image`;
+  },
 };

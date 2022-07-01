@@ -1,7 +1,8 @@
 import React from 'react';
 import type { GetServerSideProps, NextPage } from 'next';
-import { MainPage, SEOHelmet } from 'components';
+import { SEOHelmet } from 'components';
 import axios from 'axios';
+import { MainPage } from 'PageContainer';
 
 export interface applicantsType {
   data: {

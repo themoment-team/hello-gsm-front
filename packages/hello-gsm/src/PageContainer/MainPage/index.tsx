@@ -9,6 +9,7 @@ import useStore from 'Stores/StoreContainer';
 
 const MainPage: NextPage<StatusType> = ({ data }) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(1);
+  const [isPC, setIsPC] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   const { logged } = useStore();
@@ -27,6 +28,11 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 640 ? true : false);
+    setIsPC(
+      !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(
+        navigator.userAgent,
+      ),
+    );
     window.onresize = () => {
       setIsMobile(window.innerWidth < 640 ? true : false);
     };
@@ -48,11 +54,26 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
             </S.Description>
           </S.TitleBox>
           <S.ApplyBox>
-            <Link href={logged ? '/information' : '/auth/signin'} passHref>
-              <S.ToApply>
-                <S.ToApplyText>원서 접수</S.ToApplyText>
+            {isPC ? (
+              <Link href={logged ? '/information' : '/auth/signin'} passHref>
+                <S.ToApply>
+                  <S.ToApplyText>원서 접수 하러가기</S.ToApplyText>
+                </S.ToApply>
+              </Link>
+            ) : (
+              <S.ToApply
+                css={css`
+                  height: 65px;
+                  background: #615d6c;
+                  box-shadow: none;
+                  :hover {
+                    box-shadow: none;
+                  }
+                `}
+              >
+                <S.ToApplyText>원서 접수는 pc로만 가능해요</S.ToApplyText>
               </S.ToApply>
-            </Link>
+            )}
             <S.ApplyTerm>접수 기간: 10.18~10.21</S.ApplyTerm>
             <S.Underline />
           </S.ApplyBox>

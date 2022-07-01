@@ -290,7 +290,7 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                 </tr>
                 <tr>
                   <td colSpan={9} style={{ textAlign: 'start' }}>
-                    1.(인공지능과/ 스마트IOT과/ 소프트웨어개발과) 중 지망 학과를
+                    1.(인공지능과/ 스마트IoT과/ 소프트웨어개발과) 중 지망 학과를
                     순서대로 기록. <br />
                     2. 지원학과는 희망 순에 따라 3개 학과를 모두 기록해야 함.
                   </td>
@@ -471,7 +471,9 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
             </S.ColumnWrapper>
             <S.Test>
               <S.Column style={{ width: '20%' }}>환산점</S.Column>
-              <S.Value>{data?.application?.applicationScore?.artSportsScore}</S.Value>
+              <S.Value>
+                {data?.application?.applicationScore?.artSportsScore}
+              </S.Value>
             </S.Test>
           </S.TestTable>
           <S.SubTitle>비교과</S.SubTitle>

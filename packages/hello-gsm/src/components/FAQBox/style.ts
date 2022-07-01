@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import device from 'shared/config';
 
-export const FAQBox = styled.div`
+export const FAQBox = styled.button`
   width: 100%;
   height: 65px;
   display: flex;

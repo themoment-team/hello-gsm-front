@@ -20,6 +20,12 @@ export const DescriptionLine = styled.p`
   margin-top: 15px;
   color: #ffffff;
   text-align: center;
+  @media (max-width: 1750px) {
+    font-size: 25px;
+  }
+  @media (max-width: 1220px) {
+    font-size: 20px;
+  }
   @media ${device.tablet} {
     font-size: 19px;
     margin-top: 10px;

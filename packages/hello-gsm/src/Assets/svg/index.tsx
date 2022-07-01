@@ -5,12 +5,14 @@ export { default as CloseButton } from './CloseButton';
 export { default as Questioner } from './Questioner';
 export { default as NotFound } from './NotFound';
 export { default as TMLogo } from './TMLogo';
+export { default as InputImg } from './InputImg';
 export { default as Woman } from './Woman';
 export { default as Man } from './Man';
 export { default as CrossRectangle } from './CrossRectangle';
+export { default as FindSchoolClose } from './FindSchoolClose';
+export { default as FindSchoolSearchIcon } from './FindSchoolSearchIcon';
 export { default as Celebration } from './Celebration';
 export { default as KakaoLogo } from './KakaoLogo';
 export { default as HamburgerButton } from './HamburgerButton';
 export { default as SideBarButton } from './SideBarButton';
 export { default as MypageSuccess } from './MypageSuccess';
-        
