@@ -23,10 +23,10 @@ interface ApplicantType {
   screening: '일반전형' | '사회통합전형' | '특별전형';
   userIdx: number;
   applicationScore?: ApplicantScoreType;
-  applicationDetails?: ApplicantDetailsType;
+  applicationDetail?: ApplicantDetailType;
 }
 
-interface ApplicantDetailsType {
+interface ApplicantDetailType {
   applicantionIdx: number;
   idPhotoUrl: string;
   address: string;

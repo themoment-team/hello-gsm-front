@@ -29,7 +29,7 @@ import { useEffect } from 'react';
 //     schoolName: '풍암중학교',
 //     screening: '일반전형',
 //   },
-//   applicationDetails?: {
+//   applicationDetail?: {
 //     address: '광주광역시 서구 풍암동 우미광장아파트',
 //     telephoneNumber: '062-681-7815',
 //     guardianRelation: '지원자의 (모)',
@@ -129,7 +129,7 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                     }}
                   >
                     <img
-                      src={data?.application?.applicationDetails?.idPhotoUrl}
+                      src={data?.application?.applicationDetail?.idPhotoUrl}
                       alt=""
                     />
                   </td>
@@ -137,14 +137,14 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                 <tr>
                   <S.Subject>주 소</S.Subject>
                   <td colSpan={5}>
-                    {data?.application?.applicationDetails?.address}
+                    {data?.application?.applicationDetail?.address}
                   </td>
                 </tr>
                 <tr>
                   <S.Subject>연락처</S.Subject>
                   <S.Subject>집전화</S.Subject>
                   <td colSpan={2}>
-                    {data?.application?.applicationDetails?.telephoneNumber}
+                    {data?.application?.applicationDetail?.telephoneNumber}
                   </td>
                   <S.Subject>핸드폰</S.Subject>
                   <td>{data?.cellphoneNumber}</td>
@@ -155,11 +155,11 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                   </S.Subject>
                   <S.Subject>성 명</S.Subject>
                   <td colSpan={2}>
-                    {data?.application?.applicationDetails?.guardianName}
+                    {data?.application?.applicationDetail?.guardianName}
                   </td>
                   <S.Subject>지원자와의 관계</S.Subject>
                   <td colSpan={2}>
-                    {data?.application?.applicationDetails?.guardianRelation}
+                    {data?.application?.applicationDetail?.guardianRelation}
                   </td>
                 </tr>
                 <tr>
@@ -173,11 +173,11 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                     원서작성자(담임) <br /> 성명
                   </S.Subject>
                   <td colSpan={2} style={{ textAlign: 'end' }}>
-                    {data?.application?.applicationDetails?.teacherName}(인)
+                    {data?.application?.applicationDetail?.teacherName}(인)
                   </td>
                   <S.Subject>핸드폰</S.Subject>
                   <td>
-                    {data?.application?.applicationDetails?.telephoneNumber}
+                    {data?.application?.applicationDetail?.telephoneNumber}
                   </td>
                 </tr>
               </thead>
@@ -197,16 +197,16 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                     출신중학교
                   </S.Subject>
                   <td colSpan={2}>
-                    {data?.application?.applicationDetails?.schoolLocation}
+                    {data?.application?.applicationDetail?.schoolLocation}
                   </td>
                   <td colSpan={6}>
-                    {data?.application?.applicationDetails?.educationStatus}
+                    {data?.application?.applicationDetail?.educationStatus}
                   </td>
                 </tr>
                 <tr>
                   <S.Subject>지역명</S.Subject>
                   <td colSpan={7}>
-                    {data?.application?.applicationDetails?.schoolLocation}
+                    {data?.application?.applicationDetail?.schoolLocation}
                   </td>
                 </tr>
                 <tr>
@@ -279,13 +279,13 @@ const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
                 </tr>
                 <tr>
                   <td colSpan={3}>
-                    {data?.application?.applicationDetails?.firstWantedMajor}
+                    {data?.application?.applicationDetail?.firstWantedMajor}
                   </td>
                   <td colSpan={3}>
-                    {data?.application?.applicationDetails?.secondWantedMajor}
+                    {data?.application?.applicationDetail?.secondWantedMajor}
                   </td>
                   <td colSpan={3}>
-                    {data?.application?.applicationDetails?.thirdWantedMajor}
+                    {data?.application?.applicationDetail?.thirdWantedMajor}
                   </td>
                 </tr>
                 <tr>
