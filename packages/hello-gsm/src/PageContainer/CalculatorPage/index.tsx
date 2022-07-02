@@ -8,6 +8,9 @@ import { Calculate, Volunteer, Rounds, Attendance } from 'Utils/Calculate';
 import Result from 'components/Modals/ScoreResultModal';
 import useLocalstorage from 'hooks/useLocalstorage';
 import application from 'Api/application';
+import auth from 'Api/auth';
+import { ScoreType } from 'type/application';
+import { useRouter } from 'next/router';
 
 interface ScoreForm {
   score2_1: number[];
@@ -29,6 +32,7 @@ const CalculatorPage: NextPage = () => {
     formState: { errors },
   } = useForm<ScoreForm>();
 
+  const router = useRouter();
   const [showResult, setShowResult] = useState(false); // 결과 모달 제어
   const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
 
@@ -41,7 +45,6 @@ const CalculatorPage: NextPage = () => {
   const volunteerScore = useLocalstorage('volunteerScore');
   const getSubjects = useLocalstorage('newSubjects');
 
-  console.log(getSubjects);
   const lines = ['일반교과', '예체능 교과', '비교과'];
   const [subjects, setSubjects] = useState([
     '국어',
@@ -79,6 +82,33 @@ const CalculatorPage: NextPage = () => {
     volunteerScore,
   ]);
 
+  // api 요청 보내기
+  const PostData = ({
+    score2_1,
+    score2_2,
+    score3_1,
+    generalCurriculumScoreSubtotal,
+    artSportsScore,
+    attendanceScore,
+    curriculumScoreSubtotal,
+    volunteerScore,
+    nonCurriculumScoreSubtotal,
+    scoreTotal,
+  }: ScoreType) => {
+    application.postSecondSubmisson({
+      score2_1,
+      score2_2,
+      score3_1,
+      generalCurriculumScoreSubtotal,
+      artSportsScore,
+      attendanceScore,
+      curriculumScoreSubtotal,
+      volunteerScore,
+      nonCurriculumScoreSubtotal,
+      scoreTotal,
+    });
+  };
+
   const onValid = async (validForm: ScoreForm) => {
     const score2_1: number = Calculate(validForm.score2_1, 2); // 2학년 1학기
     const score2_2: number = Calculate(validForm.score2_2, 2); // 2학년 2학기
@@ -88,8 +118,10 @@ const CalculatorPage: NextPage = () => {
     // 교과성적 소계
 
     const artSportsScore: number = Calculate(validForm.artSportsScore, 4); // 예체능
-    const curriculumScoreSubtotal: number =
-      generalCurriculumScoreSubtotal + artSportsScore;
+    const curriculumScoreSubtotal: number = Rounds(
+      generalCurriculumScoreSubtotal + artSportsScore,
+      4,
+    );
     // 교과성적 + 예체능
 
     const attendanceScore: number = Attendance(
@@ -97,7 +129,10 @@ const CalculatorPage: NextPage = () => {
       validForm.attendanceScore,
     ); // 출석점수
     const volunteerScore: number = Volunteer(validForm.volunteerScore); // 봉사점수
-    const nonCurriculumScoreSubtotal: number = attendanceScore + volunteerScore;
+    const nonCurriculumScoreSubtotal: number = Rounds(
+      attendanceScore + volunteerScore,
+      4,
+    );
     //비교과 성적 소계
 
     const scoreTotal = Rounds(
@@ -143,18 +178,6 @@ const CalculatorPage: NextPage = () => {
       JSON.stringify(validForm.newSubjects),
     );
     try {
-      await application.postSecondSubmisson({
-        score2_1: 54,
-        score2_2: 54,
-        score3_1: 72,
-        generalCurriculumScoreSubtotal: 180,
-        artSportsScore: 60,
-        attendanceScore: 30,
-        curriculumScoreSubtotal: 240,
-        volunteerScore: 30,
-        nonCurriculumScoreSubtotal: 60,
-        scoreTotal: 300,
-      });
       setResultArray([
         generalCurriculumScoreSubtotal,
         artSportsScore,
@@ -162,8 +185,44 @@ const CalculatorPage: NextPage = () => {
         scoreTotal,
       ]);
       setShowResult(true);
-    } catch (e) {
-      console.error(e);
+      PostData({
+        score2_1,
+        score2_2,
+        score3_1,
+        generalCurriculumScoreSubtotal,
+        artSportsScore,
+        attendanceScore,
+        curriculumScoreSubtotal,
+        volunteerScore,
+        nonCurriculumScoreSubtotal,
+        scoreTotal,
+      });
+    } catch (error: any) {
+      // accessToken 없을 시에 accessToken 발급 후 PostData 요청
+      if (error.response.status === 401) {
+        try {
+          // accessToken 발급
+          await auth.refresh();
+          PostData({
+            score2_1,
+            score2_2,
+            score3_1,
+            generalCurriculumScoreSubtotal,
+            artSportsScore,
+            attendanceScore,
+            curriculumScoreSubtotal,
+            volunteerScore,
+            nonCurriculumScoreSubtotal,
+            scoreTotal,
+          });
+        } catch (error) {
+          console.log(error);
+          router.push('/auth/signin');
+        }
+      } else {
+        console.log(error);
+        router.push('/auth/signin');
+      }
     }
   };
 
