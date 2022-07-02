@@ -88,7 +88,7 @@ class Application {
     try {
       return RequestApi({
         method: 'PATCH',
-        url: ApplicationController.secondSubmission(),
+        url: ApplicationController.secondsSubmission(),
         data: data,
       });
     } catch (error) {
