@@ -37,7 +37,7 @@ export interface ScoreType {
 
 export interface GetApplicationType {
   data: {
-    userIdx: number;
+    user_Idx: number;
     userImg: string;
     name: string;
     birth: Date;
@@ -46,35 +46,35 @@ export interface GetApplicationType {
     application_image?: {
       idPhotoUrl: string;
     };
-    application: null | {
+    application?: {
       applicationIdx: number;
-      registrationNumber: null | number;
-      isFinalSubmission: null | boolean;
-      isDocumentReception: null | boolean;
-      firstResultScreening: null | string;
-      finalResultScreening: null | string;
+      registrationNumber?: number;
+      isFinalSubmission?: boolean;
+      isDocumentReception?: boolean;
+      firstResultScreening?: string;
+      finalResultScreening?: string;
       guardianCellphoneNumber: string;
-      teacherCellphoneNumber: null | string;
-      schoolName: null | string;
+      teacherCellphoneNumber?: string;
+      schoolName?: string;
       screening: '일반전형' | '사회통합전형' | '특별전형';
       user_idx: number;
-      application_score: null | number;
-      application_details: {
+      application_score?: number;
+      application_details?: {
         applicationIdx: number;
         address: string;
-        addressDetails: string;
-        telephoneNumber: string;
+        addressDetails?: string;
+        telephoneNumber?: string;
         guardianName: string;
         guardianRelation: string;
-        teacherName: null | string;
-        schoolLocation: null | string;
+        teacherName?: string;
+        schoolLocation?: string;
         educationStatus: '졸업예정' | '졸업' | '검정고시';
         graduationYear: string;
         graduationMonth: string;
         firstWantedMajor: '소프트웨어개발과' | '스마트IoT과' | '인공지능과';
         secondWantedMajor: '소프트웨어개발과' | '스마트IoT과' | '인공지능과';
         thirdWantedMajor: '소프트웨어개발과' | '스마트IoT과' | '인공지능과';
-        majorResult: null | string;
+        majorResult?: string;
       };
     };
   };
