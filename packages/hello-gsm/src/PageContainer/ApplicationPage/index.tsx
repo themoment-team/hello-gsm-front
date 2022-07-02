@@ -26,7 +26,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
   const userBirth = new Date(data.birth);
   const birth = dayjs()
     .set('year', userBirth.getFullYear())
-    .set('month', userBirth.getMonth() + 1)
+    .set('month', userBirth.getMonth())
     .set('date', userBirth.getDate())
     .format('YYYY-MM-DD');
 
