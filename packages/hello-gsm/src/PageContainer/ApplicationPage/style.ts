@@ -8,6 +8,18 @@ export const ApplicationPage = styled.div`
   height: 100vh;
   overflow: hidden;
   font-size: 1vh;
+  @media print {
+    -webkit-print-color-adjust: exact;
+    .warterMark {
+      display: none;
+    }
+    @page {
+      margin: 0;
+    }
+    body {
+      margin: 1.6cm;
+    }
+  }
 `;
 
 export const Document = styled.div`

@@ -1,6 +1,5 @@
 import type { NextPage } from 'next';
 import * as S from './style';
-import { css } from '@emotion/react';
 import { GetApplicationType } from 'type/application';
 import useLocalstorage from 'hooks/useLocalstorage';
 import useToString from 'Utils/Calculate/ToString';
@@ -35,22 +34,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
   }, []);
   return (
     <>
-      <S.ApplicationPage
-        css={css`
-          @media print {
-            -webkit-print-color-adjust: exact;
-            .warterMark {
-              display: none;
-            }
-            @page {
-              margin: 0;
-            }
-            body {
-              margin: 1.6cm;
-            }
-          }
-        `}
-      >
+      <S.ApplicationPage>
         <S.Document>
           <div className="warterMark">견본</div>
           <p>[서식 1]</p>
@@ -88,7 +72,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
                       width: '19vh',
                       height: '20vh',
                       backgroundImage: `url(
-                        ${data.application_image?.idPhotoUrl},
+                        ${data.application_image?.idPhotoUrl}
                       )`,
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
@@ -290,16 +274,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
         </S.Document>
       </S.ApplicationPage>
 
-      <S.ApplicationPage
-        css={css`
-          @media print {
-            -webkit-print-color-adjust: exact;
-            .warterMark {
-              display: none;
-            }
-          }
-        `}
-      >
+      <S.ApplicationPage>
         <S.Document>
           <div className="warterMark">견본</div>
           <p>[서식 3]</p>
