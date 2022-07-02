@@ -37,7 +37,7 @@ export interface ScoreType {
 
 export interface GetApplicationType {
   data: {
-    user_Idx: number;
+    user_idx: number;
     userImg: string;
     name: string;
     birth: Date;

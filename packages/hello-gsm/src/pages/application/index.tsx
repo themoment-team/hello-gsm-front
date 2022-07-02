@@ -1,6 +1,5 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import application from 'Api/application';
-import { ProfileType } from 'type/profile';
 import { StatusType } from 'type/user';
 import user from 'Api/user';
 import { HeaderType } from 'type/header';
@@ -9,17 +8,14 @@ import { useEffect } from 'react';
 import useStore from 'Stores/StoreContainer';
 import { SEOHelmet } from 'components';
 import { ApplicationPage } from 'PageContainer';
+import { GetApplicationType } from 'type/application';
 
-interface ProfileCheckType extends ProfileType {
-  check: boolean;
-}
-
-const Application: NextPage<ProfileCheckType> = ({ data, check }) => {
+const Application: NextPage<GetApplicationType> = ({ data }) => {
   const seoTitle = '원서출력';
   const desc = '지원자의 입학 원서 파일을 출력해줍니다.';
   const { setLogged } = useStore();
   useEffect(() => {
-    setLogged(check);
+    setLogged(true);
   }, []);
 
   return (
@@ -37,18 +33,17 @@ const getInfo = async (accessToken: string) => {
   if (data.application?.isFinalSubmission) {
     try {
       // 최종제출이 완료 되었으면 원서 정보를 props로 보냄
-      const { data }: ProfileType = await application.getInformation(
+      const { data }: GetApplicationType = await application.getInformation(
         accessToken,
       );
       return {
         props: {
           data,
-          check: true,
         },
       };
     } catch (err: any) {
       return {
-        props: { check: true },
+        props: {},
         redirect: {
           destination: '/mypage',
         },
@@ -57,7 +52,7 @@ const getInfo = async (accessToken: string) => {
   } else {
     // 최종제출이 안되어 있으면 mypage로 이동
     return {
-      props: { check: true },
+      props: {},
       redirect: {
         destination: '/mypage',
       },
@@ -92,7 +87,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
       } catch (err) {
         // 로그인 실패
         return {
-          props: { check: false },
+          props: {},
           redirect: {
             destination: '/auth/signin',
           },
@@ -102,7 +97,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   } else {
     // 로그인 X
     return {
-      props: { check: false },
+      props: {},
       redirect: {
         destination: '/auth/signin',
       },
