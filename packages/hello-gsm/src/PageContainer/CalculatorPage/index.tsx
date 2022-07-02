@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { Calculate, Volunteer, Rounds, Attendance } from 'Utils/Calculate';
 import Result from 'components/Modals/ScoreResultModal';
 import useLocalstorage from 'hooks/useLocalstorage';
+import application from 'Api/application';
 
 interface ScoreForm {
   score2_1: number[];
@@ -141,29 +142,29 @@ const CalculatorPage: NextPage = () => {
       'newSubjects',
       JSON.stringify(validForm.newSubjects),
     );
-    // try {
-    //         await application.postSecondSubmisson({
-    //         score2_1,
-    //         score2_2,
-    //         score3_1,
-    //         generalCurriculumScoreSubtotal,
-    //         artSportsScore,
-    //         attendanceScore,
-    //         curriculumScoreSubtotal,
-    //         volunteerScore,
-    //         nonCurriculumScoreSubtotal,
-    //         scoreTotal,
-    //       });
-    setResultArray([
-      generalCurriculumScoreSubtotal,
-      artSportsScore,
-      nonCurriculumScoreSubtotal,
-      scoreTotal,
-    ]);
-    setShowResult(true);
-    // } catch (e) {
-    //   console.error(e);
-    // }
+    try {
+      await application.postSecondSubmisson({
+        score2_1,
+        score2_2,
+        score3_1,
+        generalCurriculumScoreSubtotal,
+        artSportsScore,
+        attendanceScore,
+        curriculumScoreSubtotal,
+        volunteerScore,
+        nonCurriculumScoreSubtotal,
+        scoreTotal,
+      });
+      setResultArray([
+        generalCurriculumScoreSubtotal,
+        artSportsScore,
+        nonCurriculumScoreSubtotal,
+        scoreTotal,
+      ]);
+      setShowResult(true);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const inValid = (errors: FieldErrors) => {
