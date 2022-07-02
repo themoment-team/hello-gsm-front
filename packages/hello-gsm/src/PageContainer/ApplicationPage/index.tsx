@@ -24,9 +24,9 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
     (30 - data?.application?.application_score?.attendanceScore) / 3;
 
   const birth = dayjs()
-    .set('year', Number(data.birth.getFullYear))
-    .set('month', Number(data.birth.getMonth))
-    .set('date', Number(data.birth.getDate))
+    .set('year', Number(data.birth.getFullYear()))
+    .set('month', Number(data.birth.getMonth()) + 1)
+    .set('date', Number(data.birth.getDate()))
     .format('YYYY-MM-DD');
 
   useEffect(() => {
