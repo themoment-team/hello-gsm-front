@@ -6,54 +6,8 @@ import useLocalstorage from 'hooks/useLocalstorage';
 import useToString from 'Utils/Calculate/ToString';
 import { useEffect } from 'react';
 
-// const profile: ProfileType = {
-//   user: {
-//     name: '유시온',
-//     birth: '2005년 11월 09일',
-//     gender: '여자',
-//     cellphoneNumber: '010-9201-5487',
-//   },
-//   application: {
-//     registrationNumber: 2022,
-//     isDocumentReception: true,
-//     isFinalSubmission: true,
-//     isFirstResult: true,
-//     isFinalResult: true,
-//     idPhotoUrl:
-//       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrNSGTUntb7tiyrB0zEeemK8lJd3gGOSHILw&usqp=CAU',
-//     guardianName: '우럼마',
-//     guardianCellphoneNumber: '010-1111-5487',
-//     teacherName: '황명희',
-//     teacherCellphoneNumber: '010-2323-5487',
-//     schoolLocation: '광주광역시 서구 풍암동',
-//     schoolName: '풍암중학교',
-//     screening: '일반전형',
-//   },
-//   applicationDetail?: {
-//     address: '광주광역시 서구 풍암동 우미광장아파트',
-//     telephoneNumber: '062-681-7815',
-//     guardianRelation: '지원자의 (모)',
-//     graduation_year: '2023년',
-//     graduation_month: '2월',
-//     educationStatus: '졸업예정',
-//     schoolTelephoneNumber: '010-2224-2323',
-//     score2_1: 20,
-//     score2_2: 20,
-//     score3_1: 20,
-//     generalCurriculumScoreSubtotal: 100,
-//     artSportsScore: 20,
-//     curriculumScoreSubtotal: 120,
-//     attendanceScore: 20,
-//     volunteerScore: 20,
-//     nonCurriculumScoreSubtotal: 40,
-//     scoreTotal: 160,
-//     firstWantedMajor: '소프트웨어 개발과',
-//     secondWantedMajor: '스마트 IOT과',
-//     thirdWantedMajor: '인공지능과',
-//   },
-// };
-
 const ApplicationPage: NextPage<ProfileType> = ({ data }) => {
+  console.log(data);
   const score2_1 = useToString(useLocalstorage('score2_1'));
   const score2_2 = useToString(useLocalstorage('score2_2'));
   const score3_1 = useToString(useLocalstorage('score3_1'));
