@@ -84,6 +84,10 @@ export const Table = styled.table`
     border-collapse: collapse;
     overflow: hidden;
   }
+  td > img {
+    width: 210px;
+    height: 280px;
+  }
 
   svg {
     width: 100%;

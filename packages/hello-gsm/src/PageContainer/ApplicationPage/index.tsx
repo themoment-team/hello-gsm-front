@@ -5,6 +5,7 @@ import { GetApplicationType } from 'type/application';
 import useLocalstorage from 'hooks/useLocalstorage';
 import useToString from 'Utils/Calculate/ToString';
 import { useEffect } from 'react';
+import Image from 'next/image';
 
 const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
   console.log(data);
@@ -82,7 +83,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
                       height: '20vh',
                     }}
                   >
-                    <img src={data?.application_image?.idPhotoUrl} alt="" />
+                    <Image src={data?.application_image?.idPhotoUrl} alt="" />
                   </td>
                 </tr>
                 <tr>
