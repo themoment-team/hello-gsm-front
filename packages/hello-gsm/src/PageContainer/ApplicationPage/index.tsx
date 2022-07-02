@@ -21,8 +21,12 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
   const conversionDays =
     data?.application?.application_score?.attendanceScore &&
     (30 - data?.application?.application_score?.attendanceScore) / 3;
-
-  console.log(conversionDays);
+  const userBirth = new Date(data.birth);
+  const Birth = {
+    year: userBirth.getFullYear(),
+    month: userBirth.getMonth() + 1,
+    date: userBirth.getDate(),
+  };
   useEffect(() => {
     window.print();
   }, []);
@@ -74,7 +78,9 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
                   <S.Subject style={{ width: '3%' }}>성별</S.Subject>
                   <td>{data?.gender}</td>
                   <S.Subject>생년월일</S.Subject>
-                  <td>{data?.birth}</td>
+                  <td>
+                    {Birth.year}-{Birth.month}-{Birth.date}
+                  </td>
                   <td
                     rowSpan={6}
                     style={{

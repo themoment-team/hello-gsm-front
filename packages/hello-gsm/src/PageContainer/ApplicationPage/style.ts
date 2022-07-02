@@ -214,8 +214,9 @@ export const Column = styled.div`
 `;
 
 export const Value = styled.div`
-  border-bottom: 0.08vh solid #000000;
+  width: 100%;
   height: 100%;
+  border-bottom: 0.08vh solid #000000;
   display: flex;
   align-items: center;
   justify-content: center;
