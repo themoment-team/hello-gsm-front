@@ -12,10 +12,10 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
   const score2_1 = useToString(useLocalstorage('score2_1'));
   const score2_2 = useToString(useLocalstorage('score2_2'));
   const score3_1 = useToString(useLocalstorage('score3_1'));
-  const artSportsScore = useToString(useLocalstorage('artSportsScore'));
-  const absentScore = useLocalstorage('absentScore');
-  const attendanceScore = useLocalstorage('attendanceScore');
-  const volunteerScore = useLocalstorage('volunteerScore');
+  const artSportsScore = useToString(useLocalstorage('artSportsScore')) ?? [];
+  const absentScore = useLocalstorage('absentScore') ?? []; // null 값이면 빈 배열
+  const attendanceScore = useLocalstorage('attendanceScore') ?? [];
+  const volunteerScore = useLocalstorage('volunteerScore') ?? [];
   const subjects = useLocalstorage('subjects');
   const newSubjects = useLocalstorage('newSubjects');
   // 환산일수
@@ -412,27 +412,27 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
                   <S.DivSubject>2학년 1학기</S.DivSubject>
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
-                <S.Value>{artSportsScore && artSportsScore[0]}</S.Value>
-                <S.Value>{artSportsScore && artSportsScore[1]}</S.Value>
-                <S.Value>{artSportsScore && artSportsScore[2]}</S.Value>
+                <S.Value>{artSportsScore[0]}</S.Value>
+                <S.Value>{artSportsScore[1]}</S.Value>
+                <S.Value>{artSportsScore[2]}</S.Value>
               </S.Column>
               <S.Column>
                 <S.Semester>
                   <S.DivSubject>2학년 2학기</S.DivSubject>
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
-                <S.Value>{artSportsScore && artSportsScore[3]}</S.Value>
-                <S.Value>{artSportsScore && artSportsScore[4]}</S.Value>
-                <S.Value>{artSportsScore && artSportsScore[5]}</S.Value>
+                <S.Value>{artSportsScore[3]}</S.Value>
+                <S.Value>{artSportsScore[4]}</S.Value>
+                <S.Value>{artSportsScore[5]}</S.Value>
               </S.Column>
               <S.Column>
                 <S.Semester>
                   <S.DivSubject>3학년 1학기</S.DivSubject>
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
-                <S.Value>{artSportsScore && artSportsScore[6]}</S.Value>
-                <S.Value>{artSportsScore && artSportsScore[7]}</S.Value>
-                <S.Value>{artSportsScore && artSportsScore[8]}</S.Value>
+                <S.Value>{artSportsScore[6]}</S.Value>
+                <S.Value>{artSportsScore[7]}</S.Value>
+                <S.Value>{artSportsScore[8]}</S.Value>
               </S.Column>
             </S.ColumnWrapper>
             <S.Test>
@@ -463,10 +463,10 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
               </tr>
               <tr>
                 <td>1</td>
-                <td>{absentScore && absentScore[0]}</td>
-                <td>{attendanceScore && attendanceScore[0]}</td>
-                <td>{attendanceScore && attendanceScore[3]}</td>
-                <td>{attendanceScore && attendanceScore[6]}</td>
+                <td>{absentScore[0]}</td>
+                <td>{attendanceScore[0]}</td>
+                <td>{attendanceScore[3]}</td>
+                <td>{attendanceScore[6]}</td>
                 <td rowSpan={3}>
                   {/* 환산일수 구하기 */}
                   {conversionDays}
@@ -474,26 +474,26 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
                 <td rowSpan={3}>
                   {data?.application?.application_score?.attendanceScore}
                 </td>
-                <td>{volunteerScore && volunteerScore[0]}</td>
+                <td>{volunteerScore[0]}</td>
                 <td rowSpan={3}>
                   {data?.application?.application_score?.volunteerScore}
                 </td>
               </tr>
               <tr>
                 <td>2</td>
-                <td>{absentScore && absentScore[1]}</td>
-                <td>{attendanceScore && attendanceScore[1]}</td>
-                <td>{attendanceScore && attendanceScore[4]}</td>
-                <td>{attendanceScore && attendanceScore[7]}</td>
-                <td>{volunteerScore && volunteerScore[1]}</td>
+                <td>{absentScore[1]}</td>
+                <td>{attendanceScore[1]}</td>
+                <td>{attendanceScore[4]}</td>
+                <td>{attendanceScore[7]}</td>
+                <td>{volunteerScore[1]}</td>
               </tr>
               <tr>
                 <td>3</td>
-                <td>{absentScore && absentScore[2]}</td>
-                <td>{attendanceScore && attendanceScore[2]}</td>
-                <td>{attendanceScore && attendanceScore[5]}</td>
-                <td>{attendanceScore && attendanceScore[8]}</td>
-                <td>{volunteerScore && volunteerScore[2]}</td>
+                <td>{absentScore[2]}</td>
+                <td>{attendanceScore[2]}</td>
+                <td>{attendanceScore[5]}</td>
+                <td>{attendanceScore[8]}</td>
+                <td>{volunteerScore[2]}</td>
               </tr>
             </tbody>
           </S.Table>
