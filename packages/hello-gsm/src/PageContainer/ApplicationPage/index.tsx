@@ -69,12 +69,12 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
                   <td
                     rowSpan={6}
                     style={{
-                      width: '19vh',
-                      height: '20vh',
+                      width: '18vh',
+                      height: '25vh',
                       backgroundImage: `url(
                         ${data.application_image?.idPhotoUrl}
                       )`,
-                      backgroundSize: '19vh 20vh',
+                      backgroundSize: '18vh 25vh',
                       backgroundRepeat: 'no-repeat',
                     }}
                   ></td>
