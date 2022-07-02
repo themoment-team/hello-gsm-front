@@ -58,7 +58,20 @@ export interface GetApplicationType {
       schoolName?: string;
       screening: '일반전형' | '사회통합전형' | '특별전형';
       user_idx: number;
-      application_score?: number;
+      application_score?: {
+        applicationIdx: number;
+        score2_1: 54;
+        score2_2: 54;
+        score3_1: 72;
+        generalCurriculumScoreSubtotal: number;
+        artSportsScore: number;
+        curriculumScoreSubtotal: number;
+        attendanceScore: number;
+        volunteerScore: number;
+        nonCurriculumScoreSubtotal: number;
+        personalityEvaluationScore: number;
+        scoreTotal: number;
+      };
       application_details?: {
         applicationIdx: number;
         address: string;
