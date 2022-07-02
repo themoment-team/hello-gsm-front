@@ -74,7 +74,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
                       backgroundImage: `url(
                         ${data.application_image?.idPhotoUrl}
                       )`,
-                      backgroundSize: 'cover',
+                      backgroundSize: '19vh 20vh',
                       backgroundRepeat: 'no-repeat',
                     }}
                   ></td>
