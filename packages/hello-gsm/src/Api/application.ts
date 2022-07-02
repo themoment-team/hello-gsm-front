@@ -58,7 +58,7 @@ class Application {
     try {
       return RequestApi({
         method: 'POST',
-        url: ApplicationController.secondSubmission(),
+        url: ApplicationController.secondsSubmission(),
         data: data,
       });
     } catch (error) {
