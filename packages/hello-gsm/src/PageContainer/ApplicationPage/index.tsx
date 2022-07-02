@@ -6,12 +6,13 @@ import useLocalstorage from 'hooks/useLocalstorage';
 import useToString from 'Utils/Calculate/ToString';
 import { useEffect } from 'react';
 import dayjs from 'dayjs';
+import { url } from 'inspector';
 
 const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
   console.log(data);
-  const score2_1 = useToString(useLocalstorage('score2_1'));
-  const score2_2 = useToString(useLocalstorage('score2_2'));
-  const score3_1 = useToString(useLocalstorage('score3_1'));
+  const score2_1 = useToString(useLocalstorage('score2_1')) ?? [];
+  const score2_2 = useToString(useLocalstorage('score2_2')) ?? [];
+  const score3_1 = useToString(useLocalstorage('score3_1')) ?? [];
   const artSportsScore = useToString(useLocalstorage('artSportsScore')) ?? [];
   const absentScore = useLocalstorage('absentScore') ?? []; // null 값이면 빈 배열
   const attendanceScore = useLocalstorage('attendanceScore') ?? [];
@@ -87,6 +88,11 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
                     style={{
                       width: '19vh',
                       height: '20vh',
+                      backgroundImage: `url(
+                        ${data.application_image?.idPhotoUrl},
+                      )`,
+                      backgroundSize: 'cover',
+                      backgroundRepeat: 'no-repeat',
                     }}
                   >
                     <img src={data?.application_image?.idPhotoUrl} alt="" />
@@ -378,7 +384,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
           </S.ScoreTable>
 
           <S.SubTitle>체육예술교과</S.SubTitle>
-          <S.TestTable style={{ height: 200 }}>
+          <S.TestTable style={{ height: '17vh' }}>
             <S.ColumnWrapper>
               <S.Column>
                 <S.GradeAndSubject>

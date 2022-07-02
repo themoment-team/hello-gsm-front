@@ -85,8 +85,8 @@ export const Table = styled.table`
     overflow: hidden;
   }
   td > img {
-    width: 210px;
-    height: 280px;
+    width: 18.7vh;
+    height: 25vh;
   }
 
   svg {
@@ -183,7 +183,7 @@ export const SignatureSection = styled.div`
 
 export const ScoreTable = styled.div`
   display: flex;
-  height: 330px;
+  height: 26vh;
   border: 0.08vh solid #000000;
   .slash {
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="100%" x2="100%" y2="0" stroke="gray" /></svg>');
@@ -199,7 +199,7 @@ export const GradeAndSubject = styled.div`
   z-index: 2;
   border-bottom: 0.08vh solid #000000;
   div {
-    height: 25px;
+    height: 2.2vh;
   }
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
 `;
@@ -231,10 +231,10 @@ export const DivSubject = styled.div`
   font-weight: 500;
   background-color: #e9e9e9;
   border-bottom: 0.08vh solid #000000;
-  line-height: 25px;
+  line-height: 2.2vh;
   text-align: center;
   padding: 0 0.2vh;
-  height: 25px;
+  height: 2.2vh;
 `;
 
 export const Slash = styled.div`
@@ -246,7 +246,7 @@ export const Slash = styled.div`
 export const TestTable = styled.div`
   display: flex;
   flex-direction: column;
-  height: 330px;
+  height: 26vh;
 `;
 
 export const ColumnWrapper = styled.div`
@@ -262,6 +262,6 @@ export const Test = styled.div`
   text-align: center;
   border: 0.08vh solid #000000;
   border-top: 0;
-  height: 30px;
-  line-height: 30px;
+  height: 2.6vh;
+  line-height: 2.6vh;
 `;
