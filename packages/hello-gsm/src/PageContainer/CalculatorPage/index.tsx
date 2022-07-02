@@ -83,7 +83,7 @@ const CalculatorPage: NextPage = () => {
   ]);
 
   // api 요청 보내기
-  const PostData = ({
+  const PostData = async ({
     score2_1,
     score2_2,
     score3_1,
@@ -95,7 +95,7 @@ const CalculatorPage: NextPage = () => {
     nonCurriculumScoreSubtotal,
     scoreTotal,
   }: ScoreType) => {
-    application.postSecondSubmisson({
+    await application.postSecondSubmisson({
       score2_1,
       score2_2,
       score3_1,
@@ -178,14 +178,7 @@ const CalculatorPage: NextPage = () => {
       JSON.stringify(validForm.newSubjects),
     );
     try {
-      setResultArray([
-        generalCurriculumScoreSubtotal,
-        artSportsScore,
-        nonCurriculumScoreSubtotal,
-        scoreTotal,
-      ]);
-      setShowResult(true);
-      PostData({
+      await PostData({
         score2_1,
         score2_2,
         score3_1,
@@ -197,13 +190,20 @@ const CalculatorPage: NextPage = () => {
         nonCurriculumScoreSubtotal,
         scoreTotal,
       });
+      setResultArray([
+        generalCurriculumScoreSubtotal,
+        artSportsScore,
+        nonCurriculumScoreSubtotal,
+        scoreTotal,
+      ]);
+      setShowResult(true);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 PostData 요청
       if (error.response.status === 401) {
         try {
           // accessToken 발급
           await auth.refresh();
-          PostData({
+          await PostData({
             score2_1,
             score2_2,
             score3_1,
