@@ -144,16 +144,16 @@ const CalculatorPage: NextPage = () => {
     );
     try {
       await application.postSecondSubmisson({
-        score2_1: score2_1,
-        score2_2: score2_2,
-        score3_1: score3_1,
-        generalCurriculumScoreSubtotal: generalCurriculumScoreSubtotal,
-        artSportsScore: artSportsScore,
-        attendanceScore: attendanceScore,
-        curriculumScoreSubtotal: curriculumScoreSubtotal,
-        volunteerScore: volunteerScore,
-        nonCurriculumScoreSubtotal: nonCurriculumScoreSubtotal,
-        scoreTotal: scoreTotal,
+        score2_1: 54,
+        score2_2: 54,
+        score3_1: 72,
+        generalCurriculumScoreSubtotal: 180,
+        artSportsScore: 60,
+        attendanceScore: 30,
+        curriculumScoreSubtotal: 240,
+        volunteerScore: 30,
+        nonCurriculumScoreSubtotal: 60,
+        scoreTotal: 300,
       });
       setResultArray([
         generalCurriculumScoreSubtotal,
