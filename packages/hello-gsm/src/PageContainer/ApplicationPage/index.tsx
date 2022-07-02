@@ -6,7 +6,6 @@ import useLocalstorage from 'hooks/useLocalstorage';
 import useToString from 'Utils/Calculate/ToString';
 import { useEffect } from 'react';
 import dayjs from 'dayjs';
-import { url } from 'inspector';
 
 const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
   console.log(data);
@@ -94,9 +93,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
                       backgroundSize: 'cover',
                       backgroundRepeat: 'no-repeat',
                     }}
-                  >
-                    <img src={data?.application_image?.idPhotoUrl} alt="" />
-                  </td>
+                  ></td>
                 </tr>
                 <tr>
                   <S.Subject>주 소</S.Subject>
