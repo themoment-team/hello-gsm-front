@@ -6,6 +6,7 @@ const nextConfig = {
   },
   env: {
     NEIS_API_KEY: process.env.NEIS_API_KEY,
+    OPERATIONAL_STATUS: process.env.OPERATIONAL_STATUS,
   },
 };
 

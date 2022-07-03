@@ -9,3 +9,4 @@ export { default as NotFoundPage } from './NotFoundPage';
 export { default as SchoolPage } from './SchoolPage';
 export { default as SignInPage } from './SignInPage';
 export { default as SignUpPage } from './SignUpPage';
+export { default as InspectionPage } from './InspectionPage';
