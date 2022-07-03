@@ -141,17 +141,6 @@ const CalculatorPage: NextPage = () => {
     );
     // 총합
 
-    console.log(validForm);
-    console.log(
-      `2학년 1학기 : ${score2_1}\n2학년 2학기 : ${score2_2}\n3학기 1학기 : ${score3_1}\n교과성적 소계 : ${generalCurriculumScoreSubtotal}\n`,
-    );
-    console.log(`예체능 점수 : ${artSportsScore}\n`);
-    console.log(`교과성적 + 예체능 점수 : ${curriculumScoreSubtotal}\n`);
-    console.log(
-      `출석 점수 : ${attendanceScore}\n봉사 점수 : ${volunteerScore}\n비교과 성적 소계 : ${nonCurriculumScoreSubtotal}\n`,
-    );
-    console.log(`총합 : ${scoreTotal}`);
-
     // 원서 파일 페이지에서 불러오기 위해 localstorage에 저장
     window.localStorage.setItem('score2_1', JSON.stringify(validForm.score2_1));
     window.localStorage.setItem('score2_2', JSON.stringify(validForm.score2_2));
@@ -177,6 +166,17 @@ const CalculatorPage: NextPage = () => {
       'newSubjects',
       JSON.stringify(validForm.newSubjects),
     );
+
+    console.log(validForm);
+    console.log(
+      `2학년 1학기 : ${score2_1}\n2학년 2학기 : ${score2_2}\n3학기 1학기 : ${score3_1}\n교과성적 소계 : ${generalCurriculumScoreSubtotal}\n`,
+    );
+    console.log(`예체능 점수 : ${artSportsScore}\n`);
+    console.log(`교과성적 + 예체능 점수 : ${curriculumScoreSubtotal}\n`);
+    console.log(
+      `출석 점수 : ${attendanceScore}\n봉사 점수 : ${volunteerScore}\n비교과 성적 소계 : ${nonCurriculumScoreSubtotal}\n`,
+    );
+    console.log(`총합 : ${scoreTotal}`);
     try {
       await PostData({
         score2_1,
@@ -221,7 +221,6 @@ const CalculatorPage: NextPage = () => {
         }
       } else {
         console.log(error);
-        router.push('/auth/signin');
       }
     }
   };
