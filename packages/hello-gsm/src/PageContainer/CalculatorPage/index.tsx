@@ -10,7 +10,6 @@ import useLocalstorage from 'hooks/useLocalstorage';
 import application from 'Api/application';
 import auth from 'Api/auth';
 import { ScoreType } from 'type/application';
-import { useRouter } from 'next/router';
 
 interface ScoreForm {
   score2_1: number[];
@@ -32,7 +31,6 @@ const CalculatorPage: NextPage = () => {
     formState: { errors },
   } = useForm<ScoreForm>();
 
-  const router = useRouter();
   const [showResult, setShowResult] = useState(false); // 결과 모달 제어
   const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
 
@@ -217,7 +215,6 @@ const CalculatorPage: NextPage = () => {
           });
         } catch (error) {
           console.log(error);
-          router.push('/auth/signin');
         }
       } else {
         console.log(error);
