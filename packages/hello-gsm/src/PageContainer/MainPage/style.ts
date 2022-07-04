@@ -149,6 +149,35 @@ export const Underline = styled.div`
   border: 2px solid #ffffff;
 `;
 
+export const ToCalculator = styled.div`
+  position: absolute;
+  left: 80%;
+  top: 959px;
+  width: 281px;
+  height: 63px;
+  bottom: 62px;
+  background-color: #f3f3f3;
+  color: #303030;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 22px;
+  line-height: 63px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 700;
+  :after {
+    border-top: 20px solid #f3f3f3;
+    border-left: 20px solid transparent;
+    /* border-right: 20px solid transparent; */
+    border-bottom-right-radius: 2px;
+    border-bottom: 0px solid transparent;
+    content: '';
+    position: absolute;
+    top: 63px;
+    left: 220px;
+  }
+`;
+
 export const ContentBox = styled.div`
   width: 80%;
   height: 800px;
