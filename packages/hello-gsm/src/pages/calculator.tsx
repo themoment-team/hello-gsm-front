@@ -7,12 +7,12 @@ import { HeaderType } from 'type/header';
 import { CalculatorPage } from 'PageContainer';
 import { CheckType } from 'type/check';
 
-const Calculator: NextPage<CheckType> = ({ check }) => {
+const Calculator: NextPage<CheckType> = () => {
   const seoTitle = '성적 입력';
   const desc = '지원자의 성적을 기재합니다.';
   const { setLogged } = useStore();
   useEffect(() => {
-    setLogged(check);
+    setLogged(true);
   }, []);
   return (
     <>
@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
       // 로그인 O
       await auth.check(accessToken);
       return {
-        props: { check: true },
+        props: {},
       };
     } catch (err) {
       try {
@@ -46,12 +46,12 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
         // 브라우저에 쿠키들을 저장한다
         ctx.res.setHeader('set-cookie', headers['set-cookie']);
         return {
-          props: { check: true },
+          props: {},
         };
       } catch (err) {
         // 로그인 실패
         return {
-          props: { check: false },
+          props: {},
         };
       }
     }
