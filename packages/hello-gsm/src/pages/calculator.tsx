@@ -52,6 +52,9 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
         // 로그인 실패
         return {
           props: {},
+          redirect: {
+            destination: '/auth/signin',
+          },
         };
       }
     }
