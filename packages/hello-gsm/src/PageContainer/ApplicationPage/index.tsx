@@ -7,7 +7,6 @@ import { useEffect } from 'react';
 import dayjs from 'dayjs';
 
 const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
-  console.log(data);
   const score2_1 = useToString(useLocalstorage('score2_1')) ?? [];
   const score2_2 = useToString(useLocalstorage('score2_2')) ?? [];
   const score3_1 = useToString(useLocalstorage('score3_1')) ?? [];
