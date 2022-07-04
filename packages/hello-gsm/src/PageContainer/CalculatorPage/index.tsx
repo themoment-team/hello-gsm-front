@@ -58,6 +58,7 @@ const CalculatorPage: NextPage = () => {
   const [grades, setGrades] = useState([1, 2, 3]);
   const [newSubjects, setNewSubjects] = useState<Array<string | number>>([]);
 
+  // 로컬스토리지 값이 있을 때 초기 값 설정
   useEffect(() => {
     score2_1 !== undefined && setValue('score2_1', score2_1);
     score2_2 !== undefined && setValue('score2_2', score2_2);
@@ -107,6 +108,7 @@ const CalculatorPage: NextPage = () => {
     });
   };
 
+  // 저장 버튼을 눌렀을 때
   const onValid = async (validForm: ScoreForm) => {
     const score2_1: number = Calculate(validForm.score2_1, 2); // 2학년 1학기
     const score2_2: number = Calculate(validForm.score2_2, 2); // 2학년 2학기
@@ -164,6 +166,7 @@ const CalculatorPage: NextPage = () => {
       'newSubjects',
       JSON.stringify(validForm.newSubjects),
     );
+    window.localStorage.setItem('nonSubjects', JSON.stringify(nonSubjects));
 
     console.log(validForm);
     console.log(

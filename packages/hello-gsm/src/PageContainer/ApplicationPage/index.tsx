@@ -17,12 +17,14 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
   const volunteerScore = useLocalstorage('volunteerScore') ?? [];
   const subjects = useLocalstorage('subjects');
   const newSubjects = useLocalstorage('newSubjects');
+  const nonSubjects = useLocalstorage('nonSubjects');
   // 환산일수
   const conversionDays =
     data?.application?.application_score?.attendanceScore &&
     (30 - data?.application?.application_score?.attendanceScore) / 3;
 
   const userBirth = new Date(data.birth);
+  // 생년월일을 YYYY-MM-DD형식에 맞게 포맷
   const birth = dayjs()
     .set('year', userBirth.getFullYear())
     .set('month', userBirth.getMonth())
@@ -363,9 +365,9 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
                   <div style={{ textAlign: 'right' }}>학년</div>
                   <div style={{ textAlign: 'left' }}>과목</div>
                 </S.GradeAndSubject>
-                <S.Value>1</S.Value>
-                <S.Value>2</S.Value>
-                <S.Value>3</S.Value>
+                {nonSubjects?.map((nonSubject, i) => (
+                  <S.Value key={i}>{nonSubject}</S.Value>
+                ))}
               </S.Column>
               <S.Column>
                 <S.Semester>
