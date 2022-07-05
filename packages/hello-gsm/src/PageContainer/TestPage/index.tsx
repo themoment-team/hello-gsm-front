@@ -6,6 +6,7 @@ import { FieldErrors, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { Calculate, Volunteer, Rounds, Attendance } from 'Utils/Calculate';
 import ScoreResultModal from 'components/Modals/ScoreResultModal';
+import useStore from 'Stores/StoreContainer';
 
 interface ScoreForm {
   score2_1: number[];
@@ -25,7 +26,7 @@ const TestCalculatorPage: NextPage = () => {
     formState: { errors },
   } = useForm<ScoreForm>();
 
-  const [showResult, setShowResult] = useState(false); // 결과 모달 제어
+  const { showScoreResult, setShowScoreResult } = useStore();
   const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
 
   const lines = ['일반교과', '예체능 교과', '비교과'];
@@ -76,7 +77,7 @@ const TestCalculatorPage: NextPage = () => {
       nonCurriculumScoreSubtotal,
       scoreTotal,
     ]);
-    setShowResult(true);
+    setShowScoreResult();
   };
 
   const inValid = (errors: FieldErrors) => {
@@ -86,7 +87,7 @@ const TestCalculatorPage: NextPage = () => {
   return (
     <>
       <Header />
-      {showResult && <ScoreResultModal result={resultArray} />}
+      {showScoreResult && <ScoreResultModal result={resultArray} />}
       <S.Title>성적입력</S.Title>
       <S.CalculatePage>
         <S.CalculateSection onSubmit={handleSubmit(onValid, inValid)}>

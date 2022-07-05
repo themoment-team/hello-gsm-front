@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 
 interface ResultType {
@@ -6,10 +7,12 @@ interface ResultType {
 }
 
 const ScoreResultModal: React.FC<ResultType> = ({ result }) => {
+  const { setShowScoreResult } = useStore();
+
   const router = useRouter();
   const Route = () => {
-    if (router.pathname === '/test/calculator') router.push('/');
-    else router.push('/mypage');
+    if (router.pathname === '/calculator') router.push('/mypage');
+    else setShowScoreResult();
   };
   return (
     <S.Background>
