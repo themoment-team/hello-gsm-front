@@ -131,11 +131,7 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
                   >
                     선택
                   </S.Pass>
-                  <S.Pass
-                    onClick={() => passOnclick(registrationNumber, name, 2)}
-                  >
-                    선택
-                  </S.Pass>
+                  <S.ScoreInput />
                 </S.ContentBox>
               ),
             )}
