@@ -38,8 +38,8 @@ export const ApplicationController = {
     return `/application/firstSubmission`;
   },
   // post 2차 서류 제출, patch 2차 서류 제출 수정
-  secondsSubmission: () => {
-    return `/application/secondsSubmission`;
+  secondSubmission: () => {
+    return `/application/secondSubmission`;
   },
   finalSubmission: () => {
     return `/application/finalSubmission`;

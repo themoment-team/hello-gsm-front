@@ -58,7 +58,7 @@ class Application {
     try {
       return RequestApi({
         method: 'POST',
-        url: ApplicationController.secondsSubmission(),
+        url: ApplicationController.secondSubmission(),
         data: data,
       });
     } catch (error) {
@@ -88,7 +88,7 @@ class Application {
     try {
       return RequestApi({
         method: 'PATCH',
-        url: ApplicationController.secondsSubmission(),
+        url: ApplicationController.secondSubmission(),
         data: data,
       });
     } catch (error) {
