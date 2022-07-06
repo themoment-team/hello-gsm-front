@@ -151,7 +151,7 @@ export const Underline = styled.div`
 
 export const ToCalculator = styled.div`
   position: absolute;
-  left: 80%;
+  right: 10%;
   top: 959px;
   width: 281px;
   height: 63px;
@@ -168,13 +168,22 @@ export const ToCalculator = styled.div`
   :after {
     border-top: 20px solid #f3f3f3;
     border-left: 20px solid transparent;
-    /* border-right: 20px solid transparent; */
     border-bottom-right-radius: 2px;
     border-bottom: 0px solid transparent;
     content: '';
     position: absolute;
     top: 63px;
     left: 220px;
+  }
+  &:hover {
+    background: rgba(243, 243, 243, 0.52);
+    transform: scale(1.05);
+    transition: 0.3s;
+  }
+  :hover::after {
+    border-top: 20px solid rgba(243, 243, 243, 0.52);
+    transform: scale(1.05);
+    transition: 0.3s;
   }
 `;
 
