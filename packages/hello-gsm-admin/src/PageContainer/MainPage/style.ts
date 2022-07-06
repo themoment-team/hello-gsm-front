@@ -209,6 +209,11 @@ export const Pass = styled.div`
   cursor: pointer;
 `;
 
+export const ScoreInput = styled.input`
+  width: 90px;
+  height: 100%;
+`;
+
 const Ball = styled.div`
   border-radius: 100%;
   position: absolute;
