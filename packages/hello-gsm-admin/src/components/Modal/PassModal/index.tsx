@@ -1,11 +1,10 @@
-import { css, Global } from '@emotion/react';
 import React, { useCallback, MouseEvent } from 'react';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { ModalDescription } from 'components';
 
 const PassModal: React.FC = () => {
-  const { showPassModal, setShowPassModal } = useStore();
+  const { setShowPassModal } = useStore();
 
   const removeClick = useCallback((e: MouseEvent<HTMLDivElement>): void => {
     e.stopPropagation();
@@ -13,13 +12,6 @@ const PassModal: React.FC = () => {
 
   return (
     <S.PassModal onClick={setShowPassModal}>
-      <Global
-        styles={css`
-          body {
-            overflow: ${showPassModal ? 'hidden' : 'visible'};
-          }
-        `}
-      />
       <S.PassModalBox onClick={removeClick}>
         <S.PassModalContent>
           <ModalDescription />
