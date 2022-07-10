@@ -1,4 +1,4 @@
-import { PassModal } from 'components';
+import { PassModal, ScoreModal } from 'components';
 import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
@@ -10,6 +10,8 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
   const {
     showPassModal,
     setShowPassModal,
+    showScoreModal,
+    setShowScoreModal,
     setPassModalPeriod,
     setPassModalName,
     setPassModalRegistrationNumber,
@@ -29,20 +31,21 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
     }
   };
 
-  const passOnclick = (
+  const buttonOnclick = (
     registrationNumber: number,
     name: string,
-    period: number,
+    period: 1 | 2,
   ) => {
-    setShowPassModal();
     setPassModalRegistrationNumber(registrationNumber);
     setPassModalName(name);
     setPassModalPeriod(period);
+    period === 1 ? setShowPassModal() : setShowScoreModal();
   };
 
   return (
     <S.MainPage>
       {showPassModal && <PassModal />}
+      {showScoreModal && <ScoreModal />}
       <S.MainPageContent>
         <S.FunctionBox>
           <S.Logout>로그아웃</S.Logout>
@@ -126,12 +129,16 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
                     <S.GuardianNumber>{guardianNumber}</S.GuardianNumber>
                     <S.TeacherNumber>{teacherNumber}</S.TeacherNumber>
                   </S.Content>
-                  <S.Pass
-                    onClick={() => passOnclick(registrationNumber, name, 1)}
+                  <S.Button
+                    onClick={() => buttonOnclick(registrationNumber, name, 1)}
                   >
                     선택
-                  </S.Pass>
-                  <S.ScoreInput />
+                  </S.Button>
+                  <S.Button
+                    onClick={() => buttonOnclick(registrationNumber, name, 2)}
+                  >
+                    입력
+                  </S.Button>
                 </S.ContentBox>
               ),
             )}
