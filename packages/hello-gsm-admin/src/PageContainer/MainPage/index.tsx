@@ -2,7 +2,7 @@ import { PassModal, ScoreModal } from 'components';
 import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
-import { css } from '@emotion/react';
+import { css, Global } from '@emotion/react';
 import { useRef, useState } from 'react';
 import { applicantsType } from 'pages';
 
@@ -46,6 +46,13 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
     <S.MainPage>
       {showPassModal && <PassModal />}
       {showScoreModal && <ScoreModal />}
+      <Global
+        styles={css`
+          body {
+            overflow: ${showPassModal || showScoreModal ? 'hidden' : 'visible'};
+          }
+        `}
+      />
       <S.MainPageContent>
         <S.FunctionBox>
           <S.Logout>로그아웃</S.Logout>
