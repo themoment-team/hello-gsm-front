@@ -3,9 +3,8 @@ import { keyframes } from '@emotion/react';
 
 export const SignUpPage = styled.div`
   margin: 0 auto;
-  height: 130vh;
   background: #0f0921;
-  padding-top: 100px;
+  padding: 100px 0 200px;
   display: flex;
   justify-content: center;
 `;
@@ -77,7 +76,7 @@ export const TosBox = styled.div`
   border-radius: 10px;
   margin-top: 50px;
   padding: 20px;
-  overflow: scroll;
+  overflow-y: scroll;
   line-height: 20px;
   color: #ffffff;
   font-size: 16px;
