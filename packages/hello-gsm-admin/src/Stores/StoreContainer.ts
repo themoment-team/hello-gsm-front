@@ -24,7 +24,7 @@ const useStore = create<storeType>(set => ({
   setShowPassModal: () =>
     set(state => ({ showPassModal: !state.showPassModal })),
   setShowScoreModal: () =>
-    set(state => ({ showPassModal: !state.showPassModal })),
+    set(state => ({ showScoreModal: !state.showScoreModal })),
   setPassModalRegistrationNumber: registrationNumber =>
     set({ passModalRegistrationNumber: registrationNumber }),
   setPassModalName: name => set({ passModalName: name }),
