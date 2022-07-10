@@ -195,7 +195,7 @@ export const TeacherNumber = styled(Number)`
   width: 210px;
 `;
 
-export const Pass = styled.div`
+export const Button = styled.button`
   width: 90px;
   height: 100%;
   background: #ffffff;
@@ -207,11 +207,6 @@ export const Pass = styled.div`
   font-weight: 700;
   font-size: 20px;
   cursor: pointer;
-`;
-
-export const ScoreInput = styled.input`
-  width: 90px;
-  height: 100%;
 `;
 
 const Ball = styled.div`
