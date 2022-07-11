@@ -12,9 +12,9 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
     setShowPassModal,
     showScoreModal,
     setShowScoreModal,
-    setPassModalPeriod,
-    setPassModalName,
-    setPassModalRegistrationNumber,
+    setModalPeriod,
+    setModalName,
+    setModalRegistrationNumber,
   } = useStore();
   const searchRef = useRef<HTMLInputElement>(null);
   const [keyword, setKeyword] = useState<string>('');
@@ -36,9 +36,9 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
     name: string,
     period: 1 | 2,
   ) => {
-    setPassModalRegistrationNumber(registrationNumber);
-    setPassModalName(name);
-    setPassModalPeriod(period);
+    setModalRegistrationNumber(registrationNumber);
+    setModalName(name);
+    setModalPeriod(period);
     period === 1 ? setShowPassModal() : setShowScoreModal();
   };
 
