@@ -3,16 +3,18 @@ import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 
 const ModalDescription: React.FC = () => {
-  const { passModalRegistrationNumber, passModalName, passModalPeriod } =
-    useStore();
+  const { modalRegistrationNumber, modalName, modalPeriod } = useStore();
 
   return (
     <S.DescriptionBox>
       <S.RegistrationNumber>
-        접수번호 {passModalRegistrationNumber}
+        접수번호 {modalRegistrationNumber}
       </S.RegistrationNumber>
       <S.Description>
-        {passModalName}님의 {passModalPeriod}차 합격 여부를 선택해주세요.
+        {modalName}님의 {modalPeriod}차
+        {modalPeriod === 1
+          ? ' 합격 여부를 선택해주세요.'
+          : ' 점수를 입력해주세요.'}
       </S.Description>
     </S.DescriptionBox>
   );
