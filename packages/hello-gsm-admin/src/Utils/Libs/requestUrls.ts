@@ -20,7 +20,7 @@ export const ApplicationController = {
     return `/application?page=${page}&name=${name}`;
   },
   document: () => {
-    return `/application/reception`;
+    return `/application/document`;
   },
   score: () => {
     return `/application/score`;
