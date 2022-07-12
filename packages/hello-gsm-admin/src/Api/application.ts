@@ -3,6 +3,17 @@ import RequestApi from 'Utils/Libs/requestApi';
 import { ApplicationController } from 'Utils/Libs/requestUrls';
 
 class Application {
+  getList(page: number, name: string) {
+    try {
+      return RequestApi({
+        method: 'GET',
+        url: ApplicationController.getList(page, name),
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
   document(data: DocumentType) {
     try {
       return RequestApi({
