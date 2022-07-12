@@ -3,6 +3,12 @@ import RequestApi from 'Utils/Libs/requestApi';
 import { ApplicationController } from 'Utils/Libs/requestUrls';
 
 class Application {
+  /**
+   * 지원자들 리스트를 가져온다
+   * @param page 1 부터 시작하는 페이지 인덱스
+   * @param name 지원자 이름으로 검색
+   * @returns 지원자들 리스트
+   */
   getList(page: number, name: string) {
     try {
       return RequestApi({
@@ -13,7 +19,10 @@ class Application {
       return error;
     }
   }
-
+  /**
+   * 관리자가 서류를 받았을 때 서류 제출 여부를 체킹한다
+   * @param data 서류 제출 완료 여부
+   */
   document(data: DocumentType) {
     try {
       return RequestApi({
@@ -25,7 +34,10 @@ class Application {
       return error;
     }
   }
-
+  /**
+   * 인적성 평가 점수를 입력한다
+   * @param data 수험번호, 인적성 평가 점수
+   */
   score(data: ScoreType) {
     try {
       return RequestApi({
@@ -37,7 +49,10 @@ class Application {
       return error;
     }
   }
-
+  /**
+   * 1차 합격자들의 수험표 출력을 위한 정보를 가져온다
+   * @returns 1차 합격자들의 수험표 정보
+   */
   ticket() {
     try {
       return RequestApi({
