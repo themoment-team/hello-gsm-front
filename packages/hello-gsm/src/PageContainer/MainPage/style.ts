@@ -20,7 +20,7 @@ export const MainContent = styled.div`
     margin-bottom: 200px;
   }
   @media ${device.mobile} {
-    height: 800px;
+    height: 900px;
     margin-top: 50px;
     margin-bottom: 100px;
   }
@@ -184,6 +184,24 @@ export const ToCalculator = styled.div`
     border-top: 20px solid rgba(243, 243, 243, 0.52);
     transform: scale(1.05);
     transition: 0.3s;
+  }
+
+  @media ${device.laptop} {
+    top: 920px;
+  }
+  @media ${device.tablet} {
+    top: 720px;
+  }
+  @media ${device.mobile} {
+    font-size: 14px;
+    width: 180px;
+    height: 40px;
+    top: 300px;
+    line-height: 40px;
+    position: static;
+    :after {
+      display: none;
+    }
   }
 `;
 
