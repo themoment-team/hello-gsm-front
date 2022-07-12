@@ -19,19 +19,13 @@ export const ApplicationController = {
   getList: (page: number, name: string) => {
     return `/application?page=${page}&name=${name}`;
   },
-  reception: () => {
+  document: () => {
     return `/application/reception`;
   },
-  firstpass: () => {
-    return `/application/firstpass`;
+  score: () => {
+    return `/application/score`;
   },
-  firstfailure: () => {
-    return `/application/firstfailure`;
-  },
-  secondpass: () => {
-    return `/application/secondpass`;
-  },
-  secondfailure: () => {
-    return `/application/secondfailure`;
+  ticket: () => {
+    return `/application/ticket`;
   },
 };
