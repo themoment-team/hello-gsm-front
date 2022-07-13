@@ -26,20 +26,20 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData = [] }) => {
 
   useEffect(() => {
     keyword === '' && setIsFAQSearching(false);
-    isFAQSearching
-      ? setFaqList(
-          faqData?.filter(
-            (faq: FAQType) =>
-              faq.question.includes(keyword) || faq.answer.includes(keyword),
-          ),
-        )
-      : setFaqList(
-          faqData?.filter(
-            (faq: FAQType) =>
-              (pageIndex - 1) * 10 <= faqData.indexOf(faq) &&
-              faqData.indexOf(faq) < pageIndex * 10,
-          ),
+    setFaqList(list => {
+      if (isFAQSearching) {
+        return list.filter(
+          (faq: FAQType) =>
+            faq.question.includes(keyword) || faq.answer.includes(keyword),
         );
+      } else {
+        return list.filter(
+          (faq: FAQType) =>
+            (pageIndex - 1) * 10 <= faqData.indexOf(faq) &&
+            faqData.indexOf(faq) < pageIndex * 10,
+        );
+      }
+    });
   }, [keyword, pageIndex, isFAQSearching]);
 
   useEffect(() => {
