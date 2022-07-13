@@ -3,19 +3,7 @@ import type { GetServerSideProps, NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import axios from 'axios';
 import { MainPage } from 'PageContainer';
-
-export interface applicantsType {
-  data: {
-    registrationNumber: number;
-    name: string;
-    screening: string;
-    schoolName: string;
-    isDocumentReception: boolean;
-    phoneNumber: string;
-    guardianNumber: string;
-    teacherNumber: string;
-  }[];
-}
+import { applicantsType } from 'Types/application';
 
 const Home: NextPage<applicantsType> = ({ data }) => {
   const seoTitle = '홈';
