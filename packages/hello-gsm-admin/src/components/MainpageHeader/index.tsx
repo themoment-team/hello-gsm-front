@@ -37,4 +37,4 @@ const MainpageHeader: React.FC = () => {
   );
 };
 
-export default MainpageHeader;
+export default React.memo(MainpageHeader);
