@@ -12,3 +12,4 @@ export { default as SignUpPage } from './SignUpPage';
 export { default as CalculatorPage } from './CalculatorPage';
 export { default as TestCalculatorPage } from './TestPage';
 export { default as InspectionPage } from './InspectionPage';
+export { default as GEDPage } from './GEDPage';
