@@ -16,4 +16,13 @@ export const HeaderElement = styled.div`
   font-size: 20px;
   color: #f8f8f8;
   text-align: center;
+  :nth-of-type(4) {
+    width: 140px;
+  }
+  :nth-of-type(9) {
+    width: 40px;
+  }
+  :nth-of-type(10) {
+    width: 40px;
+  }
 `;
