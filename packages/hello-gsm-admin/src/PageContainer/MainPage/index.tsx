@@ -1,4 +1,4 @@
-import { PassModal, ScoreModal } from 'components';
+import { MainpageHeader, PassModal, ScoreModal } from 'components';
 import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
@@ -66,36 +66,7 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
           </S.Searchbox>
           <S.Print>수험표 출력</S.Print>
         </S.FunctionBox>
-        <S.Header>
-          <S.HeaderElement>지원자 번호</S.HeaderElement>
-          <S.HeaderElement>성명</S.HeaderElement>
-          <S.HeaderElement>전형</S.HeaderElement>
-          <S.HeaderElement
-            css={css`
-              width: 140px;
-            `}
-          >
-            출신중
-          </S.HeaderElement>
-          <S.HeaderElement>서류제출</S.HeaderElement>
-          <S.HeaderElement>지원자연락처</S.HeaderElement>
-          <S.HeaderElement>부모님연락처</S.HeaderElement>
-          <S.HeaderElement>담임선생님연락처</S.HeaderElement>
-          <S.HeaderElement
-            css={css`
-              width: 40px;
-            `}
-          >
-            1차
-          </S.HeaderElement>
-          <S.HeaderElement
-            css={css`
-              width: 40px;
-            `}
-          >
-            2차
-          </S.HeaderElement>
-        </S.Header>
+        <MainpageHeader />
         <S.ContentList>
           {data
             .filter(
