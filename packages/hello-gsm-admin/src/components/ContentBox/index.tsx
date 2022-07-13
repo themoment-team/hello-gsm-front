@@ -1,11 +1,11 @@
 import { css } from '@emotion/react';
 import React from 'react';
 import useStore from 'Stores/StoreContainer';
-import { applicantType } from 'Types/application';
+import { ApplicantType } from 'Types/application';
 import * as S from './style';
 
 interface ContentType {
-  data: applicantType;
+  data: ApplicantType;
 }
 
 const ContentBox: React.FC<ContentType> = ({
