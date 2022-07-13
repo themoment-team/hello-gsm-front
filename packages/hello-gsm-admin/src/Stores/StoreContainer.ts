@@ -1,6 +1,6 @@
 import create from 'zustand';
 
-interface storeType {
+interface StoreType {
   showPassModal: boolean;
   showScoreModal: boolean;
   modalRegistrationNumber: number;
@@ -14,7 +14,7 @@ interface storeType {
   setModalPeriod: (period: 1 | 2) => void;
 }
 
-const useStore = create<storeType>(set => ({
+const useStore = create<StoreType>(set => ({
   showPassModal: false,
   showScoreModal: false,
   modalRegistrationNumber: 0,

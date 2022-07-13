@@ -1,6 +1,6 @@
 import create from 'zustand';
 
-interface storeType {
+interface StoreType {
   logged: boolean;
   showFAQModal: boolean;
   FAQModalTitle: string;
@@ -48,7 +48,7 @@ interface storeType {
   setShowMypageSuccessModal: () => void;
 }
 
-const useStore = create<storeType>(set => ({
+const useStore = create<StoreType>(set => ({
   logged: false,
   showFAQModal: false,
   FAQModalTitle: '',

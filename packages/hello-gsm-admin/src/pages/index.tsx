@@ -3,9 +3,9 @@ import type { GetServerSideProps, NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import axios from 'axios';
 import { MainPage } from 'PageContainer';
-import { applicantsType } from 'Types/application';
+import { ApplicantsType } from 'Types/application';
 
-const Home: NextPage<applicantsType> = ({ data }) => {
+const Home: NextPage<ApplicantsType> = ({ data }) => {
   const seoTitle = '홈';
   const desc = '지원자들의 정보를 확인합니다.';
   return (

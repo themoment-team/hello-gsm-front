@@ -7,7 +7,7 @@ export interface ScoreType {
   personalityEvaluationScore: number;
 }
 
-export interface applicantType {
+export interface ApplicantType {
   registrationNumber: number;
   name: string;
   screening: string;
@@ -18,6 +18,6 @@ export interface applicantType {
   teacherNumber: string;
 }
 
-export interface applicantsType {
-  data: applicantType[];
+export interface ApplicantsType {
+  data: ApplicantType[];
 }

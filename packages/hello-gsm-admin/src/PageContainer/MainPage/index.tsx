@@ -4,9 +4,9 @@ import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { css, Global } from '@emotion/react';
 import { useRef, useState } from 'react';
-import { applicantsType } from 'Types/application';
+import { ApplicantsType } from 'Types/application';
 
-const MainPage: NextPage<applicantsType> = ({ data }) => {
+const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const {
     showPassModal,
     setShowPassModal,
