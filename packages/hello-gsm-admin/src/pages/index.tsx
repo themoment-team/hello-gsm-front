@@ -4,7 +4,7 @@ import { SEOHelmet } from 'components';
 import axios from 'axios';
 import { MainPage } from 'PageContainer';
 
-export interface applicantsType {
+export interface ApplicantsType {
   data: {
     registrationNumber: number;
     name: string;
@@ -17,7 +17,7 @@ export interface applicantsType {
   }[];
 }
 
-const Home: NextPage<applicantsType> = ({ data }) => {
+const Home: NextPage<ApplicantsType> = ({ data }) => {
   const seoTitle = '홈';
   const desc = '지원자들의 정보를 확인합니다.';
   return (
