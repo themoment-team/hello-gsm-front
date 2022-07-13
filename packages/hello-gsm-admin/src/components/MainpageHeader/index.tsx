@@ -3,7 +3,7 @@ import * as S from './style';
 
 const MainpageHeader: React.FC = () => {
   const headerElement = [
-    '지원자',
+    '지원자 번호',
     '성명',
     '전형',
     '출신중',
@@ -20,7 +20,6 @@ const MainpageHeader: React.FC = () => {
       {headerElement.map((element: string, index: number) => (
         <S.HeaderElement key={index}>{element}</S.HeaderElement>
       ))}
-      ;
     </S.Header>
   );
 };
