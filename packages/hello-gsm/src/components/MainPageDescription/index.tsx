@@ -3,28 +3,45 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import * as S from './style';
 import * as I from 'Assets/svg';
+import { MainDescStatusType } from 'type/user';
+import useStore from 'Stores/StoreContainer';
 
-interface IndexType {
-  selectedIndex: number;
-}
-
-const MainPageDescription: React.FC<IndexType> = ({ selectedIndex }) => {
+const MainPageDescription: React.FC<MainDescStatusType> = ({
+  selectedIndex,
+  data,
+}) => {
   const today = new Date();
   const [index, setIndex] = useState<number>(1);
-  const [logged, setLogged] = useState<boolean>(false);
   const [pass, setPass] = useState<boolean>(false);
   const [name, setName] = useState<string>('김형록');
-  const [registrationNumber, setRegistrationNumber] = useState<number>(1001);
-  const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(false);
+  const [registrationNumber, setRegistrationNumber] = useState<number | null>();
+  const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(true);
+
+  const { setLogged } = useStore();
 
   useEffect(() => {
-    today > new Date('2023-03-01') ? setIndex(0) : setIndex(selectedIndex);
     today > new Date('2022-11-01') && setIsFirstPeriod(false);
-    !logged && selectedIndex === 5 && setIndex(6);
-    logged &&
-      today < new Date('2022-10-24') &&
-      selectedIndex === 5 &&
-      setIndex(7);
+    today > new Date('2023-03-01') ? setIndex(0) : setIndex(selectedIndex);
+    if (data) {
+      setLogged(true);
+      today < new Date('2022-10-24') && selectedIndex === 5 && setIndex(7);
+      setName(data.name);
+      setPass(() => {
+        if (isFirstPeriod) {
+          return data.application?.finalResultScreening ? true : false;
+        } else {
+          return data.application?.finalResultScreening ? true : false;
+        }
+      });
+      setRegistrationNumber(
+        data.application?.registrationNumber
+          ? data.application.registrationNumber
+          : null,
+      );
+    } else {
+      setLogged(false);
+      selectedIndex === 5 && setIndex(6);
+    }
   }, [selectedIndex]);
 
   switch (index) {
@@ -36,7 +53,8 @@ const MainPageDescription: React.FC<IndexType> = ({ selectedIndex }) => {
             날인하여
           </S.DescriptionLine>
           <S.DescriptionLine>
-            원서접수 기간 내에 우편접수 또는 공문시행을 통해 제출하여야 합니다.
+            원서접수 기간 내에 공문시행, 등기 우편, 방문 제출 중 한가지의
+            방법으로 제출하여야 합니다.
           </S.DescriptionLine>
           <S.DescriptionLine
             css={css`
@@ -172,7 +190,9 @@ const MainPageDescription: React.FC<IndexType> = ({ selectedIndex }) => {
       );
     default:
       return (
-        <S.DescriptionLine>지금은 지원 기간이 아닙니다.</S.DescriptionLine>
+        <S.Description>
+          <S.DescriptionLine>지금은 지원 기간이 아닙니다.</S.DescriptionLine>
+        </S.Description>
       );
   }
 };

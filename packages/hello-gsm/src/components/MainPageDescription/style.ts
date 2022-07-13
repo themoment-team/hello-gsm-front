@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import device from 'shared/config';
 
 export const Description = styled.div`
   display: flex;
@@ -19,6 +20,20 @@ export const DescriptionLine = styled.p`
   margin-top: 15px;
   color: #ffffff;
   text-align: center;
+  @media (max-width: 1750px) {
+    font-size: 25px;
+  }
+  @media (max-width: 1220px) {
+    font-size: 20px;
+  }
+  @media ${device.tablet} {
+    font-size: 19px;
+    margin-top: 10px;
+  }
+  @media ${device.mobile} {
+    font-size: 10px;
+    margin-top: 5px;
+  }
 `;
 
 export const PostScript = styled.p`
@@ -27,6 +42,13 @@ export const PostScript = styled.p`
   color: rgba(255, 255, 255, 0.7);
   margin-top: 15px;
   text-align: center;
+  @media ${device.tablet} {
+    font-size: 17px;
+  }
+  @media ${device.mobile} {
+    font-size: 12px;
+    margin-top: 10px;
+  }
 `;
 
 export const Login = styled.a`
@@ -41,6 +63,11 @@ export const Login = styled.a`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  @media ${device.mobile} {
+    width: 125px;
+    height: 35px;
+    font-size: 17px;
+  }
 `;
 
 export const Blue = styled.span`
@@ -56,4 +83,15 @@ export const Celebration = styled.div`
   top: 350px;
   left: 200px;
   z-index: -1;
+  @media ${device.tablet} {
+    top: 300px;
+    left: 50%;
+    transform: translate(-50%);
+    svg {
+      width: 100px;
+    }
+  }
+  @media ${device.mobile} {
+    top: 150px;
+  }
 `;

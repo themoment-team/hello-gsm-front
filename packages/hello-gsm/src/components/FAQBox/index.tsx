@@ -1,15 +1,19 @@
 import * as S from './style';
-import { FAQType } from 'components/FAQPage';
 import useStore from 'Stores/StoreContainer';
 import { css } from '@emotion/react';
+import { FAQType } from 'type/faq';
 
 type FAQBoxType = FAQType & {
   keyword: string;
 };
 
 const FAQBox: React.FC<FAQBoxType> = ({ question, answer, keyword }) => {
-  const { isSearching, setShowFAQModal, setFAQModalTitle, setFAQModalContent } =
-    useStore();
+  const {
+    isFAQSearching,
+    setShowFAQModal,
+    setFAQModalTitle,
+    setFAQModalContent,
+  } = useStore();
 
   const showAnswer = () => {
     setShowFAQModal();
@@ -22,22 +26,22 @@ const FAQBox: React.FC<FAQBoxType> = ({ question, answer, keyword }) => {
       onClick={showAnswer}
       css={css`
         &:hover {
-          background: ${isSearching && 'rgba(255, 255, 255, 0.29);'};
+          background: ${isFAQSearching && 'rgba(255, 255, 255, 0.29);'};
           p {
-            color: ${isSearching && 'rgba(255, 255, 255, 0.65);'};
+            color: ${isFAQSearching && 'rgba(255, 255, 255, 0.65);'};
           }
           p > span {
-            color: ${isSearching && '#ffffff'};
+            color: ${isFAQSearching && '#ffffff'};
           }
         }
       `}
     >
       <S.Title
         css={css`
-          color: ${isSearching && 'rgba(15, 9, 33, 0.52);'};
+          color: ${isFAQSearching && 'rgba(15, 9, 33, 0.52);'};
         `}
       >
-        {isSearching
+        {isFAQSearching
           ? question.split(keyword).map((title: string, index: number) => {
               return index < question.split(keyword).length - 1 ? (
                 <>

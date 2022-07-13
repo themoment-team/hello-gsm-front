@@ -5,13 +5,16 @@ class User {
   /**
    * @returns 유저의 상태를 반환한다
    */
-  status() {
+  status(accessToken: string) {
     try {
-      return RequestApi({
-        method: 'GET',
-        url: UserController.status(),
-      });
-    } catch (error) {
+      return RequestApi(
+        {
+          method: 'GET',
+          url: UserController.status(),
+        },
+        accessToken,
+      );
+    } catch (error: any) {
       return error;
     }
   }
@@ -19,13 +22,16 @@ class User {
   /**
    * @returns 회원가입 시에 기입한 유저의 정보를 반환한다
    */
-  info() {
+  info(accessToken: string) {
     try {
-      return RequestApi({
-        method: 'GET',
-        url: UserController.info(),
-      });
-    } catch (error) {
+      return RequestApi(
+        {
+          method: 'GET',
+          url: UserController.info(),
+        },
+        accessToken,
+      );
+    } catch (error: any) {
       return error;
     }
   }

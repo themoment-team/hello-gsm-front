@@ -25,7 +25,6 @@ interface ApplicantType {
   schoolLocation: string;
   schoolName: string;
   screening: '일반전형' | '사회통합전형' | '특별전형';
-  socialScreening: '기회균등전형' | '사회다양성전형' | '해당사항없음';
 }
 
 interface ApplicationDetailsType {
@@ -36,8 +35,6 @@ interface ApplicationDetailsType {
   graduation_year: string;
   graduation_month: string;
   schoolTelephoneNumber: string;
-  score1_1: number;
-  score1_2: number;
   score2_1: number;
   score2_2: number;
   score3_1: number;
@@ -48,7 +45,7 @@ interface ApplicationDetailsType {
   volunteerScore: number;
   nonCurriculumScoreSubtotal: number;
   scoreTotal: number;
-  firstWantedMajor: '소프트웨어 개발과' | '스마트 IOT과' | '인공지능과';
-  secondWantedMajor: '소프트웨어 개발과' | '스마트 IOT과' | '인공지능과';
-  thirdWantedMajor: '소프트웨어 개발과' | '스마트 IOT과' | '인공지능과';
+  firstWantedMajor: '소프트웨어개발과' | '스마트IoT과' | '인공지능과';
+  secondWantedMajor: '소프트웨어개발과' | '스마트IoT과' | '인공지능과';
+  thirdWantedMajor: '소프트웨어개발과' | '스마트IoT과' | '인공지능과';
 }
