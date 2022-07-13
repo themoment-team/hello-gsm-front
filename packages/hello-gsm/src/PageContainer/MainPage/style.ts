@@ -213,10 +213,7 @@ export const ContentBox = styled.div`
   margin: 0 auto;
   border-radius: 24px;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
   @media ${device.laptop} {
     width: 90%;
   }
