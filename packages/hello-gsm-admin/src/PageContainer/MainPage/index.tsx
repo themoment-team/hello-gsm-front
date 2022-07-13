@@ -1,10 +1,10 @@
-import { MainpageHeader, PassModal, ScoreModal } from 'components';
+import { ContentBox, MainpageHeader, PassModal, ScoreModal } from 'components';
 import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { css, Global } from '@emotion/react';
 import { useRef, useState } from 'react';
-import { applicantsType } from 'pages';
+import { applicantsType } from 'Types/application';
 
 const MainPage: NextPage<applicantsType> = ({ data }) => {
   const {
@@ -74,52 +74,9 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
                 name.includes(keyword) ||
                 registrationNumber === parseInt(keyword),
             )
-            .map(
-              (
-                {
-                  registrationNumber,
-                  name,
-                  screening,
-                  schoolName,
-                  isDocumentReception,
-                  phoneNumber,
-                  guardianNumber,
-                  teacherNumber,
-                },
-                index: number,
-              ) => (
-                <S.ContentBox key={index}>
-                  <S.Content>
-                    <S.RegistrationNumber>
-                      {registrationNumber}
-                    </S.RegistrationNumber>
-                    <S.Name>{name}</S.Name>
-                    <S.Screening>{screening}</S.Screening>
-                    <S.SchoolName>{schoolName}</S.SchoolName>
-                    <S.isDocumentReception>
-                      <S.Checkbox
-                        css={css`
-                          background: ${isDocumentReception && '#19BAFF'};
-                        `}
-                      />
-                    </S.isDocumentReception>
-                    <S.PhoneNumber>{phoneNumber}</S.PhoneNumber>
-                    <S.GuardianNumber>{guardianNumber}</S.GuardianNumber>
-                    <S.TeacherNumber>{teacherNumber}</S.TeacherNumber>
-                  </S.Content>
-                  <S.Button
-                    onClick={() => buttonOnclick(registrationNumber, name, 1)}
-                  >
-                    선택
-                  </S.Button>
-                  <S.Button
-                    onClick={() => buttonOnclick(registrationNumber, name, 2)}
-                  >
-                    입력
-                  </S.Button>
-                </S.ContentBox>
-              ),
-            )}
+            .map((data, index: number) => (
+              <ContentBox data={data} key={index} />
+            ))}
         </S.ContentList>
       </S.MainPageContent>
       <S.BlueBall />
