@@ -14,7 +14,6 @@ const SignInPage: NextPage = () => {
 
   // 로그인 시도
   const onValid = async (validForm: LoginType) => {
-    alert('asd');
     const { id, password } = validForm;
     try {
       await auth.signin({ id, password });
@@ -35,10 +34,10 @@ const SignInPage: NextPage = () => {
       <S.SignInForm onSubmit={handleSubmit(onValid)}>
         <S.Title>로그인</S.Title>
         <S.Input
-          placeholder="이메일을 입력해주세요."
+          placeholder="아이디를 입력해주세요."
           type="text"
           {...register('id', {
-            required: '* 아이디를 입력해주세요',
+            required: '* 아이디를 입력해주세요.',
             minLength: 6,
             maxLength: 12,
           })}
@@ -48,7 +47,7 @@ const SignInPage: NextPage = () => {
           placeholder="비밀번호를 입력해주세요."
           type="password"
           {...register('password', {
-            required: '* 비밀번호를 입력해주세요',
+            required: '* 비밀번호를 입력해주세요.',
             minLength: 8,
             maxLength: 16,
           })}
