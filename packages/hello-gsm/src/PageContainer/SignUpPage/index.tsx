@@ -112,11 +112,11 @@ const SignUpPage: NextPage = () => {
             </S.ErrorMessage>
           </S.LadioSection>
           <Input
-            placeholder="이름을 입력해주세요."
+            placeholder="성명을 입력해주세요."
             type="text"
             bigWidth
             register={register('name', {
-              required: '* 이름을 입력해주세요.',
+              required: '* 성명을 입력해주세요.',
             })}
           />
           <S.ErrorMessage css={errors.name && SelectError(255)}>
@@ -178,7 +178,7 @@ const SignUpPage: NextPage = () => {
           <S.Button>가입하기</S.Button>
           <S.LineList>
             <S.Line css={errors.gender && SelectError()}>성별</S.Line>
-            <S.Line css={errors.name && SelectError()}>이름</S.Line>
+            <S.Line css={errors.name && SelectError()}>성명</S.Line>
             <S.Line>생년월일</S.Line>
             <S.Line css={errors.cellphoneNumber && SelectError()}>
               핸드폰 번호
