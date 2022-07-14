@@ -36,7 +36,7 @@ const GEDPage: NextPage = () => {
           <div>
             <S.Row>
               <S.ScoreSubject>전과목 득점 합계</S.ScoreSubject>
-              <S.PerfectScoreSubject>전과목 득점 합계</S.PerfectScoreSubject>
+              <S.PerfectScoreSubject>전과목 만점 합계</S.PerfectScoreSubject>
             </S.Row>
             <S.Row>
               <S.ScoreInput {...register('score', { required: true })} />
