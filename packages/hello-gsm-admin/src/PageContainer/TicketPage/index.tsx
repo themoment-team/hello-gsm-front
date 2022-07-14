@@ -157,6 +157,7 @@ const TicketPage: NextPage = () => {
               </tr>
             </tbody>
           </S.Table>
+          <S.Dash />
         </S.Ticket>
       ))}
     </S.TicketPage>

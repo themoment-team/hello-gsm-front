@@ -15,9 +15,8 @@ export const TicketPage = styled.div`
 export const Ticket = styled.div`
   width: 63vh;
   height: 40vh;
-  /* border: 1px solid #000; */
-  /* margin: 50px auto 200px; */
-  margin: 30px auto 100px;
+
+  margin: 0 auto 100px;
 
   :nth-child(2n) {
     margin: 0 auto 150px;
@@ -60,4 +59,10 @@ export const Left = styled.td`
 export const Right = styled.p`
   text-align: right;
   padding-right: 10px;
+`;
+
+export const Dash = styled.div`
+  border-top: 1px dashed red;
+  width: 100%;
+  margin-top: 30px;
 `;
