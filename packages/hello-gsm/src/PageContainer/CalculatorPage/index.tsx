@@ -10,7 +10,7 @@ import useLocalstorage from 'hooks/useLocalstorage';
 import application from 'Api/application';
 import auth from 'Api/auth';
 import { ScoreType } from 'type/application';
-
+import useStore from 'Stores/StoreContainer';
 interface ScoreForm {
   score2_1: number[];
   score2_2: number[];
@@ -31,7 +31,7 @@ const CalculatorPage: NextPage = () => {
     formState: { errors },
   } = useForm<ScoreForm>();
 
-  const [showResult, setShowResult] = useState(false); // 결과 모달 제어
+  const { showScoreResult, setShowScoreResult } = useStore();
   const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
 
   const score2_1 = useLocalstorage('score2_1');
@@ -160,7 +160,7 @@ const CalculatorPage: NextPage = () => {
         nonCurriculumScoreSubtotal,
         scoreTotal,
       ]);
-      setShowResult(true);
+      setShowScoreResult();
       // 원서 파일 페이지에서 불러오기 위해 localstorage에 저장
       window.localStorage.setItem(
         'score2_1',
@@ -230,7 +230,7 @@ const CalculatorPage: NextPage = () => {
   return (
     <>
       <Header />
-      {showResult && <Result result={resultArray} />}
+      {showScoreResult && <Result result={resultArray} />}
       <S.Title>성적입력</S.Title>
       <S.CalculatePage>
         <S.CalculateSection onSubmit={handleSubmit(onValid, inValid)}>
