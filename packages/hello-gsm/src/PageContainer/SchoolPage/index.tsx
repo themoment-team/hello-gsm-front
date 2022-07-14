@@ -5,14 +5,14 @@ import { css } from '@emotion/react';
 import Graph from './Graph';
 import { Header, Footer } from 'components';
 
-interface employType {
+interface EmployType {
   x: string;
   y: number;
 }
 
 const SchoolPage: NextPage = () => {
   const [select, setSelect] = useState<number>(0);
-  const [EmoployRate, setEmployRate] = useState<employType[]>([]);
+  const [EmoployRate, setEmployRate] = useState<EmployType[]>([]);
   const [total, setTotal] = useState<number>(75);
 
   const data = [

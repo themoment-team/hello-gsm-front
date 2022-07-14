@@ -1,18 +1,20 @@
-import { PassModal } from 'components';
+import { ContentBox, MainpageHeader, PassModal, ScoreModal } from 'components';
 import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
-import { css } from '@emotion/react';
+import { css, Global } from '@emotion/react';
 import { useRef, useState } from 'react';
-import { applicantsType } from 'pages';
+import { ApplicantsType } from 'Types/application';
 
-const MainPage: NextPage<applicantsType> = ({ data }) => {
+const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const {
     showPassModal,
     setShowPassModal,
-    setPassModalPeriod,
-    setPassModalName,
-    setPassModalRegistrationNumber,
+    showScoreModal,
+    setShowScoreModal,
+    setModalPeriod,
+    setModalName,
+    setModalRegistrationNumber,
   } = useStore();
   const searchRef = useRef<HTMLInputElement>(null);
   const [keyword, setKeyword] = useState<string>('');
@@ -29,20 +31,17 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
     }
   };
 
-  const passOnclick = (
-    registrationNumber: number,
-    name: string,
-    period: number,
-  ) => {
-    setShowPassModal();
-    setPassModalRegistrationNumber(registrationNumber);
-    setPassModalName(name);
-    setPassModalPeriod(period);
-  };
-
   return (
     <S.MainPage>
       {showPassModal && <PassModal />}
+      {showScoreModal && <ScoreModal />}
+      <Global
+        styles={css`
+          body {
+            overflow: ${showPassModal || showScoreModal ? 'hidden' : 'visible'};
+          }
+        `}
+      />
       <S.MainPageContent>
         <S.FunctionBox>
           <S.Logout>로그아웃</S.Logout>
@@ -56,36 +55,7 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
           </S.Searchbox>
           <S.Print>수험표 출력</S.Print>
         </S.FunctionBox>
-        <S.Header>
-          <S.HeaderElement>지원자 번호</S.HeaderElement>
-          <S.HeaderElement>성명</S.HeaderElement>
-          <S.HeaderElement>전형</S.HeaderElement>
-          <S.HeaderElement
-            css={css`
-              width: 140px;
-            `}
-          >
-            출신중
-          </S.HeaderElement>
-          <S.HeaderElement>서류제출</S.HeaderElement>
-          <S.HeaderElement>지원자연락처</S.HeaderElement>
-          <S.HeaderElement>부모님연락처</S.HeaderElement>
-          <S.HeaderElement>담임선생님연락처</S.HeaderElement>
-          <S.HeaderElement
-            css={css`
-              width: 40px;
-            `}
-          >
-            1차
-          </S.HeaderElement>
-          <S.HeaderElement
-            css={css`
-              width: 40px;
-            `}
-          >
-            2차
-          </S.HeaderElement>
-        </S.Header>
+        <MainpageHeader />
         <S.ContentList>
           {data
             .filter(
@@ -93,52 +63,9 @@ const MainPage: NextPage<applicantsType> = ({ data }) => {
                 name.includes(keyword) ||
                 registrationNumber === parseInt(keyword),
             )
-            .map(
-              (
-                {
-                  registrationNumber,
-                  name,
-                  screening,
-                  schoolName,
-                  isDocumentReception,
-                  phoneNumber,
-                  guardianNumber,
-                  teacherNumber,
-                },
-                index: number,
-              ) => (
-                <S.ContentBox key={index}>
-                  <S.Content>
-                    <S.RegistrationNumber>
-                      {registrationNumber}
-                    </S.RegistrationNumber>
-                    <S.Name>{name}</S.Name>
-                    <S.Screening>{screening}</S.Screening>
-                    <S.SchoolName>{schoolName}</S.SchoolName>
-                    <S.isDocumentReception>
-                      <S.Checkbox
-                        css={css`
-                          background: ${isDocumentReception && '#19BAFF'};
-                        `}
-                      />
-                    </S.isDocumentReception>
-                    <S.PhoneNumber>{phoneNumber}</S.PhoneNumber>
-                    <S.GuardianNumber>{guardianNumber}</S.GuardianNumber>
-                    <S.TeacherNumber>{teacherNumber}</S.TeacherNumber>
-                  </S.Content>
-                  <S.Pass
-                    onClick={() => passOnclick(registrationNumber, name, 1)}
-                  >
-                    선택
-                  </S.Pass>
-                  <S.Pass
-                    onClick={() => passOnclick(registrationNumber, name, 2)}
-                  >
-                    선택
-                  </S.Pass>
-                </S.ContentBox>
-              ),
-            )}
+            .map((data, index: number) => (
+              <ContentBox data={data} key={index} />
+            ))}
         </S.ContentList>
       </S.MainPageContent>
       <S.BlueBall />

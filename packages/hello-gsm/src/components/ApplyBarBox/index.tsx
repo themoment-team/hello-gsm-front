@@ -4,7 +4,7 @@ import * as S from './style';
 const ApplyBarBox: React.FC = () => {
   const BarElements = [
     '증명사진',
-    '이름',
+    '성명',
     '성별',
     '생년월일',
     '주소지',
@@ -14,10 +14,10 @@ const ApplyBarBox: React.FC = () => {
     '출신 중학교',
     '졸업일',
     '지원학과',
-    '이름',
+    '성명',
     '관계',
     '핸드폰 번호',
-    '이름',
+    '성명',
     '연락처',
   ];
 
