@@ -8,6 +8,7 @@ import auth from 'Api/auth';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import TosBox from './TosBox';
+import { toast } from 'react-toastify';
 
 interface UserForm {
   gender: '남자' | '여자';
@@ -54,7 +55,7 @@ const SignUpPage: NextPage = () => {
           router.replace('/auth/signin');
         }, 2000);
       } catch (e: any) {
-        console.error(e);
+        toast.error(e.message);
       }
     };
     register();
