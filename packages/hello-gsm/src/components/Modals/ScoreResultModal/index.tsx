@@ -8,12 +8,8 @@ interface ResultType {
 
 const ScoreResultModal: React.FC<ResultType> = ({ result }) => {
   const { setShowScoreResult } = useStore();
-
   const router = useRouter();
-  const Route = () => {
-    if (router.pathname === '/calculator') router.push('/mypage');
-    else setShowScoreResult();
-  };
+
   return (
     <S.Background>
       <S.ResultSection>
@@ -33,7 +29,10 @@ const ScoreResultModal: React.FC<ResultType> = ({ result }) => {
         <S.SubDesc>
           ( 원서나 성적은 내정보 페이지에서 최종 제출 전에 수정할 수 있습니다. )
         </S.SubDesc>
-        <S.Confirm onClick={Route}>확인</S.Confirm>
+        <S.ConfirmSection>
+          <S.Confirm onClick={() => router.push('/')}>홈으로</S.Confirm>
+          <S.Confirm onClick={() => setShowScoreResult()}>확인</S.Confirm>
+        </S.ConfirmSection>
       </S.ResultSection>
     </S.Background>
   );

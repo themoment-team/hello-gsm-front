@@ -74,3 +74,9 @@ export const Confirm = styled.a`
   margin-top: 50px;
   cursor: pointer;
 `;
+
+export const ConfirmSection = styled.div`
+  width: 320px;
+  display: flex;
+  justify-content: space-between;
+`;
