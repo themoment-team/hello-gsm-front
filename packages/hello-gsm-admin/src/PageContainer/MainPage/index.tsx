@@ -31,17 +31,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     }
   };
 
-  const buttonOnclick = (
-    registrationNumber: number,
-    name: string,
-    period: 1 | 2,
-  ) => {
-    setModalRegistrationNumber(registrationNumber);
-    setModalName(name);
-    setModalPeriod(period);
-    period === 1 ? setShowPassModal() : setShowScoreModal();
-  };
-
   return (
     <S.MainPage>
       {showPassModal && <PassModal />}
