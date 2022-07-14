@@ -5,7 +5,7 @@ import * as I from 'Assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { Calculate, Volunteer, Rounds, Attendance } from 'Utils/Calculate';
-import Result from 'components/Modals/ScoreResultModal';
+import ScoreResultModal from 'components/Modals/ScoreResultModal';
 import useLocalstorage from 'hooks/useLocalstorage';
 import application from 'Api/application';
 import auth from 'Api/auth';
@@ -230,7 +230,7 @@ const CalculatorPage: NextPage = () => {
   return (
     <>
       <Header />
-      {showScoreResult && <Result result={resultArray} />}
+      {showScoreResult && <ScoreResultModal result={resultArray} />}
       <S.Title>성적입력</S.Title>
       <S.CalculatePage>
         <S.CalculateSection onSubmit={handleSubmit(onValid, inValid)}>
