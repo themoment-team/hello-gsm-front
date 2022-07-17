@@ -234,8 +234,6 @@ export const ContentHeader = styled.div`
   align-items: center;
   position: relative;
   z-index: 1;
-  position: fixed;
-  top: 0;
   @media ${device.mobile} {
     height: 90px;
     flex-direction: column;
