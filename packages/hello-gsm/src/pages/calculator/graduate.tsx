@@ -4,12 +4,12 @@ import type { GetServerSideProps, NextPage } from 'next';
 import { useEffect } from 'react';
 import useStore from 'Stores/StoreContainer';
 import { HeaderType } from 'type/header';
-import { GEDPage } from 'PageContainer';
+import { GraduatePage } from 'PageContainer';
 import { CheckType } from 'type/check';
 
 const Calculator: NextPage<CheckType> = () => {
-  const seoTitle = '검정고시생 성적 입력';
-  const desc = '검정고시생의 성적을 기재합니다.';
+  const seoTitle = '졸업생 성적 입력';
+  const desc = '졸업생의 성적을 기재합니다.';
   const { setLogged } = useStore();
   useEffect(() => {
     setLogged(true);
@@ -17,7 +17,7 @@ const Calculator: NextPage<CheckType> = () => {
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
-      <GEDPage />
+      <GraduatePage />
     </>
   );
 };
