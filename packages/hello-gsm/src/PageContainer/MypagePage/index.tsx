@@ -65,8 +65,21 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
                   width: 335px;
                 `}
               >
-                <S.Button>원서 다운</S.Button>
-                <S.Button onClick={() => showModal('download')}>
+                <S.Button
+                  css={css`
+                    background: #59c5ff;
+                    box-shadow: 0px 13px 30px -10px #59c5ff;
+                  `}
+                >
+                  원서 다운
+                </S.Button>
+                <S.Button
+                  onClick={() => showModal('download')}
+                  css={css`
+                    background: #35dcbe;
+                    box-shadow: 0px 13px 30px -10px #35dcbe;
+                  `}
+                >
                   제출 서류 다운
                 </S.Button>
               </S.ButtonBox>
@@ -76,13 +89,34 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
                   width: 510px;
                 `}
               >
-                <S.Button onClick={() => showModal('delete')}>
+                <S.Button
+                  onClick={() => showModal('delete')}
+                  css={css`
+                    background: #d82142;
+                    box-shadow: 0px 13px 30px -10px #d82142;
+                  `}
+                >
                   원서 삭제
                 </S.Button>
                 <Link href="/apply" passHref>
-                  <S.Button>원서 수정</S.Button>
+                  <S.Button
+                    css={css`
+                      background: #dbe44e;
+                      box-shadow: 0px 13px 30px -10px #dbe44e;
+                    `}
+                  >
+                    원서 수정
+                  </S.Button>
                 </Link>
-                <S.Button onClick={() => showModal('final')}>최종제출</S.Button>
+                <S.Button
+                  onClick={() => showModal('final')}
+                  css={css`
+                    background: #59c5ff;
+                    box-shadow: 0px 13px 30px -10px #59c5ff;
+                  `}
+                >
+                  최종제출
+                </S.Button>
               </S.ButtonBox>
             )
           ) : (
@@ -92,7 +126,14 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
               `}
             >
               <Link href="/information" passHref>
-                <S.Button>원서 작성</S.Button>
+                <S.Button
+                  css={css`
+                    background: #dbe44e;
+                    box-shadow: 0px 13px 30px -10px #dbe44e;
+                  `}
+                >
+                  원서 작성
+                </S.Button>
               </Link>
             </S.ButtonBox>
           )
