@@ -222,13 +222,13 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
         <S.ApplyPageContent onSubmit={handleSubmit(onSubmit)}>
           <S.Title>지원자 인적사항</S.Title>
           <S.ImgInputBox htmlFor="img-input">
-            {imgURL === '' ? (
+            {imgURL ? (
+              <S.InputImg src={imgURL} />
+            ) : (
               <>
                 <I.InputImg />
                 <S.Description>사진을 업로드 해주세요</S.Description>
               </>
-            ) : (
-              <S.InputImg src={imgURL} />
             )}
           </S.ImgInputBox>
           <S.ImgInput
