@@ -45,6 +45,10 @@ export function GlobalStyle() {
         button {
           font-family: 'Noto Sans KR', sans-serif;
         }
+
+        input {
+          font-family: 'Noto Sans KR', sans-serif;
+        }
       `}
     />
   );
