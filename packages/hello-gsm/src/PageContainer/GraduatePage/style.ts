@@ -14,7 +14,7 @@ export const CalculatePage = styled.div`
 `;
 
 export const CalculateSection = styled.form`
-  width: 800px;
+  width: 1000px;
   position: relative;
 `;
 

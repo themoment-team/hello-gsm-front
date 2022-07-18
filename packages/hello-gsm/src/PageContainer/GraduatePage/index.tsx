@@ -253,6 +253,58 @@ const CalculatorPage: NextPage = () => {
                   />
                 ))}
               </S.ValueSection>
+              <S.ValueSection>
+                <S.Semester>1학년 1학기</S.Semester>
+                {subjects.map((subject, i) => (
+                  <ScoreSelect
+                    key={subject}
+                    register={register(`score2_1.${i}`, {
+                      validate: {
+                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                      },
+                    })}
+                    index={i}
+                    scoreArray={watch('score2_1')}
+                  />
+                ))}
+                {newSubjects?.map((newSubject, i) => (
+                  <ScoreSelect
+                    key={i}
+                    register={register(`score2_1.${subjects.length + i}`, {
+                      validate: {
+                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                      },
+                    })}
+                    index={subjects.length + i}
+                  />
+                ))}
+              </S.ValueSection>
+              <S.ValueSection>
+                <S.Semester>1학년 2학기</S.Semester>
+                {subjects.map((subject, i) => (
+                  <ScoreSelect
+                    key={subject}
+                    register={register(`score2_1.${i}`, {
+                      validate: {
+                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                      },
+                    })}
+                    index={i}
+                    scoreArray={watch('score2_1')}
+                  />
+                ))}
+                {newSubjects?.map((newSubject, i) => (
+                  <ScoreSelect
+                    key={i}
+                    register={register(`score2_1.${subjects.length + i}`, {
+                      validate: {
+                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                      },
+                    })}
+                    index={subjects.length + i}
+                  />
+                ))}
+              </S.ValueSection>
 
               <S.ValueSection>
                 <S.Semester>2학년 1학기</S.Semester>
@@ -334,6 +386,33 @@ const CalculatorPage: NextPage = () => {
                   />
                 ))}
               </S.ValueSection>
+
+              <S.ValueSection>
+                <S.Semester>3학년 2학기</S.Semester>
+                {subjects.map((subject, i) => (
+                  <ScoreSelect
+                    key={subject}
+                    register={register(`score2_1.${i}`, {
+                      validate: {
+                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                      },
+                    })}
+                    index={i}
+                    scoreArray={watch('score2_1')}
+                  />
+                ))}
+                {newSubjects?.map((newSubject, i) => (
+                  <ScoreSelect
+                    key={i}
+                    register={register(`score2_1.${subjects.length + i}`, {
+                      validate: {
+                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                      },
+                    })}
+                    index={subjects.length + i}
+                  />
+                ))}
+              </S.ValueSection>
             </S.CurriculumValue>
 
             {/* 과목추가 버튼 클릭 시 newSubjects 배열에 빈 문자열 추가 */}
@@ -350,6 +429,36 @@ const CalculatorPage: NextPage = () => {
               ))}
             </S.ValueSection>
 
+            <S.ValueSection>
+              <S.Semester>1학년 1학기</S.Semester>
+              {nonSubjects.map((subject, i) => (
+                <ScoreSelect
+                  key={subject}
+                  register={register(`artSportsScore.${i}`, {
+                    validate: {
+                      notNaN: value => !isNaN(value),
+                    },
+                  })}
+                  index={i}
+                  scoreArray={artSportsScore}
+                />
+              ))}
+            </S.ValueSection>
+            <S.ValueSection>
+              <S.Semester>1학년 2학기</S.Semester>
+              {nonSubjects.map((subject, i) => (
+                <ScoreSelect
+                  key={subject}
+                  register={register(`artSportsScore.${i}`, {
+                    validate: {
+                      notNaN: value => !isNaN(value),
+                    },
+                  })}
+                  index={i}
+                  scoreArray={artSportsScore}
+                />
+              ))}
+            </S.ValueSection>
             <S.ValueSection>
               <S.Semester>2학년 1학기</S.Semester>
               {nonSubjects.map((subject, i) => (
@@ -384,6 +493,21 @@ const CalculatorPage: NextPage = () => {
 
             <S.ValueSection>
               <S.Semester>3학년 1학기</S.Semester>
+              {nonSubjects.map((subject, i) => (
+                <ScoreSelect
+                  key={subject}
+                  register={register(`artSportsScore.${6 + i}`, {
+                    validate: {
+                      notNaN: value => !isNaN(value),
+                    },
+                  })}
+                  index={6 + i}
+                  scoreArray={artSportsScore}
+                />
+              ))}
+            </S.ValueSection>
+            <S.ValueSection>
+              <S.Semester>3학년 2학기</S.Semester>
               {nonSubjects.map((subject, i) => (
                 <ScoreSelect
                   key={subject}
