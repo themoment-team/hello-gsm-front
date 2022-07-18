@@ -78,7 +78,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
             <S.Underline />
           </S.ApplyBox>
         </S.TitleWrap>
-        <Link href="/test/calculator" passHref>
+        <Link href="/calculator/test" passHref>
           <S.ToCalculator>모의 성적 계산 해보기</S.ToCalculator>
         </Link>
         <S.ContentBox>
