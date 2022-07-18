@@ -28,18 +28,18 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
     setMypageModalContent(content);
   };
 
-  useEffect(() => {
-    setLogged(true);
-    setSaved(data.application === null ? false : true);
-    setSubmitted(data.application?.isFinalSubmission === true ? true : false);
-    setImgURL(data.userImg);
-    setName(data.name);
-    setIsPC(
-      !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(
-        navigator.userAgent,
-      ),
-    );
-  }, []);
+  // useEffect(() => {
+  //   setLogged(true);
+  //   setSaved(data.application === null ? false : true);
+  //   setSubmitted(data.application?.isFinalSubmission === true ? true : false);
+  //   setImgURL(data.userImg);
+  //   setName(data.name);
+  //   setIsPC(
+  //     !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(
+  //       navigator.userAgent,
+  //     ),
+  //   );
+  // }, []);
 
   return (
     <S.MyPage>
@@ -48,17 +48,17 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
       <Header />
       <S.Content>
         <S.UserBox>
-          <Image
+          {/* <Image
             src={imgURL}
             alt="image"
             width="140"
             height="140"
             css={{ borderRadius: '100%' }}
-          />
+          /> */}
           <S.Name>{name}</S.Name>
         </S.UserBox>
         {isPC ? (
-          saved ? (
+          !saved ? (
             submitted ? (
               <S.ButtonBox
                 css={css`
@@ -84,40 +84,43 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
                 </S.Button>
               </S.ButtonBox>
             ) : (
-              <S.ButtonBox
-                css={css`
-                  width: 510px;
-                `}
-              >
-                <S.Button
-                  onClick={() => showModal('delete')}
+              <>
+                <S.ButtonBox
                   css={css`
-                    background: #d82142;
-                    box-shadow: 0px 13px 30px -10px #d82142;
+                    width: 510px;
                   `}
                 >
-                  원서 삭제
-                </S.Button>
-                <Link href="/apply" passHref>
                   <S.Button
+                    onClick={() => showModal('delete')}
                     css={css`
-                      background: #dbe44e;
-                      box-shadow: 0px 13px 30px -10px #dbe44e;
+                      background: #d82142;
+                      box-shadow: 0px 13px 30px -10px #d82142;
                     `}
                   >
-                    원서 수정
+                    원서 삭제
                   </S.Button>
-                </Link>
-                <S.Button
-                  onClick={() => showModal('final')}
-                  css={css`
-                    background: #59c5ff;
-                    box-shadow: 0px 13px 30px -10px #59c5ff;
-                  `}
-                >
-                  최종제출
-                </S.Button>
-              </S.ButtonBox>
+                  <Link href="/apply" passHref>
+                    <S.Button
+                      css={css`
+                        background: #dbe44e;
+                        box-shadow: 0px 13px 30px -10px #dbe44e;
+                      `}
+                    >
+                      원서 수정
+                    </S.Button>
+                  </Link>
+                  <S.Button
+                    onClick={() => showModal('final')}
+                    css={css`
+                      background: #59c5ff;
+                      box-shadow: 0px 13px 30px -10px #59c5ff;
+                    `}
+                  >
+                    최종제출
+                  </S.Button>
+                </S.ButtonBox>
+                <S.Information></S.Information>
+              </>
             )
           ) : (
             <S.ButtonBox
