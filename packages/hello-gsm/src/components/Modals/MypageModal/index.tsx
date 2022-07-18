@@ -34,6 +34,7 @@ const MypageModal: React.FC = () => {
   const deleteApplication = async () => {
     try {
       await application.deleteInformation();
+      localStorage.clear();
       window.location.reload();
     } catch (error: any) {
       if (error.response.status === 401) {
