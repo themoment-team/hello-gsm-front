@@ -1,13 +1,13 @@
 import { VictoryPie } from 'victory';
 
-interface dataType {
+interface DataType {
   data: {
     x: string;
     y: number;
   }[];
 }
 
-const Graph: React.FC<dataType> = ({ data }) => (
+const Graph: React.FC<DataType> = ({ data }) => (
   <VictoryPie
     data={data}
     style={{ labels: { fill: 'white', fontSize: 24, fontWeight: 700 } }}

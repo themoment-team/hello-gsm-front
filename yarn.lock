@@ -1120,6 +1120,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clsx@npm:^1.1.1":
+  version: 1.2.1
+  resolution: "clsx@npm:1.2.1"
+  checksum: 30befca8019b2eb7dbad38cff6266cf543091dae2825c856a62a8ccf2c3ab9c2907c4d12b288b73101196767f66812365400a227581484a05f968b0307cfaf12
+  languageName: node
+  linkType: hard
+
 "color-convert@npm:^1.9.0":
   version: 1.9.3
   resolution: "color-convert@npm:1.9.3"
@@ -2192,6 +2199,7 @@ __metadata:
     react-daum-postcode: ^3.0.1
     react-dom: 17.0.2
     react-hook-form: ^7.29.0
+    react-toastify: ^9.0.5
     typescript: 4.6.2
     victory: ^36.3.2
     victory-bar: ^36.3.2
@@ -3011,6 +3019,18 @@ __metadata:
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: f7a19ac3496de32ca9ae12aa030f00f14a3d45374f1ceca0af707c831b2a6098ef0d6bdae51bd437b0a306d7f01d4677fcc8de7c0d331eb47ad0f46130e53c5f
+  languageName: node
+  linkType: hard
+
+"react-toastify@npm:^9.0.5":
+  version: 9.0.5
+  resolution: "react-toastify@npm:9.0.5"
+  dependencies:
+    clsx: ^1.1.1
+  peerDependencies:
+    react: ">=16"
+    react-dom: ">=16"
+  checksum: 5baf2705e20e698619fdffe9fba89d55bd4314ab49075704522a2166fcb6b17d9d34781cef937e818d583a410d11b37bfe6ed8a02638b08a672998741cf40e1c
   languageName: node
   linkType: hard
 
