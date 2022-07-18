@@ -111,6 +111,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       data.application?.application_details?.schoolLocation || '',
     );
     setApplicantAddress(data.application?.application_details?.address || '');
+    console.log(data.application_image?.idPhotoUrl);
   }, []);
 
   const apply = async (submitData: ApplyFormType) => {
