@@ -90,6 +90,12 @@ export const IsNotPC = styled.p`
   }
 `;
 
+export const Information = styled.div`
+  width: 830px;
+  height: 80px;
+  border: 1px solid white;
+`;
+
 const Ball = styled.div`
   border-radius: 100%;
   z-index: -1;
