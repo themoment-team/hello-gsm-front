@@ -73,4 +73,5 @@ export const Logout = styled.button`
   background: none;
   border: none;
   padding: 0;
+  margin: 0;
 `;
