@@ -8,9 +8,9 @@ import { StatusType } from 'type/user';
 import Image from 'next/image';
 import { Header, MypageModal, MypageSuccessModal } from 'components';
 
-const MyPage: NextPage<StatusType> = ({ data }) => {
-  const [name, setName] = useState<string>('');
-  const [imgURL, setImgURL] = useState<string>('');
+const MyPage: NextPage<StatusType> = ({
+  data: { name, userImg, application },
+}) => {
   const [saved, setSaved] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [isPC, setIsPC] = useState<boolean>(true);
@@ -28,18 +28,16 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
     setMypageModalContent(content);
   };
 
-  // useEffect(() => {
-  //   setLogged(true);
-  //   setSaved(data.application === null ? false : true);
-  //   setSubmitted(data.application?.isFinalSubmission === true ? true : false);
-  //   setImgURL(data.userImg);
-  //   setName(data.name);
-  //   setIsPC(
-  //     !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(
-  //       navigator.userAgent,
-  //     ),
-  //   );
-  // }, []);
+  useEffect(() => {
+    setLogged(true);
+    setSaved(application === null ? false : true);
+    setSubmitted(application?.isFinalSubmission ? true : false);
+    setIsPC(
+      !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(
+        navigator.userAgent,
+      ),
+    );
+  }, []);
 
   return (
     <S.MyPage>
@@ -48,13 +46,13 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
       <Header />
       <S.Content>
         <S.UserBox>
-          {/* <Image
-            src={imgURL}
+          <Image
+            src={userImg}
             alt="image"
             width="140"
             height="140"
             css={{ borderRadius: '100%' }}
-          /> */}
+          />
           <S.Name>{name}</S.Name>
         </S.UserBox>
         {isPC ? (
@@ -127,15 +125,23 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
                     <S.InformationHeaderitem>2지망</S.InformationHeaderitem>
                     <S.InformationHeaderitem>3지망</S.InformationHeaderitem>
                   </S.InformationHeader>
-                  <S.InformationBody>
-                    <S.InformationBodyitem>1001</S.InformationBodyitem>
-                    <S.InformationBodyitem>일반전형</S.InformationBodyitem>
+                  {/* <S.InformationBody>
                     <S.InformationBodyitem>
-                      소프트웨어개발과
+                      {data.application?.registrationNumber}
                     </S.InformationBodyitem>
-                    <S.InformationBodyitem>스마트IoT과</S.InformationBodyitem>
-                    <S.InformationBodyitem>인공지능과</S.InformationBodyitem>
-                  </S.InformationBody>
+                    <S.InformationBodyitem>
+                      {data.application?.screening}
+                    </S.InformationBodyitem>
+                    <S.InformationBodyitem>
+                      {data.application?.applicationDetails.firstWantedMajor}
+                    </S.InformationBodyitem>
+                    <S.InformationBodyitem>
+                      {data.application?.applicationDetails.secondWantedMajor}
+                    </S.InformationBodyitem>
+                    <S.InformationBodyitem>
+                      {data.application?.applicationDetails.thirdWantedMajor}
+                    </S.InformationBodyitem>
+                  </S.InformationBody> */}
                 </S.Information>
               </>
             )
