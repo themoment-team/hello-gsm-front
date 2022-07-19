@@ -2,11 +2,17 @@ interface StatusDataType {
   name: string;
   userImg: string;
   application: null | {
-    firstResultScreening: boolean;
-    finalResultScreening: boolean;
+    screening: '일반전형' | '사회통합전형' | '특별전형';
+    firstResultScreening: '일반전형' | '사회통합전형' | '특별전형';
+    finalResultScreening: '일반전형' | '사회통합전형' | '특별전형';
     isFinalSubmission: boolean;
     isDocumentReception: boolean;
     registrationNumber: null | number;
+    applicationDetails: {
+      firstWantedMajor: '인공지능과' | '스마트IoT과' | '소프트웨어개발과';
+      secondWantedMajor: '인공지능과' | '스마트IoT과' | '소프트웨어개발과';
+      thirdWantedMajor: '인공지능과' | '스마트IoT과' | '소프트웨어개발과';
+    };
   };
 }
 
