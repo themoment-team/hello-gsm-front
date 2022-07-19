@@ -119,7 +119,24 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
                     최종제출
                   </S.Button>
                 </S.ButtonBox>
-                <S.Information></S.Information>
+                <S.Information>
+                  <S.InformationHeader>
+                    <S.InformationHeaderitem>지원번호</S.InformationHeaderitem>
+                    <S.InformationHeaderitem>지원전형</S.InformationHeaderitem>
+                    <S.InformationHeaderitem>1지망</S.InformationHeaderitem>
+                    <S.InformationHeaderitem>2지망</S.InformationHeaderitem>
+                    <S.InformationHeaderitem>3지망</S.InformationHeaderitem>
+                  </S.InformationHeader>
+                  <S.InformationBody>
+                    <S.InformationBodyitem>1001</S.InformationBodyitem>
+                    <S.InformationBodyitem>일반전형</S.InformationBodyitem>
+                    <S.InformationBodyitem>
+                      소프트웨어개발과
+                    </S.InformationBodyitem>
+                    <S.InformationBodyitem>스마트IoT과</S.InformationBodyitem>
+                    <S.InformationBodyitem>인공지능과</S.InformationBodyitem>
+                  </S.InformationBody>
+                </S.Information>
               </>
             )
           ) : (
