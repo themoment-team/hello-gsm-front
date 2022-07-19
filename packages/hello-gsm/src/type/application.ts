@@ -60,9 +60,9 @@ export interface GetApplicationType {
       user_idx: number;
       application_score?: {
         applicationIdx: number;
-        score2_1: 54;
-        score2_2: 54;
-        score3_1: 72;
+        score2_1: number;
+        score2_2: number;
+        score3_1: number;
         generalCurriculumScoreSubtotal: number;
         artSportsScore: number;
         curriculumScoreSubtotal: number;
