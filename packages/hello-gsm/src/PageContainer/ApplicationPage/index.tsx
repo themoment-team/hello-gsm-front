@@ -30,6 +30,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({ data }) => {
     .set('date', userBirth.getDate())
     .format('YYYY-MM-DD');
 
+  console.log(data);
   useEffect(() => {
     window.print();
   }, []);
