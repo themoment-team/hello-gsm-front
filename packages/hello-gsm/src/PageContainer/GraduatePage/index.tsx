@@ -12,6 +12,8 @@ import auth from 'Api/auth';
 import { ScoreType } from 'type/application';
 import useStore from 'Stores/StoreContainer';
 interface ScoreForm {
+  score1_1: number[];
+  score1_2: number[];
   score2_1: number[];
   score2_2: number[];
   score3_1: number[];
@@ -34,6 +36,8 @@ const CalculatorPage: NextPage = () => {
   const { showScoreResult, setShowScoreResult } = useStore();
   const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
 
+  const score1_1 = useLocalstorage('score1_1');
+  const score1_2 = useLocalstorage('score1_2');
   const score2_1 = useLocalstorage('score2_1');
   const score2_2 = useLocalstorage('score2_2');
   const score3_1 = useLocalstorage('score3_1');
@@ -258,19 +262,19 @@ const CalculatorPage: NextPage = () => {
                 {subjects.map((subject, i) => (
                   <ScoreSelect
                     key={subject}
-                    register={register(`score2_1.${i}`, {
+                    register={register(`score1_1.${i}`, {
                       validate: {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
-                    scoreArray={watch('score2_1')}
+                    scoreArray={watch('score1_1')}
                   />
                 ))}
                 {newSubjects?.map((newSubject, i) => (
                   <ScoreSelect
                     key={i}
-                    register={register(`score2_1.${subjects.length + i}`, {
+                    register={register(`score1_1.${subjects.length + i}`, {
                       validate: {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
@@ -284,19 +288,19 @@ const CalculatorPage: NextPage = () => {
                 {subjects.map((subject, i) => (
                   <ScoreSelect
                     key={subject}
-                    register={register(`score2_1.${i}`, {
+                    register={register(`score1_2.${i}`, {
                       validate: {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
-                    scoreArray={watch('score2_1')}
+                    scoreArray={watch('score1_2')}
                   />
                 ))}
                 {newSubjects?.map((newSubject, i) => (
                   <ScoreSelect
                     key={i}
-                    register={register(`score2_1.${subjects.length + i}`, {
+                    register={register(`score1_2.${subjects.length + i}`, {
                       validate: {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
@@ -449,7 +453,7 @@ const CalculatorPage: NextPage = () => {
               {nonSubjects.map((subject, i) => (
                 <ScoreSelect
                   key={subject}
-                  register={register(`artSportsScore.${i}`, {
+                  register={register(`artSportsScore.${3 + i}`, {
                     validate: {
                       notNaN: value => !isNaN(value),
                     },
@@ -464,7 +468,7 @@ const CalculatorPage: NextPage = () => {
               {nonSubjects.map((subject, i) => (
                 <ScoreSelect
                   key={subject}
-                  register={register(`artSportsScore.${i}`, {
+                  register={register(`artSportsScore.${6 + i}`, {
                     validate: {
                       notNaN: value => !isNaN(value),
                     },
@@ -480,7 +484,7 @@ const CalculatorPage: NextPage = () => {
               {nonSubjects.map((subject, i) => (
                 <ScoreSelect
                   key={subject}
-                  register={register(`artSportsScore.${3 + i}`, {
+                  register={register(`artSportsScore.${9 + i}`, {
                     validate: {
                       notNaN: value => !isNaN(value),
                     },
@@ -496,7 +500,7 @@ const CalculatorPage: NextPage = () => {
               {nonSubjects.map((subject, i) => (
                 <ScoreSelect
                   key={subject}
-                  register={register(`artSportsScore.${6 + i}`, {
+                  register={register(`artSportsScore.${12 + i}`, {
                     validate: {
                       notNaN: value => !isNaN(value),
                     },
@@ -511,7 +515,7 @@ const CalculatorPage: NextPage = () => {
               {nonSubjects.map((subject, i) => (
                 <ScoreSelect
                   key={subject}
-                  register={register(`artSportsScore.${6 + i}`, {
+                  register={register(`artSportsScore.${15 + i}`, {
                     validate: {
                       notNaN: value => !isNaN(value),
                     },
