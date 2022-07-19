@@ -56,6 +56,7 @@ const MyPage: NextPage<StatusType> = ({
           <S.Name>{name}</S.Name>
         </S.UserBox>
         {isPC ? (
+          // remove !
           !saved ? (
             submitted ? (
               <S.ButtonBox
