@@ -22,8 +22,8 @@ const Application: NextPage<GetApplicationType> = ({ data }) => {
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
       <TestApplicationPage data={expected.data} />
-      {/* <TestApplicationPage data={expected.data} />
-      <TestApplicationPage data={ged.data} /> */}
+      <TestApplicationPage data={graduated.data} />
+      <TestApplicationPage data={ged.data} />
     </>
   );
 };
@@ -33,7 +33,7 @@ const expected: TestType = {
     user_idx: 1,
     userImg: 'asdas',
     name: '유시온',
-    birth: new Date('2005-11-09'),
+    birth: '2005-11-09',
     gender: '여자',
     cellphoneNumber: '01092015487',
     application_image: {
@@ -64,6 +64,7 @@ const expected: TestType = {
         nonCurriculumScoreSubtotal: 60,
         personalityEvaluationScore: 100,
         scoreTotal: 300,
+        rankPercentage: 3.4,
       },
       application_details: {
         applicationIdx: 1,
@@ -86,7 +87,7 @@ const expected: TestType = {
   },
 };
 
-const graduated = {
+const graduated: TestType = {
   data: {
     user_idx: 1,
     userImg: 'asdas',
@@ -122,7 +123,7 @@ const graduated = {
         attendanceScore: 30,
         volunteerScore: 30,
         nonCurriculumScoreSubtotal: 60,
-        personalityEvaluationScore: null,
+        personalityEvaluationScore: 30,
         scoreTotal: 300,
       },
       application_details: {
@@ -134,7 +135,7 @@ const graduated = {
         guardianRelation: '모',
         teacherName: '쌤',
         schoolLocation: '풍암동',
-        educationStatus: '졸업자',
+        educationStatus: '졸업',
         graduationYear: '2022',
         graduationMonth: '02',
         firstWantedMajor: '소프트웨어개발과',
@@ -146,7 +147,7 @@ const graduated = {
   },
 };
 
-const ged = {
+const ged: TestType = {
   data: {
     user_idx: 1,
     userImg: 'asdas',
@@ -166,22 +167,14 @@ const ged = {
       finalResultScreening: 'ㅁㄴㅇ',
       guardianCellphoneNumber: '01023235487',
       teacherCellphoneNumber: '01092937463',
-      schoolName: '풍암중학교',
       screening: '일반전형',
       user_idx: 1,
       application_score: {
         applicationIdx: 1,
-        score2_1: 54,
-        score2_2: 54,
-        score3_1: 72,
-        generalCurriculumScoreSubtotal: 180,
-        artSportsScore: 60,
         curriculumScoreSubtotal: 240,
-        attendanceScore: 30,
-        volunteerScore: 30,
         nonCurriculumScoreSubtotal: 60,
-        personalityEvaluationScore: null,
-        scoreTotal: 300,
+        personalityEvaluationScore: 30,
+        rankPercentage: 3.4,
       },
       application_details: {
         applicationIdx: 1,
@@ -191,7 +184,6 @@ const ged = {
         guardianName: '엄마',
         guardianRelation: '모',
         teacherName: '쌤',
-        schoolLocation: '풍암동',
         educationStatus: '검정고시',
         graduationYear: '2022',
         graduationMonth: '02',
