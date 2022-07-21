@@ -20,6 +20,7 @@ import {
 } from 'type/application';
 import auth from 'Api/auth';
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const imgInput = useRef<HTMLInputElement>(null);
@@ -173,8 +174,12 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const readImg = (event: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
 
-    // 파일의 url을 읽는다.
     if (event.target.files) {
+      if (event.target.files[0].size > 512000) {
+        toast.error('증명사진은 500KB 이하만 업로드 가능합니다.');
+        return;
+      }
+      // 파일의 url을 읽는다.
       event.target.files[0] && reader.readAsDataURL(event.target.files[0]);
     }
 
