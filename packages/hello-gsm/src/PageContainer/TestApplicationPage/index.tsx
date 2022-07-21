@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import * as S from './style';
-import { GetApplicationType, TestType } from 'type/application';
+import { TestType } from 'type/application';
 import useLocalstorage from 'hooks/useLocalstorage';
 import useToString from 'Utils/Calculate/ToString';
 import { useEffect } from 'react';
@@ -8,6 +8,8 @@ import dayjs from 'dayjs';
 import ApplicationStatus from 'components/ApplicantsStatus';
 
 const TestApplicationPage: NextPage<TestType> = ({ data }) => {
+  const score1_1 = useToString(useLocalstorage('score1_1')) ?? [];
+  const score1_2 = useToString(useLocalstorage('score1_2')) ?? [];
   const score2_1 = useToString(useLocalstorage('score2_1')) ?? [];
   const score2_2 = useToString(useLocalstorage('score2_2')) ?? [];
   const score3_1 = useToString(useLocalstorage('score3_1')) ?? [];
@@ -91,9 +93,14 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
                 <tr>
                   <S.Subject>연락처</S.Subject>
                   <S.Subject>집전화</S.Subject>
-                  <td colSpan={2}>
-                    {data?.application?.application_details?.telephoneNumber}
-                  </td>
+
+                  {data?.application?.application_details?.telephoneNumber ? (
+                    <td colSpan={2}>
+                      {data?.application?.application_details?.telephoneNumber}
+                    </td>
+                  ) : (
+                    <S.Slash colSpan={2} />
+                  )}
                   <S.Subject>핸드폰</S.Subject>
                   <td>{data?.cellphoneNumber}</td>
                 </tr>
@@ -124,9 +131,7 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
                     {data?.application?.application_details?.teacherName}(인)
                   </td>
                   <S.Subject>핸드폰</S.Subject>
-                  <td>
-                    {data?.application?.application_details?.telephoneNumber}
-                  </td>
+                  <td>{data?.application?.teacherCellphoneNumber}</td>
                 </tr>
               </thead>
             </S.Table>
@@ -195,14 +200,14 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
                 <S.DivSubject>1학년 1학기</S.DivSubject>
                 <S.DivSubject>성취도/평어</S.DivSubject>
               </S.Semester>
-              <S.Slash></S.Slash>
+              <S.DivSlash />
             </S.Column>
             <S.Column>
               <S.Semester>
                 <S.DivSubject>1학년 2학기</S.DivSubject>
                 <S.DivSubject>성취도/평어</S.DivSubject>
               </S.Semester>
-              <S.Slash></S.Slash>
+              <S.DivSlash />
             </S.Column>
             <S.Column>
               <S.Semester>
@@ -243,7 +248,7 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
           </S.ScoreTable>
 
           <S.SubTitle>체육예술교과</S.SubTitle>
-          <S.TestTable style={{ height: '17vh' }}>
+          <S.NonScoreTable style={{ height: '17vh' }}>
             <S.ColumnWrapper>
               <S.Column>
                 <S.GradeAndSubject>
@@ -261,7 +266,7 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
                     <S.DivSubject>성취도/평어</S.DivSubject>
                   </S.Semester>
                 </S.Semester>
-                <S.Slash></S.Slash>
+                <S.DivSlash />
               </S.Column>
               <S.Column>
                 <S.Semester>
@@ -270,7 +275,7 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
                     <S.DivSubject>성취도/평어</S.DivSubject>
                   </S.Semester>
                 </S.Semester>
-                <S.Slash></S.Slash>
+                <S.DivSlash />
               </S.Column>
               <S.Column>
                 <S.Semester>
@@ -300,13 +305,13 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
                 <S.Value>{artSportsScore[8]}</S.Value>
               </S.Column>
             </S.ColumnWrapper>
-            <S.Test>
+            <S.ConversionPoint>
               <S.Column style={{ width: '20%' }}>환산점</S.Column>
               <S.Value>
                 {data?.application?.application_score?.artSportsScore}
               </S.Value>
-            </S.Test>
-          </S.TestTable>
+            </S.ConversionPoint>
+          </S.NonScoreTable>
           <S.SubTitle>비교과</S.SubTitle>
 
           <S.Table style={{ marginBottom: '1.2vh' }}>
@@ -389,7 +394,7 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
               </tr>
             </tbody>
           </S.Table>
-          <S.ScoreDetails>
+          <div>
             <S.True>위와 같이 입력하고 확인하였음을 증명합니다.</S.True>
             <S.Date>
               <p>년</p> <p>월</p> <p>일</p>
@@ -398,7 +403,7 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
               <p>광주소프트웨어마이스터고등학교장 귀하</p>
               <p>중학교장[직인]</p>
             </S.SignatureSection>
-          </S.ScoreDetails>
+          </div>
         </S.Document>
       </S.ApplicationPage>
     </>

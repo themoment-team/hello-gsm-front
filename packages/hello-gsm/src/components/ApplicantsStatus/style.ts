@@ -101,11 +101,6 @@ export const Table = styled.table`
     height: 25vh;
   }
 
-  svg {
-    width: 100%;
-    height: 100%;
-  }
-
   .slash {
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="100%" x2="100%" y2="0" stroke="gray" /></svg>');
   }
@@ -113,6 +108,14 @@ export const Table = styled.table`
   .backSlash {
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
   }
+`;
+
+export const Slash = styled.td`
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="100%" x2="100%" y2="0" stroke="gray" /></svg>');
+`;
+
+export const BackSlash = styled.td`
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
 `;
 
 export const Subject = styled.td`
@@ -184,8 +187,6 @@ export const Materials = styled.div`
   line-height: 3.5vh;
 `;
 
-export const ScoreDetails = styled.div``;
-
 export const SignatureSection = styled.div`
   display: flex;
   justify-content: space-between;
@@ -197,13 +198,6 @@ export const ScoreTable = styled.div`
   display: flex;
   height: 26vh;
   border: 0.08vh solid #000000;
-  .slash {
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="100%" x2="100%" y2="0" stroke="gray" /></svg>');
-  }
-
-  .backSlash {
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
-  }
 `;
 
 export const GradeAndSubject = styled.div`
@@ -249,16 +243,15 @@ export const DivSubject = styled.div`
   height: 2.2vh;
 `;
 
-export const Slash = styled.div`
+export const DivSlash = styled.div`
   height: 100%;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
   border-bottom: 0.08vh solid #000000;
 `;
 
-export const TestTable = styled.div`
+export const NonScoreTable = styled.div`
   display: flex;
   flex-direction: column;
-  height: 26vh;
 `;
 
 export const ColumnWrapper = styled.div`
@@ -269,7 +262,7 @@ export const ColumnWrapper = styled.div`
   width: 100%;
 `;
 
-export const Test = styled.div`
+export const ConversionPoint = styled.div`
   display: flex;
   text-align: center;
   border: 0.08vh solid #000000;
