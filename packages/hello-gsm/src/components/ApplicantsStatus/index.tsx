@@ -53,32 +53,33 @@ const ApplicationStatus: React.FC<TestType> = ({ data }) => {
           <S.Subject rowSpan={2}>합계 (환산총점)</S.Subject>
         </tr>
         <tr>
-          {application_score?.score1_1 ? (
+          {application_score?.score1_1 && application_score?.score1_1 > 0 ? (
             <td>{application_score?.score1_1}</td>
           ) : (
             <S.Slash />
           )}
-          {application_score?.score1_2 ? (
+          {application_score?.score1_2 && application_score?.score1_2 > 0 ? (
             <td>{application_score?.score1_2}</td>
           ) : (
             <S.Slash />
           )}
-          {application_score?.score2_1 ? (
+          {application_score?.score2_1 && application_score?.score2_1 > 0 ? (
             <td>{application_score?.score2_1}</td>
           ) : (
             <S.Slash />
           )}
-          {application_score?.score2_2 ? (
+          {application_score?.score2_2 && application_score?.score2_2 > 0 ? (
             <td>{application_score?.score2_2}</td>
           ) : (
             <S.Slash />
           )}
-          {application_score?.score3_1 ? (
+          {application_score?.score3_1 && application_score?.score3_1 > 0 ? (
             <td>{application_score?.score3_1}</td>
           ) : (
             <S.Slash />
           )}
-          {application_score?.artSportsScore ? (
+          {application_score?.artSportsScore &&
+          application_score?.artSportsScore > 0 ? (
             <td>{application_score?.artSportsScore}</td>
           ) : (
             <S.Slash />
@@ -92,7 +93,8 @@ const ApplicationStatus: React.FC<TestType> = ({ data }) => {
           <S.Subject colSpan={3}>출석</S.Subject>
           <S.Subject colSpan={3}>봉사활동</S.Subject>
           <S.Subject>소계</S.Subject>
-          {application_score?.scoreTotal ? (
+          {application_score?.scoreTotal &&
+          application_score?.scoreTotal > 0 ? (
             <td colSpan={2} rowSpan={2}>
               {application_score?.scoreTotal}
             </td>
@@ -103,12 +105,14 @@ const ApplicationStatus: React.FC<TestType> = ({ data }) => {
           )}
         </tr>
         <tr>
-          {application_score?.attendanceScore ? (
+          {application_score?.attendanceScore &&
+          application_score?.attendanceScore > 0 ? (
             <td colSpan={3}>{application_score?.attendanceScore}</td>
           ) : (
             <S.Slash colSpan={3} />
           )}
-          {application_score?.volunteerScore ? (
+          {application_score?.volunteerScore &&
+          application_score?.volunteerScore > 0 ? (
             <td colSpan={3}>{application_score?.volunteerScore}</td>
           ) : (
             <S.Slash colSpan={3} />
