@@ -7,7 +7,17 @@ import { useEffect } from 'react';
 import dayjs from 'dayjs';
 import ApplicationStatus from 'components/ApplicantsStatus';
 
-const TestApplicationPage: NextPage<TestType> = ({ data }) => {
+const TestApplicationPage: NextPage<TestType> = ({
+  data: {
+    application,
+    application_image,
+    birth,
+    name,
+    gender,
+    cellphoneNumber,
+  },
+  data,
+}) => {
   const score1_1 = useToString(useLocalstorage('score1_1')) ?? [];
   const score1_2 = useToString(useLocalstorage('score1_2')) ?? [];
   const score2_1 = useToString(useLocalstorage('score2_1')) ?? [];
@@ -22,21 +32,21 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
   const nonSubjects = useLocalstorage('nonSubjects');
   // 환산일수
   const conversionDays =
-    data?.application?.application_score?.attendanceScore &&
-    (30 - data?.application?.application_score?.attendanceScore) / 3;
+    application?.application_score?.attendanceScore &&
+    (30 - application?.application_score?.attendanceScore) / 3;
 
-  const userBirth = new Date(data.birth);
+  const userBirth = new Date(birth);
   // 생년월일을 YYYY-MM-DD형식에 맞게 포맷
-  const birth = dayjs()
+  const Formatbirth = dayjs()
     .set('year', userBirth.getFullYear())
     .set('month', userBirth.getMonth())
     .set('date', userBirth.getDate())
     .format('YYYY-MM-DD');
 
-  console.log(data);
   useEffect(() => {
     // window.print();
   }, []);
+
   return (
     <>
       <S.ApplicationPage>
@@ -50,7 +60,7 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
             </S.SubTitle>
             <S.Box>
               <S.ApplyNum>접수번호</S.ApplyNum>
-              <S.Content>{data?.application?.registrationNumber}</S.Content>
+              <S.Content>{application?.registrationNumber}</S.Content>
             </S.Box>
           </S.Wrap>
           <S.Container>
@@ -66,18 +76,18 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
                     지원자
                   </S.Subject>
                   <S.Subject>성 명</S.Subject>
-                  <td>{data?.name}</td>
+                  <td>{name}</td>
                   <S.Subject style={{ width: '3%' }}>성별</S.Subject>
-                  <td>{data?.gender}</td>
+                  <td>{gender}</td>
                   <S.Subject>생년월일</S.Subject>
-                  <td>{birth}</td>
+                  <td>{Formatbirth}</td>
                   <td
                     rowSpan={6}
                     style={{
                       width: '18vh',
                       height: '25vh',
                       backgroundImage: `url(
-                        ${data.application_image?.idPhotoUrl}
+                        ${application_image?.idPhotoUrl}
                       )`,
                       backgroundSize: '18vh 25vh',
                       backgroundRepeat: 'no-repeat',
@@ -87,22 +97,22 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
                 <tr>
                   <S.Subject>주 소</S.Subject>
                   <td colSpan={5}>
-                    {data?.application?.application_details?.address}
+                    {application?.application_details?.address}
                   </td>
                 </tr>
                 <tr>
                   <S.Subject>연락처</S.Subject>
                   <S.Subject>집전화</S.Subject>
 
-                  {data?.application?.application_details?.telephoneNumber ? (
+                  {application?.application_details?.telephoneNumber ? (
                     <td colSpan={2}>
-                      {data?.application?.application_details?.telephoneNumber}
+                      {application?.application_details?.telephoneNumber}
                     </td>
                   ) : (
                     <S.Slash colSpan={2} />
                   )}
                   <S.Subject>핸드폰</S.Subject>
-                  <td>{data?.cellphoneNumber}</td>
+                  <td>{cellphoneNumber}</td>
                 </tr>
                 <tr>
                   <S.Subject style={{ width: '3%' }} rowSpan={2}>
@@ -110,28 +120,26 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
                   </S.Subject>
                   <S.Subject>성 명</S.Subject>
                   <td colSpan={2}>
-                    {data?.application?.application_details?.guardianName}
+                    {application?.application_details?.guardianName}
                   </td>
                   <S.Subject>지원자와의 관계</S.Subject>
                   <td colSpan={2}>
-                    {data?.application?.application_details?.guardianRelation}
+                    {application?.application_details?.guardianRelation}
                   </td>
                 </tr>
                 <tr>
                   <S.Subject>핸드폰</S.Subject>
-                  <td colSpan={5}>
-                    {data?.application?.guardianCellphoneNumber}
-                  </td>
+                  <td colSpan={5}>{application?.guardianCellphoneNumber}</td>
                 </tr>
                 <tr>
                   <S.Subject colSpan={3}>
                     원서작성자(담임) <br /> 성명
                   </S.Subject>
                   <td colSpan={2} style={{ textAlign: 'end' }}>
-                    {data?.application?.application_details?.teacherName}(인)
+                    {application?.application_details?.teacherName}(인)
                   </td>
                   <S.Subject>핸드폰</S.Subject>
-                  <td>{data?.application?.teacherCellphoneNumber}</td>
+                  <td>{application?.teacherCellphoneNumber}</td>
                 </tr>
               </thead>
             </S.Table>
@@ -177,7 +185,7 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
             <S.SubTitle>일반교과</S.SubTitle>
             <S.Box>
               <S.ApplyNum>접수번호</S.ApplyNum>
-              <S.Content>{data?.application?.registrationNumber}</S.Content>
+              <S.Content>{application?.registrationNumber}</S.Content>
             </S.Box>
           </S.Wrap>
 
@@ -217,9 +225,7 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
               {score2_1?.map((score, i) => (
                 <S.Value key={i}>{score}</S.Value>
               ))}
-              <S.Value>
-                {data?.application?.application_score?.score2_1}
-              </S.Value>
+              <S.Value>{application?.application_score?.score2_1}</S.Value>
             </S.Column>
             <S.Column>
               <S.Semester>
@@ -229,9 +235,7 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
               {score2_2?.map((score, i) => (
                 <S.Value key={i}>{score}</S.Value>
               ))}
-              <S.Value>
-                {data?.application?.application_score?.score2_2}
-              </S.Value>
+              <S.Value>{application?.application_score?.score2_2}</S.Value>
             </S.Column>
             <S.Column>
               <S.Semester>
@@ -241,9 +245,7 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
               {score3_1?.map((score, i) => (
                 <S.Value key={i}>{score}</S.Value>
               ))}
-              <S.Value>
-                {data?.application?.application_score?.score3_1}
-              </S.Value>
+              <S.Value>{application?.application_score?.score3_1}</S.Value>
             </S.Column>
           </S.ScoreTable>
 
@@ -308,7 +310,7 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
             <S.ConversionPoint>
               <S.Column style={{ width: '20%' }}>환산점</S.Column>
               <S.Value>
-                {data?.application?.application_score?.artSportsScore}
+                {application?.application_score?.artSportsScore}
               </S.Value>
             </S.ConversionPoint>
           </S.NonScoreTable>
@@ -342,11 +344,11 @@ const TestApplicationPage: NextPage<TestType> = ({ data }) => {
                   {conversionDays}
                 </td>
                 <td rowSpan={3}>
-                  {data?.application?.application_score?.attendanceScore}
+                  {application?.application_score?.attendanceScore}
                 </td>
                 <td>{volunteerScore[0]}</td>
                 <td rowSpan={3}>
-                  {data?.application?.application_score?.volunteerScore}
+                  {application?.application_score?.volunteerScore}
                 </td>
               </tr>
               <tr>
