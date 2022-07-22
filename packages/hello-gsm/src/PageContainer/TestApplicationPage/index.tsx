@@ -135,11 +135,20 @@ const TestApplicationPage: NextPage<TestType> = ({
                   <S.Subject colSpan={3}>
                     원서작성자(담임) <br /> 성명
                   </S.Subject>
-                  <td colSpan={2} style={{ textAlign: 'end' }}>
-                    {application?.application_details?.teacherName}(인)
-                  </td>
+                  {application?.application_details?.teacherName ? (
+                    <td colSpan={2} style={{ textAlign: 'end' }}>
+                      {application?.application_details?.teacherName}(인)
+                    </td>
+                  ) : (
+                    <S.Slash colSpan={2} />
+                  )}
+
                   <S.Subject>핸드폰</S.Subject>
-                  <td>{application?.teacherCellphoneNumber}</td>
+                  {application?.teacherCellphoneNumber ? (
+                    <td>{application?.teacherCellphoneNumber}</td>
+                  ) : (
+                    <S.Slash />
+                  )}
                 </tr>
               </thead>
             </S.Table>

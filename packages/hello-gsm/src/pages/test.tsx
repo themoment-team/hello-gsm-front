@@ -173,7 +173,6 @@ const ged: TestType = {
       firstResultScreening: 'ㅁㄴ',
       finalResultScreening: 'ㅁㄴㅇ',
       guardianCellphoneNumber: '01023235487',
-      teacherCellphoneNumber: '01092937463',
       screening: '일반전형',
       user_idx: 1,
       application_score: {
@@ -198,10 +197,8 @@ const ged: TestType = {
         applicationIdx: 1,
         address: '풍암동',
         addressDetails: '102동304호',
-        telephoneNumber: '01092389483',
         guardianName: '엄마',
         guardianRelation: '모',
-        teacherName: '쌤',
         educationStatus: '검정고시',
         graduationYear: '2022',
         graduationMonth: '02',
