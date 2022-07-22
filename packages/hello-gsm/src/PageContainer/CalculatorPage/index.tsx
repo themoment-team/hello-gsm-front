@@ -93,6 +93,7 @@ const CalculatorPage: NextPage = () => {
     volunteerScore,
     nonCurriculumScoreSubtotal,
     scoreTotal,
+    rankPercentage,
   }: ScoreType) => {
     await application.postSecondSubmisson({
       score2_1,
@@ -105,6 +106,7 @@ const CalculatorPage: NextPage = () => {
       volunteerScore,
       nonCurriculumScoreSubtotal,
       scoreTotal,
+      rankPercentage,
     });
   };
 
@@ -139,6 +141,8 @@ const CalculatorPage: NextPage = () => {
       curriculumScoreSubtotal + nonCurriculumScoreSubtotal,
       3,
     );
+
+    const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3);
     // 총합
     try {
       await PostData({
@@ -152,6 +156,7 @@ const CalculatorPage: NextPage = () => {
         volunteerScore,
         nonCurriculumScoreSubtotal,
         scoreTotal,
+        rankPercentage,
       });
       // 결과 모달 제어
       setResultArray([
@@ -213,6 +218,7 @@ const CalculatorPage: NextPage = () => {
             volunteerScore,
             nonCurriculumScoreSubtotal,
             scoreTotal,
+            rankPercentage,
           });
         } catch (error) {
           console.log(error);

@@ -33,6 +33,7 @@ export interface ScoreType {
   volunteerScore: number;
   nonCurriculumScoreSubtotal: number;
   scoreTotal: number;
+  rankPercentage: number;
 }
 
 export interface GetApplicationType {
