@@ -132,21 +132,21 @@ export interface TestType {
       user_idx: number;
       application_score?: {
         applicationIdx: number;
-        score1_1?: number;
-        score1_2?: number;
-        score2_1?: number;
-        score2_2?: number;
-        score3_1?: number;
-        score3_2?: number;
-        generalCurriculumScoreSubtotal?: number;
-        artSportsScore?: number;
+        score1_1: number;
+        score1_2: number;
+        score2_1: number;
+        score2_2: number;
+        score3_1: number;
+        score3_2: number;
+        generalCurriculumScoreSubtotal: number;
+        artSportsScore: number;
         curriculumScoreSubtotal: number;
-        attendanceScore?: number;
-        volunteerScore?: number;
+        attendanceScore: number;
+        volunteerScore: number;
         nonCurriculumScoreSubtotal: number;
-        personalityEvaluationScore: number;
-        scoreTotal?: number;
-        rankPercentage?: number;
+        personalityEvaluationScore?: number;
+        scoreTotal: number;
+        rankPercentage: number;
       };
       application_details?: {
         applicationIdx: number;
