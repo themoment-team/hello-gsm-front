@@ -6,6 +6,8 @@ import useToString from 'Utils/Calculate/ToString';
 import { useEffect } from 'react';
 import dayjs from 'dayjs';
 import ApplicationStatus from 'components/ApplicantsStatus';
+import Image from 'next/image';
+import Print from '../../../public/Images/Print.png';
 
 const TestApplicationPage: NextPage<TestType> = ({
   data: {
@@ -43,8 +45,11 @@ const TestApplicationPage: NextPage<TestType> = ({
     .set('date', userBirth.getDate())
     .format('YYYY-MM-DD');
 
+  const TryPrint = () => {
+    window.print();
+  };
   useEffect(() => {
-    // window.print();
+    // TryPrint();
   }, []);
 
   return (
@@ -417,6 +422,10 @@ const TestApplicationPage: NextPage<TestType> = ({
           </div>
         </S.Document>
       </S.ApplicationPage>
+      <S.PrintBtn onClick={TryPrint}>
+        <Image src={Print} width={50} height={50} alt="" />
+        <S.PrintDesc>인쇄하기</S.PrintDesc>
+      </S.PrintBtn>
     </>
   );
 };

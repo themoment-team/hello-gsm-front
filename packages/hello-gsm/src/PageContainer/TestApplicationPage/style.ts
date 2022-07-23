@@ -262,3 +262,31 @@ export const ConversionPoint = styled.div`
   height: 2.6vh;
   line-height: 2.6vh;
 `;
+
+export const PrintBtn = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  position: fixed;
+  width: 170px;
+  height: 55px;
+  right: 100px;
+  bottom: 100px;
+  border-radius: 30px;
+  border: 0.16vh solid #000000;
+  z-index: 7;
+  box-sizing: border-box;
+  cursor: pointer;
+  background-color: #ffffff;
+
+  @media print {
+    display: none;
+  }
+  &:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+  }
+`;
+
+export const PrintDesc = styled.p``;
