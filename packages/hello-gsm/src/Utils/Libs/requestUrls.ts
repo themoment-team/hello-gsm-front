@@ -41,6 +41,12 @@ export const ApplicationController = {
   secondSubmission: () => {
     return `/application/secondSubmission`;
   },
+  graduationSubmission: () => {
+    return `/application/graduationSubmission`;
+  },
+  gedSubmission: () => {
+    return `/application/gedSubmission`;
+  },
   finalSubmission: () => {
     return `/application/finalSubmission`;
   },
