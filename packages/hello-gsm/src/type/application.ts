@@ -36,6 +36,26 @@ export interface ScoreType {
   rankPercentage: number;
 }
 
+export interface GEDType {
+  curriculumScoreSubtotal: number; // 전과목 득점 합계
+  nonCurriculumScoreSubtotal: number; // 전과목 만점 합계
+  rankPercentage: number; // 백분율
+}
+
+export interface ApplyFormType {
+  addressDetails: string;
+  telephoneNumber: string;
+  screening: '일반전형' | '사회통합전형' | '특별전형';
+  graduationYear: string;
+  graduationMonth: string;
+  educationStatus: '졸업예정' | '졸업' | '검정고시';
+  guardianName: string;
+  guardianRelation: string;
+  guardianCellphoneNumber: string;
+  teacherName: string | null;
+  teacherCellphoneNumber: string | null;
+}
+
 export interface GetApplicationType {
   data: {
     user_idx: number;
@@ -92,20 +112,6 @@ export interface GetApplicationType {
       };
     };
   };
-}
-
-export interface ApplyFormType {
-  addressDetails: string;
-  telephoneNumber: string;
-  screening: '일반전형' | '사회통합전형' | '특별전형';
-  graduationYear: string;
-  graduationMonth: string;
-  educationStatus: '졸업예정' | '졸업' | '검정고시';
-  guardianName: string;
-  guardianRelation: string;
-  guardianCellphoneNumber: string;
-  teacherName: string | null;
-  teacherCellphoneNumber: string | null;
 }
 
 export interface TestType {

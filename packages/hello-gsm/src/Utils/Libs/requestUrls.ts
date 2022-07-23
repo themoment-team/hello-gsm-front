@@ -41,9 +41,11 @@ export const ApplicationController = {
   secondSubmission: () => {
     return `/application/secondSubmission`;
   },
+  // post 졸업자 2차 서류 제출, patch 졸업자 2차 서류 수정
   graduationSubmission: () => {
     return `/application/graduationSubmission`;
   },
+  // post 검정고시 2차 서류 제출, patch 검정고시 2차 서류 수정
   gedSubmission: () => {
     return `/application/gedSubmission`;
   },
