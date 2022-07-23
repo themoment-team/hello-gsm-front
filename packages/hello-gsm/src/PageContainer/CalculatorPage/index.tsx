@@ -11,6 +11,7 @@ import application from 'Api/application';
 import auth from 'Api/auth';
 import { ScoreType } from 'type/application';
 import useStore from 'Stores/StoreContainer';
+
 interface ScoreForm {
   score2_1: number[];
   score2_2: number[];
@@ -42,6 +43,7 @@ const CalculatorPage: NextPage = () => {
   const attendanceScore = useLocalstorage('attendanceScore');
   const volunteerScore = useLocalstorage('volunteerScore');
   const getSubjects = useLocalstorage('newSubjects');
+  const [isSubmission, setIsSubmission] = useState<string | null>(); // 이전에 제출한 경험 여부 판단
 
   const lines = ['일반교과', '예체능 교과', '비교과'];
   const [subjects, setSubjects] = useState([
@@ -69,6 +71,7 @@ const CalculatorPage: NextPage = () => {
       setValue('attendanceScore', attendanceScore);
     volunteerScore !== undefined && setValue('volunteerScore', volunteerScore);
     getSubjects !== undefined && setNewSubjects(getSubjects);
+    setIsSubmission(window.localStorage.getItem('isSubmission'));
   }, [
     score2_1,
     score2_2,
@@ -95,19 +98,34 @@ const CalculatorPage: NextPage = () => {
     scoreTotal,
     rankPercentage,
   }: ScoreType) => {
-    await application.postSecondSubmisson({
-      score2_1,
-      score2_2,
-      score3_1,
-      generalCurriculumScoreSubtotal,
-      artSportsScore,
-      attendanceScore,
-      curriculumScoreSubtotal,
-      volunteerScore,
-      nonCurriculumScoreSubtotal,
-      scoreTotal,
-      rankPercentage,
-    });
+    // 이전에 제출한 적이 있으면 patch / 없다면 post
+    isSubmission
+      ? await application.patchSecondSubmisson({
+          score2_1,
+          score2_2,
+          score3_1,
+          generalCurriculumScoreSubtotal,
+          artSportsScore,
+          attendanceScore,
+          curriculumScoreSubtotal,
+          volunteerScore,
+          nonCurriculumScoreSubtotal,
+          scoreTotal,
+          rankPercentage,
+        })
+      : await application.postSecondSubmisson({
+          score2_1,
+          score2_2,
+          score3_1,
+          generalCurriculumScoreSubtotal,
+          artSportsScore,
+          attendanceScore,
+          curriculumScoreSubtotal,
+          volunteerScore,
+          nonCurriculumScoreSubtotal,
+          scoreTotal,
+          rankPercentage,
+        });
   };
 
   // 저장 버튼을 눌렀을 때
@@ -201,6 +219,7 @@ const CalculatorPage: NextPage = () => {
         JSON.stringify(validForm.newSubjects),
       );
       window.localStorage.setItem('nonSubjects', JSON.stringify(nonSubjects));
+      window.localStorage.setItem('isSubmission', 'true');
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 PostData 요청
       if (error.response.status === 401) {
