@@ -44,7 +44,24 @@ export const ButtonBox = styled.div`
   justify-content: space-between;
 `;
 
-export const Button = styled.a`
+export const Button = styled.button`
+  width: 160px;
+  height: 45px;
+  border-radius: 10px;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 20px;
+  color: #0f0921;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+`;
+
+export const ApplicationLink = styled.a`
   width: 160px;
   height: 45px;
   border-radius: 10px;
