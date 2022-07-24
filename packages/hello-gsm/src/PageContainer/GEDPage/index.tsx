@@ -2,7 +2,7 @@ import application from 'Api/application';
 import { Header } from 'components';
 import GEDScoreResultModal from 'components/Modals/GEDScoreResultModal';
 import type { NextPage } from 'next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
 import useStore from 'Stores/StoreContainer';
 import { GEDCalculate } from 'Utils/Calculate';
@@ -14,11 +14,35 @@ interface ScoreType {
 }
 
 const GEDPage: NextPage = () => {
+  const [curriculumScoreSubtotal, setCurriculumScoreSubtotal] = useState<
+    string | undefined | null
+  >();
+  const [nonCurriculumScoreSubtotal, setNonCurriculumScoreSubtotal] = useState<
+    string | undefined | null
+  >();
+
+  useEffect(() => {
+    setCurriculumScoreSubtotal(
+      window.localStorage.getItem('curriculumScoreSubtotal'),
+    );
+    setNonCurriculumScoreSubtotal(
+      window.localStorage.getItem('nonCurriculumScoreSubtotal'),
+    );
+    curriculumScoreSubtotal &&
+      setValue('curriculumScoreSubtotal', parseInt(curriculumScoreSubtotal));
+    nonCurriculumScoreSubtotal &&
+      setValue(
+        'nonCurriculumScoreSubtotal',
+        parseInt(nonCurriculumScoreSubtotal),
+      );
+    setIsSubmission(window.localStorage.getItem('isSubmission'));
+  }, [curriculumScoreSubtotal, nonCurriculumScoreSubtotal]);
+
   const { register, handleSubmit, setValue, watch } = useForm<ScoreType>();
 
   const { showScoreResult, setShowScoreResult } = useStore();
   const [resultNumber, setResultNumber] = useState<number>(); //결과 화면 컴포넌트에 보일 점수
-  const [isSubmission, setIsSubmission] = useState(false);
+  const [isSubmission, setIsSubmission] = useState<string | null>(); // 이전에 제출한 경험 여부 판단
 
   const onValid = async ({
     curriculumScoreSubtotal,
@@ -36,15 +60,22 @@ const GEDPage: NextPage = () => {
       'nonCurriculumScoreSubtotal',
       nonCurriculumScoreSubtotal.toString(),
     );
+    window.localStorage.setItem('isSubmission', 'true');
 
     setResultNumber(rankPercentage);
     setShowScoreResult();
     try {
-      await application.postGedSubmission({
-        curriculumScoreSubtotal,
-        nonCurriculumScoreSubtotal,
-        rankPercentage,
-      });
+      isSubmission
+        ? await application.patchGedSubmission({
+            curriculumScoreSubtotal,
+            nonCurriculumScoreSubtotal,
+            rankPercentage,
+          })
+        : await application.postGedSubmission({
+            curriculumScoreSubtotal,
+            nonCurriculumScoreSubtotal,
+            rankPercentage,
+          });
     } catch (err) {
       console.log(err);
     }
