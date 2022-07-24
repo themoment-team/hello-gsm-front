@@ -168,10 +168,20 @@ const CalculatorPage: NextPage = () => {
     const scoreTotal = Rounds(
       curriculumScoreSubtotal + nonCurriculumScoreSubtotal,
       3,
-    );
+    ); // 총점
+    const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 석채백분율
 
-    const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3);
-    // 총합
+    setLocalstorage('score2_1', value2_1);
+    setLocalstorage('score2_1', value2_2);
+    setLocalstorage('score3_1', value3_1);
+    setLocalstorage('artSportsScore', artSportsValue);
+    setLocalstorage('absentScore', absentValue);
+    setLocalstorage('attendanceScore', attendanceValue);
+    setLocalstorage('volunteerScore', volunteerValue);
+    setLocalstorage('subjects', subjects);
+    setLocalstorage('newSubjects', newSubjects);
+    setLocalstorage('nonSubjects', nonSubjects);
+
     try {
       await TrySubmission({
         score2_1,
@@ -195,16 +205,7 @@ const CalculatorPage: NextPage = () => {
       ]);
       setShowScoreResult();
       // 원서 파일 페이지에서 불러오기 위해 localstorage에 저장
-      setLocalstorage('score2_1', value2_1);
-      setLocalstorage('score2_1', value2_2);
-      setLocalstorage('score3_1', value3_1);
-      setLocalstorage('artSportsScore', artSportsValue);
-      setLocalstorage('absentScore', absentValue);
-      setLocalstorage('attendanceScore', attendanceValue);
-      setLocalstorage('volunteerScore', volunteerValue);
-      setLocalstorage('subjects', subjects);
-      setLocalstorage('newSubjects', newSubjects);
-      setLocalstorage('nonSubjects', nonSubjects);
+
       window.localStorage.setItem('isSubmission', 'true');
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 PostData 요청
@@ -236,6 +237,12 @@ const CalculatorPage: NextPage = () => {
 
   const inValid = (errors: FieldErrors) => {
     console.log(errors);
+  };
+
+  const DeleteNewSubjects = index => {
+    console.log(newSubjects.splice(index, 1));
+    setNewSubjects(newSubjects.splice(index, 1));
+    console.log(watch());
   };
 
   return (
@@ -334,15 +341,22 @@ const CalculatorPage: NextPage = () => {
                   />
                 ))}
                 {newSubjects?.map((newSubject, i) => (
-                  <ScoreSelect
-                    key={i}
-                    register={register(`value3_1.${subjects.length + i}`, {
-                      validate: {
-                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
-                      },
-                    })}
-                    index={subjects.length + i}
-                  />
+                  <span key={i}>
+                    <ScoreSelect
+                      register={register(`value3_1.${subjects.length + i}`, {
+                        validate: {
+                          notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                        },
+                      })}
+                      index={subjects.length + i}
+                    />
+                    <div
+                      style={{ color: 'red' }}
+                      onClick={() => DeleteNewSubjects(i)}
+                    >
+                      삭제
+                    </div>
+                  </span>
                 ))}
               </S.ValueSection>
             </S.CurriculumValue>
