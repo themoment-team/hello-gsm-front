@@ -6,8 +6,7 @@ import useToString from 'Utils/Calculate/ToString';
 import { useEffect } from 'react';
 import dayjs from 'dayjs';
 import ApplicationStatus from 'components/ApplicantsStatus';
-import Image from 'next/image';
-import Print from '../../../public/Images/Print.png';
+import * as I from 'Assets/svg';
 
 const TestApplicationPage: NextPage<TestType> = ({
   data: {
@@ -423,7 +422,7 @@ const TestApplicationPage: NextPage<TestType> = ({
         </S.Document>
       </S.ApplicationPage>
       <S.PrintBtn onClick={TryPrint}>
-        <Image src={Print} width={50} height={50} alt="" />
+        <I.PrintIcon />
         <S.PrintDesc>인쇄하기</S.PrintDesc>
       </S.PrintBtn>
     </>

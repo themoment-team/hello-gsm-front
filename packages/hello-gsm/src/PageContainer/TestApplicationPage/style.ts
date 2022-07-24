@@ -263,30 +263,44 @@ export const ConversionPoint = styled.div`
   line-height: 2.6vh;
 `;
 
-export const PrintBtn = styled.div`
+export const PrintBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 1.8vh 2.5vh;
   position: fixed;
-  width: 170px;
-  height: 55px;
-  right: 100px;
-  bottom: 100px;
-  border-radius: 30px;
-  border: 0.16vh solid #000000;
+  width: 17vh;
+  height: 6.5vh;
+  right: 9vh;
+  bottom: 9vh;
+  border-radius: 0.7vh;
+  box-shadow: 0.3vh 0.3vh 0.5vh rgba(0, 0, 0, 0.21);
   z-index: 7;
   box-sizing: border-box;
   cursor: pointer;
   background-color: #ffffff;
+  border: none;
+
+  svg {
+    width: 2.5vh;
+  }
+  &:hover {
+    transition: 0.5s;
+    background-color: #000000;
+    p {
+      color: #ffffff;
+    }
+    svg > path {
+      fill: #ffffff;
+    }
+  }
 
   @media print {
     display: none;
   }
-  &:hover {
-    transform: scale(1.1);
-    transition: 0.5s;
-  }
 `;
 
-export const PrintDesc = styled.p``;
+export const PrintDesc = styled.p`
+  font-size: 2.1vh;
+  font-weight: bold;
+`;
