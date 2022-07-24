@@ -36,6 +36,9 @@ const getStatus = async (accessToken: string) => {
     console.log(error);
     return {
       props: {},
+      redirect: {
+        destination: '/auth/signin',
+      },
     };
   }
 };
@@ -66,18 +69,18 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
         console.log(error);
         return {
           props: {},
-          // redirect: {
-          //   destination: '/auth/signin',
-          // },
+          redirect: {
+            destination: '/auth/signin',
+          },
         };
       }
     }
   } else {
     return {
       props: {},
-      // redirect: {
-      //   destination: '/auth/signin',
-      // },
+      redirect: {
+        destination: '/auth/signin',
+      },
     };
   }
 };
