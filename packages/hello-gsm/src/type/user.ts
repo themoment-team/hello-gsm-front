@@ -1,6 +1,9 @@
-interface StatusDataType {
+interface StatusDataType extends StatusApplication {
   name: string;
   userImg: string;
+}
+
+export interface StatusApplication {
   application: null | {
     screening: '일반전형' | '사회통합전형' | '특별전형';
     firstResultScreening: '일반전형' | '사회통합전형' | '특별전형';
