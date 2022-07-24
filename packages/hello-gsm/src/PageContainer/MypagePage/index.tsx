@@ -6,7 +6,12 @@ import { css } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
 import { StatusType } from 'type/user';
 import Image from 'next/image';
-import { Header, MypageModal, MypageSuccessModal } from 'components';
+import {
+  Header,
+  MypageModal,
+  MypageSuccessModal,
+  MypageInformation,
+} from 'components';
 
 const MyPage: NextPage<StatusType> = ({
   data: { name, userImg, application },
@@ -44,7 +49,11 @@ const MyPage: NextPage<StatusType> = ({
       {showMypageModal && <MypageModal />}
       {showMypageSuccessModal && <MypageSuccessModal />}
       <Header />
-      <S.Content>
+      <S.Content
+        css={css`
+          ${isPC && saved && !submitted && 'height: 380px'}
+        `}
+      >
         <S.UserBox>
           <Image
             src={userImg}
@@ -121,32 +130,7 @@ const MyPage: NextPage<StatusType> = ({
                     최종제출
                   </S.Button>
                 </S.ButtonBox>
-                <S.Information>
-                  <S.InformationHeader>
-                    <S.InformationHeaderitem>지원번호</S.InformationHeaderitem>
-                    <S.InformationHeaderitem>지원전형</S.InformationHeaderitem>
-                    <S.InformationHeaderitem>1지망</S.InformationHeaderitem>
-                    <S.InformationHeaderitem>2지망</S.InformationHeaderitem>
-                    <S.InformationHeaderitem>3지망</S.InformationHeaderitem>
-                  </S.InformationHeader>
-                  <S.InformationBody>
-                    <S.InformationBodyitem>
-                      {application?.registrationNumber}
-                    </S.InformationBodyitem>
-                    <S.InformationBodyitem>
-                      {application?.screening}
-                    </S.InformationBodyitem>
-                    <S.InformationBodyitem>
-                      {application?.applicationDetails.firstWantedMajor}
-                    </S.InformationBodyitem>
-                    <S.InformationBodyitem>
-                      {application?.applicationDetails.secondWantedMajor}
-                    </S.InformationBodyitem>
-                    <S.InformationBodyitem>
-                      {application?.applicationDetails.thirdWantedMajor}
-                    </S.InformationBodyitem>
-                  </S.InformationBody>
-                </S.Information>
+                <MypageInformation application={application} />
               </>
             )
           ) : (
