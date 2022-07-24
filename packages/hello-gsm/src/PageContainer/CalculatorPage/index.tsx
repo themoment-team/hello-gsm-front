@@ -11,15 +11,17 @@ import application from 'Api/application';
 import auth from 'Api/auth';
 import { ScoreType } from 'type/application';
 import useStore from 'Stores/StoreContainer';
+import setLocalstorage from 'hooks/setLocalstorage';
 
 interface ScoreForm {
-  score2_1: number[];
-  score2_2: number[];
-  score3_1: number[];
-  artSportsScore: number[];
-  volunteerScore: number[];
-  absentScore: number[];
-  attendanceScore: number[];
+  // 과목/점수 배열
+  value2_1: number[];
+  value2_2: number[];
+  value3_1: number[];
+  artSportsValue: number[];
+  volunteerValue: number[];
+  absentValue: number[];
+  attendanceValue: number[];
   newSubjects: string[];
 }
 
@@ -35,6 +37,7 @@ const CalculatorPage: NextPage = () => {
   const { showScoreResult, setShowScoreResult } = useStore();
   const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
 
+  // 로컬스토리지 값 가져오기
   const score2_1 = useLocalstorage('score2_1');
   const score2_2 = useLocalstorage('score2_2');
   const score3_1 = useLocalstorage('score3_1');
@@ -43,7 +46,9 @@ const CalculatorPage: NextPage = () => {
   const attendanceScore = useLocalstorage('attendanceScore');
   const volunteerScore = useLocalstorage('volunteerScore');
   const getSubjects = useLocalstorage('newSubjects');
-  const [isSubmission, setIsSubmission] = useState<string | null>(); // 이전에 제출한 경험 여부 판단
+
+  // 이전에 제출한 경험 여부 판단
+  const [isSubmission, setIsSubmission] = useState<string | null>();
 
   const lines = ['일반교과', '예체능 교과', '비교과'];
   const [subjects, setSubjects] = useState([
@@ -62,15 +67,14 @@ const CalculatorPage: NextPage = () => {
 
   // 로컬스토리지 값이 있을 때 초기 값 설정
   useEffect(() => {
-    score2_1 !== undefined && setValue('score2_1', score2_1);
-    score2_2 !== undefined && setValue('score2_2', score2_2);
-    score3_1 !== undefined && setValue('score3_1', score3_1);
-    artSportsScore !== undefined && setValue('artSportsScore', artSportsScore);
-    absentScore !== undefined && setValue('absentScore', absentScore);
-    attendanceScore !== undefined &&
-      setValue('attendanceScore', attendanceScore);
-    volunteerScore !== undefined && setValue('volunteerScore', volunteerScore);
-    getSubjects !== undefined && setNewSubjects(getSubjects);
+    score2_1 && setValue('value2_1', score2_1);
+    score2_2 && setValue('value2_2', score2_2);
+    score3_1 && setValue('value3_1', score3_1);
+    artSportsScore && setValue('artSportsValue', artSportsScore);
+    absentScore && setValue('absentValue', absentScore);
+    attendanceScore && setValue('attendanceValue', attendanceScore);
+    volunteerScore && setValue('volunteerValue', volunteerScore);
+    getSubjects && setNewSubjects(getSubjects);
     setIsSubmission(window.localStorage.getItem('isSubmission'));
   }, [
     score2_1,
@@ -85,7 +89,7 @@ const CalculatorPage: NextPage = () => {
   ]);
 
   // api 요청 보내기
-  const PostData = async ({
+  const TrySubmission = async ({
     score2_1,
     score2_2,
     score3_1,
@@ -129,26 +133,32 @@ const CalculatorPage: NextPage = () => {
   };
 
   // 저장 버튼을 눌렀을 때
-  const onValid = async (validForm: ScoreForm) => {
-    const score2_1: number = Calculate(validForm.score2_1, 2); // 2학년 1학기
-    const score2_2: number = Calculate(validForm.score2_2, 2); // 2학년 2학기
-    const score3_1: number = Calculate(validForm.score3_1, 3); // 3학년 1학기
+  const onValid = async ({
+    value2_1,
+    value2_2,
+    value3_1,
+    artSportsValue,
+    volunteerValue,
+    absentValue,
+    attendanceValue,
+    newSubjects,
+  }: ScoreForm) => {
+    const score2_1: number = Calculate(value2_1, 2); // 2학년 1학기
+    const score2_2: number = Calculate(value2_2, 2); // 2학년 2학기
+    const score3_1: number = Calculate(value3_1, 3); // 3학년 1학기
     const generalCurriculumScoreSubtotal: number =
       score2_1 + score2_2 + score3_1;
     // 교과성적 소계
 
-    const artSportsScore: number = Calculate(validForm.artSportsScore, 4); // 예체능
+    const artSportsScore: number = Calculate(artSportsValue, 4); // 예체능
     const curriculumScoreSubtotal: number = Rounds(
       generalCurriculumScoreSubtotal + artSportsScore,
       4,
     );
     // 교과성적 + 예체능
 
-    const attendanceScore: number = Attendance(
-      validForm.absentScore,
-      validForm.attendanceScore,
-    ); // 출석점수
-    const volunteerScore: number = Volunteer(validForm.volunteerScore); // 봉사점수
+    const attendanceScore: number = Attendance(absentValue, attendanceValue); // 출석점수
+    const volunteerScore: number = Volunteer(volunteerValue); // 봉사점수
     const nonCurriculumScoreSubtotal: number = Rounds(
       attendanceScore + volunteerScore,
       4,
@@ -163,7 +173,7 @@ const CalculatorPage: NextPage = () => {
     const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3);
     // 총합
     try {
-      await PostData({
+      await TrySubmission({
         score2_1,
         score2_2,
         score3_1,
@@ -185,40 +195,16 @@ const CalculatorPage: NextPage = () => {
       ]);
       setShowScoreResult();
       // 원서 파일 페이지에서 불러오기 위해 localstorage에 저장
-      window.localStorage.setItem(
-        'score2_1',
-        JSON.stringify(validForm.score2_1),
-      );
-      window.localStorage.setItem(
-        'score2_2',
-        JSON.stringify(validForm.score2_2),
-      );
-      window.localStorage.setItem(
-        'score3_1',
-        JSON.stringify(validForm.score3_1),
-      );
-      window.localStorage.setItem(
-        'artSportsScore',
-        JSON.stringify(validForm.artSportsScore),
-      );
-      window.localStorage.setItem(
-        'absentScore',
-        JSON.stringify(validForm.absentScore),
-      );
-      window.localStorage.setItem(
-        'attendanceScore',
-        JSON.stringify(validForm.attendanceScore),
-      );
-      window.localStorage.setItem(
-        'volunteerScore',
-        JSON.stringify(validForm.volunteerScore),
-      );
-      window.localStorage.setItem('subjects', JSON.stringify(subjects));
-      window.localStorage.setItem(
-        'newSubjects',
-        JSON.stringify(validForm.newSubjects),
-      );
-      window.localStorage.setItem('nonSubjects', JSON.stringify(nonSubjects));
+      setLocalstorage('score2_1', value2_1);
+      setLocalstorage('score2_1', value2_2);
+      setLocalstorage('score3_1', value3_1);
+      setLocalstorage('artSportsScore', artSportsValue);
+      setLocalstorage('absentScore', absentValue);
+      setLocalstorage('attendanceScore', attendanceValue);
+      setLocalstorage('volunteerScore', volunteerValue);
+      setLocalstorage('subjects', subjects);
+      setLocalstorage('newSubjects', newSubjects);
+      setLocalstorage('nonSubjects', nonSubjects);
       window.localStorage.setItem('isSubmission', 'true');
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 PostData 요청
@@ -226,7 +212,7 @@ const CalculatorPage: NextPage = () => {
         try {
           // accessToken 발급
           await auth.refresh();
-          await PostData({
+          await TrySubmission({
             score2_1,
             score2_2,
             score3_1,
@@ -284,19 +270,19 @@ const CalculatorPage: NextPage = () => {
                 {subjects.map((subject, i) => (
                   <ScoreSelect
                     key={subject}
-                    register={register(`score2_1.${i}`, {
+                    register={register(`value2_1.${i}`, {
                       validate: {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
-                    scoreArray={watch('score2_1')}
+                    scoreArray={watch('value2_1')}
                   />
                 ))}
                 {newSubjects?.map((newSubject, i) => (
                   <ScoreSelect
                     key={i}
-                    register={register(`score2_1.${subjects.length + i}`, {
+                    register={register(`value2_1.${subjects.length + i}`, {
                       validate: {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
@@ -311,19 +297,19 @@ const CalculatorPage: NextPage = () => {
                 {subjects.map((subject, i) => (
                   <ScoreSelect
                     key={subject}
-                    register={register(`score2_2.${i}`, {
+                    register={register(`value2_2.${i}`, {
                       validate: {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
-                    scoreArray={watch('score2_2')}
+                    scoreArray={watch('value2_2')}
                   />
                 ))}
                 {newSubjects?.map((newSubject, i) => (
                   <ScoreSelect
                     key={i}
-                    register={register(`score2_2.${subjects.length + i}`, {
+                    register={register(`value2_2.${subjects.length + i}`, {
                       validate: {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
@@ -338,19 +324,19 @@ const CalculatorPage: NextPage = () => {
                 {subjects.map((subject, i) => (
                   <ScoreSelect
                     key={subject}
-                    register={register(`score3_1.${i}`, {
+                    register={register(`value3_1.${i}`, {
                       validate: {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
-                    scoreArray={watch('score3_1')}
+                    scoreArray={watch('value3_1')}
                   />
                 ))}
                 {newSubjects?.map((newSubject, i) => (
                   <ScoreSelect
                     key={i}
-                    register={register(`score3_1.${subjects.length + i}`, {
+                    register={register(`value3_1.${subjects.length + i}`, {
                       validate: {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
@@ -380,7 +366,7 @@ const CalculatorPage: NextPage = () => {
               {nonSubjects.map((subject, i) => (
                 <ScoreSelect
                   key={subject}
-                  register={register(`artSportsScore.${i}`, {
+                  register={register(`artSportsValue.${i}`, {
                     validate: {
                       notNaN: value => !isNaN(value),
                     },
@@ -396,7 +382,7 @@ const CalculatorPage: NextPage = () => {
               {nonSubjects.map((subject, i) => (
                 <ScoreSelect
                   key={subject}
-                  register={register(`artSportsScore.${3 + i}`, {
+                  register={register(`artSportsValue.${3 + i}`, {
                     validate: {
                       notNaN: value => !isNaN(value),
                     },
@@ -412,7 +398,7 @@ const CalculatorPage: NextPage = () => {
               {nonSubjects.map((subject, i) => (
                 <ScoreSelect
                   key={subject}
-                  register={register(`artSportsScore.${6 + i}`, {
+                  register={register(`artSportsValue.${6 + i}`, {
                     validate: {
                       notNaN: value => !isNaN(value),
                     },
@@ -452,7 +438,7 @@ const CalculatorPage: NextPage = () => {
                   {grades.map((grade, i) => (
                     <S.AttendanceInput
                       key={grade}
-                      {...register(`absentScore.${i}`, {
+                      {...register(`absentValue.${i}`, {
                         required: true,
                       })}
                       placeholder="입력"
@@ -465,7 +451,7 @@ const CalculatorPage: NextPage = () => {
                   {grades.map((grade, i) => (
                     <S.AttendanceInput
                       key={grade}
-                      {...register(`attendanceScore.${i}`, {
+                      {...register(`attendanceValue.${i}`, {
                         required: true,
                       })}
                       placeholder="입력"
@@ -478,7 +464,7 @@ const CalculatorPage: NextPage = () => {
                   {grades.map((grade, i) => (
                     <S.AttendanceInput
                       key={grade}
-                      {...register(`attendanceScore.${3 + i}`, {
+                      {...register(`attendanceValue.${3 + i}`, {
                         required: true,
                       })}
                       placeholder="입력"
@@ -493,7 +479,7 @@ const CalculatorPage: NextPage = () => {
                   {grades.map((grade, i) => (
                     <S.AttendanceInput
                       key={grade}
-                      {...register(`attendanceScore.${6 + i}`, {
+                      {...register(`attendanceValue.${6 + i}`, {
                         required: true,
                       })}
                       placeholder="입력"
@@ -507,7 +493,7 @@ const CalculatorPage: NextPage = () => {
                   {grades.map((grade, i) => (
                     <S.AttendanceInput
                       key={grade}
-                      {...register(`volunteerScore.${i}`, {
+                      {...register(`volunteerValue.${i}`, {
                         required: true,
                       })}
                       placeholder="입력"
