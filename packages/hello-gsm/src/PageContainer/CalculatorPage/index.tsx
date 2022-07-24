@@ -172,7 +172,7 @@ const CalculatorPage: NextPage = () => {
     const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 석채백분율
 
     setLocalstorage('score2_1', value2_1);
-    setLocalstorage('score2_1', value2_2);
+    setLocalstorage('score2_2', value2_2);
     setLocalstorage('score3_1', value3_1);
     setLocalstorage('artSportsScore', artSportsValue);
     setLocalstorage('absentScore', absentValue);

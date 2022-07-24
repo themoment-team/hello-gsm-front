@@ -2,8 +2,7 @@ import React from 'react';
 import { TestType } from 'type/application';
 import * as S from './style';
 
-const ApplicationStatus: React.FC<TestType> = ({ data }) => {
-  const { application } = data;
+const ApplicationStatus: React.FC<TestType> = ({ data: { application } }) => {
   const application_score = application?.application_score;
   const application_details = application?.application_details;
   return (
@@ -18,8 +17,8 @@ const ApplicationStatus: React.FC<TestType> = ({ data }) => {
           <S.Subject colSpan={2} rowSpan={2}>
             출신중학교
           </S.Subject>
-          {data.application?.schoolName ? (
-            <td colSpan={2}>{data.application?.schoolName}</td>
+          {application?.schoolName ? (
+            <td colSpan={2}>{application?.schoolName}</td>
           ) : (
             <S.Slash colSpan={2} />
           )}
@@ -27,7 +26,7 @@ const ApplicationStatus: React.FC<TestType> = ({ data }) => {
         </tr>
         <tr>
           <S.Subject>지역명</S.Subject>
-          {data.application?.schoolName ? (
+          {application?.schoolName ? (
             <td colSpan={7}>{application_details?.schoolLocation}</td>
           ) : (
             <S.Slash colSpan={7} />
@@ -37,7 +36,7 @@ const ApplicationStatus: React.FC<TestType> = ({ data }) => {
           <S.Subject colSpan={9}>전 형 구 분</S.Subject>
         </tr>
         <tr>
-          <td colSpan={9}>{data?.application?.screening}</td>
+          <td colSpan={9}>{application?.screening}</td>
         </tr>
         <tr>
           <S.Subject rowSpan={2} style={{ width: '10%' }}>
