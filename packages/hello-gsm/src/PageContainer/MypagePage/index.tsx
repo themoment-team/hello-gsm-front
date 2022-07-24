@@ -56,22 +56,25 @@ const MyPage: NextPage<StatusType> = ({
           <S.Name>{name}</S.Name>
         </S.UserBox>
         {isPC ? (
-          // remove !
-          !saved ? (
+          saved ? (
             submitted ? (
               <S.ButtonBox
                 css={css`
                   width: 335px;
                 `}
               >
-                <S.Button
-                  css={css`
-                    background: #59c5ff;
-                    box-shadow: 0px 13px 30px -10px #59c5ff;
-                  `}
-                >
-                  원서 다운
-                </S.Button>
+                <Link href="/application" passHref>
+                  <S.ApplicationLink
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    css={css`
+                      background: #59c5ff;
+                      box-shadow: 0px 13px 30px -10px #59c5ff;
+                    `}
+                  >
+                    원서 다운
+                  </S.ApplicationLink>
+                </Link>
                 <S.Button
                   onClick={() => showModal('download')}
                   css={css`
@@ -126,23 +129,23 @@ const MyPage: NextPage<StatusType> = ({
                     <S.InformationHeaderitem>2지망</S.InformationHeaderitem>
                     <S.InformationHeaderitem>3지망</S.InformationHeaderitem>
                   </S.InformationHeader>
-                  {/* <S.InformationBody>
+                  <S.InformationBody>
                     <S.InformationBodyitem>
-                      {data.application?.registrationNumber}
+                      {application?.registrationNumber}
                     </S.InformationBodyitem>
                     <S.InformationBodyitem>
-                      {data.application?.screening}
+                      {application?.screening}
                     </S.InformationBodyitem>
                     <S.InformationBodyitem>
-                      {data.application?.applicationDetails.firstWantedMajor}
+                      {application?.applicationDetails.firstWantedMajor}
                     </S.InformationBodyitem>
                     <S.InformationBodyitem>
-                      {data.application?.applicationDetails.secondWantedMajor}
+                      {application?.applicationDetails.secondWantedMajor}
                     </S.InformationBodyitem>
                     <S.InformationBodyitem>
-                      {data.application?.applicationDetails.thirdWantedMajor}
+                      {application?.applicationDetails.thirdWantedMajor}
                     </S.InformationBodyitem>
-                  </S.InformationBody> */}
+                  </S.InformationBody>
                 </S.Information>
               </>
             )
