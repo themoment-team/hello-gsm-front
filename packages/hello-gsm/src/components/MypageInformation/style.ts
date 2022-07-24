@@ -15,6 +15,7 @@ export const InformationHeader = styled.div`
 `;
 
 export const InformationHeaderitem = styled.div`
+  width: 190px;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -27,15 +28,6 @@ export const InformationHeaderitem = styled.div`
   :nth-of-type(2) {
     width: 130px;
   }
-  :nth-of-type(3) {
-    width: 190px;
-  }
-  :nth-of-type(4) {
-    width: 190px;
-  }
-  :nth-of-type(5) {
-    width: 190px;
-  }
 `;
 
 export const InformationBody = styled.div`
@@ -45,6 +37,7 @@ export const InformationBody = styled.div`
 `;
 
 export const InformationBodyitem = styled.div`
+  width: 190px;
   height: 100%;
   background-color: #ffffff;
   border-radius: 10px;
@@ -60,14 +53,5 @@ export const InformationBodyitem = styled.div`
   }
   :nth-of-type(2) {
     width: 130px;
-  }
-  :nth-of-type(3) {
-    width: 190px;
-  }
-  :nth-of-type(4) {
-    width: 190px;
-  }
-  :nth-of-type(5) {
-    width: 190px;
   }
 `;
