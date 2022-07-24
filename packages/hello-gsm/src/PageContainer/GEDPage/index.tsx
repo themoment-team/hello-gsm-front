@@ -1,6 +1,7 @@
 import application from 'Api/application';
 import { Header } from 'components';
 import GEDScoreResultModal from 'components/Modals/GEDScoreResultModal';
+import useGEDLocalStorage from 'hooks/useGEDLocalstorage';
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
@@ -14,31 +15,21 @@ interface ScoreType {
 }
 
 const GEDPage: NextPage = () => {
-  const [curriculumScoreSubtotal, setCurriculumScoreSubtotal] = useState<
-    string | undefined | null
-  >();
-  const [nonCurriculumScoreSubtotal, setNonCurriculumScoreSubtotal] = useState<
-    string | undefined | null
-  >();
+  const curriculumScoreSubtotal = useGEDLocalStorage('curriculumScoreSubtotal');
+  const nonCurriculumScoreSubtotal = useGEDLocalStorage(
+    'nonCurriculumScoreSubtotal',
+  );
 
   useEffect(() => {
-    setCurriculumScoreSubtotal(
-      window.localStorage.getItem('curriculumScoreSubtotal'),
-    );
-    setNonCurriculumScoreSubtotal(
-      window.localStorage.getItem('nonCurriculumScoreSubtotal'),
-    );
     curriculumScoreSubtotal &&
-      setValue('curriculumScoreSubtotal', parseInt(curriculumScoreSubtotal));
+      setValue('curriculumScoreSubtotal', curriculumScoreSubtotal);
     nonCurriculumScoreSubtotal &&
-      setValue(
-        'nonCurriculumScoreSubtotal',
-        parseInt(nonCurriculumScoreSubtotal),
-      );
+      setValue('nonCurriculumScoreSubtotal', nonCurriculumScoreSubtotal);
+
     setIsSubmission(window.localStorage.getItem('isSubmission'));
   }, [curriculumScoreSubtotal, nonCurriculumScoreSubtotal]);
 
-  const { register, handleSubmit, setValue, watch } = useForm<ScoreType>();
+  const { register, handleSubmit, setValue } = useForm<ScoreType>();
 
   const { showScoreResult, setShowScoreResult } = useStore();
   const [resultNumber, setResultNumber] = useState<number>(); //결과 화면 컴포넌트에 보일 점수
