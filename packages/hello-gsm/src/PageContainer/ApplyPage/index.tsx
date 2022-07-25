@@ -25,8 +25,6 @@ import { toast } from 'react-toastify';
 const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const imgInput = useRef<HTMLInputElement>(null);
   const [imgURL, setImgURL] = useState<string>('');
-  const [name, setName] = useState<string>('');
-  const [gender, setGender] = useState<'남자' | '여자'>();
   const [birthYear, setBirthYear] = useState<number>();
   const [birthMonth, setBirthMonth] = useState<number>();
   const [birthDate, setBirthDate] = useState<number>();
@@ -97,8 +95,6 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     } else {
       setIsEdit(false);
     }
-    setName(data.name);
-    setGender(data.gender);
     setBirthYear(userBirth.getFullYear());
     setBirthMonth(userBirth.getMonth() + 1);
     setBirthDate(userBirth.getDate());
@@ -243,18 +239,18 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             ref={imgInput}
             onChange={e => readImg(e)}
           />
-          <S.NameBox>{name}</S.NameBox>
+          <S.NameBox>{data.name}</S.NameBox>
           <S.GenderBox>
             <S.GenderSelect
               css={css`
-                background: ${gender === '남자' && '#42bafe'};
+                background: ${data.gender === '남자' && '#42bafe'};
               `}
             >
               남자
             </S.GenderSelect>
             <S.GenderSelect
               css={css`
-                background: ${gender === '여자' && '#42bafe'};
+                background: ${data.gender === '여자' && '#42bafe'};
               `}
             >
               여자
