@@ -42,7 +42,6 @@ export const MemberBox = styled.div`
   width: 150px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   @media ${device.laptop} {
     width: 130px;
   }
