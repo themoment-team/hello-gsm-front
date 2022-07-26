@@ -31,9 +31,6 @@ const getApplication = async (accessToken: string) => {
   } catch (error) {
     return {
       props: {},
-      redirect: {
-        destination: '/auth/signin',
-      },
     };
   }
 };
