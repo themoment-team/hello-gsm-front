@@ -3,7 +3,6 @@ export { default as Header } from './Common/Header';
 export { default as Footer } from './Common/Footer';
 export { default as SEOHelmet } from './Common/SEOHelmet';
 export { default as FAQBox } from './FAQBox';
-export { default as Input } from './Input';
 export { default as MainPageDescription } from './MainPageDescription';
 export { default as DepartmentModal } from './Modals/DepartmentModal';
 export { default as FAQModal } from './Modals/FAQModal';

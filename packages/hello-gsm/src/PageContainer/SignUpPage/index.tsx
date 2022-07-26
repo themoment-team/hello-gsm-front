@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import * as S from './style';
 import { FieldErrors, useForm } from 'react-hook-form';
-import { Select, Header, Input, SignInResultModal } from 'components';
+import { Header, SignInResultModal } from 'components';
 import { css } from '@emotion/react';
 import dayjs from 'dayjs';
 import auth from 'Api/auth';
@@ -111,11 +111,10 @@ const SignUpPage: NextPage = () => {
               {errors.gender?.message}
             </S.ErrorMessage>
           </S.LadioSection>
-          <Input
+          <S.Input
             placeholder="성명을 입력해주세요."
             type="text"
-            bigWidth
-            register={register('name', {
+            {...register('name', {
               required: '* 성명을 입력해주세요.',
             })}
           />
@@ -148,11 +147,10 @@ const SignUpPage: NextPage = () => {
             </S.Select>
           </S.SelectSection>
 
-          <Input
+          <S.Input
             type="text"
             placeholder="핸드폰 번호를 입력해주세요. ( - ) 제외"
-            bigWidth
-            register={register('cellphoneNumber', {
+            {...register('cellphoneNumber', {
               required: '* 핸드폰 번호를 입력해주세요.',
               validate: {
                 notHypen: value =>
