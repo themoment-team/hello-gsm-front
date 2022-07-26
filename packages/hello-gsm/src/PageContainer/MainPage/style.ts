@@ -153,7 +153,7 @@ export const ContentBox = styled.div`
   width: 80%;
   height: 800px;
   background: rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(48px);
+  /* backdrop-filter: blur(48px); */
   margin: 0 auto;
   border-radius: 24px;
   position: relative;
