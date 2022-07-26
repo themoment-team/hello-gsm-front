@@ -239,7 +239,7 @@ const CalculatorPage: NextPage = () => {
     console.log(errors);
   };
 
-  const DeleteNewSubjects = index => {
+  const DeleteNewSubjects = (index: number) => {
     console.log(newSubjects.splice(index, 1));
     setNewSubjects(newSubjects.splice(index, 1));
     console.log(watch());
