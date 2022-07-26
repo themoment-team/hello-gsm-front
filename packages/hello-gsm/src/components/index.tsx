@@ -13,5 +13,4 @@ export { default as MypageModal } from './Modals/MypageModal';
 export { default as MypageSuccessModal } from './Modals/MypageSuccessModal';
 export { default as SignInResultModal } from './Modals/SignInResultModal';
 export { default as MypageInformation } from './MypageInformation';
-export { default as Select } from './Select';
 export { default as SideBar } from './SideBar';

@@ -123,29 +123,29 @@ const SignUpPage: NextPage = () => {
             {errors.name?.message}
           </S.ErrorMessage>
           <S.SelectSection>
-            <Select register={register('year')}>
+            <S.Select {...register('year')}>
               {[...Array(10)].map((_, i) => (
                 <option value={`200${i}`} key={i}>
                   200{i}년
                 </option>
               ))}
-            </Select>
+            </S.Select>
 
-            <Select register={register('month')}>
+            <S.Select {...register('month')}>
               {[...Array(12)].map((_, i) => (
                 <option value={`${i}`} key={i}>
                   {i + 1}월
                 </option>
               ))}
-            </Select>
+            </S.Select>
 
-            <Select register={register('day')}>
+            <S.Select {...register('day')}>
               {[...Array(31)].map((_, i) => (
                 <option key={i} value={`${i + 1}`}>
                   {i + 1}일
                 </option>
               ))}
-            </Select>
+            </S.Select>
           </S.SelectSection>
 
           <Input
