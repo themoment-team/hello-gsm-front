@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
+import device from 'shared/config';
 
 export const SignUpPage = styled.div`
   margin: 0 auto;
@@ -13,7 +14,7 @@ export const LineList = styled.div`
   position: absolute;
   padding-right: 30px;
   border-right: 3px solid rgba(255, 255, 255, 0.17);
-  left: -240px;
+  left: -40%;
   height: 800px;
   margin-top: 80px;
   padding-top: 40px;
@@ -58,6 +59,12 @@ export const SignUpForm = styled.form`
   input,
   select {
     margin-bottom: 20px;
+  }
+  @media ${device.laptop} {
+    width: 600px;
+  }
+  @media ${device.mobile} {
+    width: 400px;
   }
 `;
 
@@ -124,15 +131,34 @@ export const LadioSection = styled.div`
   margin-bottom: 75px;
 `;
 
+export const Input = styled.input`
+  width: 100%;
+  height: 55px;
+  background-color: #484453;
+  border-radius: 6px;
+  box-sizing: border-box;
+  padding: 0 32px;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  ::placeholder {
+    color: rgba(255, 255, 255, 0.43);
+  }
+  :focus {
+    outline: none;
+  }
+`;
+
 export const RadioLabel = styled.label`
   display: inline-block;
   text-align: center;
+  width: 45%;
   input {
     display: none;
   }
   div {
     cursor: pointer;
-    width: 380px;
+    width: 100%;
     height: 61px;
     background-color: #484453;
     color: rgba(255, 255, 255, 0.45);
@@ -152,7 +178,7 @@ export const SelectSection = styled.div`
 `;
 
 export const Select = styled.select`
-  width: 255px;
+  width: 30%;
   height: 55px;
   background-color: #484453;
   border-radius: 6px;
