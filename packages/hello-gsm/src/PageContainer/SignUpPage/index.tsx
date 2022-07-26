@@ -41,6 +41,7 @@ const SignUpPage: NextPage = () => {
      * dayjs 라이브러리를 사용하여 YYYY-MM-DD 형식에 맞게 포맷
      * 월은 0부터 시작
      */
+
     const birth = dayjs()
       .set('year', Number(year))
       .set('month', Number(month))
@@ -121,8 +122,16 @@ const SignUpPage: NextPage = () => {
           <S.ErrorMessage css={errors.name && SelectError(255)}>
             {errors.name?.message}
           </S.ErrorMessage>
+
           <S.SelectSection>
-            <S.Select {...register('year')}>
+            <S.Select
+              {...register('year', {
+                validate: {
+                  notZero: value => value !== '0',
+                },
+              })}
+            >
+              <option value={'0'}>년</option>
               {[...Array(10)].map((_, i) => (
                 <option value={`200${i}`} key={i}>
                   200{i}년
@@ -130,7 +139,14 @@ const SignUpPage: NextPage = () => {
               ))}
             </S.Select>
 
-            <S.Select {...register('month')}>
+            <S.Select
+              {...register('month', {
+                validate: {
+                  notZero: value => value !== '0',
+                },
+              })}
+            >
+              <option value={'0'}>월</option>
               {[...Array(12)].map((_, i) => (
                 <option value={`${i}`} key={i}>
                   {i + 1}월
@@ -138,7 +154,14 @@ const SignUpPage: NextPage = () => {
               ))}
             </S.Select>
 
-            <S.Select {...register('day')}>
+            <S.Select
+              {...register('day', {
+                validate: {
+                  notZero: value => value !== '0',
+                },
+              })}
+            >
+              <option value={'0'}>일</option>
               {[...Array(31)].map((_, i) => (
                 <option key={i} value={`${i + 1}`}>
                   {i + 1}일
@@ -146,6 +169,15 @@ const SignUpPage: NextPage = () => {
               ))}
             </S.Select>
           </S.SelectSection>
+          <S.ErrorMessage
+            css={
+              (errors?.year || errors?.day || errors?.month) && SelectError(330)
+            }
+          >
+            {errors?.year || errors?.day || errors?.month
+              ? '* 생년월일을 선택해주세요.'
+              : ''}
+          </S.ErrorMessage>
 
           <S.Input
             type="text"
@@ -177,7 +209,13 @@ const SignUpPage: NextPage = () => {
           <S.LineList>
             <S.Line css={errors.gender && SelectError()}>성별</S.Line>
             <S.Line css={errors.name && SelectError()}>성명</S.Line>
-            <S.Line>생년월일</S.Line>
+            <S.Line
+              css={
+                (errors?.year || errors?.day || errors?.month) && SelectError()
+              }
+            >
+              생년월일
+            </S.Line>
             <S.Line css={errors.cellphoneNumber && SelectError()}>
               핸드폰 번호
             </S.Line>
