@@ -22,7 +22,7 @@ interface ScoreForm {
   volunteerValue: number[];
   absentValue: number[];
   attendanceValue: number[];
-  newSubjects: string[];
+  newSubjects: string[]; // 나중에 타입 고치기
 }
 
 const CalculatorPage: NextPage = () => {
@@ -63,7 +63,6 @@ const CalculatorPage: NextPage = () => {
   ]);
   const [nonSubjects, setNonSubjects] = useState(['체육', '미술', '음악']);
   const [grades, setGrades] = useState([1, 2, 3]);
-  const [newSubjects, setNewSubjects] = useState<Array<string | number>>([]);
 
   // 로컬스토리지 값이 있을 때 초기 값 설정
   useEffect(() => {
@@ -74,7 +73,9 @@ const CalculatorPage: NextPage = () => {
     absentScore && setValue('absentValue', absentScore);
     attendanceScore && setValue('attendanceValue', attendanceScore);
     volunteerScore && setValue('volunteerValue', volunteerScore);
-    getSubjects && setNewSubjects(getSubjects);
+    // getSubjects && setNewSubjects(getSubjects);
+    getSubjects && setValue('newSubjects', getSubjects);
+
     setIsSubmission(window.localStorage.getItem('isSubmission'));
   }, [
     score2_1,
@@ -146,9 +147,12 @@ const CalculatorPage: NextPage = () => {
     const score2_1: number = Calculate(value2_1, 2); // 2학년 1학기
     const score2_2: number = Calculate(value2_2, 2); // 2학년 2학기
     const score3_1: number = Calculate(value3_1, 3); // 3학년 1학기
-    const generalCurriculumScoreSubtotal: number =
-      score2_1 + score2_2 + score3_1;
+    const generalCurriculumScoreSubtotal: number = Rounds(
+      score2_1 + score2_2 + score3_1,
+      3,
+    );
     // 교과성적 소계
+    console.log(generalCurriculumScoreSubtotal);
 
     const artSportsScore: number = Calculate(artSportsValue, 4); // 예체능
     const curriculumScoreSubtotal: number = Rounds(
@@ -181,6 +185,13 @@ const CalculatorPage: NextPage = () => {
     setLocalstorage('subjects', subjects);
     setLocalstorage('newSubjects', newSubjects);
     setLocalstorage('nonSubjects', nonSubjects);
+    setResultArray([
+      generalCurriculumScoreSubtotal,
+      artSportsScore,
+      nonCurriculumScoreSubtotal,
+      scoreTotal,
+    ]);
+    setShowScoreResult();
 
     try {
       await TrySubmission({
@@ -197,13 +208,6 @@ const CalculatorPage: NextPage = () => {
         rankPercentage,
       });
       // 결과 모달 제어
-      setResultArray([
-        generalCurriculumScoreSubtotal,
-        artSportsScore,
-        nonCurriculumScoreSubtotal,
-        scoreTotal,
-      ]);
-      setShowScoreResult();
       // 원서 파일 페이지에서 불러오기 위해 localstorage에 저장
 
       window.localStorage.setItem('isSubmission', 'true');
@@ -234,15 +238,36 @@ const CalculatorPage: NextPage = () => {
       // }
     }
   };
-
+  // console.log(watch('newSubjects'));
   const inValid = (errors: FieldErrors) => {
     console.log(errors);
   };
 
+  console.log(watch('value2_1'));
   const DeleteNewSubjects = (index: number) => {
-    console.log(newSubjects.splice(index, 1));
-    setNewSubjects(newSubjects.filter(arr => newSubjects.splice(index, 1)));
-    console.log(watch());
+    const newSubjects = watch('newSubjects');
+
+    const value2_1 = watch('value2_1');
+    const value2_2 = watch('value2_2');
+    const value3_1 = watch('value3_1');
+    console.log(value2_1.length, index);
+    setValue(
+      'newSubjects',
+      newSubjects?.filter((arr, i) => index !== i),
+    );
+    setValue(
+      'value2_1',
+      value2_1?.filter((arr, i) => value2_1.length - index !== i),
+    );
+    setValue(
+      'value2_2',
+      value2_2?.filter((arr, i) => value2_2.length - index !== i),
+    );
+    setValue(
+      'value3_1',
+      value3_1?.filter((arr, i) => value3_1.length - index !== i),
+    );
+    // console.log(watch());
   };
 
   return (
@@ -260,7 +285,7 @@ const CalculatorPage: NextPage = () => {
                   <S.Subject key={subject}>{subject}</S.Subject>
                 ))}
 
-                {newSubjects?.map((newSubject, i) => (
+                {watch('newSubjects')?.map((newSubject, i) => (
                   <S.SubjectInput
                     {...register(`newSubjects.${i}`, {
                       required: true,
@@ -286,7 +311,7 @@ const CalculatorPage: NextPage = () => {
                     scoreArray={watch('value2_1')}
                   />
                 ))}
-                {newSubjects?.map((newSubject, i) => (
+                {watch('newSubjects')?.map((newSubject, i) => (
                   <ScoreSelect
                     key={i}
                     register={register(`value2_1.${subjects.length + i}`, {
@@ -313,7 +338,7 @@ const CalculatorPage: NextPage = () => {
                     scoreArray={watch('value2_2')}
                   />
                 ))}
-                {newSubjects?.map((newSubject, i) => (
+                {watch('newSubjects')?.map((newSubject, i) => (
                   <ScoreSelect
                     key={i}
                     register={register(`value2_2.${subjects.length + i}`, {
@@ -340,7 +365,7 @@ const CalculatorPage: NextPage = () => {
                     scoreArray={watch('value3_1')}
                   />
                 ))}
-                {newSubjects?.map((newSubject, i) => (
+                {watch('newSubjects')?.map((newSubject, i) => (
                   <span key={i}>
                     <ScoreSelect
                       register={register(`value3_1.${subjects.length + i}`, {
@@ -362,7 +387,16 @@ const CalculatorPage: NextPage = () => {
             </S.CurriculumValue>
 
             {/* 과목추가 버튼 클릭 시 newSubjects 배열에 빈 문자열 추가 */}
-            <S.Plus onClick={() => setNewSubjects([...newSubjects, ''])}>
+            <S.Plus
+              onClick={() =>
+                setValue(
+                  'newSubjects',
+                  watch('newSubjects')?.length > 0
+                    ? [...watch('newSubjects'), '']
+                    : [''],
+                )
+              }
+            >
               +과목추가
             </S.Plus>
           </S.CurriculumSection>
