@@ -74,7 +74,7 @@ export const SubjectInput = styled.input`
   line-height: 37px;
   text-align: center;
   border: none;
-  margin-top: 20px;
+  margin-top: 15px;
 `;
 
 export const Semester = styled.div`
