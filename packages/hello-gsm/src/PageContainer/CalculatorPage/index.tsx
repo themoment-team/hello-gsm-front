@@ -209,29 +209,29 @@ const CalculatorPage: NextPage = () => {
       window.localStorage.setItem('isSubmission', 'true');
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 PostData 요청
-      if (error.response.status === 401) {
-        try {
-          // accessToken 발급
-          await auth.refresh();
-          await TrySubmission({
-            score2_1,
-            score2_2,
-            score3_1,
-            generalCurriculumScoreSubtotal,
-            artSportsScore,
-            attendanceScore,
-            curriculumScoreSubtotal,
-            volunteerScore,
-            nonCurriculumScoreSubtotal,
-            scoreTotal,
-            rankPercentage,
-          });
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        console.log(error);
-      }
+      // if (error.response.status === 401) {
+      //   try {
+      //     // accessToken 발급
+      //     await auth.refresh();
+      //     await TrySubmission({
+      //       score2_1,
+      //       score2_2,
+      //       score3_1,
+      //       generalCurriculumScoreSubtotal,
+      //       artSportsScore,
+      //       attendanceScore,
+      //       curriculumScoreSubtotal,
+      //       volunteerScore,
+      //       nonCurriculumScoreSubtotal,
+      //       scoreTotal,
+      //       rankPercentage,
+      //     });
+      //   } catch (error) {
+      //     console.log(error);
+      //   }
+      // } else {
+      //   console.log(error);
+      // }
     }
   };
 
@@ -241,7 +241,7 @@ const CalculatorPage: NextPage = () => {
 
   const DeleteNewSubjects = (index: number) => {
     console.log(newSubjects.splice(index, 1));
-    setNewSubjects(newSubjects.splice(index, 1));
+    setNewSubjects(newSubjects.filter(arr => newSubjects.splice(index, 1)));
     console.log(watch());
   };
 
