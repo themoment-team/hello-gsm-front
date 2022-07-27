@@ -12,6 +12,7 @@ import auth from 'Api/auth';
 import { ScoreType } from 'type/application';
 import useStore from 'Stores/StoreContainer';
 import setLocalstorage from 'hooks/setLocalstorage';
+import useSubjectsLocalstorage from 'hooks/useSubjectsLocalstorage';
 
 interface ScoreForm {
   // 과목/점수 배열
@@ -22,7 +23,7 @@ interface ScoreForm {
   volunteerValue: number[];
   absentValue: number[];
   attendanceValue: number[];
-  newSubjects: string[]; // 나중에 타입 고치기
+  newSubjects: string[];
 }
 
 const CalculatorPage: NextPage = () => {
@@ -45,7 +46,7 @@ const CalculatorPage: NextPage = () => {
   const absentScore = useLocalstorage('absentScore');
   const attendanceScore = useLocalstorage('attendanceScore');
   const volunteerScore = useLocalstorage('volunteerScore');
-  const getSubjects = useLocalstorage('newSubjects');
+  const getSubjects = useSubjectsLocalstorage('newSubjects');
 
   // 이전에 제출한 경험 여부 판단
   const [isSubmission, setIsSubmission] = useState<string | null>();
@@ -73,7 +74,6 @@ const CalculatorPage: NextPage = () => {
     absentScore && setValue('absentValue', absentScore);
     attendanceScore && setValue('attendanceValue', attendanceScore);
     volunteerScore && setValue('volunteerValue', volunteerScore);
-    // getSubjects && setNewSubjects(getSubjects);
     getSubjects && setValue('newSubjects', getSubjects);
 
     setIsSubmission(window.localStorage.getItem('isSubmission'));
@@ -238,12 +238,10 @@ const CalculatorPage: NextPage = () => {
       // }
     }
   };
-  // console.log(watch('newSubjects'));
   const inValid = (errors: FieldErrors) => {
     console.log(errors);
   };
 
-  console.log(watch('value2_1'));
   const DeleteNewSubjects = (index: number) => {
     const newSubjects = watch('newSubjects');
 
@@ -255,19 +253,6 @@ const CalculatorPage: NextPage = () => {
       'newSubjects',
       newSubjects?.filter((arr, i) => index !== i),
     );
-    setValue(
-      'value2_1',
-      value2_1?.filter((arr, i) => value2_1.length - index !== i),
-    );
-    setValue(
-      'value2_2',
-      value2_2?.filter((arr, i) => value2_2.length - index !== i),
-    );
-    setValue(
-      'value3_1',
-      value3_1?.filter((arr, i) => value3_1.length - index !== i),
-    );
-    // console.log(watch());
   };
 
   return (
