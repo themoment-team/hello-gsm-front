@@ -25,15 +25,12 @@ import { toast } from 'react-toastify';
 const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const imgInput = useRef<HTMLInputElement>(null);
   const [imgURL, setImgURL] = useState<string>('');
-  const [birthYear, setBirthYear] = useState<number>();
-  const [birthMonth, setBirthMonth] = useState<number>();
-  const [birthDate, setBirthDate] = useState<number>();
-  const [cellphoneNumber, setCellphoneNumber] = useState<string>('');
   const [isIdPhoto, setIsIdPhoto] = useState<boolean>(true);
   const [isMajorSelected, setIsMajorSelected] = useState<boolean>(true);
   const [isAddressExist, setIsAddressExist] = useState<boolean>(true);
   const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(true);
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const userBirth = new Date(data.birth);
 
   const { push } = useRouter();
 
@@ -88,18 +85,12 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const graduationStatus = watch('educationStatus');
 
   useEffect(() => {
-    console.log(data);
     setLogged(true);
-    const userBirth = new Date(data.birth);
     if (data.application !== null) {
       setIsEdit(true);
     } else {
       setIsEdit(false);
     }
-    setBirthYear(userBirth.getFullYear());
-    setBirthMonth(userBirth.getMonth() + 1);
-    setBirthDate(userBirth.getDate());
-    setCellphoneNumber(data.cellphoneNumber);
     setImgURL(data.application_image?.idPhotoUrl || '');
     setChoice1(data.application?.application_details.firstWantedMajor || '');
     setChoice2(data.application?.application_details.secondWantedMajor || '');
@@ -258,9 +249,9 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             </S.GenderSelect>
           </S.GenderBox>
           <S.BirthBox>
-            <S.Birth>{birthYear}</S.Birth>
-            <S.Birth>{birthMonth}</S.Birth>
-            <S.Birth>{birthDate}</S.Birth>
+            <S.Birth>{userBirth.getFullYear()}</S.Birth>
+            <S.Birth>{userBirth.getMonth() + 1}</S.Birth>
+            <S.Birth>{userBirth.getDate()}</S.Birth>
           </S.BirthBox>
           <S.AddressBox>
             <S.AddressDescription>주소지 검색</S.AddressDescription>
@@ -293,7 +284,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             })}
             placeholder="집 전화번호를 입력해주세요. ('-'제외 9~10자리)"
           />
-          <S.Cellphone>{cellphoneNumber}</S.Cellphone>
+          <S.Cellphone>{data.cellphoneNumber}</S.Cellphone>
           <S.Title>지원자 현황</S.Title>
           <S.TypeBox>
             <S.Type
