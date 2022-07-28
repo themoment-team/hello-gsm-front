@@ -44,18 +44,12 @@ const getInfo = async (accessToken: string) => {
     } catch (err: any) {
       return {
         props: {},
-        redirect: {
-          destination: '/mypage',
-        },
       };
     }
   } else {
     // 최종제출이 안되어 있으면 mypage로 이동
     return {
       props: {},
-      redirect: {
-        destination: '/mypage',
-      },
     };
   }
 };
@@ -88,9 +82,6 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
         // 로그인 실패
         return {
           props: {},
-          redirect: {
-            destination: '/auth/signin',
-          },
         };
       }
     }
@@ -98,9 +89,6 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     // 로그인 X
     return {
       props: {},
-      redirect: {
-        destination: '/auth/signin',
-      },
     };
   }
 };
