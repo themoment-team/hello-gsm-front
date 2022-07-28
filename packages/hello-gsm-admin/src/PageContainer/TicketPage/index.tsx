@@ -52,7 +52,11 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                   마감시간 이전 도착분에 한하여 유효함.)
                 </S.Left>
                 <S.Subject>출신학교</S.Subject>
-                <td>{user.application.schoolName}</td>
+                {user.application.schoolName ? (
+                  <td>{user.application.schoolName}</td>
+                ) : (
+                  <S.Slash />
+                )}
               </tr>
               <tr>
                 <td>합격자 서류</td>

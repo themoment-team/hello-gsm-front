@@ -61,7 +61,7 @@ const dummyData = [
     name: '유시온',
     birth: '2000-01-01T00:00:00.000Z',
     application: {
-      schoolName: '풍암중학교',
+      schoolName: undefined,
       screening: '일반전형',
       registrationNumber: 1001,
     },
