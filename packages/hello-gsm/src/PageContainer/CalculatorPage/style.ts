@@ -32,7 +32,8 @@ export const CurriculumValue = styled.div`
 export const DeleteNewSubject = styled.span`
   color: red;
   margin-left: 30px;
-  position: fixed;
+  position: absolute;
+  width: 4%;
   line-height: 37px;
   cursor: pointer;
 `;
