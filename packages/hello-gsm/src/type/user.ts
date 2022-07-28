@@ -11,7 +11,7 @@ export interface StatusApplication {
     isFinalSubmission: boolean;
     isDocumentReception: boolean;
     registrationNumber: null | number;
-    applicationDetails: {
+    application_details: {
       firstWantedMajor: '인공지능과' | '스마트IoT과' | '소프트웨어개발과';
       secondWantedMajor: '인공지능과' | '스마트IoT과' | '소프트웨어개발과';
       thirdWantedMajor: '인공지능과' | '스마트IoT과' | '소프트웨어개발과';
