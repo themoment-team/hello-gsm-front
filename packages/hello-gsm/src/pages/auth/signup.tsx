@@ -13,6 +13,7 @@ const SignUp: NextPage = () => {
   );
 };
 
+// registerToken이 있을 때만 회원가입 페이지 접근 가능
 export const getServerSideProps: GetServerSideProps = async ctx => {
   if (ctx.req.cookies.registerToken) {
     return {
