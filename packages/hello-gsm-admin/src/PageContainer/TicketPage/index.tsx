@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import { useEffect } from 'react';
 import { TicketDataType } from 'Types/ticket';
 import * as S from './style';
+import * as I from 'Assets/svg';
 
 const TicketPage: NextPage<TicketDataType> = ({ data }) => {
   const TryPrint = () => {
