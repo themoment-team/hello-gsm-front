@@ -175,24 +175,6 @@ const CalculatorPage: NextPage = () => {
     ); // 총점
     const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 석채백분율
 
-    setLocalstorage('score2_1', value2_1);
-    setLocalstorage('score2_2', value2_2);
-    setLocalstorage('score3_1', value3_1);
-    setLocalstorage('artSportsScore', artSportsValue);
-    setLocalstorage('absentScore', absentValue);
-    setLocalstorage('attendanceScore', attendanceValue);
-    setLocalstorage('volunteerScore', volunteerValue);
-    setLocalstorage('subjects', subjects);
-    setLocalstorage('newSubjects', newSubjects);
-    setLocalstorage('nonSubjects', nonSubjects);
-    setResultArray([
-      generalCurriculumScoreSubtotal,
-      artSportsScore,
-      nonCurriculumScoreSubtotal,
-      scoreTotal,
-    ]);
-    setShowScoreResult();
-
     try {
       await TrySubmission({
         score2_1,
@@ -207,35 +189,52 @@ const CalculatorPage: NextPage = () => {
         scoreTotal,
         rankPercentage,
       });
-      // 결과 모달 제어
       // 원서 파일 페이지에서 불러오기 위해 localstorage에 저장
+      setLocalstorage('score2_1', value2_1);
+      setLocalstorage('score2_2', value2_2);
+      setLocalstorage('score3_1', value3_1);
+      setLocalstorage('artSportsScore', artSportsValue);
+      setLocalstorage('absentScore', absentValue);
+      setLocalstorage('attendanceScore', attendanceValue);
+      setLocalstorage('volunteerScore', volunteerValue);
+      setLocalstorage('subjects', subjects);
+      setLocalstorage('newSubjects', newSubjects);
+      setLocalstorage('nonSubjects', nonSubjects);
+      // 결과 모달 제어
+      setResultArray([
+        generalCurriculumScoreSubtotal,
+        artSportsScore,
+        nonCurriculumScoreSubtotal,
+        scoreTotal,
+      ]);
+      setShowScoreResult();
 
       window.localStorage.setItem('isSubmission', 'true');
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 PostData 요청
-      // if (error.response.status === 401) {
-      //   try {
-      //     // accessToken 발급
-      //     await auth.refresh();
-      //     await TrySubmission({
-      //       score2_1,
-      //       score2_2,
-      //       score3_1,
-      //       generalCurriculumScoreSubtotal,
-      //       artSportsScore,
-      //       attendanceScore,
-      //       curriculumScoreSubtotal,
-      //       volunteerScore,
-      //       nonCurriculumScoreSubtotal,
-      //       scoreTotal,
-      //       rankPercentage,
-      //     });
-      //   } catch (error) {
-      //     console.log(error);
-      //   }
-      // } else {
-      //   console.log(error);
-      // }
+      if (error.response.status === 401) {
+        try {
+          // accessToken 발급
+          await auth.refresh();
+          await TrySubmission({
+            score2_1,
+            score2_2,
+            score3_1,
+            generalCurriculumScoreSubtotal,
+            artSportsScore,
+            attendanceScore,
+            curriculumScoreSubtotal,
+            volunteerScore,
+            nonCurriculumScoreSubtotal,
+            scoreTotal,
+            rankPercentage,
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        console.log(error);
+      }
     }
   };
   const inValid = (errors: FieldErrors) => {
