@@ -29,6 +29,14 @@ export const CurriculumValue = styled.div`
   justify-content: space-between;
 `;
 
+export const DeleteNewSubject = styled.span`
+  color: red;
+  margin-left: 30px;
+  position: fixed;
+  line-height: 37px;
+  cursor: pointer;
+`;
+
 export const Plus = styled.div`
   cursor: pointer;
   color: #ffffff;

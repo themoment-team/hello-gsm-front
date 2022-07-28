@@ -242,16 +242,27 @@ const CalculatorPage: NextPage = () => {
     console.log(errors);
   };
 
+  // 추가과목 삭제
   const DeleteNewSubjects = (index: number) => {
     const newSubjects = watch('newSubjects');
-
     const value2_1 = watch('value2_1');
     const value2_2 = watch('value2_2');
     const value3_1 = watch('value3_1');
-    console.log(value2_1.length, index);
     setValue(
       'newSubjects',
       newSubjects?.filter((arr, i) => index !== i),
+    ); // newSubjects 배열에서 인덱스가 N인 값 제거
+    setValue(
+      'value2_1',
+      value2_1?.filter((arr, i) => subjects.length + index !== i),
+    ); // value2_1 배열에서 인덱스가 기본과목.length + index인 값 제거
+    setValue(
+      'value2_2',
+      value2_2?.filter((arr, i) => subjects.length + index !== i),
+    );
+    setValue(
+      'value3_1',
+      value3_1?.filter((arr, i) => subjects.length + index !== i),
     );
   };
 
@@ -277,6 +288,7 @@ const CalculatorPage: NextPage = () => {
                     })}
                     placeholder="추가과목입력"
                     key={i}
+                    // 추가과목이 이전에 입력이 되어있었으면 기본 값에 추가과목 값 넣기
                     defaultValue={newSubject ? newSubject : ''}
                   />
                 ))}
@@ -360,12 +372,9 @@ const CalculatorPage: NextPage = () => {
                       })}
                       index={subjects.length + i}
                     />
-                    <div
-                      style={{ color: 'red' }}
-                      onClick={() => DeleteNewSubjects(i)}
-                    >
+                    <S.DeleteNewSubject onClick={() => DeleteNewSubjects(i)}>
                       삭제
-                    </div>
+                    </S.DeleteNewSubject>
                   </span>
                 ))}
               </S.ValueSection>
@@ -374,6 +383,7 @@ const CalculatorPage: NextPage = () => {
             {/* 과목추가 버튼 클릭 시 newSubjects 배열에 빈 문자열 추가 */}
             <S.Plus
               onClick={() =>
+                // newSubjects.length가 0이면 빈 문자열 추가, 1 이상이면 기존 값에서 빈 문자열 추가
                 setValue(
                   'newSubjects',
                   watch('newSubjects')?.length > 0
