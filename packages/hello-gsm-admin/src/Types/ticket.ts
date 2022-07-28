@@ -3,7 +3,7 @@ export interface TicketDataType {
     name: string;
     birth: string;
     application: {
-      schoolName: string;
+      schoolName?: string;
       screening: string;
       registrationNumber: number;
     };
