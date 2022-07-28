@@ -15,7 +15,7 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
   }, []);
   return (
     <S.TicketPage>
-      {data.map((user, i) => (
+      {data?.map((user, i) => (
         <S.Ticket key={i}>
           <S.Table>
             <tbody>
