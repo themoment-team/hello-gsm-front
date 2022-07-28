@@ -18,13 +18,13 @@ const MypageInformation: React.FC<StatusApplication> = ({ application }) => {
         </S.InformationBodyitem>
         <S.InformationBodyitem>{application?.screening}</S.InformationBodyitem>
         <S.InformationBodyitem>
-          {application?.applicationDetails.firstWantedMajor}
+          {application?.application_details.firstWantedMajor}
         </S.InformationBodyitem>
         <S.InformationBodyitem>
-          {application?.applicationDetails.secondWantedMajor}
+          {application?.application_details.secondWantedMajor}
         </S.InformationBodyitem>
         <S.InformationBodyitem>
-          {application?.applicationDetails.thirdWantedMajor}
+          {application?.application_details.thirdWantedMajor}
         </S.InformationBodyitem>
       </S.InformationBody>
     </S.Information>
