@@ -120,10 +120,18 @@ const GEDPage: NextPage = () => {
             </S.Row>
             <S.Row>
               <S.ScoreInput
-                {...register('curriculumScoreSubtotal', { required: true })}
+                type="number"
+                {...register('curriculumScoreSubtotal', {
+                  valueAsNumber: true,
+                  required: true,
+                })}
               />
               <S.ScoreInput
-                {...register('nonCurriculumScoreSubtotal', { required: true })}
+                type="number"
+                {...register('nonCurriculumScoreSubtotal', {
+                  valueAsNumber: true,
+                  required: true,
+                })}
               />
             </S.Row>
           </div>
