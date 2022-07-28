@@ -3,6 +3,7 @@ import { StatusApplication } from 'type/user';
 import * as S from './style';
 
 const MypageInformation: React.FC<StatusApplication> = ({ application }) => {
+  console.log(application);
   return (
     <S.Information>
       <S.InformationHeader>
