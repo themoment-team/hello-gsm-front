@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { BASE_URL } from 'shared/config';
-import { ApplicationType, GEDType, ScoreType } from 'type/application';
+import { ApplicationType } from 'type/application';
+import { ScoreType, GEDScoreType } from 'type/score';
 import RequestApi from 'Utils/Libs/requestApi';
 import { ApplicationController } from 'Utils/Libs/requestUrls';
 
@@ -129,7 +130,7 @@ class Application {
   /**
    * @param data - 2차 검정고시 제출(성적) 파라미터
    */
-  postGedSubmission(data: GEDType) {
+  postGedSubmission(data: GEDScoreType) {
     try {
       return RequestApi({
         method: 'POST',
@@ -144,7 +145,7 @@ class Application {
   /**
    * @param data - 2차 검정고시 수정(성적) 파라미터
    */
-  patchGedSubmission(data: GEDType) {
+  patchGedSubmission(data: GEDScoreType) {
     try {
       return RequestApi({
         method: 'PATCH',
