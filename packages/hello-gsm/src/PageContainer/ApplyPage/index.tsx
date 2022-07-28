@@ -88,6 +88,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const graduationStatus = watch('educationStatus');
 
   useEffect(() => {
+    console.log(data);
     setLogged(true);
     const userBirth = new Date(data.birth);
     if (data.application !== null) {
