@@ -23,6 +23,8 @@ const TestCalculatorPage: NextPage = () => {
   const {
     register,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<ScoreForm>();
 
@@ -42,7 +44,6 @@ const TestCalculatorPage: NextPage = () => {
   ]);
   const [nonSubjects, setNonSubjects] = useState(['체육', '미술', '음악']);
   const [grades, setGrades] = useState([1, 2, 3]);
-  const [newSubjects, setNewSubjects] = useState<Array<string | null>>([]);
 
   const onValid = async (validForm: ScoreForm) => {
     const score2_1: number = Calculate(validForm.score2_1, 2); // 2학년 1학기
@@ -84,6 +85,29 @@ const TestCalculatorPage: NextPage = () => {
     console.log(errors);
   };
 
+  // 추가과목 삭제
+  const DeleteNewSubjects = (index: number) => {
+    const newSubjects = watch('newSubjects');
+    const score2_1 = watch('score2_1');
+    const score2_2 = watch('score2_2');
+    const score3_1 = watch('score3_1');
+    setValue(
+      'newSubjects',
+      newSubjects?.filter((arr, i) => index !== i),
+    ); // newSubjects 배열에서 인덱스가 N인 값 제거
+    setValue(
+      'score2_1',
+      score2_1?.filter((arr, i) => subjects.length + index !== i),
+    ); // score2_1 배열에서 인덱스가 기본과목.length + index인 값 제거
+    setValue(
+      'score2_2',
+      score2_2?.filter((arr, i) => subjects.length + index !== i),
+    );
+    setValue(
+      'score3_1',
+      score3_1?.filter((arr, i) => subjects.length + index !== i),
+    );
+  };
   return (
     <>
       <Header />
@@ -99,11 +123,15 @@ const TestCalculatorPage: NextPage = () => {
                   <S.Subject key={subject}>{subject}</S.Subject>
                 ))}
 
-                {newSubjects?.map((newSubject, i) => (
+                {watch('newSubjects')?.map((newSubject, i) => (
                   <S.SubjectInput
-                    {...register(`newSubjects.${i}`)}
+                    {...register(`newSubjects.${i}`, {
+                      required: true,
+                    })}
                     placeholder="추가과목입력"
                     key={i}
+                    // 추가과목이 이전에 입력이 되어있었으면 기본 값에 추가과목 값 넣기
+                    defaultValue={newSubject ? newSubject : ''}
                   />
                 ))}
               </S.ValueSection>
@@ -121,19 +149,16 @@ const TestCalculatorPage: NextPage = () => {
                     index={i}
                   />
                 ))}
-                {newSubjects?.map((newSubject, i) => (
-                  <S.Select
+                {watch('newSubjects')?.map((newSubject, i) => (
+                  <ScoreSelect
                     key={i}
-                    {...register(`score2_1.${subjects.length + i}`)} // 기존 2_1 점수 배열에 추가과목 점수 추가
-                  >
-                    <option>선택</option>
-                    <option value={5}>A</option>
-                    <option value={4}>B</option>
-                    <option value={3}>C</option>
-                    <option value={2}>D</option>
-                    <option value={1}>E</option>
-                    <option value={0}>없음</option>
-                  </S.Select>
+                    register={register(`score2_1.${subjects.length + i}`, {
+                      validate: {
+                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                      },
+                    })}
+                    index={subjects.length + i}
+                  />
                 ))}
               </S.ValueSection>
 
@@ -150,19 +175,16 @@ const TestCalculatorPage: NextPage = () => {
                     index={i}
                   />
                 ))}
-                {newSubjects?.map((newSubject, i) => (
-                  <S.Select
+                {watch('newSubjects')?.map((newSubject, i) => (
+                  <ScoreSelect
                     key={i}
-                    {...register(`score2_2.${subjects.length + i}`)}
-                  >
-                    <option>선택</option>
-                    <option value={5}>A</option>
-                    <option value={4}>B</option>
-                    <option value={3}>C</option>
-                    <option value={2}>D</option>
-                    <option value={1}>E</option>
-                    <option value={0}>없음</option>
-                  </S.Select>
+                    register={register(`score2_2.${subjects.length + i}`, {
+                      validate: {
+                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                      },
+                    })}
+                    index={subjects.length + i}
+                  />
                 ))}
               </S.ValueSection>
 
@@ -179,25 +201,36 @@ const TestCalculatorPage: NextPage = () => {
                     index={i}
                   />
                 ))}
-                {newSubjects?.map((newSubject, i) => (
-                  <S.Select
-                    key={i}
-                    {...register(`score3_1.${subjects.length + i}`)}
-                  >
-                    <option>선택</option>
-                    <option value={5}>A</option>
-                    <option value={4}>B</option>
-                    <option value={3}>C</option>
-                    <option value={2}>D</option>
-                    <option value={1}>E</option>
-                    <option value={0}>없음</option>
-                  </S.Select>
+                {watch('newSubjects')?.map((newSubject, i) => (
+                  <span key={i}>
+                    <ScoreSelect
+                      register={register(`score3_1.${subjects.length + i}`, {
+                        validate: {
+                          notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                        },
+                      })}
+                      index={subjects.length + i}
+                    />
+                    <S.DeleteNewSubject onClick={() => DeleteNewSubjects(i)}>
+                      삭제
+                    </S.DeleteNewSubject>
+                  </span>
                 ))}
               </S.ValueSection>
             </S.CurriculumValue>
 
             {/* 과목추가 버튼 클릭 시 newSubjects 배열에 빈 문자열 추가 */}
-            <S.Plus onClick={() => setNewSubjects([...newSubjects, ''])}>
+            <S.Plus
+              onClick={() =>
+                // newSubjects.length가 0이면 빈 문자열 추가, 1 이상이면 기존 값에서 빈 문자열 추가
+                setValue(
+                  'newSubjects',
+                  watch('newSubjects')?.length > 0
+                    ? [...watch('newSubjects'), '']
+                    : [''],
+                )
+              }
+            >
               +과목추가
             </S.Plus>
           </S.CurriculumSection>
