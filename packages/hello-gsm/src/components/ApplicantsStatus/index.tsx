@@ -1,8 +1,10 @@
 import React from 'react';
-import { TestType } from 'type/application';
+import { GetApplicationType } from 'type/application';
 import * as S from './style';
 
-const ApplicationStatus: React.FC<TestType> = ({ data: { application } }) => {
+const ApplicationStatus: React.FC<GetApplicationType> = ({
+  data: { application },
+}) => {
   const application_score = application?.application_score;
   const application_details = application?.application_details;
   return (
