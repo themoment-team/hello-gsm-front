@@ -8,6 +8,7 @@ const SuccessModal: React.FC = () => {
 
   useEffect(() => {
     setTimeout(() => setShowMypageSuccessModal(), 5000);
+    window.location.reload();
   }, []);
 
   return (
