@@ -152,7 +152,6 @@ const CalculatorPage: NextPage = () => {
       3,
     );
     // 교과성적 소계
-    console.log(generalCurriculumScoreSubtotal);
 
     const artSportsScore: number = Calculate(artSportsValue, 4); // 예체능
     const curriculumScoreSubtotal: number = Rounds(
