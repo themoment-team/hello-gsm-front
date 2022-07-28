@@ -23,7 +23,6 @@ const getApplication = async (accessToken: string) => {
     const { data }: GetApplicationType = await application.getInformation(
       accessToken,
     );
-    console.log(data);
     return {
       props: {
         data,
