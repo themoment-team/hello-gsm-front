@@ -7,8 +7,8 @@ import auth from 'Api/auth';
 import { useEffect } from 'react';
 import useStore from 'Stores/StoreContainer';
 import { SEOHelmet } from 'components';
-import { TestApplicationPage } from 'PageContainer';
-import { GetApplicationType, TestType } from 'type/application';
+import { GetApplicationType } from 'type/application';
+import { ApplicationPage } from 'PageContainer';
 
 const Application: NextPage<GetApplicationType> = ({ data }) => {
   const seoTitle = '원서출력';
@@ -21,19 +21,19 @@ const Application: NextPage<GetApplicationType> = ({ data }) => {
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
-      <TestApplicationPage data={expected.data} />
-      <TestApplicationPage data={graduated.data} />
-      <TestApplicationPage data={ged.data} />
+      <ApplicationPage data={expected.data} />
+      <ApplicationPage data={graduated.data} />
+      <ApplicationPage data={ged.data} />
     </>
   );
 };
 
-const expected: TestType = {
+const expected: GetApplicationType = {
   data: {
     user_idx: 1,
     userImg: 'asdas',
     name: '유시온',
-    birth: '2005-11-09',
+    birth: new Date('2005-11-09'),
     gender: '여자',
     cellphoneNumber: '01092015487',
     application_image: {
@@ -91,12 +91,12 @@ const expected: TestType = {
   },
 };
 
-const graduated: TestType = {
+const graduated: GetApplicationType = {
   data: {
     user_idx: 1,
     userImg: 'asdas',
     name: '유시온',
-    birth: '2005-11-09',
+    birth: new Date('2005-11-09'),
     gender: '여자',
     cellphoneNumber: '01092015487',
     application_image: {
@@ -153,12 +153,12 @@ const graduated: TestType = {
   },
 };
 
-const ged: TestType = {
+const ged: GetApplicationType = {
   data: {
     user_idx: 1,
     userImg: 'asdas',
     name: '유시온',
-    birth: '2005-11-09',
+    birth: new Date('2005-11-09'),
     gender: '여자',
     cellphoneNumber: '01092015487',
     application_image: {
