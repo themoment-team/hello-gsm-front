@@ -1,4 +1,5 @@
 import application from 'Api/application';
+import auth from 'Api/auth';
 import { Header } from 'components';
 import GEDScoreResultModal from 'components/Modals/GEDScoreResultModal';
 import useGEDLocalStorage from 'hooks/useGEDLocalstorage';
@@ -6,6 +7,7 @@ import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
 import useStore from 'Stores/StoreContainer';
+import { GEDScoreType } from 'type/score';
 import { GEDCalculate } from 'Utils/Calculate';
 import * as S from './style';
 
@@ -35,6 +37,24 @@ const GEDPage: NextPage = () => {
   const [resultNumber, setResultNumber] = useState<number>(); //결과 화면 컴포넌트에 보일 점수
   const [isSubmission, setIsSubmission] = useState<string | null>(); // 이전에 제출한 경험 여부 판단
 
+  const TrySubmission = async ({
+    curriculumScoreSubtotal,
+    nonCurriculumScoreSubtotal,
+    rankPercentage,
+  }: GEDScoreType) => {
+    isSubmission
+      ? await application.patchGedSubmission({
+          curriculumScoreSubtotal,
+          nonCurriculumScoreSubtotal,
+          rankPercentage,
+        })
+      : await application.postGedSubmission({
+          curriculumScoreSubtotal,
+          nonCurriculumScoreSubtotal,
+          rankPercentage,
+        });
+  };
+
   const onValid = async ({
     curriculumScoreSubtotal,
     nonCurriculumScoreSubtotal,
@@ -43,32 +63,42 @@ const GEDPage: NextPage = () => {
       curriculumScoreSubtotal,
       nonCurriculumScoreSubtotal,
     );
-    window.localStorage.setItem(
-      'curriculumScoreSubtotal',
-      curriculumScoreSubtotal.toString(),
-    );
-    window.localStorage.setItem(
-      'nonCurriculumScoreSubtotal',
-      nonCurriculumScoreSubtotal.toString(),
-    );
-    window.localStorage.setItem('isSubmission', 'true');
 
-    setResultNumber(rankPercentage);
-    setShowScoreResult();
     try {
-      isSubmission
-        ? await application.patchGedSubmission({
-            curriculumScoreSubtotal,
-            nonCurriculumScoreSubtotal,
-            rankPercentage,
-          })
-        : await application.postGedSubmission({
+      await TrySubmission({
+        curriculumScoreSubtotal,
+        nonCurriculumScoreSubtotal,
+        rankPercentage,
+      });
+      window.localStorage.setItem(
+        'curriculumScoreSubtotal',
+        curriculumScoreSubtotal.toString(),
+      );
+      window.localStorage.setItem(
+        'nonCurriculumScoreSubtotal',
+        nonCurriculumScoreSubtotal.toString(),
+      );
+      window.localStorage.setItem('isSubmission', 'true');
+
+      setResultNumber(rankPercentage);
+      setShowScoreResult();
+    } catch (err: any) {
+      // accessToken 없을 시에 accessToken 발급 후 TrySubmission 요청
+      if (err.response.status === 401) {
+        try {
+          // accessToken 발급
+          await auth.refresh();
+          await TrySubmission({
             curriculumScoreSubtotal,
             nonCurriculumScoreSubtotal,
             rankPercentage,
           });
-    } catch (err) {
-      console.log(err);
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        console.log(err);
+      }
     }
   };
 

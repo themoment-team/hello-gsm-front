@@ -9,7 +9,7 @@ import ScoreResultModal from 'components/Modals/ScoreResultModal';
 import useLocalstorage from 'hooks/useLocalstorage';
 import application from 'Api/application';
 import auth from 'Api/auth';
-import { ScoreType } from 'type/application';
+import { ScoreType } from 'type/score';
 import useStore from 'Stores/StoreContainer';
 import setLocalstorage from 'hooks/setLocalstorage';
 import useSubjectsLocalstorage from 'hooks/useSubjectsLocalstorage';
@@ -210,7 +210,7 @@ const CalculatorPage: NextPage = () => {
 
       window.localStorage.setItem('isSubmission', 'true');
     } catch (error: any) {
-      // accessToken 없을 시에 accessToken 발급 후 PostData 요청
+      // accessToken 없을 시에 accessToken 발급 후 TrySubmission 요청
       if (error.response.status === 401) {
         try {
           // accessToken 발급
