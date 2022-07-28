@@ -4,8 +4,13 @@ import { TicketDataType } from 'Types/ticket';
 import * as S from './style';
 
 const TicketPage: NextPage<TicketDataType> = ({ data }) => {
+  const TryPrint = () => {
+    window.print();
+  };
+
   useEffect(() => {
-    // window.print();
+    // 페이지 첫 렌더링 시 인쇄화면 보여지게
+    TryPrint();
   }, []);
   return (
     <S.TicketPage>
@@ -91,6 +96,11 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
           <S.Dash />
         </S.Ticket>
       ))}
+      {/* 인쇄버튼 */}
+      <S.PrintBtn onClick={TryPrint}>
+        <I.PrintIcon />
+        <S.PrintDesc>인쇄하기</S.PrintDesc>
+      </S.PrintBtn>
     </S.TicketPage>
   );
 };
