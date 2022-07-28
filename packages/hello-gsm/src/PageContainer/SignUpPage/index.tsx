@@ -64,7 +64,6 @@ const SignUpPage: NextPage = () => {
 
   const inValid = (errors: FieldErrors) => {
     console.log(errors);
-    console.log('fail');
   };
 
   /**
