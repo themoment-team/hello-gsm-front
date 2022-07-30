@@ -70,50 +70,47 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   } = useForm<ApplyFormType>({
     defaultValues: {
       addressDetails:
-        data?.application?.application_details?.addressDetails || '',
+        data.application?.application_details?.addressDetails || '',
       telephoneNumber:
-        data?.application?.application_details?.telephoneNumber || '',
-      screening: data?.application?.screening || '일반전형',
-      graduationYear: data?.application?.application_details?.graduationYear,
-      graduationMonth: data?.application?.application_details?.graduationMonth,
+        data.application?.application_details?.telephoneNumber || '',
+      screening: data.application?.screening || '일반전형',
+      graduationYear: data.application?.application_details?.graduationYear,
+      graduationMonth: data.application?.application_details?.graduationMonth,
       educationStatus:
-        data?.application?.application_details?.educationStatus || '졸업예정',
-      guardianName: data?.application?.application_details?.guardianName,
-      guardianRelation:
-        data?.application?.application_details?.guardianRelation,
-      guardianCellphoneNumber: data?.application?.guardianCellphoneNumber,
-      teacherName: data?.application?.application_details?.teacherName,
-      teacherCellphoneNumber: data?.application?.teacherCellphoneNumber,
+        data.application?.application_details?.educationStatus || '졸업예정',
+      guardianName: data.application?.application_details?.guardianName,
+      guardianRelation: data.application?.application_details?.guardianRelation,
+      guardianCellphoneNumber: data.application?.guardianCellphoneNumber,
+      teacherName: data.application?.application_details?.teacherName,
+      teacherCellphoneNumber: data.application?.teacherCellphoneNumber,
     },
   });
 
   const graduationStatus = watch('educationStatus');
 
   useEffect(() => {
-    console.log(data);
     setLogged(true);
-    const userBirth = new Date(data?.birth);
-    if (data?.application !== null) {
+    const userBirth = new Date(data.birth);
+    if (data.application !== null) {
       setIsEdit(true);
     } else {
       setIsEdit(false);
     }
-    setName(data?.name);
-    setGender(data?.gender);
+    setName(data.name);
+    setGender(data.gender);
     setBirthYear(userBirth.getFullYear());
     setBirthMonth(userBirth.getMonth() + 1);
     setBirthDate(userBirth.getDate());
-    setCellphoneNumber(data?.cellphoneNumber);
-    setImgURL(data?.application_image?.idPhotoUrl || '');
-    setChoice1(data?.application?.application_details?.firstWantedMajor || '');
-    setChoice2(data?.application?.application_details?.secondWantedMajor || '');
-    setChoice3(data?.application?.application_details?.thirdWantedMajor || '');
-    setSchoolName(data?.application?.schoolName || '');
+    setCellphoneNumber(data.cellphoneNumber);
+    setImgURL(data.application_image?.idPhotoUrl || '');
+    setChoice1(data.application?.application_details?.firstWantedMajor || '');
+    setChoice2(data.application?.application_details?.secondWantedMajor || '');
+    setChoice3(data.application?.application_details?.thirdWantedMajor || '');
+    setSchoolName(data.application?.schoolName || '');
     setSchoolLocation(
-      data?.application?.application_details?.schoolLocation || '',
+      data.application?.application_details?.schoolLocation || '',
     );
-    setApplicantAddress(data?.application?.application_details?.address || '');
-    console.log(data?.application_image?.idPhotoUrl);
+    setApplicantAddress(data.application?.application_details?.address || '');
   }, []);
 
   const apply = async (submitData: ApplyFormType) => {
