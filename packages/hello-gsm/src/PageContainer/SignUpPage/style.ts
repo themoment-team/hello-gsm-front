@@ -18,6 +18,12 @@ export const LineList = styled.div`
   height: 800px;
   margin-top: 80px;
   padding-top: 40px;
+  @media ${device.laptop} {
+    left: -50%;
+  }
+  @media (max-width: 700px) {
+    display: none;
+  }
 `;
 
 export const Line = styled.div`
@@ -61,10 +67,13 @@ export const SignUpForm = styled.form`
     margin-bottom: 20px;
   }
   @media ${device.laptop} {
-    width: 600px;
+    width: 500px;
   }
   @media ${device.mobile} {
     width: 400px;
+  }
+  @media (max-width: 400px) {
+    width: 300px;
   }
 `;
 
@@ -87,6 +96,10 @@ export const TosBox = styled.div`
   line-height: 20px;
   color: #ffffff;
   font-size: 16px;
+
+  @media ${device.mobile} {
+    margin-top: 20px;
+  }
 `;
 
 export const CheckLabel = styled.label`
@@ -129,6 +142,10 @@ export const LadioSection = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 75px;
+
+  @media ${device.mobile} {
+    margin-bottom: 20px;
+  }
 `;
 
 export const Input = styled.input`
@@ -146,6 +163,9 @@ export const Input = styled.input`
   }
   :focus {
     outline: none;
+  }
+  @media ${device.mobile} {
+    padding: 0 16px;
   }
 `;
 

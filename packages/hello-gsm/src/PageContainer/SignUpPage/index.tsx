@@ -189,7 +189,7 @@ const SignUpPage: NextPage = () => {
               },
             })}
           />
-          <S.ErrorMessage css={errors.cellphoneNumber && SelectError(400)}>
+          <S.ErrorMessage css={errors.cellphoneNumber && SelectError(410)}>
             {errors.cellphoneNumber?.message}
           </S.ErrorMessage>
           <TosBox />
