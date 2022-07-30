@@ -23,7 +23,8 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     return {
       props: {},
       redirect: {
-        destination: '/auth/signup',
+        // registerToken이 없으면 로그인 페이지로 이동
+        destination: '/auth/signin',
       },
     };
   }
