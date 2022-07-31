@@ -71,7 +71,7 @@ const SignUpPage: NextPage = () => {
    * @param top : 각 컴포넌트 높이;
    * @returns css - 에러가 있으면 애니메이션, 스타일 추가
    */
-  const SelectError = (top?: number) =>
+  const SelectErrorStyle = (top?: number) =>
     css({
       color: 'red',
       ':after': {
@@ -107,7 +107,7 @@ const SignUpPage: NextPage = () => {
               />
               <div>여자</div>
             </S.RadioLabel>
-            <S.ErrorMessage css={errors.gender && SelectError(120)}>
+            <S.ErrorMessage css={errors.gender && SelectErrorStyle(120)}>
               {errors.gender?.message}
             </S.ErrorMessage>
           </S.LadioSection>
@@ -118,7 +118,7 @@ const SignUpPage: NextPage = () => {
               required: '* 성명을 입력해주세요.',
             })}
           />
-          <S.ErrorMessage css={errors.name && SelectError(255)}>
+          <S.ErrorMessage css={errors.name && SelectErrorStyle(255)}>
             {errors.name?.message}
           </S.ErrorMessage>
 
@@ -170,7 +170,8 @@ const SignUpPage: NextPage = () => {
           </S.SelectSection>
           <S.ErrorMessage
             css={
-              (errors?.year || errors?.day || errors?.month) && SelectError(330)
+              (errors?.year || errors?.day || errors?.month) &&
+              SelectErrorStyle(330)
             }
           >
             {errors?.year || errors?.day || errors?.month
@@ -189,7 +190,7 @@ const SignUpPage: NextPage = () => {
               },
             })}
           />
-          <S.ErrorMessage css={errors.cellphoneNumber && SelectError(410)}>
+          <S.ErrorMessage css={errors.cellphoneNumber && SelectErrorStyle(410)}>
             {errors.cellphoneNumber?.message}
           </S.ErrorMessage>
           <TosBox />
@@ -201,24 +202,25 @@ const SignUpPage: NextPage = () => {
             />
             개인정보 이용약관을 확인했으며, 이에 동의합니다.
           </S.CheckLabel>
-          <S.ErrorMessage css={errors.agree && SelectError(810)}>
+          <S.ErrorMessage css={errors.agree && SelectErrorStyle(810)}>
             {errors.agree?.message}
           </S.ErrorMessage>
           <S.Button>가입하기</S.Button>
           <S.LineList>
-            <S.Line css={errors.gender && SelectError()}>성별</S.Line>
-            <S.Line css={errors.name && SelectError()}>성명</S.Line>
+            <S.Line css={errors.gender && SelectErrorStyle()}>성별</S.Line>
+            <S.Line css={errors.name && SelectErrorStyle()}>성명</S.Line>
             <S.Line
               css={
-                (errors?.year || errors?.day || errors?.month) && SelectError()
+                (errors?.year || errors?.day || errors?.month) &&
+                SelectErrorStyle()
               }
             >
               생년월일
             </S.Line>
-            <S.Line css={errors.cellphoneNumber && SelectError()}>
+            <S.Line css={errors.cellphoneNumber && SelectErrorStyle()}>
               핸드폰 번호
             </S.Line>
-            <S.Line css={errors.agree && SelectError()}>
+            <S.Line css={errors.agree && SelectErrorStyle()}>
               개인정보 이용약관
             </S.Line>
           </S.LineList>
