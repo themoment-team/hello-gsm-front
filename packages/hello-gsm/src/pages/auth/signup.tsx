@@ -1,4 +1,4 @@
-import type { GetServerSideProps, NextPage } from 'next';
+import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import { SignUpPage } from 'PageContainer';
 
@@ -11,23 +11,6 @@ const SignUp: NextPage = () => {
       <SignUpPage />
     </>
   );
-};
-
-// registerToken이 있을 때만 회원가입 페이지 접근 가능
-export const getServerSideProps: GetServerSideProps = async ctx => {
-  if (ctx.req.cookies.registerToken) {
-    return {
-      props: {},
-    };
-  } else {
-    return {
-      props: {},
-      redirect: {
-        // registerToken이 없으면 로그인 페이지로 이동
-        destination: '/auth/signin',
-      },
-    };
-  }
 };
 
 export default SignUp;
