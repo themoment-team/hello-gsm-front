@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Information = styled.div`
-  width: 830px;
+  width: 730px;
   height: 80px;
   display: flex;
   flex-direction: column;
@@ -23,9 +23,6 @@ export const InformationHeaderitem = styled.div`
   font-weight: 700;
   font-size: 18px;
   :nth-of-type(1) {
-    width: 100px;
-  }
-  :nth-of-type(2) {
     width: 130px;
   }
 `;
@@ -48,10 +45,6 @@ export const InformationBodyitem = styled.div`
   font-weight: 500;
   font-size: 18px;
   :nth-of-type(1) {
-    font-weight: 700;
-    width: 100px;
-  }
-  :nth-of-type(2) {
     width: 130px;
   }
 `;

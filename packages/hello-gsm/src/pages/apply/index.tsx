@@ -23,11 +23,20 @@ const getApplication = async (accessToken: string) => {
     const { data }: GetApplicationType = await application.getInformation(
       accessToken,
     );
-    return {
-      props: {
-        data,
-      },
-    };
+    if (data.application?.isFinalSubmission) {
+      return {
+        props: {},
+        redirect: {
+          destination: '/',
+        },
+      };
+    } else {
+      return {
+        props: {
+          data,
+        },
+      };
+    }
   } catch (error) {
     return {
       props: {},
