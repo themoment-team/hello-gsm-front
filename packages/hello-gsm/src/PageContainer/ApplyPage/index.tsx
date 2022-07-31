@@ -20,21 +20,17 @@ import {
 } from 'type/application';
 import auth from 'Api/auth';
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const imgInput = useRef<HTMLInputElement>(null);
   const [imgURL, setImgURL] = useState<string>('');
-  const [name, setName] = useState<string>('');
-  const [gender, setGender] = useState<'남자' | '여자'>();
-  const [birthYear, setBirthYear] = useState<number>();
-  const [birthMonth, setBirthMonth] = useState<number>();
-  const [birthDate, setBirthDate] = useState<number>();
-  const [cellphoneNumber, setCellphoneNumber] = useState<string>('');
   const [isIdPhoto, setIsIdPhoto] = useState<boolean>(true);
   const [isMajorSelected, setIsMajorSelected] = useState<boolean>(true);
   const [isAddressExist, setIsAddressExist] = useState<boolean>(true);
   const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(true);
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const userBirth = new Date(data.birth);
 
   const { push } = useRouter();
 
@@ -90,18 +86,11 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
 
   useEffect(() => {
     setLogged(true);
-    const userBirth = new Date(data.birth);
     if (data.application !== null) {
       setIsEdit(true);
     } else {
       setIsEdit(false);
     }
-    setName(data.name);
-    setGender(data.gender);
-    setBirthYear(userBirth.getFullYear());
-    setBirthMonth(userBirth.getMonth() + 1);
-    setBirthDate(userBirth.getDate());
-    setCellphoneNumber(data.cellphoneNumber);
     setImgURL(data.application_image?.idPhotoUrl || '');
     setChoice1(data.application?.application_details.firstWantedMajor || '');
     setChoice2(data.application?.application_details.secondWantedMajor || '');
@@ -153,7 +142,11 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
           imgInput.current.files[0] !== undefined &&
           (await application.postImage(formData));
       }
-      // push('/calculator');
+      if (watch('educationStatus') === '검정고시') {
+        push('/calculator/ged');
+      } else {
+        push('/calculator');
+      }
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 logout 요청
       if (error.response.status === 401) {
@@ -173,8 +166,12 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const readImg = (event: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
 
-    // 파일의 url을 읽는다.
     if (event.target.files) {
+      if (event.target.files[0].size > 512000) {
+        toast.error('증명사진은 500KB 이하만 업로드 가능합니다.');
+        return;
+      }
+      // 파일의 url을 읽는다.
       event.target.files[0] && reader.readAsDataURL(event.target.files[0]);
     }
 
@@ -238,27 +235,27 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             ref={imgInput}
             onChange={e => readImg(e)}
           />
-          <S.NameBox>{name}</S.NameBox>
+          <S.NameBox>{data.name}</S.NameBox>
           <S.GenderBox>
             <S.GenderSelect
               css={css`
-                background: ${gender === '남자' && '#42bafe'};
+                background: ${data.gender === '남자' && '#42bafe'};
               `}
             >
               남자
             </S.GenderSelect>
             <S.GenderSelect
               css={css`
-                background: ${gender === '여자' && '#42bafe'};
+                background: ${data.gender === '여자' && '#42bafe'};
               `}
             >
               여자
             </S.GenderSelect>
           </S.GenderBox>
           <S.BirthBox>
-            <S.Birth>{birthYear}</S.Birth>
-            <S.Birth>{birthMonth}</S.Birth>
-            <S.Birth>{birthDate}</S.Birth>
+            <S.Birth>{userBirth.getFullYear()}</S.Birth>
+            <S.Birth>{userBirth.getMonth() + 1}</S.Birth>
+            <S.Birth>{userBirth.getDate()}</S.Birth>
           </S.BirthBox>
           <S.AddressBox>
             <S.AddressDescription>주소지 검색</S.AddressDescription>
@@ -291,7 +288,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             })}
             placeholder="집 전화번호를 입력해주세요. ('-'제외 9~10자리)"
           />
-          <S.Cellphone>{cellphoneNumber}</S.Cellphone>
+          <S.Cellphone>{data.cellphoneNumber}</S.Cellphone>
           <S.Title>지원자 현황</S.Title>
           <S.TypeBox>
             <S.Type

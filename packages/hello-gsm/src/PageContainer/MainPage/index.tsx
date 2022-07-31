@@ -55,11 +55,22 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
           </S.TitleBox>
           <S.ApplyBox>
             {isPC ? (
-              <Link href={logged ? '/information' : '/auth/signin'} passHref>
-                <S.ToApply>
-                  <S.ToApplyText>원서 접수 하러가기</S.ToApplyText>
+              !data?.application?.isFinalSubmission ? (
+                <Link href={logged ? '/information' : '/auth/signin'} passHref>
+                  <S.ToApply>원서 접수 하러가기</S.ToApply>
+                </Link>
+              ) : (
+                <S.ToApply
+                  css={css`
+                    background: #a2a2a2;
+                    border-radius: 12px;
+                    box-shadow: 0px 5px 20px 0px #a2a2a2;
+                    pointer-events: none;
+                  `}
+                >
+                  접수 완료
                 </S.ToApply>
-              </Link>
+              )
             ) : (
               <S.ToApply
                 css={css`
@@ -71,7 +82,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
                   }
                 `}
               >
-                <S.ToApplyText>원서 접수는 pc로만 가능해요</S.ToApplyText>
+                원서 접수는 pc로만 가능해요
               </S.ToApply>
             )}
             <S.ApplyTerm>접수 기간: 10.18~10.21</S.ApplyTerm>
