@@ -36,6 +36,9 @@ const getStatus = async (accessToken: string) => {
     console.log(error);
     return {
       props: {},
+      redirect: {
+        destination: '/auth/signin',
+      },
     };
   }
 };
