@@ -196,6 +196,9 @@ export const LineList = styled.div`
   @media (max-width: 400px) {
     left: -75%;
   }
+  @media (max-width: 370px) {
+    display: none;
+  }
 `;
 
 export const Line = styled.div`
