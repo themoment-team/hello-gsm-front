@@ -9,7 +9,7 @@ import useStore from 'Stores/StoreContainer';
 
 const MainPage: NextPage<StatusType> = ({ data }) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(1);
-  const [isPC, setIsPC] = useState<boolean>(false);
+  const [isPC, setIsPC] = useState<boolean>(true);
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   const { logged } = useStore();
