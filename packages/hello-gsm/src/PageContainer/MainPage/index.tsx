@@ -56,9 +56,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
           <S.ApplyBox>
             {isPC ? (
               <Link href={logged ? '/information' : '/auth/signin'} passHref>
-                <S.ToApply>
-                  <S.ToApplyText>원서 접수 하러가기</S.ToApplyText>
-                </S.ToApply>
+                <S.ToApply>원서 접수 하러가기</S.ToApply>
               </Link>
             ) : (
               <S.ToApply
@@ -71,7 +69,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
                   }
                 `}
               >
-                <S.ToApplyText>원서 접수는 pc로만 가능해요</S.ToApplyText>
+                원서 접수는 pc로만 가능해요
               </S.ToApply>
             )}
             <S.ApplyTerm>접수 기간: 10.18~10.21</S.ApplyTerm>

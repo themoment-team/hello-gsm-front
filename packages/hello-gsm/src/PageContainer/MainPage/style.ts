@@ -113,28 +113,25 @@ export const ToApply = styled.a`
   box-sizing: border-box;
   border-radius: 12px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 24px;
+  color: #303030;
   background: #dbe44e;
   box-shadow: 0px 5px 20px 0px #dbe44e;
   :hover {
     transition: box-shadow 0.5s;
     box-shadow: 0px 0px 50px 0px #dbe44e;
   }
-  @media ${device.mobile} {
-    height: 43px;
-  }
-`;
-
-export const ToApplyText = styled.p`
-  font-weight: 700;
-  font-size: 24px;
-  color: #303030;
   @media ${device.tablet} {
     color: #2c2a34;
   }
   @media ${device.mobile} {
     font-size: 16px;
+  }
+  @media ${device.mobile} {
+    height: 43px;
   }
 `;
 
