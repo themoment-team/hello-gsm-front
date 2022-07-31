@@ -18,11 +18,12 @@ export const LineList = styled.div`
   height: 800px;
   margin-top: 80px;
   padding-top: 40px;
+
   @media ${device.laptop} {
     left: -50%;
   }
-  @media (max-width: 700px) {
-    display: none;
+  @media ${device.mobile} {
+    left: -55%;
   }
 `;
 
@@ -54,6 +55,21 @@ export const Line = styled.div`
   :nth-of-type(5) {
     margin: 100px 0;
   }
+  @media ${device.tablet} {
+    color: #0f0921;
+    user-select: none;
+  }
+  @media ${device.mobile} {
+    :nth-of-type(2) {
+      margin: 35px 0 0;
+    }
+    :nth-of-type(3) {
+      margin: 40px 0 35px;
+    }
+    :nth-of-type(5) {
+      margin: 100px 0;
+    }
+  }
 `;
 
 export const SignUpForm = styled.form`
@@ -70,10 +86,10 @@ export const SignUpForm = styled.form`
     width: 500px;
   }
   @media ${device.mobile} {
-    width: 400px;
+    width: 380px;
   }
   @media (max-width: 400px) {
-    width: 300px;
+    width: 280px;
   }
 `;
 
@@ -83,58 +99,6 @@ export const Title = styled.h1`
   text-align: center;
   color: #ffffff;
   margin-bottom: 70px;
-`;
-
-export const TosBox = styled.div`
-  width: 100%;
-  height: 279px;
-  background: #484453;
-  border-radius: 10px;
-  margin-top: 50px;
-  padding: 20px;
-  overflow-y: scroll;
-  line-height: 20px;
-  color: #ffffff;
-  font-size: 16px;
-
-  @media ${device.mobile} {
-    margin-top: 20px;
-  }
-`;
-
-export const CheckLabel = styled.label`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  height: 50px;
-  float: right;
-  font-weight: 400;
-  font-size: 16px;
-  cursor: pointer;
-  line-height: 20px;
-  color: #ffffff;
-
-  input {
-    width: 20px;
-    height: 20px;
-    background: #e4e4e4;
-    border-radius: 1px;
-    margin: 0 10px 0;
-  }
-  margin-bottom: 150px;
-`;
-
-export const Button = styled.button`
-  font-size: 24px;
-  line-height: 46px;
-  text-align: center;
-  width: 225px;
-  height: 55px;
-  font-weight: 700;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
 `;
 
 export const LadioSection = styled.div`
@@ -209,11 +173,71 @@ export const Select = styled.select`
   border: none;
 `;
 
+export const TosBox = styled.div`
+  width: 100%;
+  height: 279px;
+  background: #484453;
+  border-radius: 10px;
+  margin-top: 50px;
+  padding: 20px;
+  overflow-y: scroll;
+  line-height: 20px;
+  color: #ffffff;
+  font-size: 16px;
+
+  @media ${device.mobile} {
+    margin-top: 20px;
+  }
+`;
+
+export const CheckLabel = styled.label`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 50px;
+  float: right;
+  font-weight: 400;
+  font-size: 16px;
+  cursor: pointer;
+  line-height: 20px;
+  color: #ffffff;
+
+  input {
+    width: 20px;
+    height: 20px;
+    background: #e4e4e4;
+    border-radius: 1px;
+    margin: 0 10px 0;
+  }
+  margin-bottom: 150px;
+
+  @media ${device.laptop} {
+    width: 100%;
+    justify-content: center;
+  }
+`;
+
+export const Button = styled.button`
+  font-size: 24px;
+  line-height: 46px;
+  text-align: center;
+  width: 225px;
+  height: 55px;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+`;
+
 export const ErrorMessage = styled.p`
   color: #ff4e4e;
   position: absolute;
   right: -250px;
   width: 220px;
+  @media ${device.laptop} {
+    display: none;
+  }
 `;
 
 export const shake = keyframes`
