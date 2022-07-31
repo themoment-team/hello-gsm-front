@@ -10,68 +10,6 @@ export const SignUpPage = styled.div`
   justify-content: center;
 `;
 
-export const LineList = styled.div`
-  position: absolute;
-  padding-right: 30px;
-  border-right: 3px solid rgba(255, 255, 255, 0.17);
-  left: -40%;
-  height: 800px;
-  margin-top: 80px;
-  padding-top: 40px;
-
-  @media ${device.laptop} {
-    left: -50%;
-  }
-  @media ${device.mobile} {
-    left: -55%;
-  }
-`;
-
-export const Line = styled.div`
-  font-size: 20px;
-  line-height: 29px;
-  color: #ffffff;
-  text-align: end;
-
-  &::after {
-    display: block;
-    position: relative;
-    background-size: 10px 10px;
-    left: 180px;
-    top: -20px;
-    width: 10px;
-    height: 10px;
-    content: '';
-    background-color: #ffffff;
-    border-radius: 50%;
-  }
-
-  :nth-of-type(2) {
-    margin: 90px 0 0;
-  }
-  :nth-of-type(3) {
-    margin: 40px 0 35px;
-  }
-  :nth-of-type(5) {
-    margin: 100px 0;
-  }
-  @media ${device.tablet} {
-    color: #0f0921;
-    user-select: none;
-  }
-  @media ${device.mobile} {
-    :nth-of-type(2) {
-      margin: 35px 0 0;
-    }
-    :nth-of-type(3) {
-      margin: 40px 0 35px;
-    }
-    :nth-of-type(5) {
-      margin: 100px 0;
-    }
-  }
-`;
-
 export const SignUpForm = styled.form`
   position: relative;
   display: flex;
@@ -237,6 +175,71 @@ export const ErrorMessage = styled.p`
   width: 220px;
   @media ${device.laptop} {
     display: none;
+  }
+`;
+
+export const LineList = styled.div`
+  position: absolute;
+  padding-right: 30px;
+  border-right: 3px solid rgba(255, 255, 255, 0.17);
+  left: -40%;
+  height: 800px;
+  margin-top: 80px;
+  padding-top: 40px;
+
+  @media ${device.laptop} {
+    left: -50%;
+  }
+  @media ${device.mobile} {
+    left: -55%;
+  }
+  @media (max-width: 400px) {
+    left: -75%;
+  }
+`;
+
+export const Line = styled.div`
+  font-size: 20px;
+  line-height: 29px;
+  color: #ffffff;
+  text-align: end;
+
+  &::after {
+    display: block;
+    position: relative;
+    background-size: 10px 10px;
+    left: 178px;
+    top: -20px;
+    width: 10px;
+    height: 10px;
+    content: '';
+    background-color: #ffffff;
+    border-radius: 50%;
+  }
+
+  :nth-of-type(2) {
+    margin: 90px 0 0;
+  }
+  :nth-of-type(3) {
+    margin: 40px 0 35px;
+  }
+  :nth-of-type(5) {
+    margin: 100px 0;
+  }
+  @media ${device.tablet} {
+    color: #0f0921;
+    user-select: none;
+  }
+  @media ${device.mobile} {
+    :nth-of-type(2) {
+      margin: 35px 0 0;
+    }
+    :nth-of-type(3) {
+      margin: 40px 0 35px;
+    }
+    :nth-of-type(5) {
+      margin: 100px 0;
+    }
   }
 `;
 
