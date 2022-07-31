@@ -25,15 +25,15 @@ const getApplication = async (accessToken: string) => {
     );
     if (data.application?.isFinalSubmission) {
       return {
-        props: {
-          data,
+        props: {},
+        redirect: {
+          destination: '/',
         },
       };
     } else {
       return {
-        props: {},
-        redirect: {
-          destination: '/',
+        props: {
+          data,
         },
       };
     }
