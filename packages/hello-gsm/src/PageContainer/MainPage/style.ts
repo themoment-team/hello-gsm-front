@@ -150,7 +150,7 @@ export const ContentBox = styled.div`
   width: 80%;
   height: 800px;
   background: rgba(255, 255, 255, 0.16);
-  /* backdrop-filter: blur(48px); */
+  backdrop-filter: blur(48px);
   margin: 0 auto;
   border-radius: 24px;
   position: relative;
@@ -288,7 +288,6 @@ export const OrangeBall = styled(Ball)`
   width: 312px;
   height: 312px;
   background: linear-gradient(220deg, #e1da40 10.2%, #f29100 88.36%);
-  filter: blur(10px);
   top: 1351px;
   left: 26%;
   @media ${device.tablet} {
@@ -310,7 +309,6 @@ export const SmallBlueBall = styled(Ball)`
     #0081ff 41.79%,
     #00366b 88.36%
   );
-  filter: blur(10px);
   left: 54%;
   top: 1650px;
   @media ${device.tablet} {
