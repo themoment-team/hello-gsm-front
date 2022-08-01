@@ -15,17 +15,6 @@ export const Background = styled.div`
 
   animation: ${fadeInAndOut} 3s;
   animation-fill-mode: forwards;
-  @keyframes fadein {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
 `;
 
 export const SucessComment = styled.h1`
