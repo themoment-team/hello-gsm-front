@@ -414,6 +414,7 @@ const CalculatorPage: NextPage = () => {
                   })}
                   index={i}
                   scoreArray={artSportsScore}
+                  artSports
                 />
               ))}
             </S.ValueSection>
@@ -430,6 +431,7 @@ const CalculatorPage: NextPage = () => {
                   })}
                   index={3 + i}
                   scoreArray={artSportsScore}
+                  artSports
                 />
               ))}
             </S.ValueSection>
@@ -446,6 +448,7 @@ const CalculatorPage: NextPage = () => {
                   })}
                   index={6 + i}
                   scoreArray={artSportsScore}
+                  artSports
                 />
               ))}
             </S.ValueSection>
