@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { fadeInAndOut } from 'shared/Styles/Animations';
 
 export const Background = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ export const Background = styled.div`
   background: rgba(0, 0, 0, 0.66);
   z-index: 2;
 
-  animation: fadein 2s;
+  animation: ${fadeInAndOut} 3s;
   animation-fill-mode: forwards;
   @keyframes fadein {
     0% {

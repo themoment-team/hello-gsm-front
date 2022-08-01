@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import * as S from './style';
 import { FieldErrors, useForm } from 'react-hook-form';
-import { Header, SignInResultModal } from 'components';
+import { Header, SignUpResultModal } from 'components';
 import { css } from '@emotion/react';
 import dayjs from 'dayjs';
 import auth from 'Api/auth';
@@ -54,7 +54,7 @@ const SignUpPage: NextPage = () => {
         setShowResult(true);
         setTimeout(() => {
           router.replace('/auth/signin');
-        }, 2000);
+        }, 3000);
       } catch (e: any) {
         toast.error(e.message);
       }
@@ -84,7 +84,7 @@ const SignUpPage: NextPage = () => {
   return (
     <>
       <Header />
-      {showResult && <SignInResultModal />}
+      {showResult && <SignUpResultModal />}
       <S.SignUpPage>
         <S.SignUpForm onSubmit={handleSubmit(onValid, inValid)}>
           <S.Title>회원가입</S.Title>
