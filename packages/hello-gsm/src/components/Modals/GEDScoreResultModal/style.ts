@@ -62,7 +62,7 @@ export const SubDesc = styled.p`
   color: rgba(255, 255, 255, 0.69);
 `;
 
-export const Confirm = styled.a`
+export const Confirm = styled.button`
   width: 150px;
   height: 40px;
   background-color: #ffffff;
@@ -72,6 +72,7 @@ export const Confirm = styled.a`
   border-radius: 10px;
   margin-top: 50px;
   cursor: pointer;
+  border: none;
 `;
 
 export const ConfirmSection = styled.div`
