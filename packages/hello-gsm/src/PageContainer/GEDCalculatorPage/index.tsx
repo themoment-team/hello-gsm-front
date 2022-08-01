@@ -93,12 +93,7 @@ const GEDCalculatorPage: NextPage = () => {
           await onValid({
             curriculumScoreSubtotal,
             nonCurriculumScoreSubtotal,
-          });
-          await TrySubmission({
-            curriculumScoreSubtotal,
-            nonCurriculumScoreSubtotal,
-            rankPercentage,
-          });
+          }); // 다시 요청
         } catch (err) {
           console.log(err);
           toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
