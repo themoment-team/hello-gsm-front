@@ -297,6 +297,7 @@ const CalculatorPage: NextPage = () => {
                   <ScoreSelect
                     key={subject}
                     register={register(`value2_1.${i}`, {
+                      valueAsNumber: true,
                       validate: {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
@@ -309,6 +310,7 @@ const CalculatorPage: NextPage = () => {
                   <ScoreSelect
                     key={i}
                     register={register(`value2_1.${subjects.length + i}`, {
+                      valueAsNumber: true,
                       validate: {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
@@ -324,6 +326,7 @@ const CalculatorPage: NextPage = () => {
                   <ScoreSelect
                     key={subject}
                     register={register(`value2_2.${i}`, {
+                      valueAsNumber: true,
                       validate: {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
@@ -336,6 +339,7 @@ const CalculatorPage: NextPage = () => {
                   <ScoreSelect
                     key={i}
                     register={register(`value2_2.${subjects.length + i}`, {
+                      valueAsNumber: true,
                       validate: {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
@@ -351,6 +355,7 @@ const CalculatorPage: NextPage = () => {
                   <ScoreSelect
                     key={subject}
                     register={register(`value3_1.${i}`, {
+                      valueAsNumber: true,
                       validate: {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
@@ -363,6 +368,7 @@ const CalculatorPage: NextPage = () => {
                   <span key={i}>
                     <ScoreSelect
                       register={register(`value3_1.${subjects.length + i}`, {
+                        valueAsNumber: true,
                         validate: {
                           notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                         },
@@ -407,6 +413,7 @@ const CalculatorPage: NextPage = () => {
                 <ScoreSelect
                   key={subject}
                   register={register(`artSportsValue.${i}`, {
+                    valueAsNumber: true,
                     validate: {
                       notNaN: value => !isNaN(value),
                     },
@@ -424,6 +431,7 @@ const CalculatorPage: NextPage = () => {
                 <ScoreSelect
                   key={subject}
                   register={register(`artSportsValue.${3 + i}`, {
+                    valueAsNumber: true,
                     validate: {
                       notNaN: value => !isNaN(value),
                     },
@@ -441,6 +449,7 @@ const CalculatorPage: NextPage = () => {
                 <ScoreSelect
                   key={subject}
                   register={register(`artSportsValue.${6 + i}`, {
+                    valueAsNumber: true,
                     validate: {
                       notNaN: value => !isNaN(value),
                     },
@@ -483,6 +492,7 @@ const CalculatorPage: NextPage = () => {
                       key={grade}
                       {...register(`absentValue.${i}`, {
                         required: true,
+                        valueAsNumber: true,
                       })}
                       placeholder="입력"
                       defaultValue={absentScore ? absentScore[i] : ''}
@@ -496,6 +506,7 @@ const CalculatorPage: NextPage = () => {
                       key={grade}
                       {...register(`attendanceValue.${i}`, {
                         required: true,
+                        valueAsNumber: true,
                       })}
                       placeholder="입력"
                       defaultValue={attendanceScore ? attendanceScore[i] : ''}
@@ -509,6 +520,7 @@ const CalculatorPage: NextPage = () => {
                       key={grade}
                       {...register(`attendanceValue.${3 + i}`, {
                         required: true,
+                        valueAsNumber: true,
                       })}
                       placeholder="입력"
                       defaultValue={
@@ -524,6 +536,7 @@ const CalculatorPage: NextPage = () => {
                       key={grade}
                       {...register(`attendanceValue.${6 + i}`, {
                         required: true,
+                        valueAsNumber: true,
                       })}
                       placeholder="입력"
                       defaultValue={
@@ -538,6 +551,7 @@ const CalculatorPage: NextPage = () => {
                       key={grade}
                       {...register(`volunteerValue.${i}`, {
                         required: true,
+                        valueAsNumber: true,
                       })}
                       placeholder="입력"
                       defaultValue={volunteerScore ? volunteerScore[i] : ''}
