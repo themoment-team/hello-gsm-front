@@ -5,11 +5,10 @@ import { useEffect } from 'react';
 import useStore from 'Stores/StoreContainer';
 import { HeaderType } from 'type/header';
 import { GEDCalculatorPage } from 'PageContainer';
-import { CheckType } from 'type/check';
 import { StatusType } from 'type/user';
 import user from 'Api/user';
 
-const GEDCalculator: NextPage<CheckType> = () => {
+const GEDCalculator: NextPage = () => {
   const seoTitle = '검정고시생 성적 입력';
   const desc = '검정고시생의 성적을 기재합니다.';
   const { setLogged } = useStore();
@@ -46,31 +45,24 @@ const getInfo = async (accessToken: string) => {
 
 /**
  *
- * @returns - 로그인 여부 확인 후 요청 성공 시 페이지 접근 가능
- * accessToken이 없어 에러가 난다면 refresh 요청 후 접근 가능
- * refreshToken도 없을 경우 로그인페이지로 이동
+ * @returns - accessToken, refreshToken 둘다 있다면 로그인 O
+ * accessToken만 있다면 refresh 요청 후 로그인 O / 요청 실패 시 로그인 페이지로 이동
+ * 둘다 없다면 로그인 페이지로 이동
  */
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
   const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
 
   if (ctx.req.cookies.refreshToken) {
-    try {
-      // 로그인 O
-      await auth.check(accessToken);
+    if (ctx.req.cookies.accessToken) {
       return getInfo(accessToken);
-    } catch (err) {
+    } else {
       try {
-        // 요청 헤더를 가저온다
         const { headers }: HeaderType = await auth.refresh(refreshToken);
-        // headers의 set-cookie의 첫번째 요소 (accessToken)을 가져와 저장한다.
         const accessToken = headers['set-cookie'][0].split(';')[0];
-        // 브라우저에 쿠키들을 저장한다
         ctx.res.setHeader('set-cookie', headers['set-cookie']);
-        // headers에서 가져온 accessToken을 담아 요청을 보낸다
         return getInfo(accessToken);
-      } catch (err) {
-        // 로그인 실패
+      } catch (error) {
         return {
           props: {},
           redirect: {
@@ -80,7 +72,6 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
       }
     }
   } else {
-    // 로그인 X
     return {
       props: {},
       redirect: {
