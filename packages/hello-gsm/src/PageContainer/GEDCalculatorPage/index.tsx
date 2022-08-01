@@ -21,20 +21,21 @@ const GEDCalculatorPage: NextPage = () => {
     'nonCurriculumScoreSubtotal',
   );
 
+  const { register, handleSubmit, setValue } = useForm<ScoreType>();
+
+  const { showScoreResult, setShowScoreResult } = useStore();
+  const [resultNumber, setResultNumber] = useState<number>(); //결과 화면 컴포넌트에 보일 점수
+  // 이전에 제출한 경험 여부 판단
+  const [isSubmission, setIsSubmission] = useState<boolean>();
+
   useEffect(() => {
     curriculumScoreSubtotal &&
       setValue('curriculumScoreSubtotal', curriculumScoreSubtotal);
     nonCurriculumScoreSubtotal &&
       setValue('nonCurriculumScoreSubtotal', nonCurriculumScoreSubtotal);
 
-    setIsSubmission(window.localStorage.getItem('isSubmission'));
+    setIsSubmission(curriculumScoreSubtotal ? true : false); // 이전 값이 있다면 true
   }, [curriculumScoreSubtotal, nonCurriculumScoreSubtotal]);
-
-  const { register, handleSubmit, setValue } = useForm<ScoreType>();
-
-  const { showScoreResult, setShowScoreResult } = useStore();
-  const [resultNumber, setResultNumber] = useState<number>(); //결과 화면 컴포넌트에 보일 점수
-  const [isSubmission, setIsSubmission] = useState<string | null>(); // 이전에 제출한 경험 여부 판단
 
   const TrySubmission = async ({
     curriculumScoreSubtotal,
@@ -77,10 +78,10 @@ const GEDCalculatorPage: NextPage = () => {
         'nonCurriculumScoreSubtotal',
         nonCurriculumScoreSubtotal.toString(),
       );
-      window.localStorage.setItem('isSubmission', 'true');
 
       setResultNumber(rankPercentage);
       setShowScoreResult();
+      setIsSubmission(true);
     } catch (err: any) {
       // accessToken 없을 시에 accessToken 발급 후 TrySubmission 요청
       if (err.response.status === 401) {
@@ -92,6 +93,18 @@ const GEDCalculatorPage: NextPage = () => {
             nonCurriculumScoreSubtotal,
             rankPercentage,
           });
+          window.localStorage.setItem(
+            'curriculumScoreSubtotal',
+            curriculumScoreSubtotal.toString(),
+          );
+          window.localStorage.setItem(
+            'nonCurriculumScoreSubtotal',
+            nonCurriculumScoreSubtotal.toString(),
+          );
+
+          setResultNumber(rankPercentage);
+          setShowScoreResult();
+          setIsSubmission(true);
         } catch (err) {
           console.log(err);
         }

@@ -63,7 +63,6 @@ const CalculatorPage: NextPage = () => {
   ]);
   const [nonSubjects, setNonSubjects] = useState(['체육', '미술', '음악']);
   const [grades, setGrades] = useState([1, 2, 3]);
-  console.log(isSubmission);
 
   // 로컬스토리지 값이 있을 때 초기 값 설정
   useEffect(() => {
@@ -75,7 +74,7 @@ const CalculatorPage: NextPage = () => {
     attendanceScore && setValue('attendanceValue', attendanceScore);
     volunteerScore && setValue('volunteerValue', volunteerScore);
     getSubjects && setValue('newSubjects', getSubjects);
-    setIsSubmission(score2_1 ? true : false);
+    setIsSubmission(score2_1 ? true : false); // 이전 값이 있다면 true
   }, [
     score2_1,
     score2_2,
