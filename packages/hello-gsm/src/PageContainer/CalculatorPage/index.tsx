@@ -48,7 +48,7 @@ const CalculatorPage: NextPage = () => {
   const getSubjects = useSubjectsLocalstorage('newSubjects');
 
   // 이전에 제출한 경험 여부 판단
-  const [isSubmission, setIsSubmission] = useState<string | null>();
+  const [isSubmission, setIsSubmission] = useState<boolean>();
 
   const lines = ['일반교과', '예체능 교과', '비교과'];
   const [subjects, setSubjects] = useState([
@@ -63,6 +63,7 @@ const CalculatorPage: NextPage = () => {
   ]);
   const [nonSubjects, setNonSubjects] = useState(['체육', '미술', '음악']);
   const [grades, setGrades] = useState([1, 2, 3]);
+  console.log(isSubmission);
 
   // 로컬스토리지 값이 있을 때 초기 값 설정
   useEffect(() => {
@@ -74,8 +75,7 @@ const CalculatorPage: NextPage = () => {
     attendanceScore && setValue('attendanceValue', attendanceScore);
     volunteerScore && setValue('volunteerValue', volunteerScore);
     getSubjects && setValue('newSubjects', getSubjects);
-
-    setIsSubmission(window.localStorage.getItem('isSubmission'));
+    setIsSubmission(score2_1 ? true : false);
   }, [
     score2_1,
     score2_2,
@@ -172,6 +172,17 @@ const CalculatorPage: NextPage = () => {
       3,
     ); // 총점
     const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 석채백분율
+    // 원서 파일 페이지에서 불러오기 위해 localstorage에 저장
+    setLocalstorage('score2_1', value2_1);
+    setLocalstorage('score2_2', value2_2);
+    setLocalstorage('score3_1', value3_1);
+    setLocalstorage('artSportsScore', artSportsValue);
+    setLocalstorage('absentScore', absentValue);
+    setLocalstorage('attendanceScore', attendanceValue);
+    setLocalstorage('volunteerScore', volunteerValue);
+    setLocalstorage('subjects', subjects);
+    setLocalstorage('newSubjects', newSubjects);
+    setLocalstorage('nonSubjects', nonSubjects);
 
     try {
       await TrySubmission({
@@ -187,17 +198,7 @@ const CalculatorPage: NextPage = () => {
         scoreTotal,
         rankPercentage,
       });
-      // 원서 파일 페이지에서 불러오기 위해 localstorage에 저장
-      setLocalstorage('score2_1', value2_1);
-      setLocalstorage('score2_2', value2_2);
-      setLocalstorage('score3_1', value3_1);
-      setLocalstorage('artSportsScore', artSportsValue);
-      setLocalstorage('absentScore', absentValue);
-      setLocalstorage('attendanceScore', attendanceValue);
-      setLocalstorage('volunteerScore', volunteerValue);
-      setLocalstorage('subjects', subjects);
-      setLocalstorage('newSubjects', newSubjects);
-      setLocalstorage('nonSubjects', nonSubjects);
+
       // 결과 모달 제어
       setResultArray([
         generalCurriculumScoreSubtotal,
@@ -207,7 +208,7 @@ const CalculatorPage: NextPage = () => {
       ]);
       setShowScoreResult();
 
-      window.localStorage.setItem('isSubmission', 'true');
+      setIsSubmission(true);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 TrySubmission 요청
       if (error.response.status === 401) {
