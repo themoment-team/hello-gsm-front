@@ -16,3 +16,5 @@ export { default as MypageInformation } from './MypageInformation';
 export { default as Select } from './Select';
 export { default as SideBar } from './SideBar';
 export { default as ScoreSelect } from './ScoreSelect';
+export { default as GEDScoreResultModal } from './Modals/GEDScoreResultModal';
+export { default as ScoreResultModal } from './Modals/ScoreResultModal';
