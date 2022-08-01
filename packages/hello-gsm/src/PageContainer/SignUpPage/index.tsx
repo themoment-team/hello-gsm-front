@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import * as S from './style';
 import { FieldErrors, useForm } from 'react-hook-form';
-import { Select, Header, Input, SignInResultModal } from 'components';
+import { Header, SignInResultModal } from 'components';
 import { css } from '@emotion/react';
 import dayjs from 'dayjs';
 import auth from 'Api/auth';
@@ -41,6 +41,7 @@ const SignUpPage: NextPage = () => {
      * dayjs 라이브러리를 사용하여 YYYY-MM-DD 형식에 맞게 포맷
      * 월은 0부터 시작
      */
+
     const birth = dayjs()
       .set('year', Number(year))
       .set('month', Number(month))
@@ -63,7 +64,6 @@ const SignUpPage: NextPage = () => {
 
   const inValid = (errors: FieldErrors) => {
     console.log(errors);
-    console.log('fail');
   };
 
   /**
@@ -71,7 +71,7 @@ const SignUpPage: NextPage = () => {
    * @param top : 각 컴포넌트 높이;
    * @returns css - 에러가 있으면 애니메이션, 스타일 추가
    */
-  const SelectError = (top?: number) =>
+  const selectErrorStyle = (top?: number) =>
     css({
       color: 'red',
       ':after': {
@@ -107,52 +107,82 @@ const SignUpPage: NextPage = () => {
               />
               <div>여자</div>
             </S.RadioLabel>
-            <S.ErrorMessage css={errors.gender && SelectError(120)}>
+            <S.ErrorMessage css={errors.gender && selectErrorStyle(120)}>
               {errors.gender?.message}
             </S.ErrorMessage>
           </S.LadioSection>
-          <Input
+          <S.Input
             placeholder="성명을 입력해주세요."
             type="text"
-            bigWidth
-            register={register('name', {
+            {...register('name', {
               required: '* 성명을 입력해주세요.',
             })}
           />
-          <S.ErrorMessage css={errors.name && SelectError(255)}>
+          <S.ErrorMessage css={errors.name && selectErrorStyle(255)}>
             {errors.name?.message}
           </S.ErrorMessage>
+
           <S.SelectSection>
-            <Select register={register('year')}>
+            <S.Select
+              {...register('year', {
+                validate: {
+                  notZero: value => value !== '0',
+                },
+              })}
+            >
+              <option value={'0'}>년</option>
               {[...Array(10)].map((_, i) => (
                 <option value={`200${i}`} key={i}>
                   200{i}년
                 </option>
               ))}
-            </Select>
+            </S.Select>
 
-            <Select register={register('month')}>
+            <S.Select
+              {...register('month', {
+                validate: {
+                  notZero: value => value !== '0',
+                },
+              })}
+            >
+              <option value={'0'}>월</option>
               {[...Array(12)].map((_, i) => (
                 <option value={`${i}`} key={i}>
                   {i + 1}월
                 </option>
               ))}
-            </Select>
+            </S.Select>
 
-            <Select register={register('day')}>
+            <S.Select
+              {...register('day', {
+                validate: {
+                  notZero: value => value !== '0',
+                },
+              })}
+            >
+              <option value={'0'}>일</option>
               {[...Array(31)].map((_, i) => (
                 <option key={i} value={`${i + 1}`}>
                   {i + 1}일
                 </option>
               ))}
-            </Select>
+            </S.Select>
           </S.SelectSection>
+          <S.ErrorMessage
+            css={
+              (errors?.year || errors?.day || errors?.month) &&
+              selectErrorStyle(330)
+            }
+          >
+            {errors?.year || errors?.day || errors?.month
+              ? '* 생년월일을 선택해주세요.'
+              : ''}
+          </S.ErrorMessage>
 
-          <Input
+          <S.Input
             type="text"
             placeholder="핸드폰 번호를 입력해주세요. ( - ) 제외"
-            bigWidth
-            register={register('cellphoneNumber', {
+            {...register('cellphoneNumber', {
               required: '* 핸드폰 번호를 입력해주세요.',
               validate: {
                 notHypen: value =>
@@ -160,7 +190,7 @@ const SignUpPage: NextPage = () => {
               },
             })}
           />
-          <S.ErrorMessage css={errors.cellphoneNumber && SelectError(400)}>
+          <S.ErrorMessage css={errors.cellphoneNumber && selectErrorStyle(410)}>
             {errors.cellphoneNumber?.message}
           </S.ErrorMessage>
           <TosBox />
@@ -172,18 +202,25 @@ const SignUpPage: NextPage = () => {
             />
             개인정보 이용약관을 확인했으며, 이에 동의합니다.
           </S.CheckLabel>
-          <S.ErrorMessage css={errors.agree && SelectError(810)}>
+          <S.ErrorMessage css={errors.agree && selectErrorStyle(810)}>
             {errors.agree?.message}
           </S.ErrorMessage>
           <S.Button>가입하기</S.Button>
           <S.LineList>
-            <S.Line css={errors.gender && SelectError()}>성별</S.Line>
-            <S.Line css={errors.name && SelectError()}>성명</S.Line>
-            <S.Line>생년월일</S.Line>
-            <S.Line css={errors.cellphoneNumber && SelectError()}>
+            <S.Line css={errors.gender && selectErrorStyle()}>성별</S.Line>
+            <S.Line css={errors.name && selectErrorStyle()}>성명</S.Line>
+            <S.Line
+              css={
+                (errors?.year || errors?.day || errors?.month) &&
+                selectErrorStyle()
+              }
+            >
+              생년월일
+            </S.Line>
+            <S.Line css={errors.cellphoneNumber && selectErrorStyle()}>
               핸드폰 번호
             </S.Line>
-            <S.Line css={errors.agree && SelectError()}>
+            <S.Line css={errors.agree && selectErrorStyle()}>
               개인정보 이용약관
             </S.Line>
           </S.LineList>

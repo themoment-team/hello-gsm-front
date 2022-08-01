@@ -10,8 +10,15 @@ import {
   FrontEnd,
   Operating,
 } from '@/public/data/about';
+import { useEffect, useState } from 'react';
 
 const AboutPage: NextPage = () => {
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  useEffect(() => {
+    window.onresize = () => {
+      setIsMobile(window.innerWidth < 640 ? true : false);
+    };
+  }, []);
   return (
     <>
       <Header />
@@ -151,24 +158,75 @@ const AboutPage: NextPage = () => {
                 끊임없이 연구합니다.
               </S.TeamSubTitle>
               <hr />
-              <S.ProfileSection>
-                {FrontEnd.map((profile, i) => (
-                  <a
-                    href={profile.githubURL}
-                    target="_blank"
-                    key={i}
-                    rel="noreferrer"
-                  >
-                    <Image
-                      src={profile.imageURL}
-                      alt=""
-                      width={75}
-                      height={75}
-                    />
-                    <p>{profile.name}</p>
-                  </a>
-                ))}
-              </S.ProfileSection>
+              {!isMobile ? (
+                // 모바일사이즈가 아니면 일렬 사진
+                <S.ProfileSection>
+                  {FrontEnd.map((profile, i) => (
+                    <a
+                      href={profile.githubURL}
+                      target="_blank"
+                      key={i}
+                      rel="noreferrer"
+                    >
+                      <Image
+                        src={profile.imageURL}
+                        alt=""
+                        width={75}
+                        height={75}
+                      />
+                      <p>{profile.name}</p>
+                    </a>
+                  ))}
+                </S.ProfileSection>
+              ) : (
+                // 모바일 사이즈이면 2줄로 나눔
+                <>
+                  <S.ProfileSection>
+                    {FrontEnd.map((profile, i) => (
+                      <div key={i}>
+                        {/* 인덱스가 0, 1, 2인 요소만 표시 */}
+                        {i <= 2 ? (
+                          <a
+                            href={profile.githubURL}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <Image
+                              src={profile.imageURL}
+                              alt=""
+                              width={75}
+                              height={75}
+                            />
+                            <p>{profile.name}</p>
+                          </a>
+                        ) : null}
+                      </div>
+                    ))}
+                  </S.ProfileSection>
+                  <S.ProfileSection>
+                    {/* 인덱스가 3, 4인 요소만 표시 */}
+                    {FrontEnd.map((profile, i) => (
+                      <div key={i}>
+                        {i >= 3 ? (
+                          <a
+                            href={profile.githubURL}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <Image
+                              src={profile.imageURL}
+                              alt=""
+                              width={75}
+                              height={75}
+                            />
+                            <p>{profile.name}</p>
+                          </a>
+                        ) : null}
+                      </div>
+                    ))}
+                  </S.ProfileSection>
+                </>
+              )}
             </S.TeamSection>
             <S.TeamSection>
               <S.TeamTitle>

@@ -33,3 +33,8 @@ export const SucessComment = styled.h1`
   text-align: center;
   color: #ffffff;
 `;
+
+export const Desc = styled.p`
+  color: #ffffff;
+  line-height: 40px;
+`;
