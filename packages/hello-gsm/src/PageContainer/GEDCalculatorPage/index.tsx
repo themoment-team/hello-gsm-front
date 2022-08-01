@@ -1,7 +1,6 @@
 import application from 'Api/application';
 import auth from 'Api/auth';
-import { Header } from 'components';
-import GEDScoreResultModal from 'components/Modals/GEDScoreResultModal';
+import { Header, GEDScoreResultModal } from 'components';
 import useGEDLocalStorage from 'hooks/useGEDLocalstorage';
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
@@ -16,7 +15,7 @@ interface ScoreType {
   nonCurriculumScoreSubtotal: number; // 전과목 만점
 }
 
-const GEDPage: NextPage = () => {
+const GEDCalculatorPage: NextPage = () => {
   const curriculumScoreSubtotal = useGEDLocalStorage('curriculumScoreSubtotal');
   const nonCurriculumScoreSubtotal = useGEDLocalStorage(
     'nonCurriculumScoreSubtotal',
@@ -142,4 +141,4 @@ const GEDPage: NextPage = () => {
   );
 };
 
-export default GEDPage;
+export default GEDCalculatorPage;

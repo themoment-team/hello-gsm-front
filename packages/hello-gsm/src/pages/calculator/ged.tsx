@@ -4,7 +4,7 @@ import type { GetServerSideProps, NextPage } from 'next';
 import { useEffect } from 'react';
 import useStore from 'Stores/StoreContainer';
 import { HeaderType } from 'type/header';
-import { GEDPage } from 'PageContainer';
+import { GEDCalculatorPage } from 'PageContainer';
 import { CheckType } from 'type/check';
 import { StatusType } from 'type/user';
 import user from 'Api/user';
@@ -19,7 +19,7 @@ const GEDCalculator: NextPage<CheckType> = () => {
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
-      <GEDPage />
+      <GEDCalculatorPage />
     </>
   );
 };
