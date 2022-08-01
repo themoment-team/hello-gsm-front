@@ -189,8 +189,8 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
           </S.Materials>
         </S.Document>
       </S.ApplicationPage>
-      {/* 졸업예정인 학생만 성적 입력 확인서 보여주기 */}
-      {application?.application_details?.educationStatus === '졸업예정' ? (
+      {/* 검정고시가 아닌 학생만 성적 입력 확인서 보여주기 */}
+      {application?.application_details?.educationStatus !== '검정고시' ? (
         <S.ApplicationPage>
           <S.Document>
             <div className="warterMark">견본</div>
