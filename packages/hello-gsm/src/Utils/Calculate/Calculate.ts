@@ -1,6 +1,5 @@
 import Rounds from './Rounds';
 import Sum from './Sum';
-import ToNum from './ToNum';
 
 /**
  *
@@ -9,7 +8,7 @@ import ToNum from './ToNum';
  * @returns number - 교과 성적 계산
  */
 const Calculate = (array: Array<number>, mode: number) => {
-  ToNum(array);
+  console.log(array);
   array = array.filter(arr => arr !== 0); // 값이 0('없음')이면 배열에서 제거
   const arraySum = Sum(array); // 배열 합계 구하기
 

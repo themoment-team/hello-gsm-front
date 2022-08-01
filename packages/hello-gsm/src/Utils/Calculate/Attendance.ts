@@ -1,5 +1,4 @@
 import Sum from './Sum';
-import ToNum from './ToNum';
 
 /**
  * @param absent - 결석점수
@@ -9,9 +8,6 @@ import ToNum from './ToNum';
 
 const Attendance = (absent: Array<number>, attendance: Array<number>) => {
   let result = 30;
-  ToNum(absent);
-  ToNum(attendance);
-
   const absentSum = Sum(absent);
   if (absentSum >= 10) return 0;
 

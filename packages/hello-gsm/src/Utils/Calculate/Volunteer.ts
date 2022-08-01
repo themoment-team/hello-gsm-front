@@ -1,4 +1,3 @@
-import ToNum from './ToNum';
 /**
  *
  * @param array - 공식 적용할 배열
@@ -6,7 +5,7 @@ import ToNum from './ToNum';
  */
 const Volunteer = (array: Array<number>) => {
   let result = 0;
-  ToNum(array);
+
   array.map((_, i) => {
     const score = array[i];
     if (score >= 7) result += 10;
