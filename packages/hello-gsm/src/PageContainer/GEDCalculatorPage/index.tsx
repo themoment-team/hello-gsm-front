@@ -5,6 +5,7 @@ import useGEDLocalStorage from 'hooks/useGEDLocalstorage';
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import useStore from 'Stores/StoreContainer';
 import { GEDScoreType } from 'type/score';
 import { GEDCalculate } from 'Utils/Calculate';
@@ -82,40 +83,36 @@ const GEDCalculatorPage: NextPage = () => {
       setResultNumber(rankPercentage);
       setShowScoreResult();
       setIsSubmission(true);
+      toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
     } catch (err: any) {
       // accessToken 없을 시에 accessToken 발급 후 TrySubmission 요청
       if (err.response.status === 401) {
         try {
           // accessToken 발급
           await auth.refresh();
+          await onValid({
+            curriculumScoreSubtotal,
+            nonCurriculumScoreSubtotal,
+          });
           await TrySubmission({
             curriculumScoreSubtotal,
             nonCurriculumScoreSubtotal,
             rankPercentage,
           });
-          window.localStorage.setItem(
-            'curriculumScoreSubtotal',
-            curriculumScoreSubtotal.toString(),
-          );
-          window.localStorage.setItem(
-            'nonCurriculumScoreSubtotal',
-            nonCurriculumScoreSubtotal.toString(),
-          );
-
-          setResultNumber(rankPercentage);
-          setShowScoreResult();
-          setIsSubmission(true);
         } catch (err) {
           console.log(err);
+          toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
         }
       } else {
         console.log(err);
+        toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
       }
     }
   };
 
   const inValid = (Errors: FieldErrors) => {
     console.log(Errors);
+    toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
   };
 
   return (

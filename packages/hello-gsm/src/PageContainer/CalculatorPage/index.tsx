@@ -12,6 +12,7 @@ import { ScoreType } from 'type/score';
 import useStore from 'Stores/StoreContainer';
 import setLocalstorage from 'hooks/setLocalstorage';
 import useSubjectsLocalstorage from 'hooks/useSubjectsLocalstorage';
+import { toast } from 'react-toastify';
 
 interface ScoreForm {
   // 과목/점수 배열
@@ -213,50 +214,29 @@ const CalculatorPage: NextPage = () => {
         try {
           // accessToken 발급
           await auth.refresh();
-          await TrySubmission({
-            score2_1,
-            score2_2,
-            score3_1,
-            generalCurriculumScoreSubtotal,
-            artSportsScore,
-            attendanceScore,
-            curriculumScoreSubtotal,
-            volunteerScore,
-            nonCurriculumScoreSubtotal,
-            scoreTotal,
-            rankPercentage,
+          await onValid({
+            value2_1,
+            value2_2,
+            value3_1,
+            artSportsValue,
+            volunteerValue,
+            absentValue,
+            attendanceValue,
+            newSubjects,
           });
-          // 원서 파일 페이지에서 불러오기 위해 localstorage에 저장
-          setLocalstorage('score2_1', value2_1);
-          setLocalstorage('score2_2', value2_2);
-          setLocalstorage('score3_1', value3_1);
-          setLocalstorage('artSportsScore', artSportsValue);
-          setLocalstorage('absentScore', absentValue);
-          setLocalstorage('attendanceScore', attendanceValue);
-          setLocalstorage('volunteerScore', volunteerValue);
-          setLocalstorage('subjects', subjects);
-          setLocalstorage('newSubjects', newSubjects);
-          setLocalstorage('nonSubjects', nonSubjects);
-
-          // 결과 모달 제어
-          setResultArray([
-            generalCurriculumScoreSubtotal,
-            artSportsScore,
-            nonCurriculumScoreSubtotal,
-            scoreTotal,
-          ]);
-          setShowScoreResult();
-          setIsSubmission(true);
         } catch (error) {
           console.log(error);
+          toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
         }
       } else {
         console.log(error);
+        toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
       }
     }
   };
   const inValid = (errors: FieldErrors) => {
     console.log(errors);
+    toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
   };
 
   // 추가과목 삭제
