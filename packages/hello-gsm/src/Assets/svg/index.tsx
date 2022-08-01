@@ -16,3 +16,4 @@ export { default as HamburgerButton } from './HamburgerButton';
 export { default as SideBarButton } from './SideBarButton';
 export { default as MypageSuccess } from './MypageSuccess';
 export { default as InspectionIcon } from './InspectionIcon';
+export { default as SignUpSuccess } from './SignUpSuccess';
