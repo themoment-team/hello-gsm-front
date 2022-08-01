@@ -32,9 +32,6 @@ const getInfo = async (accessToken: string) => {
     // 최종제출이 안되었으면 페이지 접근 허용
     return {
       props: {},
-      redirect: {
-        destination: '/mypage',
-      },
     };
   } else {
     // 최종제출이 되어있으면 페이지 접근 불가 application 페이지로 이동
@@ -90,6 +87,31 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
         destination: '/auth/signin',
       },
     };
+  }
+
+  try {
+    // 로그인 O
+    await auth.check(accessToken);
+    return getInfo(accessToken);
+  } catch (err) {
+    try {
+      // 요청 헤더를 가저온다
+      const { headers }: HeaderType = await auth.refresh(refreshToken);
+      // headers의 set-cookie의 첫번째 요소 (accessToken)을 가져와 저장한다.
+      const accessToken = headers['set-cookie'][0].split(';')[0];
+      // 브라우저에 쿠키들을 저장한다
+      ctx.res.setHeader('set-cookie', headers['set-cookie']);
+      // headers에서 가져온 accessToken을 담아 요청을 보낸다
+      return getInfo(accessToken);
+    } catch (err) {
+      // 로그인 실패
+      return {
+        props: {},
+        redirect: {
+          destination: '/auth/signin',
+        },
+      };
+    }
   }
 };
 

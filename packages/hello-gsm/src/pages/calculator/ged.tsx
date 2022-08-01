@@ -32,9 +32,6 @@ const getInfo = async (accessToken: string) => {
     // 최종제출이 안되었으면 페이지 접근 허용
     return {
       props: {},
-      redirect: {
-        destination: '/mypage',
-      },
     };
   } else {
     // 최종제출이 되어있으면 페이지 접근 불가 application 페이지로 이동
