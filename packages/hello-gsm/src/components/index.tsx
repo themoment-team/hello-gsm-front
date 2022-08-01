@@ -10,7 +10,7 @@ export { default as FindAddressModal } from './Modals/FindAddressModal';
 export { default as FindSchoolModal } from './Modals/FindSchoolModal';
 export { default as MypageModal } from './Modals/MypageModal';
 export { default as MypageSuccessModal } from './Modals/MypageSuccessModal';
-export { default as SignInResultModal } from './Modals/SignInResultModal';
+export { default as SignUpResultModal } from './Modals/SignUpResultModal';
 export { default as MypageInformation } from './MypageInformation';
 export { default as SideBar } from './SideBar';
 export { default as ScoreSelect } from './ScoreSelect';
