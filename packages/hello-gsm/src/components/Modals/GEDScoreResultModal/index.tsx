@@ -3,7 +3,7 @@ import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 
 interface ResultType {
-  result: number;
+  result?: number;
 }
 
 const GEDScoreResultModal: React.FC<ResultType> = ({ result }) => {
