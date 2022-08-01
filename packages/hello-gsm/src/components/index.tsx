@@ -13,3 +13,6 @@ export { default as MypageSuccessModal } from './Modals/MypageSuccessModal';
 export { default as SignUpResultModal } from './Modals/SignUpResultModal';
 export { default as MypageInformation } from './MypageInformation';
 export { default as SideBar } from './SideBar';
+export { default as ScoreSelect } from './ScoreSelect';
+export { default as GEDScoreResultModal } from './Modals/GEDScoreResultModal';
+export { default as ScoreResultModal } from './Modals/ScoreResultModal';

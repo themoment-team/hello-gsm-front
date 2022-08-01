@@ -41,6 +41,14 @@ export function GlobalStyle() {
           -webkit-font-smoothing: antialiased;
           font-smoothing: antialiased;
         }
+
+        button {
+          font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        input {
+          font-family: 'Noto Sans KR', sans-serif;
+        }
       `}
     />
   );

@@ -66,18 +66,18 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   } = useForm<ApplyFormType>({
     defaultValues: {
       addressDetails:
-        data.application?.application_details.addressDetails || '',
+        data.application?.application_details?.addressDetails || '',
       telephoneNumber:
-        data.application?.application_details.telephoneNumber || '',
+        data.application?.application_details?.telephoneNumber || '',
       screening: data.application?.screening || '일반전형',
-      graduationYear: data.application?.application_details.graduationYear,
-      graduationMonth: data.application?.application_details.graduationMonth,
+      graduationYear: data.application?.application_details?.graduationYear,
+      graduationMonth: data.application?.application_details?.graduationMonth,
       educationStatus:
-        data.application?.application_details.educationStatus || '졸업예정',
-      guardianName: data.application?.application_details.guardianName,
-      guardianRelation: data.application?.application_details.guardianRelation,
+        data.application?.application_details?.educationStatus || '졸업예정',
+      guardianName: data.application?.application_details?.guardianName,
+      guardianRelation: data.application?.application_details?.guardianRelation,
       guardianCellphoneNumber: data.application?.guardianCellphoneNumber,
-      teacherName: data.application?.application_details.teacherName,
+      teacherName: data.application?.application_details?.teacherName,
       teacherCellphoneNumber: data.application?.teacherCellphoneNumber,
     },
   });
@@ -92,14 +92,14 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       setIsEdit(false);
     }
     setImgURL(data.application_image?.idPhotoUrl || '');
-    setChoice1(data.application?.application_details.firstWantedMajor || '');
-    setChoice2(data.application?.application_details.secondWantedMajor || '');
-    setChoice3(data.application?.application_details.thirdWantedMajor || '');
+    setChoice1(data.application?.application_details?.firstWantedMajor || '');
+    setChoice2(data.application?.application_details?.secondWantedMajor || '');
+    setChoice3(data.application?.application_details?.thirdWantedMajor || '');
     setSchoolName(data.application?.schoolName || '');
     setSchoolLocation(
-      data.application?.application_details.schoolLocation || '',
+      data.application?.application_details?.schoolLocation || '',
     );
-    setApplicantAddress(data.application?.application_details.address || '');
+    setApplicantAddress(data.application?.application_details?.address || '');
   }, []);
 
   const apply = async (submitData: ApplyFormType) => {
@@ -142,11 +142,13 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
           imgInput.current.files[0] !== undefined &&
           (await application.postImage(formData));
       }
+
       if (watch('educationStatus') === '검정고시') {
         push('/calculator/ged');
       } else {
         push('/calculator');
       }
+      
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 logout 요청
       if (error.response.status === 401) {
@@ -219,13 +221,13 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
         <S.ApplyPageContent onSubmit={handleSubmit(onSubmit)}>
           <S.Title>지원자 인적사항</S.Title>
           <S.ImgInputBox htmlFor="img-input">
-            {imgURL === '' ? (
+            {imgURL ? (
+              <S.InputImg src={imgURL} />
+            ) : (
               <>
                 <I.InputImg />
                 <S.Description>사진을 업로드 해주세요</S.Description>
               </>
-            ) : (
-              <S.InputImg src={imgURL} />
             )}
           </S.ImgInputBox>
           <S.ImgInput

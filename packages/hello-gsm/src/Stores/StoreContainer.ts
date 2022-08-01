@@ -20,6 +20,7 @@ interface StoreType {
   applicantAddress: string;
   showSideBar: boolean | null;
   showMypageSuccessModal: boolean;
+  showScoreResult: boolean;
 
   setLogged: (isLogged: boolean) => void;
   setShowFAQModal: () => void;
@@ -46,6 +47,7 @@ interface StoreType {
   setApplicantAddress: (residence: string) => void;
   setShowSideBar: (value: boolean | null) => void;
   setShowMypageSuccessModal: () => void;
+  setShowScoreResult: () => void;
 }
 
 const useStore = create<StoreType>(set => ({
@@ -68,6 +70,7 @@ const useStore = create<StoreType>(set => ({
   applicantAddress: '',
   showSideBar: null,
   showMypageSuccessModal: false,
+  showScoreResult: false,
 
   setLogged: isLogged => set({ logged: isLogged }),
   setShowFAQModal: () => set(state => ({ showFAQModal: !state.showFAQModal })),
@@ -93,6 +96,8 @@ const useStore = create<StoreType>(set => ({
   setShowSideBar: value => set({ showSideBar: value }),
   setShowMypageSuccessModal: () =>
     set(state => ({ showMypageSuccessModal: !state.showMypageSuccessModal })),
+  setShowScoreResult: () =>
+    set(state => ({ showScoreResult: !state.showScoreResult })),
 }));
 
 export default useStore;

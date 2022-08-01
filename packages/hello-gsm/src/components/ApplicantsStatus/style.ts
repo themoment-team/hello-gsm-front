@@ -100,6 +100,14 @@ export const Table = styled.table`
     width: 18.7vh;
     height: 25vh;
   }
+
+  .slash {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="100%" x2="100%" y2="0" stroke="gray" /></svg>');
+  }
+
+  .backSlash {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="100%" y2="100%" stroke="gray" /></svg>');
+  }
 `;
 
 export const Slash = styled.td`
@@ -261,46 +269,4 @@ export const ConversionPoint = styled.div`
   border-top: 0;
   height: 2.6vh;
   line-height: 2.6vh;
-`;
-
-export const PrintBtn = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.8vh 2.5vh;
-  position: fixed;
-  width: 17vh;
-  height: 6.5vh;
-  right: 9vh;
-  bottom: 9vh;
-  border-radius: 0.7vh;
-  box-shadow: 0.3vh 0.3vh 0.5vh rgba(0, 0, 0, 0.21);
-  z-index: 7;
-  box-sizing: border-box;
-  cursor: pointer;
-  background-color: #ffffff;
-  border: none;
-
-  svg {
-    width: 2.5vh;
-  }
-  &:hover {
-    transition: 0.5s;
-    background-color: #000000;
-    p {
-      color: #ffffff;
-    }
-    svg > path {
-      fill: #ffffff;
-    }
-  }
-
-  @media print {
-    display: none;
-  }
-`;
-
-export const PrintDesc = styled.p`
-  font-size: 2.1vh;
-  font-weight: bold;
 `;
