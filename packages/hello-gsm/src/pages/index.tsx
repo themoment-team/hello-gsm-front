@@ -8,7 +8,7 @@ import { MainPage } from 'PageContainer';
 
 const Home: NextPage<StatusType> = ({ data }) => {
   const seoTitle = '홈';
-  const desc = '입학 일정을 설명합니다.';
+  const desc = '광주소프트웨어마이스터고등학교 입학 지원 서비스입니다.';
 
   return (
     <>
