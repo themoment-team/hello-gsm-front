@@ -6,6 +6,7 @@ export const SuccessModal = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
   background: rgba(0, 0, 0, 0.51);
   position: absolute;
   z-index: 5;
@@ -15,8 +16,6 @@ export const SuccessModal = styled.div`
 
 export const Content = styled.div`
   height: 330px;
-  position: relative;
-  top: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

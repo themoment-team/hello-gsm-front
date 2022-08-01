@@ -4,7 +4,10 @@ export const fadeInAndOut = keyframes`
   0% {
     opacity: 0;
   }
-  50% {
+  20% {
+    opacity: 1;
+  }
+  80% {
     opacity: 1;
   }
   100% {
