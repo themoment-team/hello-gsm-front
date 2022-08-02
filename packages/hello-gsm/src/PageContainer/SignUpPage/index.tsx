@@ -116,6 +116,10 @@ const SignUpPage: NextPage = () => {
             type="text"
             {...register('name', {
               required: '* 성명을 입력해주세요.',
+              pattern: {
+                value: /^[가-힣]{1,20}$/,
+                message: '* 성명을 확인해주세요',
+              },
             })}
           />
           <S.ErrorMessage css={errors.name && selectErrorStyle(255)}>
@@ -189,7 +193,7 @@ const SignUpPage: NextPage = () => {
                   !value.includes('-') || '( - )를 제외하고 입력해주세요.',
               },
               pattern: {
-                value: /^[0][1][0][0-9]{4}[0-9]{4}/,
+                value: /^[0][1][0][0-9]{8}/,
                 message: '* 핸드폰 번호를 확인해주세요.',
               },
             })}

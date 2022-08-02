@@ -481,7 +481,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
                   !value.includes('-') || '( - )를 제외하고 입력해주세요.',
               },
               pattern: {
-                value: /^[0][1][0][0-9]{4}[0-9]{4}/,
+                value: /^[0][1][0][0-9]{8}/,
                 message: '* 핸드폰 번호를 확인해주세요.',
               },
             })}
@@ -520,7 +520,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
                   !value?.includes('-') || '( - )를 제외하고 입력해주세요.',
               },
               pattern: {
-                value: /^[0][1][0][0-9]{4}[0-9]{4}/,
+                value: /^[0][1][0][0-9]{8}/,
                 message: '* 핸드폰 번호를 확인해주세요.',
               },
             })}
