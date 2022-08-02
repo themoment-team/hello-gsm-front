@@ -148,7 +148,6 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       } else {
         push('/calculator');
       }
-      
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 logout 요청
       if (error.response.status === 401) {
@@ -281,14 +280,18 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             />
           </S.AddressBox>
           <S.HomeTelephone
+            placeholder="집 전화번호를 입력해주세요. ('-'제외 9~10자리)"
             {...register('telephoneNumber', {
               required: false,
+              validate: {
+                notHypen: value =>
+                  !value.includes('-') || '( - )를 제외하고 입력해주세요.',
+              },
               pattern: {
                 value: /^[0-9]{9,10}$/,
                 message: '* 집 전화번호를 확인해주세요',
               },
             })}
-            placeholder="집 전화번호를 입력해주세요. ('-'제외 9~10자리)"
           />
           <S.Cellphone>{data.cellphoneNumber}</S.Cellphone>
           <S.Title>지원자 현황</S.Title>
@@ -473,9 +476,13 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
           <S.GuardianCellphone
             {...register('guardianCellphoneNumber', {
               required: '* 핸드폰 번호를 입력해주세요',
+              validate: {
+                notHypen: value =>
+                  !value.includes('-') || '( - )를 제외하고 입력해주세요.',
+              },
               pattern: {
-                value: /^[0-9]{11}$/,
-                message: '* 핸드폰 번호를 확인해주세요',
+                value: /^[0][1][0][0-9]{4}[0-9]{4}/,
+                message: '* 핸드폰 번호를 확인해주세요.',
               },
             })}
             placeholder="보호자분의 핸드폰 번호를 입력해주세요. ('-'제외 11자리)"
@@ -506,11 +513,15 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             {...register('teacherCellphoneNumber', {
               required:
                 graduationStatus !== '검정고시'
-                  ? '* 연락처를 입력해주세요'
+                  ? '* 핸드폰 번호를 확인해주세요.'
                   : false,
+              validate: {
+                notHypen: value =>
+                  !value?.includes('-') || '( - )를 제외하고 입력해주세요.',
+              },
               pattern: {
-                value: /^[0-9]{11}$/,
-                message: '* 핸드폰 번호를 확인해주세요',
+                value: /^[0][1][0][0-9]{4}[0-9]{4}/,
+                message: '* 핸드폰 번호를 확인해주세요.',
               },
             })}
             placeholder={
