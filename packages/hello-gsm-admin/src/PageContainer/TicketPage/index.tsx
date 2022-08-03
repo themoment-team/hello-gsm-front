@@ -5,6 +5,7 @@ import * as S from './style';
 import * as I from 'Assets/svg';
 
 const TicketPage: NextPage<TicketDataType> = ({ data }) => {
+  console.log(data);
   const TryPrint = () => {
     window.print();
   };
