@@ -17,6 +17,7 @@ const SignInPage: NextPage = () => {
     const { id, password } = validForm;
     try {
       await auth.signin({ id, password });
+      alert('성공');
     } catch (err: any) {
       console.error(err);
       alert('비밀번호가 틀렸습니다.');
