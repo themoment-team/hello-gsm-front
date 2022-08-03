@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://server.admin.hellogsm.kr/';
+export const BASE_URL = 'https://admin-server.hellogsm.kr/';
