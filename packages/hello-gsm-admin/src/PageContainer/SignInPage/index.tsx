@@ -27,6 +27,7 @@ const SignInPage: NextPage = () => {
     css({
       animation: `${S.shake} 0.3s`,
     });
+
   return (
     <S.SignInPage>
       <S.BigBall />
