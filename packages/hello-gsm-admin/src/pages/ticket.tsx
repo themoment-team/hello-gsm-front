@@ -1,4 +1,4 @@
-import type { GetStaticProps, NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import { TicketPage } from 'PageContainer';
 import application from 'Api/application';
@@ -15,9 +15,11 @@ const Ticket: NextPage<TicketDataType> = ({ data }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetServerSideProps = async ctx => {
+  const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
+
   try {
-    const data = await application.ticket();
+    const { data }: TicketDataType = await application.ticket(accessToken);
     return {
       props: {
         data,
