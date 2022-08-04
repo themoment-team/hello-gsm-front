@@ -10,41 +10,23 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(`${origin}/inspection`);
   }
 
-  if (pathname.startsWith('/inspection')) {
+  if (pathname === '/inspection') {
     if (process.env.OPERATIONAL_STATUS !== 'inspection') {
       return NextResponse.redirect(origin);
     }
   }
 
-  if (pathname.startsWith('/information')) {
-    console.log(device.type);
+  if (
+    pathname === '/information' ||
+    pathname === '/apply' ||
+    pathname === '/calculator'
+  ) {
     if (device.type === ('mobile' || 'tablet')) {
       return NextResponse.redirect('https://hellogsm.kr');
     }
   }
 
-  if (pathname.startsWith('/calculator')) {
-    console.log(device.type);
-    if (device.type === ('mobile' || 'tablet')) {
-      return NextResponse.redirect('https://hellogsm.kr');
-    }
-  }
-
-  if (pathname.startsWith('/calculator')) {
-    console.log(device.type);
-    if (device.type === ('mobile' || 'tablet')) {
-      return NextResponse.redirect('https://hellogsm.kr');
-    }
-  }
-
-  if (pathname.startsWith('/apply')) {
-    console.log(device.type);
-    if (device.type === ('mobile' || 'tablet')) {
-      return NextResponse.redirect('https://hellogsm.kr');
-    }
-  }
-
-  if (pathname.startsWith('/application')) {
+  if (pathname === '/application') {
     if (browser.name === 'Safari') {
       return NextResponse.redirect('https://hellogsm.kr');
     }
