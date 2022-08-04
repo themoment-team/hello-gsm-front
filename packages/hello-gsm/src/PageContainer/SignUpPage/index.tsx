@@ -117,7 +117,7 @@ const SignUpPage: NextPage = () => {
             {...register('name', {
               required: '* 성명을 입력해주세요.',
               pattern: {
-                value: /^[ㄱ-ㅎ|가-힣]{2,5}$/,
+                value: /^[가-힣]{2,5}$/,
                 message: '* 성명을 확인해주세요.',
               },
             })}
