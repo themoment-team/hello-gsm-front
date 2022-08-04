@@ -46,7 +46,7 @@ export function middleware(req: NextRequest) {
 
   if (pathname.startsWith('/application')) {
     if (browser.name === 'Safari') {
-      return new Response('Chrome 사용을 권장합니다.');
+      return NextResponse.redirect('https://hellogsm.kr');
     }
   }
 }
