@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { Header, ScoreSelect } from 'components';
+import { FreeSemesterBtn, Header, ScoreSelect } from 'components';
 import * as S from '../CalculatorPage/style';
 import * as I from 'Assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
@@ -28,7 +28,8 @@ const TestCalculatorPage: NextPage = () => {
     formState: { errors },
   } = useForm<ScoreForm>();
 
-  const { showScoreResult, setShowScoreResult } = useStore();
+  const { showScoreResult, setShowScoreResult, freeSemester, setFreeSemester } =
+    useStore();
   const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
 
   const lines = ['일반교과', '예체능 교과', '비교과'];
@@ -120,6 +121,7 @@ const TestCalculatorPage: NextPage = () => {
             <S.CurriculumValue>
               <S.ValueSection>
                 <I.CrossRectangle />
+                <S.Subject>자유학기제</S.Subject>
                 {subjects.map(subject => (
                   <S.Subject key={subject}>{subject}</S.Subject>
                 ))}
@@ -139,6 +141,8 @@ const TestCalculatorPage: NextPage = () => {
 
               <S.ValueSection>
                 <S.Semester>2학년 1학기</S.Semester>
+                <FreeSemesterBtn freeSemesterProps="2-1" />
+
                 {subjects.map((subject, i) => (
                   <ScoreSelect
                     key={subject}
@@ -148,6 +152,7 @@ const TestCalculatorPage: NextPage = () => {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
+                    freeSemesterProps={'2-1'}
                     index={i}
                   />
                 ))}
@@ -160,6 +165,7 @@ const TestCalculatorPage: NextPage = () => {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
+                    freeSemesterProps={'2-1'}
                     index={subjects.length + i}
                   />
                 ))}
@@ -167,6 +173,8 @@ const TestCalculatorPage: NextPage = () => {
 
               <S.ValueSection>
                 <S.Semester>2학년 2학기</S.Semester>
+                <FreeSemesterBtn freeSemesterProps="2-2" />
+
                 {subjects.map((subject, i) => (
                   <ScoreSelect
                     key={subject}
@@ -176,6 +184,7 @@ const TestCalculatorPage: NextPage = () => {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
+                    freeSemesterProps={'2-2'}
                     index={i}
                   />
                 ))}
@@ -188,6 +197,7 @@ const TestCalculatorPage: NextPage = () => {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
+                    freeSemesterProps={'2-2'}
                     index={subjects.length + i}
                   />
                 ))}
@@ -195,6 +205,7 @@ const TestCalculatorPage: NextPage = () => {
 
               <S.ValueSection>
                 <S.Semester>3학년 1학기</S.Semester>
+                <FreeSemesterBtn freeSemesterProps="3-1" />
                 {subjects.map((subject, i) => (
                   <ScoreSelect
                     key={subject}
@@ -204,6 +215,7 @@ const TestCalculatorPage: NextPage = () => {
                         notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
                       },
                     })}
+                    freeSemesterProps={'3-1'}
                     index={i}
                   />
                 ))}
@@ -217,6 +229,7 @@ const TestCalculatorPage: NextPage = () => {
                         },
                       })}
                       index={subjects.length + i}
+                      freeSemesterProps={'3-1'}
                     />
                     <S.DeleteNewSubject onClick={() => DeleteNewSubjects(i)}>
                       삭제
