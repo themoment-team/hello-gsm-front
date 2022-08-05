@@ -1,11 +1,13 @@
 import type { NextPage } from 'next';
 import * as S from './style';
 import type { UseFormRegisterReturn } from 'react-hook-form';
+import useStore from 'Stores/StoreContainer';
 
 interface ScoreSelectProps {
   register: UseFormRegisterReturn;
   scoreArray?: number[] | undefined;
   index: number;
+  freeSemesterProps?: string | null;
   artSports?: boolean;
 }
 /**
@@ -20,36 +22,50 @@ const ScoreSelect: NextPage<ScoreSelectProps> = ({
   register,
   scoreArray,
   index,
+  freeSemesterProps,
   artSports = false,
 }: ScoreSelectProps) => {
+  const { freeSemester } = useStore();
   return (
-    <S.Select {...register}>
-      <option>선택</option>
+    <>
+      {freeSemester === freeSemesterProps ? (
+        <S.FreeSemester>자유학기제</S.FreeSemester>
+      ) : (
+        <S.Select {...register}>
+          {/* <option>선택</option> */}
 
-      <option value={5} selected={scoreArray && scoreArray[index] === 5}>
-        A
-      </option>
-      <option value={4} selected={scoreArray && scoreArray[index] === 4}>
-        B
-      </option>
-      <option value={3} selected={scoreArray && scoreArray[index] === 3}>
-        C
-      </option>
-      {/* 예체능이 아니면 D,E Option까지 보이게 */}
-      {!artSports ? (
-        <>
-          <option value={2} selected={scoreArray && scoreArray[index] === 2}>
-            D
+          <option value={5} selected={scoreArray && scoreArray[index] === 5}>
+            A
           </option>
-          <option value={1} selected={scoreArray && scoreArray[index] === 1}>
-            E
+          <option value={4} selected={scoreArray && scoreArray[index] === 4}>
+            B
           </option>
-        </>
-      ) : null}
-      <option value={0} selected={scoreArray && scoreArray[index] === 0}>
-        없음
-      </option>
-    </S.Select>
+          <option value={3} selected={scoreArray && scoreArray[index] === 3}>
+            C
+          </option>
+          {/* 예체능이 아니면 D,E Option까지 보이게 */}
+          {!artSports ? (
+            <>
+              <option
+                value={2}
+                selected={scoreArray && scoreArray[index] === 2}
+              >
+                D
+              </option>
+              <option
+                value={1}
+                selected={scoreArray && scoreArray[index] === 1}
+              >
+                E
+              </option>
+            </>
+          ) : null}
+          <option value={0} selected={scoreArray && scoreArray[index] === 0}>
+            없음
+          </option>
+        </S.Select>
+      )}
+    </>
   );
 };
 
