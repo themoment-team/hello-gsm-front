@@ -15,7 +15,7 @@ const Ticket: NextPage<TicketDataType> = ({ data }) => {
   );
 };
 
-export const getStaticProps: GetServerSideProps = async ctx => {
+export const getServerSideProps: GetServerSideProps = async ctx => {
   const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
 
   try {
