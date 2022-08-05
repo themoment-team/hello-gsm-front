@@ -14,6 +14,7 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
     // 페이지 첫 렌더링 시 인쇄화면 보여지게
     TryPrint();
   }, []);
+
   return (
     <S.TicketPage>
       {data?.map((user, i) => (
