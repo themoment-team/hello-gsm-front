@@ -90,7 +90,7 @@ export const ControllerBox = styled.div`
   justify-content: space-between;
 `;
 
-export const Controller = styled.button`
+const Controller = styled.button`
   width: 175px;
   height: 50px;
   font-weight: 700;
@@ -117,4 +117,37 @@ const Ball = styled.div`
   border-radius: 100%;
   position: absolute;
   z-index: -1;
+`;
+
+export const YellowBall = styled(Ball)`
+  width: 154px;
+  height: 154px;
+  background: linear-gradient(
+    207.52deg,
+    rgba(252, 255, 173, 0.9) 13.95%,
+    rgba(222, 228, 73, 0.9) 27.08%,
+    rgba(48, 95, 2, 0.513) 91.31%
+  );
+  left: 14%;
+  top: 46%;
+`;
+
+export const BlueBall = styled(Ball)`
+  width: 459px;
+  height: 459px;
+  background: linear-gradient(
+    207.52deg,
+    rgba(93, 196, 255, 0.9) 13.95%,
+    rgba(41, 120, 214, 0.9) 37.16%,
+    rgba(10, 36, 74, 0.9) 91.31%
+  );
+  top: 40%;
+  left: 84%;
+`;
+
+export const SmallBlueBall = styled(BlueBall)`
+  width: 75px;
+  height: 75px;
+  top: 90%;
+  left: 22.5%;
 `;
