@@ -53,15 +53,18 @@ const InformationPage: NextPage = () => {
           </S.ProgressBox>
         </S.InformationHeader>
         <InformationDescription index={progressIndex} />
-        {progressIndex === (1 || 6) ? (
-          <S.NextController onClick={nextIndex}>다음</S.NextController>
-        ) : (
+        {progressIndex > 1 ? (
           <S.ControllerBox>
             <S.PrevController onClick={previusIndex}>이전</S.PrevController>
             <S.NextController onClick={nextIndex}>다음</S.NextController>
           </S.ControllerBox>
+        ) : (
+          <S.NextController onClick={nextIndex}>다음</S.NextController>
         )}
       </S.InformationContent>
+      <S.YellowBall />
+      <S.BlueBall />
+      <S.SmallBlueBall />
     </S.InformationPage>
   );
 };
