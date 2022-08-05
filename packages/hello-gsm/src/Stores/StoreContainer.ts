@@ -21,6 +21,7 @@ interface StoreType {
   showSideBar: boolean | null;
   showMypageSuccessModal: boolean;
   showScoreResult: boolean;
+  freeSemester: string | null;
 
   setLogged: (isLogged: boolean) => void;
   setShowFAQModal: () => void;
@@ -48,6 +49,7 @@ interface StoreType {
   setShowSideBar: (value: boolean | null) => void;
   setShowMypageSuccessModal: () => void;
   setShowScoreResult: () => void;
+  setFreeSemester: (value: string) => void;
 }
 
 const useStore = create<StoreType>(set => ({
@@ -71,6 +73,7 @@ const useStore = create<StoreType>(set => ({
   showSideBar: null,
   showMypageSuccessModal: false,
   showScoreResult: false,
+  freeSemester: null,
 
   setLogged: isLogged => set({ logged: isLogged }),
   setShowFAQModal: () => set(state => ({ showFAQModal: !state.showFAQModal })),
@@ -98,6 +101,7 @@ const useStore = create<StoreType>(set => ({
     set(state => ({ showMypageSuccessModal: !state.showMypageSuccessModal })),
   setShowScoreResult: () =>
     set(state => ({ showScoreResult: !state.showScoreResult })),
+  setFreeSemester: value => set({ freeSemester: value }),
 }));
 
 export default useStore;
