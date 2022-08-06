@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 
 const InformationPage: NextPage = () => {
   const { setLogged } = useStore();
-  const [progressIndex, setProgressIndex] = useState<number>(1);
+  const [progressIndex, setProgressIndex] = useState<number>(0);
   const { push } = useRouter();
 
   const progressArray = [
@@ -21,18 +21,35 @@ const InformationPage: NextPage = () => {
     '결과 발표',
   ];
 
-  const previusIndex = () => {
-    setProgressIndex(index => (index > 1 ? --index : index));
-  };
-
-  const nextIndex = () => {
-    progressIndex === 6 && push('/apply');
-    setProgressIndex(index => (index < 6 ? ++index : index));
-  };
-
   useEffect(() => {
     setLogged(true);
   }, []);
+
+  const previusIndex = () => {
+    setProgressIndex(index => (index > 0 ? --index : index));
+  };
+
+  const nextIndex = () => {
+    progressIndex === 5 && push('/apply');
+    setProgressIndex(index => (index < 5 ? ++index : index));
+  };
+
+  const highlightStyle = css`
+    width: 127px;
+    height: 41px;
+    background: #19baff;
+    p {
+      color: #0f0921;
+      font-weight: 700;
+      font-size: 16px;
+    }
+    div {
+      background: #ffffff;
+      width: 10px;
+      height: 10px;
+      top: 36px;
+    }
+  `;
 
   return (
     <S.InformationPage>
@@ -41,19 +58,22 @@ const InformationPage: NextPage = () => {
         <S.InformationHeader>
           <S.Title>입학 절차</S.Title>
           <S.ProgressBox>
-            <S.ProgressContent>
+            <S.ProgressContents>
               {progressArray.map((item, index) => (
-                <S.Progress key={index}>
+                <S.Progress
+                  key={index}
+                  css={progressIndex === index && highlightStyle}
+                >
                   <S.ProgressText>{item}</S.ProgressText>
                   <S.Point />
                 </S.Progress>
               ))}
-            </S.ProgressContent>
+            </S.ProgressContents>
             <S.ProgressBar />
           </S.ProgressBox>
         </S.InformationHeader>
         <InformationDescription index={progressIndex} />
-        {progressIndex > 1 ? (
+        {progressIndex > 0 ? (
           <S.ControllerBox>
             <S.PrevController onClick={previusIndex}>이전</S.PrevController>
             <S.NextController onClick={nextIndex}>다음</S.NextController>
