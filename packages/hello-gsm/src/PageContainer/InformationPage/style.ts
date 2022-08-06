@@ -36,11 +36,11 @@ export const Title = styled.div`
 
 export const ProgressBox = styled.div`
   width: 100%;
-  height: 41px;
+  height: 46px;
   position: relative;
 `;
 
-export const ProgressContent = styled.div`
+export const ProgressContents = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -49,9 +49,9 @@ export const ProgressContent = styled.div`
 `;
 
 export const Progress = styled.div`
-  width: 90px;
+  width: 120px;
   height: 32px;
-  background: rgba(161, 161, 161, 0.42);
+  background: #4d4957;
   border-radius: 12px;
   display: flex;
   justify-content: center;
@@ -67,7 +67,7 @@ export const ProgressText = styled.p`
 
 export const ProgressBar = styled.div`
   width: 100%;
-  border: 2px solid rgba(255, 255, 255, 0.42);
+  border: 2px solid #74707e;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
