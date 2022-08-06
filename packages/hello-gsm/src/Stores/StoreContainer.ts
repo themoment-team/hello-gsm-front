@@ -22,6 +22,7 @@ interface StoreType {
   showMypageSuccessModal: boolean;
   showScoreResult: boolean;
   freeSemester: string | null;
+  system: '자유학기제' | '자유학년제';
 
   setLogged: (isLogged: boolean) => void;
   setShowFAQModal: () => void;
@@ -50,6 +51,7 @@ interface StoreType {
   setShowMypageSuccessModal: () => void;
   setShowScoreResult: () => void;
   setFreeSemester: (value: string) => void;
+  setSystem: (type: '자유학기제' | '자유학년제') => void;
 }
 
 const useStore = create<StoreType>(set => ({
@@ -74,6 +76,7 @@ const useStore = create<StoreType>(set => ({
   showMypageSuccessModal: false,
   showScoreResult: false,
   freeSemester: null,
+  system: '자유학년제',
 
   setLogged: isLogged => set({ logged: isLogged }),
   setShowFAQModal: () => set(state => ({ showFAQModal: !state.showFAQModal })),
@@ -102,6 +105,7 @@ const useStore = create<StoreType>(set => ({
   setShowScoreResult: () =>
     set(state => ({ showScoreResult: !state.showScoreResult })),
   setFreeSemester: value => set({ freeSemester: value }),
+  setSystem: type => set({ system: type }),
 }));
 
 export default useStore;
