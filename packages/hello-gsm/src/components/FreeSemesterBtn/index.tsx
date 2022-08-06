@@ -5,20 +5,27 @@ interface FreeSemesterType {
   freeSemesterProps: string;
 }
 const FreeSemesterBtn: React.FC<FreeSemesterType> = ({ freeSemesterProps }) => {
-  const { freeSemester, setFreeSemester } = useStore();
+  const { freeSemester, setFreeSemester, system } = useStore();
   return (
     <>
-      {freeSemester === freeSemesterProps ? (
-        <S.FreeSemesterBtn onClick={() => setFreeSemester('')} type="button">
-          ON
-        </S.FreeSemesterBtn>
-      ) : (
-        <S.OffBtn
-          onClick={() => setFreeSemester(freeSemesterProps)}
-          type="button"
-        >
-          OFF
-        </S.OffBtn>
+      {system === '자유학기제' && (
+        <>
+          {freeSemester === freeSemesterProps ? (
+            <S.FreeSemesterBtn
+              onClick={() => setFreeSemester('')}
+              type="button"
+            >
+              ON
+            </S.FreeSemesterBtn>
+          ) : (
+            <S.OffBtn
+              onClick={() => setFreeSemester(freeSemesterProps)}
+              type="button"
+            >
+              OFF
+            </S.OffBtn>
+          )}
+        </>
       )}
     </>
   );

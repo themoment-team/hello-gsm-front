@@ -25,10 +25,10 @@ const ScoreSelect: NextPage<ScoreSelectProps> = ({
   freeSemesterProps,
   artSports = false,
 }: ScoreSelectProps) => {
-  const { freeSemester } = useStore();
+  const { freeSemester, system } = useStore();
   return (
     <>
-      {freeSemester === freeSemesterProps ? (
+      {freeSemester === freeSemesterProps && system === '자유학기제' ? (
         <S.FreeSemester>자유학기제</S.FreeSemester>
       ) : (
         <S.Select {...register}>
@@ -44,7 +44,7 @@ const ScoreSelect: NextPage<ScoreSelectProps> = ({
             C
           </option>
           {/* 예체능이 아니면 D,E Option까지 보이게 */}
-          {!artSports ? (
+          {!artSports && (
             <>
               <option
                 value={2}
@@ -59,7 +59,7 @@ const ScoreSelect: NextPage<ScoreSelectProps> = ({
                 E
               </option>
             </>
-          ) : null}
+          )}
           <option value={0} selected={scoreArray && scoreArray[index] === 0}>
             없음
           </option>
