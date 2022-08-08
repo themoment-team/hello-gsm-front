@@ -117,7 +117,7 @@ const SignUpPage: NextPage = () => {
             {...register('name', {
               required: '* 성명을 입력해주세요.',
               pattern: {
-                value: /^[가-힣]{1,20}$/,
+                value: /^[가-힣]{2,5}$/,
                 message: '* 성명을 확인해주세요.',
               },
             })}
@@ -130,11 +130,11 @@ const SignUpPage: NextPage = () => {
             <S.Select
               {...register('year', {
                 validate: {
-                  notZero: value => value !== '0',
+                  notZero: value => value !== 'unSelected',
                 },
               })}
             >
-              <option value={'0'}>년</option>
+              <option value={'unSelected'}>년</option>
               {[...Array(10)].map((_, i) => (
                 <option value={`200${i}`} key={i}>
                   200{i}년
@@ -145,11 +145,11 @@ const SignUpPage: NextPage = () => {
             <S.Select
               {...register('month', {
                 validate: {
-                  notZero: value => value !== '0',
+                  notZero: value => value !== 'unSelected',
                 },
               })}
             >
-              <option value={'0'}>월</option>
+              <option value={'unSelected'}>월</option>
               {[...Array(12)].map((_, i) => (
                 <option value={`${i}`} key={i}>
                   {i + 1}월
@@ -160,11 +160,11 @@ const SignUpPage: NextPage = () => {
             <S.Select
               {...register('day', {
                 validate: {
-                  notZero: value => value !== '0',
+                  notZero: value => value !== 'unSelected',
                 },
               })}
             >
-              <option value={'0'}>일</option>
+              <option value={'unSelected'}>일</option>
               {[...Array(31)].map((_, i) => (
                 <option key={i} value={`${i + 1}`}>
                   {i + 1}일
