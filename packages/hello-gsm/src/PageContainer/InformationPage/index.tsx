@@ -1,6 +1,5 @@
 import type { NextPage } from 'next';
 import { Header, InformationDescription } from 'components';
-import Link from 'next/link';
 import * as S from './style';
 import { css } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
