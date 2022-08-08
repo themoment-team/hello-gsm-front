@@ -148,7 +148,6 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       } else {
         push('/calculator');
       }
-      
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 logout 요청
       if (error.response.status === 401) {
@@ -226,7 +225,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             ) : (
               <>
                 <I.InputImg />
-                <S.Description>사진을 업로드 해주세요</S.Description>
+                <S.Description>사진을 업로드 해주세요.</S.Description>
               </>
             )}
           </S.ImgInputBox>
@@ -281,14 +280,18 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             />
           </S.AddressBox>
           <S.HomeTelephone
+            placeholder="집 전화번호를 입력해주세요. ('-'제외 9~10자리)"
             {...register('telephoneNumber', {
               required: false,
+              validate: {
+                notHypen: value =>
+                  !value.includes('-') || '( - )를 제외하고 입력해주세요.',
+              },
               pattern: {
                 value: /^[0-9]{9,10}$/,
-                message: '* 집 전화번호를 확인해주세요',
+                message: '* 집 전화번호를 확인해주세요.',
               },
             })}
-            placeholder="집 전화번호를 입력해주세요. ('-'제외 9~10자리)"
           />
           <S.Cellphone>{data.cellphoneNumber}</S.Cellphone>
           <S.Title>지원자 현황</S.Title>
@@ -337,7 +340,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
                   required: true,
                   pattern: {
                     value: /^[0-9]+$/,
-                    message: '* 졸업일을 선택해주세요',
+                    message: '* 졸업일을 선택해주세요.',
                   },
                 })}
               >
@@ -356,7 +359,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
                   required: true,
                   pattern: {
                     value: /^[0-9]+$/,
-                    message: '* 졸업일을 선택해주세요',
+                    message: '* 졸업일을 선택해주세요.',
                   },
                 })}
               >
@@ -452,30 +455,34 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
           <S.Title>보호자</S.Title>
           <S.GuardianName
             {...register('guardianName', {
-              required: '* 성명을 입력해주세요',
+              required: '* 성명을 입력해주세요.',
               pattern: {
                 value: /^[가-힣]{1,20}$/,
-                message: '* 성명을 확인해주세요',
+                message: '* 성명을 확인해주세요.',
               },
             })}
             placeholder="보호자분의 성명을 입력해주세요."
           />
           <S.GuardianRelation
             {...register('guardianRelation', {
-              required: '* 관계를 입력해주세요',
+              required: '* 관계를 입력해주세요.',
               pattern: {
                 value: /^[가-힣]{1,20}$/,
-                message: '* 관계를 확인해주세요',
+                message: '* 관계를 확인해주세요.',
               },
             })}
             placeholder="지원자분과의 관계를 입력해주세요."
           />
           <S.GuardianCellphone
             {...register('guardianCellphoneNumber', {
-              required: '* 핸드폰 번호를 입력해주세요',
+              required: '* 핸드폰 번호를 입력해주세요.',
+              validate: {
+                notHypen: value =>
+                  !value.includes('-') || '( - )를 제외하고 입력해주세요.',
+              },
               pattern: {
-                value: /^[0-9]{11}$/,
-                message: '* 핸드폰 번호를 확인해주세요',
+                value: /^[0][1][0][0-9]{8}/,
+                message: '* 핸드폰 번호를 확인해주세요.',
               },
             })}
             placeholder="보호자분의 핸드폰 번호를 입력해주세요. ('-'제외 11자리)"
@@ -485,11 +492,11 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             {...register('teacherName', {
               required:
                 graduationStatus !== '검정고시'
-                  ? '* 성함을 입력해주세요'
+                  ? '* 성함을 입력해주세요.'
                   : false,
               pattern: {
                 value: /^[가-힣]{1,20}$/,
-                message: '* 성함을 확인해주세요',
+                message: '* 성함을 확인해주세요.',
               },
             })}
             placeholder={
@@ -506,11 +513,15 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
             {...register('teacherCellphoneNumber', {
               required:
                 graduationStatus !== '검정고시'
-                  ? '* 연락처를 입력해주세요'
+                  ? '* 핸드폰 번호를 확인해주세요.'
                   : false,
+              validate: {
+                notHypen: value =>
+                  !value?.includes('-') || '( - )를 제외하고 입력해주세요.',
+              },
               pattern: {
-                value: /^[0-9]{11}$/,
-                message: '* 핸드폰 번호를 확인해주세요',
+                value: /^[0][1][0][0-9]{8}/,
+                message: '* 핸드폰 번호를 확인해주세요.',
               },
             })}
             placeholder={
@@ -528,7 +539,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
           </S.NextButton>
         </S.ApplyPageContent>
         <S.ErrorBox>
-          <S.Error>{!isIdPhoto && '* 증명사진을 등록해주세요'}</S.Error>
+          <S.Error>{!isIdPhoto && '* 증명사진을 등록해주세요.'}</S.Error>
           <S.Error>{!isAddressExist && '* 주소지를 입력해주세요.'}</S.Error>
           <S.Error>{errors.addressDetails?.message}</S.Error>
           <S.Error>{errors.telephoneNumber?.message}</S.Error>
@@ -540,7 +551,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
               ? errors.graduationYear.message
               : errors.graduationMonth?.message}
           </S.Error>
-          <S.Error>{!isMajorSelected && '* 지원학과를 선택해주세요'}</S.Error>
+          <S.Error>{!isMajorSelected && '* 지원학과를 선택해주세요.'}</S.Error>
           <S.Error>{errors.guardianName?.message}</S.Error>
           <S.Error>{errors.guardianRelation?.message}</S.Error>
           <S.Error>{errors.guardianCellphoneNumber?.message}</S.Error>
