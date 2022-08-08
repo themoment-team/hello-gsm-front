@@ -21,11 +21,11 @@ import { toast } from 'react-toastify';
 
 interface ScoreForm {
   // 과목/점수 배열
-  value1_1: number[];
-  value1_2: number[];
-  value2_1: number[];
-  value2_2: number[];
-  value3_1: number[];
+  value1_1?: number[];
+  value1_2?: number[];
+  value2_1?: number[];
+  value2_2?: number[];
+  value3_1?: number[];
   artSportsValue: number[];
   volunteerValue: number[];
   absentValue: number[];
@@ -42,7 +42,13 @@ const GraduateCalculatorPage: NextPage = () => {
     formState: { errors },
   } = useForm<ScoreForm>();
 
-  const { showScoreResult, setShowScoreResult, system, setSystem } = useStore();
+  const {
+    showScoreResult,
+    setShowScoreResult,
+    system,
+    setSystem,
+    freeSemester,
+  } = useStore();
   const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
 
   // 로컬스토리지 값 가져오기
@@ -141,6 +147,8 @@ const GraduateCalculatorPage: NextPage = () => {
 
   // 저장 버튼을 눌렀을 때
   const onValid = async ({
+    value1_1,
+    value1_2,
     value2_1,
     value2_2,
     value3_1,
@@ -150,6 +158,7 @@ const GraduateCalculatorPage: NextPage = () => {
     attendanceValue,
     newSubjects,
   }: ScoreForm) => {
+    console.log(value1_1, value1_2);
     const score2_1: number = Calculate(value2_1, 2); // 2학년 1학기
     const score2_2: number = Calculate(value2_2, 2); // 2학년 2학기
     const score3_1: number = Calculate(value3_1, 3); // 3학년 1학기
@@ -270,8 +279,6 @@ const GraduateCalculatorPage: NextPage = () => {
     );
   };
 
-  console.log(system);
-  console.log(system);
   return (
     <>
       <Header />
@@ -291,8 +298,8 @@ const GraduateCalculatorPage: NextPage = () => {
         <S.SystemLabel>
           <input
             type="radio"
-            onChange={() => setSystem('자유학기제')}
             checked={system === '자유학기제'}
+            onChange={() => setSystem('자유학기제')}
             id="system"
           />
           <div>자유학기제</div>
@@ -335,7 +342,7 @@ const GraduateCalculatorPage: NextPage = () => {
                         register={register(`value1_1.${i}`, {
                           valueAsNumber: true,
                           validate: {
-                            notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                            notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
                           },
                         })}
                         index={i}
@@ -349,7 +356,7 @@ const GraduateCalculatorPage: NextPage = () => {
                         register={register(`value1_1.${subjects.length + i}`, {
                           valueAsNumber: true,
                           validate: {
-                            notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                            notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
                           },
                         })}
                         index={subjects.length + i}
@@ -367,7 +374,7 @@ const GraduateCalculatorPage: NextPage = () => {
                         register={register(`value1_2.${i}`, {
                           valueAsNumber: true,
                           validate: {
-                            notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                            notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
                           },
                         })}
                         index={i}
@@ -381,7 +388,7 @@ const GraduateCalculatorPage: NextPage = () => {
                         register={register(`value1_2.${subjects.length + i}`, {
                           valueAsNumber: true,
                           validate: {
-                            notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                            notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
                           },
                         })}
                         index={subjects.length + i}
@@ -401,7 +408,7 @@ const GraduateCalculatorPage: NextPage = () => {
                     register={register(`value2_1.${i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                        notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
@@ -415,7 +422,7 @@ const GraduateCalculatorPage: NextPage = () => {
                     register={register(`value2_1.${subjects.length + i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                        notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={subjects.length + i}
@@ -434,7 +441,7 @@ const GraduateCalculatorPage: NextPage = () => {
                     register={register(`value2_2.${i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                        notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
@@ -448,7 +455,7 @@ const GraduateCalculatorPage: NextPage = () => {
                     register={register(`value2_2.${subjects.length + i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                        notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={subjects.length + i}
@@ -467,7 +474,7 @@ const GraduateCalculatorPage: NextPage = () => {
                     register={register(`value3_1.${i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                        notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
@@ -481,7 +488,7 @@ const GraduateCalculatorPage: NextPage = () => {
                       register={register(`value3_1.${subjects.length + i}`, {
                         valueAsNumber: true,
                         validate: {
-                          notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                          notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
                         },
                       })}
                       index={subjects.length + i}
