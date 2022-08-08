@@ -13,8 +13,8 @@ const InformationPage: NextPage = () => {
   const { push } = useRouter();
 
   const progressArray = [
-    '원서 작성',
-    '성적 작성',
+    '유의 사항',
+    '원서 및 성적 작성',
     '원서 학교 제출',
     '1차 전형',
     '2차 전형',
