@@ -255,9 +255,11 @@ export const ContentSelect = styled.button`
   margin: 0;
   @media ${device.tablet} {
     font-size: 18px;
+    padding: 0 16.87px;
   }
   @media ${device.mobile} {
     font-size: 11px;
+    padding: 0 10.125px;
   }
 `;
 
