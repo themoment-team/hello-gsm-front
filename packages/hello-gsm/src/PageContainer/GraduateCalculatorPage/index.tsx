@@ -9,7 +9,13 @@ import * as S from './style';
 import * as I from 'Assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
-import { Calculate, Volunteer, Rounds, Attendance } from 'Utils/Calculate';
+import {
+  Calculate,
+  Volunteer,
+  Rounds,
+  Attendance,
+  Test,
+} from 'Utils/Calculate';
 import useLocalstorage from 'hooks/useLocalstorage';
 import application from 'Api/application';
 import auth from 'Api/auth';
@@ -21,11 +27,11 @@ import { toast } from 'react-toastify';
 
 interface ScoreForm {
   // 과목/점수 배열
-  value1_1?: number[];
-  value1_2?: number[];
-  value2_1?: number[];
-  value2_2?: number[];
-  value3_1?: number[];
+  value1_1: number[];
+  value1_2: number[];
+  value2_1: number[];
+  value2_2: number[];
+  value3_1: number[];
   artSportsValue: number[];
   volunteerValue: number[];
   absentValue: number[];
@@ -52,6 +58,8 @@ const GraduateCalculatorPage: NextPage = () => {
   const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
 
   // 로컬스토리지 값 가져오기
+  const score1_1 = useLocalstorage('score1_1');
+  const score1_2 = useLocalstorage('score1_2');
   const score2_1 = useLocalstorage('score2_1');
   const score2_2 = useLocalstorage('score2_2');
   const score3_1 = useLocalstorage('score3_1');
@@ -79,51 +87,53 @@ const GraduateCalculatorPage: NextPage = () => {
   const [grades, setGrades] = useState([1, 2, 3]);
 
   // api 요청 보내기
-  const TrySubmission = async ({
-    score2_1,
-    score2_2,
-    score3_1,
-    generalCurriculumScoreSubtotal,
-    artSportsScore,
-    attendanceScore,
-    curriculumScoreSubtotal,
-    volunteerScore,
-    nonCurriculumScoreSubtotal,
-    scoreTotal,
-    rankPercentage,
-  }: ScoreType) => {
-    // 이전에 제출한 적이 있으면 patch / 없다면 post
-    isSubmission
-      ? await application.patchSecondSubmisson({
-          score2_1,
-          score2_2,
-          score3_1,
-          generalCurriculumScoreSubtotal,
-          artSportsScore,
-          attendanceScore,
-          curriculumScoreSubtotal,
-          volunteerScore,
-          nonCurriculumScoreSubtotal,
-          scoreTotal,
-          rankPercentage,
-        })
-      : await application.postSecondSubmisson({
-          score2_1,
-          score2_2,
-          score3_1,
-          generalCurriculumScoreSubtotal,
-          artSportsScore,
-          attendanceScore,
-          curriculumScoreSubtotal,
-          volunteerScore,
-          nonCurriculumScoreSubtotal,
-          scoreTotal,
-          rankPercentage,
-        });
-  };
+  // const TrySubmission = async ({
+  //   score2_1,
+  //   score2_2,
+  //   score3_1,
+  //   generalCurriculumScoreSubtotal,
+  //   artSportsScore,
+  //   attendanceScore,
+  //   curriculumScoreSubtotal,
+  //   volunteerScore,
+  //   nonCurriculumScoreSubtotal,
+  //   scoreTotal,
+  //   rankPercentage,
+  // }: ScoreType) => {
+  //   // 이전에 제출한 적이 있으면 patch / 없다면 post
+  //   isSubmission
+  //     ? await application.patchSecondSubmisson({
+  //         score2_1,
+  //         score2_2,
+  //         score3_1,
+  //         generalCurriculumScoreSubtotal,
+  //         artSportsScore,
+  //         attendanceScore,
+  //         curriculumScoreSubtotal,
+  //         volunteerScore,
+  //         nonCurriculumScoreSubtotal,
+  //         scoreTotal,
+  //         rankPercentage,
+  //       })
+  //     : await application.postSecondSubmisson({
+  //         score2_1,
+  //         score2_2,
+  //         score3_1,
+  //         generalCurriculumScoreSubtotal,
+  //         artSportsScore,
+  //         attendanceScore,
+  //         curriculumScoreSubtotal,
+  //         volunteerScore,
+  //         nonCurriculumScoreSubtotal,
+  //         scoreTotal,
+  //         rankPercentage,
+  //       });
+  // };
 
   // 로컬스토리지 값이 있을 때 초기 값 설정
   useEffect(() => {
+    score1_1 && setValue('value2_1', score1_1);
+    score1_2 && setValue('value2_1', score1_2);
     score2_1 && setValue('value2_1', score2_1);
     score2_2 && setValue('value2_2', score2_2);
     score3_1 && setValue('value3_1', score3_1);
@@ -143,6 +153,8 @@ const GraduateCalculatorPage: NextPage = () => {
     absentScore,
     attendanceScore,
     volunteerScore,
+    score1_1,
+    score1_2,
   ]);
 
   // 저장 버튼을 눌렀을 때
@@ -158,12 +170,26 @@ const GraduateCalculatorPage: NextPage = () => {
     attendanceValue,
     newSubjects,
   }: ScoreForm) => {
-    console.log(value1_1, value1_2);
-    const score2_1: number = Calculate(value2_1, 2); // 2학년 1학기
-    const score2_2: number = Calculate(value2_2, 2); // 2학년 2학기
-    const score3_1: number = Calculate(value3_1, 3); // 3학년 1학기
-    const generalCurriculumScoreSubtotal: number = Rounds(
-      score2_1 + score2_2 + score3_1,
+    console.log(
+      value1_1,
+      value1_2,
+      value2_1,
+      value2_2,
+      value3_1,
+      artSportsValue,
+      volunteerValue,
+      absentValue,
+      attendanceValue,
+      newSubjects,
+    );
+    const score1_1 = Test(value1_1, '1-1', system, freeSemester) ?? 0; // 2학년 1학기
+    const score1_2 = Test(value1_2, '1-2', system, freeSemester) ?? 0; // 2학년 1학기
+    const score2_1 = Test(value2_1, '2-1', system, freeSemester) ?? 0; // 2학년 1학기
+    const score2_2 = Test(value2_2, '2-2', system, freeSemester) ?? 0; // 2학년 2학기
+    const score3_1 = Test(value3_1, '3-1', system, freeSemester) ?? 0; // 2학년 2학기
+    console.log(freeSemester);
+    const generalCurriculumScoreSubtotal = Rounds(
+      score1_1 + score1_2 + score2_1 + score2_2 + score3_1,
       3,
     );
     // 교과성적 소계
@@ -190,20 +216,22 @@ const GraduateCalculatorPage: NextPage = () => {
     const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 석채백분율
 
     try {
-      await TrySubmission({
-        score2_1,
-        score2_2,
-        score3_1,
-        generalCurriculumScoreSubtotal,
-        artSportsScore,
-        attendanceScore,
-        curriculumScoreSubtotal,
-        volunteerScore,
-        nonCurriculumScoreSubtotal,
-        scoreTotal,
-        rankPercentage,
-      });
+      // await TrySubmission({
+      //   score2_1,
+      //   score2_2,
+      //   score3_1,
+      //   generalCurriculumScoreSubtotal,
+      //   artSportsScore,
+      //   attendanceScore,
+      //   curriculumScoreSubtotal,
+      //   volunteerScore,
+      //   nonCurriculumScoreSubtotal,
+      //   scoreTotal,
+      //   rankPercentage,
+      // });
       // 원서 파일 페이지에서 불러오기 위해 localstorage에 저장
+      setLocalstorage('score1_1', value1_1);
+      setLocalstorage('score1_2', value1_2);
       setLocalstorage('score2_1', value2_1);
       setLocalstorage('score2_2', value2_2);
       setLocalstorage('score3_1', value3_1);
@@ -225,29 +253,8 @@ const GraduateCalculatorPage: NextPage = () => {
       setShowScoreResult();
       setIsSubmission(true);
     } catch (error: any) {
-      // accessToken 없을 시에 accessToken 발급 후 다시 요청
-      if (error.response.status === 401) {
-        try {
-          // accessToken 발급
-          await auth.refresh();
-          await onValid({
-            value2_1,
-            value2_2,
-            value3_1,
-            artSportsValue,
-            volunteerValue,
-            absentValue,
-            attendanceValue,
-            newSubjects,
-          });
-        } catch (error) {
-          console.log(error);
-          toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
-        }
-      } else {
-        console.log(error);
-        toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
-      }
+      console.log(error);
+      toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
     }
   };
 
