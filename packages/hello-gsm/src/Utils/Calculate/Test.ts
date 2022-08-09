@@ -6,17 +6,10 @@ import {
 
 /**
  *
- * @param array - 2학년1학기, 2학년2학기, 3학년1학기, 예체능 점수 배열
- * @param mode - 공식 구별 2 = 2학년, 3 = 3학년, 4 = 예체능
- * @returns number - 교과 성적 계산
- */
-
-/**
- *
  * @param array - 각 학기 교과 점수 배열
  * @param semester - 학기
  * @param system - 자유학기제 | 자유학년제
- * @param freeSemester 자유학기제 학기
+ * @param freeSemester 자유학기제를 시행한 학기
  * @returns - 교과 성적 계산
  */
 const Test = (
