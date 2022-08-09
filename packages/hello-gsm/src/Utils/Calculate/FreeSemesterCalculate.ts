@@ -1,6 +1,4 @@
-import useStore from 'Stores/StoreContainer';
-import Rounds from './Rounds';
-import Sum from './Sum';
+import { Sum, Rounds } from 'Utils/Calculate';
 
 /**
  *
@@ -34,6 +32,7 @@ const FreeSemesterCalculate = (
           result = Rounds(36 * Rounds(arraySum / (array.length * 5), 5), 3);
           break;
       }
+      break;
     case '2-1':
       result = Rounds(36 * Rounds(arraySum / (array.length * 5), 5), 3);
       break;

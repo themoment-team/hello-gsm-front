@@ -1,4 +1,4 @@
-import Sum from './Sum';
+import { Sum } from 'Utils/Calculate';
 
 /**
  * @param absent - 결석점수
