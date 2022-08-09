@@ -22,7 +22,7 @@ interface StoreType {
   showMypageSuccessModal: boolean;
   showScoreResult: boolean;
   freeSemester: string | null;
-  system: '자유학기제' | '자유학년제';
+  system: string;
 
   setLogged: (isLogged: boolean) => void;
   setShowFAQModal: () => void;
@@ -50,8 +50,8 @@ interface StoreType {
   setShowSideBar: (value: boolean | null) => void;
   setShowMypageSuccessModal: () => void;
   setShowScoreResult: () => void;
-  setFreeSemester: (value: string) => void;
-  setSystem: (type: '자유학기제' | '자유학년제') => void;
+  setFreeSemester: (value: string | null) => void;
+  setSystem: (type: string) => void;
 }
 
 const useStore = create<StoreType>(set => ({
