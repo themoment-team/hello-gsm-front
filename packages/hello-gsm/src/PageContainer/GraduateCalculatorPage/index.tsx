@@ -243,7 +243,8 @@ const GraduateCalculatorPage: NextPage = () => {
       setLocalstorage('subjects', subjects);
       setLocalstorage('newSubjects', newSubjects);
       setLocalstorage('nonSubjects', nonSubjects);
-
+      window.localStorage.setItem('system', system);
+      freeSemester && window.localStorage.setItem('freeSemester', freeSemester);
       // 결과 모달 제어
       setResultArray([
         generalCurriculumScoreSubtotal,

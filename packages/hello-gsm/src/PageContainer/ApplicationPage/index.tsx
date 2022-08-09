@@ -3,11 +3,10 @@ import * as S from './style';
 import { GetApplicationType } from 'type/application';
 import useLocalstorage from 'hooks/useLocalstorage';
 import useToString from 'Utils/Calculate/ToString';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import ApplicationStatus from 'components/ApplicantsStatus';
 import * as I from 'Assets/svg';
-import useStore from 'Stores/StoreContainer';
 
 const ApplicationPage: NextPage<GetApplicationType> = ({
   data: {
@@ -20,8 +19,6 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
   },
   data,
 }) => {
-  const { freeSemester, system } = useStore();
-  console.log(freeSemester, system);
   // 로컬스토리지 값을 가져와서 등급으로 표시
   const score1_1 = useToString(useLocalstorage('score1_1')) ?? []; // null 값이면 빈 배열
   const score1_2 = useToString(useLocalstorage('score1_2')) ?? [];
@@ -35,6 +32,8 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
   const subjects = useLocalstorage('subjects');
   const newSubjects = useLocalstorage('newSubjects');
   const nonSubjects = useLocalstorage('nonSubjects');
+  const [system, setSystem] = useState<string | null>();
+  const [freeSemester, setFreeSemester] = useState<string | null>();
   // 환산일수
   const conversionDays =
     application?.application_score?.attendanceScore &&
@@ -53,10 +52,12 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
   };
 
   useEffect(() => {
-    // 페이지 첫 렌더링 시 인쇄화면 보여지게
-    // TryPrint();
-  }, []);
+    setFreeSemester(window.localStorage.getItem('freeSemester'));
+    setSystem(window.localStorage.getItem('system'));
 
+    // 페이지 첫 렌더링 시 인쇄화면 보여지게
+    TryPrint();
+  }, []);
   return (
     <>
       {/* 입학원서 */}
