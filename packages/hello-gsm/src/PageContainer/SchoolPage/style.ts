@@ -190,7 +190,7 @@ export const Section3Title = styled.div`
 
 export const GraphWrap = styled.div`
   width: 62.5%;
-  height: 600px;
+  height: 75%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -199,6 +199,7 @@ export const GraphWrap = styled.div`
     padding-left: 50px;
   }
   @media ${device.mobile} {
+    height: 90%;
     padding: 0;
     flex-direction: column;
     align-items: center;
@@ -253,7 +254,6 @@ export const SelectOption = styled.div`
   color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   @media ${device.mobile} {
-    height: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -288,7 +288,7 @@ export const GraphBox = styled.div`
   }
   @media (max-width: 300px) {
     width: 90%;
-    height: 80%;
+    height: 75%;
   }
 `;
 
@@ -300,6 +300,9 @@ export const Title = styled.div`
 
 export const Graph = styled.div`
   width: 100%;
+  @media (max-width: 300px) {
+    width: 70%;
+  }
 `;
 
 const Ball = styled.div`
