@@ -210,7 +210,6 @@ export const ContentBox = styled.div`
   margin: 0 auto;
   border-radius: 24px;
   position: relative;
-
   @media ${device.laptop} {
     width: 90%;
   }
@@ -252,11 +251,15 @@ export const ContentSelect = styled.button`
   cursor: pointer;
   background: none;
   border: none;
+  padding: 0 18.745px;
+  margin: 0;
   @media ${device.tablet} {
     font-size: 18px;
+    padding: 0 16.87px;
   }
   @media ${device.mobile} {
     font-size: 11px;
+    padding: 0 10.125px;
   }
 `;
 
