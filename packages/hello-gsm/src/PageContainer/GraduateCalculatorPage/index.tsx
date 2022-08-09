@@ -132,8 +132,8 @@ const GraduateCalculatorPage: NextPage = () => {
 
   // 로컬스토리지 값이 있을 때 초기 값 설정
   useEffect(() => {
-    score1_1 && setValue('value2_1', score1_1);
-    score1_2 && setValue('value2_1', score1_2);
+    score1_1 && setValue('value1_1', score1_1);
+    score1_2 && setValue('value1_2', score1_2);
     score2_1 && setValue('value2_1', score2_1);
     score2_2 && setValue('value2_2', score2_2);
     score3_1 && setValue('value3_1', score3_1);
@@ -187,7 +187,7 @@ const GraduateCalculatorPage: NextPage = () => {
     const score2_1 = Test(value2_1, '2-1', system, freeSemester) ?? 0; // 2학년 1학기
     const score2_2 = Test(value2_2, '2-2', system, freeSemester) ?? 0; // 2학년 2학기
     const score3_1 = Test(value3_1, '3-1', system, freeSemester) ?? 0; // 2학년 2학기
-    console.log(freeSemester);
+
     const generalCurriculumScoreSubtotal = Rounds(
       score1_1 + score1_2 + score2_1 + score2_2 + score3_1,
       3,
@@ -213,6 +213,7 @@ const GraduateCalculatorPage: NextPage = () => {
       curriculumScoreSubtotal + nonCurriculumScoreSubtotal,
       3,
     ); // 총점
+
     const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 석채백분율
 
     try {
@@ -265,6 +266,8 @@ const GraduateCalculatorPage: NextPage = () => {
   // 추가과목 삭제
   const DeleteNewSubjects = (index: number) => {
     const newSubjects = watch('newSubjects');
+    const value1_1 = watch('value1_1');
+    const value1_2 = watch('value1_2');
     const value2_1 = watch('value2_1');
     const value2_2 = watch('value2_2');
     const value3_1 = watch('value3_1');
@@ -272,6 +275,14 @@ const GraduateCalculatorPage: NextPage = () => {
       'newSubjects',
       newSubjects?.filter((arr, i) => index !== i),
     ); // newSubjects 배열에서 인덱스가 N인 값 제거
+    setValue(
+      'value1_1',
+      value1_1?.filter((arr, i) => subjects.length + index !== i),
+    ); // value2_1 배열에서 인덱스가 기본과목.length + index인 값 제거
+    setValue(
+      'value1_2',
+      value1_2?.filter((arr, i) => subjects.length + index !== i),
+    ); // value2_1 배열에서 인덱스가 기본과목.length + index인 값 제거
     setValue(
       'value2_1',
       value2_1?.filter((arr, i) => subjects.length + index !== i),
