@@ -342,7 +342,8 @@ const GraduateCalculatorPage: NextPage = () => {
                         register={register(`value1_1.${i}`, {
                           valueAsNumber: true,
                           validate: {
-                            notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
+                            notNaN: value =>
+                              value !== -1 || freeSemester === '1-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                           },
                         })}
                         index={i}
@@ -356,7 +357,8 @@ const GraduateCalculatorPage: NextPage = () => {
                         register={register(`value1_1.${subjects.length + i}`, {
                           valueAsNumber: true,
                           validate: {
-                            notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
+                            notNaN: value =>
+                              value !== -1 || freeSemester === '1-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                           },
                         })}
                         index={subjects.length + i}
@@ -374,7 +376,8 @@ const GraduateCalculatorPage: NextPage = () => {
                         register={register(`value1_2.${i}`, {
                           valueAsNumber: true,
                           validate: {
-                            notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
+                            notNaN: value =>
+                              value !== -1 || freeSemester === '1-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                           },
                         })}
                         index={i}
@@ -388,7 +391,8 @@ const GraduateCalculatorPage: NextPage = () => {
                         register={register(`value1_2.${subjects.length + i}`, {
                           valueAsNumber: true,
                           validate: {
-                            notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
+                            notNaN: value =>
+                              value !== -1 || freeSemester === '1-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                           },
                         })}
                         index={subjects.length + i}
@@ -408,7 +412,7 @@ const GraduateCalculatorPage: NextPage = () => {
                     register={register(`value2_1.${i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
+                        notNaN: value => value !== -1 || freeSemester === '2-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
@@ -422,7 +426,7 @@ const GraduateCalculatorPage: NextPage = () => {
                     register={register(`value2_1.${subjects.length + i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
+                        notNaN: value => value !== -1 || freeSemester === '2-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={subjects.length + i}
@@ -441,7 +445,7 @@ const GraduateCalculatorPage: NextPage = () => {
                     register={register(`value2_2.${i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
+                        notNaN: value => value !== -1 || freeSemester === '2-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
@@ -455,7 +459,7 @@ const GraduateCalculatorPage: NextPage = () => {
                     register={register(`value2_2.${subjects.length + i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
+                        notNaN: value => value !== -1 || freeSemester === '2-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={subjects.length + i}
@@ -474,7 +478,7 @@ const GraduateCalculatorPage: NextPage = () => {
                     register={register(`value3_1.${i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
+                        notNaN: value => value !== -1 || freeSemester === '3-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
@@ -488,7 +492,8 @@ const GraduateCalculatorPage: NextPage = () => {
                       register={register(`value3_1.${subjects.length + i}`, {
                         valueAsNumber: true,
                         validate: {
-                          notNaN: value => value !== -1, // 선택하지 않으면 focus 되어 다시 선택하게 함
+                          notNaN: value =>
+                            value !== -1 || freeSemester === '3-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                         },
                       })}
                       index={subjects.length + i}
