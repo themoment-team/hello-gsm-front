@@ -54,6 +54,7 @@ const GraduateCalculatorPage: NextPage = () => {
     system,
     setSystem,
     freeSemester,
+    setFreeSemester,
   } = useStore();
   const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
 
@@ -143,6 +144,8 @@ const GraduateCalculatorPage: NextPage = () => {
     volunteerScore && setValue('volunteerValue', volunteerScore);
     getSubjects && setValue('newSubjects', getSubjects);
     setIsSubmission(score2_1 ? true : false); // 이전 값이 있다면 true
+    setFreeSemester(window.localStorage.getItem('freeSemester') ?? null);
+    setSystem(window.localStorage.getItem('system') ?? '자유학년제');
   }, [
     score2_1,
     score2_2,
@@ -155,6 +158,8 @@ const GraduateCalculatorPage: NextPage = () => {
     volunteerScore,
     score1_1,
     score1_2,
+    setFreeSemester,
+    setSystem,
   ]);
 
   // 저장 버튼을 눌렀을 때
