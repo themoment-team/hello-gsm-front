@@ -26,6 +26,7 @@ export const FAQBox = styled.button`
 export const Title = styled.p`
   display: inline;
   font-weight: 700;
+  color: #0f0921;
   &::before {
     content: 'Q. ';
     color: #42bafe;
@@ -36,7 +37,7 @@ export const Title = styled.p`
 `;
 
 export const IsSearching = styled.span`
-  color: #000000;
+  color: #0f0921;
   font-weight: 900;
   font-size: 22px;
   @media ${device.mobile} {
