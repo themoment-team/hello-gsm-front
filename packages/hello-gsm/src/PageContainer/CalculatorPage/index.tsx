@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import { Header, ScoreSelect, ScoreResultModal } from 'components';
-import * as S from './style';
+import * as S from 'shared/Styles/Calculate';
 import * as I from 'Assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
