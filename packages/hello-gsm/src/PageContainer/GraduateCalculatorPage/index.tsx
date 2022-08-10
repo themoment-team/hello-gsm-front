@@ -569,7 +569,7 @@ const GraduateCalculatorPage: NextPage = () => {
                   })}
                   index={i}
                   scoreArray={artSportsScore}
-                  ArtSports
+                  artSports
                 />
               ))}
             </S.ValueSection>
@@ -587,7 +587,7 @@ const GraduateCalculatorPage: NextPage = () => {
                   })}
                   index={3 + i}
                   scoreArray={artSportsScore}
-                  ArtSports
+                  artSports
                 />
               ))}
             </S.ValueSection>
@@ -605,7 +605,7 @@ const GraduateCalculatorPage: NextPage = () => {
                   })}
                   index={6 + i}
                   scoreArray={artSportsScore}
-                  ArtSports
+                  artSports
                 />
               ))}
             </S.ValueSection>
