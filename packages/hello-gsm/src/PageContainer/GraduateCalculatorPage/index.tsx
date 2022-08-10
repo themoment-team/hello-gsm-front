@@ -14,7 +14,7 @@ import {
   Volunteer,
   Rounds,
   Attendance,
-  Test,
+  artSportsCalculate,
 } from 'Utils/Calculate';
 import useLocalstorage from 'hooks/useLocalstorage';
 import application from 'Api/application';
@@ -187,11 +187,12 @@ const GraduateCalculatorPage: NextPage = () => {
       attendanceValue,
       newSubjects,
     );
-    const score1_1 = Test(value1_1, '1-1', system, freeSemester) ?? 0; // 2학년 1학기
-    const score1_2 = Test(value1_2, '1-2', system, freeSemester) ?? 0; // 2학년 1학기
-    const score2_1 = Test(value2_1, '2-1', system, freeSemester) ?? 0; // 2학년 1학기
-    const score2_2 = Test(value2_2, '2-2', system, freeSemester) ?? 0; // 2학년 2학기
-    const score3_1 = Test(value3_1, '3-1', system, freeSemester) ?? 0; // 2학년 2학기
+
+    const score1_1 = Calculate(value1_1, '1-1', system, freeSemester) ?? 0; // 2학년 1학기
+    const score1_2 = Calculate(value1_2, '1-2', system, freeSemester) ?? 0; // 2학년 1학기
+    const score2_1 = Calculate(value2_1, '2-1', system, freeSemester) ?? 0; // 2학년 1학기
+    const score2_2 = Calculate(value2_2, '2-2', system, freeSemester) ?? 0; // 2학년 2학기
+    const score3_1 = Calculate(value3_1, '3-1', system, freeSemester) ?? 0; // 2학년 2학기
 
     const generalCurriculumScoreSubtotal = Rounds(
       score1_1 + score1_2 + score2_1 + score2_2 + score3_1,
@@ -199,7 +200,7 @@ const GraduateCalculatorPage: NextPage = () => {
     );
     // 교과성적 소계
 
-    const artSportsScore: number = Calculate(artSportsValue, 4); // 예체능
+    const artSportsScore: number = artSportsCalculate(artSportsValue); // 예체능
     const curriculumScoreSubtotal: number = Rounds(
       generalCurriculumScoreSubtotal + artSportsScore,
       4,
@@ -220,7 +221,7 @@ const GraduateCalculatorPage: NextPage = () => {
     ); // 총점
 
     const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 석채백분율
-
+    console.log(score1_1, score1_2, score2_1, score2_2, score3_1);
     try {
       // await TrySubmission({
       //   score2_1,
@@ -279,27 +280,27 @@ const GraduateCalculatorPage: NextPage = () => {
     const value3_1 = watch('value3_1');
     setValue(
       'newSubjects',
-      newSubjects?.filter((arr, i) => index !== i),
+      newSubjects?.filter((_, i) => index !== i),
     ); // newSubjects 배열에서 인덱스가 N인 값 제거
     setValue(
       'value1_1',
-      value1_1?.filter((arr, i) => subjects.length + index !== i),
-    ); // value2_1 배열에서 인덱스가 기본과목.length + index인 값 제거
+      value1_1?.filter((_, i) => subjects.length + index !== i),
+    ); // value1_1 배열에서 인덱스가 기본과목.length + index인 값 제거 (삭제 버튼 클릭한 인덱스 제거)
     setValue(
       'value1_2',
-      value1_2?.filter((arr, i) => subjects.length + index !== i),
-    ); // value2_1 배열에서 인덱스가 기본과목.length + index인 값 제거
+      value1_2?.filter((_, i) => subjects.length + index !== i),
+    );
     setValue(
       'value2_1',
-      value2_1?.filter((arr, i) => subjects.length + index !== i),
-    ); // value2_1 배열에서 인덱스가 기본과목.length + index인 값 제거
+      value2_1?.filter((_, i) => subjects.length + index !== i),
+    );
     setValue(
       'value2_2',
-      value2_2?.filter((arr, i) => subjects.length + index !== i),
+      value2_2?.filter((_, i) => subjects.length + index !== i),
     );
     setValue(
       'value3_1',
-      value3_1?.filter((arr, i) => subjects.length + index !== i),
+      value3_1?.filter((_, i) => subjects.length + index !== i),
     );
   };
 
