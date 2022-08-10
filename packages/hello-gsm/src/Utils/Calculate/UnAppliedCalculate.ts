@@ -12,19 +12,19 @@ const UnAppliedCalculate = (array: Array<number>, semester: string) => {
   let result;
   switch (semester) {
     case '1-1':
-      result = Rounds(18 * Rounds(arraySum / (array.length * 5), 5), 3);
+      result = Rounds(18 * Rounds(arraySum / (array?.length * 5), 5), 3);
       break;
     case '1-2':
-      result = Rounds(18 * Rounds(arraySum / (array.length * 5), 5), 3);
+      result = Rounds(18 * Rounds(arraySum / (array?.length * 5), 5), 3);
       break;
     case '2-1':
-      result = Rounds(36 * Rounds(arraySum / (array.length * 5), 5), 3);
+      result = Rounds(36 * Rounds(arraySum / (array?.length * 5), 5), 3);
       break;
     case '2-2':
-      result = Rounds(36 * Rounds(arraySum / (array.length * 5), 5), 3);
+      result = Rounds(36 * Rounds(arraySum / (array?.length * 5), 5), 3);
       break;
     case '3-1':
-      result = Rounds(72 * Rounds(arraySum / (array.length * 5), 5), 3);
+      result = Rounds(72 * Rounds(arraySum / (array?.length * 5), 5), 3);
       break;
   }
   return result;
