@@ -14,7 +14,7 @@ import {
   Volunteer,
   Rounds,
   Attendance,
-  artSports,
+  ArtSports,
 } from 'Utils/Calculate';
 import useLocalstorage from 'hooks/useLocalstorage';
 import application from 'Api/application';
@@ -200,7 +200,7 @@ const GraduateCalculatorPage: NextPage = () => {
     );
     // 교과성적 소계
 
-    const artSportsScore: number = artSports(artSportsValue); // 예체능
+    const artSportsScore: number = ArtSports(artSportsValue); // 예체능
     const curriculumScoreSubtotal: number = Rounds(
       generalCurriculumScoreSubtotal + artSportsScore,
       4,
@@ -569,7 +569,7 @@ const GraduateCalculatorPage: NextPage = () => {
                   })}
                   index={i}
                   scoreArray={artSportsScore}
-                  artSports
+                  ArtSports
                 />
               ))}
             </S.ValueSection>
@@ -587,7 +587,7 @@ const GraduateCalculatorPage: NextPage = () => {
                   })}
                   index={3 + i}
                   scoreArray={artSportsScore}
-                  artSports
+                  ArtSports
                 />
               ))}
             </S.ValueSection>
@@ -605,7 +605,7 @@ const GraduateCalculatorPage: NextPage = () => {
                   })}
                   index={6 + i}
                   scoreArray={artSportsScore}
-                  artSports
+                  ArtSports
                 />
               ))}
             </S.ValueSection>
