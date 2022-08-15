@@ -88,48 +88,13 @@ const GraduateCalculatorPage: NextPage = () => {
   const [grades, setGrades] = useState([1, 2, 3]);
 
   // api 요청 보내기
-  // const TrySubmission = async ({
-  //   score2_1,
-  //   score2_2,
-  //   score3_1,
-  //   generalCurriculumScoreSubtotal,
-  //   artSportsScore,
-  //   attendanceScore,
-  //   curriculumScoreSubtotal,
-  //   volunteerScore,
-  //   nonCurriculumScoreSubtotal,
-  //   scoreTotal,
-  //   rankPercentage,
-  // }: ScoreType) => {
-  //   // 이전에 제출한 적이 있으면 patch / 없다면 post
-  //   isSubmission
-  //     ? await application.patchSecondSubmisson({
-  //         score2_1,
-  //         score2_2,
-  //         score3_1,
-  //         generalCurriculumScoreSubtotal,
-  //         artSportsScore,
-  //         attendanceScore,
-  //         curriculumScoreSubtotal,
-  //         volunteerScore,
-  //         nonCurriculumScoreSubtotal,
-  //         scoreTotal,
-  //         rankPercentage,
-  //       })
-  //     : await application.postSecondSubmisson({
-  //         score2_1,
-  //         score2_2,
-  //         score3_1,
-  //         generalCurriculumScoreSubtotal,
-  //         artSportsScore,
-  //         attendanceScore,
-  //         curriculumScoreSubtotal,
-  //         volunteerScore,
-  //         nonCurriculumScoreSubtotal,
-  //         scoreTotal,
-  //         rankPercentage,
-  //       });
-  // };
+  const TrySubmission = async (data: ScoreType) => {
+    // 이전에 제출한 적이 있으면 patch / 없다면 post
+
+    isSubmission
+      ? await application.patchSecondSubmisson(data)
+      : await application.postSecondSubmisson(data);
+  };
 
   // 로컬스토리지 값이 있을 때 초기 값 설정
   useEffect(() => {
@@ -143,7 +108,7 @@ const GraduateCalculatorPage: NextPage = () => {
     attendanceScore && setValue('attendanceValue', attendanceScore);
     volunteerScore && setValue('volunteerValue', volunteerScore);
     getSubjects && setValue('newSubjects', getSubjects);
-    setIsSubmission(score2_1 ? true : false); // 이전 값이 있다면 true
+    setIsSubmission(artSportsScore ? true : false); // 이전 값이 있다면 true
     setFreeSemester(window.localStorage.getItem('freeSemester') ?? null);
     setSystem(window.localStorage.getItem('system') ?? '자유학년제');
   }, [
@@ -222,20 +187,25 @@ const GraduateCalculatorPage: NextPage = () => {
 
     const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 석채백분율
     console.log(score1_1, score1_2, score2_1, score2_2, score3_1);
+    console.log(score1_1);
+    // score값이 없는 값이라면 undefined 값을 보내게 함
+    const data: ScoreType = {
+      score1_1: score1_1 !== 0 ? score1_1 : undefined,
+      score1_2: score1_2 !== 0 ? score1_2 : undefined,
+      score2_1: score1_2 !== 0 ? score1_2 : undefined,
+      score2_2,
+      score3_1,
+      generalCurriculumScoreSubtotal,
+      artSportsScore,
+      attendanceScore,
+      curriculumScoreSubtotal,
+      volunteerScore,
+      nonCurriculumScoreSubtotal,
+      scoreTotal,
+      rankPercentage,
+    };
     try {
-      // await TrySubmission({
-      //   score2_1,
-      //   score2_2,
-      //   score3_1,
-      //   generalCurriculumScoreSubtotal,
-      //   artSportsScore,
-      //   attendanceScore,
-      //   curriculumScoreSubtotal,
-      //   volunteerScore,
-      //   nonCurriculumScoreSubtotal,
-      //   scoreTotal,
-      //   rankPercentage,
-      // });
+      await TrySubmission(data);
       // 원서 파일 페이지에서 불러오기 위해 localstorage에 저장
       setLocalstorage('score1_1', value1_1);
       setLocalstorage('score1_2', value1_2);
@@ -251,6 +221,7 @@ const GraduateCalculatorPage: NextPage = () => {
       setLocalstorage('nonSubjects', nonSubjects);
       window.localStorage.setItem('system', system);
       freeSemester && window.localStorage.setItem('freeSemester', freeSemester);
+
       // 결과 모달 제어
       setResultArray([
         generalCurriculumScoreSubtotal,
@@ -258,11 +229,34 @@ const GraduateCalculatorPage: NextPage = () => {
         nonCurriculumScoreSubtotal,
         scoreTotal,
       ]);
-      setShowScoreResult();
-      setIsSubmission(true);
+      setShowScoreResult(); // 결과창 보여지게
+      setIsSubmission(true); // 제출 여부 확인
     } catch (error: any) {
-      console.log(error);
-      toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
+      // accessToken 없을 시
+      if (error.response.status === 401) {
+        try {
+          // accessToken 발급 후 다시 api 요청
+          await auth.refresh();
+          await onValid({
+            value1_1,
+            value1_2,
+            value2_1,
+            value2_2,
+            value3_1,
+            artSportsValue,
+            volunteerValue,
+            absentValue,
+            attendanceValue,
+            newSubjects,
+          });
+        } catch (error) {
+          console.log(error);
+          toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
+        }
+      } else {
+        console.log(error);
+        toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
+      }
     }
   };
 
@@ -367,8 +361,8 @@ const GraduateCalculatorPage: NextPage = () => {
                         register={register(`value1_1.${i}`, {
                           valueAsNumber: true,
                           validate: {
-                            notNaN: value =>
-                              value !== -1 || freeSemester === '1-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
+                            unSelected: value =>
+                              value !== -1 || freeSemester === '1-1', // 선택하지 않으면 focus 되어 다시 선택하게 함 1학년1학기가 자유학기제일 경우 validate 무효
                           },
                         })}
                         index={i}
@@ -382,7 +376,7 @@ const GraduateCalculatorPage: NextPage = () => {
                         register={register(`value1_1.${subjects.length + i}`, {
                           valueAsNumber: true,
                           validate: {
-                            notNaN: value =>
+                            unSelected: value =>
                               value !== -1 || freeSemester === '1-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                           },
                         })}
@@ -401,7 +395,7 @@ const GraduateCalculatorPage: NextPage = () => {
                         register={register(`value1_2.${i}`, {
                           valueAsNumber: true,
                           validate: {
-                            notNaN: value =>
+                            unSelected: value =>
                               value !== -1 || freeSemester === '1-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                           },
                         })}
@@ -416,7 +410,7 @@ const GraduateCalculatorPage: NextPage = () => {
                         register={register(`value1_2.${subjects.length + i}`, {
                           valueAsNumber: true,
                           validate: {
-                            notNaN: value =>
+                            unSelected: value =>
                               value !== -1 || freeSemester === '1-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                           },
                         })}
@@ -437,7 +431,8 @@ const GraduateCalculatorPage: NextPage = () => {
                     register={register(`value2_1.${i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => value !== -1 || freeSemester === '2-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
+                        unSelected: value =>
+                          value !== -1 || freeSemester === '2-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
@@ -451,7 +446,8 @@ const GraduateCalculatorPage: NextPage = () => {
                     register={register(`value2_1.${subjects.length + i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => value !== -1 || freeSemester === '2-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
+                        unSelected: value =>
+                          value !== -1 || freeSemester === '2-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={subjects.length + i}
@@ -470,7 +466,8 @@ const GraduateCalculatorPage: NextPage = () => {
                     register={register(`value2_2.${i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => value !== -1 || freeSemester === '2-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
+                        unSelected: value =>
+                          value !== -1 || freeSemester === '2-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
@@ -484,7 +481,8 @@ const GraduateCalculatorPage: NextPage = () => {
                     register={register(`value2_2.${subjects.length + i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => value !== -1 || freeSemester === '2-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
+                        unSelected: value =>
+                          value !== -1 || freeSemester === '2-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={subjects.length + i}
@@ -503,7 +501,8 @@ const GraduateCalculatorPage: NextPage = () => {
                     register={register(`value3_1.${i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => value !== -1 || freeSemester === '3-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
+                        unSelected: value =>
+                          value !== -1 || freeSemester === '3-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
@@ -517,7 +516,7 @@ const GraduateCalculatorPage: NextPage = () => {
                       register={register(`value3_1.${subjects.length + i}`, {
                         valueAsNumber: true,
                         validate: {
-                          notNaN: value =>
+                          unSelected: value =>
                             value !== -1 || freeSemester === '3-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                         },
                       })}
@@ -564,7 +563,7 @@ const GraduateCalculatorPage: NextPage = () => {
                   register={register(`artSportsValue.${i}`, {
                     valueAsNumber: true,
                     validate: {
-                      notNaN: value => !isNaN(value),
+                      unSelected: value => value !== -1,
                     },
                   })}
                   index={i}
@@ -582,7 +581,7 @@ const GraduateCalculatorPage: NextPage = () => {
                   register={register(`artSportsValue.${3 + i}`, {
                     valueAsNumber: true,
                     validate: {
-                      notNaN: value => !isNaN(value),
+                      unSelected: value => value !== -1,
                     },
                   })}
                   index={3 + i}
@@ -600,7 +599,7 @@ const GraduateCalculatorPage: NextPage = () => {
                   register={register(`artSportsValue.${6 + i}`, {
                     valueAsNumber: true,
                     validate: {
-                      notNaN: value => !isNaN(value),
+                      unSelected: value => value !== -1,
                     },
                   })}
                   index={6 + i}
