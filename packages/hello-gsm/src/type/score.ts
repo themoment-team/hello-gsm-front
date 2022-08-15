@@ -1,5 +1,7 @@
 export interface ScoreType {
-  score2_1: number;
+  score1_1?: number;
+  score1_2?: number;
+  score2_1?: number;
   score2_2: number;
   score3_1: number;
   generalCurriculumScoreSubtotal: number;
