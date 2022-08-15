@@ -7,4 +7,3 @@ export { default as GEDCalculate } from './GEDCalculate';
 export { default as FreeGradeCalculate } from './FreeGradeCalculate';
 export { default as FreeSemesterCalculate } from './FreeSemesterCalculate';
 export { default as UnAppliedCalculate } from './UnAppliedCalculate';
-export { default as ArtSports } from './ArtSports';
