@@ -90,6 +90,7 @@ const GraduateCalculatorPage: NextPage = () => {
   // api 요청 보내기
   const TrySubmission = async (data: ScoreType) => {
     // 이전에 제출한 적이 있으면 patch / 없다면 post
+    console.log(data);
 
     isSubmission
       ? await application.patchSecondSubmisson(data)
@@ -186,13 +187,12 @@ const GraduateCalculatorPage: NextPage = () => {
     ); // 총점
 
     const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 석채백분율
-    console.log(score1_1, score1_2, score2_1, score2_2, score3_1);
-    console.log(score1_1);
+
     // score값이 없는 값이라면 undefined 값을 보내게 함
     const data: ScoreType = {
       score1_1: score1_1 !== 0 ? score1_1 : undefined,
       score1_2: score1_2 !== 0 ? score1_2 : undefined,
-      score2_1: score1_2 !== 0 ? score1_2 : undefined,
+      score2_1: score2_1 !== 0 ? score2_1 : undefined,
       score2_2,
       score3_1,
       generalCurriculumScoreSubtotal,
