@@ -14,7 +14,7 @@ import {
   Volunteer,
   Rounds,
   Attendance,
-  ArtSports,
+  ArtSport,
 } from 'Utils/Calculate';
 import useLocalstorage from 'hooks/useLocalstorage';
 import application from 'Api/application';
@@ -165,7 +165,7 @@ const GraduateCalculatorPage: NextPage = () => {
     );
     // 교과성적 소계
 
-    const artSportsScore: number = ArtSports(artSportsValue); // 예체능
+    const artSportsScore: number = ArtSport(artSportsValue); // 예체능
     const curriculumScoreSubtotal: number = Rounds(
       generalCurriculumScoreSubtotal + artSportsScore,
       4,

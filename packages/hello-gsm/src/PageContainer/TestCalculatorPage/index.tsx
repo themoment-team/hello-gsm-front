@@ -9,7 +9,7 @@ import {
   Volunteer,
   Rounds,
   Attendance,
-  ArtSports,
+  ArtSport,
 } from 'Utils/Calculate';
 import ScoreResultModal from 'components/Modals/ScoreResultModal';
 import useStore from 'Stores/StoreContainer';
@@ -74,7 +74,7 @@ const TestCalculatorPage: NextPage = () => {
       score1_1 + score1_2 + score2_1 + score2_2 + score3_1;
     // 교과성적 소계
 
-    const artSportsScore: number = ArtSports(validForm.artSportsScore); // 예체능
+    const artSportsScore: number = ArtSport(validForm.artSportsScore); // 예체능
     const curriculumScoreSubtotal: number =
       generalCurriculumScoreSubtotal + artSportsScore;
     // 교과성적 + 예체능
