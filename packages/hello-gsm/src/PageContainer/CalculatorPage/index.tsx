@@ -1,10 +1,21 @@
 import type { NextPage } from 'next';
-import { Header, ScoreSelect, ScoreResultModal } from 'components';
+import {
+  Header,
+  ScoreSelect,
+  ScoreResultModal,
+  FreeSemesterBtn,
+} from 'components';
 import * as S from 'shared/Styles/Calculate';
 import * as I from 'Assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
-import { Calculate, Volunteer, Rounds, Attendance } from 'Utils/Calculate';
+import {
+  Calculate,
+  Volunteer,
+  Rounds,
+  Attendance,
+  ArtSports,
+} from 'Utils/Calculate';
 import useLocalstorage from 'hooks/useLocalstorage';
 import application from 'Api/application';
 import auth from 'Api/auth';
@@ -16,6 +27,8 @@ import { toast } from 'react-toastify';
 
 interface ScoreForm {
   // 과목/점수 배열
+  value1_1: number[];
+  value1_2: number[];
   value2_1: number[];
   value2_2: number[];
   value3_1: number[];
@@ -30,15 +43,24 @@ const CalculatorPage: NextPage = () => {
   const {
     register,
     handleSubmit,
-    setValue,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<ScoreForm>();
 
-  const { showScoreResult, setShowScoreResult } = useStore();
+  const {
+    showScoreResult,
+    setShowScoreResult,
+    system,
+    setSystem,
+    freeSemester,
+    setFreeSemester,
+  } = useStore();
   const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
 
   // 로컬스토리지 값 가져오기
+  const score1_1 = useLocalstorage('score1_1');
+  const score1_2 = useLocalstorage('score1_2');
   const score2_1 = useLocalstorage('score2_1');
   const score2_2 = useLocalstorage('score2_2');
   const score3_1 = useLocalstorage('score3_1');
@@ -65,8 +87,19 @@ const CalculatorPage: NextPage = () => {
   const [nonSubjects, setNonSubjects] = useState(['체육', '미술', '음악']);
   const [grades, setGrades] = useState([1, 2, 3]);
 
+  // api 요청 보내기
+  const TrySubmission = async (data: ScoreType) => {
+    // 이전에 제출한 적이 있으면 patch / 없다면 post
+
+    isSubmission
+      ? await application.patchSecondSubmisson(data)
+      : await application.postSecondSubmisson(data);
+  };
+
   // 로컬스토리지 값이 있을 때 초기 값 설정
   useEffect(() => {
+    score1_1 && setValue('value1_1', score1_1);
+    score1_2 && setValue('value1_2', score1_2);
     score2_1 && setValue('value2_1', score2_1);
     score2_2 && setValue('value2_2', score2_2);
     score3_1 && setValue('value3_1', score3_1);
@@ -75,7 +108,9 @@ const CalculatorPage: NextPage = () => {
     attendanceScore && setValue('attendanceValue', attendanceScore);
     volunteerScore && setValue('volunteerValue', volunteerScore);
     getSubjects && setValue('newSubjects', getSubjects);
-    setIsSubmission(score2_1 ? true : false); // 이전 값이 있다면 true
+    setIsSubmission(artSportsScore ? true : false); // 이전 값이 있다면 true
+    setFreeSemester(window.localStorage.getItem('freeSemester') ?? null);
+    setSystem(window.localStorage.getItem('system') ?? '자유학년제');
   }, [
     score2_1,
     score2_2,
@@ -86,54 +121,16 @@ const CalculatorPage: NextPage = () => {
     absentScore,
     attendanceScore,
     volunteerScore,
+    score1_1,
+    score1_2,
+    setFreeSemester,
+    setSystem,
   ]);
-
-  // api 요청 보내기
-  const TrySubmission = async ({
-    score2_1,
-    score2_2,
-    score3_1,
-    generalCurriculumScoreSubtotal,
-    artSportsScore,
-    attendanceScore,
-    curriculumScoreSubtotal,
-    volunteerScore,
-    nonCurriculumScoreSubtotal,
-    scoreTotal,
-    rankPercentage,
-  }: ScoreType) => {
-    // 이전에 제출한 적이 있으면 patch / 없다면 post
-    isSubmission
-      ? await application.patchSecondSubmisson({
-          score2_1,
-          score2_2,
-          score3_1,
-          generalCurriculumScoreSubtotal,
-          artSportsScore,
-          attendanceScore,
-          curriculumScoreSubtotal,
-          volunteerScore,
-          nonCurriculumScoreSubtotal,
-          scoreTotal,
-          rankPercentage,
-        })
-      : await application.postSecondSubmisson({
-          score2_1,
-          score2_2,
-          score3_1,
-          generalCurriculumScoreSubtotal,
-          artSportsScore,
-          attendanceScore,
-          curriculumScoreSubtotal,
-          volunteerScore,
-          nonCurriculumScoreSubtotal,
-          scoreTotal,
-          rankPercentage,
-        });
-  };
 
   // 저장 버튼을 눌렀을 때
   const onValid = async ({
+    value1_1,
+    value1_2,
     value2_1,
     value2_2,
     value3_1,
@@ -143,16 +140,32 @@ const CalculatorPage: NextPage = () => {
     attendanceValue,
     newSubjects,
   }: ScoreForm) => {
-    const score2_1: number = Calculate(value2_1, 2); // 2학년 1학기
-    const score2_2: number = Calculate(value2_2, 2); // 2학년 2학기
-    const score3_1: number = Calculate(value3_1, 3); // 3학년 1학기
-    const generalCurriculumScoreSubtotal: number = Rounds(
-      score2_1 + score2_2 + score3_1,
+    console.log(
+      value1_1,
+      value1_2,
+      value2_1,
+      value2_2,
+      value3_1,
+      artSportsValue,
+      volunteerValue,
+      absentValue,
+      attendanceValue,
+      newSubjects,
+    );
+
+    const score1_1 = Calculate(value1_1, '1-1', system, freeSemester) ?? 0; // 2학년 1학기
+    const score1_2 = Calculate(value1_2, '1-2', system, freeSemester) ?? 0; // 2학년 1학기
+    const score2_1 = Calculate(value2_1, '2-1', system, freeSemester) ?? 0; // 2학년 1학기
+    const score2_2 = Calculate(value2_2, '2-2', system, freeSemester) ?? 0; // 2학년 2학기
+    const score3_1 = Calculate(value3_1, '3-1', system, freeSemester) ?? 0; // 2학년 2학기
+
+    const generalCurriculumScoreSubtotal = Rounds(
+      score1_1 + score1_2 + score2_1 + score2_2 + score3_1,
       3,
     );
     // 교과성적 소계
 
-    const artSportsScore: number = Calculate(artSportsValue, 4); // 예체능
+    const artSportsScore: number = ArtSports(artSportsValue); // 예체능
     const curriculumScoreSubtotal: number = Rounds(
       generalCurriculumScoreSubtotal + artSportsScore,
       4,
@@ -171,23 +184,31 @@ const CalculatorPage: NextPage = () => {
       curriculumScoreSubtotal + nonCurriculumScoreSubtotal,
       3,
     ); // 총점
-    const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 석채백분율
 
+    const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 석채백분율
+    console.log(score1_1, score1_2, score2_1, score2_2, score3_1);
+    console.log(score1_1);
+    // score값이 없는 값이라면 undefined 값을 보내게 함
+    const data: ScoreType = {
+      score1_1: score1_1 !== 0 ? score1_1 : undefined,
+      score1_2: score1_2 !== 0 ? score1_2 : undefined,
+      score2_1: score1_2 !== 0 ? score1_2 : undefined,
+      score2_2,
+      score3_1,
+      generalCurriculumScoreSubtotal,
+      artSportsScore,
+      attendanceScore,
+      curriculumScoreSubtotal,
+      volunteerScore,
+      nonCurriculumScoreSubtotal,
+      scoreTotal,
+      rankPercentage,
+    };
     try {
-      await TrySubmission({
-        score2_1,
-        score2_2,
-        score3_1,
-        generalCurriculumScoreSubtotal,
-        artSportsScore,
-        attendanceScore,
-        curriculumScoreSubtotal,
-        volunteerScore,
-        nonCurriculumScoreSubtotal,
-        scoreTotal,
-        rankPercentage,
-      });
+      await TrySubmission(data);
       // 원서 파일 페이지에서 불러오기 위해 localstorage에 저장
+      setLocalstorage('score1_1', value1_1);
+      setLocalstorage('score1_2', value1_2);
       setLocalstorage('score2_1', value2_1);
       setLocalstorage('score2_2', value2_2);
       setLocalstorage('score3_1', value3_1);
@@ -198,6 +219,8 @@ const CalculatorPage: NextPage = () => {
       setLocalstorage('subjects', subjects);
       setLocalstorage('newSubjects', newSubjects);
       setLocalstorage('nonSubjects', nonSubjects);
+      window.localStorage.setItem('system', system);
+      freeSemester && window.localStorage.setItem('freeSemester', freeSemester);
 
       // 결과 모달 제어
       setResultArray([
@@ -206,15 +229,17 @@ const CalculatorPage: NextPage = () => {
         nonCurriculumScoreSubtotal,
         scoreTotal,
       ]);
-      setShowScoreResult();
-      setIsSubmission(true);
+      setShowScoreResult(); // 결과창 보여지게
+      setIsSubmission(true); // 제출 여부 확인
     } catch (error: any) {
-      // accessToken 없을 시에 accessToken 발급 후 다시 요청
+      // accessToken 없을 시
       if (error.response.status === 401) {
         try {
-          // accessToken 발급
+          // accessToken 발급 후 다시 api 요청
           await auth.refresh();
           await onValid({
+            value1_1,
+            value1_2,
             value2_1,
             value2_2,
             value3_1,
@@ -234,32 +259,42 @@ const CalculatorPage: NextPage = () => {
       }
     }
   };
+
   const inValid = (errors: FieldErrors) => {
     console.log(errors);
-    toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
   };
 
   // 추가과목 삭제
   const DeleteNewSubjects = (index: number) => {
     const newSubjects = watch('newSubjects');
+    const value1_1 = watch('value1_1');
+    const value1_2 = watch('value1_2');
     const value2_1 = watch('value2_1');
     const value2_2 = watch('value2_2');
     const value3_1 = watch('value3_1');
     setValue(
       'newSubjects',
-      newSubjects?.filter((arr, i) => index !== i),
+      newSubjects?.filter((_, i) => index !== i),
     ); // newSubjects 배열에서 인덱스가 N인 값 제거
     setValue(
+      'value1_1',
+      value1_1?.filter((_, i) => subjects.length + index !== i),
+    ); // value1_1 배열에서 인덱스가 기본과목.length + index인 값 제거 (삭제 버튼 클릭한 인덱스 제거)
+    setValue(
+      'value1_2',
+      value1_2?.filter((_, i) => subjects.length + index !== i),
+    );
+    setValue(
       'value2_1',
-      value2_1?.filter((arr, i) => subjects.length + index !== i),
-    ); // value2_1 배열에서 인덱스가 기본과목.length + index인 값 제거
+      value2_1?.filter((_, i) => subjects.length + index !== i),
+    );
     setValue(
       'value2_2',
-      value2_2?.filter((arr, i) => subjects.length + index !== i),
+      value2_2?.filter((_, i) => subjects.length + index !== i),
     );
     setValue(
       'value3_1',
-      value3_1?.filter((arr, i) => subjects.length + index !== i),
+      value3_1?.filter((_, i) => subjects.length + index !== i),
     );
   };
 
@@ -268,12 +303,37 @@ const CalculatorPage: NextPage = () => {
       <Header />
       {showScoreResult && <ScoreResultModal result={resultArray} />}
       <S.Title>성적입력</S.Title>
+
+      <S.SystemSection>
+        <S.SystemLabel>
+          <input
+            type="radio"
+            checked={system === '자유학년제'}
+            onChange={() => setSystem('자유학년제')}
+            id="system"
+          />
+          <div>자유학년제</div>
+        </S.SystemLabel>
+        <S.SystemLabel>
+          <input
+            type="radio"
+            checked={system === '자유학기제'}
+            onChange={() => setSystem('자유학기제')}
+            id="system"
+          />
+          <div>자유학기제</div>
+        </S.SystemLabel>
+      </S.SystemSection>
+
       <S.CalculatePage>
         <S.CalculateSection onSubmit={handleSubmit(onValid, inValid)}>
           <S.CurriculumSection>
             <S.CurriculumValue>
               <S.ValueSection>
                 <I.CrossRectangle />
+
+                {system === '자유학기제' && <S.Subject>자유학기제</S.Subject>}
+
                 {subjects.map(subject => (
                   <S.Subject key={subject}>{subject}</S.Subject>
                 ))}
@@ -290,20 +350,94 @@ const CalculatorPage: NextPage = () => {
                   />
                 ))}
               </S.ValueSection>
+              {system === '자유학기제' && (
+                <>
+                  <S.ValueSection>
+                    <S.Semester>1학년 1학기</S.Semester>
+                    <FreeSemesterBtn freeSemesterProps="1-1" />
+                    {subjects.map((subject, i) => (
+                      <ScoreSelect
+                        key={subject}
+                        register={register(`value1_1.${i}`, {
+                          valueAsNumber: true,
+                          validate: {
+                            unSelected: value =>
+                              value !== -1 || freeSemester === '1-1', // 선택하지 않으면 focus 되어 다시 선택하게 함 1학년1학기가 자유학기제일 경우 validate 무효
+                          },
+                        })}
+                        index={i}
+                        scoreArray={watch('value1_1')}
+                        freeSemesterProps={'1-1'}
+                      />
+                    ))}
+                    {watch('newSubjects')?.map((newSubject, i) => (
+                      <ScoreSelect
+                        key={i}
+                        register={register(`value1_1.${subjects.length + i}`, {
+                          valueAsNumber: true,
+                          validate: {
+                            unSelected: value =>
+                              value !== -1 || freeSemester === '1-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
+                          },
+                        })}
+                        index={subjects.length + i}
+                        freeSemesterProps={'1-1'}
+                      />
+                    ))}
+                  </S.ValueSection>
+                  <S.ValueSection>
+                    <S.Semester>1학년 2학기</S.Semester>
+                    <FreeSemesterBtn freeSemesterProps="1-2" />
 
+                    {subjects.map((subject, i) => (
+                      <ScoreSelect
+                        key={subject}
+                        register={register(`value1_2.${i}`, {
+                          valueAsNumber: true,
+                          validate: {
+                            unSelected: value =>
+                              value !== -1 || freeSemester === '1-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
+                          },
+                        })}
+                        index={i}
+                        scoreArray={watch('value1_2')}
+                        freeSemesterProps={'1-2'}
+                      />
+                    ))}
+                    {watch('newSubjects')?.map((newSubject, i) => (
+                      <ScoreSelect
+                        key={i}
+                        register={register(`value1_2.${subjects.length + i}`, {
+                          valueAsNumber: true,
+                          validate: {
+                            unSelected: value =>
+                              value !== -1 || freeSemester === '1-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
+                          },
+                        })}
+                        index={subjects.length + i}
+                        freeSemesterProps={'1-2'}
+                      />
+                    ))}
+                  </S.ValueSection>
+                </>
+              )}
               <S.ValueSection>
                 <S.Semester>2학년 1학기</S.Semester>
+                <FreeSemesterBtn freeSemesterProps="2-1" />
+
                 {subjects.map((subject, i) => (
                   <ScoreSelect
                     key={subject}
                     register={register(`value2_1.${i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                        unSelected: value =>
+                          value !== -1 || freeSemester === '2-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
                     scoreArray={watch('value2_1')}
+                    freeSemesterProps={'2-1'}
                   />
                 ))}
                 {watch('newSubjects')?.map((newSubject, i) => (
@@ -312,27 +446,33 @@ const CalculatorPage: NextPage = () => {
                     register={register(`value2_1.${subjects.length + i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                        unSelected: value =>
+                          value !== -1 || freeSemester === '2-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={subjects.length + i}
+                    freeSemesterProps={'2-1'}
                   />
                 ))}
               </S.ValueSection>
 
               <S.ValueSection>
                 <S.Semester>2학년 2학기</S.Semester>
+                <FreeSemesterBtn freeSemesterProps="2-2" />
+
                 {subjects.map((subject, i) => (
                   <ScoreSelect
                     key={subject}
                     register={register(`value2_2.${i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                        unSelected: value =>
+                          value !== -1 || freeSemester === '2-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
                     scoreArray={watch('value2_2')}
+                    freeSemesterProps={'2-2'}
                   />
                 ))}
                 {watch('newSubjects')?.map((newSubject, i) => (
@@ -341,27 +481,33 @@ const CalculatorPage: NextPage = () => {
                     register={register(`value2_2.${subjects.length + i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                        unSelected: value =>
+                          value !== -1 || freeSemester === '2-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={subjects.length + i}
+                    freeSemesterProps={'2-2'}
                   />
                 ))}
               </S.ValueSection>
 
               <S.ValueSection>
                 <S.Semester>3학년 1학기</S.Semester>
+                <FreeSemesterBtn freeSemesterProps="3-1" />
+
                 {subjects.map((subject, i) => (
                   <ScoreSelect
                     key={subject}
                     register={register(`value3_1.${i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                        unSelected: value =>
+                          value !== -1 || freeSemester === '3-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
                     scoreArray={watch('value3_1')}
+                    freeSemesterProps={'3-1'}
                   />
                 ))}
                 {watch('newSubjects')?.map((newSubject, i) => (
@@ -370,10 +516,12 @@ const CalculatorPage: NextPage = () => {
                       register={register(`value3_1.${subjects.length + i}`, {
                         valueAsNumber: true,
                         validate: {
-                          notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                          unSelected: value =>
+                            value !== -1 || freeSemester === '3-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                         },
                       })}
                       index={subjects.length + i}
+                      freeSemesterProps={'3-1'}
                     />
                     <S.DeleteNewSubject onClick={() => DeleteNewSubjects(i)}>
                       삭제
@@ -415,7 +563,7 @@ const CalculatorPage: NextPage = () => {
                   register={register(`artSportsValue.${i}`, {
                     valueAsNumber: true,
                     validate: {
-                      notNaN: value => !isNaN(value),
+                      unSelected: value => value !== -1,
                     },
                   })}
                   index={i}
@@ -433,7 +581,7 @@ const CalculatorPage: NextPage = () => {
                   register={register(`artSportsValue.${3 + i}`, {
                     valueAsNumber: true,
                     validate: {
-                      notNaN: value => !isNaN(value),
+                      unSelected: value => value !== -1,
                     },
                   })}
                   index={3 + i}
@@ -451,7 +599,7 @@ const CalculatorPage: NextPage = () => {
                   register={register(`artSportsValue.${6 + i}`, {
                     valueAsNumber: true,
                     validate: {
-                      notNaN: value => !isNaN(value),
+                      unSelected: value => value !== -1,
                     },
                   })}
                   index={6 + i}
