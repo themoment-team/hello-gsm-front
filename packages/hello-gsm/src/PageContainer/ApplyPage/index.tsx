@@ -172,6 +172,10 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
         toast.error('증명사진은 500KB 이하만 업로드 가능합니다.');
         return;
       }
+      if (!event.target.files[0].type.includes('image')) {
+        toast.error('이미지 파일만 업로드 가능합니다.');
+        return;
+      }
       // 파일의 url을 읽는다.
       event.target.files[0] && reader.readAsDataURL(event.target.files[0]);
     }
