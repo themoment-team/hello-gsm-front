@@ -13,4 +13,3 @@ export { default as CalculatorPage } from './CalculatorPage';
 export { default as TestCalculatorPage } from './TestCalculatorPage';
 export { default as InspectionPage } from './InspectionPage';
 export { default as GEDCalculatorPage } from './GEDCalculatorPage';
-export { default as GraduateCalculatorPage } from './GraduateCalculatorPage';

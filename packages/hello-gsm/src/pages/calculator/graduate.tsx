@@ -4,7 +4,7 @@ import type { GetServerSideProps, NextPage } from 'next';
 import { useEffect } from 'react';
 import useStore from 'Stores/StoreContainer';
 import { HeaderType } from 'type/header';
-import { GraduateCalculatorPage } from 'PageContainer';
+import { CalculatorPage } from 'PageContainer';
 import { StatusType } from 'type/user';
 import user from 'Api/user';
 
@@ -18,7 +18,7 @@ const GraduateCalculator: NextPage = () => {
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
-      <GraduateCalculatorPage />
+      <CalculatorPage />
     </>
   );
 };
