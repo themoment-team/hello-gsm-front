@@ -40,8 +40,8 @@ const SignInPage: NextPage = () => {
           type="text"
           {...register('id', {
             required: '* 아이디를 입력해주세요.',
-            minLength: 6,
-            maxLength: 12,
+            // minLength: 6,
+            // maxLength: 12,
           })}
         />
         <S.Error css={errors.id && SelectError}>{errors.id?.message}</S.Error>
@@ -50,8 +50,8 @@ const SignInPage: NextPage = () => {
           type="password"
           {...register('password', {
             required: '* 비밀번호를 입력해주세요.',
-            minLength: 8,
-            maxLength: 16,
+            // minLength: 8,
+            // maxLength: 16,
           })}
         />
         <S.Error css={errors.password && SelectError}>
