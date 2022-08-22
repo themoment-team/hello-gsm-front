@@ -192,7 +192,7 @@ const CalculatorPage: NextPage = () => {
     const data: ScoreType = {
       score1_1: score1_1 !== 0 ? score1_1 : undefined,
       score1_2: score1_2 !== 0 ? score1_2 : undefined,
-      score2_1: score1_2 !== 0 ? score1_2 : undefined,
+      score2_1: score2_1 !== 0 ? score2_1 : undefined,
       score2_2,
       score3_1,
       generalCurriculumScoreSubtotal,
