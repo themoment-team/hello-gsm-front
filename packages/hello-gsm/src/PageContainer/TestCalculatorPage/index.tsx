@@ -172,7 +172,7 @@ const TestCalculatorPage: NextPage = () => {
             <S.CurriculumValue>
               <S.ValueSection>
                 <I.CrossRectangle />
-                <S.Subject>자유학기제</S.Subject>
+                {system === '자유학기제' && <S.Subject>자유학기제</S.Subject>}
                 {subjects.map(subject => (
                   <S.Subject key={subject}>{subject}</S.Subject>
                 ))}
