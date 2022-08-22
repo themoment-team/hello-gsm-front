@@ -40,13 +40,7 @@ interface ScoreForm {
 }
 
 const GraduateCalculatorPage: NextPage = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useForm<ScoreForm>();
+  const { register, handleSubmit, watch, setValue } = useForm<ScoreForm>();
 
   const {
     showScoreResult,
@@ -57,18 +51,6 @@ const GraduateCalculatorPage: NextPage = () => {
     setFreeSemester,
   } = useStore();
   const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
-
-  // 로컬스토리지 값 가져오기
-  const score1_1 = useLocalstorage('score1_1');
-  const score1_2 = useLocalstorage('score1_2');
-  const score2_1 = useLocalstorage('score2_1');
-  const score2_2 = useLocalstorage('score2_2');
-  const score3_1 = useLocalstorage('score3_1');
-  const artSportsScore = useLocalstorage('artSportsScore');
-  const absentScore = useLocalstorage('absentScore');
-  const attendanceScore = useLocalstorage('attendanceScore');
-  const volunteerScore = useLocalstorage('volunteerScore');
-  const getSubjects = useSubjectsLocalstorage('newSubjects');
 
   // 이전에 제출한 경험 여부 판단
   const [isSubmission, setIsSubmission] = useState<boolean>();
@@ -97,6 +79,18 @@ const GraduateCalculatorPage: NextPage = () => {
       : await application.postSecondSubmisson(data);
   };
 
+  // 로컬스토리지 값 가져오기
+  const score1_1 = useLocalstorage('score1_1');
+  const score1_2 = useLocalstorage('score1_2');
+  const score2_1 = useLocalstorage('score2_1');
+  const score2_2 = useLocalstorage('score2_2');
+  const score3_1 = useLocalstorage('score3_1');
+  const artSportsScore = useLocalstorage('artSportsScore');
+  const absentScore = useLocalstorage('absentScore') ?? '';
+  const attendanceScore = useLocalstorage('attendanceScore') ?? '';
+  const volunteerScore = useLocalstorage('volunteerScore') ?? '';
+  const getSubjects = useSubjectsLocalstorage('newSubjects') ?? '';
+
   // 로컬스토리지 값이 있을 때 초기 값 설정
   useEffect(() => {
     score1_1 && setValue('value1_1', score1_1);
@@ -111,7 +105,7 @@ const GraduateCalculatorPage: NextPage = () => {
     getSubjects && setValue('newSubjects', getSubjects);
     setIsSubmission(artSportsScore ? true : false); // 이전 값이 있다면 true
     setFreeSemester(window.localStorage.getItem('freeSemester') ?? null);
-    setSystem(window.localStorage.getItem('system') ?? '자유학년제');
+    setSystem(window.localStorage.getItem('system') ?? '자유학년제'); // system이 없다면 기본 값 '자유학년제'
   }, [
     score2_1,
     score2_2,
@@ -141,19 +135,6 @@ const GraduateCalculatorPage: NextPage = () => {
     attendanceValue,
     newSubjects,
   }: ScoreForm) => {
-    console.log(
-      value1_1,
-      value1_2,
-      value2_1,
-      value2_2,
-      value3_1,
-      artSportsValue,
-      volunteerValue,
-      absentValue,
-      attendanceValue,
-      newSubjects,
-    );
-
     const score1_1 = Calculate(value1_1, '1-1', system, freeSemester) ?? 0; // 2학년 1학기
     const score1_2 = Calculate(value1_2, '1-2', system, freeSemester) ?? 0; // 2학년 1학기
     const score2_1 = Calculate(value2_1, '2-1', system, freeSemester) ?? 0; // 2학년 1학기
@@ -204,6 +185,7 @@ const GraduateCalculatorPage: NextPage = () => {
       scoreTotal,
       rankPercentage,
     };
+
     try {
       await TrySubmission(data);
       // 원서 파일 페이지에서 불러오기 위해 localstorage에 저장
@@ -643,7 +625,7 @@ const GraduateCalculatorPage: NextPage = () => {
                         valueAsNumber: true,
                       })}
                       placeholder="입력"
-                      defaultValue={absentScore ? absentScore[i] : ''}
+                      defaultValue={absentScore[i]}
                     />
                   ))}
                 </S.ValueSection>
@@ -657,7 +639,7 @@ const GraduateCalculatorPage: NextPage = () => {
                         valueAsNumber: true,
                       })}
                       placeholder="입력"
-                      defaultValue={attendanceScore ? attendanceScore[i] : ''}
+                      defaultValue={attendanceScore[i]}
                     />
                   ))}
                 </S.ValueSection>
@@ -671,9 +653,7 @@ const GraduateCalculatorPage: NextPage = () => {
                         valueAsNumber: true,
                       })}
                       placeholder="입력"
-                      defaultValue={
-                        attendanceScore ? attendanceScore[3 + i] : ''
-                      }
+                      defaultValue={attendanceScore[3 + i]}
                     />
                   ))}
                 </S.ValueSection>
@@ -687,9 +667,7 @@ const GraduateCalculatorPage: NextPage = () => {
                         valueAsNumber: true,
                       })}
                       placeholder="입력"
-                      defaultValue={
-                        attendanceScore ? attendanceScore[6 + i] : ''
-                      }
+                      defaultValue={attendanceScore[6 + i]}
                     />
                   ))}
                 </S.ValueSection>
@@ -702,7 +680,7 @@ const GraduateCalculatorPage: NextPage = () => {
                         valueAsNumber: true,
                       })}
                       placeholder="입력"
-                      defaultValue={volunteerScore ? volunteerScore[i] : ''}
+                      defaultValue={volunteerScore[i]}
                     />
                   ))}
                 </S.ValueSection>
