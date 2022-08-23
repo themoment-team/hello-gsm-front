@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import auth from 'Api/auth';
 import { LoginType } from 'Types/user';
 import { css } from '@emotion/react';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 const SignInPage: NextPage = () => {
   const {
@@ -12,15 +14,17 @@ const SignInPage: NextPage = () => {
     formState: { errors },
   } = useForm<LoginType>();
 
+  const router = useRouter();
+
   // 로그인 시도
-  const onValid = async (validForm: LoginType) => {
-    const { id, password } = validForm;
+  const onValid = async ({ id, password }: LoginType) => {
     try {
       await auth.signin({ id, password });
-      alert('성공');
+      toast.success('로그인을 성공하였습니다.');
+      router.push('/');
     } catch (err: any) {
       console.error(err);
-      alert('비밀번호가 틀렸습니다.');
+      toast.error('아이디 혹은 비밀번호가 잘못되었습니다.');
     }
   };
 
