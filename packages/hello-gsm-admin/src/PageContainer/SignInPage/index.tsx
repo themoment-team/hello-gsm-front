@@ -22,18 +22,12 @@ const SignInPage: NextPage = () => {
   // 로그인 시도
   const onValid = async ({ id, password }: LoginType) => {
     try {
-      // await auth.signin({ id, password });
-      await axios({
-        method: 'POST',
-        url: BASE_URL + 'auth/login',
-        withCredentials: true,
-        data: {
-          id,
-          password,
-        },
-      });
+      await auth.signin({ id, password });
+
       toast.success('로그인을 성공하였습니다.');
-      router.push('/');
+      setTimeout(() => {
+        router.push('/');
+      }, 2000);
     } catch (err: any) {
       console.error(err);
       toast.error('아이디 혹은 비밀번호가 잘못되었습니다.');
