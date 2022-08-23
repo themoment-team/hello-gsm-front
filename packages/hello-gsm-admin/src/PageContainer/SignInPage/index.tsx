@@ -6,6 +6,8 @@ import { LoginType } from 'Types/user';
 import { css } from '@emotion/react';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+import axios from 'axios';
+import { AuthController } from 'Utils/Libs/requestUrls';
 
 const SignInPage: NextPage = () => {
   const {
@@ -19,7 +21,16 @@ const SignInPage: NextPage = () => {
   // 로그인 시도
   const onValid = async ({ id, password }: LoginType) => {
     try {
-      await auth.signin({ id, password });
+      // await auth.signin({ id, password });
+      await axios({
+        method: 'POST',
+        url: AuthController.signin(),
+        withCredentials: true,
+        data: {
+          id,
+          password,
+        },
+      });
       toast.success('로그인을 성공하였습니다.');
       router.push('/');
     } catch (err: any) {
