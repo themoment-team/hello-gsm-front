@@ -16,6 +16,6 @@ const device: SizeType = {
   laptop: `(max-width: ${size.laptop})`,
 };
 
-export const BASE_URL = 'https://server.hellogsm.kr';
+export const BASE_URL = 'https://test.hellogsm.kr';
 
 export default device;
