@@ -20,7 +20,7 @@ export const Title = styled.p`
 `;
 
 export const FAQContent = styled.div`
-  width: 640px;
+  width: 650px;
   display: flex;
   flex-direction: column;
   align-items: center;

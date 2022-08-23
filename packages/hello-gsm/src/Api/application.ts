@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { BASE_URL } from 'shared/config';
-import { ApplicationType, ScoreType } from 'type/application';
+import { ApplicationType } from 'type/application';
+import { ScoreType, GEDScoreType } from 'type/score';
 import RequestApi from 'Utils/Libs/requestApi';
 import { ApplicationController } from 'Utils/Libs/requestUrls';
 
@@ -89,6 +90,66 @@ class Application {
       return RequestApi({
         method: 'PATCH',
         url: ApplicationController.secondSubmission(),
+        data: data,
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  /**
+   * @param data - 2차 졸업자 제출(성적) 파라미터
+   */
+  postGraduationSubmission(data: ScoreType) {
+    try {
+      return RequestApi({
+        method: 'POST',
+        url: ApplicationController.graduationSubmission(),
+        data: data,
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  /**
+   * @param data - 2차 졸업자 수정(성적) 파라미터
+   */
+  patchGraduationSubmission(data: ScoreType) {
+    try {
+      return RequestApi({
+        method: 'PATCH',
+        url: ApplicationController.graduationSubmission(),
+        data: data,
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  /**
+   * @param data - 2차 검정고시 제출(성적) 파라미터
+   */
+  postGedSubmission(data: GEDScoreType) {
+    try {
+      return RequestApi({
+        method: 'POST',
+        url: ApplicationController.gedSubmission(),
+        data: data,
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  /**
+   * @param data - 2차 검정고시 수정(성적) 파라미터
+   */
+  patchGedSubmission(data: GEDScoreType) {
+    try {
+      return RequestApi({
+        method: 'PATCH',
+        url: ApplicationController.gedSubmission(),
         data: data,
       });
     } catch (error) {

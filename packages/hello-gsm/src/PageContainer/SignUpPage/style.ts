@@ -1,53 +1,13 @@
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
+import device from 'shared/config';
 
 export const SignUpPage = styled.div`
   margin: 0 auto;
-  height: 130vh;
   background: #0f0921;
-  padding-top: 100px;
+  padding: 100px 0 200px;
   display: flex;
   justify-content: center;
-`;
-
-export const LineList = styled.div`
-  position: absolute;
-  padding-right: 30px;
-  border-right: 3px solid rgba(255, 255, 255, 0.17);
-  left: -240px;
-  height: 800px;
-  margin-top: 80px;
-  padding-top: 40px;
-`;
-
-export const Line = styled.div`
-  font-size: 20px;
-  line-height: 29px;
-  color: #ffffff;
-  text-align: end;
-
-  &::after {
-    display: block;
-    position: relative;
-    background-size: 10px 10px;
-    left: 180px;
-    top: -20px;
-    width: 10px;
-    height: 10px;
-    content: '';
-    background-color: #ffffff;
-    border-radius: 50%;
-  }
-
-  :nth-of-type(2) {
-    margin: 90px 0 0;
-  }
-  :nth-of-type(3) {
-    margin: 40px 0 35px;
-  }
-  :nth-of-type(5) {
-    margin: 100px 0;
-  }
 `;
 
 export const SignUpForm = styled.form`
@@ -60,6 +20,15 @@ export const SignUpForm = styled.form`
   select {
     margin-bottom: 20px;
   }
+  @media ${device.laptop} {
+    width: 500px;
+  }
+  @media ${device.mobile} {
+    width: 380px;
+  }
+  @media (max-width: 400px) {
+    width: 280px;
+  }
 `;
 
 export const Title = styled.h1`
@@ -70,6 +39,78 @@ export const Title = styled.h1`
   margin-bottom: 70px;
 `;
 
+export const LadioSection = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 75px;
+
+  @media ${device.mobile} {
+    margin-bottom: 20px;
+  }
+`;
+
+export const Input = styled.input`
+  width: 100%;
+  height: 55px;
+  background-color: #484453;
+  border-radius: 6px;
+  box-sizing: border-box;
+  padding: 0 32px;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  ::placeholder {
+    color: rgba(255, 255, 255, 0.43);
+  }
+  :focus {
+    outline: none;
+  }
+  @media ${device.mobile} {
+    padding: 0 16px;
+  }
+`;
+
+export const RadioLabel = styled.label`
+  display: inline-block;
+  text-align: center;
+  width: 45%;
+  input {
+    display: none;
+  }
+  div {
+    cursor: pointer;
+    width: 100%;
+    height: 61px;
+    background-color: #484453;
+    color: rgba(255, 255, 255, 0.45);
+    border-radius: 6px;
+    line-height: 61px;
+  }
+  input[type='radio']:checked + div {
+    background-color: #42bafe;
+    color: #ffffff;
+  }
+`;
+
+export const SelectSection = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;
+
+export const Select = styled.select`
+  width: 30%;
+  height: 55px;
+  background-color: #484453;
+  border-radius: 6px;
+  font-size: 20px;
+  line-height: 29px;
+  color: rgba(255, 255, 255, 0.45);
+  text-align: center;
+  border: none;
+`;
+
 export const TosBox = styled.div`
   width: 100%;
   height: 279px;
@@ -77,10 +118,14 @@ export const TosBox = styled.div`
   border-radius: 10px;
   margin-top: 50px;
   padding: 20px;
-  overflow: scroll;
+  overflow-y: scroll;
   line-height: 20px;
   color: #ffffff;
   font-size: 16px;
+
+  @media ${device.mobile} {
+    margin-top: 20px;
+  }
 `;
 
 export const CheckLabel = styled.label`
@@ -104,6 +149,11 @@ export const CheckLabel = styled.label`
     margin: 0 10px 0;
   }
   margin-bottom: 150px;
+
+  @media ${device.laptop} {
+    width: 100%;
+    justify-content: center;
+  }
 `;
 
 export const Button = styled.button`
@@ -118,57 +168,82 @@ export const Button = styled.button`
   cursor: pointer;
 `;
 
-export const LadioSection = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 75px;
-`;
-
-export const RadioLabel = styled.label`
-  display: inline-block;
-  text-align: center;
-  input {
-    display: none;
-  }
-  div {
-    cursor: pointer;
-    width: 380px;
-    height: 61px;
-    background-color: #484453;
-    color: rgba(255, 255, 255, 0.45);
-    border-radius: 6px;
-    line-height: 61px;
-  }
-  input[type='radio']:checked + div {
-    background-color: #42bafe;
-    color: #ffffff;
-  }
-`;
-
-export const SelectSection = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-`;
-
-export const Select = styled.select`
-  width: 255px;
-  height: 55px;
-  background-color: #484453;
-  border-radius: 6px;
-  font-size: 20px;
-  line-height: 29px;
-  color: rgba(255, 255, 255, 0.45);
-  text-align: center;
-  border: none;
-`;
-
 export const ErrorMessage = styled.p`
   color: #ff4e4e;
   position: absolute;
   right: -250px;
   width: 220px;
+  @media ${device.laptop} {
+    display: none;
+  }
+`;
+
+export const LineList = styled.div`
+  position: absolute;
+  padding-right: 30px;
+  border-right: 3px solid rgba(255, 255, 255, 0.17);
+  left: -40%;
+  height: 800px;
+  margin-top: 80px;
+  padding-top: 40px;
+
+  @media ${device.laptop} {
+    left: -50%;
+  }
+  @media ${device.mobile} {
+    left: -55%;
+  }
+  @media (max-width: 400px) {
+    left: -75%;
+  }
+  @media (max-width: 370px) {
+    display: none;
+  }
+`;
+
+export const Line = styled.div`
+  font-size: 20px;
+  line-height: 29px;
+  color: #ffffff;
+  text-align: end;
+
+  &::after {
+    display: block;
+    position: relative;
+    background-size: 10px 10px;
+    left: 178px;
+    top: -20px;
+    width: 10px;
+    height: 10px;
+    content: '';
+    background-color: #ffffff;
+    border-radius: 50%;
+  }
+
+  :nth-of-type(2) {
+    margin: 90px 0 0;
+  }
+  :nth-of-type(3) {
+    margin: 40px 0 35px;
+  }
+  :nth-of-type(5) {
+    margin: 100px 0;
+  }
+  @media ${device.tablet} {
+    color: #0f0921;
+    user-select: none;
+  }
+  @media ${device.mobile} {
+    :nth-of-type(2) {
+      margin: 35px 0 0;
+    }
+    :nth-of-type(3) {
+      margin: 40px 0 35px;
+    }
+    :nth-of-type(5) {
+      margin: 100px 0;
+    }
+  }
 `;
 
 export const shake = keyframes`

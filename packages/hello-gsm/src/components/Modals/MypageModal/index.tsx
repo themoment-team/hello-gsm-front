@@ -16,7 +16,7 @@ const MypageModal: React.FC = () => {
   const finalSubmission = async () => {
     try {
       await application.patchFinalSubmission();
-      window.location.reload();
+      setShowMypageSuccessModal();
     } catch (error: any) {
       if (error.response.status === 401) {
         try {
@@ -34,6 +34,7 @@ const MypageModal: React.FC = () => {
   const deleteApplication = async () => {
     try {
       await application.deleteInformation();
+      localStorage.clear();
       window.location.reload();
     } catch (error: any) {
       if (error.response.status === 401) {
@@ -50,7 +51,6 @@ const MypageModal: React.FC = () => {
 
   const AllowButton = () => {
     setShowMypageModal();
-    mypageModalContent === 'final' && setShowMypageSuccessModal();
     switch (mypageModalContent) {
       case 'delete':
         deleteApplication();
@@ -59,7 +59,8 @@ const MypageModal: React.FC = () => {
         finalSubmission();
         break;
       case 'download':
-        push('/application');
+        console.log('add download function');
+        break;
     }
   };
 

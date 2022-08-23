@@ -22,15 +22,15 @@ export function GlobalStyle() {
         }
 
         body::-webkit-scrollbar-thumb {
-          background-color: #aba8a8;
+          background-color: #ffffff;
           border-radius: 10px;
-          border: 4px solid #000000;
+          border: 4px solid #0f0921;
           height: 56px;
           background-clip: content-box;
         }
 
         body::-webkit-scrollbar-thumb:hover {
-          background-color: #a5a3a3;
+          background-color: #cbcbcb;
         }
 
         *,
@@ -40,6 +40,14 @@ export function GlobalStyle() {
           -moz-osx-font-smoothing: grayscale;
           -webkit-font-smoothing: antialiased;
           font-smoothing: antialiased;
+        }
+
+        button {
+          font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        input {
+          font-family: 'Noto Sans KR', sans-serif;
         }
       `}
     />

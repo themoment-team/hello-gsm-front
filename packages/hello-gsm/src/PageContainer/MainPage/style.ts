@@ -20,7 +20,7 @@ export const MainContent = styled.div`
     margin-bottom: 200px;
   }
   @media ${device.mobile} {
-    height: 800px;
+    height: 900px;
     margin-top: 50px;
     margin-bottom: 100px;
   }
@@ -113,28 +113,25 @@ export const ToApply = styled.a`
   box-sizing: border-box;
   border-radius: 12px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 24px;
+  color: #303030;
   background: #dbe44e;
   box-shadow: 0px 5px 20px 0px #dbe44e;
   :hover {
     transition: box-shadow 0.5s;
     box-shadow: 0px 0px 50px 0px #dbe44e;
   }
-  @media ${device.mobile} {
-    height: 43px;
-  }
-`;
-
-export const ToApplyText = styled.p`
-  font-weight: 700;
-  font-size: 24px;
-  color: #303030;
   @media ${device.tablet} {
     color: #2c2a34;
   }
   @media ${device.mobile} {
     font-size: 16px;
+  }
+  @media ${device.mobile} {
+    height: 43px;
   }
 `;
 
@@ -147,6 +144,62 @@ export const ApplyTerm = styled.p`
 export const Underline = styled.div`
   width: 55px;
   border: 2px solid #ffffff;
+`;
+
+export const ToCalculator = styled.div`
+  position: absolute;
+  right: 10%;
+  top: 959px;
+  width: 281px;
+  height: 63px;
+  bottom: 62px;
+  background-color: #f3f3f3;
+  color: #303030;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 22px;
+  line-height: 63px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 700;
+  :after {
+    border-top: 20px solid #f3f3f3;
+    border-left: 20px solid transparent;
+    border-bottom-right-radius: 2px;
+    border-bottom: 0px solid transparent;
+    content: '';
+    position: absolute;
+    top: 63px;
+    left: 220px;
+  }
+  &:hover {
+    background: rgba(243, 243, 243, 0.52);
+    transform: scale(1.05);
+    transition: 0.3s;
+  }
+  :hover::after {
+    border-top: 20px solid rgba(243, 243, 243, 0.52);
+    transform: scale(1.05);
+    transition: 0.3s;
+  }
+
+  @media ${device.laptop} {
+    top: 920px;
+  }
+  @media ${device.tablet} {
+    top: 720px;
+  }
+  @media ${device.mobile} {
+    font-size: 14px;
+    width: 180px;
+    height: 40px;
+    top: 300px;
+    line-height: 40px;
+    position: static;
+    :after {
+      display: none;
+    }
+  }
 `;
 
 export const ContentBox = styled.div`
@@ -198,11 +251,15 @@ export const ContentSelect = styled.button`
   cursor: pointer;
   background: none;
   border: none;
+  padding: 0 18.745px;
+  margin: 0;
   @media ${device.tablet} {
     font-size: 18px;
+    padding: 0 16.87px;
   }
   @media ${device.mobile} {
     font-size: 11px;
+    padding: 0 10.125px;
   }
 `;
 
@@ -291,7 +348,6 @@ export const OrangeBall = styled(Ball)`
   width: 312px;
   height: 312px;
   background: linear-gradient(220deg, #e1da40 10.2%, #f29100 88.36%);
-  filter: blur(10px);
   top: 1351px;
   left: 26%;
   @media ${device.tablet} {
@@ -313,7 +369,6 @@ export const SmallBlueBall = styled(Ball)`
     #0081ff 41.79%,
     #00366b 88.36%
   );
-  filter: blur(10px);
   left: 54%;
   top: 1650px;
   @media ${device.tablet} {

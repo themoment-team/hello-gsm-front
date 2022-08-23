@@ -1,13 +1,12 @@
 import * as S from './style';
 import * as I from 'Assets/svg';
 import React, { useEffect } from 'react';
-import useStore from 'Stores/StoreContainer';
 
 const SuccessModal: React.FC = () => {
-  const { setShowMypageSuccessModal } = useStore();
-
   useEffect(() => {
-    setTimeout(() => setShowMypageSuccessModal(), 5000);
+    setTimeout(() => {
+      window.location.reload();
+    }, 5000);
   }, []);
 
   return (

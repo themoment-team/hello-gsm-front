@@ -1,17 +1,21 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import * as S from './style';
-import * as I from 'Assets/svg';
 import { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
 import { StatusType } from 'type/user';
 import Image from 'next/image';
-import { Header, MypageModal, MypageSuccessModal } from 'components';
+import {
+  Header,
+  MypageModal,
+  MypageSuccessModal,
+  MypageInformation,
+} from 'components';
 
-const MyPage: NextPage<StatusType> = ({ data }) => {
-  const [name, setName] = useState<string>('');
-  const [imgURL, setImgURL] = useState<string>('');
+const MyPage: NextPage<StatusType> = ({
+  data: { name, userImg, application },
+}) => {
   const [saved, setSaved] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [isPC, setIsPC] = useState<boolean>(true);
@@ -31,10 +35,8 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
 
   useEffect(() => {
     setLogged(true);
-    setSaved(data.application === null ? false : true);
-    setSubmitted(data.application?.isFinalSubmission === true ? true : false);
-    setImgURL(data.userImg);
-    setName(data.name);
+    setSaved(application === null ? false : true);
+    setSubmitted(application?.isFinalSubmission ? true : false);
     setIsPC(
       !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(
         navigator.userAgent,
@@ -47,10 +49,14 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
       {showMypageModal && <MypageModal />}
       {showMypageSuccessModal && <MypageSuccessModal />}
       <Header />
-      <S.Content>
+      <S.Content
+        css={css`
+          ${isPC && saved && !submitted && 'height: 380px'}
+        `}
+      >
         <S.UserBox>
           <Image
-            src={imgURL}
+            src={userImg}
             alt="image"
             width="140"
             height="140"
@@ -66,25 +72,66 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
                   width: 335px;
                 `}
               >
-                <S.Button>원서 다운</S.Button>
-                <S.Button onClick={() => showModal('download')}>
+                <Link href="/application" passHref>
+                  <S.ApplicationLink
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    css={css`
+                      background: #59c5ff;
+                      box-shadow: 0px 13px 30px -10px #59c5ff;
+                    `}
+                  >
+                    원서 다운
+                  </S.ApplicationLink>
+                </Link>
+                <S.Button
+                  onClick={() => showModal('download')}
+                  css={css`
+                    background: #35dcbe;
+                    box-shadow: 0px 13px 30px -10px #35dcbe;
+                  `}
+                >
                   제출 서류 다운
                 </S.Button>
               </S.ButtonBox>
             ) : (
-              <S.ButtonBox
-                css={css`
-                  width: 510px;
-                `}
-              >
-                <S.Button onClick={() => showModal('delete')}>
-                  원서 삭제
-                </S.Button>
-                <Link href="/apply" passHref>
-                  <S.Button>원서 수정</S.Button>
-                </Link>
-                <S.Button onClick={() => showModal('final')}>최종제출</S.Button>
-              </S.ButtonBox>
+              <>
+                <S.ButtonBox
+                  css={css`
+                    width: 510px;
+                  `}
+                >
+                  <S.Button
+                    onClick={() => showModal('delete')}
+                    css={css`
+                      background: #d82142;
+                      box-shadow: 0px 13px 30px -10px #d82142;
+                    `}
+                  >
+                    원서 삭제
+                  </S.Button>
+                  <Link href="/apply" passHref>
+                    <S.Button
+                      css={css`
+                        background: #dbe44e;
+                        box-shadow: 0px 13px 30px -10px #dbe44e;
+                      `}
+                    >
+                      원서 수정
+                    </S.Button>
+                  </Link>
+                  <S.Button
+                    onClick={() => showModal('final')}
+                    css={css`
+                      background: #59c5ff;
+                      box-shadow: 0px 13px 30px -10px #59c5ff;
+                    `}
+                  >
+                    최종제출
+                  </S.Button>
+                </S.ButtonBox>
+                <MypageInformation application={application} />
+              </>
             )
           ) : (
             <S.ButtonBox
@@ -93,7 +140,14 @@ const MyPage: NextPage<StatusType> = ({ data }) => {
               `}
             >
               <Link href="/information" passHref>
-                <S.Button>원서 작성</S.Button>
+                <S.Button
+                  css={css`
+                    background: #dbe44e;
+                    box-shadow: 0px 13px 30px -10px #dbe44e;
+                  `}
+                >
+                  원서 작성
+                </S.Button>
               </Link>
             </S.ButtonBox>
           )

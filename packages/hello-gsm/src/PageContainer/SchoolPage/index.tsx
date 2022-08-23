@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
-import { css } from '@emotion/react';
 import Graph from './Graph';
-import { Header, Footer } from 'components';
+import { Header, Footer, Enterprises } from 'components';
 
-interface employType {
+interface EmployType {
   x: string;
   y: number;
 }
 
 const SchoolPage: NextPage = () => {
   const [select, setSelect] = useState<number>(0);
-  const [EmoployRate, setEmployRate] = useState<employType[]>([]);
+  const [EmoployRate, setEmployRate] = useState<EmployType[]>([]);
   const [total, setTotal] = useState<number>(75);
 
   const data = [
@@ -23,31 +22,6 @@ const SchoolPage: NextPage = () => {
     [
       { x: '취업\n86.8%', y: 66 },
       { x: '기타\n13.2%', y: 10 },
-    ],
-  ];
-  const enterprises = [
-    [
-      '/Enterprises/Hancom.jpg',
-      '/Enterprises/GSTEC.jpg',
-      '/Enterprises/AICA.jpg',
-      '/Enterprises/MIDAS.jpg',
-      '/Enterprises/GJKorcham.jpg',
-      '/Enterprises/Mindlogic.jpg',
-    ],
-    [
-      '/Enterprises/RFA.jpg',
-      '/Enterprises/Payhere.png',
-      '/Enterprises/Doomoolmori.png',
-      '/Enterprises/Gameduo.jpg',
-      '/Enterprises/Clika.jpg',
-      '/Enterprises/Zetabank.jpg',
-    ],
-    [
-      '/Enterprises/Meimpact.jpg',
-      '/Enterprises/Nuua.jpg',
-      '/Enterprises/Aurender.jpg',
-      '/Enterprises/Wiseitech.jpg',
-      '/Enterprises/Morrowbogi.jpg',
     ],
   ];
 
@@ -88,21 +62,7 @@ const SchoolPage: NextPage = () => {
         </S.Section1>
         <S.Section2>
           <S.Section2Title>MOU 기업</S.Section2Title>
-          <S.EnterpriseWrap>
-            {enterprises.map((enterprise, index: number) => (
-              <S.EnterpriseLine key={index}>
-                {enterprise.map((name: string, index: number) => (
-                  <S.Enterprise key={index}>
-                    <S.EnterpriseImg
-                      css={css`
-                        background-image: url(${name});
-                      `}
-                    />
-                  </S.Enterprise>
-                ))}
-              </S.EnterpriseLine>
-            ))}
-          </S.EnterpriseWrap>
+          <Enterprises />
         </S.Section2>
         <S.Section3>
           <S.Section3Title>취업률</S.Section3Title>
