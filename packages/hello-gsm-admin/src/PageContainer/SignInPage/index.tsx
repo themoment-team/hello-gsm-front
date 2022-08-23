@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { AuthController } from 'Utils/Libs/requestUrls';
+import { BASE_URL } from 'shared/config';
 
 const SignInPage: NextPage = () => {
   const {
@@ -24,7 +25,7 @@ const SignInPage: NextPage = () => {
       // await auth.signin({ id, password });
       await axios({
         method: 'POST',
-        url: AuthController.signin(),
+        url: BASE_URL + AuthController.signin(),
         withCredentials: true,
         data: {
           id,
