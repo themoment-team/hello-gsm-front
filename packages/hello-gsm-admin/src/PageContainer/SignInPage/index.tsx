@@ -6,9 +6,6 @@ import { LoginType } from 'Types/user';
 import { css } from '@emotion/react';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
-import axios from 'axios';
-import { AuthController } from 'Utils/Libs/requestUrls';
-import { BASE_URL } from 'shared/config';
 
 const SignInPage: NextPage = () => {
   const {
@@ -23,11 +20,8 @@ const SignInPage: NextPage = () => {
   const onValid = async ({ id, password }: LoginType) => {
     try {
       await auth.signin({ id, password });
-
       toast.success('로그인을 성공하였습니다.');
-      setTimeout(() => {
-        router.push('/');
-      }, 2000);
+      router.push('/');
     } catch (err: any) {
       console.error(err);
       toast.error('아이디 혹은 비밀번호가 잘못되었습니다.');
