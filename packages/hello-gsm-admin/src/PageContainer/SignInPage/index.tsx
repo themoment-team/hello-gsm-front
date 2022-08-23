@@ -25,7 +25,7 @@ const SignInPage: NextPage = () => {
       // await auth.signin({ id, password });
       await axios({
         method: 'POST',
-        url: BASE_URL + 'auth/signin',
+        url: BASE_URL + 'auth/login',
         withCredentials: true,
         data: {
           id,
