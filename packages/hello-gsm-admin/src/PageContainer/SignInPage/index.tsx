@@ -52,6 +52,7 @@ const SignInPage: NextPage = () => {
         <S.Input
           placeholder="비밀번호를 입력해주세요."
           type="password"
+          autoComplete="on"
           {...register('password', {
             required: '* 비밀번호를 입력해주세요.',
             // minLength: 8,
