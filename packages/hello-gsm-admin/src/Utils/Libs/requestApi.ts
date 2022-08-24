@@ -9,7 +9,6 @@ const RequestApi = (p: AxiosRequestConfig, token?: string) => {
           baseURL: BASE_URL,
           url: p.url,
           data: p.data,
-          withCredentials: true,
           headers: {
             cookie: token,
           },
@@ -19,7 +18,6 @@ const RequestApi = (p: AxiosRequestConfig, token?: string) => {
           baseURL: BASE_URL,
           url: p.url,
           data: p.data,
-          withCredentials: true,
         });
     return res;
   } catch (error) {
