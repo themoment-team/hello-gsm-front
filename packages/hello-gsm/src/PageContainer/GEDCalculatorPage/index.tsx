@@ -8,7 +8,7 @@ import { FieldErrors, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import useStore from 'Stores/StoreContainer';
 import { GEDScoreType } from 'type/score';
-import { GEDCalculate } from 'Utils/Calculate';
+import { GEDCalculate, Rounds } from 'Utils/Calculate';
 import * as S from './style';
 
 interface ScoreType {
@@ -42,17 +42,20 @@ const GEDCalculatorPage: NextPage = () => {
     curriculumScoreSubtotal,
     nonCurriculumScoreSubtotal,
     rankPercentage,
+    scoreTotal,
   }: GEDScoreType) => {
     isSubmission
       ? await application.patchGedSubmission({
           curriculumScoreSubtotal,
           nonCurriculumScoreSubtotal,
           rankPercentage,
+          scoreTotal,
         })
       : await application.postGedSubmission({
           curriculumScoreSubtotal,
           nonCurriculumScoreSubtotal,
           rankPercentage,
+          scoreTotal,
         });
   };
 
@@ -64,12 +67,14 @@ const GEDCalculatorPage: NextPage = () => {
       curriculumScoreSubtotal,
       nonCurriculumScoreSubtotal,
     );
+    const scoreTotal = Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
 
     try {
       await TrySubmission({
         curriculumScoreSubtotal,
         nonCurriculumScoreSubtotal,
         rankPercentage,
+        scoreTotal,
       });
       window.localStorage.setItem(
         'curriculumScoreSubtotal',
@@ -83,7 +88,7 @@ const GEDCalculatorPage: NextPage = () => {
       setResultNumber(rankPercentage);
       setShowScoreResult();
       setIsSubmission(true);
-      toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
+      toast.success('성적입력이 완료되었습니다.');
     } catch (err: any) {
       // accessToken 없을 시에 accessToken 발급 후 TrySubmission 요청
       if (err.response.status === 401) {
