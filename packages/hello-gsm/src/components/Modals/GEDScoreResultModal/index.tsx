@@ -3,7 +3,7 @@ import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 
 interface ResultType {
-  result: number[];
+  result?: number[];
 }
 
 const GEDScoreResultModal: React.FC<ResultType> = ({ result }) => {
@@ -18,8 +18,8 @@ const GEDScoreResultModal: React.FC<ResultType> = ({ result }) => {
           <S.ResultTotal>환산총점</S.ResultTotal>
         </S.Wrapper>
         <S.Wrapper>
-          <S.Score>{result[0]}</S.Score>
-          <S.Score>{result[1]}</S.Score>
+          <S.Score>{result && result[0]}</S.Score>
+          <S.Score>{result && result[1]}</S.Score>
         </S.Wrapper>
 
         <hr />
