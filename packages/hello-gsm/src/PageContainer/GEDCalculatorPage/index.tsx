@@ -129,14 +129,12 @@ const GEDCalculatorPage: NextPage = () => {
             </S.Row>
             <S.Row>
               <S.ScoreInput
-                type="number"
                 {...register('curriculumScoreSubtotal', {
                   valueAsNumber: true,
                   required: true,
                 })}
               />
               <S.ScoreInput
-                type="number"
                 {...register('nonCurriculumScoreSubtotal', {
                   valueAsNumber: true,
                   required: true,
