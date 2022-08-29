@@ -5,12 +5,12 @@ export const NotFoundPage = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  height: calc(100vh - 70px);
+  height: 100vh;
   z-index: 2;
 `;
 
 export const Wrapper = styled.div`
-  height: 40vh;
+  height: 35vh;
   text-align: center;
   color: #ffffff;
 `;
