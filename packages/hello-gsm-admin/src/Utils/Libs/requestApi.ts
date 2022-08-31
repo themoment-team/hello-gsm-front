@@ -1,4 +1,4 @@
-import { BASE_URL } from 'shared/config';
+import BASE_URL from 'shared/baseURL';
 import axios, { AxiosRequestConfig } from 'axios';
 
 const RequestApi = (p: AxiosRequestConfig, token?: string) => {
