@@ -8,7 +8,6 @@ interface ResultType {
 
 const GEDScoreResultModal: React.FC<ResultType> = ({ result }) => {
   const { setShowScoreResult } = useStore();
-  console.log(result);
 
   return (
     <S.Background>
