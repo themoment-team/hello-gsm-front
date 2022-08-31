@@ -16,4 +16,5 @@ export interface GEDScoreType {
   curriculumScoreSubtotal: number; // 전과목 득점 합계
   nonCurriculumScoreSubtotal: number; // 전과목 만점 합계
   rankPercentage: number; // 백분율
+  scoreTotal: number; // 환산총점
 }
