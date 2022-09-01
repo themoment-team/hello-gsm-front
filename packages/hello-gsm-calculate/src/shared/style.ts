@@ -211,13 +211,43 @@ export const Line = styled.div`
     content: '';
   }
 
-  :nth-of-type(1) {
+  :nth-child(1) {
     top: 7%;
   }
-  :nth-of-type(2) {
+  :nth-child(2) {
     top: 52%;
   }
-  :nth-of-type(3) {
+  :nth-child(3) {
     top: 80%;
+  }
+`;
+
+export const SystemSection = styled.div`
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 75px;
+  margin: 0 auto;
+`;
+
+export const SystemLabel = styled.label`
+  display: inline-block;
+  text-align: center;
+  width: 45%;
+  input {
+    display: none;
+  }
+  div {
+    cursor: pointer;
+    width: 100%;
+    height: 61px;
+    background-color: #484453;
+    color: rgba(255, 255, 255, 0.45);
+    border-radius: 6px;
+    line-height: 61px;
+  }
+  input[type='radio']:checked + div {
+    background-color: #42bafe;
+    color: #ffffff;
   }
 `;
