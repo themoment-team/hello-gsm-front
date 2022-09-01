@@ -270,8 +270,9 @@ export const RadioSection = styled.div`
   display: flex;
   margin: 40px 0 280px;
   width: 423px;
-  div {
-    width: 90%;
+  justify-content: space-between;
+  label {
+    width: 30%;
     font-size: 22px;
   }
 `;
