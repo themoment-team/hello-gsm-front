@@ -251,3 +251,32 @@ export const SystemLabel = styled.label`
     color: #ffffff;
   }
 `;
+
+export const ChoosePage = styled.div`
+  height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ChooseForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const RadioSection = styled.div`
+  display: flex;
+  margin: 40px 0 280px;
+  width: 423px;
+  div {
+    width: 90%;
+    font-size: 22px;
+  }
+`;
+
+export const ChooseTitle = styled.h1`
+  color: white;
+  font-size: 30px;
+`;
