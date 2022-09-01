@@ -7,7 +7,7 @@ import { HeaderType } from 'type/header';
 import { CheckType } from 'type/check';
 import { TestGEDCalculatorPage } from 'PageContainer';
 
-const GEDTestCalculator: NextPage<CheckType> = ({ check }) => {
+const TestGEDCalculator: NextPage<CheckType> = ({ check }) => {
   const seoTitle = '성적 입력 테스트';
   const desc = '검정고시 지원자의 성적 점수를 확인할 수 있습니다.';
   const { setLogged } = useStore();
@@ -63,4 +63,4 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   }
 };
 
-export default GEDTestCalculator;
+export default TestGEDCalculator;
