@@ -31,7 +31,6 @@ const TestGEDCalculatorPage: NextPage = () => {
 
     setResultNumber([rankPercentage, scoreTotal]);
     setShowScoreResult();
-    toast.success('성적입력이 완료되었습니다.');
   };
 
   const inValid = (Errors: FieldErrors) => {
@@ -57,12 +56,14 @@ const TestGEDCalculatorPage: NextPage = () => {
                   valueAsNumber: true,
                   required: true,
                 })}
+                type="number"
               />
               <S.ScoreInput
                 {...register('nonCurriculumScoreSubtotal', {
                   valueAsNumber: true,
                   required: true,
                 })}
+                type="number"
               />
             </S.Row>
           </div>
