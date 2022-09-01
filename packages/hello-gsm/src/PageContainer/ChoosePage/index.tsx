@@ -20,7 +20,7 @@ const ChoosePage: NextPage = () => {
         push('/calculator/test');
         break;
       case '검정고시':
-        push('/calculator/ged/test');
+        push('/calculator/test/ged');
         break;
     }
   };
