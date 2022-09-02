@@ -27,18 +27,11 @@ const GEDCalculatorPage: NextPage = () => {
       nonCurriculumScoreSubtotal,
     );
 
-    try {
-      setResultNumber(rankPercentage);
-      setShowScoreResult();
-      toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
-    } catch (err: any) {
-      console.log(err);
-      toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
-    }
+    setResultNumber(rankPercentage);
+    setShowScoreResult();
   };
 
-  const inValid = (Errors: FieldErrors) => {
-    console.log(Errors);
+  const inValid = () => {
     toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
   };
 
