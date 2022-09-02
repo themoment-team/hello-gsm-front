@@ -1,7 +1,7 @@
 import { GEDScoreResultModal } from 'components';
 import type { NextPage } from 'next';
 import { useState } from 'react';
-import { FieldErrors, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import useStore from 'stores/StoreContainer';
 import { GEDCalculate } from 'utils';
