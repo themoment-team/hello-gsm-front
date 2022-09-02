@@ -1,12 +1,11 @@
 import type { NextPage } from 'next';
 import { ScoreSelect, ScoreResultModal, FreeSemesterBtn } from 'components';
 import * as S from 'shared/style';
-import * as I from 'Assets/svg';
+import * as I from 'assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Calculate, Volunteer, Rounds, Attendance, ArtSport } from 'utils';
-import useStore from 'Stores/StoreContainer';
-import { toast } from 'react-toastify';
+import useStore from 'stores/StoreContainer';
 
 interface ScoreForm {
   // 과목/점수 배열
@@ -22,7 +21,7 @@ interface ScoreForm {
   newSubjects: string[];
 }
 
-const TestCalculatorPage: NextPage = () => {
+const CalculatorPage: NextPage = () => {
   const {
     register,
     handleSubmit,
@@ -58,6 +57,9 @@ const TestCalculatorPage: NextPage = () => {
   const [nonSubjects, setNonSubjects] = useState(['체육', '미술', '음악']);
   const [grades, setGrades] = useState([1, 2, 3]);
 
+  useEffect(() => {
+    console.log(showScoreResult);
+  }, [showScoreResult]);
   // 저장 버튼을 눌렀을 때
   const onValid = async ({
     value1_1,
@@ -71,19 +73,6 @@ const TestCalculatorPage: NextPage = () => {
     attendanceValue,
     newSubjects,
   }: ScoreForm) => {
-    console.log(
-      value1_1,
-      value1_2,
-      value2_1,
-      value2_2,
-      value3_1,
-      artSportsValue,
-      volunteerValue,
-      absentValue,
-      attendanceValue,
-      newSubjects,
-    );
-
     const score1_1 = Calculate(value1_1, '1-1', system, freeSemester) ?? 0; // 2학년 1학기
     const score1_2 = Calculate(value1_2, '1-2', system, freeSemester) ?? 0; // 2학년 1학기
     const score2_1 = Calculate(value2_1, '2-1', system, freeSemester) ?? 0; // 2학년 1학기
@@ -116,8 +105,6 @@ const TestCalculatorPage: NextPage = () => {
       3,
     ); // 총점
 
-    const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 석채백분율
-
     // 결과 모달 제어
     setResultArray([
       generalCurriculumScoreSubtotal,
@@ -126,7 +113,6 @@ const TestCalculatorPage: NextPage = () => {
       scoreTotal,
     ]);
     setShowScoreResult(); // 결과창 보여지게
-    setIsSubmission(true); // 제출 여부 확인
   };
 
   const inValid = (errors: FieldErrors) => {
@@ -171,7 +157,6 @@ const TestCalculatorPage: NextPage = () => {
     <>
       {showScoreResult && <ScoreResultModal result={resultArray} />}
       <S.Title>성적입력</S.Title>
-
       <S.SystemSection>
         <S.SystemLabel>
           <input
@@ -192,7 +177,6 @@ const TestCalculatorPage: NextPage = () => {
           <div>자유학기제</div>
         </S.SystemLabel>
       </S.SystemSection>
-
       <S.CalculatePage>
         <S.CalculateSection onSubmit={handleSubmit(onValid, inValid)}>
           <S.CurriculumSection>
@@ -573,4 +557,4 @@ const TestCalculatorPage: NextPage = () => {
   );
 };
 
-export default TestCalculatorPage;
+export default CalculatorPage;
