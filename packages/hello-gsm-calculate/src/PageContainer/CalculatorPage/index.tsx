@@ -36,12 +36,8 @@ const CalculatorPage: NextPage = () => {
     system,
     setSystem,
     freeSemester,
-    setFreeSemester,
   } = useStore();
   const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
-
-  // 이전에 제출한 경험 여부 판단
-  const [isSubmission, setIsSubmission] = useState<boolean>();
 
   const lines = ['일반교과', '예체능 교과', '비교과'];
   const [subjects, setSubjects] = useState([
@@ -71,7 +67,6 @@ const CalculatorPage: NextPage = () => {
     volunteerValue,
     absentValue,
     attendanceValue,
-    newSubjects,
   }: ScoreForm) => {
     const score1_1 = Calculate(value1_1, '1-1', system, freeSemester) ?? 0; // 2학년 1학기
     const score1_2 = Calculate(value1_2, '1-2', system, freeSemester) ?? 0; // 2학년 1학기
