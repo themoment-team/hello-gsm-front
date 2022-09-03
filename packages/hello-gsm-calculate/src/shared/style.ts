@@ -211,13 +211,13 @@ export const Line = styled.div`
     content: '';
   }
 
-  :nth-child(1) {
+  :nth-of-type(1) {
     top: 7%;
   }
-  :nth-child(2) {
+  :nth-of-type(2) {
     top: 52%;
   }
-  :nth-child(3) {
+  :nth-of-type(3) {
     top: 80%;
   }
 `;
