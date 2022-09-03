@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import useStore from 'stores/StoreContainer';
-import { GEDCalculate } from 'utils';
+import { GEDCalculate, Rounds } from 'utils';
 import * as S from './style';
 
 interface ScoreType {
@@ -16,7 +16,7 @@ const GEDCalculatorPage: NextPage = () => {
   const { register, handleSubmit } = useForm<ScoreType>();
 
   const { showScoreResult, setShowScoreResult } = useStore();
-  const [resultNumber, setResultNumber] = useState<number>(); //결과 화면 컴포넌트에 보일 점수
+  const [result, setResult] = useState<number[]>(); //결과 화면 컴포넌트에 보일 점수
 
   const onValid = async ({
     curriculumScoreSubtotal,
@@ -26,8 +26,9 @@ const GEDCalculatorPage: NextPage = () => {
       curriculumScoreSubtotal,
       nonCurriculumScoreSubtotal,
     );
+    const scoreTotal = Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
 
-    setResultNumber(rankPercentage);
+    setResult([rankPercentage, scoreTotal]);
     setShowScoreResult();
   };
 
@@ -37,7 +38,7 @@ const GEDCalculatorPage: NextPage = () => {
 
   return (
     <>
-      {showScoreResult && <GEDScoreResultModal result={resultNumber} />}
+      {showScoreResult && <GEDScoreResultModal result={result} />}
       <S.GEDPage>
         <S.Title>성적입력(검정고시)</S.Title>
         <S.CalculateSection onSubmit={handleSubmit(onValid, inValid)}>

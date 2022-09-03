@@ -3,7 +3,7 @@ import useStore from 'stores/StoreContainer';
 import * as S from './style';
 
 interface ResultType {
-  result?: number;
+  result?: number[];
 }
 
 const GEDScoreResultModal: React.FC<ResultType> = ({ result }) => {
@@ -12,12 +12,15 @@ const GEDScoreResultModal: React.FC<ResultType> = ({ result }) => {
   return (
     <S.Background>
       <S.ResultSection>
-        <S.SubjectSection>
+        <S.Wrapper>
           <S.ResultTotal>석차백분율</S.ResultTotal>
-        </S.SubjectSection>
-        <S.SubjectSection>
-          <S.Score>{result}</S.Score>
-        </S.SubjectSection>
+          <S.ResultTotal>환산총점</S.ResultTotal>
+        </S.Wrapper>
+        <S.Wrapper>
+          <S.Score>{result && result[0]}</S.Score>
+          <S.Score>{result && result[1]}</S.Score>
+        </S.Wrapper>
+
         <hr />
         <S.MainDesc>원서를 저장했습니다.</S.MainDesc>
         <S.SubDesc>
@@ -25,8 +28,8 @@ const GEDScoreResultModal: React.FC<ResultType> = ({ result }) => {
         </S.SubDesc>
         <S.ConfirmSection>
           <S.Confirm onClick={() => setShowScoreResult()}>수정</S.Confirm>
-          <Link href="/" passHref>
-            <S.Confirm>확인</S.Confirm>
+          <Link href="/mypage" passHref>
+            <S.Confirm onClick={() => setShowScoreResult()}>확인</S.Confirm>
           </Link>
         </S.ConfirmSection>
       </S.ResultSection>
