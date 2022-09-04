@@ -9,8 +9,7 @@ interface StatusForm {
 }
 
 const ChoosePage: NextPage = () => {
-  const { register, watch, handleSubmit } = useForm<StatusForm>();
-  console.log(watch('status'));
+  const { register, handleSubmit } = useForm<StatusForm>();
   const { push } = useRouter();
 
   const onValid = ({ status }: StatusForm) => {

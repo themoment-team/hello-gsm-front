@@ -17,7 +17,6 @@ import {
   ArtSport,
 } from 'Utils/Calculate';
 import useStore from 'Stores/StoreContainer';
-import { toast } from 'react-toastify';
 
 interface ScoreForm {
   // 과목/점수 배열
@@ -48,15 +47,11 @@ const TestCalculatorPage: NextPage = () => {
     system,
     setSystem,
     freeSemester,
-    setFreeSemester,
   } = useStore();
   const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
 
-  // 이전에 제출한 경험 여부 판단
-  const [isSubmission, setIsSubmission] = useState<boolean>();
-
   const lines = ['일반교과', '예체능 교과', '비교과'];
-  const [subjects, setSubjects] = useState([
+  const subjects = [
     '국어',
     '도덕',
     '사회',
@@ -65,9 +60,9 @@ const TestCalculatorPage: NextPage = () => {
     '과학',
     '기술가정',
     '영어',
-  ]);
-  const [nonSubjects, setNonSubjects] = useState(['체육', '미술', '음악']);
-  const [grades, setGrades] = useState([1, 2, 3]);
+  ];
+  const nonSubjects = ['체육', '미술', '음악'];
+  const grades = [1, 2, 3];
 
   // 저장 버튼을 눌렀을 때
   const onValid = async ({
@@ -127,8 +122,6 @@ const TestCalculatorPage: NextPage = () => {
       3,
     ); // 총점
 
-    const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 석채백분율
-
     // 결과 모달 제어
     setResultArray([
       generalCurriculumScoreSubtotal,
@@ -137,7 +130,6 @@ const TestCalculatorPage: NextPage = () => {
       scoreTotal,
     ]);
     setShowScoreResult(); // 결과창 보여지게
-    setIsSubmission(true); // 제출 여부 확인
   };
 
   const inValid = (errors: FieldErrors) => {

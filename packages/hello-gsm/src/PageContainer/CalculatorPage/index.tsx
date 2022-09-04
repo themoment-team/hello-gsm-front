@@ -74,7 +74,7 @@ const CalculatorPage: NextPage = () => {
   const [isSubmission, setIsSubmission] = useState<boolean>();
 
   const lines = ['일반교과', '예체능 교과', '비교과'];
-  const [subjects, setSubjects] = useState([
+  const subjects = [
     '국어',
     '도덕',
     '사회',
@@ -83,9 +83,9 @@ const CalculatorPage: NextPage = () => {
     '과학',
     '기술가정',
     '영어',
-  ]);
-  const [nonSubjects, setNonSubjects] = useState(['체육', '미술', '음악']);
-  const [grades, setGrades] = useState([1, 2, 3]);
+  ];
+  const nonSubjects = ['체육', '미술', '음악'];
+  const grades = [1, 2, 3];
 
   // api 요청 보내기
   const TrySubmission = async (data: ScoreType) => {
@@ -140,19 +140,6 @@ const CalculatorPage: NextPage = () => {
     attendanceValue,
     newSubjects,
   }: ScoreForm) => {
-    console.log(
-      value1_1,
-      value1_2,
-      value2_1,
-      value2_2,
-      value3_1,
-      artSportsValue,
-      volunteerValue,
-      absentValue,
-      attendanceValue,
-      newSubjects,
-    );
-
     const score1_1 = Calculate(value1_1, '1-1', system, freeSemester) ?? 0; // 2학년 1학기
     const score1_2 = Calculate(value1_2, '1-2', system, freeSemester) ?? 0; // 2학년 1학기
     const score2_1 = Calculate(value2_1, '2-1', system, freeSemester) ?? 0; // 2학년 1학기
@@ -185,9 +172,8 @@ const CalculatorPage: NextPage = () => {
       3,
     ); // 총점
 
-    const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 석채백분율
-    console.log(score1_1, score1_2, score2_1, score2_2, score3_1);
-    console.log(score1_1);
+    const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 차백분율
+
     // score값이 없는 값이라면 undefined 값을 보내게 함
     const data: ScoreType = {
       score1_1: score1_1 !== 0 ? score1_1 : undefined,

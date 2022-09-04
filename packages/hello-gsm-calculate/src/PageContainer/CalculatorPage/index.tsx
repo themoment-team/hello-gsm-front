@@ -40,7 +40,7 @@ const CalculatorPage: NextPage = () => {
   const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
 
   const lines = ['일반교과', '예체능 교과', '비교과'];
-  const [subjects, setSubjects] = useState([
+  const subjects = [
     '국어',
     '도덕',
     '사회',
@@ -49,9 +49,9 @@ const CalculatorPage: NextPage = () => {
     '과학',
     '기술가정',
     '영어',
-  ]);
-  const [nonSubjects, setNonSubjects] = useState(['체육', '미술', '음악']);
-  const [grades, setGrades] = useState([1, 2, 3]);
+  ];
+  const nonSubjects = ['체육', '미술', '음악'];
+  const grades = [1, 2, 3];
 
   useEffect(() => {
     console.log(showScoreResult);
