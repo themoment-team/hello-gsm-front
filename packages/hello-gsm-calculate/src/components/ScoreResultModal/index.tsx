@@ -31,7 +31,7 @@ const ScoreResultModal: React.FC<ResultType> = ({ result }) => {
         <S.ConfirmSection>
           <S.Confirm onClick={() => setShowScoreResult()}>수정</S.Confirm>
           <Link href="/" passHref>
-            <S.Confirm>확인</S.Confirm>
+            <S.Confirm onClick={() => setShowScoreResult()}>확인</S.Confirm>
           </Link>
         </S.ConfirmSection>
       </S.ResultSection>
