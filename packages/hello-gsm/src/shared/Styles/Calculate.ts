@@ -4,7 +4,7 @@ export const Title = styled.h1`
   font-size: 24px;
   color: #ffffff;
   text-align: center;
-  margin: 100px 0;
+  margin-top: 100px;
 `;
 
 export const CalculatePage = styled.div`
@@ -227,7 +227,7 @@ export const SystemSection = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 75px;
-  margin: 0 auto;
+  margin: 50px auto;
 `;
 
 export const SystemLabel = styled.label`
@@ -250,34 +250,4 @@ export const SystemLabel = styled.label`
     background-color: #42bafe;
     color: #ffffff;
   }
-`;
-
-export const ChoosePage = styled.div`
-  height: calc(100vh - 70px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const ChooseForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const RadioSection = styled.div`
-  display: flex;
-  margin: 40px 0 280px;
-  width: 423px;
-  justify-content: space-between;
-  label {
-    width: 30%;
-    font-size: 22px;
-  }
-`;
-
-export const ChooseTitle = styled.h1`
-  color: white;
-  font-size: 30px;
 `;
