@@ -3,7 +3,7 @@ import { ScoreSelect, ScoreResultModal, FreeSemesterBtn } from 'components';
 import * as S from 'shared/style';
 import * as I from 'assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Calculate, Volunteer, Rounds, Attendance, ArtSport } from 'utils';
 import useStore from 'stores/StoreContainer';
 
@@ -47,9 +47,6 @@ const CalculatorPage: NextPage = () => {
   const nonSubjects = ['체육', '미술', '음악'];
   const grades = [1, 2, 3];
 
-  useEffect(() => {
-    console.log(showScoreResult);
-  }, [showScoreResult]);
   // 저장 버튼을 눌렀을 때
   const onValid = async ({
     value1_1,

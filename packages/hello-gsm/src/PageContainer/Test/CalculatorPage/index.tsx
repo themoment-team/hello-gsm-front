@@ -69,21 +69,7 @@ const TestCalculatorPage: NextPage = () => {
     volunteerValue,
     absentValue,
     attendanceValue,
-    newSubjects,
   }: ScoreForm) => {
-    console.log(
-      value1_1,
-      value1_2,
-      value2_1,
-      value2_2,
-      value3_1,
-      artSportsValue,
-      volunteerValue,
-      absentValue,
-      attendanceValue,
-      newSubjects,
-    );
-
     const score1_1 = Calculate(value1_1, '1-1', system, freeSemester) ?? 0; // 2학년 1학기
     const score1_2 = Calculate(value1_2, '1-2', system, freeSemester) ?? 0; // 2학년 1학기
     const score2_1 = Calculate(value2_1, '2-1', system, freeSemester) ?? 0; // 2학년 1학기
