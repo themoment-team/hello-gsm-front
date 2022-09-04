@@ -2,7 +2,7 @@ import { Header } from 'components';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import * as S from 'shared/Styles/Calculate';
+import * as S from './style';
 
 interface StatusForm {
   status: '졸업자' | '검정고시' | '졸업예정';
