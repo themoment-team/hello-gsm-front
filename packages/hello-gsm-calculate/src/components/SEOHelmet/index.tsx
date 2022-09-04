@@ -32,7 +32,7 @@ const SEOHelmet = ({ seoTitle, desc }: SEOHelmetProps) => {
       <meta name="og:url" content="https://hellogsm.kr" />
       <meta property="og:image" content="https://hellogsm.kr/thumbnail.png" />
 
-      <meta name="twitter:title" content="Hello, GSM Calcylate" />
+      <meta name="twitter:title" content="Hello, GSM Calculate" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="https://hellogsm.kr" />
       <meta name="twitter:creator" content="themoment-team" />
