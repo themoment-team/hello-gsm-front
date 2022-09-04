@@ -622,6 +622,7 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                         valueAsNumber: true,
                       })}
+                      type="number"
                       placeholder="입력"
                       defaultValue={absentScore ? absentScore[i] : ''}
                     />
@@ -636,6 +637,7 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                         valueAsNumber: true,
                       })}
+                      type="number"
                       placeholder="입력"
                       defaultValue={attendanceScore ? attendanceScore[i] : ''}
                     />
@@ -650,6 +652,7 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                         valueAsNumber: true,
                       })}
+                      type="number"
                       placeholder="입력"
                       defaultValue={
                         attendanceScore ? attendanceScore[3 + i] : ''
@@ -666,6 +669,7 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                         valueAsNumber: true,
                       })}
+                      type="number"
                       placeholder="입력"
                       defaultValue={
                         attendanceScore ? attendanceScore[6 + i] : ''
@@ -681,6 +685,7 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                         valueAsNumber: true,
                       })}
+                      type="number"
                       placeholder="입력"
                       defaultValue={volunteerScore ? volunteerScore[i] : ''}
                     />

@@ -501,6 +501,7 @@ const TestCalculatorPage: NextPage = () => {
                         valueAsNumber: true,
                       })}
                       placeholder="입력"
+                      type="number"
                     />
                   ))}
                 </S.ValueSection>
@@ -514,6 +515,7 @@ const TestCalculatorPage: NextPage = () => {
                         valueAsNumber: true,
                       })}
                       placeholder="입력"
+                      type="number"
                     />
                   ))}
                 </S.ValueSection>
@@ -527,6 +529,7 @@ const TestCalculatorPage: NextPage = () => {
                         valueAsNumber: true,
                       })}
                       placeholder="입력"
+                      type="number"
                     />
                   ))}
                 </S.ValueSection>
@@ -540,6 +543,7 @@ const TestCalculatorPage: NextPage = () => {
                         valueAsNumber: true,
                       })}
                       placeholder="입력"
+                      type="number"
                     />
                   ))}
                 </S.ValueSection>
@@ -551,6 +555,7 @@ const TestCalculatorPage: NextPage = () => {
                         required: true,
                         valueAsNumber: true,
                       })}
+                      type="number"
                       placeholder="입력"
                     />
                   ))}

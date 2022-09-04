@@ -475,6 +475,7 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                         valueAsNumber: true,
                       })}
+                      type="number"
                       placeholder="입력"
                     />
                   ))}
@@ -488,6 +489,7 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                         valueAsNumber: true,
                       })}
+                      type="number"
                       placeholder="입력"
                     />
                   ))}
@@ -501,6 +503,7 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                         valueAsNumber: true,
                       })}
+                      type="number"
                       placeholder="입력"
                     />
                   ))}
@@ -514,6 +517,7 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                         valueAsNumber: true,
                       })}
+                      type="number"
                       placeholder="입력"
                     />
                   ))}
@@ -526,6 +530,7 @@ const CalculatorPage: NextPage = () => {
                         required: true,
                         valueAsNumber: true,
                       })}
+                      type="number"
                       placeholder="입력"
                     />
                   ))}
