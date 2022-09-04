@@ -4,7 +4,7 @@ export const Title = styled.h1`
   font-size: 24px;
   color: #ffffff;
   text-align: center;
-  margin: 100px 0;
+  margin-top: 100px;
 `;
 
 export const CalculatePage = styled.div`
@@ -227,7 +227,7 @@ export const SystemSection = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 75px;
-  margin: 0 auto;
+  margin: 50px auto;
 `;
 
 export const SystemLabel = styled.label`
