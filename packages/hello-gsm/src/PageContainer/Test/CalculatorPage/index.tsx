@@ -33,13 +33,7 @@ interface ScoreForm {
 }
 
 const TestCalculatorPage: NextPage = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useForm<ScoreForm>();
+  const { register, handleSubmit, watch, setValue } = useForm<ScoreForm>();
 
   const {
     showScoreResult,
