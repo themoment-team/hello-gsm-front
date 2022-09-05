@@ -8,7 +8,7 @@ import { FieldErrors, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import useStore from 'Stores/StoreContainer';
 import { GEDScoreType } from 'type/score';
-import { GEDCalculate } from 'Utils/Calculate';
+import { GEDCalculate, Rounds } from 'Utils/Calculate';
 import * as S from './style';
 
 interface ScoreType {
@@ -25,7 +25,7 @@ const GEDCalculatorPage: NextPage = () => {
   const { register, handleSubmit, setValue } = useForm<ScoreType>();
 
   const { showScoreResult, setShowScoreResult } = useStore();
-  const [resultNumber, setResultNumber] = useState<number>(); //결과 화면 컴포넌트에 보일 점수
+  const [result, setResult] = useState<number[]>(); //결과 화면 컴포넌트에 보일 점수
   // 이전에 제출한 경험 여부 판단
   const [isSubmission, setIsSubmission] = useState<boolean>();
 
@@ -42,17 +42,20 @@ const GEDCalculatorPage: NextPage = () => {
     curriculumScoreSubtotal,
     nonCurriculumScoreSubtotal,
     rankPercentage,
+    scoreTotal,
   }: GEDScoreType) => {
     isSubmission
       ? await application.patchGedSubmission({
           curriculumScoreSubtotal,
           nonCurriculumScoreSubtotal,
           rankPercentage,
+          scoreTotal,
         })
       : await application.postGedSubmission({
           curriculumScoreSubtotal,
           nonCurriculumScoreSubtotal,
           rankPercentage,
+          scoreTotal,
         });
   };
 
@@ -64,12 +67,14 @@ const GEDCalculatorPage: NextPage = () => {
       curriculumScoreSubtotal,
       nonCurriculumScoreSubtotal,
     );
+    const scoreTotal = Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
 
     try {
       await TrySubmission({
         curriculumScoreSubtotal,
         nonCurriculumScoreSubtotal,
         rankPercentage,
+        scoreTotal,
       });
       window.localStorage.setItem(
         'curriculumScoreSubtotal',
@@ -80,10 +85,10 @@ const GEDCalculatorPage: NextPage = () => {
         nonCurriculumScoreSubtotal.toString(),
       );
 
-      setResultNumber(rankPercentage);
+      setResult([rankPercentage, scoreTotal]);
       setShowScoreResult();
       setIsSubmission(true);
-      toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
+      toast.success('성적입력이 완료되었습니다.');
     } catch (err: any) {
       // accessToken 없을 시에 accessToken 발급 후 TrySubmission 요청
       if (err.response.status === 401) {
@@ -113,7 +118,7 @@ const GEDCalculatorPage: NextPage = () => {
   return (
     <>
       <Header />
-      {showScoreResult && <GEDScoreResultModal result={resultNumber} />}
+      {showScoreResult && <GEDScoreResultModal result={result} />}
       <S.GEDPage>
         <S.Title>성적입력(검정고시)</S.Title>
         <S.CalculateSection onSubmit={handleSubmit(onValid, inValid)}>
@@ -124,18 +129,18 @@ const GEDCalculatorPage: NextPage = () => {
             </S.Row>
             <S.Row>
               <S.ScoreInput
-                type="number"
                 {...register('curriculumScoreSubtotal', {
                   valueAsNumber: true,
                   required: true,
                 })}
+                type="number"
               />
               <S.ScoreInput
-                type="number"
                 {...register('nonCurriculumScoreSubtotal', {
                   valueAsNumber: true,
                   required: true,
                 })}
+                type="number"
               />
             </S.Row>
           </div>
