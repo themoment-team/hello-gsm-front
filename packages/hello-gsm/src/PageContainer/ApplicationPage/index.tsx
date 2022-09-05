@@ -3,7 +3,7 @@ import * as S from './style';
 import { GetApplicationType } from 'type/application';
 import useLocalstorage from 'hooks/useLocalstorage';
 import useToString from 'Utils/Calculate/ToString';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import ApplicationStatus from 'components/ApplicantsStatus';
 import * as I from 'Assets/svg';
@@ -20,7 +20,9 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
   data,
 }) => {
   // 로컬스토리지 값을 가져와서 등급으로 표시
-  const score2_1 = useToString(useLocalstorage('score2_1')) ?? []; // null 값이면 빈 배열
+  const score1_1 = useToString(useLocalstorage('score1_1')) ?? []; // null 값이면 빈 배열
+  const score1_2 = useToString(useLocalstorage('score1_2')) ?? [];
+  const score2_1 = useToString(useLocalstorage('score2_1')) ?? [];
   const score2_2 = useToString(useLocalstorage('score2_2')) ?? [];
   const score3_1 = useToString(useLocalstorage('score3_1')) ?? [];
   const artSportsScore = useToString(useLocalstorage('artSportsScore')) ?? [];
@@ -30,6 +32,8 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
   const subjects = useLocalstorage('subjects');
   const newSubjects = useLocalstorage('newSubjects');
   const nonSubjects = useLocalstorage('nonSubjects');
+  const [system, setSystem] = useState<string | null>();
+  const [freeSemester, setFreeSemester] = useState<string | null>();
   // 환산일수
   const conversionDays =
     application?.application_score?.attendanceScore &&
@@ -48,10 +52,12 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
   };
 
   useEffect(() => {
+    setFreeSemester(window.localStorage.getItem('freeSemester'));
+    setSystem(window.localStorage.getItem('system'));
+
     // 페이지 첫 렌더링 시 인쇄화면 보여지게
     TryPrint();
   }, []);
-
   return (
     <>
       {/* 입학원서 */}
@@ -190,7 +196,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
         </S.Document>
       </S.ApplicationPage>
       {/* 검정고시가 아닌 학생만 성적 입력 확인서 보여주기 */}
-      {application?.application_details?.educationStatus !== '검정고시' ? (
+      {application?.application_details?.educationStatus !== '검정고시' && (
         <S.ApplicationPage>
           <S.Document>
             <div className="warterMark">견본</div>
@@ -226,24 +232,57 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
                   <S.DivSubject>1학년 1학기</S.DivSubject>
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
-                <S.DivSlash />
+                {/* 자유학년제거나 자유학기제를 시행한 학기이면 점수를 보여주지 않음 */}
+                {system === '자유학년제' || freeSemester === '1-1' ? (
+                  <S.DivSlash />
+                ) : (
+                  <>
+                    {score1_1?.map((score, i) => (
+                      <S.Value key={i}>{score}</S.Value>
+                    ))}
+                    <S.Value>
+                      {application?.application_score?.score1_1}
+                    </S.Value>
+                  </>
+                )}
               </S.Column>
               <S.Column>
                 <S.Semester>
                   <S.DivSubject>1학년 2학기</S.DivSubject>
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
-                <S.DivSlash />
+                {/* 자유학년제거나 자유학기제를 시행한 학기이면 점수를 보여주지 않음 */}
+                {system === '자유학년제' || freeSemester === '1-2' ? (
+                  <S.DivSlash />
+                ) : (
+                  <>
+                    {score1_2?.map((score, i) => (
+                      <S.Value key={i}>{score}</S.Value>
+                    ))}
+                    <S.Value>
+                      {application?.application_score?.score1_2}
+                    </S.Value>
+                  </>
+                )}
               </S.Column>
               <S.Column>
                 <S.Semester>
                   <S.DivSubject>2학년 1학기</S.DivSubject>
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
-                {score2_1?.map((score, i) => (
-                  <S.Value key={i}>{score}</S.Value>
-                ))}
-                <S.Value>{application?.application_score?.score2_1}</S.Value>
+                {freeSemester === '2-1' ? (
+                  <S.DivSlash />
+                ) : (
+                  <>
+                    {' '}
+                    {score2_1?.map((score, i) => (
+                      <S.Value key={i}>{score}</S.Value>
+                    ))}
+                    <S.Value>
+                      {application?.application_score?.score2_1}
+                    </S.Value>
+                  </>
+                )}
               </S.Column>
               <S.Column>
                 <S.Semester>
@@ -426,7 +465,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
             </div>
           </S.Document>
         </S.ApplicationPage>
-      ) : null}
+      )}
       {/* 인쇄버튼 */}
       <S.PrintBtn onClick={TryPrint}>
         <I.PrintIcon />

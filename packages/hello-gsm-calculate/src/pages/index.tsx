@@ -1,13 +1,14 @@
 import type { NextPage } from 'next';
-import { CalculatorPage, SEOHelmet } from 'components';
+import { SEOHelmet } from 'components';
+import { ChoosePage } from 'PageContainer';
 
 const Home: NextPage = () => {
-  const seoTitle = '모의성적 입력';
-  const desc = '모의성적 입력 페이지입니다.';
+  const seoTitle = '성적 입력 테스트';
+  const desc = '광주소프트웨어마이스터고등학교 지원자의 성적점수를 계산합니다.';
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
-      <CalculatorPage></CalculatorPage>
+      <ChoosePage />
     </>
   );
 };

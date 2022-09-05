@@ -1,38 +1,40 @@
 import type { NextPage } from 'next';
-import { ScoreSelect } from 'components';
+import { ScoreSelect, ScoreResultModal, FreeSemesterBtn } from 'components';
 import * as S from 'shared/style';
 import * as I from 'assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { Calculate, Volunteer, Rounds, Attendance } from 'utils';
-import ScoreResultModal from 'components/ScoreResultModal';
+import { Calculate, Volunteer, Rounds, Attendance, ArtSport } from 'utils';
 import useStore from 'stores/StoreContainer';
 
 interface ScoreForm {
-  score2_1: number[];
-  score2_2: number[];
-  score3_1: number[];
-  artSportsScore: number[];
-  volunteerScore: number[];
-  absentScore: number[];
-  attendanceScore: number[];
+  // 과목/점수 배열
+  value1_1: number[];
+  value1_2: number[];
+  value2_1: number[];
+  value2_2: number[];
+  value3_1: number[];
+  artSportsValue: number[];
+  volunteerValue: number[];
+  absentValue: number[];
+  attendanceValue: number[];
   newSubjects: string[];
 }
 
-const TestCalculatorPage: NextPage = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useForm<ScoreForm>();
+const CalculatorPage: NextPage = () => {
+  const { register, handleSubmit, watch, setValue } = useForm<ScoreForm>();
 
-  const { showScoreResult, setShowScoreResult } = useStore();
+  const {
+    showScoreResult,
+    setShowScoreResult,
+    system,
+    setSystem,
+    freeSemester,
+  } = useStore();
   const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
 
   const lines = ['일반교과', '예체능 교과', '비교과'];
-  const [subjects, setSubjects] = useState([
+  const subjects = [
     '국어',
     '도덕',
     '사회',
@@ -41,45 +43,62 @@ const TestCalculatorPage: NextPage = () => {
     '과학',
     '기술가정',
     '영어',
-  ]);
-  const [nonSubjects, setNonSubjects] = useState(['체육', '미술', '음악']);
-  const [grades, setGrades] = useState([1, 2, 3]);
+  ];
+  const nonSubjects = ['체육', '미술', '음악'];
+  const grades = [1, 2, 3];
 
-  const onValid = async (validForm: ScoreForm) => {
-    const score2_1: number = Calculate(validForm.score2_1, 2); // 2학년 1학기
-    const score2_2: number = Calculate(validForm.score2_2, 2); // 2학년 2학기
-    const score3_1: number = Calculate(validForm.score3_1, 3); // 3학년 1학기
-    const generalCurriculumScoreSubtotal: number =
-      score2_1 + score2_2 + score3_1;
+  // 저장 버튼을 눌렀을 때
+  const onValid = async ({
+    value1_1,
+    value1_2,
+    value2_1,
+    value2_2,
+    value3_1,
+    artSportsValue,
+    volunteerValue,
+    absentValue,
+    attendanceValue,
+  }: ScoreForm) => {
+    const score1_1 = Calculate(value1_1, '1-1', system, freeSemester) ?? 0; // 2학년 1학기
+    const score1_2 = Calculate(value1_2, '1-2', system, freeSemester) ?? 0; // 2학년 1학기
+    const score2_1 = Calculate(value2_1, '2-1', system, freeSemester) ?? 0; // 2학년 1학기
+    const score2_2 = Calculate(value2_2, '2-2', system, freeSemester) ?? 0; // 2학년 2학기
+    const score3_1 = Calculate(value3_1, '3-1', system, freeSemester) ?? 0; // 2학년 2학기
+
+    const generalCurriculumScoreSubtotal = Rounds(
+      score1_1 + score1_2 + score2_1 + score2_2 + score3_1,
+      3,
+    );
     // 교과성적 소계
 
-    const artSportsScore: number = Calculate(validForm.artSportsScore, 4); // 예체능
-    const curriculumScoreSubtotal: number =
-      generalCurriculumScoreSubtotal + artSportsScore;
+    const artSportsScore: number = ArtSport(artSportsValue); // 예체능
+    const curriculumScoreSubtotal: number = Rounds(
+      generalCurriculumScoreSubtotal + artSportsScore,
+      4,
+    );
     // 교과성적 + 예체능
 
-    const attendanceScore: number = Attendance(
-      validForm.absentScore,
-      validForm.attendanceScore,
-    ); // 출석점수
-    const volunteerScore: number = Volunteer(validForm.volunteerScore); // 봉사점수
-    const nonCurriculumScoreSubtotal: number = attendanceScore + volunteerScore;
+    const attendanceScore: number = Attendance(absentValue, attendanceValue); // 출석점수
+    const volunteerScore: number = Volunteer(volunteerValue); // 봉사점수
+    const nonCurriculumScoreSubtotal: number = Rounds(
+      attendanceScore + volunteerScore,
+      4,
+    );
     //비교과 성적 소계
 
     const scoreTotal = Rounds(
       curriculumScoreSubtotal + nonCurriculumScoreSubtotal,
       3,
-    );
-    // 총합
-    console.log(validForm);
+    ); // 총점
 
+    // 결과 모달 제어
     setResultArray([
       generalCurriculumScoreSubtotal,
       artSportsScore,
       nonCurriculumScoreSubtotal,
       scoreTotal,
     ]);
-    setShowScoreResult();
+    setShowScoreResult(); // 결과창 보여지게
   };
 
   const inValid = (errors: FieldErrors) => {
@@ -89,36 +108,70 @@ const TestCalculatorPage: NextPage = () => {
   // 추가과목 삭제
   const DeleteNewSubjects = (index: number) => {
     const newSubjects = watch('newSubjects');
-    const score2_1 = watch('score2_1');
-    const score2_2 = watch('score2_2');
-    const score3_1 = watch('score3_1');
+    const value1_1 = watch('value1_1');
+    const value1_2 = watch('value1_2');
+    const value2_1 = watch('value2_1');
+    const value2_2 = watch('value2_2');
+    const value3_1 = watch('value3_1');
     setValue(
       'newSubjects',
-      newSubjects?.filter((arr, i) => index !== i),
+      newSubjects?.filter((_, i) => index !== i),
     ); // newSubjects 배열에서 인덱스가 N인 값 제거
     setValue(
-      'score2_1',
-      score2_1?.filter((arr, i) => subjects.length + index !== i),
-    ); // score2_1 배열에서 인덱스가 기본과목.length + index인 값 제거
+      'value1_1',
+      value1_1?.filter((_, i) => subjects.length + index !== i),
+    ); // value1_1 배열에서 인덱스가 기본과목.length + index인 값 제거 (삭제 버튼 클릭한 인덱스 제거)
     setValue(
-      'score2_2',
-      score2_2?.filter((arr, i) => subjects.length + index !== i),
+      'value1_2',
+      value1_2?.filter((_, i) => subjects.length + index !== i),
     );
     setValue(
-      'score3_1',
-      score3_1?.filter((arr, i) => subjects.length + index !== i),
+      'value2_1',
+      value2_1?.filter((_, i) => subjects.length + index !== i),
+    );
+    setValue(
+      'value2_2',
+      value2_2?.filter((_, i) => subjects.length + index !== i),
+    );
+    setValue(
+      'value3_1',
+      value3_1?.filter((_, i) => subjects.length + index !== i),
     );
   };
+
   return (
     <>
       {showScoreResult && <ScoreResultModal result={resultArray} />}
       <S.Title>성적입력</S.Title>
+      <S.SystemSection>
+        <S.SystemLabel>
+          <input
+            type="radio"
+            checked={system === '자유학년제'}
+            onChange={() => setSystem('자유학년제')}
+            id="system"
+          />
+          <div>자유학년제</div>
+        </S.SystemLabel>
+        <S.SystemLabel>
+          <input
+            type="radio"
+            checked={system === '자유학기제'}
+            onChange={() => setSystem('자유학기제')}
+            id="system"
+          />
+          <div>자유학기제</div>
+        </S.SystemLabel>
+      </S.SystemSection>
       <S.CalculatePage>
         <S.CalculateSection onSubmit={handleSubmit(onValid, inValid)}>
           <S.CurriculumSection>
             <S.CurriculumValue>
               <S.ValueSection>
                 <I.CrossRectangle />
+
+                {system === '자유학기제' && <S.Subject>자유학기제</S.Subject>}
+
                 {subjects.map(subject => (
                   <S.Subject key={subject}>{subject}</S.Subject>
                 ))}
@@ -135,87 +188,173 @@ const TestCalculatorPage: NextPage = () => {
                   />
                 ))}
               </S.ValueSection>
+              {system === '자유학기제' && (
+                <>
+                  <S.ValueSection>
+                    <S.Semester>1학년 1학기</S.Semester>
+                    <FreeSemesterBtn freeSemesterProps="1-1" />
+                    {subjects.map((subject, i) => (
+                      <ScoreSelect
+                        key={subject}
+                        register={register(`value1_1.${i}`, {
+                          valueAsNumber: true,
+                          validate: {
+                            unSelected: value =>
+                              value !== -1 || freeSemester === '1-1', // 선택하지 않으면 focus 되어 다시 선택하게 함 1학년1학기가 자유학기제일 경우 validate 무효
+                          },
+                        })}
+                        index={i}
+                        freeSemesterProps={'1-1'}
+                      />
+                    ))}
+                    {watch('newSubjects')?.map((newSubject, i) => (
+                      <ScoreSelect
+                        key={i}
+                        register={register(`value1_1.${subjects.length + i}`, {
+                          valueAsNumber: true,
+                          validate: {
+                            unSelected: value =>
+                              value !== -1 || freeSemester === '1-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
+                          },
+                        })}
+                        index={subjects.length + i}
+                        freeSemesterProps={'1-1'}
+                      />
+                    ))}
+                  </S.ValueSection>
+                  <S.ValueSection>
+                    <S.Semester>1학년 2학기</S.Semester>
+                    <FreeSemesterBtn freeSemesterProps="1-2" />
 
+                    {subjects.map((subject, i) => (
+                      <ScoreSelect
+                        key={subject}
+                        register={register(`value1_2.${i}`, {
+                          valueAsNumber: true,
+                          validate: {
+                            unSelected: value =>
+                              value !== -1 || freeSemester === '1-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
+                          },
+                        })}
+                        index={i}
+                        freeSemesterProps={'1-2'}
+                      />
+                    ))}
+                    {watch('newSubjects')?.map((newSubject, i) => (
+                      <ScoreSelect
+                        key={i}
+                        register={register(`value1_2.${subjects.length + i}`, {
+                          valueAsNumber: true,
+                          validate: {
+                            unSelected: value =>
+                              value !== -1 || freeSemester === '1-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
+                          },
+                        })}
+                        index={subjects.length + i}
+                        freeSemesterProps={'1-2'}
+                      />
+                    ))}
+                  </S.ValueSection>
+                </>
+              )}
               <S.ValueSection>
                 <S.Semester>2학년 1학기</S.Semester>
+                <FreeSemesterBtn freeSemesterProps="2-1" />
+
                 {subjects.map((subject, i) => (
                   <ScoreSelect
                     key={subject}
-                    register={register(`score2_1.${i}`, {
+                    register={register(`value2_1.${i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                        unSelected: value =>
+                          value !== -1 || freeSemester === '2-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
+                    freeSemesterProps={'2-1'}
                   />
                 ))}
                 {watch('newSubjects')?.map((newSubject, i) => (
                   <ScoreSelect
                     key={i}
-                    register={register(`score2_1.${subjects.length + i}`, {
+                    register={register(`value2_1.${subjects.length + i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                        unSelected: value =>
+                          value !== -1 || freeSemester === '2-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={subjects.length + i}
+                    freeSemesterProps={'2-1'}
                   />
                 ))}
               </S.ValueSection>
 
               <S.ValueSection>
                 <S.Semester>2학년 2학기</S.Semester>
+                <FreeSemesterBtn freeSemesterProps="2-2" />
+
                 {subjects.map((subject, i) => (
                   <ScoreSelect
                     key={subject}
-                    register={register(`score2_2.${i}`, {
+                    register={register(`value2_2.${i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                        unSelected: value =>
+                          value !== -1 || freeSemester === '2-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
+                    freeSemesterProps={'2-2'}
                   />
                 ))}
                 {watch('newSubjects')?.map((newSubject, i) => (
                   <ScoreSelect
                     key={i}
-                    register={register(`score2_2.${subjects.length + i}`, {
+                    register={register(`value2_2.${subjects.length + i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                        unSelected: value =>
+                          value !== -1 || freeSemester === '2-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={subjects.length + i}
+                    freeSemesterProps={'2-2'}
                   />
                 ))}
               </S.ValueSection>
 
               <S.ValueSection>
                 <S.Semester>3학년 1학기</S.Semester>
+                <FreeSemesterBtn freeSemesterProps="3-1" />
+
                 {subjects.map((subject, i) => (
                   <ScoreSelect
                     key={subject}
-                    register={register(`score3_1.${i}`, {
+                    register={register(`value3_1.${i}`, {
                       valueAsNumber: true,
                       validate: {
-                        notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                        unSelected: value =>
+                          value !== -1 || freeSemester === '3-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
                     index={i}
+                    freeSemesterProps={'3-1'}
                   />
                 ))}
                 {watch('newSubjects')?.map((newSubject, i) => (
                   <span key={i}>
                     <ScoreSelect
-                      register={register(`score3_1.${subjects.length + i}`, {
+                      register={register(`value3_1.${subjects.length + i}`, {
                         valueAsNumber: true,
                         validate: {
-                          notNaN: value => !isNaN(value), // value가 NaN이면 focus 되어 다시 선택하게 함
+                          unSelected: value =>
+                            value !== -1 || freeSemester === '3-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                         },
                       })}
                       index={subjects.length + i}
+                      freeSemesterProps={'3-1'}
                     />
                     <S.DeleteNewSubject onClick={() => DeleteNewSubjects(i)}>
                       삭제
@@ -254,13 +393,14 @@ const TestCalculatorPage: NextPage = () => {
               {nonSubjects.map((subject, i) => (
                 <ScoreSelect
                   key={subject}
-                  register={register(`artSportsScore.${i}`, {
+                  register={register(`artSportsValue.${i}`, {
                     valueAsNumber: true,
                     validate: {
-                      notNaN: value => !isNaN(value),
+                      unSelected: value => value !== -1,
                     },
                   })}
                   index={i}
+                  artSports
                 />
               ))}
             </S.ValueSection>
@@ -270,13 +410,14 @@ const TestCalculatorPage: NextPage = () => {
               {nonSubjects.map((subject, i) => (
                 <ScoreSelect
                   key={subject}
-                  register={register(`artSportsScore.${3 + i}`, {
+                  register={register(`artSportsValue.${3 + i}`, {
                     valueAsNumber: true,
                     validate: {
-                      notNaN: value => !isNaN(value),
+                      unSelected: value => value !== -1,
                     },
                   })}
-                  index={i}
+                  index={3 + i}
+                  artSports
                 />
               ))}
             </S.ValueSection>
@@ -286,13 +427,14 @@ const TestCalculatorPage: NextPage = () => {
               {nonSubjects.map((subject, i) => (
                 <ScoreSelect
                   key={subject}
-                  register={register(`artSportsScore.${6 + i}`, {
+                  register={register(`artSportsValue.${6 + i}`, {
                     valueAsNumber: true,
                     validate: {
-                      notNaN: value => !isNaN(value),
+                      unSelected: value => value !== -1,
                     },
                   })}
-                  index={i}
+                  index={6 + i}
+                  artSports
                 />
               ))}
             </S.ValueSection>
@@ -326,10 +468,11 @@ const TestCalculatorPage: NextPage = () => {
                   {grades.map((grade, i) => (
                     <S.AttendanceInput
                       key={grade}
-                      {...register(`absentScore.${i}`, {
-                        valueAsNumber: true,
+                      {...register(`absentValue.${i}`, {
                         required: true,
+                        valueAsNumber: true,
                       })}
+                      type="number"
                       placeholder="입력"
                     />
                   ))}
@@ -339,10 +482,11 @@ const TestCalculatorPage: NextPage = () => {
                   {grades.map((grade, i) => (
                     <S.AttendanceInput
                       key={grade}
-                      {...register(`attendanceScore.${i}`, {
-                        valueAsNumber: true,
+                      {...register(`attendanceValue.${i}`, {
                         required: true,
+                        valueAsNumber: true,
                       })}
+                      type="number"
                       placeholder="입력"
                     />
                   ))}
@@ -352,10 +496,11 @@ const TestCalculatorPage: NextPage = () => {
                   {grades.map((grade, i) => (
                     <S.AttendanceInput
                       key={grade}
-                      {...register(`attendanceScore.${3 + i}`, {
-                        valueAsNumber: true,
+                      {...register(`attendanceValue.${3 + i}`, {
                         required: true,
+                        valueAsNumber: true,
                       })}
+                      type="number"
                       placeholder="입력"
                     />
                   ))}
@@ -365,10 +510,11 @@ const TestCalculatorPage: NextPage = () => {
                   {grades.map((grade, i) => (
                     <S.AttendanceInput
                       key={grade}
-                      {...register(`attendanceScore.${6 + i}`, {
-                        valueAsNumber: true,
+                      {...register(`attendanceValue.${6 + i}`, {
                         required: true,
+                        valueAsNumber: true,
                       })}
+                      type="number"
                       placeholder="입력"
                     />
                   ))}
@@ -377,10 +523,11 @@ const TestCalculatorPage: NextPage = () => {
                   {grades.map((grade, i) => (
                     <S.AttendanceInput
                       key={grade}
-                      {...register(`volunteerScore.${i}`, {
-                        valueAsNumber: true,
+                      {...register(`volunteerValue.${i}`, {
                         required: true,
+                        valueAsNumber: true,
                       })}
+                      type="number"
                       placeholder="입력"
                     />
                   ))}
@@ -401,4 +548,4 @@ const TestCalculatorPage: NextPage = () => {
   );
 };
 
-export default TestCalculatorPage;
+export default CalculatorPage;

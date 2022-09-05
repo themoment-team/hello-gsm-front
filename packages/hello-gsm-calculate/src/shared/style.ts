@@ -4,7 +4,7 @@ export const Title = styled.h1`
   font-size: 24px;
   color: #ffffff;
   text-align: center;
-  margin: 100px 0;
+  margin-top: 100px;
 `;
 
 export const CalculatePage = styled.div`
@@ -219,5 +219,35 @@ export const Line = styled.div`
   }
   :nth-of-type(3) {
     top: 80%;
+  }
+`;
+
+export const SystemSection = styled.div`
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 75px;
+  margin: 50px auto;
+`;
+
+export const SystemLabel = styled.label`
+  display: inline-block;
+  text-align: center;
+  width: 45%;
+  input {
+    display: none;
+  }
+  div {
+    cursor: pointer;
+    width: 100%;
+    height: 61px;
+    background-color: #484453;
+    color: rgba(255, 255, 255, 0.45);
+    border-radius: 6px;
+    line-height: 61px;
+  }
+  input[type='radio']:checked + div {
+    background-color: #42bafe;
+    color: #ffffff;
   }
 `;

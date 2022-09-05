@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
-import { Semester, Subject } from 'PageContainer/CalculatorPage/style';
+import { Subject } from 'shared/Styles/Calculate';
 
 export const Background = styled.div`
   position: fixed;
   width: 100%;
   height: 100vh;
   top: 0;
-  background: rgba(0, 0, 0, 0.66);
+  background: rgba(0, 0, 0, 0.77);
   z-index: 2;
   display: flex;
   flex-direction: column;

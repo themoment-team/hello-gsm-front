@@ -11,3 +11,15 @@ export const Select = styled.select`
   color: rgba(255, 255, 255, 0.73);
   border: none;
 `;
+
+export const FreeSemester = styled.div`
+  display: inline-block;
+  width: 127px;
+  height: 37px;
+
+  background: #484453;
+  border-radius: 6px;
+  line-height: 37px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.56);
+`;
