@@ -29,9 +29,9 @@ const ScoreResultModal: React.FC<ResultType> = ({ result }) => {
           ( 원서나 성적은 내정보 페이지에서 최종 제출 전에 수정할 수 있습니다. )
         </S.SubDesc>
         <S.ConfirmSection>
-          <S.Confirm onClick={() => setShowScoreResult()}>수정</S.Confirm>
+          <S.Confirm onClick={setShowScoreResult}>수정</S.Confirm>
           <Link href="/mypage" passHref>
-            <S.Confirm onClick={() => setShowScoreResult()}>확인</S.Confirm>
+            <S.Confirm onClick={setShowScoreResult}>확인</S.Confirm>
           </Link>
         </S.ConfirmSection>
       </S.ResultSection>
