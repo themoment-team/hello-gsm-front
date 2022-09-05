@@ -22,7 +22,7 @@ class User {
   /**
    * @returns 회원가입 시에 기입한 유저의 정보를 반환한다
    */
-  info(accessToken: string) {
+  info(accessToken?: string) {
     try {
       return RequestApi(
         {
