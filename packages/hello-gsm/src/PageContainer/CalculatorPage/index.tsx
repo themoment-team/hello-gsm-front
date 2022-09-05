@@ -24,6 +24,7 @@ import useStore from 'Stores/StoreContainer';
 import setLocalstorage from 'hooks/setLocalstorage';
 import useSubjectsLocalstorage from 'hooks/useSubjectsLocalstorage';
 import { toast } from 'react-toastify';
+import user from 'Api/user';
 
 interface ScoreForm {
   // 과목/점수 배열
@@ -67,6 +68,8 @@ const CalculatorPage: NextPage = () => {
   // 이전에 제출한 경험 여부 판단
   const [isSubmission, setIsSubmission] = useState<boolean>();
 
+  const [userIdx, setUserIdx] = useState<number>();
+
   const lines = ['일반교과', '예체능 교과', '비교과'];
   const subjects = [
     '국어',
@@ -88,6 +91,30 @@ const CalculatorPage: NextPage = () => {
     isSubmission
       ? await application.patchSecondSubmisson(data)
       : await application.postSecondSubmisson(data);
+  };
+
+  useEffect(() => {
+    const { user_idx } = user.info();
+    setUserIdx(user_idx);
+
+    const userIdxStorage = window.localStorage.getItem('userIdx');
+    if (user_idx === userIdxStorage) GetLocalStorage();
+  }, []);
+
+  const GetLocalStorage = () => {
+    score1_1 && setValue('value1_1', score1_1);
+    score1_2 && setValue('value1_2', score1_2);
+    score2_1 && setValue('value2_1', score2_1);
+    score2_2 && setValue('value2_2', score2_2);
+    score3_1 && setValue('value3_1', score3_1);
+    artSportsScore && setValue('artSportsValue', artSportsScore);
+    absentScore && setValue('absentValue', absentScore);
+    attendanceScore && setValue('attendanceValue', attendanceScore);
+    volunteerScore && setValue('volunteerValue', volunteerScore);
+    getSubjects && setValue('newSubjects', getSubjects);
+    setIsSubmission(artSportsScore ? true : false); // 이전 값이 있다면 true
+    setFreeSemester(window.localStorage.getItem('freeSemester') ?? null);
+    setSystem(window.localStorage.getItem('system') ?? '자유학년제');
   };
 
   // 로컬스토리지 값이 있을 때 초기 값 설정
@@ -200,6 +227,7 @@ const CalculatorPage: NextPage = () => {
       setLocalstorage('newSubjects', newSubjects);
       setLocalstorage('nonSubjects', nonSubjects);
       window.localStorage.setItem('system', system);
+      userIdx && window.localStorage.setItem('userIdx', userIdx.toString());
       freeSemester && window.localStorage.setItem('freeSemester', freeSemester);
 
       // 결과 모달 제어
