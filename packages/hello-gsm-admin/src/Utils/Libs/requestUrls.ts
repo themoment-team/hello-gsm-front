@@ -16,7 +16,7 @@ export const AuthController = {
 
 // 지원자 관리
 export const ApplicationController = {
-  getList: (page: number, name: string) => {
+  getList: (page: number, name?: string) => {
     return `/application?page=${page}&name=${name}`;
   },
   document: () => {
