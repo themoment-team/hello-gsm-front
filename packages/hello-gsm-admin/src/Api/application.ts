@@ -9,7 +9,7 @@ class Application {
    * @param name 지원자 이름으로 검색
    * @returns 지원자들 리스트
    */
-  getList(page: number, name: string) {
+  getList(page: number, name?: string) {
     try {
       return RequestApi({
         method: 'GET',
