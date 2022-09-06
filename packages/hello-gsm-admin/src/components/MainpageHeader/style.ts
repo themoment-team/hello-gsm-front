@@ -7,22 +7,25 @@ export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
   margin-top: 10px;
 `;
 
 export const HeaderElement = styled.div`
+  width: 132px;
   font-weight: 700;
   font-size: 20px;
   color: #f8f8f8;
   text-align: center;
   :nth-of-type(4) {
-    width: 140px;
+    width: 190px;
   }
-  :nth-of-type(9) {
-    width: 40px;
+  :nth-of-type(5) {
+    width: 90px;
   }
-  :nth-of-type(10) {
-    width: 40px;
+  :nth-of-type(n + 6):nth-of-type(-n + 8) {
+    width: 190px;
+  }
+  :nth-of-type(n + 9) {
+    width: 91px;
   }
 `;
