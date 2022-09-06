@@ -3,6 +3,7 @@ import * as S from './style';
 import Link from 'next/link';
 import { Input } from 'components';
 import { useForm } from 'react-hook-form';
+import auth from 'Api/auth';
 
 interface UserForm {
   id: string;
@@ -12,7 +13,7 @@ interface UserForm {
 const SignInPage: NextPage = () => {
   const { register, handleSubmit } = useForm<UserForm>();
   const onValid = (validForm: UserForm) => {
-    console.log(validForm);
+    auth.signin(validForm);
   };
   return (
     <S.SignInPage>
@@ -25,7 +26,7 @@ const SignInPage: NextPage = () => {
           type="text"
           register={register('id', {
             required: true,
-            minLength: 6,
+            minLength: 2,
             maxLength: 12,
           })}
           bigWidth={false}
@@ -35,7 +36,7 @@ const SignInPage: NextPage = () => {
           type="password"
           register={register('password', {
             required: true,
-            minLength: 8,
+            minLength: 2,
             maxLength: 16,
           })}
           bigWidth={false}
