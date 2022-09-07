@@ -65,7 +65,13 @@ const ChoosePage: NextPage = () => {
               <div>검정고시</div>
             </S.SystemLabel>
           </S.RadioSection>
-          <S.Submit>다음</S.Submit>
+          <div>
+            <S.Desc>
+              Internet Explorer 사용자분들은 <br />
+              구글 크롬 브라우저를 이용해서 접속해 주시기 바랍니다.
+            </S.Desc>
+            <S.Submit>다음</S.Submit>
+          </div>
         </S.ChooseForm>
       </S.ChoosePage>
     </>
