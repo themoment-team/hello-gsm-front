@@ -73,3 +73,9 @@ export const Submit = styled.button`
   cursor: pointer;
   border: none;
 `;
+
+export const Desc = styled.p`
+  text-align: center;
+  color: white;
+  line-height: 30px;
+`;
