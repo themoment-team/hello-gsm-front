@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const BrowserPage = styled.div`
   width: 100vw;
-  height: 100vh
+  height: calc(100vh - 70px);
   display: flex;
   flex-direction: column;
   justify-content: center;

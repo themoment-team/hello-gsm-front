@@ -6,8 +6,8 @@ import { Header } from 'components';
 const BrowserPage: NextPage = () => {
   return (
     <>
+      <Header />
       <S.BrowserPage>
-        <Header />
         <I.ChromeLogo />
         <p>
           구글 크롬 브라우저를 <br /> 이용해서 접속해 주시기 바랍니다.
