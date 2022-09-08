@@ -26,9 +26,9 @@ const getApplication = async (accessToken: string) => {
     if (data.application?.isFinalSubmission) {
       return {
         props: {},
-        redirect: {
-          destination: '/',
-        },
+        // redirect: {
+        //   destination: '/',
+        // },
       };
     } else {
       return {
@@ -60,18 +60,18 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
       } catch (error) {
         return {
           props: {},
-          redirect: {
-            destination: '/auth/signin',
-          },
+          // redirect: {
+          //   destination: '/auth/signin',
+          // },
         };
       }
     }
   } else {
     return {
       props: {},
-      redirect: {
-        destination: '/auth/signin',
-      },
+      // redirect: {
+      //   destination: '/auth/signin',
+      // },
     };
   }
 };
