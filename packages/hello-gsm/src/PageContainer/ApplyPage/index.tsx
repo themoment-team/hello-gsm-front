@@ -127,9 +127,11 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
           registerImg();
         } catch (error) {
           console.log(error);
+          toast.error('증명사진이 저장되지 않았습니다. 다시 시도해주세요.');
         }
       } else {
         console.log(error);
+        toast.error('로그인이 필요합니다.');
       }
     }
   };
@@ -172,9 +174,11 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
           submissionApplication(submitData);
         } catch (error) {
           console.log(error);
+          toast.error('원서가 저장되지 않았습니다. 다시 시도해주세요.');
         }
       } else {
         console.log(error);
+        toast.error('제 로그인 후 다시 시도해주세요.');
       }
     }
   };
