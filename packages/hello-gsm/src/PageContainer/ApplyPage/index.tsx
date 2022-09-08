@@ -196,68 +196,6 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     }
   };
 
-  // const apply = async (submitData: ApplyFormType) => {
-  //   const data: ApplicationType = {
-  //     application: {
-  //       teacherCellphoneNumber: submitData.teacherCellphoneNumber || undefined,
-  //       schoolName: schoolName || undefined,
-  //       guardianCellphoneNumber: submitData.guardianCellphoneNumber,
-  //       screening: submitData.screening,
-  //     },
-  //     applicationDetail: {
-  //       telephoneNumber: submitData.telephoneNumber || undefined,
-  //       address: applicantAddress,
-  //       addressDetails: submitData.addressDetails || undefined,
-  //       guardianName: submitData.guardianName,
-  //       guardianRelation: submitData.guardianRelation,
-  //       educationStatus: submitData.educationStatus,
-  //       graduationYear: submitData.graduationYear,
-  //       graduationMonth: submitData.graduationMonth,
-  //       firstWantedMajor: choice1,
-  //       secondWantedMajor: choice2,
-  //       thirdWantedMajor: choice3,
-  //       teacherName: submitData.teacherName || undefined,
-  //       schoolLocation: schoolLocation || undefined,
-  //     },
-  //   };
-
-  //   const formData = new FormData();
-
-  //   imgInput.current?.files &&
-  //     formData.append('photo', imgInput.current?.files[0]);
-
-  //   try {
-  //     if (!isEdit) {
-  //       await application.postFirstSubmission(data);
-  //       imgInput.current?.files && (await application.postImage(formData));
-  //     } else {
-  //       await application.patchFirstSubmission(data);
-  //       imgInput.current?.files &&
-  //         imgInput.current.files[0] !== undefined &&
-  //         (await application.postImage(formData));
-  //     }
-
-  //     if (watch('educationStatus') === '검정고시') {
-  //       push('/calculator/ged');
-  //     } else {
-  //       push('/calculator');
-  //     }
-  //   } catch (error: any) {
-  //     // accessToken 없을 시에 accessToken 발급 후 logout 요청
-  //     if (error.response.status === 401) {
-  //       try {
-  //         // accessToken 발급
-  //         await auth.refresh();
-  //         apply(submitData);
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     } else {
-  //       console.log(error);
-  //     }
-  //   }
-  // };
-
   const readImg = (event: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
 
