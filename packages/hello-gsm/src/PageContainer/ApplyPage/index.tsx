@@ -10,6 +10,7 @@ import {
   FindAddressModal,
   FindSchoolModal,
   ApplyBarBox,
+  ImagePostLoadingModal,
 } from 'components';
 import { useForm } from 'react-hook-form';
 import application from 'Api/application';
@@ -55,6 +56,8 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     applicantAddress,
     setApplicantAddress,
     setLogged,
+    showImagePostLoadingModal,
+    setShowImagePostLoadingModal,
   } = useStore();
 
   const {
@@ -102,7 +105,36 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     setApplicantAddress(data.application?.application_details?.address || '');
   }, []);
 
-  const apply = async (submitData: ApplyFormType) => {
+  const registerImg = async () => {
+    const formData = new FormData();
+
+    imgInput.current?.files &&
+      formData.append('photo', imgInput.current?.files[0]);
+
+    try {
+      !isEdit
+        ? imgInput.current?.files && (await application.postImage(formData))
+        : imgInput.current?.files &&
+          imgInput.current.files[0] &&
+          (await application.postImage(formData));
+      setShowImagePostLoadingModal();
+    } catch (error: any) {
+      // accessToken 없을 시에 accessToken 발급 후 logout 요청
+      if (error.response.status === 401) {
+        try {
+          // accessToken 발급
+          await auth.refresh();
+          registerImg();
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        console.log(error);
+      }
+    }
+  };
+
+  const submissionApplication = async (submitData: ApplyFormType) => {
     const data: ApplicationType = {
       application: {
         teacherCellphoneNumber: submitData.teacherCellphoneNumber || undefined,
@@ -127,34 +159,17 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       },
     };
 
-    const formData = new FormData();
-
-    imgInput.current?.files &&
-      formData.append('photo', imgInput.current?.files[0]);
-
     try {
-      if (!isEdit) {
-        await application.postFirstSubmission(data);
-        imgInput.current?.files && (await application.postImage(formData));
-      } else {
-        await application.patchFirstSubmission(data);
-        imgInput.current?.files &&
-          imgInput.current.files[0] !== undefined &&
-          (await application.postImage(formData));
-      }
-
-      if (watch('educationStatus') === '검정고시') {
-        push('/calculator/ged');
-      } else {
-        push('/calculator');
-      }
+      !isEdit
+        ? await application.postFirstSubmission(data)
+        : await application.patchFirstSubmission(data);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 logout 요청
       if (error.response.status === 401) {
         try {
           // accessToken 발급
           await auth.refresh();
-          apply(submitData);
+          submissionApplication(submitData);
         } catch (error) {
           console.log(error);
         }
@@ -163,6 +178,74 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       }
     }
   };
+
+  const apply = (submitData: ApplyFormType) => {
+    setShowImagePostLoadingModal();
+    submissionApplication(submitData);
+    registerImg();
+  };
+
+  // const apply = async (submitData: ApplyFormType) => {
+  //   const data: ApplicationType = {
+  //     application: {
+  //       teacherCellphoneNumber: submitData.teacherCellphoneNumber || undefined,
+  //       schoolName: schoolName || undefined,
+  //       guardianCellphoneNumber: submitData.guardianCellphoneNumber,
+  //       screening: submitData.screening,
+  //     },
+  //     applicationDetail: {
+  //       telephoneNumber: submitData.telephoneNumber || undefined,
+  //       address: applicantAddress,
+  //       addressDetails: submitData.addressDetails || undefined,
+  //       guardianName: submitData.guardianName,
+  //       guardianRelation: submitData.guardianRelation,
+  //       educationStatus: submitData.educationStatus,
+  //       graduationYear: submitData.graduationYear,
+  //       graduationMonth: submitData.graduationMonth,
+  //       firstWantedMajor: choice1,
+  //       secondWantedMajor: choice2,
+  //       thirdWantedMajor: choice3,
+  //       teacherName: submitData.teacherName || undefined,
+  //       schoolLocation: schoolLocation || undefined,
+  //     },
+  //   };
+
+  //   const formData = new FormData();
+
+  //   imgInput.current?.files &&
+  //     formData.append('photo', imgInput.current?.files[0]);
+
+  //   try {
+  //     if (!isEdit) {
+  //       await application.postFirstSubmission(data);
+  //       imgInput.current?.files && (await application.postImage(formData));
+  //     } else {
+  //       await application.patchFirstSubmission(data);
+  //       imgInput.current?.files &&
+  //         imgInput.current.files[0] !== undefined &&
+  //         (await application.postImage(formData));
+  //     }
+
+  //     if (watch('educationStatus') === '검정고시') {
+  //       push('/calculator/ged');
+  //     } else {
+  //       push('/calculator');
+  //     }
+  //   } catch (error: any) {
+  //     // accessToken 없을 시에 accessToken 발급 후 logout 요청
+  //     if (error.response.status === 401) {
+  //       try {
+  //         // accessToken 발급
+  //         await auth.refresh();
+  //         apply(submitData);
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //     } else {
+  //       console.log(error);
+  //     }
+  //   }
+  // };
 
   const readImg = (event: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
@@ -218,6 +301,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       {showFindAddressModal && <FindAddressModal />}
       {showFindSchoolModal && <FindSchoolModal />}
       {showDepartmentModal && <DepartmentModal />}
+      {showImagePostLoadingModal && <ImagePostLoadingModal />}
       <Header />
       <S.ApplyPage>
         <ApplyBarBox />
