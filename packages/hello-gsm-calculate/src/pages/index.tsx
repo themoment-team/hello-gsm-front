@@ -1,4 +1,4 @@
-import type { NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import { ChoosePage } from 'PageContainer';
 
@@ -13,4 +13,11 @@ const Home: NextPage = () => {
   );
 };
 
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const userAgent = req.headers['user-agent'];
+  console.log(userAgent);
+  return {
+    props: {},
+  };
+};
 export default Home;
