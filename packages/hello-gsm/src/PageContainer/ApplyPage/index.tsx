@@ -112,6 +112,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       formData.append('photo', imgInput.current?.files[0]);
 
     try {
+      setShowImagePostLoadingModal();
       !isEdit
         ? imgInput.current?.files && (await application.postImage(formData))
         : imgInput.current?.files &&
