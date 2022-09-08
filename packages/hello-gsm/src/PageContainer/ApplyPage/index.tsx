@@ -183,10 +183,16 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     }
   };
 
-  const apply = (submitData: ApplyFormType) => {
-    setShowImagePostLoadingModal();
-    submissionApplication(submitData);
-    registerImg();
+  const apply = async (submitData: ApplyFormType) => {
+    try {
+      await (registerImg(), submissionApplication(submitData));
+      toast.success('원서가 저장되었습니다.');
+      watch('educationStatus') !== '검정고시'
+        ? push('/calculator')
+        : push('/caculator/ged');
+    } catch (error: any) {
+      console.log(error);
+    }
   };
 
   // const apply = async (submitData: ApplyFormType) => {
