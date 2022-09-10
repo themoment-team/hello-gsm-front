@@ -22,6 +22,7 @@ const ImagePostLodingModal: React.FC = () => {
           width={195}
           height={195}
           alt="loading"
+          priority
         />
         <S.LoadingText>이미지를 저장 중 입니다..</S.LoadingText>
       </S.ContentWrap>
