@@ -101,11 +101,12 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
                 원서 접수는 pc로만 가능해요
               </S.ToApply>
             )}
-            <S.ApplyTerm>접수 기간: 10.18~10.21</S.ApplyTerm>
+            {/* <S.ApplyTerm>접수 기간: 10.18~10.21</S.ApplyTerm> */}
+            <S.ApplyTerm>지금은 테스트 기간입니다.</S.ApplyTerm>
             <S.Underline />
           </S.ApplyBox>
         </S.TitleWrap>
-        <Link href="/calculator/test" passHref>
+        <Link href="/calculator/choose" passHref>
           <S.ToCalculator>모의 성적 계산 해보기</S.ToCalculator>
         </Link>
         <S.ContentBox>

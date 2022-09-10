@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Semester, Subject } from 'PageContainer/CalculatorPage/style';
+import { Semester, Subject } from 'shared/Styles/Calculate';
 
 export const Background = styled.div`
   position: fixed;

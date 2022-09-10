@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL } from 'shared/config';
+import BASE_URL from 'shared/baseURL';
 import { ApplicationType } from 'type/application';
 import { ScoreType, GEDScoreType } from 'type/score';
 import RequestApi from 'Utils/Libs/requestApi';

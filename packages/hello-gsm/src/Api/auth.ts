@@ -1,4 +1,4 @@
-import { BASE_URL } from 'shared/config';
+import BASE_URL from 'shared/baseURL';
 import { SignUpType } from 'type/signup';
 import RequestApi from 'Utils/Libs/requestApi';
 import { AuthController } from 'Utils/Libs/requestUrls';

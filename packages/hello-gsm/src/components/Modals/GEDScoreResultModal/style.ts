@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
-import { Semester, Subject } from 'PageContainer/CalculatorPage/style';
+import { Subject } from 'shared/Styles/Calculate';
 
 export const Background = styled.div`
   position: fixed;
   width: 100%;
   height: 100vh;
   top: 0;
-  background: rgba(0, 0, 0, 0.66);
+  background: rgba(0, 0, 0, 0.77);
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -25,16 +25,22 @@ export const ResultSection = styled.div`
   height: 100%;
 `;
 
-export const SubjectSection = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+export const ScoreSection = styled.div`
+  display: inline-flex;
+  flex-direction: column;
   margin-bottom: 16px;
 `;
 
-export const ResultSubject = styled(Semester)``;
+export const Wrapper = styled.div`
+  display: flex;
+  width: 300px;
+  justify-content: space-between;
+  margin-bottom: 10px;
+`;
 
 export const ResultTotal = styled(Subject)`
+  display: inline-block;
+  text-align: center;
   width: 127px;
   height: 100%;
   margin: 0;
@@ -42,6 +48,8 @@ export const ResultTotal = styled(Subject)`
 `;
 
 export const Score = styled.div`
+  display: inline-block;
+  text-align: center;
   width: 127px;
   height: 36px;
   background-color: #484453;
