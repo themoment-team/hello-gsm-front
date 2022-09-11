@@ -16,10 +16,12 @@ const Ticket: NextPage<TicketDataType> = ({ data }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
-
+  const adminAaccessToken = `adminAaccessToken=${ctx.req.cookies.adminAaccessToken}`;
+  console.log(ctx.req.cookies.adminAaccessToken);
   try {
-    const { data }: TicketDataType = await application.ticket(accessToken);
+    const { data }: TicketDataType = await application.ticket(
+      adminAaccessToken,
+    );
     return {
       props: {
         data,
