@@ -21,6 +21,7 @@ const Home: NextPage<ApplicantsType> = ({ data }) => {
 const getList = async (page: number, accessToken: string, name?: string) => {
   try {
     const { data }: any = await application.getList(page, name, accessToken);
+    console.log(data);
     return {
       props: {
         data,
