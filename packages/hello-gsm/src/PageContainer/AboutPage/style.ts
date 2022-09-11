@@ -119,8 +119,13 @@ export const PickerText = styled.div`
     }
   }
   @media ${device.mobile} {
-    font-size: 22px;
+    font-size: 20px;
     line-height: 35px;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 12px;
+    line-height: 16px;
   }
 `;
 

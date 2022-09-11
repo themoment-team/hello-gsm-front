@@ -90,7 +90,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             작성하신 입학 원서와 그 외 서류들을 출력하여 수기 부분을
           </S.DescriptionLine>
           <S.DescriptionLine>
-            모두 작성하신 후 10월 17일 부터 10월 20일까지 학교 행정실에
+            모두 작성하신 후 10월 17일 부터 10월 20일까지 교무실 원서접수처에
           </S.DescriptionLine>
           <S.DescriptionLine>제출해야합니다.</S.DescriptionLine>
           <S.PostScript>광주광역시 광산구 송정동 상무대로 312</S.PostScript>
@@ -103,7 +103,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             1차 서류 심사에서는 내신과 봉사시간, 출결현황을 점수로 환산하여
           </S.DescriptionLine>
           <S.DescriptionLine>
-            정원의 1.5배의 인원을 선출합니다.
+            정원의 1.3배의 인원을 선출합니다.
           </S.DescriptionLine>
           <S.PostScript>2022.10.24 발표</S.PostScript>
         </S.Description>
@@ -112,10 +112,12 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
       return (
         <S.Description>
           <S.DescriptionLine>
-            2차 면접에서는 인성과 문제해결 능력을
+            2차 평가에서는 인성과 문제해결 능력을
           </S.DescriptionLine>
-          <S.DescriptionLine>중심으로 인적성검사를 치룹니다.</S.DescriptionLine>
-          <S.PostScript>2022.10.28 인적성 검사 진행</S.PostScript>
+          <S.DescriptionLine>
+            중심으로 직무적성 소양평가를 치룹니다.
+          </S.DescriptionLine>
+          <S.PostScript>2022.10.28 직무적성 소양평가 진행</S.PostScript>
         </S.Description>
       );
     case 5:
@@ -183,7 +185,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
       return (
         <S.Description>
           <S.DescriptionLine>
-            1차 서류 심사와 2차 면접을 통해 최종 합격자를 선출합니다.
+            1차 서류 심사와 인적성소양평가를 통해 최종 합격자를 선출합니다.
           </S.DescriptionLine>
           <S.PostScript>2022.11.09 발표</S.PostScript>
         </S.Description>

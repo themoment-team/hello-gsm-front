@@ -11,7 +11,7 @@ type FAQDataType = {
   faqData: FAQType[];
 };
 
-const FAQPage: NextPage<FAQDataType> = ({ faqData = [] }) => {
+const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   const [faqList, setFaqList] = useState<FAQType[]>(faqData);
   const [keyword, setKeyword] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(1);
@@ -26,14 +26,14 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData = [] }) => {
 
   useEffect(() => {
     keyword === '' && setIsFAQSearching(false);
-    setFaqList(list => {
+    setFaqList(() => {
       if (isFAQSearching) {
-        return list.filter(
+        return faqData.filter(
           (faq: FAQType) =>
             faq.question.includes(keyword) || faq.answer.includes(keyword),
         );
       } else {
-        return list.filter(
+        return faqData.filter(
           (faq: FAQType) =>
             (pageIndex - 1) * 10 <= faqData.indexOf(faq) &&
             faqData.indexOf(faq) < pageIndex * 10,

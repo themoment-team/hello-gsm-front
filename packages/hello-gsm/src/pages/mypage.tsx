@@ -8,7 +8,7 @@ import { MypagePage } from 'PageContainer';
 
 const MyPage: NextPage<StatusType> = ({ data }) => {
   const seoTitle = '내 정보';
-  const desc = '원서 삭제, 원서 수정, 최종 제출 등을 할 수 있습니다. ';
+  const desc = '내 정보를 확인하고 원서 관리 및 원서 출력 등을 할 수 있습니다.';
 
   return (
     <>
@@ -36,6 +36,9 @@ const getStatus = async (accessToken: string) => {
     console.log(error);
     return {
       props: {},
+      redirect: {
+        destination: '/auth/signin',
+      },
     };
   }
 };
