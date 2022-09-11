@@ -3,6 +3,8 @@ import { SEOHelmet } from 'components';
 import { TicketPage } from 'PageContainer';
 import application from 'Api/application';
 import { TicketDataType } from 'Types/ticket';
+import auth from 'Api/auth';
+import { HeaderType } from 'Types/header';
 
 const Ticket: NextPage<TicketDataType> = ({ data }) => {
   const seoTitle = '수험표 출력';
@@ -15,9 +17,7 @@ const Ticket: NextPage<TicketDataType> = ({ data }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ctx => {
-  const adminAaccessToken = `adminAaccessToken=${ctx.req.cookies.adminAaccessToken}`;
-  console.log(ctx.req.cookies.adminAaccessToken);
+const getTicket = async (adminAaccessToken: string) => {
   try {
     const { data }: TicketDataType = await application.ticket(
       adminAaccessToken,
@@ -30,6 +30,32 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   } catch (e) {
     return {
       props: {},
+    };
+  }
+};
+
+export const getServerSideProps: GetServerSideProps = async ctx => {
+  const adminRefreshToken = `adminRefreshToken=${ctx.req.cookies.adminRefreshToken}`;
+  const adminAaccessToken = `adminAaccessToken=${ctx.req.cookies.adminAaccessToken}`;
+
+  if (ctx.req.cookies.adminRefreshToken) {
+    if (ctx.req.cookies.adminAaccessToken) {
+      return getTicket(adminAaccessToken);
+    } else {
+      const { headers }: HeaderType = await auth.refresh(adminRefreshToken);
+      // headers의 set-cookie의 첫번째 요소 (accessToken)을 가져와 저장한다.
+      const adminAaccessToken = headers['set-cookie'][0].split(';')[0];
+      // 브라우저에 쿠키들을 저장한다
+      ctx.res.setHeader('set-cookie', headers['set-cookie']);
+      // headers에서 가져온 accessToken을 담아 요청을 보낸다
+      return getTicket(adminAaccessToken);
+    }
+  } else {
+    return {
+      props: {},
+      redirect: {
+        destination: '/signin',
+      },
     };
   }
 };
