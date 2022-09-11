@@ -1,9 +1,9 @@
 import React from 'react';
 import type { GetServerSideProps, NextPage } from 'next';
 import { SEOHelmet } from 'components';
-import axios from 'axios';
 import { MainPage } from 'PageContainer';
 import { ApplicantsType } from 'Types/application';
+import application from 'Api/application';
 
 const Home: NextPage<ApplicantsType> = ({ data }) => {
   const seoTitle = '홈';
@@ -18,9 +18,7 @@ const Home: NextPage<ApplicantsType> = ({ data }) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const { data } = await axios.get(
-      'https://admin.hellogsm.kr/data/mockData.json',
-    );
+    const { data }: any = await application.getList(1);
     return {
       props: {
         data,
