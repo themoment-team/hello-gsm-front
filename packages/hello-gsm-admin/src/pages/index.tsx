@@ -30,9 +30,6 @@ const getList = async (page: number, accessToken: string, name?: string) => {
   } catch (error) {
     return {
       props: {},
-      redirect: {
-        destination: '/',
-      },
     };
   }
 };
@@ -53,18 +50,15 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
       } catch (error) {
         return {
           props: {},
-          redirect: {
-            destination: '/',
-          },
         };
       }
     }
   } else {
     return {
       props: {},
-      redirect: {
-        destination: '/signin',
-      },
+      // redirect: {
+      //   destination: '/signin',
+      // },
     };
   }
 };
