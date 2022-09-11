@@ -3,9 +3,18 @@ import { useEffect } from 'react';
 import { TicketDataType } from 'Types/ticket';
 import * as S from './style';
 import * as I from 'Assets/svg';
+import application from 'Api/application';
 
 const TicketPage: NextPage<TicketDataType> = ({ data }) => {
   console.log(data);
+
+  useEffect(() => {
+    const GetData = async () => {
+      const res = await application.ticket();
+      console.log(res);
+    };
+    GetData();
+  }, []);
 
   const TryPrint = () => {
     window.print();
