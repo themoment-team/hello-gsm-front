@@ -60,7 +60,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
           <S.Print>수험표 출력</S.Print>
         </S.FunctionBox>
         <MainpageHeader />
-        <S.ContentList>
+        {/* <S.ContentList>
           {data
             .filter(
               ({ name, registrationNumber }) =>
@@ -70,7 +70,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
             .map((data, index: number) => (
               <ContentBox data={data} key={index} />
             ))}
-        </S.ContentList>
+        </S.ContentList> */}
       </S.MainPageContent>
       <S.BlueBall />
       <S.SkyBlueBall />
