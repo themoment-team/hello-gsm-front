@@ -4,8 +4,8 @@ export function middleware(req: NextRequest) {
   const { origin, pathname } = req.nextUrl;
   const { device, browser } = userAgent(req);
 
-  if (browser.name === 'IE') {
-    return NextResponse.redirect('https://hellogsm.kr/404');
+  if (browser.name === 'IE' && pathname === '/') {
+    return NextResponse.redirect(`${origin}/browser`);
   }
 
   if (
@@ -33,7 +33,7 @@ export function middleware(req: NextRequest) {
 
   if (pathname === '/application') {
     if (browser.name === 'Safari') {
-      return NextResponse.redirect('https://hellogsm.kr');
+      return NextResponse.redirect(`${origin}/browser`);
     }
   }
 }
