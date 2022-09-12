@@ -10,6 +10,7 @@ import HeaderType from 'Types/header';
 const Home: NextPage<ApplicantsType> = ({ data }) => {
   const seoTitle = '홈';
   const desc = '지원자들의 정보를 확인합니다.';
+  console.log(data);
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
