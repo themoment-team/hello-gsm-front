@@ -5,6 +5,7 @@ import useStore from 'Stores/StoreContainer';
 import { css, Global } from '@emotion/react';
 import { useEffect, useRef, useState } from 'react';
 import { ApplicantsType } from 'Types/application';
+import application from 'Api/application';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const {
@@ -20,8 +21,13 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const [keyword, setKeyword] = useState<string>('');
 
   useEffect(() => {
-    console.log(data);
+    test();
   }, []);
+
+  const test = async () => {
+    const { data }: any = await application.getList(1);
+    console.log(data);
+  };
 
   const search = () => {
     if (searchRef.current) {
@@ -69,7 +75,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
             )
             .map((data, index: number) => (
               <ContentBox data={data} key={index} />
-            ))}
+            ))} 
         </S.ContentList> */}
       </S.MainPageContent>
       <S.BlueBall />
