@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { css, Global } from '@emotion/react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ApplicantsType } from 'Types/application';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
@@ -18,6 +18,10 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   } = useStore();
   const searchRef = useRef<HTMLInputElement>(null);
   const [keyword, setKeyword] = useState<string>('');
+
+  useEffect(() => {
+    console.log(data);
+  }, []);
 
   const search = () => {
     if (searchRef.current) {
