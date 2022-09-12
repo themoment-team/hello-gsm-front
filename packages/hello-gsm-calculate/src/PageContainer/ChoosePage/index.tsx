@@ -8,7 +8,7 @@ interface StatusForm {
   status: '졸업자' | '검정고시' | '졸업예정';
 }
 
-const ChoosePage: NextPage = ({ test }) => {
+const ChoosePage: NextPage = () => {
   const { register, handleSubmit } = useForm<StatusForm>();
   const { push } = useRouter();
 
@@ -33,7 +33,7 @@ const ChoosePage: NextPage = ({ test }) => {
       <S.ChoosePage>
         <S.ChooseForm onSubmit={handleSubmit(onValid, inValid)}>
           <S.ChooseTitle>
-            성적을 계산하기 전에 현재 상태를 골라주세요. {test}
+            성적을 계산하기 전에 현재 상태를 골라주세요.
           </S.ChooseTitle>
           <S.RadioSection>
             <S.SystemLabel>
