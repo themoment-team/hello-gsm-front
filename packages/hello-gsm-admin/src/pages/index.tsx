@@ -46,7 +46,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
 
   if (ctx.req.cookies.adminRefreshToken) {
     if (ctx.req.cookies.adminAaccessToken) {
-      return getList(1, accessToken, undefined);
+      return getList(1, accessToken);
     } else {
       try {
         const { headers }: HeaderType = await auth.refresh(refreshToken);
