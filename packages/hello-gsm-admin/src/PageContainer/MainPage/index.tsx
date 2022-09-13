@@ -16,15 +16,8 @@ import auth from 'Api/auth';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
-  const { showPassModal, showScoreModal } = useStore();
   const searchRef = useRef<HTMLInputElement>(null);
-
-  // const search = () => {
-  //   if (searchRef.current) {
-  //     setKeyword(searchRef.current.value);
-  //   }
-  //   getSearchList();
-  // };
+  const { showPassModal, showScoreModal } = useStore();
 
   const search = async () => {
     const keyword = searchRef.current?.value;
