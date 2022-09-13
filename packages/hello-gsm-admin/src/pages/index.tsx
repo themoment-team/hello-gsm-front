@@ -44,7 +44,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   const refreshToken = `refreshToken=${ctx.req.cookies.adminRefreshToken}`;
 
   if (ctx.req.cookies.adminRefreshToken) {
-    if (ctx.req.cookies.adminAccessToken) {
+    if (ctx.req.cookies.adminAaccessToken) {
       return getList(1, accessToken);
     } else {
       try {
