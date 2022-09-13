@@ -8,14 +8,18 @@ export interface ScoreType {
 }
 
 export interface ApplicantType {
-  registrationNumber: number;
-  name: string;
-  screening: string;
-  schoolName: string;
-  isDocumentReception: boolean;
-  phoneNumber: string;
-  guardianNumber: string;
-  teacherNumber: string;
+  cellphoneNumber: string;
+  application: {
+    applicationIdx: number;
+    name: string;
+    finalResultScreening: null | string;
+    firstResultScreening: null | string;
+    guardianCellphoneNumber: string;
+    isDocumentReception: boolean;
+    schoolName: string | null;
+    screening: '일반전형' | '사회통합전형' | '특별전형';
+    teacherCellphoneNumber: string;
+  };
 }
 
 export interface ApplicantsType {
