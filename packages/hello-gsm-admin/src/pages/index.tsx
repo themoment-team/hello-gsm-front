@@ -20,6 +20,7 @@ const Home: NextPage<ApplicantsType> = ({ data }) => {
 
 const getList = async (page: number, accessToken: string, name?: string) => {
   try {
+    console.log('start getList');
     const { data }: ApplicantsType = await application.getList(
       page,
       name,
