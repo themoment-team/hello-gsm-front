@@ -20,14 +20,17 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const searchRef = useRef<HTMLInputElement>(null);
   const [keyword, setKeyword] = useState<string>('');
 
-  const search = () => {
+  // const search = () => {
+  //   if (searchRef.current) {
+  //     setKeyword(searchRef.current.value);
+  //   }
+  //   getSearchList();
+  // };
+
+  const search = async () => {
     if (searchRef.current) {
       setKeyword(searchRef.current.value);
     }
-    getSearchList();
-  };
-
-  const getSearchList = async () => {
     try {
       const { data }: ApplicantsType = await application.getList(1, keyword);
       setApplicationList(data);
@@ -37,7 +40,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         try {
           // accessToken 발급
           await auth.refresh();
-          getSearchList();
+          search();
         } catch (error) {
           console.log(error);
         }
