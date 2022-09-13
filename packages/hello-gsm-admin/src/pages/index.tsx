@@ -34,6 +34,7 @@ const getList = async (page: number, accessToken: string, name?: string) => {
       },
     };
   } catch (error) {
+    console.log(error);
     return {
       props: {},
     };
