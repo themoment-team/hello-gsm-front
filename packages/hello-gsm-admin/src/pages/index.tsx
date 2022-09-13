@@ -20,23 +20,22 @@ const Home: NextPage<ApplicantsType> = ({ data }) => {
 
 const getList = async (page: number, accessToken: string, name?: string) => {
   try {
-    console.log('start getList');
     const { data }: ApplicantsType = await application.getList(
       page,
       name,
       accessToken,
     );
-    console.log('req');
-    console.log(data);
     return {
       props: {
         data,
       },
     };
   } catch (error) {
-    console.log(error);
     return {
       props: {},
+      redirect: {
+        destination: '/signin',
+      },
     };
   }
 };
@@ -46,9 +45,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   const refreshToken = `adminRefreshToken=${ctx.req.cookies.adminRefreshToken}`;
 
   if (ctx.req.cookies.adminRefreshToken) {
-    console.log('exist rt');
     if (ctx.req.cookies.adminAaccessToken) {
-      console.log('exist at');
       return getList(1, accessToken, undefined);
     } else {
       try {
@@ -65,9 +62,9 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   } else {
     return {
       props: {},
-      // redirect: {
-      //   destination: '/signin',
-      // },
+      redirect: {
+        destination: '/signin',
+      },
     };
   }
 };
