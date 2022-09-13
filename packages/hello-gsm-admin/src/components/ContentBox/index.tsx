@@ -5,19 +5,23 @@ import { ApplicantType } from 'Types/application';
 import * as S from './style';
 
 interface ContentType {
-  data: ApplicantType;
+  content: ApplicantType;
 }
 
 const ContentBox: React.FC<ContentType> = ({
-  data: {
-    registrationNumber,
-    name,
-    screening,
-    schoolName,
-    isDocumentReception,
-    phoneNumber,
-    guardianNumber,
-    teacherNumber,
+  content: {
+    cellphoneNumber,
+    application: {
+      applicationIdx,
+      name,
+      finalResultScreening,
+      firstResultScreening,
+      guardianCellphoneNumber,
+      isDocumentReception,
+      schoolName,
+      screening,
+      teacherCellphoneNumber,
+    },
   },
 }) => {
   const {
@@ -42,7 +46,7 @@ const ContentBox: React.FC<ContentType> = ({
   return (
     <S.ContentBox>
       <S.Content>
-        <S.RegistrationNumber>{registrationNumber}</S.RegistrationNumber>
+        <S.RegistrationNumber>{applicationIdx}</S.RegistrationNumber>
         <S.Name>{name}</S.Name>
         <S.Screening>{screening}</S.Screening>
         <S.SchoolName>{schoolName}</S.SchoolName>
@@ -53,14 +57,14 @@ const ContentBox: React.FC<ContentType> = ({
             `}
           />
         </S.isDocumentReception>
-        <S.PhoneNumber>{phoneNumber}</S.PhoneNumber>
-        <S.GuardianNumber>{guardianNumber}</S.GuardianNumber>
-        <S.TeacherNumber>{teacherNumber}</S.TeacherNumber>
+        <S.PhoneNumber>{cellphoneNumber}</S.PhoneNumber>
+        <S.GuardianNumber>{guardianCellphoneNumber}</S.GuardianNumber>
+        <S.TeacherNumber>{teacherCellphoneNumber}</S.TeacherNumber>
       </S.Content>
-      <S.Button onClick={() => buttonOnclick(registrationNumber, name, 1)}>
+      <S.Button onClick={() => buttonOnclick(applicationIdx, name, 1)}>
         선택
       </S.Button>
-      <S.Button onClick={() => buttonOnclick(registrationNumber, name, 2)}>
+      <S.Button onClick={() => buttonOnclick(applicationIdx, name, 2)}>
         입력
       </S.Button>
     </S.ContentBox>
