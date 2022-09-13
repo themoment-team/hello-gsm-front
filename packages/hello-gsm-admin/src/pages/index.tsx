@@ -10,7 +10,6 @@ import HeaderType from 'Types/header';
 const Home: NextPage<ApplicantsType> = ({ data }) => {
   const seoTitle = '홈';
   const desc = '지원자들의 정보를 확인합니다.';
-  console.log(data);
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
@@ -45,7 +44,9 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   const refreshToken = `refreshToken=${ctx.req.cookies.adminRefreshToken}`;
 
   if (ctx.req.cookies.adminRefreshToken) {
+    console.log('exist rt');
     if (ctx.req.cookies.adminAaccessToken) {
+      console.log('exist at');
       return getList(1, accessToken);
     } else {
       try {
