@@ -77,6 +77,11 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
               <ContentBox data={data} key={index} />
             ))} 
         </S.ContentList> */}
+        <S.ContentList>
+          {data.map((content, index: number) => (
+            <ContentBox content={content} key={index} />
+          ))}
+        </S.ContentList>
       </S.MainPageContent>
       <S.BlueBall />
       <S.SkyBlueBall />
