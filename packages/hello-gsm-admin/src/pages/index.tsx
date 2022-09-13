@@ -47,7 +47,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     console.log('exist rt');
     if (ctx.req.cookies.adminAaccessToken) {
       console.log('exist at');
-      return getList(1, accessToken);
+      return getList(1, accessToken, undefined);
     } else {
       try {
         const { headers }: HeaderType = await auth.refresh(refreshToken);
