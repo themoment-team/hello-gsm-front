@@ -9,31 +9,16 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { css, Global } from '@emotion/react';
-import { useEffect, useRef, useState } from 'react';
-import { ApplicantsType } from 'Types/application';
+import { useRef, useState } from 'react';
+import { ApplicantsType, ApplicantType } from 'Types/application';
 import application from 'Api/application';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
-  const {
-    showPassModal,
-    setShowPassModal,
-    showScoreModal,
-    setShowScoreModal,
-    setModalPeriod,
-    setModalName,
-    setModalRegistrationNumber,
-  } = useStore();
+  // const [applications, setApplications] = useState<ApplicantsType>(data);
+  const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
+  const { showPassModal, showScoreModal } = useStore();
   const searchRef = useRef<HTMLInputElement>(null);
   const [keyword, setKeyword] = useState<string>('');
-
-  useEffect(() => {
-    test();
-  }, []);
-
-  const test = async () => {
-    const { data }: any = await application.getList(1);
-    console.log(data);
-  };
 
   const search = () => {
     if (searchRef.current) {
@@ -45,6 +30,10 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     if (e.key === 'Enter') {
       search();
     }
+  };
+
+  const getSearchList = async () => {
+    const { data }: ApplicantsType = await application.getList(1, keyword);
   };
 
   return (
@@ -73,7 +62,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         </S.FunctionBox>
         <MainpageHeader />
         <S.ContentList>
-          {data.map((content, index: number) => (
+          {applicationList.map((content, index: number) => (
             <ContentBox content={content} key={index} />
           ))}
         </S.ContentList>
