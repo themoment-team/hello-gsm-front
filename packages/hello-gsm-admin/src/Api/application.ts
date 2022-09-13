@@ -19,7 +19,7 @@ class Application {
         },
         accessToken,
       );
-    } catch (error) {
+    } catch (error: any) {
       return error;
     }
   }
