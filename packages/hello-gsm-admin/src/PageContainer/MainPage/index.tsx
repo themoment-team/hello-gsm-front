@@ -1,4 +1,10 @@
-import { ContentBox, MainpageHeader, PassModal, ScoreModal } from 'components';
+import {
+  ContentBox,
+  Logout,
+  MainpageHeader,
+  PassModal,
+  ScoreModal,
+} from 'components';
 import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
@@ -54,7 +60,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       />
       <S.MainPageContent>
         <S.FunctionBox>
-          <S.Logout>로그아웃</S.Logout>
+          <Logout />
           <S.Searchbox>
             <S.SearchInput
               placeholder="검색어를 입력하세요"
