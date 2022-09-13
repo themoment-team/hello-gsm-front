@@ -190,7 +190,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       toast.success('원서가 저장되었습니다.');
       watch('educationStatus') !== '검정고시'
         ? push('/calculator')
-        : push('/caculator/ged');
+        : push('/calculator/ged');
     } catch (error: any) {
       console.log(error);
     }
