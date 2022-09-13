@@ -13,7 +13,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
   const [isPC, setIsPC] = useState<boolean>(true);
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
-  const { logged } = useStore();
+  const { logged, setLogged } = useStore();
 
   const contentSelects = [
     '원서 작성',
@@ -43,6 +43,8 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
     `;
 
   useEffect(() => {
+    console.log(data + '입니다');
+    data ? setLogged(true) : setLogged(false);
     setIsMobile(window.innerWidth < 640 ? true : false);
     setIsPC(
       !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(
