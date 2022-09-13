@@ -42,8 +42,8 @@ const getList = async (page: number, accessToken: string, name?: string) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const accessToken = `accessToken=${ctx.req.cookies.adminAaccessToken}`;
-  const refreshToken = `refreshToken=${ctx.req.cookies.adminRefreshToken}`;
+  const accessToken = `adminAaccessToken=${ctx.req.cookies.adminAaccessToken}`;
+  const refreshToken = `adminRefreshToken=${ctx.req.cookies.adminRefreshToken}`;
 
   if (ctx.req.cookies.adminRefreshToken) {
     console.log('exist rt');
