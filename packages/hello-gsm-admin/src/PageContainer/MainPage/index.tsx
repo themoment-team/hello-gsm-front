@@ -18,7 +18,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
   const { showPassModal, showScoreModal } = useStore();
   const searchRef = useRef<HTMLInputElement>(null);
-  const [keyword, setKeyword] = useState<string>('');
 
   // const search = () => {
   //   if (searchRef.current) {
@@ -28,9 +27,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   // };
 
   const search = async () => {
-    if (searchRef.current) {
-      setKeyword(searchRef.current.value);
-    }
+    const keyword = searchRef.current?.value;
     try {
       const { data }: ApplicantsType = await application.getList(1, keyword);
       setApplicationList(data);
