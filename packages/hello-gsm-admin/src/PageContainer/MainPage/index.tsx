@@ -72,17 +72,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
           <S.Print>수험표 출력</S.Print>
         </S.FunctionBox>
         <MainpageHeader />
-        {/* <S.ContentList>
-          {data
-            .filter(
-              ({ name, registrationNumber }) =>
-                name.includes(keyword) ||
-                registrationNumber === parseInt(keyword),
-            )
-            .map((data, index: number) => (
-              <ContentBox data={data} key={index} />
-            ))} 
-        </S.ContentList> */}
         <S.ContentList>
           {data.map((content, index: number) => (
             <ContentBox content={content} key={index} />
