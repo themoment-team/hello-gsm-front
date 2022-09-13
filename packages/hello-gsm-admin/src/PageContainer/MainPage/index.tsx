@@ -12,9 +12,9 @@ import { css, Global } from '@emotion/react';
 import { useRef, useState } from 'react';
 import { ApplicantsType, ApplicantType } from 'Types/application';
 import application from 'Api/application';
+import auth from 'Api/auth';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
-  // const [applications, setApplications] = useState<ApplicantsType>(data);
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
   const { showPassModal, showScoreModal } = useStore();
   const searchRef = useRef<HTMLInputElement>(null);
@@ -24,16 +24,33 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     if (searchRef.current) {
       setKeyword(searchRef.current.value);
     }
+    getSearchList();
+  };
+
+  const getSearchList = async () => {
+    try {
+      const { data }: ApplicantsType = await application.getList(1, keyword);
+      setApplicationList(data);
+    } catch (error: any) {
+      // accessToken 없을 시에 accessToken 발급 후 logout 요청
+      if (error.response.status === 401) {
+        try {
+          // accessToken 발급
+          await auth.refresh();
+          getSearchList();
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        console.log(error);
+      }
+    }
   };
 
   const enterEvent = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       search();
     }
-  };
-
-  const getSearchList = async () => {
-    const { data }: ApplicantsType = await application.getList(1, keyword);
   };
 
   return (
