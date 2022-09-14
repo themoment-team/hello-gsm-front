@@ -6,7 +6,7 @@ type ColorTheme = {
 
 const pallete: Readonly<ColorTheme> = {
   scheme: {
-    white: "#fff",
+    white: '#fff',
   },
 };
 
