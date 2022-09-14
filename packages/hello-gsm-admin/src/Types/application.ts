@@ -9,9 +9,9 @@ export interface ScoreType {
 
 export interface ApplicantType {
   cellphoneNumber: string;
+  name: string;
   application: {
     applicationIdx: number;
-    name: string;
     finalResultScreening: null | string;
     firstResultScreening: null | string;
     guardianCellphoneNumber: string;
