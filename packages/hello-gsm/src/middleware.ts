@@ -31,7 +31,7 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  if (pathname === '/application') {
+  if (pathname === '/apply') {
     if (browser.name === 'Safari') {
       return NextResponse.redirect(`${origin}/browser`);
     }
