@@ -41,11 +41,11 @@ const getList = async (page: number, accessToken: string, name?: string) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const accessToken = `adminAaccessToken=${ctx.req.cookies.adminAaccessToken}`;
+  const accessToken = `adminAccessToken=${ctx.req.cookies.adminAccessToken}`;
   const refreshToken = `adminRefreshToken=${ctx.req.cookies.adminRefreshToken}`;
 
   if (ctx.req.cookies.adminRefreshToken) {
-    if (ctx.req.cookies.adminAaccessToken) {
+    if (ctx.req.cookies.adminAccessToken) {
       return getList(1, accessToken);
     } else {
       try {
