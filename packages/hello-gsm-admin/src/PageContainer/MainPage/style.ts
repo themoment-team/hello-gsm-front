@@ -23,20 +23,6 @@ export const FunctionBox = styled.div`
   justify-content: space-between;
 `;
 
-export const Logout = styled.div`
-  width: 140px;
-  height: 100%;
-  background: #19baff;
-  border-radius: 10px;
-  color: rgba(0, 0, 0, 0.75);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 700;
-  font-size: 20px;
-  cursor: pointer;
-`;
-
 export const Searchbox = styled.div`
   width: 650px;
   height: 100%;
