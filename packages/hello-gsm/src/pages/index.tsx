@@ -5,10 +5,18 @@ import { StatusType } from 'type/user';
 import { HeaderType } from 'type/header';
 import auth from 'Api/auth';
 import { MainPage } from 'PageContainer';
+import useStore from 'Stores/StoreContainer';
+import { useEffect } from 'react';
 
 const Home: NextPage<StatusType> = ({ data }) => {
   const seoTitle = '홈';
   const desc = '광주소프트웨어마이스터고등학교 입학 지원 서비스입니다.';
+
+  const { setLogged } = useStore();
+
+  useEffect(() => {
+    data ? setLogged(true) : setLogged(false);
+  });
 
   return (
     <>
