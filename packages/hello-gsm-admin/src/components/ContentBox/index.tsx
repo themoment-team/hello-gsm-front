@@ -10,10 +10,10 @@ interface ContentType {
 
 const ContentBox: React.FC<ContentType> = ({
   content: {
+    name,
     cellphoneNumber,
     application: {
       applicationIdx,
-      name,
       finalResultScreening,
       firstResultScreening,
       guardianCellphoneNumber,
