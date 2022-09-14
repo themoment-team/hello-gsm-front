@@ -31,7 +31,11 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  if (pathname === '/apply') {
+  if (
+    pathname === '/apply' ||
+    pathname === '/calculator' ||
+    pathname === '/application'
+  ) {
     if (browser.name === 'Safari') {
       return NextResponse.redirect(`${origin}/browser`);
     }
