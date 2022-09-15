@@ -3,11 +3,11 @@ import React from 'react';
 import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 
-const ImagePostLodingModal: React.FC = () => {
+const ApplyPostModal: React.FC = () => {
   const { showImagePostLoadingModal } = useStore();
 
   return (
-    <S.ImagePostLoadingModal>
+    <S.ApplyPostModal>
       <Global
         styles={css`
           body {
@@ -21,8 +21,8 @@ const ImagePostLodingModal: React.FC = () => {
         </S.LoadingCircleBackGround>
         <S.LoadingText>이미지를 저장 중 입니다..</S.LoadingText>
       </S.ContentWrap>
-    </S.ImagePostLoadingModal>
+    </S.ApplyPostModal>
   );
 };
 
-export default ImagePostLodingModal;
+export default ApplyPostModal;
