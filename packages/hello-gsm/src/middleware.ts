@@ -3,6 +3,11 @@ import { NextRequest, NextResponse, userAgent } from 'next/server';
 export function middleware(req: NextRequest) {
   const { origin, pathname } = req.nextUrl;
   const { device, browser } = userAgent(req);
+
+  if (browser.name === 'IE' && pathname !== '/browser') {
+    return NextResponse.redirect(`${origin}/browser`);
+  }
+
   if (
     process.env.OPERATIONAL_STATUS === 'inspection' &&
     pathname !== '/inspection'
@@ -26,9 +31,13 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  if (pathname === '/application') {
+  if (
+    pathname === '/apply' ||
+    pathname === '/calculator' ||
+    pathname === '/application'
+  ) {
     if (browser.name === 'Safari') {
-      return NextResponse.redirect('https://hellogsm.kr');
+      return NextResponse.redirect(`${origin}/browser`);
     }
   }
 }
