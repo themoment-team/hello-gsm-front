@@ -2404,11 +2404,12 @@ __metadata:
     eslint-config-prettier: ^8.5.0
     eslint-plugin-prettier: ^4.0.0
     eslint-plugin-react: ^7.29.4
-    next: 12.1.0
+    next: latest
     prettier: ^2.6.0
     react: 17.0.2
     react-dom: 17.0.2
     react-hook-form: ^7.31.1
+    react-toastify: ^9.0.8
     typescript: 4.6.2
     zustand: ^3.7.2
   languageName: unknown
@@ -3438,6 +3439,18 @@ __metadata:
     react: ">=16"
     react-dom: ">=16"
   checksum: 5baf2705e20e698619fdffe9fba89d55bd4314ab49075704522a2166fcb6b17d9d34781cef937e818d583a410d11b37bfe6ed8a02638b08a672998741cf40e1c
+  languageName: node
+  linkType: hard
+
+"react-toastify@npm:^9.0.8":
+  version: 9.0.8
+  resolution: "react-toastify@npm:9.0.8"
+  dependencies:
+    clsx: ^1.1.1
+  peerDependencies:
+    react: ">=16"
+    react-dom: ">=16"
+  checksum: d48fa369b3d19c63f9b6b1ecef076911aa97a43bb84ecdb1532e6f32932e3625c1c3e12a4c63e7eb211d33b8aa962e9b9a81ab6a47fef2c51185ce8c9a780336
   languageName: node
   linkType: hard
 

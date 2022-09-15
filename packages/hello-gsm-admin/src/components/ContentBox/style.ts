@@ -15,10 +15,11 @@ export const Content = styled.div`
   background: #ffffff;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 `;
 
 export const RegistrationNumber = styled.p`
-  width: 140px;
+  width: 132px;
   font-weight: 700;
   font-size: 18px;
   color: #0f0921;
@@ -26,7 +27,7 @@ export const RegistrationNumber = styled.p`
 `;
 
 export const Name = styled.p`
-  width: 130px;
+  width: 132px;
   font-weight: 500;
   font-size: 18px;
   color: #0f0921;
@@ -34,7 +35,7 @@ export const Name = styled.p`
 `;
 
 export const Screening = styled.p`
-  width: 100px;
+  width: 132px;
   font-weight: 500;
   font-size: 18px;
   color: rgba(38, 38, 38, 0.54);
@@ -42,7 +43,7 @@ export const Screening = styled.p`
 `;
 
 export const SchoolName = styled.p`
-  width: 210px;
+  width: 190px;
   font-weight: 500;
   font-size: 18px;
   color: rgba(38, 38, 38, 0.54);
@@ -50,7 +51,7 @@ export const SchoolName = styled.p`
 `;
 
 export const isDocumentReception = styled.div`
-  width: 160px;
+  width: 90px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,19 +73,19 @@ const Number = styled.p`
 `;
 
 export const PhoneNumber = styled(Number)`
-  width: 170px;
+  width: 190px;
 `;
 
 export const GuardianNumber = styled(Number)`
-  width: 200px;
+  width: 190px;
 `;
 
 export const TeacherNumber = styled(Number)`
-  width: 210px;
+  width: 190px;
 `;
 
 export const Button = styled.button`
-  width: 90px;
+  width: 91px;
   height: 100%;
   background: #ffffff;
   border-radius: 10px;
