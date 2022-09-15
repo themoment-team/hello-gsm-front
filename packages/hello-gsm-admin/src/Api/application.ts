@@ -57,14 +57,14 @@ class Application {
    * 1차 합격자들의 수험표 출력을 위한 정보를 가져온다
    * @returns 1차 합격자들의 수험표 정보
    */
-  ticket(adminAaccessToken?: string) {
+  ticket(accessToken?: string) {
     try {
       return RequestApi(
         {
           method: 'GET',
           url: ApplicationController.ticket(),
         },
-        adminAaccessToken,
+        accessToken,
       );
     } catch (error: any) {
       return error;

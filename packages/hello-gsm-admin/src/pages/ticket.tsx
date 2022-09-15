@@ -17,11 +17,9 @@ const Ticket: NextPage<TicketDataType> = ({ data }) => {
   );
 };
 
-const getTicket = async (adminAaccessToken: string) => {
+const getTicket = async (accessToken: string) => {
   try {
-    const { data }: TicketDataType = await application.ticket(
-      adminAaccessToken,
-    );
+    const { data }: TicketDataType = await application.ticket(accessToken);
     return {
       props: {
         data,
