@@ -123,6 +123,17 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                 <S.Subject>접수번호</S.Subject>
                 <td>{user.name}</td>
               </tr>
+              <tr>
+                <td rowSpan={2}>합격자 발표</td>
+                <S.Left>본교 홈페이지</S.Left>
+                <S.Subject>성명</S.Subject>
+                <td>{user.name}</td>
+              </tr>
+              <tr>
+                <S.Left>2022.11. 2.(수) 10:00</S.Left>
+                <S.Subject rowSpan={2}>생년월일</S.Subject>
+                <td rowSpan={2}>{user.birth}</td>
+              </tr>
             </tbody>
           </S.Table>
           <S.Dash />
