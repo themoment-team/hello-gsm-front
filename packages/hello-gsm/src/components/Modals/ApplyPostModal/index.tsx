@@ -4,14 +4,14 @@ import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 
 const ApplyPostModal: React.FC = () => {
-  const { showImagePostLoadingModal } = useStore();
+  const { showApplyPostModal } = useStore();
 
   return (
     <S.ApplyPostModal>
       <Global
         styles={css`
           body {
-            overflow: ${showImagePostLoadingModal ? 'hidden' : 'visible'};
+            overflow: ${showApplyPostModal ? 'hidden' : 'visible'};
           }
         `}
       />
@@ -19,7 +19,7 @@ const ApplyPostModal: React.FC = () => {
         <S.LoadingCircleBackGround>
           <S.LoadingCircle />
         </S.LoadingCircleBackGround>
-        <S.LoadingText>이미지를 저장 중 입니다..</S.LoadingText>
+        <S.LoadingText>원서를 저장 중 입니다..</S.LoadingText>
       </S.ContentWrap>
     </S.ApplyPostModal>
   );
