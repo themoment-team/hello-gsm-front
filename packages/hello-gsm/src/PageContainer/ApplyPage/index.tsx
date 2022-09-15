@@ -111,30 +111,28 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     imgInput.current?.files &&
       formData.append('photo', imgInput.current?.files[0]);
 
-    try {
-      !isEdit
-        ? imgInput.current?.files && (await application.postImage(formData))
-        : imgInput.current?.files &&
-          imgInput.current.files[0] &&
-          (await application.postImage(formData));
-    } catch (error: any) {
-      // accessToken 없을 시에 accessToken 발급 후 이미지 등록 요청
-      if (error.response.status === 401) {
-        try {
-          // accessToken 발급
-          await auth.refresh();
-          registerImg();
-        } catch (error) {
-          console.log(error);
-          toast.error('제 로그인 후 다시 시도해주세요.');
-          return error;
-        }
-      } else {
-        console.log(error);
-        toast.error('증명사진이 저장되지 않았습니다. 다시 시도해주세요.');
-        return error;
-      }
-    }
+    !isEdit
+      ? imgInput.current?.files && (await application.postImage(formData))
+      : imgInput.current?.files &&
+        imgInput.current.files[0] &&
+        (await application.postImage(formData));
+    // try {
+    // } catch (error: any) {
+    //   // accessToken 없을 시에 accessToken 발급 후 이미지 등록 요청
+    //   if (error.response.status === 401) {
+    //     try {
+    //       // accessToken 발급
+    //       await auth.refresh();
+    //       registerImg();
+    //     } catch (error) {
+    //       console.log(error);
+    //       toast.error('제 로그인 후 다시 시도해주세요.');
+    //     }
+    //   } else {
+    //     console.log(error);
+    //     toast.error('증명사진이 저장되지 않았습니다. 다시 시도해주세요.');
+    //   }
+    // }
   };
 
   const submissionApplication = async (submitData: ApplyFormType) => {
@@ -162,28 +160,9 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       },
     };
 
-    try {
-      !isEdit
-        ? await application.postFirstSubmission(data)
-        : await application.patchFirstSubmission(data);
-    } catch (error: any) {
-      // accessToken 없을 시에 accessToken 발급 후 원서 저장 요청
-      if (error.response.status === 401) {
-        try {
-          // accessToken 발급
-          await auth.refresh();
-          submissionApplication(submitData);
-        } catch (error) {
-          console.log(error);
-          toast.error('제 로그인 후 다시 시도해주세요.');
-          return error;
-        }
-      } else {
-        console.log(error);
-        toast.error('원서가 저장되지 않았습니다. 다시 시도해주세요.');
-        return error;
-      }
-    }
+    !isEdit
+      ? await application.postFirstSubmission(data)
+      : await application.patchFirstSubmission(data);
   };
 
   const apply = async (submitData: ApplyFormType) => {
