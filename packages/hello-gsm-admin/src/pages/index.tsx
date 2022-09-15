@@ -5,7 +5,7 @@ import { MainPage } from 'PageContainer';
 import { ApplicantsType } from 'Types/application';
 import application from 'Api/application';
 import auth from 'Api/auth';
-import HeaderType from 'Types/header';
+import { HeaderType } from 'Types/header';
 
 const Home: NextPage<ApplicantsType> = ({ data }) => {
   const seoTitle = '홈';
