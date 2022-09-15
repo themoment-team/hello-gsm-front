@@ -104,13 +104,14 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
       ))} */}
 
       {data.map((user, i) => {
-        const userBirth = new Date(user.birth);
-        // 생년월일을 YYYY-MM-DD형식에 맞게 포맷
-        const Formatbirth = dayjs()
-          .set('year', userBirth.getFullYear())
-          .set('month', userBirth.getMonth())
-          .set('date', userBirth.getDate())
-          .format('YYYY-MM-DD');
+        // const userBirth = new Date(user.birth);
+        // // 생년월일을 YYYY-MM-DD형식에 맞게 포맷
+        // const Formatbirth = dayjs()
+        //   .set('year', userBirth.getFullYear())
+        //   .set('month', userBirth.getMonth())
+        //   .set('date', userBirth.getDate())
+        //   .format('YYYY-MM-DD');
+
         return (
           <S.Ticket key={i}>
             <S.Table>
@@ -141,7 +142,7 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                 <tr>
                   <S.Left>2022.11. 2.(수) 10:00</S.Left>
                   <S.Subject rowSpan={2}>생년월일</S.Subject>
-                  <td rowSpan={2}>{Formatbirth}</td>
+                  {/* <td rowSpan={2}>{Formatbirth}</td> */}
                 </tr>
                 <tr>
                   <td rowSpan={2}>합격자 등록 및 서류 제출</td>
@@ -154,11 +155,8 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                     마감시간 이전 도착분에 한하여 유효함.)
                   </S.Left>
                   <S.Subject>출신학교</S.Subject>
-                  {user.application.schoolName ? (
-                    <td>{user.application.schoolName}</td>
-                  ) : (
-                    <S.Slash />
-                  )}
+
+                  <td>{user.application.schoolName}</td>
                 </tr>
                 <tr>
                   <td>합격자 서류</td>
