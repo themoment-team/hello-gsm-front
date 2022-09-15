@@ -15,6 +15,7 @@ import application from 'Api/application';
 import auth from 'Api/auth';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
+  const [page, setPage] = useState<number>(2);
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
   const searchRef = useRef<HTMLInputElement>(null);
   const { showPassModal, showScoreModal } = useStore();
@@ -46,6 +47,16 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     }
   };
 
+  const getList = async () => {
+    try {
+      const { data }: ApplicantsType = await application.getList(page);
+      setApplicationList([...applicationList, ...data]);
+      setPage(page => ++page);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <S.MainPage>
       {showPassModal && <PassModal />}
@@ -68,7 +79,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
             />
             <S.SearchButton onClick={search}>검색</S.SearchButton>
           </S.Searchbox>
-          <S.Print>수험표 출력</S.Print>
+          <S.Print onClick={getList}>수험표 출력</S.Print>
         </S.FunctionBox>
         <MainpageHeader />
         <S.ContentList>
