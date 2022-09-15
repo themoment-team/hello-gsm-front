@@ -28,7 +28,6 @@ export const ApplyPage = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 100px;
-  position: relative;
 `;
 
 export const ApplyPageContent = styled.form`
