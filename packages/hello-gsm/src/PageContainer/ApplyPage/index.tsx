@@ -116,23 +116,6 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       : imgInput.current?.files &&
         imgInput.current.files[0] &&
         (await application.postImage(formData));
-    // try {
-    // } catch (error: any) {
-    //   // accessToken 없을 시에 accessToken 발급 후 이미지 등록 요청
-    //   if (error.response.status === 401) {
-    //     try {
-    //       // accessToken 발급
-    //       await auth.refresh();
-    //       registerImg();
-    //     } catch (error) {
-    //       console.log(error);
-    //       toast.error('제 로그인 후 다시 시도해주세요.');
-    //     }
-    //   } else {
-    //     console.log(error);
-    //     toast.error('증명사진이 저장되지 않았습니다. 다시 시도해주세요.');
-    //   }
-    // }
   };
 
   const submissionApplication = async (submitData: ApplyFormType) => {
@@ -175,8 +158,21 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
         ? push('/calculator')
         : push('/calculator/ged');
     } catch (error: any) {
-      console.log('apply error!');
       setshowApplyPostModal();
+      // accessToken 없을 시에 accessToken 발급 후 요청
+      if (error.response.status === 401) {
+        try {
+          // accessToken 발급
+          await auth.refresh();
+          apply(submitData);
+        } catch (error) {
+          console.log(error);
+          toast.error('재 로그인 후 다시 시도해주세요.');
+        }
+      } else {
+        console.log(error);
+        toast.error('증명사진이 저장되지 않았습니다. 다시 시도해주세요.');
+      }
     }
   };
 
