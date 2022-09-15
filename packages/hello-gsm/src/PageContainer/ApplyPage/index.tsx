@@ -185,7 +185,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const apply = async (submitData: ApplyFormType) => {
     try {
       setshowApplyPostModal();
-      Promise.all([registerImg(), submissionApplication(submitData)]);
+      await Promise.all([registerImg(), submissionApplication(submitData)]);
       setshowApplyPostModal();
       toast.success('원서가 저장되었습니다.');
       watch('educationStatus') !== '검정고시'
