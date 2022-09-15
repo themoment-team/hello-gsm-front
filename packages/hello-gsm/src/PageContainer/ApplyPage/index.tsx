@@ -105,37 +105,97 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     setApplicantAddress(data.application?.application_details?.address || '');
   }, []);
 
-  const registerImg = async () => {
+  // const registerImg = async () => {
+  //   const formData = new FormData();
+
+  //   imgInput.current?.files &&
+  //     formData.append('photo', imgInput.current?.files[0]);
+
+  //   try {
+  //     !isEdit
+  //       ? imgInput.current?.files && (await application.postImage(formData))
+  //       : imgInput.current?.files &&
+  //         imgInput.current.files[0] &&
+  //         (await application.postImage(formData));
+  //   } catch (error: any) {
+  //     // accessToken 없을 시에 accessToken 발급 후 logout 요청
+  //     if (error.response.status === 401) {
+  //       try {
+  //         // accessToken 발급
+  //         await auth.refresh();
+  //         registerImg();
+  //       } catch (error) {
+  //         console.log(error);
+  //         toast.error('제 로그인 후 다시 시도해주세요.');
+  //       }
+  //     } else {
+  //       console.log(error);
+  //       toast.error('증명사진이 저장되지 않았습니다. 다시 시도해주세요.');
+  //     }
+  //   }
+  // };
+
+  const registerImg = () => {
     const formData = new FormData();
 
     imgInput.current?.files &&
       formData.append('photo', imgInput.current?.files[0]);
 
-    try {
-      !isEdit
-        ? imgInput.current?.files && (await application.postImage(formData))
-        : imgInput.current?.files &&
-          imgInput.current.files[0] &&
-          (await application.postImage(formData));
-    } catch (error: any) {
-      // accessToken 없을 시에 accessToken 발급 후 logout 요청
-      if (error.response.status === 401) {
-        try {
-          // accessToken 발급
-          await auth.refresh();
-          registerImg();
-        } catch (error) {
-          console.log(error);
-          toast.error('제 로그인 후 다시 시도해주세요.');
-        }
-      } else {
-        console.log(error);
-        toast.error('증명사진이 저장되지 않았습니다. 다시 시도해주세요.');
-      }
-    }
+    !isEdit
+      ? imgInput.current?.files && application.postImage(formData)
+      : imgInput.current?.files &&
+        imgInput.current.files[0] &&
+        application.postImage(formData);
   };
 
-  const submissionApplication = async (submitData: ApplyFormType) => {
+  // const submissionApplication = async (submitData: ApplyFormType) => {
+  //   const data: ApplicationType = {
+  //     application: {
+  //       teacherCellphoneNumber: submitData.teacherCellphoneNumber || undefined,
+  //       schoolName: schoolName || undefined,
+  //       guardianCellphoneNumber: submitData.guardianCellphoneNumber,
+  //       screening: submitData.screening,
+  //     },
+  //     applicationDetail: {
+  //       telephoneNumber: submitData.telephoneNumber || undefined,
+  //       address: applicantAddress,
+  //       addressDetails: submitData.addressDetails || undefined,
+  //       guardianName: submitData.guardianName,
+  //       guardianRelation: submitData.guardianRelation,
+  //       educationStatus: submitData.educationStatus,
+  //       graduationYear: submitData.graduationYear,
+  //       graduationMonth: submitData.graduationMonth,
+  //       firstWantedMajor: choice1,
+  //       secondWantedMajor: choice2,
+  //       thirdWantedMajor: choice3,
+  //       teacherName: submitData.teacherName || undefined,
+  //       schoolLocation: schoolLocation || undefined,
+  //     },
+  //   };
+
+  //   try {
+  //     !isEdit
+  //       ? await application.postFirstSubmission(data)
+  //       : await application.patchFirstSubmission(data);
+  //   } catch (error: any) {
+  //     // accessToken 없을 시에 accessToken 발급 후 logout 요청
+  //     if (error.response.status === 401) {
+  //       try {
+  //         // accessToken 발급
+  //         await auth.refresh();
+  //         submissionApplication(submitData);
+  //       } catch (error) {
+  //         console.log(error);
+  //         toast.error('제 로그인 후 다시 시도해주세요.');
+  //       }
+  //     } else {
+  //       console.log(error);
+  //       toast.error('원서가 저장되지 않았습니다. 다시 시도해주세요.');
+  //     }
+  //   }
+  // };
+
+  const submissionApplication = (submitData: ApplyFormType) => {
     const data: ApplicationType = {
       application: {
         teacherCellphoneNumber: submitData.teacherCellphoneNumber || undefined,
@@ -160,26 +220,9 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       },
     };
 
-    try {
-      !isEdit
-        ? await application.postFirstSubmission(data)
-        : await application.patchFirstSubmission(data);
-    } catch (error: any) {
-      // accessToken 없을 시에 accessToken 발급 후 logout 요청
-      if (error.response.status === 401) {
-        try {
-          // accessToken 발급
-          await auth.refresh();
-          submissionApplication(submitData);
-        } catch (error) {
-          console.log(error);
-          toast.error('제 로그인 후 다시 시도해주세요.');
-        }
-      } else {
-        console.log(error);
-        toast.error('원서가 저장되지 않았습니다. 다시 시도해주세요.');
-      }
-    }
+    !isEdit
+      ? application.postFirstSubmission(data)
+      : application.patchFirstSubmission(data);
   };
 
   const apply = async (submitData: ApplyFormType) => {
@@ -193,8 +236,21 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
         : push('/calculator/ged');
     } catch (error: any) {
       console.log('apply error');
+      // accessToken 없을 시에 accessToken 발급 후 logout 요청
+      if (error.response.status === 401) {
+        try {
+          // accessToken 발급
+          await auth.refresh();
+          apply(submitData);
+        } catch (error) {
+          console.log(error);
+          toast.error('제 로그인 후 다시 시도해주세요.');
+        }
+      } else {
+        console.log(error);
+        toast.error('원서가 저장되지 않았습니다. 다시 시도해주세요.');
+      }
       setshowApplyPostModal();
-      console.log(error);
     }
   };
 
