@@ -8,14 +8,6 @@ import application from 'Api/application';
 const TicketPage: NextPage<TicketDataType> = ({ data }) => {
   console.log(data);
 
-  useEffect(() => {
-    const GetData = async () => {
-      const res = await application.ticket();
-      console.log(res);
-    };
-    GetData();
-  }, []);
-
   const TryPrint = () => {
     window.print();
   };
