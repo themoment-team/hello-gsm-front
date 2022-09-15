@@ -50,6 +50,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const getList = async () => {
     try {
       const { data }: ApplicantsType = await application.getList(page);
+      console.log(data);
       setApplicationList([...applicationList, ...data]);
       setPage(page => ++page);
     } catch (error) {
