@@ -7,15 +7,19 @@ class Application {
    * 지원자들 리스트를 가져온다
    * @param page 1 부터 시작하는 페이지 인덱스
    * @param name 지원자 이름으로 검색
+   * @param accessToken api 요청을 하기 위한 토큰
    * @returns 지원자들 리스트
    */
-  getList(page: number, name: string) {
+  getList(page: number, name?: string, accessToken?: string) {
     try {
-      return RequestApi({
-        method: 'GET',
-        url: ApplicationController.getList(page, name),
-      });
-    } catch (error) {
+      return RequestApi(
+        {
+          method: 'GET',
+          url: ApplicationController.getList(page, name),
+        },
+        accessToken,
+      );
+    } catch (error: any) {
       return error;
     }
   }
