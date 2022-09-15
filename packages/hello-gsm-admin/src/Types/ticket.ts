@@ -8,7 +8,7 @@ export interface TicketDataType {
       registrationNumber?: number;
     };
     application_image: {
-      idPhotoUrl: string;
+      idPhotoUrl?: string;
     };
   }[];
 }
