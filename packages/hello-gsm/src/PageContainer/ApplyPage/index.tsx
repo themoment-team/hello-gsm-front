@@ -192,6 +192,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
         ? push('/calculator')
         : push('/calculator/ged');
     } catch (error: any) {
+      console.log('apply error');
       setshowApplyPostModal();
       console.log(error);
     }
