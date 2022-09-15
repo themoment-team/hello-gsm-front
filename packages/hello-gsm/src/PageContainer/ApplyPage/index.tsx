@@ -111,28 +111,30 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     imgInput.current?.files &&
       formData.append('photo', imgInput.current?.files[0]);
 
-    !isEdit
-      ? imgInput.current?.files && (await application.postImage(formData))
-      : imgInput.current?.files &&
-        imgInput.current.files[0] &&
-        (await application.postImage(formData));
-    // try {
-    // } catch (error: any) {
-    //   // accessToken 없을 시에 accessToken 발급 후 이미지 등록 요청
-    //   if (error.response.status === 401) {
-    //     try {
-    //       // accessToken 발급
-    //       await auth.refresh();
-    //       registerImg();
-    //     } catch (error) {
-    //       console.log(error);
-    //       toast.error('제 로그인 후 다시 시도해주세요.');
-    //     }
-    //   } else {
-    //     console.log(error);
-    //     toast.error('증명사진이 저장되지 않았습니다. 다시 시도해주세요.');
-    //   }
-    // }
+    try {
+      !isEdit
+        ? imgInput.current?.files && (await application.postImage(formData))
+        : imgInput.current?.files &&
+          imgInput.current.files[0] &&
+          (await application.postImage(formData));
+    } catch (error: any) {
+      // accessToken 없을 시에 accessToken 발급 후 이미지 등록 요청
+      if (error.response.status === 401) {
+        try {
+          // accessToken 발급
+          await auth.refresh();
+          registerImg();
+        } catch (error) {
+          console.log(error);
+          toast.error('제 로그인 후 다시 시도해주세요.');
+          return error;
+        }
+      } else {
+        console.log(error);
+        toast.error('증명사진이 저장되지 않았습니다. 다시 시도해주세요.');
+        return error;
+      }
+    }
   };
 
   const submissionApplication = async (submitData: ApplyFormType) => {
@@ -160,32 +162,34 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       },
     };
 
-    !isEdit
-      ? await application.postFirstSubmission(data)
-      : await application.patchFirstSubmission(data);
-    // try {
-    // } catch (error: any) {
-    //   // accessToken 없을 시에 accessToken 발급 후 원서 저장 요청
-    //   if (error.response.status === 401) {
-    //     try {
-    //       // accessToken 발급
-    //       await auth.refresh();
-    //       submissionApplication(submitData);
-    //     } catch (error) {
-    //       console.log(error);
-    //       toast.error('제 로그인 후 다시 시도해주세요.');
-    //     }
-    //   } else {
-    //     console.log(error);
-    //     toast.error('원서가 저장되지 않았습니다. 다시 시도해주세요.');
-    //   }
-    // }
+    try {
+      !isEdit
+        ? await application.postFirstSubmission(data)
+        : await application.patchFirstSubmission(data);
+    } catch (error: any) {
+      // accessToken 없을 시에 accessToken 발급 후 원서 저장 요청
+      if (error.response.status === 401) {
+        try {
+          // accessToken 발급
+          await auth.refresh();
+          submissionApplication(submitData);
+        } catch (error) {
+          console.log(error);
+          toast.error('제 로그인 후 다시 시도해주세요.');
+          return error;
+        }
+      } else {
+        console.log(error);
+        toast.error('원서가 저장되지 않았습니다. 다시 시도해주세요.');
+        return error;
+      }
+    }
   };
 
   const apply = async (submitData: ApplyFormType) => {
     try {
       setshowApplyPostModal();
-      await (registerImg(), submissionApplication(submitData));
+      await Promise.all([registerImg(), submissionApplication(submitData)]);
       setshowApplyPostModal();
       toast.success('원서가 저장되었습니다.');
       watch('educationStatus') !== '검정고시'
