@@ -33,7 +33,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const userBirth = new Date(data.birth);
 
-  const { push } = useRouter();
+  const { push, replace } = useRouter();
 
   const {
     showDepartmentModal,
@@ -168,6 +168,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
         } catch (error) {
           console.log(error);
           toast.error('재 로그인 후 다시 시도해주세요.');
+          replace('/auth/signin');
         }
       } else {
         console.log(error);
