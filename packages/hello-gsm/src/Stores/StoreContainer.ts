@@ -23,7 +23,7 @@ interface StoreType {
   showScoreResult: boolean;
   freeSemester: string | null;
   system: string;
-  showImagePostLoadingModal: boolean;
+  showApplyPostModal: boolean;
 
   setLogged: (isLogged: boolean) => void;
   setShowFAQModal: () => void;
@@ -53,7 +53,7 @@ interface StoreType {
   setShowScoreResult: () => void;
   setFreeSemester: (value: string | null) => void;
   setSystem: (type: string) => void;
-  setShowImagePostLoadingModal: () => void;
+  setshowApplyPostModal: () => void;
 }
 
 const useStore = create<StoreType>(set => ({
@@ -79,7 +79,7 @@ const useStore = create<StoreType>(set => ({
   showScoreResult: false,
   freeSemester: null,
   system: '자유학년제',
-  showImagePostLoadingModal: false,
+  showApplyPostModal: false,
 
   setLogged: isLogged => set({ logged: isLogged }),
   setShowFAQModal: () => set(state => ({ showFAQModal: !state.showFAQModal })),
@@ -109,9 +109,9 @@ const useStore = create<StoreType>(set => ({
     set(state => ({ showScoreResult: !state.showScoreResult })),
   setFreeSemester: value => set({ freeSemester: value }),
   setSystem: type => set({ system: type }),
-  setShowImagePostLoadingModal: () =>
+  setshowApplyPostModal: () =>
     set(state => ({
-      showImagePostLoadingModal: !state.showImagePostLoadingModal,
+      showApplyPostModal: !state.showApplyPostModal,
     })),
 }));
 

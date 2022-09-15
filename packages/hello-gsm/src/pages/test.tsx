@@ -1,7 +1,7 @@
-import ImagePostLodingModal from 'components/Modals/ImagePostLoadingModal';
+import { ApplyPostModal } from 'components';
 
 const test = () => {
-  return <ImagePostLodingModal />;
+  return <ApplyPostModal />;
 };
 
 export default test;

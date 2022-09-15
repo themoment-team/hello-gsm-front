@@ -10,7 +10,7 @@ import {
   FindAddressModal,
   FindSchoolModal,
   ApplyBarBox,
-  ImagePostLoadingModal,
+  ApplyPostModal,
 } from 'components';
 import { useForm } from 'react-hook-form';
 import application from 'Api/application';
@@ -56,8 +56,8 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     applicantAddress,
     setApplicantAddress,
     setLogged,
-    showImagePostLoadingModal,
-    setShowImagePostLoadingModal,
+    showApplyPostModal,
+    setshowApplyPostModal,
   } = useStore();
 
   const {
@@ -112,13 +112,11 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       formData.append('photo', imgInput.current?.files[0]);
 
     try {
-      setShowImagePostLoadingModal();
       !isEdit
         ? imgInput.current?.files && (await application.postImage(formData))
         : imgInput.current?.files &&
           imgInput.current.files[0] &&
           (await application.postImage(formData));
-      setShowImagePostLoadingModal();
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 logout 요청
       if (error.response.status === 401) {
@@ -186,12 +184,15 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
 
   const apply = async (submitData: ApplyFormType) => {
     try {
+      setshowApplyPostModal();
       await (registerImg(), submissionApplication(submitData));
+      setshowApplyPostModal();
       toast.success('원서가 저장되었습니다.');
       watch('educationStatus') !== '검정고시'
         ? push('/calculator')
         : push('/calculator/ged');
     } catch (error: any) {
+      setshowApplyPostModal();
       console.log(error);
     }
   };
@@ -250,7 +251,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       {showFindAddressModal && <FindAddressModal />}
       {showFindSchoolModal && <FindSchoolModal />}
       {showDepartmentModal && <DepartmentModal />}
-      {showImagePostLoadingModal && <ImagePostLoadingModal />}
+      {showApplyPostModal && <ApplyPostModal />}
       <Header />
       <S.ApplyPage>
         <ApplyBarBox />
