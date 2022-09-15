@@ -28,6 +28,10 @@ export const FAQModalBox = styled.div`
   @media ${device.mobile} {
     height: 415px;
   }
+  @media (max-height: 900px) {
+    width: 80vh;
+    height: 80vh;
+  } ;
 `;
 
 export const CloseButtonWrap = styled.div`
@@ -49,20 +53,19 @@ export const CloseButton = styled.button`
   }
 `;
 
+// 700
+
 export const ContentBox = styled.div`
   width: 87.5%;
-  height: 700px;
+  height: 87.5%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  @media ${device.tablet} {
-    height: 87.5%;
-  }
 `;
 
 export const QuestionBox = styled.div`
   width: 100%;
-  height: 205px;
+  height: 29%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -106,7 +109,7 @@ export const QuestionTitleContent = styled.p`
 
 export const AnswerBox = styled.div`
   width: 100%;
-  height: 400px;
+  height: 57%;
   background: #e6e6e6;
   border-radius: 20px;
   display: flex;
@@ -121,7 +124,7 @@ export const AnswerBox = styled.div`
 
 export const AnswerContent = styled.div`
   width: 88.5%;
-  height: 370px;
+  height: 92.5%;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -156,7 +159,7 @@ export const AnswerHeader = styled.div`
 
 export const AnswerBody = styled.div`
   width: 100%;
-  height: 300px;
+  height: 81%;
   font-weight: 500;
   font-size: 19px;
   line-height: 28px;
