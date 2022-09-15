@@ -19,7 +19,7 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
 
   return (
     <S.TicketPage>
-      {/* {data?.map((user, i) => (
+      {data?.map((user, i) => (
         <S.Ticket key={i}>
           <S.Table>
             <tbody>
@@ -100,7 +100,7 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
           </S.Table>
           <S.Dash />
         </S.Ticket>
-      ))} */}
+      ))}
       {/* 인쇄버튼 */}
       <S.PrintBtn onClick={TryPrint}>
         <I.PrintIcon />
