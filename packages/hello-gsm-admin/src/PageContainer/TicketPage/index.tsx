@@ -128,7 +128,12 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                   <td style={{ width: '15%' }}>2차 전형 (직무적성소양평가)</td>
                   <S.Left>2022.10.28.(금) 14:30 ~ 16:30</S.Left>
                   <td rowSpan={6} style={{ width: '30%', height: '100%' }}>
-                    <Image src={user.application_image.idPhotoUrl} alt="없음" />
+                    {user.application_image.idPhotoUrl && (
+                      <Image
+                        src={user.application_image.idPhotoUrl}
+                        alt="증명사진"
+                      />
+                    )}
                   </td>
                   <S.Subject>접수번호</S.Subject>
                   <td>{user.name}</td>
