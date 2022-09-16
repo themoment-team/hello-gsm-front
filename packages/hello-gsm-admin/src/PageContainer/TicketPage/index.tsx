@@ -128,7 +128,14 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                   <td style={{ width: '15%' }}>2차 전형 (직무적성소양평가)</td>
                   <S.Left>2022.10.28.(금) 14:30 ~ 16:30</S.Left>
                   <td rowSpan={6} style={{ width: '30%', height: '100%' }}>
-                    <Image src="" alt="증명사진" />
+                    {user.application_image.idPhotoUrl ? (
+                      <Image
+                        src={user.application_image.idPhotoUrl}
+                        alt="증명사진"
+                      />
+                    ) : (
+                      <S.Slash />
+                    )}
                   </td>
                   <S.Subject>접수번호</S.Subject>
                   <td>{user.application.registrationNumber}</td>
@@ -155,8 +162,11 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                     마감시간 이전 도착분에 한하여 유효함.)
                   </S.Left>
                   <S.Subject>출신학교</S.Subject>
-
-                  <td>{user.application.schoolName}</td>
+                  {user.application.schoolName ? (
+                    <td>{user.application.schoolName}</td>
+                  ) : (
+                    <S.Slash />
+                  )}
                 </tr>
                 <tr>
                   <td>합격자 서류</td>
