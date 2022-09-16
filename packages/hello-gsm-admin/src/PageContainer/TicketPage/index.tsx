@@ -4,7 +4,6 @@ import { TicketDataType } from 'Types/ticket';
 import * as S from './style';
 import * as I from 'Assets/svg';
 import dayjs from 'dayjs';
-import application from 'Api/application';
 
 const TicketPage: NextPage<TicketDataType> = ({ data }) => {
   console.log(data);
@@ -104,13 +103,13 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
       ))} */}
 
       {data.map((user, i) => {
-        // const userBirth = new Date(user.birth);
-        // // 생년월일을 YYYY-MM-DD형식에 맞게 포맷
-        // const Formatbirth = dayjs()
-        //   .set('year', userBirth.getFullYear())
-        //   .set('month', userBirth.getMonth())
-        //   .set('date', userBirth.getDate())
-        //   .format('YYYY-MM-DD');
+        const userBirth = new Date(user.birth);
+        // 생년월일을 YYYY-MM-DD형식에 맞게 포맷
+        const Formatbirth = dayjs()
+          .set('year', userBirth.getFullYear())
+          .set('month', userBirth.getMonth())
+          .set('date', userBirth.getDate())
+          .format('YYYY-MM-DD');
 
         return (
           <S.Ticket key={i}>
@@ -142,7 +141,7 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                 <tr>
                   <S.Left>2022.11. 2.(수) 10:00</S.Left>
                   <S.Subject rowSpan={2}>생년월일</S.Subject>
-                  {/* <td rowSpan={2}>{Formatbirth}</td> */}
+                  <td rowSpan={2}>{Formatbirth}</td>
                 </tr>
                 <tr>
                   <td rowSpan={2}>합격자 등록 및 서류 제출</td>
