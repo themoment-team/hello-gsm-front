@@ -129,14 +129,11 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                   <S.Left>2022.10.28.(금) 14:30 ~ 16:30</S.Left>
                   <td rowSpan={6} style={{ width: '30%', height: '100%' }}>
                     {user.application_image.idPhotoUrl && (
-                      <Image
-                        src={user.application_image.idPhotoUrl}
-                        alt="증명사진"
-                      />
+                      <Image src="" alt="증명사진" />
                     )}
                   </td>
                   <S.Subject>접수번호</S.Subject>
-                  <td>{user.name}</td>
+                  <td>{user.application.registrationNumber}</td>
                 </tr>
                 <tr>
                   <td rowSpan={2}>합격자 발표</td>
