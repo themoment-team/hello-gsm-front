@@ -132,6 +132,9 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                       src="https://img.hankyung.com/photo/201904/01.19372617.1.jpg"
                       alt="증명사진"
                     />
+                    {user.application_image && (
+                      <img src={user.application_image.idPhotoUrl} />
+                    )}
                   </td>
                   <S.Subject>접수번호</S.Subject>
                   <td>{user.application.registrationNumber}</td>
