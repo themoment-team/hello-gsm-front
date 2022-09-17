@@ -2365,7 +2365,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-jsx-a11y", "virtual:f878da692dfacce7c0dadf19b121c7a8066d62fc74218f31b7cca9d34c369ae10b0c712f67dd996d03e7a27a1c2e0677f358841b1313d62f30f92b3607aeb693#npm:6.5.1"],\
             ["eslint-plugin-react", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:7.29.4"],\
             ["eslint-plugin-react-hooks", "virtual:ef78051ac222981ced3b57701ecbc6be0ef48ed1c74acd5c30c6040cb7cca6cc48813376d77f403bb3dbae2eaddfbea097193499e85a0847b1d7636bb9c89a08#npm:4.3.0"],\
-            ["next", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:12.1.0"],\
+            ["next", "virtual:7922876eef3e216418ae64600b48c98917319a6c33f1f0a6c899740f0561187a970b83ad42fd5582ec8af59dcf209ff9323daf0150ce539867a6648da3893a55#npm:12.2.3"],\
             ["typescript", "patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=bda367"]\
           ],\
           "packagePeers": [\
@@ -3302,7 +3302,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-config-prettier", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:8.5.0"],\
             ["eslint-plugin-prettier", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:4.0.0"],\
             ["eslint-plugin-react", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:7.29.4"],\
-            ["next", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:12.1.0"],\
+            ["next", "virtual:7922876eef3e216418ae64600b48c98917319a6c33f1f0a6c899740f0561187a970b83ad42fd5582ec8af59dcf209ff9323daf0150ce539867a6648da3893a55#npm:12.2.3"],\
             ["prettier", "npm:2.6.0"],\
             ["react", "npm:17.0.2"],\
             ["react-dom", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:17.0.2"],\
