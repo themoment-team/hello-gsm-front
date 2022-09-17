@@ -1,5 +1,4 @@
 import type { NextPage } from 'next';
-import Image from 'next/image';
 import { useEffect } from 'react';
 import { TicketDataType } from 'Types/ticket';
 import * as S from './style';
