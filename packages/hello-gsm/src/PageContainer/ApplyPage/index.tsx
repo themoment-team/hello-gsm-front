@@ -115,6 +115,8 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     //   imgInput.current.files[0] &&
     //   (await application.postImage(formData));
 
+    console.log(typeof formData.get('photo'));
+
     formData.get('photo') && application.postImage(formData);
   };
 
