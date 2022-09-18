@@ -2,8 +2,8 @@ import type { NextPage } from 'next';
 import { useEffect } from 'react';
 import { TicketDataType } from 'Types/ticket';
 import * as S from './style';
-import * as I from 'assets/svg';
 import dayjs from 'dayjs';
+import * as I from 'assets/svg';
 
 const TicketPage: NextPage<TicketDataType> = ({ data }) => {
   console.log(data);
