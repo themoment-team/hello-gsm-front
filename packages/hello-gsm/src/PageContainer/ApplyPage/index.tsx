@@ -112,10 +112,6 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       imgInput.current.files[0] &&
       formData.append('photo', imgInput.current?.files[0]);
 
-    // imgInput.current?.files &&
-    //   imgInput.current.files[0] &&
-    //   (await application.postImage(formData));
-
     formData.get('photo') && application.postImage(formData);
   };
 
@@ -148,7 +144,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       ? await application.postFirstSubmission(data)
       : await application.patchFirstSubmission(data);
 
-    console.log('fail test');
+    setIsEdit(true);
   };
 
   const apply = async (submitData: ApplyFormType) => {
