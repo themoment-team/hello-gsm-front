@@ -1,3 +1,5 @@
+import React from 'react';
+
 const PrintIcon: React.FC<React.SVGProps<SVGSVGElement>> = () => {
   return (
     <svg viewBox="0 0 36 33" fill="none" xmlns="http://www.w3.org/2000/svg">
