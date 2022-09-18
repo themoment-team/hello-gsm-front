@@ -111,11 +111,13 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     imgInput.current?.files &&
       formData.append('photo', imgInput.current?.files[0]);
 
-    !isEdit
-      ? imgInput.current?.files && (await application.postImage(formData))
-      : imgInput.current?.files &&
-        imgInput.current.files[0] &&
-        (await application.postImage(formData));
+    console.log(`formData: ${formData}`);
+
+    // imgInput.current?.files &&
+    //   imgInput.current.files[0] &&
+    //   (await application.postImage(formData));
+
+    formData && application.postImage(formData);
   };
 
   const submissionApplication = async (submitData: ApplyFormType) => {
@@ -146,6 +148,8 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     !isEdit
       ? await application.postFirstSubmission(data)
       : await application.patchFirstSubmission(data);
+
+    console.log('fail test');
   };
 
   const apply = async (submitData: ApplyFormType) => {
@@ -172,7 +176,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
         }
       } else {
         console.log(error);
-        toast.error('증명사진이 저장되지 않았습니다. 다시 시도해주세요.');
+        toast.error('원서가 저장되지 않았습니다. 다시 시도해주세요.');
       }
     }
   };
