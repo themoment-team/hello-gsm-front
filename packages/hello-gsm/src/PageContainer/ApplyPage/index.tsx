@@ -111,13 +111,11 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     imgInput.current?.files &&
       formData.append('photo', imgInput.current?.files[0]);
 
-    console.log(`formData: ${formData.get('photo')}`);
-
     // imgInput.current?.files &&
     //   imgInput.current.files[0] &&
     //   (await application.postImage(formData));
 
-    formData && application.postImage(formData);
+    formData.get('photo') && application.postImage(formData);
   };
 
   const submissionApplication = async (submitData: ApplyFormType) => {
