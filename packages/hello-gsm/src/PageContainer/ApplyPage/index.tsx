@@ -111,7 +111,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     imgInput.current?.files &&
       formData.append('photo', imgInput.current?.files[0]);
 
-    console.log(`formData: ${formData}`);
+    console.log(`formData: ${formData.get('photo')}`);
 
     // imgInput.current?.files &&
     //   imgInput.current.files[0] &&
