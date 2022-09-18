@@ -1,5 +1,7 @@
 import { css } from '@emotion/react';
-import React from 'react';
+import application from 'Api/application';
+import auth from 'Api/auth';
+import React, { useState } from 'react';
 import useStore from 'Stores/StoreContainer';
 import { ApplicantType } from 'Types/application';
 import * as S from './style';
@@ -24,6 +26,8 @@ const ContentBox: React.FC<ContentType> = ({
     },
   },
 }) => {
+  const [documentReceoption, setDocumentReceoption] =
+    useState<boolean>(isDocumentReception);
   const {
     setShowPassModal,
     setShowScoreModal,
@@ -43,23 +47,52 @@ const ContentBox: React.FC<ContentType> = ({
     period === 1 ? setShowPassModal() : setShowScoreModal();
   };
 
+  const documentSubmission = async () => {
+    const data = {
+      registrationNumber: applicationIdx,
+    };
+    try {
+      await application.document(data);
+      setDocumentReceoption(documentReceoption => !documentReceoption);
+    } catch (error: any) {
+      if (error.response.status === 401) {
+        try {
+          // accessToken 발급
+          await auth.refresh();
+          documentSubmission();
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <S.ContentBox>
       <S.Content>
         <S.RegistrationNumber>{applicationIdx}</S.RegistrationNumber>
         <S.Name>{name}</S.Name>
         <S.Screening>{screening}</S.Screening>
-        <S.SchoolName>{schoolName}</S.SchoolName>
+        <S.SchoolName>
+          {schoolName !== 'null' ? schoolName : '검정고시'}
+        </S.SchoolName>
         <S.isDocumentReception>
           <S.Checkbox
             css={css`
-              background: ${isDocumentReception && '#19BAFF'};
+              background: ${documentReceoption && '#19BAFF'};
             `}
+            onClick={documentSubmission}
           />
         </S.isDocumentReception>
         <S.PhoneNumber>{cellphoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{guardianCellphoneNumber}</S.GuardianNumber>
-        <S.TeacherNumber>{teacherCellphoneNumber}</S.TeacherNumber>
+        <S.TeacherNumber>
+          {teacherCellphoneNumber !== 'null'
+            ? teacherCellphoneNumber
+            : '검정고시'}
+        </S.TeacherNumber>
       </S.Content>
       <S.Button onClick={() => buttonOnclick(applicationIdx, name, 1)}>
         선택
