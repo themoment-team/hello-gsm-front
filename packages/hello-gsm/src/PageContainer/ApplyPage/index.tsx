@@ -10,6 +10,7 @@ import {
   FindAddressModal,
   FindSchoolModal,
   ApplyBarBox,
+  ApplyPostModal,
 } from 'components';
 import { useForm } from 'react-hook-form';
 import application from 'Api/application';
@@ -32,7 +33,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const userBirth = new Date(data.birth);
 
-  const { push } = useRouter();
+  const { push, replace } = useRouter();
 
   const {
     showDepartmentModal,
@@ -55,6 +56,8 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     applicantAddress,
     setApplicantAddress,
     setLogged,
+    showApplyPostModal,
+    setshowApplyPostModal,
   } = useStore();
 
   const {
@@ -102,7 +105,17 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
     setApplicantAddress(data.application?.application_details?.address || '');
   }, []);
 
-  const apply = async (submitData: ApplyFormType) => {
+  const registerImg = async () => {
+    const formData = new FormData();
+
+    imgInput.current?.files &&
+      imgInput.current.files[0] &&
+      formData.append('photo', imgInput.current?.files[0]);
+
+    formData.get('photo') && application.postImage(formData);
+  };
+
+  const submissionApplication = async (submitData: ApplyFormType) => {
     const data: ApplicationType = {
       application: {
         teacherCellphoneNumber: submitData.teacherCellphoneNumber || undefined,
@@ -127,29 +140,25 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       },
     };
 
-    const formData = new FormData();
+    !isEdit
+      ? await application.postFirstSubmission(data)
+      : await application.patchFirstSubmission(data);
 
-    imgInput.current?.files &&
-      formData.append('photo', imgInput.current?.files[0]);
+    setIsEdit(true);
+  };
 
+  const apply = async (submitData: ApplyFormType) => {
     try {
-      if (!isEdit) {
-        await application.postFirstSubmission(data);
-        imgInput.current?.files && (await application.postImage(formData));
-      } else {
-        await application.patchFirstSubmission(data);
-        imgInput.current?.files &&
-          imgInput.current.files[0] !== undefined &&
-          (await application.postImage(formData));
-      }
-
-      if (watch('educationStatus') === '검정고시') {
-        push('/calculator/ged');
-      } else {
-        push('/calculator');
-      }
+      setshowApplyPostModal();
+      await Promise.all([registerImg(), submissionApplication(submitData)]);
+      setshowApplyPostModal();
+      toast.success('원서가 저장되었습니다.');
+      watch('educationStatus') !== '검정고시'
+        ? push('/calculator')
+        : push('/calculator/ged');
     } catch (error: any) {
-      // accessToken 없을 시에 accessToken 발급 후 logout 요청
+      setshowApplyPostModal();
+      // accessToken 없을 시에 accessToken 발급 후 요청
       if (error.response.status === 401) {
         try {
           // accessToken 발급
@@ -157,9 +166,12 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
           apply(submitData);
         } catch (error) {
           console.log(error);
+          toast.error('재 로그인 후 다시 시도해주세요.');
+          replace('/auth/signin');
         }
       } else {
         console.log(error);
+        toast.error('원서가 저장되지 않았습니다. 다시 시도해주세요.');
       }
     }
   };
@@ -218,6 +230,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       {showFindAddressModal && <FindAddressModal />}
       {showFindSchoolModal && <FindSchoolModal />}
       {showDepartmentModal && <DepartmentModal />}
+      {showApplyPostModal && <ApplyPostModal />}
       <Header />
       <S.ApplyPage>
         <ApplyBarBox />
