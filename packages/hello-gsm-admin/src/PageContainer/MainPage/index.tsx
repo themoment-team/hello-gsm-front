@@ -48,9 +48,13 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       threshold: 0,
     };
 
-    const observer = new IntersectionObserver(handleObserver, option);
+    let observer: IntersectionObserver;
 
-    loadMoreRef.current && observer.observe(loadMoreRef.current);
+    if (loadMoreRef) {
+      observer = new IntersectionObserver(handleObserver, option);
+
+      loadMoreRef.current && observer.observe(loadMoreRef.current);
+    }
 
     return () => observer && observer.disconnect();
   }, [handleObserver]);
