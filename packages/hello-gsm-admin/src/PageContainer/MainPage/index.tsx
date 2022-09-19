@@ -22,6 +22,8 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const { showPassModal, showScoreModal } = useStore();
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
+  let getApplicationList: ApplicantType[] | null = [];
+
   const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
     const [target] = entries;
     console.log('show');
@@ -41,6 +43,11 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
 
     loadMoreRef.current && observer.observe(loadMoreRef.current);
   }, [handleObserver]);
+
+  useEffect(() => {
+    getApplicationList &&
+      setApplicationList([...applicationList, ...getApplicationList]);
+  }, [getApplicationList]);
 
   const search = async () => {
     const keyword = searchRef.current?.value;
@@ -72,8 +79,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const getList = async () => {
     try {
       const { data }: ApplicantsType = await application.getList(page);
-      setApplicationList([...applicationList, ...data]);
-      // setPage(prev => prev + 1);
+      getApplicationList = data;
       page++;
       console.log(page);
     } catch (error: any) {
