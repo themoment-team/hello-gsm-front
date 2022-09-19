@@ -23,6 +23,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
 
   const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
     const [target] = entries;
+    console.log('show');
     if (target.isIntersecting) {
       getList();
     }
