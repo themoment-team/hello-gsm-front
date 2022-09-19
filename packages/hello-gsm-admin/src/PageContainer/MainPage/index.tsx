@@ -9,16 +9,19 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { css, Global } from '@emotion/react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ApplicantsType, ApplicantType } from 'Types/application';
 import application from 'Api/application';
 import auth from 'Api/auth';
+import useInfiniteScroll from 'hooks/useInfiniteScroll';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const [page, setPage] = useState<number>(2);
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
   const searchRef = useRef<HTMLInputElement>(null);
   const { showPassModal, showScoreModal } = useStore();
+
+  const [target, setTarget] = useState(null);
 
   const search = async () => {
     const keyword = searchRef.current?.value;
@@ -41,6 +44,25 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     }
   };
 
+  const onIntersect = async ([entry]: any, observer: any) => {
+    if (entry.isIntersecting) {
+      observer.unobserve(entry.target);
+      console.log('load');
+      observer.observe(entry.target);
+    }
+  };
+
+  useEffect(() => {
+    let observer: any;
+    if (target) {
+      observer = new IntersectionObserver(onIntersect, {
+        threshold: 0.4,
+      });
+      observer.observe(target);
+    }
+    return () => observer && observer.disconnect();
+  }, [target]);
+
   const enterEvent = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       search();
@@ -57,6 +79,8 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       console.log(error);
     }
   };
+
+  const { loadMoreRef } = useInfiniteScroll();
 
   return (
     <S.MainPage>
@@ -87,6 +111,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
           {applicationList.map((content, index: number) => (
             <ContentBox content={content} key={index} />
           ))}
+          <S.Target ref={loadMoreRef} />
         </S.ContentList>
       </S.MainPageContent>
       <S.BlueBall />

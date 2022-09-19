@@ -80,6 +80,12 @@ export const ContentList = styled.div`
   overflow-y: scroll;
 `;
 
+export const Target = styled.div`
+  width: 100%;
+  height: 100px;
+  background-color: white;
+`;
+
 const Ball = styled.div`
   border-radius: 100%;
   position: absolute;

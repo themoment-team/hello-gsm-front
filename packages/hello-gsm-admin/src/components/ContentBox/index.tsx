@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import application from 'Api/application';
 import auth from 'Api/auth';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useStore from 'Stores/StoreContainer';
 import { ApplicantType } from 'Types/application';
 import * as S from './style';
