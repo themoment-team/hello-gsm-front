@@ -45,7 +45,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     const option = {
       root: null,
       rootMargin: '0px',
-      threshold: 0,
+      threshold: 1,
     };
 
     let observer: IntersectionObserver;
