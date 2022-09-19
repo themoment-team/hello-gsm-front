@@ -9,7 +9,7 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { css, Global } from '@emotion/react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ApplicantsType, ApplicantType } from 'Types/application';
 import application from 'Api/application';
 import auth from 'Api/auth';
@@ -43,11 +43,34 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     loadMoreRef.current && observer.observe(loadMoreRef.current);
   }, [handleObserver]);
 
-  useEffect(() => {
-    console.log(getApplicationList);
-    getApplicationList &&
-      setApplicationList([...applicationList, ...getApplicationList]);
-  }, [applicationList, getApplicationList]);
+  const getList = async () => {
+    try {
+      const { data }: ApplicantsType = await application.getList(page);
+      getApplicationList = data;
+      console.log(getApplicationList);
+      page++;
+    } catch (error: any) {
+      // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
+      if (error.response.status === 401) {
+        try {
+          // accessToken 발급
+          await auth.refresh();
+          getList();
+        } catch (error) {
+          getApplicationList = [];
+          console.log(error);
+        }
+      } else {
+        console.log(error);
+      }
+    }
+  };
+
+  // useEffect(() => {
+  //   console.log(getApplicationList);
+  //   getApplicationList &&
+  //     setApplicationList([...applicationList, ...getApplicationList]);
+  // }, [applicationList, getApplicationList]);
 
   const search = async () => {
     const keyword = searchRef.current?.value;
@@ -73,28 +96,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const enterEvent = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       search();
-    }
-  };
-
-  const getList = async () => {
-    try {
-      const { data }: ApplicantsType = await application.getList(page);
-      getApplicationList = data;
-      page++;
-      console.log(page);
-    } catch (error: any) {
-      // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
-      if (error.response.status === 401) {
-        try {
-          // accessToken 발급
-          await auth.refresh();
-          getList();
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        console.log(error);
-      }
     }
   };
 
