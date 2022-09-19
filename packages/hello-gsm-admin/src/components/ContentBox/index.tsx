@@ -55,6 +55,7 @@ const ContentBox: React.FC<ContentType> = ({
       await application.document(data);
       setDocumentReceoption(documentReceoption => !documentReceoption);
     } catch (error: any) {
+      // accessToken 없을 시에 accessToken 발급 후 서류 제출 여부 요청
       if (error.response.status === 401) {
         try {
           // accessToken 발급
