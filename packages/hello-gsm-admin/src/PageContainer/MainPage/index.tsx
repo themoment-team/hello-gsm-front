@@ -51,6 +51,8 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     const observer = new IntersectionObserver(handleObserver, option);
 
     loadMoreRef.current && observer.observe(loadMoreRef.current);
+
+    return () => observer && observer.disconnect();
   }, [handleObserver]);
 
   const getList = async () => {
