@@ -29,7 +29,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     if (target.isIntersecting) {
       getList();
       getApplicationList &&
-        setApplicationList(prev => [...prev, ...getApplicationList]);
+        setApplicationList([...applicationList, ...getApplicationList]);
     }
   }, []);
 
