@@ -24,22 +24,19 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
 
   let getApplicationList: ApplicantType[] = [];
 
-  const handleObserver = useCallback(
-    async (
-      [entries]: IntersectionObserverEntry[],
-      observer: IntersectionObserver,
-    ) => {
-      // const [target] = entries;
-      if (entries.isIntersecting) {
-        observer.unobserve(entries.target);
-        await getList();
-        getApplicationList &&
-          setApplicationList([...applicationList, ...getApplicationList]);
-        observer.observe(entries.target);
-      }
-    },
-    [],
-  );
+  const handleObserver = async (
+    [entries]: IntersectionObserverEntry[],
+    observer: IntersectionObserver,
+  ) => {
+    // const [target] = entries;
+    if (entries.isIntersecting) {
+      observer.unobserve(entries.target);
+      await getList();
+      getApplicationList &&
+        setApplicationList([...applicationList, ...getApplicationList]);
+      observer.observe(entries.target);
+    }
+  };
 
   useEffect(() => {
     const option = {
