@@ -47,7 +47,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     console.log(getApplicationList);
     getApplicationList &&
       setApplicationList([...applicationList, ...getApplicationList]);
-  }, [getApplicationList]);
+  }, [applicationList, getApplicationList]);
 
   const search = async () => {
     const keyword = searchRef.current?.value;
