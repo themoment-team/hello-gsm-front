@@ -35,9 +35,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         await getList();
         getApplicationList &&
           setApplicationList([...applicationList, ...getApplicationList]);
-        setTimeout(() => {
-          console.log('wait');
-        }, 3000);
         observer.observe(entries.target);
       }
     },
