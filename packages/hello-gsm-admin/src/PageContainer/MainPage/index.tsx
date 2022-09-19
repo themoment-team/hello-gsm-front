@@ -15,7 +15,8 @@ import application from 'Api/application';
 import auth from 'Api/auth';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
-  const [page, setPage] = useState<number>(2);
+  // const [page, setPage] = useState<number>(2);
+  let page = 2;
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
   const searchRef = useRef<HTMLInputElement>(null);
   const { showPassModal, showScoreModal } = useStore();
@@ -72,7 +73,8 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     try {
       const { data }: ApplicantsType = await application.getList(page);
       setApplicationList([...applicationList, ...data]);
-      setPage(prev => prev + 1);
+      // setPage(prev => prev + 1);
+      page++;
       console.log(page);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
