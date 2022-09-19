@@ -53,6 +53,8 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     if (loadMoreRef) {
       observer = new IntersectionObserver(handleObserver, option);
 
+      console.log('effected');
+
       loadMoreRef.current && observer.observe(loadMoreRef.current);
     }
 
