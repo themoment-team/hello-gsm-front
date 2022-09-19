@@ -44,25 +44,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     }
   };
 
-  const onIntersect = async ([entry]: any, observer: any) => {
-    if (entry.isIntersecting) {
-      observer.unobserve(entry.target);
-      console.log('load');
-      observer.observe(entry.target);
-    }
-  };
-
-  useEffect(() => {
-    let observer: any;
-    if (target) {
-      observer = new IntersectionObserver(onIntersect, {
-        threshold: 0.4,
-      });
-      observer.observe(target);
-    }
-    return () => observer && observer.disconnect();
-  }, [target]);
-
   const enterEvent = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       search();
