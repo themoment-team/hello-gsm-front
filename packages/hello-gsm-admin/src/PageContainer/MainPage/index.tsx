@@ -22,12 +22,14 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const { showPassModal, showScoreModal } = useStore();
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
-  let getApplicationList: ApplicantType[] | null = [];
+  let getApplicationList: ApplicantType[] = [];
 
   const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
     const [target] = entries;
     if (target.isIntersecting) {
       getList();
+      getApplicationList &&
+        setApplicationList(prev => [...prev, ...getApplicationList]);
     }
   }, []);
 
