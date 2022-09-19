@@ -14,12 +14,12 @@ function useInfiniteScroll() {
     const option = {
       root: null,
       rootMargin: '0px',
-      threshold: 1.0,
+      threshold: 0,
     };
 
     const observer = new IntersectionObserver(handleObserver, option);
 
-    if (loadMoreRef.current) observer.observe(loadMoreRef.current);
+    loadMoreRef.current && observer.observe(loadMoreRef.current);
   }, [handleObserver]);
 
   return { loadMoreRef };
