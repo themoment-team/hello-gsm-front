@@ -9,19 +9,16 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { css, Global } from '@emotion/react';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ApplicantsType, ApplicantType } from 'Types/application';
 import application from 'Api/application';
 import auth from 'Api/auth';
-import useInfiniteScroll from 'hooks/useInfiniteScroll';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const [page, setPage] = useState<number>(2);
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
   const searchRef = useRef<HTMLInputElement>(null);
   const { showPassModal, showScoreModal } = useStore();
-
-  const [target, setTarget] = useState(null);
 
   const search = async () => {
     const keyword = searchRef.current?.value;
@@ -61,7 +58,26 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     }
   };
 
-  const { loadMoreRef } = useInfiniteScroll();
+  const loadMoreRef = useRef<HTMLDivElement>(null);
+
+  const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
+    const [target] = entries;
+    if (target.isIntersecting) {
+      console.log('hello');
+    }
+  }, []);
+
+  useEffect(() => {
+    const option = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver(handleObserver, option);
+
+    loadMoreRef.current && observer.observe(loadMoreRef.current);
+  }, [handleObserver]);
 
   return (
     <S.MainPage>
