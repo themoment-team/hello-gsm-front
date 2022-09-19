@@ -19,6 +19,26 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
   const searchRef = useRef<HTMLInputElement>(null);
   const { showPassModal, showScoreModal } = useStore();
+  const loadMoreRef = useRef<HTMLDivElement>(null);
+
+  const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
+    const [target] = entries;
+    if (target.isIntersecting) {
+      getList();
+    }
+  }, []);
+
+  useEffect(() => {
+    const option = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver(handleObserver, option);
+
+    loadMoreRef.current && observer.observe(loadMoreRef.current);
+  }, [handleObserver]);
 
   const search = async () => {
     const keyword = searchRef.current?.value;
@@ -57,27 +77,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       console.log(error);
     }
   };
-
-  const loadMoreRef = useRef<HTMLDivElement>(null);
-
-  const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
-    const [target] = entries;
-    if (target.isIntersecting) {
-      console.log('hello');
-    }
-  }, []);
-
-  useEffect(() => {
-    const option = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0,
-    };
-
-    const observer = new IntersectionObserver(handleObserver, option);
-
-    loadMoreRef.current && observer.observe(loadMoreRef.current);
-  }, [handleObserver]);
 
   return (
     <S.MainPage>
