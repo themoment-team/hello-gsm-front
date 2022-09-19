@@ -72,7 +72,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     try {
       const { data }: ApplicantsType = await application.getList(page);
       setApplicationList([...applicationList, ...data]);
-      setPage(page => ++page);
+      setPage(prev => ++prev);
       console.log(page);
     } catch (error) {
       console.log(error);
