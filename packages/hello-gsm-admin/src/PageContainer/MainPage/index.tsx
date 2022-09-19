@@ -47,7 +47,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       const { data }: ApplicantsType = await application.getList(1, keyword);
       setApplicationList(data);
     } catch (error: any) {
-      // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
+      // accessToken 없을 시에 accessToken 발급 후 검색 결과 요청
       if (error.response.status === 401) {
         try {
           // accessToken 발급
@@ -74,8 +74,19 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       setApplicationList([...applicationList, ...data]);
       setPage(prev => prev + 1);
       console.log(page);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
+      if (error.response.status === 401) {
+        try {
+          // accessToken 발급
+          await auth.refresh();
+          getList();
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        console.log(error);
+      }
     }
   };
 
