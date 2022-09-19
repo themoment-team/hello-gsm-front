@@ -8,20 +8,20 @@ import { StatusType } from 'type/user';
 import useStore from 'Stores/StoreContainer';
 import device from 'shared/config';
 
+const contentSelects = [
+  '원서 작성',
+  '원서 학교 제출',
+  '1차 서류 전형',
+  '2차 평가',
+  '결과 발표',
+];
+
 const MainPage: NextPage<StatusType> = ({ data }) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(1);
   const [isPC, setIsPC] = useState<boolean>(true);
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   const { logged } = useStore();
-
-  const contentSelects = [
-    '원서 작성',
-    '원서 학교 제출',
-    '1차 서류 전형',
-    '2차 평가',
-    '결과 발표',
-  ];
 
   const selectedStyle = (index: number) =>
     selectedIndex === index &&
