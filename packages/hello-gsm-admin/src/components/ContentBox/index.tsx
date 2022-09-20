@@ -27,7 +27,13 @@ const ContentBox: React.FC<ContentType> = ({
     },
   },
 }) => {
-  const [documentReceoption, setDocumentReceoption] =
+  const isResult: boolean = new Date() > new Date('2022-11-01') ? true : false;
+  const firstResult: string = !isResult
+    ? '미정'
+    : firstResultScreening !== null
+    ? '합격'
+    : '불합격';
+  const [documentreception, setDocumentreception] =
     useState<boolean>(isDocumentReception);
   const {
     setShowPassModal,
@@ -54,7 +60,7 @@ const ContentBox: React.FC<ContentType> = ({
     };
     try {
       await application.document(data);
-      setDocumentReceoption(documentReceoption => !documentReceoption);
+      setDocumentreception(documentreception => !documentreception);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 서류 제출 여부 요청
       if (error.response.status === 401) {
@@ -83,7 +89,7 @@ const ContentBox: React.FC<ContentType> = ({
         <S.isDocumentReception>
           <S.Checkbox
             css={css`
-              background: ${documentReceoption && '#19BAFF'};
+              background: ${documentreception && '#19BAFF'};
             `}
             onClick={documentSubmission}
           />
@@ -97,7 +103,7 @@ const ContentBox: React.FC<ContentType> = ({
         </S.TeacherNumber>
       </S.Content>
       <S.Button onClick={() => buttonOnclick(applicationIdx, name, 1)}>
-        선택
+        {firstResult}
       </S.Button>
       <S.Button onClick={() => buttonOnclick(applicationIdx, name, 2)}>
         입력
