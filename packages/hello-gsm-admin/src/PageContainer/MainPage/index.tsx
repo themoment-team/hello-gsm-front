@@ -43,7 +43,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   );
 
   useEffect(() => {
-    console.log('effected');
     const option = {
       root: null,
       rootMargin: '0px',
