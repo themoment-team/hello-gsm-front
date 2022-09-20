@@ -35,7 +35,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         await getList();
         getApplicationList &&
           setApplicationList(list => [...list, ...getApplicationList]);
-        getApplicationList ?? setIsPageEnd(true);
+        getApplicationList === [] ?? setIsPageEnd(true);
         observer.observe(entries[0].target);
       }
     },
