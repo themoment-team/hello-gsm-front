@@ -35,7 +35,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         await getList();
         console.log(`getApplicationList: ${getApplicationList}`);
         console.log(getApplicationList);
-        setIsPageEnd(getApplicationList.length < 10 ? false : true);
+        setIsPageEnd(getApplicationList.length < 10 ? true : false);
         console.log(`isPageEnd: ${isPageEnd}`);
         getApplicationList &&
           setApplicationList(list => [...list, ...getApplicationList]);
