@@ -32,8 +32,8 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       // const [target] = entries;
       if (entries[0].isIntersecting) {
         observer.unobserve(entries[0].target);
-        console.log('get list handleObserver');
         await getList();
+        console.log('get list handleObserver');
         getApplicationList &&
           setApplicationList(list => [...list, ...getApplicationList]);
         observer.observe(entries[0].target);
