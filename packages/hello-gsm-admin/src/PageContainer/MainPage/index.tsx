@@ -33,7 +33,9 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       if (entries[0].isIntersecting) {
         observer.unobserve(entries[0].target);
         await getList();
+        console.log(`getApplicationList: ${getApplicationList}`);
         setIsPageEnd(getApplicationList === [] ? true : false);
+        console.log(`isPageEnd: ${isPageEnd}`);
         getApplicationList &&
           setApplicationList(list => [...list, ...getApplicationList]);
         // getApplicationList === []
@@ -49,7 +51,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     const option = {
       root: null,
       rootMargin: '0px',
-      threshold: 1,
+      threshold: 0,
     };
 
     let observer: IntersectionObserver;
