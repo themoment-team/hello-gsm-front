@@ -34,7 +34,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         observer.unobserve(entries[0].target);
         await getList();
         console.log(`getApplicationList: ${getApplicationList}`);
-        console.log(typeof getApplicationList);
+        console.log(getApplicationList);
         setIsPageEnd(getApplicationList ? false : true);
         console.log(`isPageEnd: ${isPageEnd}`);
         getApplicationList &&
