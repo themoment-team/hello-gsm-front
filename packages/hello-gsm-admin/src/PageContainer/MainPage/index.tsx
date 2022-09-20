@@ -34,7 +34,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         observer.unobserve(entries[0].target);
         await getList();
         console.log(`getApplicationList: ${getApplicationList}`);
-        setIsPageEnd(getApplicationList === [] ? true : false);
+        setIsPageEnd(getApplicationList ? false : true);
         console.log(`isPageEnd: ${isPageEnd}`);
         getApplicationList &&
           setApplicationList(list => [...list, ...getApplicationList]);
@@ -70,6 +70,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       const { data }: ApplicantsType = await application.getList(page);
       getApplicationList = data;
       page++;
+      data ?? setIsPageEnd(true);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
       if (error.response.status === 401) {
