@@ -42,6 +42,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   );
 
   useEffect(() => {
+    console.log('effected');
     const option = {
       root: null,
       rootMargin: '0px',
@@ -52,8 +53,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
 
     if (loadMoreRef) {
       observer = new IntersectionObserver(handleObserver, option);
-
-      console.log('effected');
 
       loadMoreRef.current && observer.observe(loadMoreRef.current);
     }
