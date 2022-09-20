@@ -15,9 +15,9 @@ import application from 'Api/application';
 import auth from 'Api/auth';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
-  // const [page, setPage] = useState<number>(2);
   let page = 2;
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
+  const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
   const searchRef = useRef<HTMLInputElement>(null);
   const { showPassModal, showScoreModal } = useStore();
   const loadMoreRef = useRef<HTMLDivElement>(null);
@@ -33,7 +33,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       if (entries[0].isIntersecting) {
         observer.unobserve(entries[0].target);
         await getList();
-        console.log('get list handleObserver');
         getApplicationList &&
           setApplicationList(list => [...list, ...getApplicationList]);
         observer.observe(entries[0].target);
@@ -64,8 +63,8 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const getList = async () => {
     try {
       const { data }: ApplicantsType = await application.getList(page);
+      data ?? setIsPageEnd(true);
       getApplicationList = data;
-      console.log(getApplicationList);
       page++;
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
@@ -83,12 +82,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       }
     }
   };
-
-  // useEffect(() => {
-  //   console.log(getApplicationList);
-  //   getApplicationList &&
-  //     setApplicationList([...applicationList, ...getApplicationList]);
-  // }, [applicationList, getApplicationList]);
 
   const search = async () => {
     const keyword = searchRef.current?.value;
@@ -146,7 +139,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
           {applicationList.map((content, index: number) => (
             <ContentBox content={content} key={index} />
           ))}
-          <S.Target ref={loadMoreRef} />
+          {!isPageEnd && <S.Target ref={loadMoreRef} />}
         </S.ContentList>
       </S.MainPageContent>
       <S.BlueBall />
