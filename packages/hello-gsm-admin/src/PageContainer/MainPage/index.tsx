@@ -26,16 +26,16 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
 
   const handleObserver = useCallback(
     async (
-      [entries]: IntersectionObserverEntry[],
+      entries: IntersectionObserverEntry[],
       observer: IntersectionObserver,
     ) => {
       // const [target] = entries;
-      if (entries.isIntersecting) {
-        observer.unobserve(entries.target);
+      if (entries[0].isIntersecting) {
+        observer.unobserve(entries[0].target);
         await getList();
         getApplicationList &&
           setApplicationList([...applicationList, ...getApplicationList]);
-        observer.observe(entries.target);
+        observer.observe(entries[0].target);
       }
     },
     [],
