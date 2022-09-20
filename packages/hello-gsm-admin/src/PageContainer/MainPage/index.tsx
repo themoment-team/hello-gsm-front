@@ -35,7 +35,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         console.log('get list handleObserver');
         await getList();
         getApplicationList &&
-          setApplicationList([...applicationList, ...getApplicationList]);
+          setApplicationList(list => [...list, ...getApplicationList]);
         observer.observe(entries[0].target);
       }
     },
