@@ -20,6 +20,7 @@ const ContentBox: React.FC<ContentType> = ({
       firstResultScreening,
       guardianCellphoneNumber,
       isDocumentReception,
+      registrationNumber,
       schoolName,
       screening,
       teacherCellphoneNumber,
@@ -49,7 +50,7 @@ const ContentBox: React.FC<ContentType> = ({
 
   const documentSubmission = async () => {
     const data = {
-      registrationNumber: applicationIdx,
+      registrationNumber: registrationNumber,
     };
     try {
       await application.document(data);
