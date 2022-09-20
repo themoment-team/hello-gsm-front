@@ -35,6 +35,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         await getList();
         getApplicationList &&
           setApplicationList(list => [...list, ...getApplicationList]);
+        getApplicationList ?? setIsPageEnd(true);
         observer.observe(entries[0].target);
       }
     },
@@ -63,7 +64,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const getList = async () => {
     try {
       const { data }: ApplicantsType = await application.getList(page);
-      data ?? setIsPageEnd(true);
       getApplicationList = data;
       page++;
     } catch (error: any) {
