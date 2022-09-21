@@ -2,6 +2,7 @@ import application from 'Api/application';
 import auth from 'Api/auth';
 import ModalDescription from 'components/ModalDescription';
 import React, { useCallback, MouseEvent, useRef } from 'react';
+import { toast } from 'react-toastify';
 import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 
@@ -21,7 +22,10 @@ const ScoreModal: React.FC = () => {
       registrationNumber: modalRegistrationNumber,
       personalityEvaluationScore: score,
     };
-    if (!score) return;
+    if (!score) {
+      toast.error('점수를 입력해주세요.');
+      return;
+    }
     try {
       await application.score(data);
       setShowScoreModal();
@@ -39,10 +43,6 @@ const ScoreModal: React.FC = () => {
         console.log(error);
       }
     }
-  };
-
-  const validation = () => {
-    scoreRef.current?.value && sendScore();
   };
 
   return (
