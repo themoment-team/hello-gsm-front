@@ -70,11 +70,11 @@ const TestCalculatorPage: NextPage = () => {
     absentValue,
     attendanceValue,
   }: ScoreForm) => {
-    const score1_1 = Calculate(value1_1, '1-1', system, freeSemester) ?? 0; // 2학년 1학기
-    const score1_2 = Calculate(value1_2, '1-2', system, freeSemester) ?? 0; // 2학년 1학기
+    const score1_1 = Calculate(value1_1, '1-1', system, freeSemester) ?? 0; // 1학년 1학기
+    const score1_2 = Calculate(value1_2, '1-2', system, freeSemester) ?? 0; // 1학년 2학기
     const score2_1 = Calculate(value2_1, '2-1', system, freeSemester) ?? 0; // 2학년 1학기
     const score2_2 = Calculate(value2_2, '2-2', system, freeSemester) ?? 0; // 2학년 2학기
-    const score3_1 = Calculate(value3_1, '3-1', system, freeSemester) ?? 0; // 2학년 2학기
+    const score3_1 = Calculate(value3_1, '3-1', system, freeSemester) ?? 0; // 3학년 1학기
 
     const generalCurriculumScoreSubtotal = Rounds(
       score1_1 + score1_2 + score2_1 + score2_2 + score3_1,

@@ -134,11 +134,11 @@ const CalculatorPage: NextPage = () => {
     attendanceValue,
     newSubjects,
   }: ScoreForm) => {
-    const score1_1 = Calculate(value1_1, '1-1', system, freeSemester) ?? 0; // 2학년 1학기
-    const score1_2 = Calculate(value1_2, '1-2', system, freeSemester) ?? 0; // 2학년 1학기
+    const score1_1 = Calculate(value1_1, '1-1', system, freeSemester) ?? 0; // 1학년 1학기
+    const score1_2 = Calculate(value1_2, '1-2', system, freeSemester) ?? 0; // 1학년 2학기
     const score2_1 = Calculate(value2_1, '2-1', system, freeSemester) ?? 0; // 2학년 1학기
     const score2_2 = Calculate(value2_2, '2-2', system, freeSemester) ?? 0; // 2학년 2학기
-    const score3_1 = Calculate(value3_1, '3-1', system, freeSemester) ?? 0; // 2학년 2학기
+    const score3_1 = Calculate(value3_1, '3-1', system, freeSemester) ?? 0; // 3학년 1학기
 
     const generalCurriculumScoreSubtotal = Rounds(
       score1_1 + score1_2 + score2_1 + score2_2 + score3_1,
@@ -166,7 +166,7 @@ const CalculatorPage: NextPage = () => {
       3,
     ); // 총점
 
-    const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 차백분율
+    const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 석차백분율
 
     // score값이 없는 값이라면 undefined 값을 보내게 함
     const data: ScoreType = {
