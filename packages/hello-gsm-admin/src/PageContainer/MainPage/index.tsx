@@ -22,7 +22,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const { showPassModal, showScoreModal } = useStore();
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
-  let getApplicationList: ApplicantType[] = [];
+  // let getApplicationList: ApplicantType[] = [];
 
   const handleObserver = useCallback(
     async (
