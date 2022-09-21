@@ -88,11 +88,13 @@ const ContentBox: React.FC<ContentType> = ({
       case '합격':
         return css`
           background: #19baff;
+          color: #ffffff;
           cursor: none;
         `;
       case '불합격':
         return css`
           background: #ff4747;
+          color: #ffffff;
           cursor: none;
         `;
     }
