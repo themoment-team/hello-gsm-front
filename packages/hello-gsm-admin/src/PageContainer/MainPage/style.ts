@@ -82,8 +82,6 @@ export const ContentList = styled.div`
 
 export const Target = styled.div`
   width: 100%;
-  height: 100px;
-  background-color: white;
 `;
 
 const Ball = styled.div`
