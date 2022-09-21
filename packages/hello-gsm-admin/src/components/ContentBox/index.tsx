@@ -28,7 +28,7 @@ const ContentBox: React.FC<ContentType> = ({
   },
 }) => {
   const isResult: boolean = new Date() > new Date('2022-11-01') ? true : false;
-  const firstResult: string = !isResult
+  const firstResult: '미정' | '합격' | '불합격' = !isResult
     ? '미정'
     : firstResultScreening !== null
     ? '합격'
@@ -77,6 +77,24 @@ const ContentBox: React.FC<ContentType> = ({
     }
   };
 
+  const firstResultStyle = () => {
+    switch (firstResult) {
+      case '미정':
+        return css`
+          background: #625e6f;
+          color: rgba(31, 31, 31, 0.86);
+        `;
+      case '합격':
+        return css`
+          background: #19baff;
+        `;
+      case '불합격':
+        return css`
+          background: #ff4747;
+        `;
+    }
+  };
+
   return (
     <S.ContentBox>
       <S.Content>
@@ -102,9 +120,7 @@ const ContentBox: React.FC<ContentType> = ({
             : '검정고시'}
         </S.TeacherNumber>
       </S.Content>
-      <S.Button onClick={() => buttonOnclick(applicationIdx, name, 1)}>
-        {firstResult}
-      </S.Button>
+      <S.Button css={firstResultStyle}>{firstResult}</S.Button>
       <S.Button onClick={() => buttonOnclick(applicationIdx, name, 2)}>
         입력
       </S.Button>
