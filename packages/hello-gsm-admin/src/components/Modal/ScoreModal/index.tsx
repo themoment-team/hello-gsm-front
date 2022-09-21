@@ -21,7 +21,7 @@ const ScoreModal: React.FC = () => {
       registrationNumber: modalRegistrationNumber,
       personalityEvaluationScore: score,
     };
-    if (score) return;
+    if (!score) return;
     try {
       await application.score(data);
       setShowScoreModal();
