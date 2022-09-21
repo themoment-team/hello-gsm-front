@@ -24,6 +24,7 @@ const ContentBox: React.FC<ContentType> = ({
       schoolName,
       screening,
       teacherCellphoneNumber,
+      application_score: { personalityEvaluationScore },
     },
   },
 }) => {
@@ -116,7 +117,9 @@ const ContentBox: React.FC<ContentType> = ({
         </S.TeacherNumber>
       </S.Content>
       <S.Button css={firstResultStyle}>{firstResult}</S.Button>
-      <S.Button onClick={scoreButtonClick}>입력</S.Button>
+      <S.Button onClick={scoreButtonClick}>
+        {personalityEvaluationScore || '입력'}
+      </S.Button>
     </S.ContentBox>
   );
 };
