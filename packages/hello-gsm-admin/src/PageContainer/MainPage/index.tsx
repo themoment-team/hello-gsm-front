@@ -15,7 +15,7 @@ import application from 'Api/application';
 import auth from 'Api/auth';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
-  let page = 2;
+  const [page, setPage] = useState<number>(2);
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
   const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
   const searchRef = useRef<HTMLInputElement>(null);
@@ -33,7 +33,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       if (entries[0].isIntersecting) {
         observer.unobserve(entries[0].target);
         await getList();
-        // setIsPageEnd(getApplicationList.length < 10 ? true : false);
         // getApplicationList &&
         //   setApplicationList(list => [...list, ...getApplicationList]);
         // getApplicationList === []
@@ -67,7 +66,8 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     try {
       const { data }: ApplicantsType = await application.getList(page);
       setApplicationList(list => [...list, ...data]);
-      page++;
+      setPage(page => page + 1);
+      setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
       if (error.response.status === 401) {
