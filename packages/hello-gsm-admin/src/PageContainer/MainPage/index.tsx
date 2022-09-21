@@ -9,7 +9,7 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { css, Global } from '@emotion/react';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ApplicantsType, ApplicantType } from 'Types/application';
 import application from 'Api/application';
 import auth from 'Api/auth';
