@@ -35,24 +35,8 @@ const ContentBox: React.FC<ContentType> = ({
     : '불합격';
   const [documentreception, setDocumentreception] =
     useState<boolean>(isDocumentReception);
-  const {
-    setShowPassModal,
-    setShowScoreModal,
-    setModalPeriod,
-    setModalName,
-    setModalRegistrationNumber,
-  } = useStore();
-
-  const buttonOnclick = (
-    registrationNumber: number,
-    name: string,
-    period: 1 | 2,
-  ) => {
-    setModalRegistrationNumber(registrationNumber);
-    setModalName(name);
-    setModalPeriod(period);
-    period === 1 ? setShowPassModal() : setShowScoreModal();
-  };
+  const { setShowScoreModal, setModalName, setModalRegistrationNumber } =
+    useStore();
 
   const documentSubmission = async () => {
     const data = {
@@ -100,6 +84,12 @@ const ContentBox: React.FC<ContentType> = ({
     }
   };
 
+  const scoreButtonClick = () => {
+    setModalRegistrationNumber(registrationNumber);
+    setModalName(name);
+    setShowScoreModal();
+  };
+
   return (
     <S.ContentBox>
       <S.Content>
@@ -126,9 +116,7 @@ const ContentBox: React.FC<ContentType> = ({
         </S.TeacherNumber>
       </S.Content>
       <S.Button css={firstResultStyle}>{firstResult}</S.Button>
-      <S.Button onClick={() => buttonOnclick(applicationIdx, name, 2)}>
-        입력
-      </S.Button>
+      <S.Button onClick={scoreButtonClick}>입력</S.Button>
     </S.ContentBox>
   );
 };
