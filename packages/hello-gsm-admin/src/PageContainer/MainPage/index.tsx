@@ -1,10 +1,4 @@
-import {
-  ContentBox,
-  Logout,
-  MainpageHeader,
-  PassModal,
-  ScoreModal,
-} from 'components';
+import { ContentBox, Logout, MainpageHeader, ScoreModal } from 'components';
 import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
@@ -20,7 +14,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
   const searchRef = useRef<HTMLInputElement>(null);
   const loadMoreRef = useRef<HTMLDivElement>(null);
-  const { showPassModal, showScoreModal } = useStore();
+  const { showScoreModal } = useStore();
 
   const handleObserver = useCallback(
     async (
@@ -106,12 +100,11 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
 
   return (
     <S.MainPage>
-      {showPassModal && <PassModal />}
       {showScoreModal && <ScoreModal />}
       <Global
         styles={css`
           body {
-            overflow: ${showPassModal || showScoreModal ? 'hidden' : 'visible'};
+            overflow: ${showScoreModal ? 'hidden' : 'visible'};
           }
         `}
       />
