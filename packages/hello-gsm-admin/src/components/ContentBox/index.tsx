@@ -27,7 +27,7 @@ const ContentBox: React.FC<ContentType> = ({
     },
   },
 }) => {
-  const isResult: boolean = new Date() > new Date('2022-11-01') ? true : false;
+  const isResult: boolean = new Date() < new Date('2022-11-01') ? true : false;
   const firstResult: '미정' | '합격' | '불합격' = !isResult
     ? '미정'
     : firstResultScreening !== null
@@ -83,14 +83,17 @@ const ContentBox: React.FC<ContentType> = ({
         return css`
           background: #625e6f;
           color: rgba(31, 31, 31, 0.86);
+          cursor: none;
         `;
       case '합격':
         return css`
           background: #19baff;
+          cursor: none;
         `;
       case '불합격':
         return css`
           background: #ff4747;
+          cursor: none;
         `;
     }
   };
