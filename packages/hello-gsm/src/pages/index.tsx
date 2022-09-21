@@ -16,7 +16,7 @@ const Home: NextPage<StatusType> = ({ data }) => {
 
   useEffect(() => {
     data ? setLogged(true) : setLogged(false);
-  });
+  }, []);
 
   return (
     <>
