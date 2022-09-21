@@ -15,23 +15,22 @@ import application from 'Api/application';
 import auth from 'Api/auth';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
-  const [page, setPage] = useState<number>(2);
+  let page = 2;
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
   const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
   const searchRef = useRef<HTMLInputElement>(null);
-  const { showPassModal, showScoreModal } = useStore();
   const loadMoreRef = useRef<HTMLDivElement>(null);
+  const { showPassModal, showScoreModal } = useStore();
 
   const handleObserver = useCallback(
     async (
-      entries: IntersectionObserverEntry[],
+      [entry]: IntersectionObserverEntry[],
       observer: IntersectionObserver,
     ) => {
-      // const [target] = entries;
-      if (entries[0].isIntersecting) {
-        observer.unobserve(entries[0].target);
+      if (entry.isIntersecting) {
+        observer.unobserve(entry.target);
         await getList();
-        observer.observe(entries[0].target);
+        observer.observe(entry.target);
       }
     },
     [],
@@ -59,7 +58,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     try {
       const { data }: ApplicantsType = await application.getList(page);
       setApplicationList(list => [...list, ...data]);
-      setPage(prev => prev + 1);
+      page++;
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
