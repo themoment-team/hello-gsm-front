@@ -33,12 +33,9 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       if (entries[0].isIntersecting) {
         observer.unobserve(entries[0].target);
         await getList();
-        console.log(`getApplicationList: ${getApplicationList}`);
-        console.log(getApplicationList);
         setIsPageEnd(getApplicationList.length < 10 ? true : false);
-        console.log(`isPageEnd: ${isPageEnd}`);
-        getApplicationList &&
-          setApplicationList(list => [...list, ...getApplicationList]);
+        // getApplicationList &&
+        //   setApplicationList(list => [...list, ...getApplicationList]);
         // getApplicationList === []
         //   ? setIsPageEnd(getApplicationList === [] ? true : false)
         //   : setIsPageEnd(false);
@@ -69,9 +66,8 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const getList = async () => {
     try {
       const { data }: ApplicantsType = await application.getList(page);
-      getApplicationList = data;
+      setApplicationList(list => [...list, ...data]);
       page++;
-      data ?? setIsPageEnd(true);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
       if (error.response.status === 401) {
