@@ -33,7 +33,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       if (entries[0].isIntersecting) {
         observer.unobserve(entries[0].target);
         await getList();
-        setIsPageEnd(getApplicationList.length < 10 ? true : false);
+        // setIsPageEnd(getApplicationList.length < 10 ? true : false);
         // getApplicationList &&
         //   setApplicationList(list => [...list, ...getApplicationList]);
         // getApplicationList === []
