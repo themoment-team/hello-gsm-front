@@ -197,8 +197,6 @@ const TestCalculatorPage: NextPage = () => {
                     })}
                     placeholder="추가과목입력"
                     key={i}
-                    // 추가과목이 이전에 입력이 되어있었으면 기본 값에 추가과목 값 넣기
-                    defaultValue={newSubject ? newSubject : ''}
                   />
                 ))}
               </S.ValueSection>
@@ -217,7 +215,6 @@ const TestCalculatorPage: NextPage = () => {
                               value !== -1 || freeSemester === '1-1', // 선택하지 않으면 focus 되어 다시 선택하게 함 1학년1학기가 자유학기제일 경우 validate 무효
                           },
                         })}
-                        index={i}
                         freeSemesterProps={'1-1'}
                       />
                     ))}
@@ -231,7 +228,6 @@ const TestCalculatorPage: NextPage = () => {
                               value !== -1 || freeSemester === '1-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                           },
                         })}
-                        index={subjects.length + i}
                         freeSemesterProps={'1-1'}
                       />
                     ))}
@@ -250,7 +246,6 @@ const TestCalculatorPage: NextPage = () => {
                               value !== -1 || freeSemester === '1-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                           },
                         })}
-                        index={i}
                         freeSemesterProps={'1-2'}
                       />
                     ))}
@@ -264,7 +259,6 @@ const TestCalculatorPage: NextPage = () => {
                               value !== -1 || freeSemester === '1-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                           },
                         })}
-                        index={subjects.length + i}
                         freeSemesterProps={'1-2'}
                       />
                     ))}
@@ -285,7 +279,6 @@ const TestCalculatorPage: NextPage = () => {
                           value !== -1 || freeSemester === '2-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
-                    index={i}
                     freeSemesterProps={'2-1'}
                   />
                 ))}
@@ -299,7 +292,6 @@ const TestCalculatorPage: NextPage = () => {
                           value !== -1 || freeSemester === '2-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
-                    index={subjects.length + i}
                     freeSemesterProps={'2-1'}
                   />
                 ))}
@@ -319,7 +311,6 @@ const TestCalculatorPage: NextPage = () => {
                           value !== -1 || freeSemester === '2-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
-                    index={i}
                     freeSemesterProps={'2-2'}
                   />
                 ))}
@@ -333,7 +324,6 @@ const TestCalculatorPage: NextPage = () => {
                           value !== -1 || freeSemester === '2-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
-                    index={subjects.length + i}
                     freeSemesterProps={'2-2'}
                   />
                 ))}
@@ -353,7 +343,6 @@ const TestCalculatorPage: NextPage = () => {
                           value !== -1 || freeSemester === '3-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
-                    index={i}
                     freeSemesterProps={'3-1'}
                   />
                 ))}
@@ -367,7 +356,6 @@ const TestCalculatorPage: NextPage = () => {
                             value !== -1 || freeSemester === '3-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                         },
                       })}
-                      index={subjects.length + i}
                       freeSemesterProps={'3-1'}
                     />
                     <S.DeleteNewSubject onClick={() => DeleteNewSubjects(i)}>
@@ -413,7 +401,6 @@ const TestCalculatorPage: NextPage = () => {
                       unSelected: value => value !== -1,
                     },
                   })}
-                  index={i}
                   artSports
                 />
               ))}
@@ -430,7 +417,6 @@ const TestCalculatorPage: NextPage = () => {
                       unSelected: value => value !== -1,
                     },
                   })}
-                  index={3 + i}
                   artSports
                 />
               ))}
@@ -447,7 +433,6 @@ const TestCalculatorPage: NextPage = () => {
                       unSelected: value => value !== -1,
                     },
                   })}
-                  index={6 + i}
                   artSports
                 />
               ))}

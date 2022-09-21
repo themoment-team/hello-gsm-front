@@ -5,8 +5,6 @@ import useStore from 'stores/StoreContainer';
 
 interface ScoreSelectProps {
   register: UseFormRegisterReturn;
-  scoreArray?: number[] | undefined;
-  index: number;
   freeSemesterProps?: string | null;
   artSports?: boolean;
 }
@@ -21,8 +19,6 @@ interface ScoreSelectProps {
  */
 const ScoreSelect: NextPage<ScoreSelectProps> = ({
   register,
-  scoreArray,
-  index,
   freeSemesterProps,
   artSports = false,
 }: ScoreSelectProps) => {
@@ -34,7 +30,7 @@ const ScoreSelect: NextPage<ScoreSelectProps> = ({
       {freeSemester === freeSemesterProps && system === '자유학기제' ? (
         <S.FreeSemester>자유학기제</S.FreeSemester>
       ) : (
-        <S.Select defaultValue={scoreArray && scoreArray[index]} {...register}>
+        <S.Select {...register}>
           <option value={-1}>선택</option>
 
           <option value={5}>A</option>
