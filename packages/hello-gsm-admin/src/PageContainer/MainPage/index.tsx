@@ -9,7 +9,8 @@ import application from 'Api/application';
 import auth from 'Api/auth';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
-  const [pageIndex, setPageIndex] = useState<number>(2);
+  // const [pageIndex, setPageIndex] = useState<number>(2);
+  let pageIndex = 2;
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
   const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
   const searchRef = useRef<HTMLInputElement>(null);
@@ -25,7 +26,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         keyword,
       );
       setApplicationList(list => [...list, ...data]);
-      setPageIndex(page => page + 1);
+      pageIndex++;
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
@@ -49,7 +50,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     try {
       const { data }: ApplicantsType = await application.getList(1, keyword);
       setApplicationList(data);
-      setPageIndex(2);
+      pageIndex = 2;
       // console.log(page);
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
@@ -127,16 +128,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
             />
             <S.SearchButton onClick={search}>검색</S.SearchButton>
           </S.Searchbox>
-          <S.Print
-            onClick={() => {
-              setPageIndex(page => {
-                console.log(page);
-                return page++;
-              });
-            }}
-          >
-            수험표 출력
-          </S.Print>
+          <S.Print>수험표 출력</S.Print>
         </S.FunctionBox>
         <MainpageHeader />
         <S.ContentList>
