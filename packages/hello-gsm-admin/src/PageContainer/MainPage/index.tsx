@@ -53,7 +53,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     try {
       const { data }: ApplicantsType = await application.getList(page, keyword);
       setApplicationList(list => [...list, ...data]);
-      page++;
+      page = page + 1;
       console.log(page);
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
