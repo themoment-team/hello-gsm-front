@@ -9,7 +9,7 @@ import application from 'Api/application';
 import auth from 'Api/auth';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
-  let page = 2;
+  const [page, setPage] = useState<number>(2);
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
   const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
   const searchRef = useRef<HTMLInputElement>(null);
@@ -59,8 +59,8 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     try {
       const { data }: ApplicantsType = await application.getList(page, keyword);
       setApplicationList(list => [...list, ...data]);
-      page = page + 1;
-      console.log(page);
+      setPage(prev => prev + 1);
+      // console.log(page);
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
@@ -84,8 +84,8 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     try {
       const { data }: ApplicantsType = await application.getList(1, keyword);
       setApplicationList(data);
-      page = 2;
-      console.log(page);
+      setPage(2);
+      // console.log(page);
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 검색 결과 요청
