@@ -8,12 +8,8 @@ import * as S from './style';
 
 const ScoreModal: React.FC = () => {
   const scoreRef = useRef<HTMLInputElement>(null);
-  const {
-    setShowScoreModal,
-    modalRegistrationNumber,
-    scoreModalValue,
-    setScoreModalValue,
-  } = useStore();
+  const { setShowScoreModal, modalRegistrationNumber, setScoreModalValue } =
+    useStore();
 
   const removeClick = useCallback((e: MouseEvent<HTMLDivElement>): void => {
     e.stopPropagation();
