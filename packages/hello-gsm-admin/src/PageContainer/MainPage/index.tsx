@@ -73,6 +73,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
 
   const search = async () => {
     const keyword = searchRef.current?.value;
+    setIsPageEnd(false);
     try {
       const { data }: ApplicantsType = await application.getList(1, keyword);
       setApplicationList(data);
