@@ -49,7 +49,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   }, [handleObserver]);
 
   useEffect(() => {
-    console.log(`effect : ${pageIndex}`);
     if (isPageEnd) {
       setPageIndex(2);
     } else {
@@ -135,7 +134,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
               ref={searchRef}
               onKeyPress={enterEvent}
             />
-            <S.SearchButton onClick={search}>검색</S.SearchButton>
+            <S.SearchButton onClick={getList}>검색</S.SearchButton>
           </S.Searchbox>
           <S.Print
             onClick={() =>
