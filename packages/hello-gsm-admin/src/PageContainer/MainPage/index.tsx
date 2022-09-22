@@ -23,12 +23,11 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     ) => {
       if (entry.isIntersecting) {
         observer.unobserve(entry.target);
-        console.log(pageIndex);
         await getList();
         observer.observe(entry.target);
       }
     },
-    [pageIndex],
+    [pageIndex, applicationList],
   );
 
   useEffect(() => {
