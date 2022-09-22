@@ -20,6 +20,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const getList = useCallback(async () => {
     const keyword = searchRef.current?.value;
     console.log('getList');
+    console.log(pageIndex);
     try {
       const { data }: ApplicantsType = await application.getList(
         pageIndex,
@@ -47,6 +48,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const search = async () => {
     const keyword = searchRef.current?.value;
     pageIndex = 2;
+    console.log(pageIndex);
     setIsPageEnd(false);
     try {
       const { data }: ApplicantsType = await application.getList(1, keyword);
