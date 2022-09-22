@@ -59,6 +59,8 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const getList = async () => {
     const keyword = searchRef.current?.value;
     console.log(pageIndex);
+    console.log(applicationList);
+    console.log(isPageEnd);
     try {
       const { data }: ApplicantsType = await application.getList(
         pageIndex,
