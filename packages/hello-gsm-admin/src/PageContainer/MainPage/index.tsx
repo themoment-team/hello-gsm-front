@@ -49,6 +49,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   }, [handleObserver]);
 
   useEffect(() => {
+    console.log(`effect : ${pageIndex}`);
     if (isPageEnd) {
       setPageIndex(2);
     } else {
