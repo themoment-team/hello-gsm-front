@@ -29,6 +29,9 @@ const ContentBox: React.FC<ContentType> = ({
   },
 }) => {
   const isResult: boolean = new Date() < new Date('2022-11-01') ? true : false;
+  const [score, setScore] = useState<number | null>(
+    parseFloat(application_score?.personalityEvaluationScore ?? '') || null,
+  );
   const firstResult: '미정' | '합격' | '불합격' = !isResult
     ? '미정'
     : firstResultScreening !== null
@@ -36,8 +39,22 @@ const ContentBox: React.FC<ContentType> = ({
     : '불합격';
   const [documentreception, setDocumentreception] =
     useState<boolean>(isDocumentReception);
-  const { setShowScoreModal, setModalName, setModalRegistrationNumber } =
-    useStore();
+  const {
+    showScoreModal,
+    setShowScoreModal,
+    setModalName,
+    modalRegistrationNumber,
+    setModalRegistrationNumber,
+    scoreModalValue,
+  } = useStore();
+
+  useEffect(() => {
+    if (!showScoreModal) {
+      if (modalRegistrationNumber === registrationNumber) {
+        setScore(scoreModalValue);
+      }
+    }
+  }, [showScoreModal]);
 
   const documentSubmission = async () => {
     const data = {
@@ -117,9 +134,7 @@ const ContentBox: React.FC<ContentType> = ({
         </S.TeacherNumber>
       </S.Content>
       <S.Button css={firstResultStyle}>{firstResult}</S.Button>
-      <S.Button onClick={scoreButtonClick}>
-        {application_score?.personalityEvaluationScore || '입력'}
-      </S.Button>
+      <S.Button onClick={scoreButtonClick}>{score ?? '입력'}</S.Button>
     </S.ContentBox>
   );
 };
