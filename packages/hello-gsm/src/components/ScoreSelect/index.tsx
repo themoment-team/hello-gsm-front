@@ -8,6 +8,7 @@ interface ScoreSelectProps {
   freeSemesterProps?: string | null;
   artSports?: boolean;
 }
+
 /**
  *
  * @param register - register 값
