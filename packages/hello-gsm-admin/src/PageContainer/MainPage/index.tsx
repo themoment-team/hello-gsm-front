@@ -48,6 +48,12 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     return () => observer && observer.disconnect();
   }, [handleObserver]);
 
+  useEffect(() => {
+    setInterval(() => {
+      console.log(page);
+    }, 1000);
+  });
+
   const getList = async () => {
     const keyword = searchRef.current?.value;
     try {
