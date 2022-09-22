@@ -48,14 +48,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     return () => observer && observer.disconnect();
   }, [handleObserver]);
 
-  useEffect(() => {
-    if (isPageEnd) {
-      setPageIndex(2);
-    } else {
-      setPageIndex(page => page + 1);
-    }
-  }, [applicationList]);
-
   const getList = async () => {
     const keyword = searchRef.current?.value;
     console.log(pageIndex);
@@ -95,6 +87,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     try {
       const { data }: ApplicantsType = await application.getList(1, keyword);
       setApplicationList(data);
+      setPageIndex(2);
       // console.log(page);
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
