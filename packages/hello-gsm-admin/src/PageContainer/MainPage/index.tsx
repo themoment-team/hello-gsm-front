@@ -73,11 +73,12 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
 
   const search = async () => {
     const keyword = searchRef.current?.value;
-    await setIsPageEnd(false);
+    setIsPageEnd(false);
     try {
       const { data }: ApplicantsType = await application.getList(1, keyword);
       setApplicationList(data);
       page = 2;
+      console.log(page);
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 검색 결과 요청
