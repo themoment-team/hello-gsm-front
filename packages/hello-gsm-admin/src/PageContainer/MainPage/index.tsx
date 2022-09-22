@@ -134,18 +134,9 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
               ref={searchRef}
               onKeyPress={enterEvent}
             />
-            <S.SearchButton onClick={getList}>검색</S.SearchButton>
+            <S.SearchButton onClick={search}>검색</S.SearchButton>
           </S.Searchbox>
-          <S.Print
-            onClick={() =>
-              setPageIndex(prev => {
-                console.log(prev);
-                return prev + 1;
-              })
-            }
-          >
-            수험표 출력
-          </S.Print>
+          <S.Print onClick={getList}>수험표 출력</S.Print>
         </S.FunctionBox>
         <MainpageHeader />
         <S.ContentList>
