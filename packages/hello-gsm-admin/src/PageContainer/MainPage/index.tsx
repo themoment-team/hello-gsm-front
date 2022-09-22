@@ -67,6 +67,10 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         keyword,
       );
       setApplicationList(list => [...list, ...data]);
+      setPageIndex(page => {
+        console.log(page);
+        return page + 1;
+      });
       // console.log(page);
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
@@ -136,7 +140,14 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
             />
             <S.SearchButton onClick={search}>검색</S.SearchButton>
           </S.Searchbox>
-          <S.Print onClick={() => setPageIndex(page => page++)}>
+          <S.Print
+            onClick={() => {
+              setPageIndex(page => {
+                console.log(page);
+                return page++;
+              });
+            }}
+          >
             수험표 출력
           </S.Print>
         </S.FunctionBox>
