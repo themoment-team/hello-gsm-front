@@ -16,41 +16,9 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const { showScoreModal } = useStore();
 
-  const handleObserver = async (
-    [entry]: IntersectionObserverEntry[],
-    observer: IntersectionObserver,
-  ) => {
-    if (entry.isIntersecting) {
-      observer.unobserve(entry.target);
-      console.log(pageIndex);
-      await getList();
-      observer.observe(entry.target);
-    }
-  };
-
-  useEffect(() => {
-    const option = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0,
-    };
-
-    let observer: IntersectionObserver;
-
-    if (loadMoreRef) {
-      observer = new IntersectionObserver(handleObserver, option);
-
-      loadMoreRef.current && observer.observe(loadMoreRef.current);
-    }
-
-    return () => observer && observer.disconnect();
-  }, [handleObserver]);
-
-  const getList = async () => {
+  const getList = useCallback(async () => {
     const keyword = searchRef.current?.value;
-    console.log(pageIndex);
-    console.log(applicationList);
-    console.log(isPageEnd);
+    console.log('getList');
     try {
       const { data }: ApplicantsType = await application.getList(
         pageIndex,
@@ -58,7 +26,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       );
       setApplicationList(list => [...list, ...data]);
       setPageIndex(page => {
-        console.log(page);
         return page + 1;
       });
       // console.log(page);
@@ -77,7 +44,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         console.log(error);
       }
     }
-  };
+  }, [pageIndex]);
 
   const search = async () => {
     const keyword = searchRef.current?.value;
@@ -103,6 +70,38 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       }
     }
   };
+
+  const handleObserver = useCallback(
+    async (
+      [entry]: IntersectionObserverEntry[],
+      observer: IntersectionObserver,
+    ) => {
+      if (entry.isIntersecting) {
+        observer.unobserve(entry.target);
+        await getList();
+        observer.observe(entry.target);
+      }
+    },
+    [getList],
+  );
+
+  useEffect(() => {
+    const option = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0,
+    };
+
+    let observer: IntersectionObserver;
+
+    if (loadMoreRef) {
+      observer = new IntersectionObserver(handleObserver, option);
+
+      loadMoreRef.current && observer.observe(loadMoreRef.current);
+    }
+
+    return () => observer && observer.disconnect();
+  }, [handleObserver]);
 
   const enterEvent = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
