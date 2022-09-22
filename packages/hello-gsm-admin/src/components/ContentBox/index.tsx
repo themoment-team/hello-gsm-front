@@ -46,6 +46,7 @@ const ContentBox: React.FC<ContentType> = ({
     modalRegistrationNumber,
     setModalRegistrationNumber,
     scoreModalValue,
+    setScoreModalValue,
   } = useStore();
 
   useEffect(() => {
@@ -106,6 +107,7 @@ const ContentBox: React.FC<ContentType> = ({
     setModalRegistrationNumber(registrationNumber);
     setModalName(name);
     setShowScoreModal();
+    setScoreModalValue(score ?? 0);
   };
 
   return (

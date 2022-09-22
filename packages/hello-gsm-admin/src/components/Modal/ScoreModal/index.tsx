@@ -8,8 +8,12 @@ import * as S from './style';
 
 const ScoreModal: React.FC = () => {
   const scoreRef = useRef<HTMLInputElement>(null);
-  const { setShowScoreModal, modalRegistrationNumber, setScoreModalValue } =
-    useStore();
+  const {
+    setShowScoreModal,
+    modalRegistrationNumber,
+    scoreModalValue,
+    setScoreModalValue,
+  } = useStore();
 
   const removeClick = useCallback((e: MouseEvent<HTMLDivElement>): void => {
     e.stopPropagation();
@@ -54,6 +58,7 @@ const ScoreModal: React.FC = () => {
           <S.ScoreWrap>
             <ModalDescription />
             <S.ScoreInput
+              value={scoreModalValue ?? 0}
               ref={scoreRef}
               placeholder="2차 점수를 입력해주세요."
             />
