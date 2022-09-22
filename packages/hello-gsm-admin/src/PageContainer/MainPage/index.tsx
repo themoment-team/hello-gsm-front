@@ -54,6 +54,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       const { data }: ApplicantsType = await application.getList(page, keyword);
       setApplicationList(list => [...list, ...data]);
       page++;
+      console.log(page);
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
