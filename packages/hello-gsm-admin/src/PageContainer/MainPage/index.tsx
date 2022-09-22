@@ -21,6 +21,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     const keyword = searchRef.current?.value;
     console.log('getList');
     console.log(pageIndex);
+    console.log(isPageEnd);
     try {
       const { data }: ApplicantsType = await application.getList(
         pageIndex,
@@ -43,7 +44,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         console.log(error);
       }
     }
-  }, [pageIndex]);
+  }, [isPageEnd, pageIndex]);
 
   const search = async () => {
     const keyword = searchRef.current?.value;
@@ -130,7 +131,14 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
             />
             <S.SearchButton onClick={search}>검색</S.SearchButton>
           </S.Searchbox>
-          <S.Print>수험표 출력</S.Print>
+          <S.Print
+            onClick={() => {
+              console.log(isPageEnd);
+              console.log(pageIndex);
+            }}
+          >
+            수험표 출력
+          </S.Print>
         </S.FunctionBox>
         <MainpageHeader />
         <S.ContentList>
