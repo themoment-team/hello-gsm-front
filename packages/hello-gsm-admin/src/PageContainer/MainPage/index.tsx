@@ -25,10 +25,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         keyword,
       );
       setApplicationList(list => [...list, ...data]);
-      setPageIndex(page => {
-        return page + 1;
-      });
-      // console.log(page);
+      setPageIndex(page => page + 1);
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
