@@ -28,7 +28,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         observer.observe(entry.target);
       }
     },
-    [],
+    [pageIndex],
   );
 
   useEffect(() => {
