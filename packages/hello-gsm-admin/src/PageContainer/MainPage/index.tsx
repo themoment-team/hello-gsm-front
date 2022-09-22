@@ -136,7 +136,9 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
             />
             <S.SearchButton onClick={search}>검색</S.SearchButton>
           </S.Searchbox>
-          <S.Print onClick={getList}>수험표 출력</S.Print>
+          <S.Print onClick={() => setPageIndex(page => page++)}>
+            수험표 출력
+          </S.Print>
         </S.FunctionBox>
         <MainpageHeader />
         <S.ContentList>
