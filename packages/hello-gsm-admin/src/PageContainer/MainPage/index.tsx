@@ -73,7 +73,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
 
   const search = async () => {
     const keyword = searchRef.current?.value;
-    setIsPageEnd(false);
+    await setIsPageEnd(false);
     try {
       const { data }: ApplicantsType = await application.getList(1, keyword);
       setApplicationList(data);
@@ -122,7 +122,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
             />
             <S.SearchButton onClick={search}>검색</S.SearchButton>
           </S.Searchbox>
-          <S.Print>수험표 출력</S.Print>
+          <S.Print onClick={() => console.log(isPageEnd)}>수험표 출력</S.Print>
         </S.FunctionBox>
         <MainpageHeader />
         <S.ContentList>
