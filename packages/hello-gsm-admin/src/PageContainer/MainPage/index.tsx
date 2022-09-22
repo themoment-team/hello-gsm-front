@@ -17,7 +17,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const { showScoreModal } = useStore();
 
-  const getList = useCallback(async () => {
+  const getList = async () => {
     const keyword = searchRef.current?.value;
     console.log('getList');
     console.log(pageIndex);
@@ -28,8 +28,13 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         keyword,
       );
       setApplicationList(list => [...list, ...data]);
-      pageIndex++;
-      setIsPageEnd(data.length < 10 ? true : false);
+      if (data.length < 10) {
+        setIsPageEnd(true);
+        pageIndex = 2;
+      } else {
+        setIsPageEnd(false);
+        pageIndex++;
+      }
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
       if (error.response.status === 401) {
@@ -44,7 +49,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         console.log(error);
       }
     }
-  }, [isPageEnd, pageIndex]);
+  };
 
   const search = async () => {
     const keyword = searchRef.current?.value;
@@ -83,7 +88,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         observer.observe(entry.target);
       }
     },
-    [getList],
+    [],
   );
 
   useEffect(() => {
