@@ -46,11 +46,11 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
 
   const search = async () => {
     const keyword = searchRef.current?.value;
+    pageIndex = 2;
     setIsPageEnd(false);
     try {
       const { data }: ApplicantsType = await application.getList(1, keyword);
       setApplicationList(data);
-      pageIndex = 2;
       // console.log(page);
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
