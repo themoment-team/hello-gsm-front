@@ -24,7 +24,7 @@ const ContentBox: React.FC<ContentType> = ({
       schoolName,
       screening,
       teacherCellphoneNumber,
-      application_score?,
+      application_score,
     },
   },
 }) => {
