@@ -16,39 +16,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const { showScoreModal } = useStore();
 
-  const handleObserver = useCallback(
-    async (
-      [entry]: IntersectionObserverEntry[],
-      observer: IntersectionObserver,
-    ) => {
-      if (entry.isIntersecting) {
-        observer.unobserve(entry.target);
-        await getList();
-        observer.observe(entry.target);
-      }
-    },
-    [pageIndex, applicationList],
-  );
-
-  useEffect(() => {
-    const option = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0,
-    };
-
-    let observer: IntersectionObserver;
-
-    if (loadMoreRef) {
-      observer = new IntersectionObserver(handleObserver, option);
-
-      loadMoreRef.current && observer.observe(loadMoreRef.current);
-    }
-
-    return () => observer && observer.disconnect();
-  }, [handleObserver]);
-
-  const getList = async () => {
+  const getList = useCallback(async () => {
     const keyword = searchRef.current?.value;
     console.log(pageIndex);
     console.log(applicationList);
@@ -79,7 +47,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         console.log(error);
       }
     }
-  };
+  }, [applicationList, isPageEnd, pageIndex]);
 
   const search = async () => {
     const keyword = searchRef.current?.value;
@@ -111,6 +79,38 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       search();
     }
   };
+
+  const handleObserver = useCallback(
+    async (
+      [entry]: IntersectionObserverEntry[],
+      observer: IntersectionObserver,
+    ) => {
+      if (entry.isIntersecting) {
+        observer.unobserve(entry.target);
+        await getList();
+        observer.observe(entry.target);
+      }
+    },
+    [getList],
+  );
+
+  useEffect(() => {
+    const option = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0,
+    };
+
+    let observer: IntersectionObserver;
+
+    if (loadMoreRef) {
+      observer = new IntersectionObserver(handleObserver, option);
+
+      loadMoreRef.current && observer.observe(loadMoreRef.current);
+    }
+
+    return () => observer && observer.disconnect();
+  }, [handleObserver]);
 
   return (
     <S.MainPage>
