@@ -9,7 +9,7 @@ import application from 'Api/application';
 import auth from 'Api/auth';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
-  const [pageIndex, setPageIndex] = useState<number>(1);
+  const [pageIndex, setPageIndex] = useState<number>(2);
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
   const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
   const searchRef = useRef<HTMLInputElement>(null);
@@ -23,6 +23,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     ) => {
       if (entry.isIntersecting) {
         observer.unobserve(entry.target);
+        console.log(pageIndex);
         await getList();
         observer.observe(entry.target);
       }
