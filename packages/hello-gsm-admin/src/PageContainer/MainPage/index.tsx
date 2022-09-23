@@ -42,7 +42,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     }
   }, []);
 
-  const search = async () => {
+  const search = useCallback(async () => {
     const keyword = searchRef.current?.value;
     // setPageIndex(2);
     try {
@@ -64,7 +64,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         console.log(error);
       }
     }
-  };
+  }, []);
 
   const handleObserver = useCallback(
     async (
@@ -96,7 +96,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     loadMoreRef.current && observer.observe(loadMoreRef.current);
 
     return () => observer && observer.disconnect();
-  }, [handleObserver]);
+  }, [handleObserver, search]);
 
   const enterEvent = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
