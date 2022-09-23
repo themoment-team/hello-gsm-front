@@ -113,7 +113,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     loadMoreRef.current && observer.observe(loadMoreRef.current);
 
     return () => observer && observer.disconnect();
-  }, []);
+  }, [handleObserver]);
 
   const enterEvent = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
