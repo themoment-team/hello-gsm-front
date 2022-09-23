@@ -23,9 +23,9 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   //   }
   // }, [isPageEnd]);
 
-  useEffect(() => {
-    pageIndexRef.current = pageIndex;
-  }, [pageIndex]);
+  // useEffect(() => {
+  //   pageIndexRef.current = pageIndex;
+  // }, [pageIndex]);
 
   const getList = useCallback(async () => {
     const keyword = searchRef.current?.value;
@@ -37,7 +37,8 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         keyword,
       );
       setApplicationList(list => [...list, ...data]);
-      setPageIndex(index => index + 1);
+      // setPageIndex(index => index + 1);
+      pageIndexRef.current += 1;
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
@@ -57,7 +58,8 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
 
   const search = async () => {
     const keyword = searchRef.current?.value;
-    setPageIndex(2);
+    // setPageIndex(2);
+    pageIndexRef.current = 2;
     console.log(pageIndex);
     setIsPageEnd(false);
     try {
