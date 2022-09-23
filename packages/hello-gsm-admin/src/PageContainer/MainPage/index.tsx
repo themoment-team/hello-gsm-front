@@ -40,7 +40,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         console.log(error);
       }
     }
-  }, []);
+  }, [pageIndexRef]);
 
   const search = async () => {
     const keyword = searchRef.current?.value;
@@ -127,7 +127,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
           <S.Print
             onClick={() => {
               console.log(isPageEnd);
-              console.log(pageIndex);
+              console.log(pageIndexRef.current);
             }}
           >
             수험표 출력
