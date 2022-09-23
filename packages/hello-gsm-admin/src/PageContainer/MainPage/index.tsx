@@ -9,35 +9,21 @@ import application from 'Api/application';
 import auth from 'Api/auth';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
-  const [pageIndex, setPageIndex] = useState<number>(2);
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
   const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
-  const pageIndexRef = useRef<number>(pageIndex);
+  const pageIndexRef = useRef<number>(2);
   const searchRef = useRef<HTMLInputElement>(null);
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const { showScoreModal } = useStore();
 
-  // useEffect(() => {
-  //   if (isPageEnd) {
-  //     pageIndex = 2;
-  //   }
-  // }, [isPageEnd]);
-
-  // useEffect(() => {
-  //   pageIndexRef.current = pageIndex;
-  // }, [pageIndex]);
-
   const getList = useCallback(async () => {
     const keyword = searchRef.current?.value;
-    console.log('getList');
-    console.log(pageIndex);
     try {
       const { data }: ApplicantsType = await application.getList(
         pageIndexRef.current,
         keyword,
       );
       setApplicationList(list => [...list, ...data]);
-      // setPageIndex(index => index + 1);
       pageIndexRef.current += 1;
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
@@ -54,18 +40,15 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         console.log(error);
       }
     }
-  }, [pageIndex]);
+  }, []);
 
   const search = async () => {
     const keyword = searchRef.current?.value;
     // setPageIndex(2);
-    pageIndexRef.current = 2;
-    console.log(pageIndex);
-    setIsPageEnd(false);
     try {
       const { data }: ApplicantsType = await application.getList(1, keyword);
+      pageIndexRef.current = 2;
       setApplicationList(data);
-      // console.log(page);
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 검색 결과 요청
@@ -106,14 +89,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       rootMargin: '0px',
       threshold: 0,
     };
-
-    // let observer: IntersectionObserver;
-
-    // if (loadMoreRef) {
-    //   observer = new IntersectionObserver(handleObserver, option);
-
-    //   loadMoreRef.current && observer.observe(loadMoreRef.current);
-    // }
 
     const observer = new IntersectionObserver(handleObserver, option);
 
