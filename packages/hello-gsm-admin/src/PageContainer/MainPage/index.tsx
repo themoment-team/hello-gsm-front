@@ -84,39 +84,15 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     ) => {
       if (entry.isIntersecting) {
         observer.unobserve(entry.target);
-        const keyword = searchRef.current?.value;
-        console.log('getList');
-        console.log(pageIndex);
-        console.log(isPageEnd);
-        try {
-          const { data }: ApplicantsType = await application.getList(
-            pageIndex,
-            keyword,
-          );
-          setApplicationList(list => [...list, ...data]);
-          setPageIndex(index => index + 1);
-          setIsPageEnd(data.length < 10 ? true : false);
-        } catch (error: any) {
-          // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
-          if (error.response.status === 401) {
-            try {
-              // accessToken 발급
-              await auth.refresh();
-              getList();
-            } catch (error) {
-              console.log(error);
-            }
-          } else {
-            console.log(error);
-          }
-        }
+        await getList();
         observer.observe(entry.target);
       }
     },
-    [getList, isPageEnd, pageIndex],
+    [getList],
   );
 
   useEffect(() => {
+    console.log('effect');
     const option = {
       root: null,
       rootMargin: '0px',
