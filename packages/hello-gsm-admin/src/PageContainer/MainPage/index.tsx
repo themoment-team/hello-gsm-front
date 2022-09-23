@@ -73,6 +73,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     ) => {
       if (entry.isIntersecting) {
         observer.unobserve(entry.target);
+        console.log('observe');
         await getList();
         observer.observe(entry.target);
       }
