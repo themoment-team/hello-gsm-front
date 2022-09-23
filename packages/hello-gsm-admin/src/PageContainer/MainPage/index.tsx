@@ -91,6 +91,8 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   );
 
   useEffect(() => {
+    if (!loadMoreRef.current) return;
+
     console.log('effect');
     const option = {
       root: null,
@@ -98,13 +100,17 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       threshold: 0,
     };
 
-    let observer: IntersectionObserver;
+    // let observer: IntersectionObserver;
 
-    if (loadMoreRef) {
-      observer = new IntersectionObserver(handleObserver, option);
+    // if (loadMoreRef) {
+    //   observer = new IntersectionObserver(handleObserver, option);
 
-      loadMoreRef.current && observer.observe(loadMoreRef.current);
-    }
+    //   loadMoreRef.current && observer.observe(loadMoreRef.current);
+    // }
+
+    const observer = new IntersectionObserver(handleObserver, option);
+
+    loadMoreRef.current && observer.observe(loadMoreRef.current);
 
     return () => observer && observer.disconnect();
   }, [handleObserver]);
