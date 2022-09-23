@@ -48,7 +48,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         console.log(error);
       }
     }
-  }, [pageIndex]);
+  }, []);
 
   const search = async () => {
     const keyword = searchRef.current?.value;
@@ -87,7 +87,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         observer.observe(entry.target);
       }
     },
-    [getList],
+    [],
   );
 
   useEffect(() => {
