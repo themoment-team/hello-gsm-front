@@ -48,7 +48,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         console.log(error);
       }
     }
-  }, []);
+  }, [pageIndex]);
 
   const search = async () => {
     const keyword = searchRef.current?.value;
