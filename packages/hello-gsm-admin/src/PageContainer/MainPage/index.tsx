@@ -139,7 +139,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
           {applicationList.map((content, index: number) => (
             <ContentBox content={content} key={index} />
           ))}
-          {!isPageEnd && <S.Target ref={loadMoreRef} />}
+          <S.Target ref={loadMoreRef} />
         </S.ContentList>
       </S.MainPageContent>
       <S.BlueBall />
