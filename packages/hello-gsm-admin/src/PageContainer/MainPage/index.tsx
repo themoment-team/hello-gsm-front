@@ -9,7 +9,8 @@ import application from 'Api/application';
 import auth from 'Api/auth';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
-  const [pageIndex, setPageIndex] = useState<number>(2);
+  // const [pageIndex, setPageIndex] = useState<number>(2);
+  let pageIndex = 2;
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
   const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
   const searchRef = useRef<HTMLInputElement>(null);
@@ -22,7 +23,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   //   }
   // }, [isPageEnd]);
 
-  const getList = async () => {
+  const getList = useCallback(async () => {
     const keyword = searchRef.current?.value;
     console.log('getList');
     console.log(pageIndex);
@@ -32,7 +33,8 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         keyword,
       );
       setApplicationList(list => [...list, ...data]);
-      setPageIndex(index => index + 1);
+      // setPageIndex(index => index + 1);
+      pageIndex++;
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
@@ -48,11 +50,12 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         console.log(error);
       }
     }
-  };
+  }, [pageIndex]);
 
   const search = async () => {
     const keyword = searchRef.current?.value;
-    setPageIndex(2);
+    // setPageIndex(2);
+    pageIndex = 2;
     console.log(pageIndex);
     setIsPageEnd(false);
     try {
@@ -76,16 +79,19 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     }
   };
 
-  const handleObserver = async (
-    [entry]: IntersectionObserverEntry[],
-    observer: IntersectionObserver,
-  ) => {
-    if (entry.isIntersecting) {
-      observer.unobserve(entry.target);
-      await getList();
-      observer.observe(entry.target);
-    }
-  };
+  const handleObserver = useCallback(
+    async (
+      [entry]: IntersectionObserverEntry[],
+      observer: IntersectionObserver,
+    ) => {
+      if (entry.isIntersecting) {
+        observer.unobserve(entry.target);
+        await getList();
+        observer.observe(entry.target);
+      }
+    },
+    [getList],
+  );
 
   useEffect(() => {
     if (!loadMoreRef.current) return;
