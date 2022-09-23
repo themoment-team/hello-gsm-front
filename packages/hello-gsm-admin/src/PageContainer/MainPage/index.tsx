@@ -24,7 +24,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         keyword,
       );
       setApplicationList(list => [...list, ...data]);
-      pageIndexRef.current += 1;
+      pageIndexRef.current++;
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
@@ -42,9 +42,8 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     }
   }, []);
 
-  const search = useCallback(async () => {
+  const search = async () => {
     const keyword = searchRef.current?.value;
-    // setPageIndex(2);
     try {
       const { data }: ApplicantsType = await application.getList(1, keyword);
       pageIndexRef.current = 2;
@@ -64,7 +63,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         console.log(error);
       }
     }
-  }, []);
+  };
 
   const handleObserver = useCallback(
     async (
@@ -73,7 +72,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     ) => {
       if (entry.isIntersecting) {
         observer.unobserve(entry.target);
-        console.log('observe');
         await getList();
         observer.observe(entry.target);
       }
@@ -84,7 +82,6 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   useEffect(() => {
     if (!loadMoreRef.current) return;
 
-    console.log('effect');
     const option = {
       root: null,
       rootMargin: '0px',
@@ -125,14 +122,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
             />
             <S.SearchButton onClick={search}>검색</S.SearchButton>
           </S.Searchbox>
-          <S.Print
-            onClick={() => {
-              console.log(isPageEnd);
-              console.log(pageIndexRef.current);
-            }}
-          >
-            수험표 출력
-          </S.Print>
+          <S.Print>수험표 출력</S.Print>
         </S.FunctionBox>
         <MainpageHeader />
         <S.ContentList>
