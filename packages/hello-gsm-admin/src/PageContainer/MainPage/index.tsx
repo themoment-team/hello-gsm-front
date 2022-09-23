@@ -96,7 +96,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
     loadMoreRef.current && observer.observe(loadMoreRef.current);
 
     return () => observer && observer.disconnect();
-  }, [handleObserver, search]);
+  }, [handleObserver, isPageEnd]);
 
   const enterEvent = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -139,7 +139,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
           {applicationList.map((content, index: number) => (
             <ContentBox content={content} key={index} />
           ))}
-          <S.Target ref={loadMoreRef} />
+          {!isPageEnd && <S.Target ref={loadMoreRef} />}
         </S.ContentList>
       </S.MainPageContent>
       <S.BlueBall />
