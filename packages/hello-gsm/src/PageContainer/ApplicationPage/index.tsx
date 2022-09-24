@@ -35,7 +35,6 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
   const [system, setSystem] = useState<string | null>();
   const [freeSemester, setFreeSemester] = useState<string | null>();
 
-  console.log(data);
   // 환산일수
   const conversionDays =
     application?.application_score?.attendanceScore &&
