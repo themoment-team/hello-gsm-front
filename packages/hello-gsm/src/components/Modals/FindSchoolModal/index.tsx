@@ -35,12 +35,6 @@ const FindSchoolModal: React.FC = () => {
     }
   };
 
-  const enterEvent = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      search();
-    }
-  };
-
   useEffect(() => {
     keyword && getSchools();
   }, [keyword]);
@@ -66,6 +60,12 @@ const FindSchoolModal: React.FC = () => {
     setSchoolName(schools[index].SCHUL_NM);
     setSchoolLocation(schools[index].LCTN_SC_NM);
     setShowFindSchoolModal();
+  };
+
+  const enterEvent = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      search();
+    }
   };
 
   const removeClick = useCallback((e: MouseEvent<HTMLDivElement>): void => {
