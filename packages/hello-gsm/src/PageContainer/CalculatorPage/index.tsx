@@ -84,7 +84,6 @@ const CalculatorPage: NextPage = () => {
   // api 요청 보내기
   const TrySubmission = async (data: ScoreType) => {
     // 이전에 제출한 적이 있으면 patch / 없다면 post
-
     isSubmission
       ? await application.patchSecondSubmisson(data)
       : await application.postSecondSubmisson(data);
