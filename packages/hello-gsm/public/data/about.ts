@@ -37,8 +37,8 @@ export const Operating = [
 export const Design = [
   {
     name: '진예원',
-    imageURL: 'https://github.com/ye-wonii.png',
-    githubURL: 'https://github.com/ye-wonii',
+    imageURL: 'https://github.com/iamwls.png',
+    githubURL: 'https://github.com/iamwls',
   },
   {
     name: '안진형',
