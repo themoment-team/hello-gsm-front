@@ -77,7 +77,7 @@ const FindSchoolModal: React.FC = () => {
       <Global
         styles={css`
           body {
-            overflow: ${showFindSchoolModal ? 'scroll' : 'visible'};
+            overflow: ${showFindSchoolModal ? 'hidden' : 'visible'};
           }
         `}
       />
