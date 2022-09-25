@@ -114,6 +114,7 @@ const CalculatorPage: NextPage = () => {
   };
 
   useEffect(() => {
+    console.log('useEffect');
     getUserIdx();
   }, []);
 
