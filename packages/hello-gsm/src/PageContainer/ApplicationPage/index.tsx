@@ -19,6 +19,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
   },
   data,
 }) => {
+  console.log(data);
   // 로컬스토리지 값을 가져와서 등급으로 표시
   const score1_1 = useToString(useLocalstorage('score1_1')) ?? []; // null 값이면 빈 배열
   const score1_2 = useToString(useLocalstorage('score1_2')) ?? [];
