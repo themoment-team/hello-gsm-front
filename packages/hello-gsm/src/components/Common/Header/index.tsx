@@ -20,8 +20,7 @@ const Header: React.FC = () => {
     try {
       await auth.logout();
       setLogged(false);
-      replace('/');
-      pathname === '/' && location.reload();
+      location.reload();
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 logout 요청
       if (error.response.status === 401) {
@@ -31,6 +30,7 @@ const Header: React.FC = () => {
           logout();
         } catch (error) {
           console.log(error);
+          location.reload();
         }
       } else {
         console.log(error);
