@@ -233,9 +233,11 @@ const CalculatorPage: NextPage = () => {
       setLocalstorage('subjects', subjects);
       setLocalstorage('newSubjects', newSubjects);
       setLocalstorage('nonSubjects', nonSubjects);
+      // 자유학기제 정보 저장
       window.localStorage.setItem('system', system);
-      userIdx && window.localStorage.setItem('userIdx', userIdx.toString()); // 유저 정보를 저장
       freeSemester && window.localStorage.setItem('freeSemester', freeSemester);
+      // 유저 정보를 저장
+      userIdx && window.localStorage.setItem('userIdx', userIdx.toString());
 
       // 결과 모달 제어
       setResultArray([
