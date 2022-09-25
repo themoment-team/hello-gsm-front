@@ -84,6 +84,18 @@ const CalculatorPage: NextPage = () => {
   const nonSubjects = ['체육', '미술', '음악'];
   const grades = [1, 2, 3];
 
+  const getUserIdx = async () => {
+    const { user_idx } = await user.info();
+    setUserIdx(user_idx);
+
+    const userIdxStorage = window.localStorage.getItem('userIdx');
+    if (user_idx === userIdxStorage) GetLocalStorage();
+  };
+
+  useEffect(() => {
+    getUserIdx();
+  }, []);
+
   // api 요청 보내기
   const TrySubmission = async (data: ScoreType) => {
     // 이전에 제출한 적이 있으면 patch / 없다면 post
@@ -92,14 +104,6 @@ const CalculatorPage: NextPage = () => {
       ? await application.patchSecondSubmisson(data)
       : await application.postSecondSubmisson(data);
   };
-
-  useEffect(() => {
-    const { user_idx } = user.info();
-    setUserIdx(user_idx);
-
-    const userIdxStorage = window.localStorage.getItem('userIdx');
-    if (user_idx === userIdxStorage) GetLocalStorage();
-  }, []);
 
   const GetLocalStorage = () => {
     score1_1 && setValue('value1_1', score1_1);
