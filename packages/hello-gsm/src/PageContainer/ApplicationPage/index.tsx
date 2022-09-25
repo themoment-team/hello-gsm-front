@@ -3,9 +3,9 @@ import * as S from './style';
 import { GetApplicationType } from 'type/application';
 import useLocalstorage from 'hooks/useLocalstorage';
 import useToString from 'Utils/Calculate/ToString';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import dayjs from 'dayjs';
-import ApplicationStatus from 'components/ApplicantsStatus';
+import { ApplicantsStatus } from 'components';
 import * as I from 'Assets/svg';
 
 const ApplicationPage: NextPage<GetApplicationType> = ({
@@ -19,6 +19,8 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
   },
   data,
 }) => {
+  console.log(data);
+
   // 로컬스토리지 값을 가져와서 등급으로 표시
   const score1_1 = useToString(useLocalstorage('score1_1')) ?? []; // null 값이면 빈 배열
   const score1_2 = useToString(useLocalstorage('score1_2')) ?? [];
@@ -161,7 +163,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
               </thead>
             </S.Table>
             {/* 지원자현황 컴포넌트 */}
-            <ApplicationStatus data={data} />
+            <ApplicantsStatus data={data} />
             <S.Details>
               <S.Pledge>
                 위 학생은 2023학년도 귀교 제1학년에 입학하고자 소정의 서류를
