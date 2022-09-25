@@ -104,7 +104,8 @@ const CalculatorPage: NextPage = () => {
 
   // 유저 정보 가져오기
   const getUserIdx = async () => {
-    const { data } = await user.info();
+    const data = await user.info();
+    console.log('hi');
     console.log(data);
     setUserIdx(data);
 
