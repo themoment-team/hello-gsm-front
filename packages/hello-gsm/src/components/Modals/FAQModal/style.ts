@@ -165,6 +165,7 @@ export const AnswerBody = styled.div`
   line-height: 28px;
   text-align: center;
   color: #525252;
+  overflow-y: scroll;
   @media ${device.tablet} {
     font-size: 17px;
     height: 80%;
