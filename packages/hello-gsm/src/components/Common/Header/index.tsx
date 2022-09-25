@@ -30,10 +30,10 @@ const Header: React.FC = () => {
           logout();
         } catch (error) {
           console.log(error);
+          location.reload();
         }
       } else {
         console.log(error);
-        location.reload();
       }
     }
   };
