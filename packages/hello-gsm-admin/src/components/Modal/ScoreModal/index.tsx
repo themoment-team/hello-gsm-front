@@ -47,6 +47,12 @@ const ScoreModal: React.FC = () => {
     }
   };
 
+  const enterEvent = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      sendScore();
+    }
+  };
+
   return (
     <S.ScoreModal onClick={setShowScoreModal}>
       <S.ScoreModalBox onClick={removeClick}>
@@ -56,6 +62,7 @@ const ScoreModal: React.FC = () => {
             <S.ScoreInput
               ref={scoreRef}
               placeholder="2차 점수를 입력해주세요."
+              onKeyPress={enterEvent}
             />
           </S.ScoreWrap>
           <S.ButtonWrap>
