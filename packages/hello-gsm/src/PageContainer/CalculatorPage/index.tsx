@@ -51,23 +51,13 @@ const CalculatorPage: NextPage = () => {
     freeSemester,
     setFreeSemester,
   } = useStore();
-  const [resultArray, setResultArray] = useState<Array<number>>([]); // 결과 점수 배열
 
-  // 로컬스토리지 값 가져오기
-  const score1_1 = useLocalstorage('score1_1');
-  const score1_2 = useLocalstorage('score1_2');
-  const score2_1 = useLocalstorage('score2_1');
-  const score2_2 = useLocalstorage('score2_2');
-  const score3_1 = useLocalstorage('score3_1');
-  const artSportsScore = useLocalstorage('artSportsScore');
-  const absentScore = useLocalstorage('absentScore');
-  const attendanceScore = useLocalstorage('attendanceScore');
-  const volunteerScore = useLocalstorage('volunteerScore');
-  const getSubjects = useSubjectsLocalstorage('newSubjects');
+  // 결과 점수 배열
+  const [resultArray, setResultArray] = useState<Array<number>>([]);
 
   // 이전에 제출한 경험 여부 판단
   const [isSubmission, setIsSubmission] = useState<boolean>();
-
+  // 유저 정보
   const [userIdx, setUserIdx] = useState<number>();
 
   const lines = ['일반교과', '예체능 교과', '비교과'];
@@ -84,12 +74,41 @@ const CalculatorPage: NextPage = () => {
   const nonSubjects = ['체육', '미술', '음악'];
   const grades = [1, 2, 3];
 
+  // 로컬스토리지 값 가져오기
+  const score1_1 = useLocalstorage('score1_1');
+  const score1_2 = useLocalstorage('score1_2');
+  const score2_1 = useLocalstorage('score2_1');
+  const score2_2 = useLocalstorage('score2_2');
+  const score3_1 = useLocalstorage('score3_1');
+  const artSportsScore = useLocalstorage('artSportsScore');
+  const absentScore = useLocalstorage('absentScore');
+  const attendanceScore = useLocalstorage('attendanceScore');
+  const volunteerScore = useLocalstorage('volunteerScore');
+  const getSubjects = useSubjectsLocalstorage('newSubjects');
+
+  const getLocalStorage = () => {
+    score1_1 && setValue('value1_1', score1_1);
+    score1_2 && setValue('value1_2', score1_2);
+    score2_1 && setValue('value2_1', score2_1);
+    score2_2 && setValue('value2_2', score2_2);
+    score3_1 && setValue('value3_1', score3_1);
+    artSportsScore && setValue('artSportsValue', artSportsScore);
+    absentScore && setValue('absentValue', absentScore);
+    attendanceScore && setValue('attendanceValue', attendanceScore);
+    volunteerScore && setValue('volunteerValue', volunteerScore);
+    getSubjects && setValue('newSubjects', getSubjects);
+    setIsSubmission(artSportsScore ? true : false); // 이전 값이 있다면 true
+    setFreeSemester(window.localStorage.getItem('freeSemester') ?? null);
+    setSystem(window.localStorage.getItem('system') ?? '자유학년제');
+  };
+
+  // 유저 정보 가져오기
   const getUserIdx = async () => {
     const { user_idx } = await user.info();
     setUserIdx(user_idx);
 
     const userIdxStorage = window.localStorage.getItem('userIdx');
-    if (user_idx === userIdxStorage) GetLocalStorage();
+    if (user_idx === userIdxStorage) return getLocalStorage();
   };
 
   useEffect(() => {
@@ -105,52 +124,36 @@ const CalculatorPage: NextPage = () => {
       : await application.postSecondSubmisson(data);
   };
 
-  const GetLocalStorage = () => {
-    score1_1 && setValue('value1_1', score1_1);
-    score1_2 && setValue('value1_2', score1_2);
-    score2_1 && setValue('value2_1', score2_1);
-    score2_2 && setValue('value2_2', score2_2);
-    score3_1 && setValue('value3_1', score3_1);
-    artSportsScore && setValue('artSportsValue', artSportsScore);
-    absentScore && setValue('absentValue', absentScore);
-    attendanceScore && setValue('attendanceValue', attendanceScore);
-    volunteerScore && setValue('volunteerValue', volunteerScore);
-    getSubjects && setValue('newSubjects', getSubjects);
-    setIsSubmission(artSportsScore ? true : false); // 이전 값이 있다면 true
-    setFreeSemester(window.localStorage.getItem('freeSemester') ?? null);
-    setSystem(window.localStorage.getItem('system') ?? '자유학년제');
-  };
-
   // 로컬스토리지 값이 있을 때 초기 값 설정
-  useEffect(() => {
-    score1_1 && setValue('value1_1', score1_1);
-    score1_2 && setValue('value1_2', score1_2);
-    score2_1 && setValue('value2_1', score2_1);
-    score2_2 && setValue('value2_2', score2_2);
-    score3_1 && setValue('value3_1', score3_1);
-    artSportsScore && setValue('artSportsValue', artSportsScore);
-    absentScore && setValue('absentValue', absentScore);
-    attendanceScore && setValue('attendanceValue', attendanceScore);
-    volunteerScore && setValue('volunteerValue', volunteerScore);
-    getSubjects && setValue('newSubjects', getSubjects);
-    setIsSubmission(artSportsScore ? true : false); // 이전 값이 있다면 true
-    setFreeSemester(window.localStorage.getItem('freeSemester') ?? null);
-    setSystem(window.localStorage.getItem('system') ?? '자유학년제');
-  }, [
-    score2_1,
-    score2_2,
-    score3_1,
-    setValue,
-    getSubjects,
-    artSportsScore,
-    absentScore,
-    attendanceScore,
-    volunteerScore,
-    score1_1,
-    score1_2,
-    setFreeSemester,
-    setSystem,
-  ]);
+  // useEffect(() => {
+  //   score1_1 && setValue('value1_1', score1_1);
+  //   score1_2 && setValue('value1_2', score1_2);
+  //   score2_1 && setValue('value2_1', score2_1);
+  //   score2_2 && setValue('value2_2', score2_2);
+  //   score3_1 && setValue('value3_1', score3_1);
+  //   artSportsScore && setValue('artSportsValue', artSportsScore);
+  //   absentScore && setValue('absentValue', absentScore);
+  //   attendanceScore && setValue('attendanceValue', attendanceScore);
+  //   volunteerScore && setValue('volunteerValue', volunteerScore);
+  //   getSubjects && setValue('newSubjects', getSubjects);
+  //   setIsSubmission(artSportsScore ? true : false); // 이전 값이 있다면 true
+  //   setFreeSemester(window.localStorage.getItem('freeSemester') ?? null);
+  //   setSystem(window.localStorage.getItem('system') ?? '자유학년제');
+  // }, [
+  //   score2_1,
+  //   score2_2,
+  //   score3_1,
+  //   setValue,
+  //   getSubjects,
+  //   artSportsScore,
+  //   absentScore,
+  //   attendanceScore,
+  //   volunteerScore,
+  //   score1_1,
+  //   score1_2,
+  //   setFreeSemester,
+  //   setSystem,
+  // ]);
 
   // 저장 버튼을 눌렀을 때
   const onValid = async ({
@@ -231,7 +234,7 @@ const CalculatorPage: NextPage = () => {
       setLocalstorage('newSubjects', newSubjects);
       setLocalstorage('nonSubjects', nonSubjects);
       window.localStorage.setItem('system', system);
-      userIdx && window.localStorage.setItem('userIdx', userIdx.toString());
+      userIdx && window.localStorage.setItem('userIdx', userIdx.toString()); // 유저 정보를 저장
       freeSemester && window.localStorage.setItem('freeSemester', freeSemester);
 
       // 결과 모달 제어
