@@ -470,9 +470,8 @@ const TestCalculatorPage: NextPage = () => {
                       {...register(`absentValue.${i}`, {
                         required: true,
                         valueAsNumber: true,
-                        pattern: {
-                          value: /^d+$/,
-                          message: '음수는 입력할 수 없습니다.',
+                        validate: {
+                          nagativeNumber: value => !(value < 0),
                         },
                       })}
                       placeholder="입력"
@@ -488,9 +487,8 @@ const TestCalculatorPage: NextPage = () => {
                       {...register(`attendanceValue.${i}`, {
                         required: true,
                         valueAsNumber: true,
-                        pattern: {
-                          value: /^d+$/,
-                          message: '음수는 입력할 수 없습니다.',
+                        validate: {
+                          nagativeNumber: value => !(value < 0),
                         },
                       })}
                       placeholder="입력"
@@ -506,9 +504,8 @@ const TestCalculatorPage: NextPage = () => {
                       {...register(`attendanceValue.${3 + i}`, {
                         required: true,
                         valueAsNumber: true,
-                        pattern: {
-                          value: /^d+$/,
-                          message: '음수는 입력할 수 없습니다.',
+                        validate: {
+                          nagativeNumber: value => !(value < 0),
                         },
                       })}
                       placeholder="입력"
@@ -524,9 +521,8 @@ const TestCalculatorPage: NextPage = () => {
                       {...register(`attendanceValue.${6 + i}`, {
                         required: true,
                         valueAsNumber: true,
-                        pattern: {
-                          value: /^d+$/,
-                          message: '음수는 입력할 수 없습니다.',
+                        validate: {
+                          nagativeNumber: value => !(value < 0),
                         },
                       })}
                       placeholder="입력"
@@ -541,9 +537,8 @@ const TestCalculatorPage: NextPage = () => {
                       {...register(`volunteerValue.${i}`, {
                         required: true,
                         valueAsNumber: true,
-                        pattern: {
-                          value: /^d+$/,
-                          message: '음수는 입력할 수 없습니다.',
+                        validate: {
+                          nagativeNumber: value => !(value < 0),
                         },
                       })}
                       type="number"
