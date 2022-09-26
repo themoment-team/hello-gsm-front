@@ -470,6 +470,10 @@ const TestCalculatorPage: NextPage = () => {
                       {...register(`absentValue.${i}`, {
                         required: true,
                         valueAsNumber: true,
+                        pattern: {
+                          value: /^d+$/,
+                          message: '음수는 입력할 수 없습니다.',
+                        },
                       })}
                       placeholder="입력"
                       type="number"
@@ -484,6 +488,10 @@ const TestCalculatorPage: NextPage = () => {
                       {...register(`attendanceValue.${i}`, {
                         required: true,
                         valueAsNumber: true,
+                        pattern: {
+                          value: /^d+$/,
+                          message: '음수는 입력할 수 없습니다.',
+                        },
                       })}
                       placeholder="입력"
                       type="number"
@@ -498,6 +506,10 @@ const TestCalculatorPage: NextPage = () => {
                       {...register(`attendanceValue.${3 + i}`, {
                         required: true,
                         valueAsNumber: true,
+                        pattern: {
+                          value: /^d+$/,
+                          message: '음수는 입력할 수 없습니다.',
+                        },
                       })}
                       placeholder="입력"
                       type="number"
@@ -512,6 +524,10 @@ const TestCalculatorPage: NextPage = () => {
                       {...register(`attendanceValue.${6 + i}`, {
                         required: true,
                         valueAsNumber: true,
+                        pattern: {
+                          value: /^d+$/,
+                          message: '음수는 입력할 수 없습니다.',
+                        },
                       })}
                       placeholder="입력"
                       type="number"
@@ -525,6 +541,10 @@ const TestCalculatorPage: NextPage = () => {
                       {...register(`volunteerValue.${i}`, {
                         required: true,
                         valueAsNumber: true,
+                        pattern: {
+                          value: /^d+$/,
+                          message: '음수는 입력할 수 없습니다.',
+                        },
                       })}
                       type="number"
                       placeholder="입력"
