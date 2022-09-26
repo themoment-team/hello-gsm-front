@@ -84,7 +84,6 @@ const CalculatorPage: NextPage = () => {
   // api 요청 보내기
   const TrySubmission = async (data: ScoreType) => {
     // 이전에 제출한 적이 있으면 patch / 없다면 post
-
     isSubmission
       ? await application.patchSecondSubmisson(data)
       : await application.postSecondSubmisson(data);
@@ -134,11 +133,11 @@ const CalculatorPage: NextPage = () => {
     attendanceValue,
     newSubjects,
   }: ScoreForm) => {
-    const score1_1 = Calculate(value1_1, '1-1', system, freeSemester) ?? 0; // 2학년 1학기
-    const score1_2 = Calculate(value1_2, '1-2', system, freeSemester) ?? 0; // 2학년 1학기
+    const score1_1 = Calculate(value1_1, '1-1', system, freeSemester) ?? 0; // 1학년 1학기
+    const score1_2 = Calculate(value1_2, '1-2', system, freeSemester) ?? 0; // 1학년 2학기
     const score2_1 = Calculate(value2_1, '2-1', system, freeSemester) ?? 0; // 2학년 1학기
     const score2_2 = Calculate(value2_2, '2-2', system, freeSemester) ?? 0; // 2학년 2학기
-    const score3_1 = Calculate(value3_1, '3-1', system, freeSemester) ?? 0; // 2학년 2학기
+    const score3_1 = Calculate(value3_1, '3-1', system, freeSemester) ?? 0; // 3학년 1학기
 
     const generalCurriculumScoreSubtotal = Rounds(
       score1_1 + score1_2 + score2_1 + score2_2 + score3_1,
@@ -166,7 +165,7 @@ const CalculatorPage: NextPage = () => {
       3,
     ); // 총점
 
-    const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 차백분율
+    const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 석차백분율
 
     // score값이 없는 값이라면 undefined 값을 보내게 함
     const data: ScoreType = {
@@ -201,7 +200,6 @@ const CalculatorPage: NextPage = () => {
       setLocalstorage('nonSubjects', nonSubjects);
       window.localStorage.setItem('system', system);
       freeSemester && window.localStorage.setItem('freeSemester', freeSemester);
-
       // 결과 모달 제어
       setResultArray([
         generalCurriculumScoreSubtotal,
@@ -325,8 +323,6 @@ const CalculatorPage: NextPage = () => {
                     })}
                     placeholder="추가과목입력"
                     key={i}
-                    // 추가과목이 이전에 입력이 되어있었으면 기본 값에 추가과목 값 넣기
-                    defaultValue={newSubject ? newSubject : ''}
                   />
                 ))}
               </S.ValueSection>
@@ -345,8 +341,6 @@ const CalculatorPage: NextPage = () => {
                               value !== -1 || freeSemester === '1-1', // 선택하지 않으면 focus 되어 다시 선택하게 함 1학년1학기가 자유학기제일 경우 validate 무효
                           },
                         })}
-                        index={i}
-                        scoreArray={watch('value1_1')}
                         freeSemesterProps={'1-1'}
                       />
                     ))}
@@ -360,7 +354,6 @@ const CalculatorPage: NextPage = () => {
                               value !== -1 || freeSemester === '1-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                           },
                         })}
-                        index={subjects.length + i}
                         freeSemesterProps={'1-1'}
                       />
                     ))}
@@ -379,8 +372,6 @@ const CalculatorPage: NextPage = () => {
                               value !== -1 || freeSemester === '1-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                           },
                         })}
-                        index={i}
-                        scoreArray={watch('value1_2')}
                         freeSemesterProps={'1-2'}
                       />
                     ))}
@@ -394,7 +385,6 @@ const CalculatorPage: NextPage = () => {
                               value !== -1 || freeSemester === '1-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                           },
                         })}
-                        index={subjects.length + i}
                         freeSemesterProps={'1-2'}
                       />
                     ))}
@@ -415,8 +405,6 @@ const CalculatorPage: NextPage = () => {
                           value !== -1 || freeSemester === '2-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
-                    index={i}
-                    scoreArray={watch('value2_1')}
                     freeSemesterProps={'2-1'}
                   />
                 ))}
@@ -430,7 +418,6 @@ const CalculatorPage: NextPage = () => {
                           value !== -1 || freeSemester === '2-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
-                    index={subjects.length + i}
                     freeSemesterProps={'2-1'}
                   />
                 ))}
@@ -450,8 +437,6 @@ const CalculatorPage: NextPage = () => {
                           value !== -1 || freeSemester === '2-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
-                    index={i}
-                    scoreArray={watch('value2_2')}
                     freeSemesterProps={'2-2'}
                   />
                 ))}
@@ -465,7 +450,6 @@ const CalculatorPage: NextPage = () => {
                           value !== -1 || freeSemester === '2-2', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
-                    index={subjects.length + i}
                     freeSemesterProps={'2-2'}
                   />
                 ))}
@@ -485,8 +469,6 @@ const CalculatorPage: NextPage = () => {
                           value !== -1 || freeSemester === '3-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                       },
                     })}
-                    index={i}
-                    scoreArray={watch('value3_1')}
                     freeSemesterProps={'3-1'}
                   />
                 ))}
@@ -500,7 +482,6 @@ const CalculatorPage: NextPage = () => {
                             value !== -1 || freeSemester === '3-1', // 선택하지 않으면 focus 되어 다시 선택하게 함
                         },
                       })}
-                      index={subjects.length + i}
                       freeSemesterProps={'3-1'}
                     />
                     <S.DeleteNewSubject onClick={() => DeleteNewSubjects(i)}>
@@ -546,8 +527,6 @@ const CalculatorPage: NextPage = () => {
                       unSelected: value => value !== -1,
                     },
                   })}
-                  index={i}
-                  scoreArray={artSportsScore}
                   artSports
                 />
               ))}
@@ -564,8 +543,6 @@ const CalculatorPage: NextPage = () => {
                       unSelected: value => value !== -1,
                     },
                   })}
-                  index={3 + i}
-                  scoreArray={artSportsScore}
                   artSports
                 />
               ))}
@@ -582,8 +559,6 @@ const CalculatorPage: NextPage = () => {
                       unSelected: value => value !== -1,
                     },
                   })}
-                  index={6 + i}
-                  scoreArray={artSportsScore}
                   artSports
                 />
               ))}
@@ -624,7 +599,6 @@ const CalculatorPage: NextPage = () => {
                       })}
                       type="number"
                       placeholder="입력"
-                      defaultValue={absentScore ? absentScore[i] : ''}
                     />
                   ))}
                 </S.ValueSection>
@@ -639,7 +613,6 @@ const CalculatorPage: NextPage = () => {
                       })}
                       type="number"
                       placeholder="입력"
-                      defaultValue={attendanceScore ? attendanceScore[i] : ''}
                     />
                   ))}
                 </S.ValueSection>
@@ -654,9 +627,6 @@ const CalculatorPage: NextPage = () => {
                       })}
                       type="number"
                       placeholder="입력"
-                      defaultValue={
-                        attendanceScore ? attendanceScore[3 + i] : ''
-                      }
                     />
                   ))}
                 </S.ValueSection>
@@ -671,9 +641,6 @@ const CalculatorPage: NextPage = () => {
                       })}
                       type="number"
                       placeholder="입력"
-                      defaultValue={
-                        attendanceScore ? attendanceScore[6 + i] : ''
-                      }
                     />
                   ))}
                 </S.ValueSection>
@@ -687,7 +654,6 @@ const CalculatorPage: NextPage = () => {
                       })}
                       type="number"
                       placeholder="입력"
-                      defaultValue={volunteerScore ? volunteerScore[i] : ''}
                     />
                   ))}
                 </S.ValueSection>
