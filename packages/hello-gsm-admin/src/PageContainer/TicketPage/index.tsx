@@ -71,8 +71,8 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                 </tr>
                 <tr>
                   <S.Left>
-                    2022.11. 2.(수)~2022.11. 7.(월) <br />
-                    09:00~17:00 (토·일요일 제외, <br />
+                    2022.11. 2.(수) ~ 2022.11. 7.(월) <br />
+                    09:00 ~ 17:00 (토·일요일 제외, <br />
                     마감시간 이전 도착분에 한하여 유효함.)
                   </S.Left>
                   <S.Subject>출신학교</S.Subject>
@@ -92,7 +92,7 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                 </tr>
                 <tr>
                   <td>신입생 비전캠프</td>
-                  <S.Left>2023. 1. 9.(월)~2023. 1.11.(수) 예정</S.Left>
+                  <S.Left>2023. 1. 9.(월) ~ 2023. 1.11.(수) 예정</S.Left>
                   <td rowSpan={2} colSpan={2}>
                     위 사람은 2023학년도 <br /> 본교 신입생 입학전형 지원자임을
                     확인함.
