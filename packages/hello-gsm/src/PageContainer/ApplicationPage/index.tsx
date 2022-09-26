@@ -3,9 +3,9 @@ import * as S from './style';
 import { GetApplicationType } from 'type/application';
 import useLocalstorage from 'hooks/useLocalstorage';
 import useToString from 'Utils/Calculate/ToString';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import dayjs from 'dayjs';
-import ApplicationStatus from 'components/ApplicantsStatus';
+import { ApplicantsStatus } from 'components';
 import * as I from 'Assets/svg';
 
 const ApplicationPage: NextPage<GetApplicationType> = ({
@@ -32,8 +32,6 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
   const subjects = useLocalstorage('subjects');
   const newSubjects = useLocalstorage('newSubjects');
   const nonSubjects = useLocalstorage('nonSubjects');
-  const [system, setSystem] = useState<string | null>();
-  const [freeSemester, setFreeSemester] = useState<string | null>();
 
   // 환산일수
   const conversionDays =
@@ -53,9 +51,6 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
   };
 
   useEffect(() => {
-    setFreeSemester(window.localStorage.getItem('freeSemester'));
-    setSystem(window.localStorage.getItem('system'));
-
     // 페이지 첫 렌더링 시 인쇄화면 보여지게
     TryPrint();
   }, []);
@@ -166,7 +161,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
               </thead>
             </S.Table>
             {/* 지원자현황 컴포넌트 */}
-            <ApplicationStatus data={data} />
+            <ApplicantsStatus data={data} />
             <S.Details>
               <S.Pledge>
                 위 학생은 2023학년도 귀교 제1학년에 입학하고자 소정의 서류를
@@ -233,8 +228,9 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
                   <S.DivSubject>1학년 1학기</S.DivSubject>
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
-                {/* 자유학년제거나 자유학기제를 시행한 학기이면 점수를 보여주지 않음 */}
-                {system === '자유학년제' || freeSemester === '1-1' ? (
+                {/* 자유학년제거나 자유학기제를 시행한 학기이면 점수를 보여주지 않음 (없는 점수는 -1로 반환됨) */}
+                {application?.application_score?.score1_1 &&
+                application?.application_score?.score1_1 < 0 ? (
                   <S.DivSlash />
                 ) : (
                   <>
@@ -252,8 +248,8 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
                   <S.DivSubject>1학년 2학기</S.DivSubject>
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
-                {/* 자유학년제거나 자유학기제를 시행한 학기이면 점수를 보여주지 않음 */}
-                {system === '자유학년제' || freeSemester === '1-2' ? (
+                {application?.application_score?.score1_2 &&
+                application?.application_score?.score1_2 < 0 ? (
                   <S.DivSlash />
                 ) : (
                   <>
@@ -271,7 +267,8 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
                   <S.DivSubject>2학년 1학기</S.DivSubject>
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
-                {freeSemester === '2-1' ? (
+                {application?.application_score?.score2_1 &&
+                application?.application_score?.score2_1 < 0 ? (
                   <S.DivSlash />
                 ) : (
                   <>

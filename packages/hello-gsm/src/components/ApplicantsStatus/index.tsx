@@ -2,7 +2,7 @@ import React from 'react';
 import { GetApplicationType } from 'type/application';
 import * as S from './style';
 
-const ApplicationStatus: React.FC<GetApplicationType> = ({
+const ApplicantsStatus: React.FC<GetApplicationType> = ({
   data: { application },
 }) => {
   const application_score = application?.application_score;
@@ -147,4 +147,4 @@ const ApplicationStatus: React.FC<GetApplicationType> = ({
   );
 };
 
-export default ApplicationStatus;
+export default ApplicantsStatus;
