@@ -23,7 +23,7 @@ const ScoreModal: React.FC = () => {
       registrationNumber: modalRegistrationNumber,
       personalityEvaluationScore: score,
     };
-    if (!score) {
+    if (!score || score > 100) {
       toast.error('점수를 입력해주세요.');
       return;
     }
