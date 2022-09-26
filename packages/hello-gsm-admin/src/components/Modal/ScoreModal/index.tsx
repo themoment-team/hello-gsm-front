@@ -24,7 +24,7 @@ const ScoreModal: React.FC = () => {
       personalityEvaluationScore: score,
     };
     if (!score || score > 100) {
-      toast.error('점수를 입력해주세요.');
+      toast.error('점수를 확인해주세요.');
       return;
     }
     try {
