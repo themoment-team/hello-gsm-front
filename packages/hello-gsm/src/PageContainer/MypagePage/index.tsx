@@ -52,6 +52,7 @@ const MyPage: NextPage<StatusType> = ({
       <S.Content
         css={css`
           ${isPC && saved && !submitted && 'height: 380px'}
+          ${isPC && !saved && 'height: 320px'}
         `}
       >
         <S.UserBox>
@@ -134,22 +135,27 @@ const MyPage: NextPage<StatusType> = ({
               </>
             )
           ) : (
-            <S.ButtonBox
-              css={css`
-                width: 160px;
-              `}
-            >
-              <Link href="/information" passHref>
-                <S.Button
-                  css={css`
-                    background: #dbe44e;
-                    box-shadow: 0px 13px 30px -10px #dbe44e;
-                  `}
-                >
-                  원서 작성
-                </S.Button>
-              </Link>
-            </S.ButtonBox>
+            <S.ButtonAndDescription>
+              <S.ButtonBox
+                css={css`
+                  width: 160px;
+                `}
+              >
+                <Link href="/information" passHref>
+                  <S.Button
+                    css={css`
+                      background: #dbe44e;
+                      box-shadow: 0px 13px 30px -10px #dbe44e;
+                    `}
+                  >
+                    원서 작성
+                  </S.Button>
+                </Link>
+              </S.ButtonBox>
+              <S.MypageDescription>
+                원서를 작성완료 하셨다면 새로고침 부탁드립니다.
+              </S.MypageDescription>
+            </S.ButtonAndDescription>
           )
         ) : (
           <S.IsNotPCWrap>
