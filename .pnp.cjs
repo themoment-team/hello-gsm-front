@@ -54,7 +54,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/babel-preset-css-prop", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:11.2.0"],\
             ["@emotion/react", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:11.8.2"],\
             ["@emotion/styled", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:11.8.1"],\
-            ["@types/gtag.js", "npm:0.0.11"],\
             ["@types/node", "npm:17.0.21"],\
             ["@types/react", "npm:17.0.40"],\
             ["@typescript-eslint/eslint-plugin", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:5.15.0"],\
@@ -3362,7 +3361,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/babel-preset-css-prop", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:11.2.0"],\
             ["@emotion/react", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:11.8.2"],\
             ["@emotion/styled", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:11.8.1"],\
-            ["@types/gtag.js", "npm:0.0.11"],\
             ["@types/node", "npm:17.0.21"],\
             ["@types/react", "npm:17.0.40"],\
             ["@typescript-eslint/eslint-plugin", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:5.15.0"],\
