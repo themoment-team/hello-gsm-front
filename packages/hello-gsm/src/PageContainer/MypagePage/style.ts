@@ -61,6 +61,20 @@ export const Button = styled.button`
   margin: 0;
 `;
 
+export const MypageDescription = styled.p`
+  font-weight: 400;
+  font-size: 14px;
+  color: #a9a6af;
+`;
+
+export const ButtonAndDescription = styled.div`
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const ApplicationLink = styled.a`
   width: 160px;
   height: 45px;
