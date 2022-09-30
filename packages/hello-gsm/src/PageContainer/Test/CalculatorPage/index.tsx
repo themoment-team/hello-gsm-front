@@ -470,6 +470,9 @@ const TestCalculatorPage: NextPage = () => {
                       {...register(`absentValue.${i}`, {
                         required: true,
                         valueAsNumber: true,
+                        validate: {
+                          nagativeNumber: value => !(value < 0),
+                        },
                       })}
                       placeholder="입력"
                       type="number"
@@ -484,6 +487,9 @@ const TestCalculatorPage: NextPage = () => {
                       {...register(`attendanceValue.${i}`, {
                         required: true,
                         valueAsNumber: true,
+                        validate: {
+                          nagativeNumber: value => !(value < 0),
+                        },
                       })}
                       placeholder="입력"
                       type="number"
@@ -498,6 +504,9 @@ const TestCalculatorPage: NextPage = () => {
                       {...register(`attendanceValue.${3 + i}`, {
                         required: true,
                         valueAsNumber: true,
+                        validate: {
+                          nagativeNumber: value => !(value < 0),
+                        },
                       })}
                       placeholder="입력"
                       type="number"
@@ -512,6 +521,9 @@ const TestCalculatorPage: NextPage = () => {
                       {...register(`attendanceValue.${6 + i}`, {
                         required: true,
                         valueAsNumber: true,
+                        validate: {
+                          nagativeNumber: value => !(value < 0),
+                        },
                       })}
                       placeholder="입력"
                       type="number"
@@ -525,6 +537,9 @@ const TestCalculatorPage: NextPage = () => {
                       {...register(`volunteerValue.${i}`, {
                         required: true,
                         valueAsNumber: true,
+                        validate: {
+                          nagativeNumber: value => !(value < 0),
+                        },
                       })}
                       type="number"
                       placeholder="입력"
