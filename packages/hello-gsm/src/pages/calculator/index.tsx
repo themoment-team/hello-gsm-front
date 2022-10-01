@@ -15,6 +15,7 @@ const Calculator: NextPage = () => {
   useEffect(() => {
     setLogged(true);
   }, []);
+
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
@@ -50,6 +51,21 @@ const getInfo = async (accessToken: string) => {
  * 둘다 없다면 로그인 페이지로 이동
  */
 export const getServerSideProps: GetServerSideProps = async ctx => {
+  // 접수 기간이 아니면 페이지 접근 불가
+  if (
+    !(
+      new Date() >= new Date('2022-10-17 9:00') &&
+      new Date() <= new Date('2022-10-20 17:00')
+    )
+  ) {
+    return {
+      props: {},
+      redirect: {
+        destination: '/404',
+      },
+    };
+  }
+
   const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
   const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
 
