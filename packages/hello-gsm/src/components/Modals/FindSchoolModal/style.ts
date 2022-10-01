@@ -9,6 +9,10 @@ export const FindSchoolModal = styled.div`
   align-items: center;
   position: fixed;
   z-index: 5;
+  overflow: scroll;
+  @media (max-height: 830px) {
+    display: block;
+  }
 `;
 
 export const FindSchoolModalBox = styled.div`
@@ -20,6 +24,9 @@ export const FindSchoolModalBox = styled.div`
   flex-direction: column;
   padding-top: 50px;
   align-items: center;
+  @media (max-height: 830px) {
+    margin: 0 auto;
+  }
 `;
 
 export const CancelButton = styled.div`
