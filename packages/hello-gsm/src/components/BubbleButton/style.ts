@@ -1,13 +1,11 @@
 import styled from '@emotion/styled';
 import device from 'shared/config';
 
-export const ToCalculator = styled.div`
+export const ToCalculator = styled.button`
   position: absolute;
   right: 10%;
-  top: 959px;
   padding: 0 42px;
   height: 63px;
-  bottom: 62px;
   background-color: #f3f3f3;
   color: #303030;
   border-radius: 12px;
@@ -17,11 +15,13 @@ export const ToCalculator = styled.div`
   text-align: center;
   cursor: pointer;
   font-weight: 700;
+  border: none;
 
+  &:nth-of-type(1) {
+    top: 860px;
+  }
   &:nth-of-type(2) {
-    position: absolute;
-    right: 10%;
-    top: 859px;
+    top: 960px;
   }
 
   &:after {
@@ -32,8 +32,9 @@ export const ToCalculator = styled.div`
     content: '';
     position: absolute;
     top: 63px;
-    left: 220px;
+    left: 90%;
   }
+
   &:hover {
     background: rgba(243, 243, 243, 0.52);
     transform: scale(1.05);
@@ -46,18 +47,26 @@ export const ToCalculator = styled.div`
   }
 
   @media ${device.laptop} {
-    top: 920px;
+    &:nth-of-type(1) {
+      top: 700px;
+    }
+    &:nth-of-type(2) {
+      top: 800px;
+    }
   }
-  @media ${device.tablet} {
-    top: 720px;
-  }
+
   @media ${device.mobile} {
-    font-size: 14px;
-    width: 180px;
-    height: 40px;
-    top: 300px;
-    line-height: 40px;
     position: static;
+    font-size: 14px;
+    width: 240px;
+    height: 40px;
+    &:nth-of-type(1) {
+      line-height: 20px;
+      padding: 0 20px;
+    }
+    &:nth-of-type(2) {
+      line-height: 20px;
+    }
     :after {
       display: none;
     }
