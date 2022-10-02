@@ -111,8 +111,11 @@ const CalculatorPage: NextPage = () => {
       console.log(data);
       setUserIdx(data.user_idx);
 
-      const userIdxStorage = window.localStorage.getItem('userIdx');
-      if (userIdx === userIdxStorage) return getLocalStorage();
+      const userIdxStorage = Number(window.localStorage.getItem('userIdx'));
+      if (data.user_idx === userIdxStorage) {
+        console.log(userIdx);
+        return getLocalStorage();
+      }
     } catch (err: any) {
       if (err.response.status === 401) {
         try {
