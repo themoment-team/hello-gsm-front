@@ -111,8 +111,10 @@ const CalculatorPage: NextPage = () => {
       console.log(data);
       setUserIdx(data.user_idx);
 
+      console.log(data.user_idx);
       console.log(userIdxStorage);
-      if (data.user_idx === userIdxStorage) {
+
+      if (data.user_idx == userIdxStorage) {
         console.log(userIdx);
         getLocalStorage();
       }
@@ -133,7 +135,6 @@ const CalculatorPage: NextPage = () => {
 
   useEffect(() => {
     const userIdxStorage = Number(window.localStorage.getItem('userIdx'));
-    console.log('useEffect');
     getUserIdx(userIdxStorage);
   }, []);
 
