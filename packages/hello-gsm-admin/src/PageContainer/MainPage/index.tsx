@@ -7,6 +7,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { ApplicantsType, ApplicantType } from 'Types/application';
 import application from 'Api/application';
 import auth from 'Api/auth';
+import Link from 'next/link';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
@@ -28,7 +29,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
-      if (error.response.status === 401) {
+      if (error.response?.status === 401) {
         try {
           // accessToken 발급
           await auth.refresh();
@@ -51,7 +52,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       setIsPageEnd(data.length < 10 ? true : false);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 검색 결과 요청
-      if (error.response.status === 401) {
+      if (error.response?.status === 401) {
         try {
           // accessToken 발급
           await auth.refresh();
@@ -122,7 +123,9 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
             />
             <S.SearchButton onClick={search}>검색</S.SearchButton>
           </S.Searchbox>
-          <S.Print>수험표 출력</S.Print>
+          <Link href="/ticket">
+            <S.Print>수험표 출력</S.Print>
+          </Link>
         </S.FunctionBox>
         <MainpageHeader />
         <S.ContentList>
