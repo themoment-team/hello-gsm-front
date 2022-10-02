@@ -86,7 +86,6 @@ const CalculatorPage: NextPage = () => {
   const attendanceScore = useLocalstorage('attendanceScore');
   const volunteerScore = useLocalstorage('volunteerScore');
   const getSubjects = useSubjectsLocalstorage('newSubjects');
-  const userIdxStorage = Number(window.localStorage.getItem('userIdx'));
 
   // 로컬스토리지 값이 있을 때 초기 값 설정
   const getLocalStorage = () => {
@@ -106,7 +105,7 @@ const CalculatorPage: NextPage = () => {
   };
 
   // 유저 정보 가져오기
-  const getUserIdx = async () => {
+  const getUserIdx = async (userIdxStorage: number) => {
     try {
       const { data }: InfoType = await user.info();
       console.log(data);
@@ -122,7 +121,7 @@ const CalculatorPage: NextPage = () => {
         try {
           // accessToken 발급 후 다시 api 요청
           await auth.refresh();
-          await getUserIdx();
+          await getUserIdx(userIdxStorage);
         } catch (err) {
           console.log(err);
         }
@@ -133,8 +132,9 @@ const CalculatorPage: NextPage = () => {
   };
 
   useEffect(() => {
+    const userIdxStorage = Number(window.localStorage.getItem('userIdx'));
     console.log('useEffect');
-    getUserIdx();
+    getUserIdx(userIdxStorage);
   }, []);
 
   // api 요청 보내기
