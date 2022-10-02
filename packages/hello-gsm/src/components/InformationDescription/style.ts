@@ -42,5 +42,5 @@ export const PostScript = styled.p`
   font-size: 18px;
   color: rgba(15, 9, 33, 0.44);
   position: absolute;
-  bottom: 45px;
+  bottom: 35px;
 `;
