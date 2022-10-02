@@ -60,8 +60,7 @@ const ContentBox: React.FC<ContentType> = ({
 
   const documentSubmission = async () => {
     if (new Date() > new Date('2022-10-21 20:00:00')) {
-      toast.error('서류제출 여부 할당 기간이 아닙니다.');
-      return;
+      return toast.error('서류제출 여부 할당 기간이 아닙니다.');
     }
     const data = {
       registrationNumber: registrationNumber,
@@ -113,8 +112,10 @@ const ContentBox: React.FC<ContentType> = ({
       new Date() < new Date('2022-10-28 16:00:00') ||
       new Date() > new Date('2022-11-01 22:10:00')
     ) {
-      toast.error('2차 성적 입력 기간이 아닙니다.');
-      return;
+      return toast.error('2차 성적 입력 기간이 아닙니다.');
+    }
+    if (firstResult === '불합격') {
+      return toast.error('불합격자는 2차 성적 입력이 불가능합니다.');
     }
     setModalRegistrationNumber(registrationNumber);
     setModalName(name);
