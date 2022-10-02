@@ -46,8 +46,6 @@ const MyPage: NextPage<StatusType> = ({
         navigator.userAgent,
       ),
     );
-    console.log(finalSubmitAcceptable);
-    console.log(application?.application_score);
   }, []);
 
   return (
