@@ -78,6 +78,14 @@ export const ContentList = styled.div`
   width: 100%;
   height: 600px;
   overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    box-shadow: -2px 4px 8px rgba(0, 0, 0, 0.28);
+    border-radius: 10px;
+  }
 `;
 
 export const Target = styled.div`
