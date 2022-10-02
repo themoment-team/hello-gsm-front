@@ -105,13 +105,26 @@ const CalculatorPage: NextPage = () => {
 
   // 유저 정보 가져오기
   const getUserIdx = async () => {
-    const data = await user.info();
-    console.log('hi');
-    console.log(data);
-    setUserIdx(data);
+    try {
+      const { data } = await user.info();
+      console.log(data.user_idx);
+      setUserIdx(data.user_idx);
 
-    const userIdxStorage = window.localStorage.getItem('userIdx');
-    if (data === userIdxStorage) return getLocalStorage();
+      const userIdxStorage = window.localStorage.getItem('userIdx');
+      if (data === userIdxStorage) return getLocalStorage();
+    } catch (err: any) {
+      if (err.response.status === 401) {
+        try {
+          // accessToken 발급 후 다시 api 요청
+          await auth.refresh();
+          await getUserIdx();
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        console.log(err);
+      }
+    }
   };
 
   useEffect(() => {
