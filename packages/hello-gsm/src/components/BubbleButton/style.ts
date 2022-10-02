@@ -45,8 +45,7 @@ export const ToCalculator = styled.button`
     transform: scale(1.05);
     transition: 0.3s;
   }
-
-  @media ${device.laptop} {
+  @media ${device.tablet} {
     &:nth-of-type(1) {
       top: 700px;
     }
