@@ -89,6 +89,7 @@ const CalculatorPage: NextPage = () => {
 
   // 로컬스토리지 값이 있을 때 초기 값 설정
   const getLocalStorage = () => {
+    console.log(score1_1);
     score1_1 && setValue('value1_1', score1_1);
     score1_2 && setValue('value1_2', score1_2);
     score2_1 && setValue('value2_1', score2_1);
@@ -116,6 +117,7 @@ const CalculatorPage: NextPage = () => {
 
       if (data.user_idx == userIdxStorage) {
         console.log(userIdx);
+        console.log('get 실행');
         getLocalStorage();
       }
     } catch (err: any) {
