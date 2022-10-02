@@ -58,7 +58,7 @@ const CalculatorPage: NextPage = () => {
   // 이전에 제출한 경험 여부 판단
   const [isSubmission, setIsSubmission] = useState<boolean>();
   // 유저 정보
-  const [userIdx, setUserIdx] = useState<number>();
+  const [userIdx, setUserIdx] = useState<any>();
 
   const lines = ['일반교과', '예체능 교과', '비교과'];
   const subjects = [
@@ -107,8 +107,8 @@ const CalculatorPage: NextPage = () => {
   const getUserIdx = async () => {
     try {
       const { data } = await user.info();
-      console.log(data.user_idx);
-      setUserIdx(data.user_idx);
+      console.log(data);
+      setUserIdx(data);
 
       const userIdxStorage = window.localStorage.getItem('userIdx');
       if (data === userIdxStorage) return getLocalStorage();
