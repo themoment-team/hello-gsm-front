@@ -6,8 +6,6 @@ import useStore from 'Stores/StoreContainer';
 import { HeaderType } from 'type/header';
 import { CheckType } from 'type/check';
 import { ChoosePage } from 'PageContainer';
-import { StatusType } from 'type/user';
-import user from 'Api/user';
 
 const Choose: NextPage<CheckType> = ({ check }) => {
   const seoTitle = '학생 상태 선택';
@@ -24,60 +22,43 @@ const Choose: NextPage<CheckType> = ({ check }) => {
   );
 };
 
-const getInfo = async (accessToken: string) => {
-  // 최종제출을 하였는지 요청
-  const { data }: StatusType = await user.status(accessToken);
-
-  if (!data.application?.isFinalSubmission) {
-    // 최종제출이 안되었으면 페이지 접근 허용
-    return {
-      props: {},
-    };
-  } else {
-    // 최종제출이 되어있으면 페이지 접근 불가 application 페이지로 이동
-    return {
-      props: {},
-      redirect: {
-        destination: '/application',
-      },
-    };
-  }
-};
-
 /**
  *
- * @returns - accessToken, refreshToken 둘다 있다면 로그인 O
- * accessToken만 있다면 refresh 요청 후 로그인 O / 요청 실패 시 로그인 페이지로 이동
- * 둘다 없다면 로그인 페이지로 이동
+ * @returns - 로그인 여부 확인 후 요청 성공 시 페이지 접근 가능
+ * accessToken이 없어 에러가 난다면 refresh 요청 후 접근 가능
+ * refreshToken도 없을 경우 로그인페이지로 이동
  */
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
   const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
 
   if (ctx.req.cookies.refreshToken) {
-    if (ctx.req.cookies.accessToken) {
-      return getInfo(accessToken);
-    } else {
+    try {
+      // 로그인 O
+      await auth.check(accessToken);
+      return {
+        props: { check: true },
+      };
+    } catch (err) {
       try {
+        // accessToken 만료시
         const { headers }: HeaderType = await auth.refresh(refreshToken);
-        const accessToken = headers['set-cookie'][0].split(';')[0];
+        // 브라우저에 쿠키들을 저장한다
         ctx.res.setHeader('set-cookie', headers['set-cookie']);
-        return getInfo(accessToken);
-      } catch (error) {
         return {
-          props: {},
-          redirect: {
-            destination: '/auth/signin',
-          },
+          props: { check: true },
+        };
+      } catch (err) {
+        // 로그인 실패
+        return {
+          props: { check: false },
         };
       }
     }
   } else {
+    // 로그인 X
     return {
-      props: {},
-      redirect: {
-        destination: '/auth/signin',
-      },
+      props: { check: false },
     };
   }
 };
