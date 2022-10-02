@@ -5,7 +5,7 @@ export const ToCalculator = styled.div`
   position: absolute;
   right: 10%;
   top: 959px;
-  width: 281px;
+  padding: 0 42px;
   height: 63px;
   bottom: 62px;
   background-color: #f3f3f3;
@@ -18,19 +18,13 @@ export const ToCalculator = styled.div`
   cursor: pointer;
   font-weight: 700;
 
-  &:nth-of-type(1) {
-    position: absolute;
-    right: 10%;
-    top: 852px;
-  }
-
   &:nth-of-type(2) {
     position: absolute;
     right: 10%;
-    top: 959px;
+    top: 859px;
   }
 
-  :after {
+  &:after {
     border-top: 20px solid #f3f3f3;
     border-left: 20px solid transparent;
     border-bottom-right-radius: 2px;
@@ -45,7 +39,7 @@ export const ToCalculator = styled.div`
     transform: scale(1.05);
     transition: 0.3s;
   }
-  :hover::after {
+  &:hover::after {
     border-top: 20px solid rgba(243, 243, 243, 0.52);
     transform: scale(1.05);
     transition: 0.3s;
