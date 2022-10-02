@@ -126,7 +126,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
         </S.FunctionBox>
         <MainpageHeader />
         <S.ContentList>
-          {applicationList.map((content, index: number) => (
+          {applicationList?.map((content, index: number) => (
             <ContentBox content={content} key={index} />
           ))}
           {!isPageEnd && <S.Target ref={loadMoreRef} />}
