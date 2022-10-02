@@ -60,7 +60,7 @@ export const SearchButton = styled.div`
   cursor: pointer;
 `;
 
-export const Print = styled.div`
+export const Print = styled.a`
   width: 140px;
   height: 100%;
   background: #19baff;
