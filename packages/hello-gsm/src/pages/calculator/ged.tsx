@@ -7,6 +7,7 @@ import { HeaderType } from 'type/header';
 import { GEDCalculatorPage } from 'PageContainer';
 import { StatusType } from 'type/user';
 import user from 'Api/user';
+import acceptable from 'shared/acceptable';
 
 const GEDCalculator: NextPage = () => {
   const seoTitle = '검정고시생 성적 입력';
@@ -50,6 +51,16 @@ const getInfo = async (accessToken: string) => {
  * 둘다 없다면 로그인 페이지로 이동
  */
 export const getServerSideProps: GetServerSideProps = async ctx => {
+  // 접수 기간이 아니면 페이지 접근 불가
+  if (!acceptable) {
+    return {
+      props: {},
+      redirect: {
+        destination: '/',
+      },
+    };
+  }
+
   const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
   const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
 

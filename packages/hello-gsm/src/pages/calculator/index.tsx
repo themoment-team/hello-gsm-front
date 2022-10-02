@@ -7,6 +7,7 @@ import { HeaderType } from 'type/header';
 import { CalculatorPage } from 'PageContainer';
 import { StatusType } from 'type/user';
 import user from 'Api/user';
+import acceptable from 'shared/acceptable';
 
 const Calculator: NextPage = () => {
   const seoTitle = '성적 입력';
@@ -52,12 +53,7 @@ const getInfo = async (accessToken: string) => {
  */
 export const getServerSideProps: GetServerSideProps = async ctx => {
   // 접수 기간이 아니면 페이지 접근 불가
-  if (
-    !(
-      new Date() >= new Date('2022-10-17 9:00') &&
-      new Date() <= new Date('2022-10-20 17:00')
-    )
-  ) {
+  if (!acceptable) {
     return {
       props: {},
       redirect: {
