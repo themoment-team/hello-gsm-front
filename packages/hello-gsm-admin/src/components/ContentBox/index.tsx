@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import application from 'Api/application';
 import auth from 'Api/auth';
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import useStore from 'Stores/StoreContainer';
 import { ApplicantType } from 'Types/application';
 import * as S from './style';
@@ -58,6 +59,10 @@ const ContentBox: React.FC<ContentType> = ({
   }, [showScoreModal]);
 
   const documentSubmission = async () => {
+    if (new Date() > new Date('2022-10-21 20:00:00')) {
+      toast.error('서류제출 기간이 아닙니다.');
+      return;
+    }
     const data = {
       registrationNumber: registrationNumber,
     };
