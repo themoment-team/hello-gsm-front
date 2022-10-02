@@ -24,7 +24,8 @@ export function middleware(req: NextRequest) {
   if (
     pathname === '/information' ||
     pathname === '/apply' ||
-    pathname === '/calculator'
+    pathname === '/calculator' ||
+    pathname === '/calculator/ged'
   ) {
     if (device.type === ('mobile' || 'tablet')) {
       return NextResponse.redirect('https://hellogsm.kr');
@@ -34,7 +35,8 @@ export function middleware(req: NextRequest) {
   if (
     pathname === '/apply' ||
     pathname === '/calculator' ||
-    pathname === '/application'
+    pathname === '/application' ||
+    pathname === '/calculator/ged'
   ) {
     if (browser.name === 'Safari') {
       return NextResponse.redirect(`${origin}/browser`);
