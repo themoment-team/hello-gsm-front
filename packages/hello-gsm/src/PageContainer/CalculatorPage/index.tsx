@@ -86,6 +86,7 @@ const CalculatorPage: NextPage = () => {
   const attendanceScore = useLocalstorage('attendanceScore');
   const volunteerScore = useLocalstorage('volunteerScore');
   const getSubjects = useSubjectsLocalstorage('newSubjects');
+  const userIdxStorage = Number(window.localStorage.getItem('userIdx'));
 
   // 로컬스토리지 값이 있을 때 초기 값 설정
   const getLocalStorage = () => {
@@ -111,7 +112,7 @@ const CalculatorPage: NextPage = () => {
       console.log(data);
       setUserIdx(data.user_idx);
 
-      const userIdxStorage = Number(window.localStorage.getItem('userIdx'));
+      console.log(userIdxStorage);
       if (data.user_idx === userIdxStorage) {
         console.log(userIdx);
         return getLocalStorage();
