@@ -20,3 +20,4 @@ export { default as GEDScoreResultModal } from './Modals/GEDScoreResultModal';
 export { default as ApplyPostModal } from './Modals/ApplyPostModal';
 export { default as ScoreResultModal } from './Modals/ScoreResultModal';
 export { default as FreeSemesterBtn } from './FreeSemesterBtn';
+export { default as ApplicantsStatus } from './ApplicantsStatus';
