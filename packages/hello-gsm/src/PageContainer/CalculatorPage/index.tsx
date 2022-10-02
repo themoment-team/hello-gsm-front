@@ -25,6 +25,7 @@ import setLocalstorage from 'hooks/setLocalstorage';
 import useSubjectsLocalstorage from 'hooks/useSubjectsLocalstorage';
 import { toast } from 'react-toastify';
 import user from 'Api/user';
+import { InfoType } from 'type/user';
 
 interface ScoreForm {
   // 과목/점수 배열
@@ -106,12 +107,12 @@ const CalculatorPage: NextPage = () => {
   // 유저 정보 가져오기
   const getUserIdx = async () => {
     try {
-      const { data } = await user.info();
+      const { data }: InfoType = await user.info();
       console.log(data);
-      setUserIdx(data);
+      setUserIdx(data.user_idx);
 
       const userIdxStorage = window.localStorage.getItem('userIdx');
-      if (data === userIdxStorage) return getLocalStorage();
+      if (userIdx === userIdxStorage) return getLocalStorage();
     } catch (err: any) {
       if (err.response.status === 401) {
         try {

@@ -27,3 +27,13 @@ export interface MainDescStatusType {
   selectedIndex: number;
   data: StatusDataType;
 }
+
+export interface InfoType {
+  data: {
+    user_idx: number;
+    birth: Date;
+    cellphoneNumber: string;
+    gender: string;
+    name: string;
+  };
+}
