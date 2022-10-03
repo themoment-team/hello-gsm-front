@@ -53,4 +53,4 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   }
 };
 
-export default Information;
+export default Manual;
