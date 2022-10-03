@@ -16,3 +16,4 @@ export { default as ChoosePage } from './ChoosePage';
 export { default as TestCalculatorPage } from './Test/CalculatorPage';
 export { default as TestGEDCalculatorPage } from './Test/GEDCalculatorPage';
 export { default as BrowserPage } from './BrowserPage';
+export { default as ManualPage } from './ManualPage';
