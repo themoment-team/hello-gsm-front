@@ -5,8 +5,8 @@ import { HeaderType } from 'type/header';
 import { ManualPage } from 'PageContainer';
 
 const Information: NextPage = () => {
-  const seoTitle = '유의사항 및 입학 절차';
-  const desc = '지원하기 전 유의사항 및 입학 절차를 설명합니다.';
+  const seoTitle = '매뉴얼 설명';
+  const desc = 'Hello, GSM 서비스의 매뉴얼을 설명합니다.';
 
   return (
     <>
