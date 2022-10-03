@@ -4,7 +4,7 @@ import auth from 'Api/auth';
 import { HeaderType } from 'type/header';
 import { ManualPage } from 'PageContainer';
 
-const Information: NextPage = () => {
+const Manual: NextPage = () => {
   const seoTitle = '매뉴얼 설명';
   const desc = 'Hello, GSM 서비스의 매뉴얼을 설명합니다.';
 
