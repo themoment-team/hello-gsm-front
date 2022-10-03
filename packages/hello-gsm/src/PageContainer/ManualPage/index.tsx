@@ -13,7 +13,7 @@ const ManualPageStyle = styled.div`
 
 const ManualPage: NextPage = () => {
   const location = () =>
-    (window.location.href = ' https://accounts.kakao.com/weblogin/account');
+    window.open('https://accounts.kakao.com/weblogin/account');
 
   return (
     <ManualPageStyle>
