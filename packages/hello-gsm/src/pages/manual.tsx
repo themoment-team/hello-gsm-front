@@ -3,10 +3,19 @@ import { SEOHelmet } from 'components';
 import auth from 'Api/auth';
 import { HeaderType } from 'type/header';
 import { ManualPage } from 'PageContainer';
+import { useEffect } from 'react';
+import { CheckType } from 'type/check';
+import useStore from 'Stores/StoreContainer';
 
-const Manual: NextPage = () => {
+const Manual: NextPage<CheckType> = ({ check }) => {
   const seoTitle = '매뉴얼 설명';
   const desc = 'Hello, GSM 서비스의 매뉴얼을 설명합니다.';
+
+  const { setLogged } = useStore();
+
+  useEffect(() => {
+    setLogged(check);
+  }, []);
 
   return (
     <>
@@ -22,32 +31,38 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
 
   if (ctx.req.cookies.refreshToken) {
     try {
+      // 로그인 O
       await auth.check(accessToken);
       return {
-        props: {},
+        props: {
+          check: true,
+        },
       };
-    } catch (error) {
+    } catch (err) {
       try {
+        // accessToken 만료시
         const { headers }: HeaderType = await auth.refresh(refreshToken);
         // 브라우저에 쿠키들을 저장한다
         ctx.res.setHeader('set-cookie', headers['set-cookie']);
         return {
-          props: {},
+          props: {
+            check: true,
+          },
         };
-      } catch (errer) {
+      } catch (err) {
+        // 로그인 실패
         return {
-          props: {},
-          redirect: {
-            destination: '/auth/signin',
+          props: {
+            check: false,
           },
         };
       }
     }
   } else {
+    // 로그인 X
     return {
-      props: {},
-      redirect: {
-        destination: '/auth/signin',
+      props: {
+        check: false,
       },
     };
   }
