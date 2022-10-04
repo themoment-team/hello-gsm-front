@@ -3,7 +3,6 @@ import { SEOHelmet } from 'components';
 import auth from 'Api/auth';
 import { HeaderType } from 'type/header';
 import { InformationPage } from 'PageContainer';
-import acceptable from 'shared/acceptable';
 
 const Information: NextPage = () => {
   const seoTitle = '유의사항 및 입학 절차';
@@ -18,16 +17,6 @@ const Information: NextPage = () => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  // 접수 기간이 아니면 페이지 접근 불가
-  // if (!acceptable) {
-  //   return {
-  //     props: {},
-  //     redirect: {
-  //       destination: '/',
-  //     },
-  //   };
-  // }
-
   const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
   const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
 
