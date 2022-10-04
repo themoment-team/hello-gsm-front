@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse, userAgent } from 'next/server';
+import acceptable from 'shared/acceptable';
 
 export function middleware(req: NextRequest) {
   const { origin, pathname } = req.nextUrl;
@@ -19,6 +20,15 @@ export function middleware(req: NextRequest) {
     if (process.env.OPERATIONAL_STATUS !== 'inspection') {
       return NextResponse.redirect(origin);
     }
+  }
+
+  if (!acceptable) {
+    if (
+      ['/information', '/apply', '/calculator', '/calculator/ged'].includes(
+        pathname,
+      )
+    )
+      return NextResponse.redirect(`${origin}`);
   }
 
   if (
