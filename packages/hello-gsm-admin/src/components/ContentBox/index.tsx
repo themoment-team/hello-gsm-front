@@ -29,13 +29,17 @@ const ContentBox: React.FC<ContentType> = ({
     },
   },
 }) => {
-  const isResult: boolean = new Date() < new Date('2022-11-01') ? true : false;
+  const isfirstResult: boolean =
+    new Date() < new Date('2022-11-01') ? true : false;
   const [score, setScore] = useState<number | null>(
     parseFloat(application_score?.personalityEvaluationScore ?? '') || null,
   );
-  const firstResult: '미정' | '합격' | '불합격' = !isResult
+  const firstResult: '미정' | '합격' | '불합격' = !isfirstResult
     ? '미정'
     : firstResultScreening !== null
+    ? '합격'
+    : '불합격';
+  const finalResult: '합격' | '불합격' = finalResultScreening
     ? '합격'
     : '불합격';
   const [documentreception, setDocumentreception] =
@@ -149,7 +153,7 @@ const ContentBox: React.FC<ContentType> = ({
         </S.TeacherNumber>
       </S.Content>
       <S.Button css={firstResultStyle}>{firstResult}</S.Button>
-      <S.Button onClick={scoreButtonClick}>{score ?? '입력'}</S.Button>
+      <S.Button onClick={scoreButtonClick}>{finalResult}</S.Button>
     </S.ContentBox>
   );
 };
