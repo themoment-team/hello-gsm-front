@@ -19,14 +19,14 @@ const Information: NextPage = () => {
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   // 접수 기간이 아니면 페이지 접근 불가
-  if (!acceptable) {
-    return {
-      props: {},
-      redirect: {
-        destination: '/',
-      },
-    };
-  }
+  // if (!acceptable) {
+  //   return {
+  //     props: {},
+  //     redirect: {
+  //       destination: '/',
+  //     },
+  //   };
+  // }
 
   const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
   const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
