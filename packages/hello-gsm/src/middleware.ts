@@ -28,7 +28,7 @@ export function middleware(req: NextRequest) {
         pathname,
       )
     )
-      return NextResponse.redirect(`${origin}`);
+      return NextResponse.redirect(`${origin}/success`);
   }
 
   if (
