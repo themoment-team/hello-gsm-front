@@ -134,7 +134,8 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
               onClick={() => toast.error('수험표 출력 가능 기간이 아닙니다.')}
               css={css`
                 background: #625e6f;
-                color: rgba(31, 31, 31, 0.86); ;
+                color: rgba(31, 31, 31, 0.86);
+                cursor: default;
               `}
             >
               수험표 출력
