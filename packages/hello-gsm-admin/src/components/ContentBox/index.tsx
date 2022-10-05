@@ -30,8 +30,8 @@ const ContentBox: React.FC<ContentType> = ({
   },
 }) => {
   const isFirstResult: boolean = true;
-//    new Date() >= new Date('2022-10-22 00:00:00') &&
-//    new Date() <= new Date('2022-11-02 00:00:00');
+  //    new Date() >= new Date('2022-10-22 00:00:00') &&
+  //    new Date() <= new Date('2022-11-02 00:00:00');
   const isFinalResult: boolean = new Date() >= new Date('2022-11-02 00:00:00');
   const firstResult: '미정' | '합격' | '불합격' = !isFirstResult
     ? '미정'
