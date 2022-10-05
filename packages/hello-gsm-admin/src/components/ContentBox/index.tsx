@@ -29,12 +29,11 @@ const ContentBox: React.FC<ContentType> = ({
     },
   },
 }) => {
-  const isfirstResult: boolean =
-    new Date() < new Date('2022-11-01') ? true : false;
-  const [score, setScore] = useState<number | null>(
-    parseFloat(application_score?.personalityEvaluationScore ?? '') || null,
-  );
-  const firstResult: '미정' | '합격' | '불합격' = !isfirstResult
+  const isFirstResult: boolean =
+    new Date() > new Date('2022-10-22 00:00:00') &&
+    new Date() < new Date('2022-11-02 00:00:00');
+  const isFinalResult: boolean = new Date() > new Date('2022-11-02 00:00:00');
+  const firstResult: '미정' | '합격' | '불합격' = !isFirstResult
     ? '미정'
     : firstResultScreening !== null
     ? '합격'
@@ -42,6 +41,9 @@ const ContentBox: React.FC<ContentType> = ({
   const finalResult: '합격' | '불합격' = finalResultScreening
     ? '합격'
     : '불합격';
+  const [score, setScore] = useState<number | null>(
+    parseFloat(application_score?.personalityEvaluationScore ?? '') || null,
+  );
   const [documentreception, setDocumentreception] =
     useState<boolean>(isDocumentReception);
   const {
@@ -88,8 +90,8 @@ const ContentBox: React.FC<ContentType> = ({
     }
   };
 
-  const firstResultStyle = () => {
-    switch (firstResult) {
+  const resultStyle = (result: '미정' | '합격' | '불합격') => {
+    switch (result) {
       case '미정':
         return css`
           background: #625e6f;
@@ -152,8 +154,12 @@ const ContentBox: React.FC<ContentType> = ({
             : '검정고시'}
         </S.TeacherNumber>
       </S.Content>
-      <S.Button css={firstResultStyle}>{firstResult}</S.Button>
-      <S.Button onClick={scoreButtonClick}>{finalResult}</S.Button>
+      <S.Button css={() => resultStyle(firstResult)}>{firstResult}</S.Button>
+      {isFinalResult ? (
+        <S.Button css={() => resultStyle(finalResult)}>{finalResult}</S.Button>
+      ) : (
+        <S.Button onClick={scoreButtonClick}>{score ?? '입력'}</S.Button>
+      )}
     </S.ContentBox>
   );
 };
