@@ -8,8 +8,10 @@ import { ApplicantsType, ApplicantType } from 'Types/application';
 import application from 'Api/application';
 import auth from 'Api/auth';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
+  const printable = new Date() >= new Date('2022-10-22 00:00:00');
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
   const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
   const pageIndexRef = useRef<number>(2);
@@ -123,9 +125,21 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
             />
             <S.SearchButton onClick={search}>검색</S.SearchButton>
           </S.Searchbox>
-          <Link href="/ticket">
-            <S.Print>수험표 출력</S.Print>
-          </Link>
+          {printable ? (
+            <Link href="/ticket">
+              <S.Print>수험표 출력</S.Print>
+            </Link>
+          ) : (
+            <S.Print
+              onClick={() => toast.error('수험표 출력 가능 기간이 아닙니다.')}
+              css={css`
+                background: #625e6f;
+                color: rgba(31, 31, 31, 0.86); ;
+              `}
+            >
+              수험표 출력
+            </S.Print>
+          )}
         </S.FunctionBox>
         <MainpageHeader />
         <S.ContentList>
