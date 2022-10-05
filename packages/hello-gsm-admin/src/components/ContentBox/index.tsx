@@ -65,7 +65,7 @@ const ContentBox: React.FC<ContentType> = ({
   }, [showScoreModal]);
 
   const documentSubmission = async () => {
-    if (new Date() > new Date('2022-10-21 20:00:00')) {
+    if (new Date() >= new Date('2022-10-21 20:00:00')) {
       return toast.error('서류제출 여부 할당 기간이 아닙니다.');
     }
     const data = {
