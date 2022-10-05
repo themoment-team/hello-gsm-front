@@ -4,6 +4,7 @@
     "jsxImportSource": "@emotion/react",
     "baseUrl": "./src",
     "paths": { "@/public/*": ["../public/*"] },
+    "types": ["@types/gtag.js"],
     "plugins": [
       {
         "name": "typescript-styled-plugin",
