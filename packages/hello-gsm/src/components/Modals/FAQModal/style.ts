@@ -166,6 +166,14 @@ export const AnswerBody = styled.div`
   text-align: center;
   color: #525252;
   overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    box-shadow: -2px 4px 8px rgba(0, 0, 0, 0.28);
+    border-radius: 10px;
+  }
   @media ${device.tablet} {
     font-size: 17px;
     height: 80%;
