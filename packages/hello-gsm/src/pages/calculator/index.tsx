@@ -22,7 +22,7 @@ const Calculator: NextPage<UserIdxType> = ({ userIdx }) => {
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
-      <CalculatorPage userIdxTest={userIdx} />
+      <CalculatorPage userIdx={userIdx} />
     </>
   );
 };

@@ -43,10 +43,10 @@ interface ScoreForm {
 }
 
 interface TestUserIndexType {
-  userIdxTest: number;
+  userIdx: number;
 }
 
-const CalculatorPage: NextPage<TestUserIndexType> = ({ userIdxTest }) => {
+const CalculatorPage: NextPage<TestUserIndexType> = ({ userIdx }) => {
   const { register, handleSubmit, watch, setValue } = useForm<ScoreForm>();
 
   const {
@@ -63,8 +63,6 @@ const CalculatorPage: NextPage<TestUserIndexType> = ({ userIdxTest }) => {
 
   // 이전에 제출한 경험 여부 판단
   const [isSubmission, setIsSubmission] = useState<boolean>();
-  // 유저 정보
-  const [userIdx, setUserIdx] = useState<any>();
 
   const lines = ['일반교과', '예체능 교과', '비교과'];
   const subjects = [
@@ -83,89 +81,29 @@ const CalculatorPage: NextPage<TestUserIndexType> = ({ userIdxTest }) => {
   // test
 
   // 로컬스토리지 값 가져오기
-  const score1_1 = useLocalstorage('score1_1');
-  const score1_2 = useLocalstorage('score1_2');
-  const score2_1 = useLocalstorage('score2_1');
-  const score2_2 = useLocalstorage('score2_2');
-  const score3_1 = useLocalstorage('score3_1');
-  const artSportsScore = useLocalstorage('artSportsScore');
-  const absentScore = useLocalstorage('absentScore');
-  const attendanceScore = useLocalstorage('attendanceScore');
-  const volunteerScore = useLocalstorage('volunteerScore');
-  const getSubjects = useSubjectsLocalstorage('newSubjects');
-  console.log(score2_1);
+  // const score1_1 = useLocalstorage('score1_1');
+  // const score1_2 = useLocalstorage('score1_2');
+  // const score2_1 = useLocalstorage('score2_1');
+  // const score2_2 = useLocalstorage('score2_2');
+  // const score3_1 = useLocalstorage('score3_1');
+  // const artSportsScore = useLocalstorage('artSportsScore');
+  // const absentScore = useLocalstorage('absentScore');
+  // const attendanceScore = useLocalstorage('attendanceScore');
+  // const volunteerScore = useLocalstorage('volunteerScore');
+  // const getSubjects = useSubjectsLocalstorage('newSubjects');
+  // console.log(score2_1);
 
   // 로컬스토리지 값이 있을 때 초기 값 설정
   // const getLocalStorage = () => {};
 
-  // 유저 정보 가져오기
-  const getUserIdx = async (userIdxStorage: number) => {
-    console.log(userIdxStorage);
-    try {
-      const { data }: InfoType = await user.info();
-      console.log(data);
-      setUserIdx(data.user_idx);
-
-      console.log(data.user_idx);
-      console.log(userIdxStorage);
-
-      if (data.user_idx == userIdxStorage) {
-        console.log(userIdx);
-        console.log('get');
-
-        console.log(score1_1, score1_2, score2_1, score2_2, score3_1);
-        score1_1 && setValue('value1_1', score1_1);
-        score1_2 && setValue('value1_2', score1_2);
-        score2_1 && setValue('value2_1', score2_1);
-        score2_2 && setValue('value2_2', score2_2);
-        score3_1 && setValue('value3_1', score3_1);
-        artSportsScore && setValue('artSportsValue', artSportsScore);
-        absentScore && setValue('absentValue', absentScore);
-        attendanceScore && setValue('attendanceValue', attendanceScore);
-        volunteerScore && setValue('volunteerValue', volunteerScore);
-        getSubjects && setValue('newSubjects', getSubjects);
-        setIsSubmission(artSportsScore ? true : false); // 이전 값이 있다면 true
-        setFreeSemester(window.localStorage.getItem('freeSemester') ?? null);
-        setSystem(window.localStorage.getItem('system') ?? '자유학년제');
-      }
-    } catch (err: any) {
-      if (err.response.status === 401) {
-        try {
-          // accessToken 발급 후 다시 api 요청
-          await auth.refresh();
-          await getUserIdx(userIdxStorage);
-        } catch (err) {
-          console.log(err);
-        }
-      } else {
-        console.log(err);
-      }
-    }
-  };
-
-  // useEffect(() => {
-  //   const userIdxStorage = Number(window.localStorage.getItem('userIdx'));
-  //   console.log(userIdxStorage);
-  //   getUserIdx(userIdxStorage);
-  // }, []);
-
-  // api 요청 보내기
-  const TrySubmission = async (data: ScoreType) => {
-    // 이전에 제출한 적이 있으면 patch / 없다면 post
-
-    isSubmission
-      ? await application.patchSecondSubmisson(data)
-      : await application.postSecondSubmisson(data);
-  };
-
   // 로컬스토리지 값이 있을 때 초기 값 설정
-  useEffect(
-    () => {
-      console.log(userIdxTest);
-      const testData = JSON.parse(
-        window.localStorage.getItem(`${userIdxTest}`) ?? '',
-      );
-      console.log(testData);
+  useEffect(() => {
+    console.log(userIdx);
+    const testData = JSON.parse(
+      window.localStorage.getItem(`${userIdx}`) ?? '',
+    );
+    console.log(testData);
+    if (testData) {
       const score1_1 = testData.score1_1;
       const score1_2 = testData.score1_2;
       const score2_1 = testData.score2_1;
@@ -176,6 +114,8 @@ const CalculatorPage: NextPage<TestUserIndexType> = ({ userIdxTest }) => {
       const attendanceScore = testData?.attendanceScore;
       const volunteerScore = testData?.volunteerScore;
       const getSubjects = testData?.newSubjects;
+      const freeSemester = testData?.freeSemester;
+      const system = testData?.system;
       score1_1 && setValue('value1_1', score1_1);
       score1_2 && setValue('value1_2', score1_2);
       score2_1 && setValue('value2_1', score2_1);
@@ -187,25 +127,63 @@ const CalculatorPage: NextPage<TestUserIndexType> = ({ userIdxTest }) => {
       volunteerScore && setValue('volunteerValue', volunteerScore);
       getSubjects && setValue('newSubjects', getSubjects);
       setIsSubmission(artSportsScore ? true : false); // 이전 값이 있다면 true
-      setFreeSemester(window.localStorage.getItem('freeSemester') ?? null);
-      setSystem(window.localStorage.getItem('system') ?? '자유학년제');
-    },
-    [
-      // score2_1,
-      // score2_2,
-      // score3_1,
-      // setValue,
-      // getSubjects,
-      // artSportsScore,
-      // absentScore,
-      // attendanceScore,
-      // volunteerScore,
-      // score1_1,
-      // score1_2,
-      // setFreeSemester,
-      // setSystem,
-    ],
-  );
+      setFreeSemester(freeSemester || null);
+      setSystem(system || '자유학년제');
+    }
+  }, []);
+
+  // 유저 정보 가져오기
+  // const getUserIdx = async (userIdxStorage: number) => {
+  //   console.log(userIdxStorage);
+  //   try {
+  //     const { data }: InfoType = await user.info();
+  //     console.log(data);
+
+  //     console.log(data.user_idx);
+  //     console.log(userIdxStorage);
+
+  //     if (data.user_idx == userIdxStorage) {
+  //       console.log(userIdx);
+  //       console.log('get');
+
+  //       console.log(score1_1, score1_2, score2_1, score2_2, score3_1);
+  //       score1_1 && setValue('value1_1', score1_1);
+  //       score1_2 && setValue('value1_2', score1_2);
+  //       score2_1 && setValue('value2_1', score2_1);
+  //       score2_2 && setValue('value2_2', score2_2);
+  //       score3_1 && setValue('value3_1', score3_1);
+  //       artSportsScore && setValue('artSportsValue', artSportsScore);
+  //       absentScore && setValue('absentValue', absentScore);
+  //       attendanceScore && setValue('attendanceValue', attendanceScore);
+  //       volunteerScore && setValue('volunteerValue', volunteerScore);
+  //       getSubjects && setValue('newSubjects', getSubjects);
+  //       setIsSubmission(artSportsScore ? true : false); // 이전 값이 있다면 true
+  //       setFreeSemester(window.localStorage.getItem('freeSemester') ?? null);
+  //       setSystem(window.localStorage.getItem('system') ?? '자유학년제');
+  //     }
+  //   } catch (err: any) {
+  //     if (err.response.status === 401) {
+  //       try {
+  //         // accessToken 발급 후 다시 api 요청
+  //         await auth.refresh();
+  //         await getUserIdx(userIdxStorage);
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
+  //     } else {
+  //       console.log(err);
+  //     }
+  //   }
+  // };
+
+  // api 요청 보내기
+  const TrySubmission = async (data: ScoreType) => {
+    // 이전에 제출한 적이 있으면 patch / 없다면 post
+
+    isSubmission
+      ? await application.patchSecondSubmisson(data)
+      : await application.postSecondSubmisson(data);
+  };
 
   // 저장 버튼을 눌렀을 때
   const onValid = async ({
@@ -272,23 +250,7 @@ const CalculatorPage: NextPage<TestUserIndexType> = ({ userIdxTest }) => {
     };
 
     try {
-      const {
-        data: { user_idx },
-      }: InfoType = await user.info();
       await TrySubmission(data);
-      // 원서 파일 페이지에서 불러오기 위해 localstorage에 저장
-      setLocalstorage('score1_1', value1_1);
-      setLocalstorage('score1_2', value1_2);
-      setLocalstorage('score2_1', value2_1);
-      setLocalstorage('score2_2', value2_2);
-      setLocalstorage('score3_1', value3_1);
-      setLocalstorage('artSportsScore', artSportsValue);
-      setLocalstorage('absentScore', absentValue);
-      setLocalstorage('attendanceScore', attendanceValue);
-      setLocalstorage('volunteerScore', volunteerValue);
-      setLocalstorage('subjects', subjects);
-      setLocalstorage('newSubjects', newSubjects);
-      setLocalstorage('nonSubjects', nonSubjects);
       const score = {
         score1_1: value1_1,
         score1_2: value1_2,
@@ -302,13 +264,10 @@ const CalculatorPage: NextPage<TestUserIndexType> = ({ userIdxTest }) => {
         subjects: subjects,
         newSubjects: newSubjects,
         nonSubjects: nonSubjects,
+        system: system,
+        freeSemester: freeSemester,
       };
-      setLocalstorage(`${user_idx}`, score);
-      // 자유학기제 정보 저장
-      window.localStorage.setItem('system', system);
-      freeSemester && window.localStorage.setItem('freeSemester', freeSemester);
-      // 유저 정보를 저장
-      userIdx && window.localStorage.setItem('userIdx', userIdx.toString());
+      setLocalstorage(`${userIdx}`, score);
 
       // 결과 모달 제어
       setResultArray([
