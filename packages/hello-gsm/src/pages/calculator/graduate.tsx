@@ -18,7 +18,7 @@ const GraduateCalculator: NextPage = () => {
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
-      <CalculatorPage />
+      {/* <CalculatorPage  /> */}
     </>
   );
 };
