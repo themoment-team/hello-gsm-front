@@ -4,7 +4,7 @@ import { TicketPage } from 'PageContainer';
 import application from 'Api/application';
 import { TicketDataType } from 'Types/ticket';
 import auth from 'Api/auth';
-import { HeaderType } from 'Types/header';
+import HeaderType from 'Types/header';
 
 const Ticket: NextPage<TicketDataType> = ({ data }) => {
   const seoTitle = '수험표 출력';
