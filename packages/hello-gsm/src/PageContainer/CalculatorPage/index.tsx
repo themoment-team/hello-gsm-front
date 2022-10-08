@@ -245,7 +245,11 @@ const CalculatorPage: NextPage = () => {
       scoreTotal,
       rankPercentage,
     };
+
     try {
+      const {
+        data: { user_idx },
+      }: InfoType = await user.info();
       await TrySubmission(data);
       // 원서 파일 페이지에서 불러오기 위해 localstorage에 저장
       setLocalstorage('score1_1', value1_1);
@@ -260,6 +264,21 @@ const CalculatorPage: NextPage = () => {
       setLocalstorage('subjects', subjects);
       setLocalstorage('newSubjects', newSubjects);
       setLocalstorage('nonSubjects', nonSubjects);
+      const score = {
+        score1_1: score1_1,
+        score1_2: score1_2,
+        score2_1: score2_1,
+        score2_2: score2_2,
+        score3_1: score3_1,
+        artSportsScore: artSportsValue,
+        absentScore: absentValue,
+        attendanceScore: attendanceValue,
+        volunteerScore: volunteerValue,
+        subjects: subjects,
+        newSubjects: newSubjects,
+        nonSubjects: nonSubjects,
+      };
+      setLocalstorage(`${user_idx}`, score);
       // 자유학기제 정보 저장
       window.localStorage.setItem('system', system);
       freeSemester && window.localStorage.setItem('freeSemester', freeSemester);
