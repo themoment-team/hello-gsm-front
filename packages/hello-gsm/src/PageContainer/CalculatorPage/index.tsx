@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import type { NextPage } from 'next';
 import {
   Header,
@@ -79,33 +80,19 @@ const CalculatorPage: NextPage<TestUserIndexType> = ({ userIdxTest }) => {
   const nonSubjects = ['체육', '미술', '음악'];
   const grades = [1, 2, 3];
 
-  const testData = JSON.parse(
-    window.localStorage.getItem(`${userIdxTest}`) ?? '',
-  );
-
   // test
-  const score1_1 = useLocalstorage(testData?.score1_1 ?? []);
-  const score1_2 = useLocalstorage(testData?.score1_2 ?? []);
-  const score2_1 = useLocalstorage(testData?.score2_1 ?? []);
-  const score2_2 = useLocalstorage(testData?.score2_2 ?? []);
-  const score3_1 = useLocalstorage(testData?.score3_1 ?? []);
-  const artSportsScore = useLocalstorage(testData?.artSportsScore);
-  const absentScore = useLocalstorage(testData?.absentScore);
-  const attendanceScore = useLocalstorage(testData?.attendanceScore);
-  const volunteerScore = useLocalstorage(testData?.volunteerScore);
-  const getSubjects = useSubjectsLocalstorage(testData?.newSubjects);
 
   // 로컬스토리지 값 가져오기
-  // const score1_1 = useLocalstorage('score1_1');
-  // const score1_2 = useLocalstorage('score1_2');
-  // const score2_1 = useLocalstorage('score2_1');
-  // const score2_2 = useLocalstorage('score2_2');
-  // const score3_1 = useLocalstorage('score3_1');
-  // const artSportsScore = useLocalstorage('artSportsScore');
-  // const absentScore = useLocalstorage('absentScore');
-  // const attendanceScore = useLocalstorage('attendanceScore');
-  // const volunteerScore = useLocalstorage('volunteerScore');
-  // const getSubjects = useSubjectsLocalstorage('newSubjects');
+  const score1_1 = useLocalstorage('score1_1');
+  const score1_2 = useLocalstorage('score1_2');
+  const score2_1 = useLocalstorage('score2_1');
+  const score2_2 = useLocalstorage('score2_2');
+  const score3_1 = useLocalstorage('score3_1');
+  const artSportsScore = useLocalstorage('artSportsScore');
+  const absentScore = useLocalstorage('absentScore');
+  const attendanceScore = useLocalstorage('attendanceScore');
+  const volunteerScore = useLocalstorage('volunteerScore');
+  const getSubjects = useSubjectsLocalstorage('newSubjects');
   console.log(score2_1);
 
   // 로컬스토리지 값이 있을 때 초기 값 설정
@@ -173,6 +160,19 @@ const CalculatorPage: NextPage<TestUserIndexType> = ({ userIdxTest }) => {
 
   // 로컬스토리지 값이 있을 때 초기 값 설정
   useEffect(() => {
+    const testData = JSON.parse(
+      window.localStorage.getItem(`${userIdxTest}`) ?? '',
+    );
+    const score1_1 = useLocalstorage(testData?.score1_1 ?? []);
+    const score1_2 = useLocalstorage(testData?.score1_2 ?? []);
+    const score2_1 = useLocalstorage(testData?.score2_1 ?? []);
+    const score2_2 = useLocalstorage(testData?.score2_2 ?? []);
+    const score3_1 = useLocalstorage(testData?.score3_1 ?? []);
+    const artSportsScore = useLocalstorage(testData?.artSportsScore);
+    const absentScore = useLocalstorage(testData?.absentScore);
+    const attendanceScore = useLocalstorage(testData?.attendanceScore);
+    const volunteerScore = useLocalstorage(testData?.volunteerScore);
+    const getSubjects = useSubjectsLocalstorage(testData?.newSubjects);
     score1_1 && setValue('value1_1', score1_1);
     score1_2 && setValue('value1_2', score1_2);
     score2_1 && setValue('value2_1', score2_1);
