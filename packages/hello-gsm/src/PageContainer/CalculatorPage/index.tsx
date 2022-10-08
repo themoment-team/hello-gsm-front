@@ -145,8 +145,7 @@ const CalculatorPage: NextPage = () => {
       const {
         data: { user_idx },
       }: InfoType = await user.info();
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const testData = useLocalstorage(`${user_idx}`);
+      const testData = window.localStorage.getItem(`${user_idx}`);
       console.log(testData);
     } catch (error) {
       console.log(error);
