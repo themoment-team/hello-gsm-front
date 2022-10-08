@@ -86,7 +86,7 @@ const CalculatorPage: NextPage = () => {
   const attendanceScore = useLocalstorage('attendanceScore');
   const volunteerScore = useLocalstorage('volunteerScore');
   const getSubjects = useSubjectsLocalstorage('newSubjects');
-
+  console.log(score2_1);
   // 로컬스토리지 값이 있을 때 초기 값 설정
   const getLocalStorage = () => {
     console.log(score1_1, score1_2, score2_1, score2_2, score3_1);
