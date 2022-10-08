@@ -145,7 +145,9 @@ const CalculatorPage: NextPage = () => {
       const {
         data: { user_idx },
       }: InfoType = await user.info();
-      const testData = window.localStorage.getItem(`${user_idx}`);
+      const testData = JSON.parse(
+        window.localStorage.getItem(`${user_idx}`) ?? '',
+      );
       console.log(testData);
     } catch (error) {
       console.log(error);
@@ -281,11 +283,11 @@ const CalculatorPage: NextPage = () => {
       setLocalstorage('newSubjects', newSubjects);
       setLocalstorage('nonSubjects', nonSubjects);
       const score = {
-        score1_1: score1_1,
-        score1_2: score1_2,
-        score2_1: score2_1,
-        score2_2: score2_2,
-        score3_1: score3_1,
+        score1_1: value1_1,
+        score1_2: value1_2,
+        score2_1: value2_1,
+        score2_2: value2_2,
+        score3_1: value3_1,
         artSportsScore: artSportsValue,
         absentScore: absentValue,
         attendanceScore: attendanceValue,
