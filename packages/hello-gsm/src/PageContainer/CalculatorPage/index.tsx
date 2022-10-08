@@ -20,7 +20,7 @@ import {
 import useLocalstorage from 'hooks/useLocalstorage';
 import application from 'Api/application';
 import auth from 'Api/auth';
-import { ScoreType } from 'type/score';
+import { LocalScoreType, ScoreType } from 'type/score';
 import useStore from 'Stores/StoreContainer';
 import setLocalstorage from 'hooks/setLocalstorage';
 import useSubjectsLocalstorage from 'hooks/useSubjectsLocalstorage';
@@ -98,24 +98,23 @@ const CalculatorPage: NextPage<TestUserIndexType> = ({ userIdx }) => {
 
   // 로컬스토리지 값이 있을 때 초기 값 설정
   useEffect(() => {
-    console.log(userIdx);
-    const testData = JSON.parse(
-      window.localStorage.getItem(`${userIdx}`) ?? '',
-    );
-    console.log(testData);
-    if (testData) {
-      const score1_1 = testData.score1_1;
-      const score1_2 = testData.score1_2;
-      const score2_1 = testData.score2_1;
-      const score2_2 = testData.score2_2;
-      const score3_1 = testData.score3_1;
-      const artSportsScore = testData?.artSportsScore;
-      const absentScore = testData?.absentScore;
-      const attendanceScore = testData?.attendanceScore;
-      const volunteerScore = testData?.volunteerScore;
-      const getSubjects = testData?.newSubjects;
-      const freeSemester = testData?.freeSemester;
-      const system = testData?.system;
+    const localstorageData = window.localStorage.getItem(`${userIdx}`);
+    const scoreData: LocalScoreType | null = localstorageData
+      ? JSON.parse(localstorageData)
+      : null;
+    if (scoreData) {
+      const score1_1 = scoreData.score1_1;
+      const score1_2 = scoreData.score1_2;
+      const score2_1 = scoreData.score2_1;
+      const score2_2 = scoreData.score2_2;
+      const score3_1 = scoreData.score3_1;
+      const artSportsScore = scoreData.artSportsScore;
+      const absentScore = scoreData.absentScore;
+      const attendanceScore = scoreData.attendanceScore;
+      const volunteerScore = scoreData.volunteerScore;
+      const newSubjects = scoreData.newSubjects;
+      const freeSemester = scoreData.freeSemester;
+      const system = scoreData.system;
       score1_1 && setValue('value1_1', score1_1);
       score1_2 && setValue('value1_2', score1_2);
       score2_1 && setValue('value2_1', score2_1);
@@ -125,7 +124,7 @@ const CalculatorPage: NextPage<TestUserIndexType> = ({ userIdx }) => {
       absentScore && setValue('absentValue', absentScore);
       attendanceScore && setValue('attendanceValue', attendanceScore);
       volunteerScore && setValue('volunteerValue', volunteerScore);
-      getSubjects && setValue('newSubjects', getSubjects);
+      newSubjects && setValue('newSubjects', newSubjects);
       setIsSubmission(artSportsScore ? true : false); // 이전 값이 있다면 true
       setFreeSemester(freeSemester || null);
       setSystem(system || '자유학년제');
