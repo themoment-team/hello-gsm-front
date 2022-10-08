@@ -161,9 +161,11 @@ const CalculatorPage: NextPage<TestUserIndexType> = ({ userIdxTest }) => {
   // 로컬스토리지 값이 있을 때 초기 값 설정
   useEffect(
     () => {
+      console.log(userIdxTest);
       const testData = JSON.parse(
         window.localStorage.getItem(`${userIdxTest}`) ?? '',
       );
+      console.log(testData);
       const score1_1 = testData.score1_1;
       const score1_2 = testData.score1_2;
       const score2_1 = testData.score2_1;
