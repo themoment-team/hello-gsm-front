@@ -159,48 +159,51 @@ const CalculatorPage: NextPage<TestUserIndexType> = ({ userIdxTest }) => {
   };
 
   // 로컬스토리지 값이 있을 때 초기 값 설정
-  useEffect(() => {
-    const testData = JSON.parse(
-      window.localStorage.getItem(`${userIdxTest}`) ?? '',
-    );
-    const score1_1 = useLocalstorage(testData?.score1_1 ?? []);
-    const score1_2 = useLocalstorage(testData?.score1_2 ?? []);
-    const score2_1 = useLocalstorage(testData?.score2_1 ?? []);
-    const score2_2 = useLocalstorage(testData?.score2_2 ?? []);
-    const score3_1 = useLocalstorage(testData?.score3_1 ?? []);
-    const artSportsScore = useLocalstorage(testData?.artSportsScore);
-    const absentScore = useLocalstorage(testData?.absentScore);
-    const attendanceScore = useLocalstorage(testData?.attendanceScore);
-    const volunteerScore = useLocalstorage(testData?.volunteerScore);
-    const getSubjects = useSubjectsLocalstorage(testData?.newSubjects);
-    score1_1 && setValue('value1_1', score1_1);
-    score1_2 && setValue('value1_2', score1_2);
-    score2_1 && setValue('value2_1', score2_1);
-    score2_2 && setValue('value2_2', score2_2);
-    score3_1 && setValue('value3_1', score3_1);
-    artSportsScore && setValue('artSportsValue', artSportsScore);
-    absentScore && setValue('absentValue', absentScore);
-    attendanceScore && setValue('attendanceValue', attendanceScore);
-    volunteerScore && setValue('volunteerValue', volunteerScore);
-    getSubjects && setValue('newSubjects', getSubjects);
-    setIsSubmission(artSportsScore ? true : false); // 이전 값이 있다면 true
-    setFreeSemester(window.localStorage.getItem('freeSemester') ?? null);
-    setSystem(window.localStorage.getItem('system') ?? '자유학년제');
-  }, [
-    score2_1,
-    score2_2,
-    score3_1,
-    setValue,
-    getSubjects,
-    artSportsScore,
-    absentScore,
-    attendanceScore,
-    volunteerScore,
-    score1_1,
-    score1_2,
-    setFreeSemester,
-    setSystem,
-  ]);
+  useEffect(
+    () => {
+      const testData = JSON.parse(
+        window.localStorage.getItem(`${userIdxTest}`) ?? '',
+      );
+      const score1_1 = testData.score1_1;
+      const score1_2 = testData.score1_2;
+      const score2_1 = testData.score2_1;
+      const score2_2 = testData.score2_2;
+      const score3_1 = testData.score3_1;
+      const artSportsScore = testData?.artSportsScore;
+      const absentScore = testData?.absentScore;
+      const attendanceScore = testData?.attendanceScore;
+      const volunteerScore = testData?.volunteerScore;
+      const getSubjects = testData?.newSubjects;
+      score1_1 && setValue('value1_1', score1_1);
+      score1_2 && setValue('value1_2', score1_2);
+      score2_1 && setValue('value2_1', score2_1);
+      score2_2 && setValue('value2_2', score2_2);
+      score3_1 && setValue('value3_1', score3_1);
+      artSportsScore && setValue('artSportsValue', artSportsScore);
+      absentScore && setValue('absentValue', absentScore);
+      attendanceScore && setValue('attendanceValue', attendanceScore);
+      volunteerScore && setValue('volunteerValue', volunteerScore);
+      getSubjects && setValue('newSubjects', getSubjects);
+      setIsSubmission(artSportsScore ? true : false); // 이전 값이 있다면 true
+      setFreeSemester(window.localStorage.getItem('freeSemester') ?? null);
+      setSystem(window.localStorage.getItem('system') ?? '자유학년제');
+    },
+    [
+      // score2_1,
+      // score2_2,
+      // score3_1,
+      // setValue,
+      // getSubjects,
+      // artSportsScore,
+      // absentScore,
+      // attendanceScore,
+      // volunteerScore,
+      // score1_1,
+      // score1_2,
+      // setFreeSemester,
+      // setSystem,
+    ],
+  );
 
   // 저장 버튼을 눌렀을 때
   const onValid = async ({
