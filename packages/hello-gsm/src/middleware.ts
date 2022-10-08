@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse, userAgent } from 'next/server';
+import acceptable from 'shared/acceptable';
 
 export function middleware(req: NextRequest) {
   const { origin, pathname } = req.nextUrl;
   const { device, browser } = userAgent(req);
+  const applicationFormURL = [
+    '/information',
+    '/apply',
+    '/calculator',
+    '/calculator/ged',
+  ];
 
   if (browser.name === 'IE' && pathname !== '/browser') {
     return NextResponse.redirect(`${origin}/browser`);
@@ -21,21 +28,18 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  if (
-    pathname === '/information' ||
-    pathname === '/apply' ||
-    pathname === '/calculator'
-  ) {
-    if (device.type === ('mobile' || 'tablet')) {
-      return NextResponse.redirect('https://hellogsm.kr');
+  if (applicationFormURL.includes(pathname)) {
+    // 원서 접수 가능 기간이 아닐 시
+    if (!acceptable) {
+      return NextResponse.redirect(origin);
     }
-  }
 
-  if (
-    pathname === '/apply' ||
-    pathname === '/calculator' ||
-    pathname === '/application'
-  ) {
+    // pc가 아닐 시
+    if (device.type === ('mobile' || 'tablet')) {
+      return NextResponse.redirect(origin);
+    }
+
+    // Safari 브라우저로 접속했을 시
     if (browser.name === 'Safari') {
       return NextResponse.redirect(`${origin}/browser`);
     }
