@@ -166,7 +166,21 @@ const CalculatorPage: NextPage = () => {
     setIsSubmission(artSportsScore ? true : false); // 이전 값이 있다면 true
     setFreeSemester(window.localStorage.getItem('freeSemester') ?? null);
     setSystem(window.localStorage.getItem('system') ?? '자유학년제');
-  }, []);
+  }, [
+    score2_1,
+    score2_2,
+    score3_1,
+    setValue,
+    getSubjects,
+    artSportsScore,
+    absentScore,
+    attendanceScore,
+    volunteerScore,
+    score1_1,
+    score1_2,
+    setFreeSemester,
+    setSystem,
+  ]);
 
   // 저장 버튼을 눌렀을 때
   const onValid = async ({
