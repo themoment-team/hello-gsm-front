@@ -136,6 +136,23 @@ const CalculatorPage: NextPage = () => {
     }
   };
 
+  useEffect(() => {
+    test();
+  }, []);
+
+  const test = async () => {
+    try {
+      const {
+        data: { user_idx },
+      }: InfoType = await user.info();
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const testData = useLocalstorage(`${user_idx}`);
+      console.log(testData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // useEffect(() => {
   //   const userIdxStorage = Number(window.localStorage.getItem('userIdx'));
   //   console.log(userIdxStorage);
