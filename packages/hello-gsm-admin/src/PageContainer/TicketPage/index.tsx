@@ -6,15 +6,13 @@ import dayjs from 'dayjs';
 import * as I from 'assets/svg';
 
 const TicketPage: NextPage<TicketDataType> = ({ data }) => {
-  console.log(data);
-
-  const TryPrint = () => {
+  const handlePrint = () => {
     window.print();
   };
 
   useEffect(() => {
     // 페이지 첫 렌더링 시 인쇄화면 보여지게
-    TryPrint();
+    handlePrint();
   }, []);
 
   return (
@@ -118,7 +116,7 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
         );
       })}
       {/* 인쇄버튼 */}
-      <S.PrintBtn onClick={TryPrint}>
+      <S.PrintBtn onClick={handlePrint}>
         <I.PrintIcon />
         <S.PrintDesc>인쇄하기</S.PrintDesc>
       </S.PrintBtn>
