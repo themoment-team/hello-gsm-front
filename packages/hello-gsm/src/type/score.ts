@@ -31,9 +31,11 @@ export interface LocalScoreType {
   absentScore: number[];
   attendanceScore: number[];
   volunteerScore: number[];
-  freeSemester: string;
-  newSubjects: string[];
+  subjects: string[];
+  newSubjects?: string[];
+  nonSubjects?: string[];
   system: '자유학년제' | '자유학기제';
+  freeSemester?: string;
 }
 
 export interface GEDLocalScoreType {
