@@ -98,6 +98,8 @@ const CalculatorPage: NextPage<UserIdxType> = ({
 
   // 로컬스토리지 값이 있을 때 초기 값 설정
   useEffect(() => {
+    console.log(isSubmissionProp);
+    console.log(isSubmission);
     const localstorageData = window.localStorage.getItem(`${userIdx}`);
     const scoreData: LocalScoreType | null = localstorageData
       ? JSON.parse(localstorageData)

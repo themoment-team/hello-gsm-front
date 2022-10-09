@@ -19,6 +19,7 @@ const Calculator: NextPage<CalculatorType> = ({ userIdx, isSubmission }) => {
   const { setLogged } = useStore();
   useEffect(() => {
     setLogged(true);
+    console.log(isSubmission);
   }, []);
 
   return (
