@@ -10,9 +10,10 @@ import user from 'Api/user';
 
 interface UserIdxType {
   userIdx: number;
+  isSubmission?: object;
 }
 
-const GEDCalculator: NextPage<UserIdxType> = ({ userIdx }) => {
+const GEDCalculator: NextPage<UserIdxType> = ({ userIdx, isSubmission }) => {
   const seoTitle = '검정고시생 성적 입력';
   const desc = '검정고시생의 성적을 기재합니다.';
   const { setLogged } = useStore();
@@ -22,7 +23,10 @@ const GEDCalculator: NextPage<UserIdxType> = ({ userIdx }) => {
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
-      <GEDCalculatorPage userIdx={userIdx} />
+      <GEDCalculatorPage
+        userIdx={userIdx}
+        isSubmissionProp={isSubmission ? true : false}
+      />
     </>
   );
 };
@@ -36,7 +40,10 @@ const getInfo = async (accessToken: string) => {
       data: { user_idx },
     }: InfoType = await user.info(accessToken);
     return {
-      props: { userIdx: user_idx },
+      props: {
+        userIdx: user_idx,
+        isSubmission: data.application?.application_score,
+      },
     };
   } else {
     // 최종제출이 되어있으면 페이지 접근 불가 application 페이지로 이동
