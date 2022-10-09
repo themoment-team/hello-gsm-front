@@ -5,21 +5,30 @@ import { useEffect } from 'react';
 import useStore from 'Stores/StoreContainer';
 import { HeaderType } from 'type/header';
 import { CalculatorPage } from 'PageContainer';
-import { StatusType } from 'type/user';
+import { InfoType, StatusType } from 'type/user';
 import user from 'Api/user';
 
-const Calculator: NextPage = () => {
+interface CalculatorType {
+  userIdx: number;
+  isSubmission?: object;
+}
+
+const Calculator: NextPage<CalculatorType> = ({ userIdx, isSubmission }) => {
   const seoTitle = '성적 입력';
   const desc = '지원자의 성적을 기재합니다.';
   const { setLogged } = useStore();
   useEffect(() => {
     setLogged(true);
+    console.log(isSubmission);
   }, []);
 
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
-      <CalculatorPage />
+      <CalculatorPage
+        userIdx={userIdx}
+        isSubmissionProp={isSubmission ? true : false}
+      />
     </>
   );
 };
@@ -29,9 +38,14 @@ const getInfo = async (accessToken: string) => {
   const { data }: StatusType = await user.status(accessToken);
 
   if (!data.application?.isFinalSubmission) {
-    // 최종제출이 안되었으면 페이지 접근 허용
+    const {
+      data: { user_idx },
+    }: InfoType = await user.info(accessToken);
     return {
-      props: {},
+      props: {
+        userIdx: user_idx,
+        isSubmission: data.application?.application_score,
+      },
     };
   } else {
     // 최종제출이 되어있으면 페이지 접근 불가 application 페이지로 이동

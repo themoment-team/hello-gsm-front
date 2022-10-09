@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import useStore from 'Stores/StoreContainer';
-import { GEDScoreType } from 'type/score';
+import { GEDLocalScoreType, GEDScoreType } from 'type/score';
 import { GEDCalculate, Rounds } from 'Utils/Calculate';
 import * as S from './style';
 
@@ -16,7 +16,11 @@ interface ScoreType {
   nonCurriculumScoreSubtotal: number; // 전과목 만점
 }
 
-const GEDCalculatorPage: NextPage = () => {
+interface UserIdxType {
+  userIdx: number;
+}
+
+const GEDCalculatorPage: NextPage<UserIdxType> = ({ userIdx }) => {
   const curriculumScoreSubtotal = useGEDLocalStorage('curriculumScoreSubtotal');
   const nonCurriculumScoreSubtotal = useGEDLocalStorage(
     'nonCurriculumScoreSubtotal',
@@ -35,8 +39,21 @@ const GEDCalculatorPage: NextPage = () => {
     nonCurriculumScoreSubtotal &&
       setValue('nonCurriculumScoreSubtotal', nonCurriculumScoreSubtotal);
 
-    setIsSubmission(curriculumScoreSubtotal ? true : false); // 이전 값이 있다면 true
-  }, [curriculumScoreSubtotal, nonCurriculumScoreSubtotal]);
+    // setIsSubmission(curriculumScoreSubtotal ? true : false); // 이전 값이 있다면 true
+
+    const localstorageData = window.localStorage.getItem(`${userIdx}`);
+    const scoreData: GEDLocalScoreType | null = localstorageData
+      ? JSON.parse(localstorageData)
+      : null;
+    setIsSubmission(scoreData ? true : false);
+    if (scoreData) {
+      setValue('curriculumScoreSubtotal', scoreData.curriculumScoreSubtotal);
+      setValue(
+        'nonCurriculumScoreSubtotal',
+        scoreData.nonCurriculumScoreSubtotal,
+      );
+    }
+  }, []);
 
   const TrySubmission = async ({
     curriculumScoreSubtotal,
@@ -76,6 +93,14 @@ const GEDCalculatorPage: NextPage = () => {
         rankPercentage,
         scoreTotal,
       });
+
+      const score = {
+        curriculumScoreSubtotal: curriculumScoreSubtotal,
+        nonCurriculumScoreSubtotal: nonCurriculumScoreSubtotal,
+      };
+
+      localStorage.setItem(`${userIdx}`, JSON.stringify(score));
+
       window.localStorage.setItem(
         'curriculumScoreSubtotal',
         curriculumScoreSubtotal.toString(),
