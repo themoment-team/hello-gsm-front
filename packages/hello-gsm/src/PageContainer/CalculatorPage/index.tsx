@@ -42,11 +42,11 @@ interface ScoreForm {
   newSubjects: string[];
 }
 
-interface TestUserIndexType {
+interface UserIdxType {
   userIdx: number;
 }
 
-const CalculatorPage: NextPage<TestUserIndexType> = ({ userIdx }) => {
+const CalculatorPage: NextPage<UserIdxType> = ({ userIdx }) => {
   const { register, handleSubmit, watch, setValue } = useForm<ScoreForm>();
 
   const {
