@@ -35,3 +35,8 @@ export interface LocalScoreType {
   newSubjects: string[];
   system: '자유학년제' | '자유학기제';
 }
+
+export interface GEDLocalScoreType {
+  curriculumScoreSubtotal: number;
+  nonCurriculumScoreSubtotal: number;
+}
