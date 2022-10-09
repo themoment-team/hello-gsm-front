@@ -15,6 +15,7 @@ const Calculator: NextPage = () => {
   useEffect(() => {
     setLogged(true);
   }, []);
+
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />

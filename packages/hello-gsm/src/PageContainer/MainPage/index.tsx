@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import Link from 'next/link';
-import { Header, Footer, MainPageDescription } from 'components';
+import { Header, Footer, MainPageDescription, BubbleButton } from 'components';
 import { css } from '@emotion/react';
 import { StatusType } from 'type/user';
 import useStore from 'Stores/StoreContainer';
@@ -106,9 +106,12 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
             <S.Underline />
           </S.ApplyBox>
         </S.TitleWrap>
-        <Link href="/calculator/choose" passHref>
-          <S.ToCalculator>모의 성적 계산 해보기</S.ToCalculator>
-        </Link>
+
+        <BubbleButton link="/manual">여러 계정으로 로그인 하는 법</BubbleButton>
+        <BubbleButton link="/calculator/test">
+          모의 성적 계산 해보기
+        </BubbleButton>
+
         <S.ContentBox>
           {!isMobile ? (
             <S.ContentHeader>
