@@ -85,12 +85,12 @@ const GEDCalculatorPage: NextPage<UserIdxType> = ({
         scoreTotal,
       });
 
-      const score = {
+      const scoreObject = {
         curriculumScoreSubtotal: curriculumScoreSubtotal,
         nonCurriculumScoreSubtotal: nonCurriculumScoreSubtotal,
       };
 
-      localStorage.setItem(`${userIdx}`, JSON.stringify(score));
+      localStorage.setItem(`${userIdx}`, JSON.stringify(scoreObject));
 
       // window.localStorage.setItem(
       //   'curriculumScoreSubtotal',

@@ -250,7 +250,7 @@ const CalculatorPage: NextPage<UserIdxType> = ({
 
     try {
       await TrySubmission(data);
-      const score = {
+      const scoreObject = {
         score1_1: value1_1,
         score1_2: value1_2,
         score2_1: value2_1,
@@ -266,7 +266,7 @@ const CalculatorPage: NextPage<UserIdxType> = ({
         system: system,
         freeSemester: freeSemester,
       };
-      setLocalstorage(`${userIdx}`, score);
+      setLocalstorage(`${userIdx}`, scoreObject);
 
       // 결과 모달 제어
       setResultArray([
