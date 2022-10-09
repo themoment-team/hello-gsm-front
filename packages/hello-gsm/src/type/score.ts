@@ -33,7 +33,7 @@ export interface LocalScoreType {
   volunteerScore: number[];
   subjects: string[];
   newSubjects?: string[];
-  nonSubjects?: string[];
+  nonSubjects: string[];
   system: '자유학년제' | '자유학기제';
   freeSemester?: string;
 }
