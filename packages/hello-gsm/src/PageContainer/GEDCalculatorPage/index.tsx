@@ -25,11 +25,6 @@ const GEDCalculatorPage: NextPage<UserIdxType> = ({
   userIdx,
   isSubmissionProp,
 }) => {
-  const curriculumScoreSubtotal = useGEDLocalStorage('curriculumScoreSubtotal');
-  const nonCurriculumScoreSubtotal = useGEDLocalStorage(
-    'nonCurriculumScoreSubtotal',
-  );
-
   const { register, handleSubmit, setValue } = useForm<ScoreType>();
 
   const { showScoreResult, setShowScoreResult } = useStore();
@@ -38,13 +33,6 @@ const GEDCalculatorPage: NextPage<UserIdxType> = ({
   const [isSubmission, setIsSubmission] = useState<boolean>(isSubmissionProp);
 
   useEffect(() => {
-    curriculumScoreSubtotal &&
-      setValue('curriculumScoreSubtotal', curriculumScoreSubtotal);
-    nonCurriculumScoreSubtotal &&
-      setValue('nonCurriculumScoreSubtotal', nonCurriculumScoreSubtotal);
-
-    // setIsSubmission(curriculumScoreSubtotal ? true : false); // 이전 값이 있다면 true
-
     const localstorageData = window.localStorage.getItem(`${userIdx}`);
     const scoreData: GEDLocalScoreType | null = localstorageData
       ? JSON.parse(localstorageData)
@@ -104,14 +92,14 @@ const GEDCalculatorPage: NextPage<UserIdxType> = ({
 
       localStorage.setItem(`${userIdx}`, JSON.stringify(score));
 
-      window.localStorage.setItem(
-        'curriculumScoreSubtotal',
-        curriculumScoreSubtotal.toString(),
-      );
-      window.localStorage.setItem(
-        'nonCurriculumScoreSubtotal',
-        nonCurriculumScoreSubtotal.toString(),
-      );
+      // window.localStorage.setItem(
+      //   'curriculumScoreSubtotal',
+      //   curriculumScoreSubtotal.toString(),
+      // );
+      // window.localStorage.setItem(
+      //   'nonCurriculumScoreSubtotal',
+      //   nonCurriculumScoreSubtotal.toString(),
+      // );
 
       setResult([rankPercentage, scoreTotal]);
       setShowScoreResult();
