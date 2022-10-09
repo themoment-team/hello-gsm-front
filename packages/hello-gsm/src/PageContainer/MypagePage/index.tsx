@@ -12,13 +12,19 @@ import {
   MypageSuccessModal,
   MypageInformation,
 } from 'components';
+import { toast } from 'react-toastify';
 
 const MyPage: NextPage<StatusType> = ({
   data: { name, userImg, application },
 }) => {
-  const [saved, setSaved] = useState<boolean>(false);
-  const [submitted, setSubmitted] = useState<boolean>(false);
+  const saved = application === null ? false : true;
+  const submitted = application?.isFinalSubmission ? true : false;
   const [isPC, setIsPC] = useState<boolean>(true);
+  const isGED =
+    application?.application_details?.educationStatus === '검정고시'
+      ? true
+      : false;
+  const finalSubmitAcceptable = application?.application_score ? true : false;
 
   const {
     showMypageModal,
@@ -35,8 +41,6 @@ const MyPage: NextPage<StatusType> = ({
 
   useEffect(() => {
     setLogged(true);
-    setSaved(application === null ? false : true);
-    setSubmitted(application?.isFinalSubmission ? true : false);
     setIsPC(
       !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(
         navigator.userAgent,
@@ -51,7 +55,7 @@ const MyPage: NextPage<StatusType> = ({
       <Header />
       <S.Content
         css={css`
-          ${isPC && saved && !submitted && 'height: 380px'}
+          ${isPC && saved && !submitted && 'height: 440px'}
           ${isPC && !saved && 'height: 320px'}
         `}
       >
@@ -96,10 +100,14 @@ const MyPage: NextPage<StatusType> = ({
                 </S.Button>
               </S.ButtonBox>
             ) : (
-              <>
+              <S.ButtonAndDescription
+                css={css`
+                  height: 210px;
+                `}
+              >
                 <S.ButtonBox
                   css={css`
-                    width: 510px;
+                    width: 660px;
                   `}
                 >
                   <S.Button
@@ -121,18 +129,49 @@ const MyPage: NextPage<StatusType> = ({
                       원서 수정
                     </S.Button>
                   </Link>
+                  <Link
+                    href={isGED ? '/calculator/ged' : '/calculator'}
+                    passHref
+                  >
+                    <S.Button
+                      css={css`
+                        background: #5fc4fb;
+                        box-shadow: 0px 13px 30px -10px #5fc4fb;
+                      `}
+                    >
+                      성적 입력
+                    </S.Button>
+                  </Link>
                   <S.Button
-                    onClick={() => showModal('final')}
-                    css={css`
-                      background: #59c5ff;
-                      box-shadow: 0px 13px 30px -10px #59c5ff;
-                    `}
+                    onClick={() => {
+                      finalSubmitAcceptable
+                        ? showModal('final')
+                        : toast.error(
+                            '성적을 입력하여야 최종제출이 가능합니다.',
+                          );
+                    }}
+                    css={
+                      finalSubmitAcceptable
+                        ? css`
+                            background: #49f58e;
+                            box-shadow: 0px 13px 30px -10px #49f58e;
+                          `
+                        : css`
+                            color: #505050;
+                            background: #a1a1a1;
+                            box-shadow: 0px 13px 30px -10px #a1a1a1;
+                            cursor: default;
+                          `
+                    }
                   >
                     최종제출
                   </S.Button>
                 </S.ButtonBox>
                 <MypageInformation application={application} />
-              </>
+                <S.MypageDescription>
+                  최종제출은 성적입력 후에 하실 수 있습니다.
+                </S.MypageDescription>
+              </S.ButtonAndDescription>
             )
           ) : (
             <S.ButtonAndDescription>

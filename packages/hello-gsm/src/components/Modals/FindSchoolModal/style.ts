@@ -109,6 +109,13 @@ export const ListTitle = styled.p`
 export const ListContentBox = styled.div`
   height: 370px;
   overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #19baff;
+    border-radius: 10px;
+  }
 `;
 
 export const ListContent = styled.div`

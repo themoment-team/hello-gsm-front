@@ -14,7 +14,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "types": ["@emotion/react/types/css-prop", "@types/gtag.js"],
+    "types": ["@emotion/react/types/css-prop"],
     "paths": {
       "components/*": ["./components/*"],
       "hooks/*": ["./hooks/*"],
