@@ -1,7 +1,6 @@
 import application from 'Api/application';
 import auth from 'Api/auth';
 import { Header, GEDScoreResultModal } from 'components';
-import useGEDLocalStorage from 'hooks/useGEDLocalstorage';
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
@@ -75,6 +74,7 @@ const GEDCalculatorPage: NextPage<UserIdxType> = ({
       curriculumScoreSubtotal,
       nonCurriculumScoreSubtotal,
     );
+
     const scoreTotal = Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
 
     try {
@@ -91,15 +91,6 @@ const GEDCalculatorPage: NextPage<UserIdxType> = ({
       };
 
       localStorage.setItem(`${userIdx}`, JSON.stringify(scoreObject));
-
-      // window.localStorage.setItem(
-      //   'curriculumScoreSubtotal',
-      //   curriculumScoreSubtotal.toString(),
-      // );
-      // window.localStorage.setItem(
-      //   'nonCurriculumScoreSubtotal',
-      //   nonCurriculumScoreSubtotal.toString(),
-      // );
 
       setResult([rankPercentage, scoreTotal]);
       setShowScoreResult();

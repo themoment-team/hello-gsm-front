@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
 import * as S from './style';
 import { GetApplicationType } from 'type/application';
-import useLocalstorage from 'hooks/useLocalstorage';
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { ApplicantsStatus } from 'components';
@@ -22,19 +21,6 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
   data,
 }) => {
   // 로컬스토리지 값을 가져와서 등급으로 표시
-  // const score1_1 = useToString(useLocalstorage('score1_1')) ?? []; // null 값이면 빈 배열
-  // const score1_2 = useToString(useLocalstorage('score1_2')) ?? [];
-  // const score2_1 = useToString(useLocalstorage('score2_1')) ?? [];
-  // const score2_2 = useToString(useLocalstorage('score2_2')) ?? [];
-  // const score3_1 = useToString(useLocalstorage('score3_1')) ?? [];
-  // const artSportsScore = useToString(useLocalstorage('artSportsScore')) ?? [];
-  // const absentScore = useLocalstorage('absentScore') ?? [];
-  // const attendanceScore = useLocalstorage('attendanceScore') ?? [];
-  // const volunteerScore = useLocalstorage('volunteerScore') ?? [];
-  // const subjects = useLocalstorage('subjects');
-  // const newSubjects = useLocalstorage('newSubjects');
-  // const nonSubjects = useLocalstorage('nonSubjects');
-
   const [score1_1, setScore1_1] = useState<string[] | undefined>([]);
   const [score1_2, setScore1_2] = useState<string[] | undefined>([]);
   const [score2_1, setScore2_1] = useState<string[] | undefined>([]);
@@ -74,6 +60,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
     (30 - application?.application_score?.attendanceScore) / 3;
 
   const userBirth = new Date(birth);
+
   // 생년월일을 YYYY-MM-DD형식에 맞게 포맷
   const Formatbirth = dayjs()
     .set('year', userBirth.getFullYear())
