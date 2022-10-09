@@ -17,16 +17,12 @@ import {
   Attendance,
   ArtSport,
 } from 'Utils/Calculate';
-import useLocalstorage from 'hooks/useLocalstorage';
 import application from 'Api/application';
 import auth from 'Api/auth';
 import { LocalScoreType, ScoreType } from 'type/score';
 import useStore from 'Stores/StoreContainer';
 import setLocalstorage from 'hooks/setLocalstorage';
-import useSubjectsLocalstorage from 'hooks/useSubjectsLocalstorage';
 import { toast } from 'react-toastify';
-import user from 'Api/user';
-import { InfoType } from 'type/user';
 
 interface ScoreForm {
   // 과목/점수 배열
@@ -44,9 +40,13 @@ interface ScoreForm {
 
 interface UserIdxType {
   userIdx: number;
+  isSubmissionProp: boolean;
 }
 
-const CalculatorPage: NextPage<UserIdxType> = ({ userIdx }) => {
+const CalculatorPage: NextPage<UserIdxType> = ({
+  userIdx,
+  isSubmissionProp,
+}) => {
   const { register, handleSubmit, watch, setValue } = useForm<ScoreForm>();
 
   const {
@@ -62,7 +62,7 @@ const CalculatorPage: NextPage<UserIdxType> = ({ userIdx }) => {
   const [resultArray, setResultArray] = useState<Array<number>>([]);
 
   // 이전에 제출한 경험 여부 판단
-  const [isSubmission, setIsSubmission] = useState<boolean>();
+  const [isSubmission, setIsSubmission] = useState<boolean>(isSubmissionProp);
 
   const lines = ['일반교과', '예체능 교과', '비교과'];
   const subjects = [
@@ -125,7 +125,7 @@ const CalculatorPage: NextPage<UserIdxType> = ({ userIdx }) => {
       attendanceScore && setValue('attendanceValue', attendanceScore);
       volunteerScore && setValue('volunteerValue', volunteerScore);
       newSubjects && setValue('newSubjects', newSubjects);
-      setIsSubmission(artSportsScore ? true : false); // 이전 값이 있다면 true
+      // setIsSubmission(artSportsScore ? true : false); // 이전 값이 있다면 true
       setFreeSemester(freeSemester || null);
       setSystem(system || '자유학년제');
     }
