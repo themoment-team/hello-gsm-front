@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 import { ApplicantsStatus } from 'components';
 import * as I from 'Assets/svg';
 import { LocalScoreType } from 'type/score';
+import toStringArray from 'Utils/Array/toStringArray';
 
 const ApplicationPage: NextPage<GetApplicationType> = ({
   data: {
@@ -47,35 +48,6 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
   const [newSubjects, setNewSubjects] = useState<string[]>([]);
   const [nonSubjects, setNonSubjects] = useState<string[]>([]);
 
-  const toStringArray = (
-    scores: Array<number | string> | undefined,
-  ): string[] | undefined => {
-    const returnScores: string[] | undefined = [];
-    scores?.map(score => {
-      switch (score) {
-        case 5:
-          returnScores?.push('A');
-          break;
-        case 4:
-          returnScores?.push('B');
-          break;
-        case 3:
-          returnScores?.push('C');
-          break;
-        case 2:
-          returnScores?.push('D');
-          break;
-        case 1:
-          returnScores?.push('E');
-          break;
-        case 0:
-          returnScores?.push('없음');
-          break;
-      }
-    });
-    return returnScores;
-  };
-
   useEffect(() => {
     const localstorageData = window.localStorage.getItem(`${user_idx}`);
     const scoreData: LocalScoreType | null = localstorageData
@@ -113,10 +85,6 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
     window.print();
   };
 
-  // useEffect(() => {
-  //   // 페이지 첫 렌더링 시 인쇄화면 보여지게
-  //   TryPrint();
-  // }, []);
   return (
     <>
       {/* 입학원서 */}
