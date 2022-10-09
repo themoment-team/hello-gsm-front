@@ -8,11 +8,12 @@ import { CalculatorPage } from 'PageContainer';
 import { InfoType, StatusType } from 'type/user';
 import user from 'Api/user';
 
-interface UserIdxType {
+interface CalculatorType {
   userIdx: number;
+  isSubmission?: object;
 }
 
-const Calculator: NextPage<UserIdxType> = ({ userIdx }) => {
+const Calculator: NextPage<CalculatorType> = ({ userIdx, isSubmission }) => {
   const seoTitle = '성적 입력';
   const desc = '지원자의 성적을 기재합니다.';
   const { setLogged } = useStore();
@@ -23,7 +24,10 @@ const Calculator: NextPage<UserIdxType> = ({ userIdx }) => {
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
-      <CalculatorPage userIdx={userIdx} />
+      <CalculatorPage
+        userIdx={userIdx}
+        isSubmissionProp={isSubmission ? true : false}
+      />
     </>
   );
 };
@@ -37,7 +41,10 @@ const getInfo = async (accessToken: string) => {
       data: { user_idx },
     }: InfoType = await user.info(accessToken);
     return {
-      props: { userIdx: user_idx },
+      props: {
+        userIdx: user_idx,
+        isSubmission: data.application?.application_score,
+      },
     };
   } else {
     // 최종제출이 되어있으면 페이지 접근 불가 application 페이지로 이동
