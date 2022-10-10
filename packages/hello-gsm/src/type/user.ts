@@ -24,12 +24,12 @@ export interface StatusApplication {
 }
 
 export interface StatusType {
-  data: StatusDataType;
+  data?: StatusDataType;
 }
 
 export interface MainDescStatusType {
   selectedIndex: number;
-  data: StatusDataType;
+  data?: StatusDataType;
 }
 
 export interface InfoType {
