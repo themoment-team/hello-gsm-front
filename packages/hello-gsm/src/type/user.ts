@@ -24,7 +24,7 @@ export interface StatusApplication {
 }
 
 export interface StatusType {
-  data?: StatusDataType;
+  data: StatusDataType;
 }
 
 export interface MainDescStatusType {
