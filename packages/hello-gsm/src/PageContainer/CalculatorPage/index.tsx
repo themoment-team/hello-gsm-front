@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import type { NextPage } from 'next';
 import {
   Header,
