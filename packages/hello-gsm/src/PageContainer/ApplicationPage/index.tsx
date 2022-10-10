@@ -1,15 +1,16 @@
 import type { NextPage } from 'next';
 import * as S from './style';
 import { GetApplicationType } from 'type/application';
-import useLocalstorage from 'hooks/useLocalstorage';
-import useToString from 'Utils/Calculate/ToString';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { ApplicantsStatus } from 'components';
 import * as I from 'Assets/svg';
+import { LocalScoreType } from 'type/score';
+import toStringArray from 'Utils/Array/toStringArray';
 
 const ApplicationPage: NextPage<GetApplicationType> = ({
   data: {
+    user_idx,
     application,
     application_image,
     birth,
@@ -20,18 +21,38 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
   data,
 }) => {
   // 로컬스토리지 값을 가져와서 등급으로 표시
-  const score1_1 = useToString(useLocalstorage('score1_1')) ?? []; // null 값이면 빈 배열
-  const score1_2 = useToString(useLocalstorage('score1_2')) ?? [];
-  const score2_1 = useToString(useLocalstorage('score2_1')) ?? [];
-  const score2_2 = useToString(useLocalstorage('score2_2')) ?? [];
-  const score3_1 = useToString(useLocalstorage('score3_1')) ?? [];
-  const artSportsScore = useToString(useLocalstorage('artSportsScore')) ?? [];
-  const absentScore = useLocalstorage('absentScore') ?? [];
-  const attendanceScore = useLocalstorage('attendanceScore') ?? [];
-  const volunteerScore = useLocalstorage('volunteerScore') ?? [];
-  const subjects = useLocalstorage('subjects');
-  const newSubjects = useLocalstorage('newSubjects');
-  const nonSubjects = useLocalstorage('nonSubjects');
+  const [score1_1, setScore1_1] = useState<string[] | undefined>([]);
+  const [score1_2, setScore1_2] = useState<string[] | undefined>([]);
+  const [score2_1, setScore2_1] = useState<string[] | undefined>([]);
+  const [score2_2, setScore2_2] = useState<string[] | undefined>([]);
+  const [score3_1, setScore3_1] = useState<string[] | undefined>([]);
+  const [artSportsScore, setArtSportsScore] = useState<string[]>([]);
+  const [absentScore, setAbsentScore] = useState<number[]>([]);
+  const [attendanceScore, setAttendanceScore] = useState<number[]>([]);
+  const [volunteerScore, setVolunteerScore] = useState<number[]>([]);
+  const [subjects, setSubjects] = useState<string[]>([]);
+  const [newSubjects, setNewSubjects] = useState<string[]>([]);
+  const [nonSubjects, setNonSubjects] = useState<string[]>([]);
+
+  useEffect(() => {
+    const localstorageData = window.localStorage.getItem(`${user_idx}`);
+    const scoreData: LocalScoreType | null = localstorageData
+      ? JSON.parse(localstorageData)
+      : null;
+    setScore1_1(toStringArray(scoreData?.score1_1));
+    setScore1_2(toStringArray(scoreData?.score1_2));
+    setScore2_1(toStringArray(scoreData?.score2_1));
+    setScore2_2(toStringArray(scoreData?.score2_2));
+    setScore3_1(toStringArray(scoreData?.score3_1));
+    setArtSportsScore(toStringArray(scoreData?.artSportsScore) || []);
+    setAbsentScore(scoreData?.absentScore || []);
+    setAttendanceScore(scoreData?.attendanceScore || []);
+    setVolunteerScore(scoreData?.volunteerScore || []);
+    setSubjects(scoreData?.subjects || []);
+    setNewSubjects(scoreData?.newSubjects || []);
+    setNonSubjects(scoreData?.nonSubjects || []);
+    TryPrint();
+  }, []);
 
   // 환산일수
   const conversionDays =
@@ -39,6 +60,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
     (30 - application?.application_score?.attendanceScore) / 3;
 
   const userBirth = new Date(birth);
+
   // 생년월일을 YYYY-MM-DD형식에 맞게 포맷
   const Formatbirth = dayjs()
     .set('year', userBirth.getFullYear())
@@ -50,10 +72,6 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
     window.print();
   };
 
-  useEffect(() => {
-    // 페이지 첫 렌더링 시 인쇄화면 보여지게
-    TryPrint();
-  }, []);
   return (
     <>
       {/* 입학원서 */}

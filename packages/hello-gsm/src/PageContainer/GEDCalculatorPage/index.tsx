@@ -1,13 +1,12 @@
 import application from 'Api/application';
 import auth from 'Api/auth';
 import { Header, GEDScoreResultModal } from 'components';
-import useGEDLocalStorage from 'hooks/useGEDLocalstorage';
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import useStore from 'Stores/StoreContainer';
-import { GEDScoreType } from 'type/score';
+import { GEDLocalScoreType, GEDScoreType } from 'type/score';
 import { GEDCalculate, Rounds } from 'Utils/Calculate';
 import * as S from './style';
 
@@ -16,27 +15,35 @@ interface ScoreType {
   nonCurriculumScoreSubtotal: number; // 전과목 만점
 }
 
-const GEDCalculatorPage: NextPage = () => {
-  const curriculumScoreSubtotal = useGEDLocalStorage('curriculumScoreSubtotal');
-  const nonCurriculumScoreSubtotal = useGEDLocalStorage(
-    'nonCurriculumScoreSubtotal',
-  );
+interface UserIdxType {
+  userIdx: number;
+  isSubmissionProp: boolean;
+}
 
+const GEDCalculatorPage: NextPage<UserIdxType> = ({
+  userIdx,
+  isSubmissionProp,
+}) => {
   const { register, handleSubmit, setValue } = useForm<ScoreType>();
 
   const { showScoreResult, setShowScoreResult } = useStore();
   const [result, setResult] = useState<number[]>(); //결과 화면 컴포넌트에 보일 점수
   // 이전에 제출한 경험 여부 판단
-  const [isSubmission, setIsSubmission] = useState<boolean>();
+  const [isSubmission, setIsSubmission] = useState<boolean>(isSubmissionProp);
 
   useEffect(() => {
-    curriculumScoreSubtotal &&
-      setValue('curriculumScoreSubtotal', curriculumScoreSubtotal);
-    nonCurriculumScoreSubtotal &&
-      setValue('nonCurriculumScoreSubtotal', nonCurriculumScoreSubtotal);
-
-    setIsSubmission(curriculumScoreSubtotal ? true : false); // 이전 값이 있다면 true
-  }, [curriculumScoreSubtotal, nonCurriculumScoreSubtotal]);
+    const localstorageData = window.localStorage.getItem(`${userIdx}`);
+    const scoreData: GEDLocalScoreType | null = localstorageData
+      ? JSON.parse(localstorageData)
+      : null;
+    if (scoreData) {
+      setValue('curriculumScoreSubtotal', scoreData.curriculumScoreSubtotal);
+      setValue(
+        'nonCurriculumScoreSubtotal',
+        scoreData.nonCurriculumScoreSubtotal,
+      );
+    }
+  }, []);
 
   const TrySubmission = async ({
     curriculumScoreSubtotal,
@@ -67,6 +74,7 @@ const GEDCalculatorPage: NextPage = () => {
       curriculumScoreSubtotal,
       nonCurriculumScoreSubtotal,
     );
+
     const scoreTotal = Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
 
     try {
@@ -76,14 +84,13 @@ const GEDCalculatorPage: NextPage = () => {
         rankPercentage,
         scoreTotal,
       });
-      window.localStorage.setItem(
-        'curriculumScoreSubtotal',
-        curriculumScoreSubtotal.toString(),
-      );
-      window.localStorage.setItem(
-        'nonCurriculumScoreSubtotal',
-        nonCurriculumScoreSubtotal.toString(),
-      );
+
+      const scoreObject = {
+        curriculumScoreSubtotal: curriculumScoreSubtotal,
+        nonCurriculumScoreSubtotal: nonCurriculumScoreSubtotal,
+      };
+
+      localStorage.setItem(`${userIdx}`, JSON.stringify(scoreObject));
 
       setResult([rankPercentage, scoreTotal]);
       setShowScoreResult();
