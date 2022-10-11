@@ -11,33 +11,25 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   data,
 }) => {
   const today = new Date();
+  const isFirstPeriod = today < new Date('2022-11-02 10:00:00');
+  const firstResult = data?.application?.firstResultScreening ? true : false;
+  const finalResult = data?.application?.finalResultScreening ? true : false;
+  const pass = isFirstPeriod ? firstResult : finalResult;
   const [index, setIndex] = useState<number>(1);
-  const [pass, setPass] = useState<boolean>(false);
-  const [name, setName] = useState<string>('김형록');
-  const [registrationNumber, setRegistrationNumber] = useState<number | null>();
-  const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(true);
+  const name = data?.name || '';
+  const registrationNumber = data?.application?.registrationNumber || '';
 
   const { setLogged } = useStore();
 
   useEffect(() => {
-    today > new Date('2022-11-01') && setIsFirstPeriod(false);
-    today > new Date('2023-03-01') ? setIndex(0) : setIndex(selectedIndex);
+    today > new Date('2023-03-01 00:00:00')
+      ? setIndex(0)
+      : setIndex(selectedIndex);
     if (data) {
       setLogged(true);
-      today < new Date('2022-10-24') && selectedIndex === 5 && setIndex(7);
-      setName(data.name);
-      setPass(() => {
-        if (isFirstPeriod) {
-          return data.application?.finalResultScreening ? true : false;
-        } else {
-          return data.application?.finalResultScreening ? true : false;
-        }
-      });
-      setRegistrationNumber(
-        data.application?.registrationNumber
-          ? data.application.registrationNumber
-          : null,
-      );
+      today < new Date('2022-10-24 10:00:00') &&
+        selectedIndex === 5 &&
+        setIndex(7);
     } else {
       setLogged(false);
       selectedIndex === 5 && setIndex(6);
