@@ -58,7 +58,7 @@ const MyPage: NextPage<StatusType> = ({
     </S.IsNotPCWrap>
   );
 
-  const isSumitted = () => (
+  const isSubmitted = () => (
     <S.ButtonBox
       css={css`
         width: 335px;
@@ -88,7 +88,7 @@ const MyPage: NextPage<StatusType> = ({
     </S.ButtonBox>
   );
 
-  const isNotSumitted = () => (
+  const isNotSubmitted = () => (
     <S.ButtonAndDescription
       css={css`
         height: 210px;
@@ -220,8 +220,8 @@ const MyPage: NextPage<StatusType> = ({
           ? acceptable
             ? saved
               ? submitted
-                ? isSumitted()
-                : isNotSumitted()
+                ? isSubmitted()
+                : isNotSubmitted()
               : isNotSaved()
             : isNotAcceptable()
           : isNotPC()}
