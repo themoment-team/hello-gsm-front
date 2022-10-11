@@ -19,19 +19,15 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   const name = data?.name || '';
   const registrationNumber = data?.application?.registrationNumber || '';
 
-  const { setLogged } = useStore();
-
   useEffect(() => {
     today > new Date('2023-03-01 00:00:00')
       ? setIndex(0)
       : setIndex(selectedIndex);
     if (data) {
-      setLogged(true);
       today < new Date('2022-10-24 10:00:00') &&
         selectedIndex === 5 &&
         setIndex(7);
     } else {
-      setLogged(false);
       selectedIndex === 5 && setIndex(6);
     }
   }, [selectedIndex]);
