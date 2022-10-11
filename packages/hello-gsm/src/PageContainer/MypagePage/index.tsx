@@ -222,7 +222,7 @@ const MyPage: NextPage<StatusType> = ({
                 ? isSumitted()
                 : isNotSumitted()
               : isNotSaved()
-            : isNotSaved()
+            : isNotAcceptable()
           : isNotPC()}
       </S.Content>
       <S.GreenBall />
