@@ -4,6 +4,19 @@ export const InformationPage = styled.div`
   height: 100vh;
   position: relative;
   overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 16px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 4px solid #0f0921;
+    height: 56px;
+    background-clip: content-box;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #cbcbcb;
+  }
 `;
 
 export const InformationContent = styled.div`
