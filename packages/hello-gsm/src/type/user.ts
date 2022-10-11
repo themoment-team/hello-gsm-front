@@ -29,7 +29,7 @@ export interface StatusType {
 
 export interface MainDescStatusType {
   selectedIndex: number;
-  data: StatusDataType;
+  data?: StatusDataType;
 }
 
 export interface InfoType {

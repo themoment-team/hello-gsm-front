@@ -7,6 +7,7 @@ import { css } from '@emotion/react';
 import { StatusType } from 'type/user';
 import useStore from 'Stores/StoreContainer';
 import device from 'shared/config';
+import acceptable from 'shared/acceptable';
 
 const contentSelects = [
   '원서 작성',
@@ -71,10 +72,26 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
           </S.TitleBox>
           <S.ApplyBox>
             {isPC ? (
-              !data?.application?.isFinalSubmission ? (
-                <Link href={logged ? '/information' : '/auth/signin'} passHref>
-                  <S.ToApply>원서 접수 하러가기</S.ToApply>
-                </Link>
+              acceptable ? (
+                !data?.application?.isFinalSubmission ? (
+                  <Link
+                    href={logged ? '/information' : '/auth/signin'}
+                    passHref
+                  >
+                    <S.ToApply>원서 접수 하러가기</S.ToApply>
+                  </Link>
+                ) : (
+                  <S.ToApply
+                    css={css`
+                      background: #a2a2a2;
+                      border-radius: 12px;
+                      box-shadow: 0px 5px 20px 0px #a2a2a2;
+                      pointer-events: none;
+                    `}
+                  >
+                    접수 완료
+                  </S.ToApply>
+                )
               ) : (
                 <S.ToApply
                   css={css`
@@ -84,7 +101,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
                     pointer-events: none;
                   `}
                 >
-                  접수 완료
+                  접수 기간이 아닙니다.
                 </S.ToApply>
               )
             ) : (
@@ -98,7 +115,9 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
                   }
                 `}
               >
-                원서 접수는 pc로만 가능해요
+                {acceptable
+                  ? '원서 접수는 pc로만 가능해요'
+                  : '접수 기간이 아닙니다.'}
               </S.ToApply>
             )}
             {/* <S.ApplyTerm>접수 기간: 10.18~10.21</S.ApplyTerm> */}

@@ -1,7 +1,14 @@
-const InspectionIcon = () => (
+import React from 'react';
+
+interface SizeProps {
+  width?: number;
+  height?: number;
+}
+
+const InspectionIcon: React.FC<SizeProps> = ({ width, height }) => (
   <svg
-    width="217"
-    height="217"
+    width={width || '217'}
+    height={height || '217'}
     viewBox="0 0 217 217"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
