@@ -184,22 +184,16 @@ const MyPage: NextPage<StatusType> = ({
 
   const isNotAcceptable = () => (
     <S.ButtonAndDescription>
-      <S.ButtonBox
+      <S.Button
         css={css`
-          width: 160px;
+          color: #505050;
+          background: #a1a1a1;
+          box-shadow: 0px 13px 30px -10px #a1a1a1;
+          cursor: default;
         `}
       >
-        <S.Button
-          css={css`
-            color: #505050;
-            background: #a1a1a1;
-            box-shadow: 0px 13px 30px -10px #a1a1a1;
-            cursor: default;
-          `}
-        >
-          지원 기간 아님
-        </S.Button>
-      </S.ButtonBox>
+        지원 기간 아님
+      </S.Button>
       <S.MypageDescription>
         지원 기간은 10월 17일부터 10월 20일까지 입니다.
       </S.MypageDescription>
@@ -214,7 +208,7 @@ const MyPage: NextPage<StatusType> = ({
       <S.Content
         css={css`
           ${isPC && saved && !submitted && 'height: 440px'}
-          ${isPC && !saved && 'height: 320px'}
+          ${isPC && (!saved || acceptable) && 'height: 320px'}
         `}
       >
         <S.UserBox>
