@@ -10,7 +10,9 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   data,
 }) => {
   const today = new Date();
-  const isFirstPeriod = today < new Date('2022-11-02 10:00:00');
+  const isFirstPeriod =
+    today < new Date('2022-11-02 10:00:00') &&
+    today >= new Date('2022-10-24 10:00:00');
   const firstResult = data?.application?.firstResultScreening ? true : false;
   const finalResult = data?.application?.finalResultScreening ? true : false;
   const pass = isFirstPeriod ? firstResult : finalResult;
@@ -77,7 +79,8 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             작성하신 입학 원서와 그 외 서류들을 출력하여 수기 부분을
           </S.DescriptionLine>
           <S.DescriptionLine>
-            모두 작성하신 후 10월 17일 부터 10월 20일까지 교무실 원서접수처에
+            모두 작성하신 후 10월 17일 9시부터 10월 20일 17시까지 교무실
+            원서접수처에
           </S.DescriptionLine>
           <S.DescriptionLine>제출해야합니다.</S.DescriptionLine>
           <S.PostScript>광주광역시 광산구 송정동 상무대로 312</S.PostScript>
@@ -92,7 +95,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
           <S.DescriptionLine>
             정원의 1.3배의 인원을 선출합니다.
           </S.DescriptionLine>
-          <S.PostScript>2022.10.24 발표</S.PostScript>
+          <S.PostScript>2022.10.24 10시 발표</S.PostScript>
         </S.Description>
       );
     case 4:
@@ -174,7 +177,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
           <S.DescriptionLine>
             1차 서류 심사와 인적성소양평가를 통해 최종 합격자를 선출합니다.
           </S.DescriptionLine>
-          <S.PostScript>2022.11.09 발표</S.PostScript>
+          <S.PostScript>2022.11.02 10시 발표</S.PostScript>
         </S.Description>
       );
     default:
