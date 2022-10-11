@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import * as S from './style';
 import * as I from 'Assets/svg';
 import { MainDescStatusType } from 'type/user';
-import useStore from 'Stores/StoreContainer';
 
 const MainPageDescription: React.FC<MainDescStatusType> = ({
   selectedIndex,
