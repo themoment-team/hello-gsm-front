@@ -25,7 +25,7 @@ const AboutPage: NextPage = () => {
       <S.AboutPage>
         <S.Section>
           <I.TMLogo />
-          <S.Title>더모먼트팀</S.Title>
+          <S.Title>더모먼트</S.Title>
           <S.Desc>광주소프트웨어마이스터고등학교 입학 지원 시스템</S.Desc>
           <S.BigBall style={{ left: '-24vh' }} />
           <S.GreenBall style={{ left: '20vh' }} />
