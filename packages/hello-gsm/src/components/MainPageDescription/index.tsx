@@ -25,7 +25,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
       ? setIndex(0)
       : setIndex(selectedIndex);
     if (data) {
-      today > new Date('2022-10-24 10:00:00') &&
+      today < new Date('2022-10-24 10:00:00') &&
         selectedIndex === 5 &&
         setIndex(7);
     } else {
