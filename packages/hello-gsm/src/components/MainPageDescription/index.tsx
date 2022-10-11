@@ -17,15 +17,15 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   const finalResult = data?.application?.finalResultScreening ? true : false;
   const pass = isFirstPeriod ? firstResult : finalResult;
   const [index, setIndex] = useState<number>(1);
-  const name = data?.name || '';
-  const registrationNumber = data?.application?.registrationNumber || '';
+  const name = data?.name ?? '';
+  const registrationNumber = data?.application?.registrationNumber ?? '';
 
   useEffect(() => {
     today > new Date('2023-03-01 00:00:00')
       ? setIndex(0)
       : setIndex(selectedIndex);
     if (data) {
-      today < new Date('2022-10-24 10:00:00') &&
+      today > new Date('2022-10-24 10:00:00') &&
         selectedIndex === 5 &&
         setIndex(7);
     } else {
