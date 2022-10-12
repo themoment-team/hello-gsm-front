@@ -84,24 +84,30 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
                   </Link>
                 ) : (
                   <S.ToApply
-                    css={css`
-                      background: #a2a2a2;
-                      border-radius: 12px;
-                      box-shadow: 0px 5px 20px 0px #a2a2a2;
-                      pointer-events: none;
-                    `}
+                    css={
+                      data?.application?.isFinalSubmission &&
+                      css`
+                        background: #a2a2a2;
+                        border-radius: 12px;
+                        box-shadow: 0px 5px 20px 0px #a2a2a2;
+                        pointer-events: none;
+                      `
+                    }
                   >
                     접수 완료
                   </S.ToApply>
                 )
               ) : (
                 <S.ToApply
-                  css={css`
-                    background: #a2a2a2;
-                    border-radius: 12px;
-                    box-shadow: 0px 5px 20px 0px #a2a2a2;
-                    pointer-events: none;
-                  `}
+                  css={
+                    !acceptable &&
+                    css`
+                      background: #a2a2a2;
+                      border-radius: 12px;
+                      box-shadow: 0px 5px 20px 0px #a2a2a2;
+                      pointer-events: none;
+                    `
+                  }
                 >
                   접수 기간이 아닙니다.
                 </S.ToApply>
