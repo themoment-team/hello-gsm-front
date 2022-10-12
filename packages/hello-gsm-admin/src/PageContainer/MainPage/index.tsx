@@ -11,7 +11,7 @@ import Link from 'next/link';
 import { toast } from 'react-toastify';
 
 const MainPage: NextPage<ApplicantsType> = ({ data }) => {
-  const printable: boolean = new Date() >= new Date('2022-10-12 20:15:00');
+  const printable: boolean = new Date() >= new Date('2022-10-12 20:45:00');
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
   const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
   const pageIndexRef = useRef<number>(2);

@@ -29,8 +29,8 @@ const ContentBox: React.FC<ContentType> = ({
     },
   },
 }) => {
-  const isFirstResult: boolean = new Date() >= new Date('2022-10-12 20:15:00');
-  const isFinalResult: boolean = new Date() >= new Date('2022-10-12 20:25:00');
+  const isFirstResult: boolean = new Date() >= new Date('2022-10-12 20:45:00');
+  const isFinalResult: boolean = new Date() >= new Date('2022-10-12 20:55:00');
   const firstResult: '미정' | '합격' | '불합격' = !isFirstResult
     ? '미정'
     : firstResultScreening
