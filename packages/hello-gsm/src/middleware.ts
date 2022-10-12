@@ -3,7 +3,7 @@ import { NextRequest, NextResponse, userAgent } from 'next/server';
 export function middleware(req: NextRequest) {
   const acceptable =
     new Date() >= new Date('2022-10-12 20:00') &&
-    new Date() <= new Date('2022-10-12 20:29');
+    new Date() <= new Date('2022-10-12 20:40');
   const { origin, pathname } = req.nextUrl;
   const { device, browser } = userAgent(req);
   const applicationFormURL = [
@@ -33,7 +33,7 @@ export function middleware(req: NextRequest) {
   if (applicationFormURL.includes(pathname)) {
     // 원서 접수 가능 기간이 아닐 시
     if (!acceptable) {
-      return NextResponse.redirect(origin);
+      // return NextResponse.redirect(origin);
     }
 
     // pc가 아닐 시
