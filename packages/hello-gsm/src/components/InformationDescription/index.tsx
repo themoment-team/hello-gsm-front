@@ -57,9 +57,9 @@ const InformationDescription: React.FC<IndexType> = ({ index }) => {
           >
             절차를 읽고 <S.Highlight>원서와 성적</S.Highlight>을{' '}
             <S.Highlight>작성한 후 마이페이지</S.Highlight>에서{' '}
-            <S.Highlight>최종 제출버튼</S.Highlight>을 눌러
+            <S.Highlight>최종 제출버튼</S.Highlight>을 눌러야
             <br />
-            입학 신청을 완료합니다.
+            입학 신청이 완료됩니다.
           </S.DescriptionText>
           <S.DescriptionText>
             <S.Highlight>성적 작성</S.Highlight>은 원활한 출력을 위해{' '}
@@ -80,8 +80,11 @@ const InformationDescription: React.FC<IndexType> = ({ index }) => {
             마이페이지에서 <S.Highlight>저장 후 출력하여</S.Highlight>
             <br />
             수기 부분을 모두 작성하신 후{' '}
-            <S.Highlight>10월 17일 부터 10월 20일까지 학교 행정실</S.Highlight>
-            <br />에 제출해야 합니다.
+            <S.Highlight>
+              10월 17일 부터 10월 20일까지 <br />
+              학교 원서접수처
+            </S.Highlight>
+            에 제출해야 합니다.
           </S.DescriptionText>
         </S.Description>
       );
@@ -100,7 +103,8 @@ const InformationDescription: React.FC<IndexType> = ({ index }) => {
       return (
         <S.Description>
           <S.DescriptionText>
-            <S.Highlight>인성과 문제해결 능력</S.Highlight>을
+            소프트웨어마이스터고등학교 학업수행에 필요한{' '}
+            <S.Highlight>기본 자질과 능력을</S.Highlight>
             <br />
             중심으로 직무적성 소양평가를 진행합니다.
           </S.DescriptionText>
@@ -110,8 +114,8 @@ const InformationDescription: React.FC<IndexType> = ({ index }) => {
       return (
         <S.Description>
           <S.DescriptionText>
-            <S.Highlight>1차 서류 심사와 2차 면접</S.Highlight>을 통해 최종
-            합격자를 선출합니다.
+            <S.Highlight>1차 서류 심사(50%)와 2차 면접(50%)</S.Highlight>을 통해
+            최종 합격자를 선출합니다.
           </S.DescriptionText>
         </S.Description>
       );
