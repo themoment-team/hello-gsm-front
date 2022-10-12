@@ -49,6 +49,11 @@ const MypageModal: React.FC = () => {
     }
   };
 
+  // 제출서류 다운로드
+  const downloadApplication = () => {
+    push('입학제출서류.hwp');
+  };
+
   const AllowButton = () => {
     setShowMypageModal();
     switch (mypageModalContent) {
@@ -59,7 +64,7 @@ const MypageModal: React.FC = () => {
         finalSubmission();
         break;
       case 'download':
-        console.log('add download function');
+        downloadApplication();
         break;
     }
   };
