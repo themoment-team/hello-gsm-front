@@ -37,6 +37,7 @@ export const DescriptionLine = styled.p`
 `;
 
 export const PostScript = styled.p`
+  line-height: 30px;
   font-weight: 400;
   font-size: 20px;
   color: rgba(255, 255, 255, 0.7);

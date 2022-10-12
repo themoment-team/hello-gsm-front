@@ -13,7 +13,7 @@ export const MainContent = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 300px;
-  margin-top: 230px;
+  margin-top: 20vh;
   @media ${device.tablet} {
     height: 1300px;
     margin-top: 100px;
