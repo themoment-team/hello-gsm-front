@@ -120,8 +120,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
                   : '접수 기간이 아닙니다.'}
               </S.ToApply>
             )}
-            {/* <S.ApplyTerm>접수 기간: 10.18~10.21</S.ApplyTerm> */}
-            <S.ApplyTerm>지금은 테스트 기간입니다.</S.ApplyTerm>
+            <S.ApplyTerm>접수 기간: 10.17 ~ 10.20</S.ApplyTerm>
             <S.Underline />
           </S.ApplyBox>
         </S.TitleWrap>
