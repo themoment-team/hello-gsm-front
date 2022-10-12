@@ -44,6 +44,8 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
     `;
 
   useEffect(() => {
+    console.log(new Date());
+    console.log(acceptable);
     setIsMobile(window.innerWidth < 640 ? true : false);
     setIsPC(
       !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(
