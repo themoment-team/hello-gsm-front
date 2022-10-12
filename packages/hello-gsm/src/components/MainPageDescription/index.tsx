@@ -11,8 +11,8 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
 }) => {
   const today = new Date();
   const isFirstPeriod =
-    today < new Date('2022-11-02 10:00:00') &&
-    today >= new Date('2022-10-24 10:00:00');
+    today < new Date('2022-10-12 20:20:00') &&
+    today >= new Date('2022-10-12 20:15:00');
   const firstResult = data?.application?.firstResultScreening ? true : false;
   const finalResult = data?.application?.finalResultScreening ? true : false;
   const pass = isFirstPeriod ? firstResult : finalResult;
@@ -25,7 +25,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
       ? setIndex(0)
       : setIndex(selectedIndex);
     if (data) {
-      today < new Date('2022-10-24 10:00:00') &&
+      today < new Date('2022-10-12 20:15:00') &&
         selectedIndex === 5 &&
         setIndex(7);
     } else {
