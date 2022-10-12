@@ -1,5 +1,4 @@
 import type { NextPage } from 'next';
-import { useEffect } from 'react';
 import { TicketDataType } from 'Types/ticket';
 import * as S from './style';
 import dayjs from 'dayjs';
@@ -9,11 +8,6 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
   const handlePrint = () => {
     window.print();
   };
-
-  useEffect(() => {
-    // 페이지 첫 렌더링 시 인쇄화면 보여지게
-    handlePrint();
-  }, []);
 
   return (
     <S.TicketPage>

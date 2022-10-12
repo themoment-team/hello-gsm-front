@@ -51,7 +51,6 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
     setSubjects(scoreData?.subjects || []);
     setNewSubjects(scoreData?.newSubjects || []);
     setNonSubjects(scoreData?.nonSubjects || []);
-    TryPrint();
   }, []);
 
   // 환산일수
