@@ -31,6 +31,8 @@ export function middleware(req: NextRequest) {
   if (applicationFormURL.includes(pathname)) {
     // 원서 접수 가능 기간이 아닐 시
     if (!acceptable) {
+      console.log(acceptable);
+      console.log(new Date());
       return NextResponse.redirect(origin);
     }
 
