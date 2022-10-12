@@ -14,7 +14,7 @@ const SignIn: NextPage = () => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  if (ctx.req.cookies.accessToken || ctx.req.cookies.refreshToken) {
+  if (ctx.req.cookies.accessToken) {
     return {
       props: {},
       redirect: { destination: '/' },

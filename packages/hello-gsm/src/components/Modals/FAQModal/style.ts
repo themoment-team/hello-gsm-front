@@ -31,7 +31,7 @@ export const FAQModalBox = styled.div`
   @media (max-height: 900px) {
     width: 80vh;
     height: 80vh;
-  } ;
+  }
 `;
 
 export const CloseButtonWrap = styled.div`
@@ -52,8 +52,6 @@ export const CloseButton = styled.button`
     }
   }
 `;
-
-// 700
 
 export const ContentBox = styled.div`
   width: 87.5%;
@@ -123,7 +121,7 @@ export const AnswerBox = styled.div`
 `;
 
 export const AnswerContent = styled.div`
-  width: 88.5%;
+  width: 100%;
   height: 92.5%;
   margin-top: 20px;
   display: flex;
@@ -158,16 +156,26 @@ export const AnswerHeader = styled.div`
 `;
 
 export const AnswerBody = styled.div`
-  width: 100%;
+  width: 95%;
   height: 81%;
   font-weight: 500;
   font-size: 19px;
   line-height: 28px;
   text-align: center;
   color: #525252;
+  overflow-y: scroll;
+  padding: 0 20px;
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border-radius: 10px;
+  }
   @media ${device.tablet} {
     font-size: 17px;
     height: 80%;
+    padding: 0 10px;
   }
   @media ${device.mobile} {
     height: 85%;

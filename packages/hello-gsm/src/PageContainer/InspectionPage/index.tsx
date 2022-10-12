@@ -3,18 +3,23 @@ import { InspectionIcon } from 'Assets/svg';
 import * as S from './style';
 import { css } from '@emotion/react';
 import device from 'shared/config';
+import { useEffect, useState } from 'react';
 
 const InspectionPage: NextPage = () => {
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    window.onresize = () => {
+      window.innerWidth < 640 ? setIsMobile(true) : setIsMobile(false);
+    };
+  }, []);
+
   return (
     <S.InspectionPage>
       <S.ContentWrap>
         <InspectionIcon
-          css={css`
-            @media ${device.mobile} {
-              width: 172px;
-              height: 172px;
-            }
-          `}
+          width={isMobile ? 172 : 217}
+          height={isMobile ? 172 : 217}
         />
         <S.InspectionDesc>점검 중 입니다.</S.InspectionDesc>
         <S.InspectionUnderBar />

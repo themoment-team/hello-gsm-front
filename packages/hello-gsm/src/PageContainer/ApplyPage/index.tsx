@@ -223,6 +223,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       ? setIsSchoolNameExist(true)
       : setIsSchoolNameExist(false);
     imgURL ? setIsIdPhoto(true) : setIsIdPhoto(false);
+    !isEdit && !imgURL && toast.error('증명사진을 등록해주세요.');
   };
 
   return (

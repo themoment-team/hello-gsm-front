@@ -44,13 +44,27 @@ const InformationDescription: React.FC<IndexType> = ({ index }) => {
       );
     case 1:
       return (
-        <S.Description>
-          <S.DescriptionText>
+        <S.Description
+          css={css`
+            justify-content: space-evenly;
+            padding: 20px 0;
+          `}
+        >
+          <S.DescriptionText
+            css={css`
+              width: 774px;
+            `}
+          >
             절차를 읽고 <S.Highlight>원서와 성적</S.Highlight>을{' '}
             <S.Highlight>작성한 후 마이페이지</S.Highlight>에서{' '}
             <S.Highlight>최종 제출버튼</S.Highlight>을 눌러
             <br />
             입학 신청을 완료합니다.
+          </S.DescriptionText>
+          <S.DescriptionText>
+            <S.Highlight>성적 작성</S.Highlight>은 원활한 출력을 위해{' '}
+            <S.Highlight>꼭 출력</S.Highlight>을{' '}
+            <S.Highlight>할 PC</S.Highlight>에서 작성을 해주셔야 합니다.
           </S.DescriptionText>
           <S.PostScript>
             *원서 작성 중에 웹 사이트에서 나가더라도 내 정보 페이지에서 계속해서

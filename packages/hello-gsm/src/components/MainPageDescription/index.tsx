@@ -4,42 +4,31 @@ import { useEffect, useState } from 'react';
 import * as S from './style';
 import * as I from 'Assets/svg';
 import { MainDescStatusType } from 'type/user';
-import useStore from 'Stores/StoreContainer';
 
 const MainPageDescription: React.FC<MainDescStatusType> = ({
   selectedIndex,
   data,
 }) => {
   const today = new Date();
+  const isFirstPeriod =
+    today < new Date('2022-11-02 10:00:00') &&
+    today >= new Date('2022-10-24 10:00:00');
+  const firstResult = data?.application?.firstResultScreening ? true : false;
+  const finalResult = data?.application?.finalResultScreening ? true : false;
+  const pass = isFirstPeriod ? firstResult : finalResult;
   const [index, setIndex] = useState<number>(1);
-  const [pass, setPass] = useState<boolean>(false);
-  const [name, setName] = useState<string>('김형록');
-  const [registrationNumber, setRegistrationNumber] = useState<number | null>();
-  const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(true);
-
-  const { setLogged } = useStore();
+  const name = data?.name ?? '';
+  const registrationNumber = data?.application?.registrationNumber ?? '';
 
   useEffect(() => {
-    today > new Date('2022-11-01') && setIsFirstPeriod(false);
-    today > new Date('2023-03-01') ? setIndex(0) : setIndex(selectedIndex);
+    today > new Date('2023-03-01 00:00:00')
+      ? setIndex(0)
+      : setIndex(selectedIndex);
     if (data) {
-      setLogged(true);
-      today < new Date('2022-10-24') && selectedIndex === 5 && setIndex(7);
-      setName(data.name);
-      setPass(() => {
-        if (isFirstPeriod) {
-          return data.application?.finalResultScreening ? true : false;
-        } else {
-          return data.application?.finalResultScreening ? true : false;
-        }
-      });
-      setRegistrationNumber(
-        data.application?.registrationNumber
-          ? data.application.registrationNumber
-          : null,
-      );
+      today < new Date('2022-10-24 10:00:00') &&
+        selectedIndex === 5 &&
+        setIndex(7);
     } else {
-      setLogged(false);
       selectedIndex === 5 && setIndex(6);
     }
   }, [selectedIndex]);
@@ -90,7 +79,8 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             작성하신 입학 원서와 그 외 서류들을 출력하여 수기 부분을
           </S.DescriptionLine>
           <S.DescriptionLine>
-            모두 작성하신 후 10월 17일 부터 10월 20일까지 교무실 원서접수처에
+            모두 작성하신 후 10월 17일 9시부터 10월 20일 17시까지 교무실
+            원서접수처에
           </S.DescriptionLine>
           <S.DescriptionLine>제출해야합니다.</S.DescriptionLine>
           <S.PostScript>광주광역시 광산구 송정동 상무대로 312</S.PostScript>
@@ -105,7 +95,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
           <S.DescriptionLine>
             정원의 1.3배의 인원을 선출합니다.
           </S.DescriptionLine>
-          <S.PostScript>2022.10.24 발표</S.PostScript>
+          <S.PostScript>2022.10.24 10시 발표</S.PostScript>
         </S.Description>
       );
     case 4:
@@ -187,7 +177,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
           <S.DescriptionLine>
             1차 서류 심사와 인적성소양평가를 통해 최종 합격자를 선출합니다.
           </S.DescriptionLine>
-          <S.PostScript>2022.11.09 발표</S.PostScript>
+          <S.PostScript>2022.11.02 10시 발표</S.PostScript>
         </S.Description>
       );
     default:
