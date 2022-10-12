@@ -29,8 +29,8 @@ const ContentBox: React.FC<ContentType> = ({
     },
   },
 }) => {
-  const isFirstResult: boolean = new Date() >= new Date('2022-10-22 00:00:00');
-  const isFinalResult: boolean = new Date() >= new Date('2022-11-02 00:00:00');
+  const isFirstResult: boolean = new Date() >= new Date('2022-10-12 20:15:00');
+  const isFinalResult: boolean = new Date() >= new Date('2022-10-12 20:25:00');
   const firstResult: '미정' | '합격' | '불합격' = !isFirstResult
     ? '미정'
     : firstResultScreening
@@ -112,12 +112,12 @@ const ContentBox: React.FC<ContentType> = ({
   };
 
   const scoreButtonClick = () => {
-    if (
-      new Date() <= new Date('2022-10-28 16:00:00') ||
-      new Date() >= new Date('2022-11-01 22:10:00')
-    ) {
-      return toast.error('2차 성적 입력 기간이 아닙니다.');
-    }
+    // if (
+    //   new Date() <= new Date('2022-10-28 16:00:00') ||
+    //   new Date() >= new Date('2022-11-01 22:10:00')
+    // ) {
+    //   return toast.error('2차 성적 입력 기간이 아닙니다.');
+    // }
     if (firstResult === '불합격') {
       return toast.error('불합격자는 2차 성적 입력이 불가능합니다.');
     }
