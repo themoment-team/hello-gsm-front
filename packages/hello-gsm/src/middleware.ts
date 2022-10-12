@@ -3,7 +3,7 @@ import { NextRequest, NextResponse, userAgent } from 'next/server';
 export function middleware(req: NextRequest) {
   const acceptable =
     new Date() >= new Date('2022-10-12 20:00') &&
-    new Date() <= new Date('2022-10-12 20:30');
+    new Date() <= new Date('2022-10-12 20:29');
   const { origin, pathname } = req.nextUrl;
   const { device, browser } = userAgent(req);
   const applicationFormURL = [
