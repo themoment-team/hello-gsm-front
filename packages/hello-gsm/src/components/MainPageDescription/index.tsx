@@ -102,7 +102,8 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
       return (
         <S.Description>
           <S.DescriptionLine>
-            2차 평가에서는 인성과 문제해결 능력을
+            2차 평가에서는 소프트웨어마이스터고등학교 학업수행에 필요한 기본
+            자질과 능력을
           </S.DescriptionLine>
           <S.DescriptionLine>
             중심으로 직무적성 소양평가를 치룹니다.
