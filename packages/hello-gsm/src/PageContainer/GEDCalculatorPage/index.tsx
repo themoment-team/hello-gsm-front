@@ -139,6 +139,9 @@ const GEDCalculatorPage: NextPage<UserIdxType> = ({
                 {...register('curriculumScoreSubtotal', {
                   valueAsNumber: true,
                   required: true,
+                  validate: {
+                    nagativeNumber: value => !(value < 0),
+                  },
                 })}
                 type="number"
               />
@@ -146,6 +149,9 @@ const GEDCalculatorPage: NextPage<UserIdxType> = ({
                 {...register('nonCurriculumScoreSubtotal', {
                   valueAsNumber: true,
                   required: true,
+                  validate: {
+                    nagativeNumber: value => !(value < 0),
+                  },
                 })}
                 type="number"
               />
