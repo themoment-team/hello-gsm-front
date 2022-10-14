@@ -126,7 +126,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
         </S.TitleWrap>
 
         <BubbleButton link="/manual">여러 계정으로 로그인 하는 법</BubbleButton>
-        <BubbleButton link="/calculator/test">
+        <BubbleButton link="/calculator/choose">
           모의 성적 계산 해보기
         </BubbleButton>
 
