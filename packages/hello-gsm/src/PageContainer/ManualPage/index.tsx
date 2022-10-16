@@ -79,7 +79,6 @@ const ManualPage: NextPage = () => {
             <DS.Highlight>로그인</DS.Highlight> 부탁드립니다.
           </DS.DescriptionText>
         </DS.Description>
-        {/* <S.NextController onClick={location}>카카오 계정</S.NextController> */}
         <KakaoAccountButton onClick={location}>
           <I.KakaoLogo /> <p>카카오계정 홈페이지</p>
         </KakaoAccountButton>
