@@ -2,6 +2,7 @@ import { Header } from 'components';
 import type { NextPage } from 'next';
 import * as S from 'PageContainer/InformationPage/style';
 import * as DS from 'components/InformationDescription/style';
+import * as I from 'Assets/svg';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
@@ -27,6 +28,28 @@ const ManualPageStyle = styled.div`
   }
 `;
 
+const KakaoAccountButton = styled.button`
+  display: flex;
+  align-items: center;
+  width: 328px;
+  height: 45px;
+  background: #fee500;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #0f0921;
+  font-size: 20px;
+  border: none;
+  p {
+    text-align: center;
+    line-height: 45px;
+  }
+  svg {
+    width: 25px;
+    height: 45px;
+    margin: 0 40px 0 20px;
+  }
+`;
+
 const ManualPage: NextPage = () => {
   const location = () =>
     window.open('https://accounts.kakao.com/weblogin/account');
@@ -47,16 +70,19 @@ const ManualPage: NextPage = () => {
               text-align: center;
             `}
           >
-            한 PC에서 여러 계정으로 로그인 하기 위해서는{' '}
-            <DS.Highlight>아래의 이동 버튼</DS.Highlight>을 클릭하여 <br />
-            <DS.Highlight>카카오 계정 홈페이지</DS.Highlight>로{' '}
-            <DS.Highlight>이동 후 로그아웃 한 후</DS.Highlight>에
+            다른 계정으로 로그인이 필요하신 지원자 분들은 아래의
             <br />
-            다시 <DS.Highlight>Hello,GSM</DS.Highlight> 에서{' '}
+            <DS.Highlight>카카오계정 홈페이지</DS.Highlight>에서{' '}
+            <DS.Highlight>로그아웃 후</DS.Highlight>
+            <br />
+            <DS.Highlight>Hello,GSM</DS.Highlight> 에서 다른 계정으로{' '}
             <DS.Highlight>로그인</DS.Highlight> 부탁드립니다.
           </DS.DescriptionText>
         </DS.Description>
-        <S.NextController onClick={location}>이동</S.NextController>
+        {/* <S.NextController onClick={location}>카카오 계정</S.NextController> */}
+        <KakaoAccountButton onClick={location}>
+          <I.KakaoLogo /> <p>카카오계정 홈페이지</p>
+        </KakaoAccountButton>
       </S.InformationContent>
       <S.YellowBall />
       <S.BlueBall />
