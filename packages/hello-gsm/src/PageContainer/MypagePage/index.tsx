@@ -202,8 +202,7 @@ const MyPage: NextPage<StatusType> = ({
       <S.Content
         css={css`
           ${isPC && saved && !submitted && 'height: 440px'}
-          ${isPC && !saved && 'height: 320px'}
-          ${isPC && !acceptable && 'height: 320px'}
+          ${isPC && (!saved || !acceptable) && 'height: 320px'}
         `}
       >
         <S.UserBox>

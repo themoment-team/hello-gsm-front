@@ -55,19 +55,6 @@ export const ToCalculator = styled.button`
   }
 
   @media ${device.mobile} {
-    position: static;
-    font-size: 14px;
-    width: 240px;
-    height: 40px;
-    &:nth-of-type(1) {
-      line-height: 20px;
-      padding: 0 20px;
-    }
-    &:nth-of-type(2) {
-      line-height: 20px;
-    }
-    :after {
-      display: none;
-    }
+    display: none;
   }
 `;
