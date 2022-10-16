@@ -46,7 +46,7 @@ export const SignInBtn = styled.a`
   svg {
     width: 25px;
     height: 45px;
-    margin: 0 60px 0 20px;
+    margin: 0 40px 0 20px;
   }
 `;
 
