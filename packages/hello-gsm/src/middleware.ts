@@ -12,13 +12,19 @@ export function middleware(req: NextRequest) {
     '/calculator',
     '/calculator/ged',
   ];
+  console.log(pathname);
+  console.log(browser);
+  console.log(device);
 
   if (browser.name === 'IE' && pathname !== '/browser') {
     return NextResponse.redirect(`${origin}/browser`);
   }
 
   // Safari 브라우저로 접속했을 시
-  if (browser.name === 'Safari' && pathname !== '/browser') {
+  if (
+    (browser.name === 'Safari' || browser.name === 'Mobile Safari') &&
+    pathname !== '/browser'
+  ) {
     return NextResponse.redirect(`${origin}/browser`);
   }
 
