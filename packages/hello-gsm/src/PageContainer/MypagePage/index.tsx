@@ -161,7 +161,7 @@ const MyPage: NextPage<StatusType> = ({
   const isNotSaved = () => (
     <S.ButtonAndDescription>
       <Link href="/information" passHref>
-        <S.Button
+        {/* <S.Button
           css={{
             background: '#dbe44e',
             boxShadow: '0px 13px 30px -10px #dbe44e',
@@ -172,7 +172,8 @@ const MyPage: NextPage<StatusType> = ({
           // `}
         >
           원서 작성
-        </S.Button>
+        </S.Button> */}
+        <S.IsNotSavedButton>원서 작성</S.IsNotSavedButton>
       </Link>
       <S.MypageDescription>
         원서를 작성완료 하셨다면 새로고침 부탁드립니다.
@@ -182,7 +183,7 @@ const MyPage: NextPage<StatusType> = ({
 
   const isNotAcceptable = () => (
     <S.ButtonAndDescription>
-      <S.Button
+      {/* <S.Button
         // css={css`
         //   color: #505050;
         //   background: #a1a1a1;
@@ -197,7 +198,8 @@ const MyPage: NextPage<StatusType> = ({
         }}
       >
         지원 기간 아님
-      </S.Button>
+      </S.Button> */}
+      <S.IsNotAcceptableButton>지원 기간 아님</S.IsNotAcceptableButton>
       <S.MypageDescription>
         지원 기간은 10월 17일부터 10월 20일까지 입니다.
       </S.MypageDescription>
