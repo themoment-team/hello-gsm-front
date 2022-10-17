@@ -43,7 +43,7 @@ export function middleware(req: NextRequest) {
   }
 
   // Safari 브라우저로 접속했을 시
-  if (browser.name === 'Safari') {
+  if (browser.name === 'Safari' && pathname !== '/browser') {
     return NextResponse.redirect(`${origin}/browser`);
   }
 }
