@@ -162,10 +162,14 @@ const MyPage: NextPage<StatusType> = ({
     <S.ButtonAndDescription>
       <Link href="/information" passHref>
         <S.Button
-          css={css`
-            background: #dbe44e;
-            box-shadow: 0px 13px 30px -10px #dbe44e;
-          `}
+          css={{
+            background: '#dbe44e',
+            boxShadow: '0px 13px 30px -10px #dbe44e',
+          }}
+          // css={css`
+          //   background: #dbe44e;
+          //   box-shadow: 0px 13px 30px -10px #dbe44e;
+          // `}
         >
           원서 작성
         </S.Button>
@@ -179,12 +183,18 @@ const MyPage: NextPage<StatusType> = ({
   const isNotAcceptable = () => (
     <S.ButtonAndDescription>
       <S.Button
-        css={css`
-          color: #505050;
-          background: #a1a1a1;
-          box-shadow: 0px 13px 30px -10px #a1a1a1;
-          cursor: default;
-        `}
+        // css={css`
+        //   color: #505050;
+        //   background: #a1a1a1;
+        //   box-shadow: 0px 13px 30px -10px #a1a1a1;
+        //   cursor: default;
+        // `}
+        css={{
+          color: '#505050',
+          background: '#a1a1a1',
+          boxShadow: '0px 13px 30px -10px #a1a1a1',
+          cursor: 'default',
+        }}
       >
         지원 기간 아님
       </S.Button>
