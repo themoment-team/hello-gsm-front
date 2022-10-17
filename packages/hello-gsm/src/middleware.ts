@@ -12,9 +12,6 @@ export function middleware(req: NextRequest) {
     '/calculator',
     '/calculator/ged',
   ];
-  console.log(pathname);
-  console.log(browser);
-  console.log(device);
 
   if (browser.name === 'IE' && pathname !== '/browser') {
     return NextResponse.redirect(`${origin}/browser`);
