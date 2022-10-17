@@ -21,6 +21,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(1);
   const [isPC, setIsPC] = useState<boolean>(true);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isAcceptable, setIsAcceptable] = useState<boolean>(false);
 
   const { logged } = useStore();
 
@@ -45,6 +46,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 640 ? true : false);
+    setIsAcceptable(acceptable);
     setIsPC(
       !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(
         navigator.userAgent,
@@ -72,7 +74,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
           </S.TitleBox>
           <S.ApplyBox>
             {isPC ? (
-              acceptable ? (
+              isAcceptable ? (
                 !data?.application?.isFinalSubmission ? (
                   <Link
                     href={logged ? '/information' : '/auth/signin'}
@@ -82,24 +84,24 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
                   </Link>
                 ) : (
                   <S.ToApply
-                  // css={css`
-                  //   background: #a2a2a2;
-                  //   border-radius: 12px;
-                  //   box-shadow: 0px 5px 20px 0px #a2a2a2;
-                  //   pointer-events: none;
-                  // `}
+                    css={css`
+                      background: #a2a2a2;
+                      border-radius: 12px;
+                      box-shadow: 0px 5px 20px 0px #a2a2a2;
+                      pointer-events: none;
+                    `}
                   >
                     접수 완료
                   </S.ToApply>
                 )
               ) : (
                 <S.ToApply
-                // css={css`
-                //   background: #a2a2a2;
-                //   border-radius: 12px;
-                //   box-shadow: 0px 5px 20px 0px #a2a2a2;
-                //   pointer-events: none;
-                // `}
+                  css={css`
+                    background: #a2a2a2;
+                    border-radius: 12px;
+                    box-shadow: 0px 5px 20px 0px #a2a2a2;
+                    pointer-events: none;
+                  `}
                 >
                   접수 기간이 아닙니다.
                 </S.ToApply>
