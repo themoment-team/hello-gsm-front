@@ -433,7 +433,7 @@ const CalculatorPage: NextPage = () => {
                   <tr>
                     <S.Grade rowSpan={2}>학년</S.Grade>
                     <S.Attendance colSpan={4}>출결상황</S.Attendance>
-                    <S.Attendance rowSpan={2}>봉사활동</S.Attendance>
+                    <S.Attendance rowSpan={2}>봉사활동(시간)</S.Attendance>
                   </tr>
                   <tr>
                     <S.Attendance>결석</S.Attendance>
