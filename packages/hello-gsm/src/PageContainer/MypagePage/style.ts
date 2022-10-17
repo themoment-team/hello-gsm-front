@@ -61,18 +61,6 @@ export const Button = styled.button`
   margin: 0;
 `;
 
-export const IsNotSavedButton = styled(Button)`
-  background: #dbe44e;
-  box-shadow: 0px 13px 30px -10px #dbe44e;
-`;
-
-export const IsNotAcceptableButton = styled(Button)`
-  color: #505050;
-  background: #a1a1a1;
-  box-shadow: 0px 13px 30px -10px #a1a1a1;
-  cursor: default;
-`;
-
 export const MypageDescription = styled.p`
   font-weight: 400;
   font-size: 14px;
