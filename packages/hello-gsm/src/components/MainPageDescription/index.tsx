@@ -68,7 +68,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
               margin-top: 50px;
             `}
           >
-            2022.10.17 ~ 2022.10.20
+            2022.10.17. ~ 2022.10.20.
           </S.PostScript>
         </S.Description>
       );
@@ -95,7 +95,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
           <S.DescriptionLine>
             정원의 1.3배의 인원을 선출합니다.
           </S.DescriptionLine>
-          <S.PostScript>2022.10.24 10시 발표</S.PostScript>
+          <S.PostScript>2022.10.24. 10시 발표</S.PostScript>
         </S.Description>
       );
     case 4:
@@ -109,8 +109,8 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             중심으로 직무적성 소양평가를 치룹니다.
           </S.DescriptionLine>
           <S.PostScript>
-            2022.10.28 직무적성 소양평가 진행 <br />
-            2022.11.02 10시 최종 결과 발표
+            2022.10.28. 직무적성 소양평가 진행 <br />
+            2022.11.02. 10시 최종 결과 발표
           </S.PostScript>
         </S.Description>
       );
@@ -181,7 +181,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
           <S.DescriptionLine>
             1차 서류 심사와 인적성소양평가를 통해 최종 합격자를 선출합니다.
           </S.DescriptionLine>
-          <S.PostScript>2022.11.02 10시 최종 결과 발표</S.PostScript>
+          <S.PostScript>2022.11.02. 10시 최종 결과 발표</S.PostScript>
         </S.Description>
       );
     default:
