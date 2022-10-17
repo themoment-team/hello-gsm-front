@@ -40,10 +40,10 @@ export function middleware(req: NextRequest) {
     if (device.type === ('mobile' || 'tablet')) {
       return NextResponse.redirect(origin);
     }
+  }
 
-    // Safari 브라우저로 접속했을 시
-    if (browser.name === 'Safari') {
-      return NextResponse.redirect(`${origin}/browser`);
-    }
+  // Safari 브라우저로 접속했을 시
+  if (browser.name === 'Safari' && pathname !== '/browser') {
+    return NextResponse.redirect(`${origin}/browser`);
   }
 }
