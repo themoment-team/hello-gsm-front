@@ -114,8 +114,11 @@ const InformationDescription: React.FC<IndexType> = ({ index }) => {
       return (
         <S.Description>
           <S.DescriptionText>
-            <S.Highlight>1차 서류 심사(50%)와 2차 면접(50%)</S.Highlight>을 통해
-            최종 합격자를 선발합니다.
+            <S.Highlight>
+              1차 서류 심사(50%)와 2차 직무적성 소양평가(50%)를
+            </S.Highlight>
+            <br />
+            통해 최종 합격자를 선발합니다.
           </S.DescriptionText>
         </S.Description>
       );
