@@ -2,12 +2,12 @@ import React from 'react';
 import type { GetServerSideProps, NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import { MainPage } from 'PageContainer';
-import { ApplicantsType, HomePropsType } from 'Types/application';
+import { ApplicantsType } from 'Types/application';
 import application from 'Api/application';
 import auth from 'Api/auth';
 import HeaderType from 'Types/header';
 
-const Home: NextPage<HomePropsType> = ({ list, count }) => {
+const Home: NextPage<ApplicantsType> = ({ list, count }) => {
   const seoTitle = '홈';
   const desc = '지원자들의 정보를 확인합니다.';
   return (
@@ -30,34 +30,12 @@ const getListAndCount = async (accessToken: string) => {
   } catch (error) {
     return {
       props: {},
-      // redirect: {
-      //   destination: '/signin',
-      // },
+      redirect: {
+        destination: '/signin',
+      },
     };
   }
 };
-
-// const getList = async (page: number, accessToken: string, name?: string) => {
-//   try {
-//     const { data }: ApplicantsType = await application.getList(
-//       page,
-//       name,
-//       accessToken,
-//     );
-//     return {
-//       props: {
-//         data,
-//       },
-//     };
-//   } catch (error) {
-//     return {
-//       props: {},
-//       // redirect: {
-//       //   destination: '/signin',
-//       // },
-//     };
-//   }
-// };
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const accessToken = `adminAccessToken=${ctx.req.cookies.adminAccessToken}`;
@@ -81,9 +59,9 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   } else {
     return {
       props: {},
-      // redirect: {
-      //   destination: '/signin',
-      // },
+      redirect: {
+        destination: '/signin',
+      },
     };
   }
 };
