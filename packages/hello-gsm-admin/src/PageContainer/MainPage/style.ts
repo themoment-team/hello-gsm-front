@@ -24,7 +24,7 @@ export const FunctionBox = styled.div`
 `;
 
 export const CountBox = styled.div`
-  width: 192px;
+  width: 210px;
   height: 100%;
   background: #ffffff;
   border-radius: 10px;
@@ -62,7 +62,7 @@ export const SearchInput = styled.input`
 export const SearchButton = styled.div`
   width: 90px;
   height: 100%;
-  background: rgba(0, 0, 0, 0.16);
+  background: #19baff;
   border-radius: 10px;
   font-weight: 700;
   font-size: 20px;
