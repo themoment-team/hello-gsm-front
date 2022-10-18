@@ -11,13 +11,17 @@ import Link from 'next/link';
 import { toast } from 'react-toastify';
 
 const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
-  const printable: boolean = new Date() >= new Date('2022-10-22 00:00:00');
+  const [printable, setPrintable] = useState<boolean>(false);
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(list);
   const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
   const pageIndexRef = useRef<number>(2);
   const searchRef = useRef<HTMLInputElement>(null);
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const { showScoreModal } = useStore();
+
+  useEffect(() => {
+    setPrintable(new Date() >= new Date('2022-10-22 00:00:00'));
+  }, []);
 
   const getList = useCallback(async () => {
     const keyword = searchRef.current?.value;
