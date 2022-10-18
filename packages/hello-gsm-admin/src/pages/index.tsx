@@ -2,43 +2,62 @@ import React from 'react';
 import type { GetServerSideProps, NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import { MainPage } from 'PageContainer';
-import { ApplicantsType } from 'Types/application';
+import { ApplicantsType, HomePropsType } from 'Types/application';
 import application from 'Api/application';
 import auth from 'Api/auth';
 import HeaderType from 'Types/header';
 
-const Home: NextPage<ApplicantsType> = ({ data }) => {
+const Home: NextPage<HomePropsType> = ({ list, count }) => {
   const seoTitle = '홈';
   const desc = '지원자들의 정보를 확인합니다.';
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
-      <MainPage data={data} />
+      <MainPage list={list} count={count} />
     </>
   );
 };
 
-const getList = async (page: number, accessToken: string, name?: string) => {
+const getListAndCount = async (accessToken: string) => {
   try {
-    const { data }: ApplicantsType = await application.getList(
-      page,
-      name,
-      accessToken,
-    );
+    const [list, count] = await Promise.all([
+      application.getList(1, '', accessToken),
+      application.getCount(accessToken),
+    ]);
     return {
-      props: {
-        data,
-      },
+      props: { list: list.data, count: count.data },
     };
   } catch (error) {
     return {
       props: {},
-      redirect: {
-        destination: '/signin',
-      },
+      // redirect: {
+      //   destination: '/signin',
+      // },
     };
   }
 };
+
+// const getList = async (page: number, accessToken: string, name?: string) => {
+//   try {
+//     const { data }: ApplicantsType = await application.getList(
+//       page,
+//       name,
+//       accessToken,
+//     );
+//     return {
+//       props: {
+//         data,
+//       },
+//     };
+//   } catch (error) {
+//     return {
+//       props: {},
+//       // redirect: {
+//       //   destination: '/signin',
+//       // },
+//     };
+//   }
+// };
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const accessToken = `adminAccessToken=${ctx.req.cookies.adminAccessToken}`;
@@ -46,13 +65,13 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
 
   if (ctx.req.cookies.adminRefreshToken) {
     if (ctx.req.cookies.adminAccessToken) {
-      return getList(1, accessToken);
+      return getListAndCount(accessToken);
     } else {
       try {
         const { headers }: HeaderType = await auth.refresh(refreshToken);
         const accessToken = headers['set-cookie'][0].split(';')[0];
         ctx.res.setHeader('set-cookie', headers['set-cookie']);
-        return getList(1, accessToken);
+        return getListAndCount(accessToken);
       } catch (error) {
         return {
           props: {},
@@ -62,9 +81,9 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   } else {
     return {
       props: {},
-      redirect: {
-        destination: '/signin',
-      },
+      // redirect: {
+      //   destination: '/signin',
+      // },
     };
   }
 };
