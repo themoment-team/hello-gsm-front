@@ -4,18 +4,13 @@ import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { css, Global } from '@emotion/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import {
-  ApplicantsType,
-  ApplicantType,
-  HomePropsType,
-} from 'Types/application';
+import { ApplicantsType, ApplicantType, GetListType } from 'Types/application';
 import application from 'Api/application';
 import auth from 'Api/auth';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 
-const MainPage: NextPage<HomePropsType> = ({ list, count }) => {
-  const applicantsCount: number = count;
+const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const printable: boolean = new Date() >= new Date('2022-10-22 00:00:00');
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(list);
   const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
@@ -27,7 +22,7 @@ const MainPage: NextPage<HomePropsType> = ({ list, count }) => {
   const getList = useCallback(async () => {
     const keyword = searchRef.current?.value;
     try {
-      const { data }: ApplicantsType = await application.getList(
+      const { data }: GetListType = await application.getList(
         pageIndexRef.current,
         keyword,
       );
@@ -53,7 +48,7 @@ const MainPage: NextPage<HomePropsType> = ({ list, count }) => {
   const search = async () => {
     const keyword = searchRef.current?.value;
     try {
-      const { data }: ApplicantsType = await application.getList(1, keyword);
+      const { data }: GetListType = await application.getList(1, keyword);
       pageIndexRef.current = 2;
       setApplicationList(data);
       setIsPageEnd(data.length < 10 ? true : false);
@@ -121,7 +116,7 @@ const MainPage: NextPage<HomePropsType> = ({ list, count }) => {
       />
       <S.MainPageContent>
         <S.FunctionBox>
-          <S.CountBox>{`최종 제출 인원 : ${applicantsCount}명`}</S.CountBox>
+          <S.CountBox>{`최종 제출 인원 : ${count ?? 0}명`}</S.CountBox>
           <S.Searchbox>
             <S.SearchInput
               placeholder="검색어를 입력하세요"
