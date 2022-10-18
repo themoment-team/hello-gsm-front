@@ -29,3 +29,8 @@ export interface ApplicantType {
 export interface ApplicantsType {
   data: ApplicantType[];
 }
+
+export interface HomePropsType {
+  list: ApplicantType[];
+  count: number;
+}
