@@ -25,7 +25,7 @@ const getListAndCount = async (accessToken: string) => {
       application.getCount(accessToken),
     ]);
     return {
-      props: { list: list.data, count: count.data },
+      props: { list: list.data, count: count.data.count },
     };
   } catch (error) {
     return {
