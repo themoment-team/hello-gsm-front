@@ -26,11 +26,11 @@ export interface ApplicantType {
   };
 }
 
-export interface ApplicantsType {
+export interface GetListType {
   data: ApplicantType[];
 }
 
-export interface HomePropsType {
+export interface ApplicantsType {
   list: ApplicantType[];
   count: number;
 }
