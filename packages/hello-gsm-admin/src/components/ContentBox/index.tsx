@@ -29,8 +29,8 @@ const ContentBox: React.FC<ContentType> = ({
     },
   },
 }) => {
-  const [isFirstResult, setIsFirstResult] = useState<boolean>(true);
-  const [isFinalResult, setIsFinalResult] = useState<boolean>(true);
+  const [isFirstResult, setIsFirstResult] = useState<boolean>(false);
+  const [isFinalResult, setIsFinalResult] = useState<boolean>(false);
   const [firstResult, setFirstResult] = useState<'미정' | '합격' | '불합격'>(
     '미정',
   );
