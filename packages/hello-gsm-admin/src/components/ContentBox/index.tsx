@@ -58,7 +58,6 @@ const ContentBox: React.FC<ContentType> = ({
 
   useEffect(() => {
     setDocumentReception(isDocumentReception);
-    console.log(isDocumentReception);
   }, [isDocumentReception]);
 
   useEffect(() => {
