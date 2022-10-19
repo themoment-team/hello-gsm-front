@@ -40,8 +40,7 @@ const ContentBox: React.FC<ContentType> = ({
   const [score, setScore] = useState<number | null>(
     parseFloat(application_score?.personalityEvaluationScore ?? '') || null,
   );
-  const [documentReception, setDocumentReception] =
-    useState<boolean>(isDocumentReception);
+  const [documentReception, setDocumentReception] = useState<boolean>(false);
   const {
     showScoreModal,
     setShowScoreModal,
@@ -56,6 +55,10 @@ const ContentBox: React.FC<ContentType> = ({
     setIsFirstResult(new Date() >= new Date('2022-10-22 00:00:00'));
     setIsFinalResult(new Date() >= new Date('2022-11-02 00:00:00'));
   }, []);
+
+  useEffect(() => {
+    setDocumentReception(isDocumentReception);
+  }, [isDocumentReception]);
 
   useEffect(() => {
     setFirstResult(
