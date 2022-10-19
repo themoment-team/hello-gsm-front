@@ -29,20 +29,18 @@ const ContentBox: React.FC<ContentType> = ({
     },
   },
 }) => {
-  const isFirstResult: boolean = new Date() >= new Date('2022-10-22 00:00:00');
-  const isFinalResult: boolean = new Date() >= new Date('2022-11-02 00:00:00');
-  const firstResult: '미정' | '합격' | '불합격' = !isFirstResult
-    ? '미정'
-    : firstResultScreening
-    ? '합격'
-    : '불합격';
+  const [isFirstResult, setIsFirstResult] = useState<boolean>(false);
+  const [isFinalResult, setIsFinalResult] = useState<boolean>(false);
+  const [firstResult, setFirstResult] = useState<'미정' | '합격' | '불합격'>(
+    '미정',
+  );
   const finalResult: '합격' | '불합격' = finalResultScreening
     ? '합격'
     : '불합격';
   const [score, setScore] = useState<number | null>(
     parseFloat(application_score?.personalityEvaluationScore ?? '') || null,
   );
-  const [documentreception, setDocumentreception] =
+  const [documentReception, setDocumentReception] =
     useState<boolean>(isDocumentReception);
   const {
     showScoreModal,
@@ -53,6 +51,17 @@ const ContentBox: React.FC<ContentType> = ({
     scoreModalValue,
     setScoreModalValue,
   } = useStore();
+
+  useEffect(() => {
+    setIsFirstResult(new Date() >= new Date('2022-10-22 00:00:00'));
+    setIsFinalResult(new Date() >= new Date('2022-11-02 00:00:00'));
+  }, []);
+
+  useEffect(() => {
+    setFirstResult(
+      !isFirstResult ? '미정' : firstResultScreening ? '합격' : '불합격',
+    );
+  }, [isFirstResult]);
 
   useEffect(() => {
     if (!showScoreModal) {
@@ -71,7 +80,7 @@ const ContentBox: React.FC<ContentType> = ({
     };
     try {
       await application.document(data);
-      setDocumentreception(documentreception => !documentreception);
+      setDocumentReception(documentReception => !documentReception);
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 서류 제출 여부 요청
       if (error.response.status === 401) {
@@ -139,7 +148,7 @@ const ContentBox: React.FC<ContentType> = ({
         <S.isDocumentReception>
           <S.Checkbox
             css={css`
-              background: ${documentreception && '#19BAFF'};
+              background: ${documentReception && '#19BAFF'};
             `}
             onClick={documentSubmission}
           />

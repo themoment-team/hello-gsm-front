@@ -19,6 +19,9 @@ export const ApplicationController = {
   getList: (page: number, name?: string) => {
     return `/application?page=${page}&name=${name || ''}`;
   },
+  getCount: () => {
+    return `/application/count`;
+  },
   document: () => {
     return `/application/document`;
   },

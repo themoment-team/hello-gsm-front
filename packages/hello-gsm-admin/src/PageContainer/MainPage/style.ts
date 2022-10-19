@@ -23,6 +23,19 @@ export const FunctionBox = styled.div`
   justify-content: space-between;
 `;
 
+export const CountBox = styled.div`
+  width: 210px;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 18px;
+  color: #0f0921;
+`;
+
 export const Searchbox = styled.div`
   width: 650px;
   height: 100%;
@@ -49,7 +62,7 @@ export const SearchInput = styled.input`
 export const SearchButton = styled.div`
   width: 90px;
   height: 100%;
-  background: rgba(0, 0, 0, 0.16);
+  background: #19baff;
   border-radius: 10px;
   font-weight: 700;
   font-size: 20px;
@@ -58,6 +71,12 @@ export const SearchButton = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+`;
+
+export const ButtonBox = styled.div`
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const Print = styled.a`
