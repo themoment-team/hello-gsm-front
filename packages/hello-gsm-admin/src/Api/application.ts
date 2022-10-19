@@ -24,6 +24,24 @@ class Application {
     }
   }
   /**
+   * 최종 제출자들의 인원을 가져온다
+   * @param accessToken api 요청을 하기 위한 토큰
+   * @returns 최종 제출 인원
+   */
+  getCount(accessToken?: string) {
+    try {
+      return RequestApi(
+        {
+          method: 'GET',
+          url: ApplicationController.getCount(),
+        },
+        accessToken,
+      );
+    } catch (error: any) {
+      return error;
+    }
+  }
+  /**
    * 관리자가 서류를 받았을 때 서류 제출 여부를 체킹한다
    * @param data 서류 제출 완료 여부
    */

@@ -4,25 +4,29 @@ import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { css, Global } from '@emotion/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ApplicantsType, ApplicantType } from 'Types/application';
+import { ApplicantsType, ApplicantType, GetListType } from 'Types/application';
 import application from 'Api/application';
 import auth from 'Api/auth';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 
-const MainPage: NextPage<ApplicantsType> = ({ data }) => {
-  const printable: boolean = new Date() >= new Date('2022-10-22 00:00:00');
-  const [applicationList, setApplicationList] = useState<ApplicantType[]>(data);
+const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
+  const [printable, setPrintable] = useState<boolean>(false);
+  const [applicationList, setApplicationList] = useState<ApplicantType[]>(list);
   const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
   const pageIndexRef = useRef<number>(2);
   const searchRef = useRef<HTMLInputElement>(null);
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const { showScoreModal } = useStore();
 
+  useEffect(() => {
+    setPrintable(new Date() >= new Date('2022-10-22 00:00:00'));
+  }, []);
+
   const getList = useCallback(async () => {
     const keyword = searchRef.current?.value;
     try {
-      const { data }: ApplicantsType = await application.getList(
+      const { data }: GetListType = await application.getList(
         pageIndexRef.current,
         keyword,
       );
@@ -48,7 +52,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
   const search = async () => {
     const keyword = searchRef.current?.value;
     try {
-      const { data }: ApplicantsType = await application.getList(1, keyword);
+      const { data }: GetListType = await application.getList(1, keyword);
       pageIndexRef.current = 2;
       setApplicationList(data);
       setIsPageEnd(data.length < 10 ? true : false);
@@ -116,7 +120,7 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
       />
       <S.MainPageContent>
         <S.FunctionBox>
-          <Logout />
+          <S.CountBox>{`최종 제출 인원 : ${count ?? 0}명`}</S.CountBox>
           <S.Searchbox>
             <S.SearchInput
               placeholder="검색어를 입력하세요"
@@ -125,22 +129,25 @@ const MainPage: NextPage<ApplicantsType> = ({ data }) => {
             />
             <S.SearchButton onClick={search}>검색</S.SearchButton>
           </S.Searchbox>
-          {printable ? (
-            <Link href="/ticket">
-              <S.Print>수험표 출력</S.Print>
-            </Link>
-          ) : (
-            <S.Print
-              onClick={() => toast.error('수험표 출력 가능 기간이 아닙니다.')}
-              css={css`
-                background: #625e6f;
-                color: rgba(31, 31, 31, 0.86);
-                cursor: default;
-              `}
-            >
-              수험표 출력
-            </S.Print>
-          )}
+          <S.ButtonBox>
+            <Logout />
+            {printable ? (
+              <Link href="/ticket">
+                <S.Print>수험표 출력</S.Print>
+              </Link>
+            ) : (
+              <S.Print
+                onClick={() => toast.error('수험표 출력 가능 기간이 아닙니다.')}
+                css={css`
+                  background: #625e6f;
+                  color: rgba(31, 31, 31, 0.86);
+                  cursor: default;
+                `}
+              >
+                수험표 출력
+              </S.Print>
+            )}
+          </S.ButtonBox>
         </S.FunctionBox>
         <MainpageHeader />
         <S.ContentList>
