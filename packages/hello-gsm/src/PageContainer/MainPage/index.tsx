@@ -117,7 +117,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
                   }
                 `}
               >
-                {acceptable
+                {isAcceptable
                   ? '원서 접수는 pc로만 가능해요'
                   : '접수 기간이 아닙니다.'}
               </S.ToApply>
