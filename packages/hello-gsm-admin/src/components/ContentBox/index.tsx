@@ -52,7 +52,7 @@ const ContentBox: React.FC<ContentType> = ({
   } = useStore();
 
   useEffect(() => {
-    setIsFirstResult(new Date() >= new Date('2022-10-22 00:00:00'));
+    setIsFirstResult(new Date() >= new Date('2022-10-21 00:00:00'));
     setIsFinalResult(new Date() >= new Date('2022-11-02 00:00:00'));
   }, []);
 
