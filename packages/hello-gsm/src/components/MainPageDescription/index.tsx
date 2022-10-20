@@ -10,15 +10,24 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   data,
 }) => {
   const today = new Date();
-  const isFirstPeriod =
-    today < new Date('2022-11-02 10:00:00') &&
-    today >= new Date('2022-10-24 10:00:00');
+  const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(false);
   const firstResult = data?.application?.firstResultScreening ? true : false;
   const finalResult = data?.application?.finalResultScreening ? true : false;
-  const pass = isFirstPeriod ? firstResult : finalResult;
+  const [pass, setPass] = useState<boolean>(false);
   const [index, setIndex] = useState<number>(1);
   const name = data?.name ?? '';
   const registrationNumber = data?.application?.registrationNumber ?? '';
+
+  useEffect(() => {
+    setIsFirstPeriod(
+      new Date() >= new Date('2022/10/24 10:00:00') &&
+        new Date() < new Date('2022/11/02 10:00:00'),
+    );
+  }, []);
+
+  useEffect(() => {
+    setPass(isFirstPeriod ? firstResult : finalResult);
+  }, [isFirstPeriod]);
 
   useEffect(() => {
     today > new Date('2023-03-01 00:00:00')
