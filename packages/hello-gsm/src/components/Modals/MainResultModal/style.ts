@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import device from 'shared/config';
 
 export const MainResultModal = styled.div`
   width: 100%;
@@ -18,6 +19,13 @@ export const MainResultModalBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 710px) {
+    width: 90%;
+  }
+  @media ${device.mobile} {
+    width: 95%;
+    height: 300px;
+  }
 `;
 
 export const MainResultModalContent = styled.div`
@@ -37,6 +45,10 @@ export const Text = styled.p`
   line-height: 29px;
   text-align: center;
   color: #0f0921;
+  @media ${device.mobile} {
+    font-size: 16px;
+    line-height: 23px;
+  }
 `;
 
 export const PassText = styled.span`
@@ -52,6 +64,11 @@ export const PostScript = styled.p`
   font-weight: 400;
   font-size: 16px;
   color: rgba(39, 39, 39, 0.64);
+  text-align: center;
+  @media ${device.mobile} {
+    font-size: 13px;
+    line-height: 19px;
+  }
 `;
 
 export const InvisibleButtonWrap = styled.div`
@@ -72,12 +89,20 @@ export const InvisibleButton = styled.button`
   border: none;
   cursor: pointer;
   padding: 0;
+  @media ${device.mobile} {
+    width: 125px;
+    font-size: 13px;
+  }
   &::before {
     content: '';
     width: 15px;
     height: 15px;
     background: #c9c9c9;
     border-radius: 4px;
+    @media ${device.mobile} {
+      width: 12px;
+      height: 12px;
+    }
   }
 `;
 
@@ -89,4 +114,10 @@ export const ConfirmButton = styled.button`
   font-weight: 700;
   font-size: 20px;
   color: #ffffff;
+  border: none;
+  @media ${device.mobile} {
+    width: 130px;
+    height: 37px;
+    font-size: 16px;
+  }
 `;
