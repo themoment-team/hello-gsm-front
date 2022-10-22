@@ -25,7 +25,7 @@ const MainNonLoginModal: React.FC = () => {
       />
       <S.MainResultModalBox>
         <S.MainResultModalContent>
-          <S.Text>결과 확인을 위해 로그인을 해주세요</S.Text>
+          <S.Text>결과 확인을 위해 로그인을 해주세요.</S.Text>
         </S.MainResultModalContent>
         <S.InvisibleButtonWrap>
           <S.InvisibleButton onClick={invisible}>
