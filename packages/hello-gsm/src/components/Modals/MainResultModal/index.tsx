@@ -11,10 +11,15 @@ interface ResultModal {
 const MainResultModal: React.FC<ResultModal> = ({ name, pass }) => {
   const [isFirstResultPeriod, setIsFirstResultPeriod] = useState<boolean>(true);
   const [isPass, setIsPass] = useState<boolean>(pass);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
   const { setShowMainResultModal } = useStore();
 
   useEffect(() => {
     setIsFirstResultPeriod(new Date() < new Date('2022/11/2 10:00:00'));
+    setIsMobile(window.innerWidth < 640 ? true : false);
+    window.onresize = () => {
+      setIsMobile(window.innerWidth < 640 ? true : false);
+    };
   }, []);
 
   useEffect(() => {
@@ -42,7 +47,8 @@ const MainResultModal: React.FC<ResultModal> = ({ name, pass }) => {
         <S.MainResultModalContent>
           {isFirstResultPeriod ? (
             <S.Text>
-              {name}님의 2023학년도 광주소프트웨어마이스터고등학교
+              {name}님의 2023학년도 {isMobile && <br />}
+              광주소프트웨어마이스터고등학교
               <br />
               1차 서류 심사 결과{' '}
               {isPass ? (
@@ -52,11 +58,21 @@ const MainResultModal: React.FC<ResultModal> = ({ name, pass }) => {
               )}
               하셨습니다.
               <br />
-              {isPass && '2차 직무적성 소양평가는 10월 28일에 진행됩니다.'}
+              {isPass &&
+                (isMobile ? (
+                  <>
+                    2차 직무적성 소양평가는 10월 28일에
+                    <br />
+                    진행됩니다.
+                  </>
+                ) : (
+                  '2차 직무적성 소양평가는 10월 28일에 진행됩니다.'
+                ))}
             </S.Text>
           ) : (
             <S.Text>
-              {name}님의 2023학년도 광주소프트웨어마이스터고등학교
+              {name}님의 2023학년도 {isMobile && <br />}
+              광주소프트웨어마이스터고등학교
               <br />
               {isPass ? (
                 <S.PassText>최종 합격</S.PassText>
@@ -67,7 +83,8 @@ const MainResultModal: React.FC<ResultModal> = ({ name, pass }) => {
             </S.Text>
           )}
           <S.PostScript>
-            메인 페이지 하단에 결과 발표에서 다시 확인하실 수 있습니다.
+            메인 페이지 하단에 결과 발표에서 {isMobile && <br />}
+            다시 확인하실 수 있습니다.
           </S.PostScript>
         </S.MainResultModalContent>
         <S.InvisibleButtonWrap>
