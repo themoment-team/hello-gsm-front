@@ -74,7 +74,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
 
   useEffect(() => {
     setShowMainNonLoginModal(
-      new Date() >= new Date('2022/10/20 10:00:00') &&
+      new Date() >= new Date('2022/10/24 10:00:00') &&
         !logged &&
         localStorage.getItem('mainNonLoginModalInvisible') !==
           new Date().getDate().toString(),
@@ -83,7 +83,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
 
   useEffect(() => {
     setShowMainResultModal(
-      new Date() >= new Date('2022/10/20 10:00:00') &&
+      new Date() >= new Date('2022/10/24 10:00:00') &&
         localStorage.getItem('mainResultModalInvisible') !==
           new Date().getDate().toString() &&
         !(data?.application?.isFinalSubmission === true),
