@@ -2,7 +2,14 @@ import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import Link from 'next/link';
-import { Header, Footer, MainPageDescription, BubbleButton } from 'components';
+import {
+  Header,
+  Footer,
+  MainPageDescription,
+  BubbleButton,
+  MainResultModal,
+  MainNonLoginModal,
+} from 'components';
 import { css } from '@emotion/react';
 import { StatusType } from 'type/user';
 import useStore from 'Stores/StoreContainer';
@@ -22,8 +29,15 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
   const [isPC, setIsPC] = useState<boolean>(true);
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isAcceptable, setIsAcceptable] = useState<boolean>(false);
+  const [isFirstResultPeriod, setIsFirstResultPeriod] = useState<boolean>(true);
 
-  const { logged } = useStore();
+  const {
+    showMainNonLoginModal,
+    setShowMainNonLoginModal,
+    showMainResultModal,
+    setShowMainResultModal,
+    logged,
+  } = useStore();
 
   const selectedStyle = (index: number) =>
     selectedIndex === index &&
@@ -45,6 +59,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
     `;
 
   useEffect(() => {
+    setIsFirstResultPeriod(new Date() < new Date('2022/11/2 10:00:00'));
     setIsMobile(window.innerWidth < 640 ? true : false);
     setIsAcceptable(acceptable);
     setIsPC(
@@ -57,8 +72,41 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
     };
   }, []);
 
+  useEffect(() => {
+    setShowMainNonLoginModal(
+      new Date() >= new Date('2022/10/20 10:00:00') &&
+        !logged &&
+        localStorage.getItem('mainNonLoginModalInvisible') !==
+          new Date().getDate().toString(),
+    );
+  }, [logged]);
+
+  useEffect(() => {
+    setShowMainResultModal(
+      new Date() >= new Date('2022/10/20 10:00:00') &&
+        localStorage.getItem('mainResultModalInvisible') !==
+          new Date().getDate().toString() &&
+        !(data?.application?.isFinalSubmission === true),
+    );
+  }, [data?.application?.isFinalSubmission]);
+
   return (
     <S.MainPage>
+      {showMainResultModal && (
+        <MainResultModal
+          name={data?.name ?? ''}
+          pass={
+            isFirstResultPeriod
+              ? data?.application?.firstResultScreening
+                ? true
+                : false
+              : data?.application?.finalResultScreening
+              ? true
+              : false
+          }
+        />
+      )}
+      {showMainNonLoginModal && <MainNonLoginModal />}
       <Header />
       <S.MainContent>
         <S.TitleWrap>
