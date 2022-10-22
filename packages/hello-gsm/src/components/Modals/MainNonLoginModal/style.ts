@@ -23,6 +23,7 @@ export const MainResultModalBox = styled.div`
     width: 90%;
   }
   @media ${device.mobile} {
+    width: 95%;
     height: 300px;
   }
 `;
@@ -92,6 +93,7 @@ export const ConfirmButton = styled.button`
   font-weight: 700;
   font-size: 20px;
   color: #ffffff;
+  border: none;
   @media ${device.mobile} {
     width: 130px;
     height: 37px;
