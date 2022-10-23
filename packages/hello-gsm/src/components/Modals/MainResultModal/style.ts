@@ -115,6 +115,7 @@ export const ConfirmButton = styled.button`
   font-size: 20px;
   color: #ffffff;
   border: none;
+  cursor: pointer;
   @media ${device.mobile} {
     width: 130px;
     height: 37px;
