@@ -10,8 +10,8 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   data,
 }) => {
   const today = new Date();
-  const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(false);
-  const [pass, setPass] = useState<boolean>(true);
+  const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(true);
+  const [pass, setPass] = useState<boolean>(false);
   const firstResult = data?.application?.firstResultScreening ? true : false;
   const finalResult = data?.application?.finalResultScreening ? true : false;
   const [index, setIndex] = useState<number>(1);
