@@ -6,20 +6,16 @@ import * as S from './style';
 interface ResultModal {
   name: string;
   pass: boolean;
+  isMobile: boolean;
 }
 
-const MainResultModal: React.FC<ResultModal> = ({ name, pass }) => {
+const MainResultModal: React.FC<ResultModal> = ({ name, pass, isMobile }) => {
   const [isFirstResultPeriod, setIsFirstResultPeriod] = useState<boolean>(true);
   const [isPass, setIsPass] = useState<boolean>(pass);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
   const { setShowMainResultModal } = useStore();
 
   useEffect(() => {
     setIsFirstResultPeriod(new Date() < new Date('2022/11/2 10:00:00'));
-    setIsMobile(window.innerWidth < 640 ? true : false);
-    window.onresize = () => {
-      setIsMobile(window.innerWidth < 640 ? true : false);
-    };
   }, []);
 
   useEffect(() => {
