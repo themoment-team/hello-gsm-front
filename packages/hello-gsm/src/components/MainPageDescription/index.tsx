@@ -20,8 +20,8 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
 
   useEffect(() => {
     setIsFirstPeriod(
-      today < new Date('2022/11/02 10:00:00') &&
-        today >= new Date('2022/10/24 10:00:00'),
+      new Date() >= new Date('2022/10/24 10:00:00') &&
+        new Date() < new Date('2022/11/02 10:00:00'),
     );
   }, []);
 
