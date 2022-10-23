@@ -11,9 +11,9 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
 }) => {
   const today = new Date();
   const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(false);
+  const [pass, setPass] = useState<boolean>(false);
   const firstResult = data?.application?.firstResultScreening ? true : false;
   const finalResult = data?.application?.finalResultScreening ? true : false;
-  const pass = isFirstPeriod ? firstResult : finalResult;
   const [index, setIndex] = useState<number>(1);
   const name = data?.name ?? '';
   const registrationNumber = data?.application?.registrationNumber ?? '';
@@ -26,21 +26,23 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   }, []);
 
   useEffect(() => {
+    setPass(isFirstPeriod ? firstResult : finalResult);
+  }, [isFirstPeriod]);
+
+  useEffect(() => {
     today > new Date('2023/03/01 00:00:00')
       ? setIndex(0)
       : setIndex(selectedIndex);
     if (selectedIndex === 5) {
-      if (!data) {
-        (today > new Date('2022/10/24 10:00:00') ||
-          !(data?.application?.isFinalSubmission ?? false)) &&
-          setIndex(7);
+      if (data) {
+        today >= new Date('2022/10/24 10:00:00') &&
+        (data.application?.isFinalSubmission ?? false)
+          ? setIndex(5)
+          : setIndex(7);
       } else {
         setIndex(6);
       }
     }
-    // if (!data?.application?.isFinalSubmission) {
-    //   selectedIndex === 5 && setIndex(7);
-    // }
   }, [selectedIndex]);
 
   switch (index) {
@@ -119,7 +121,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             중심으로 직무적성 소양평가를 치룹니다.
           </S.DescriptionLine>
           <S.PostScript>
-            2022.10.28. 직무적성 소양평가 진행 <br />
+            2022.10.28. 13시 직무적성 소양평가 진행 <br />
             2022.11.02. 10시 최종 결과 발표
           </S.PostScript>
         </S.Description>
