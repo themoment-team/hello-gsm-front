@@ -57,12 +57,12 @@ const MainResultModal: React.FC<ResultModal> = ({ name, pass, isMobile }) => {
               {isPass &&
                 (isMobile ? (
                   <>
-                    2차 직무적성 소양평가는 10월 28일에
+                    2차 직무적성 소양평가는
                     <br />
-                    진행됩니다.
+                    10월 28일 13시에 진행됩니다.
                   </>
                 ) : (
-                  '2차 직무적성 소양평가는 10월 28일에 진행됩니다.'
+                  '2차 직무적성 소양평가는 10월 28일 13시에 진행됩니다.'
                 ))}
             </S.Text>
           ) : (
