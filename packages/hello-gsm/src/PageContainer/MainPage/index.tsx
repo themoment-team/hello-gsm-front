@@ -104,6 +104,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
               ? true
               : false
           }
+          isMobile={isMobile}
         />
       )}
       {showMainNonLoginModal && <MainNonLoginModal />}
