@@ -76,6 +76,10 @@ export const Title = styled.p`
     font-size: 40px;
     line-height: 50px;
   }
+  @media (max-width: 335px) {
+    font-size: 35px;
+    line-height: 45px;
+  }
 `;
 
 export const Description = styled.p`
