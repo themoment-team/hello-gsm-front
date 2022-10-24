@@ -106,7 +106,22 @@ export const InvisibleButton = styled.button`
   }
 `;
 
-export const ConfirmButton = styled.button`
+export const ButtonWrap = styled.div`
+  width: 330px;
+  display: flex;
+  justify-content: space-between;
+  @media ${device.mobile} {
+    width: 305px;
+  }
+  @media (max-width: 310px) {
+    width: 280px;
+    button {
+      width: 136px;
+    }
+  } ;
+`;
+
+export const Button = styled.button`
   width: 155px;
   height: 45px;
   background: #42bafe;
@@ -116,9 +131,19 @@ export const ConfirmButton = styled.button`
   color: #ffffff;
   border: none;
   cursor: pointer;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   @media ${device.mobile} {
-    width: 130px;
+    width: 148px;
     height: 37px;
     font-size: 16px;
   }
+`;
+
+export const ButtonText = styled.span`
+  color: #0f0921;
+  margin-left: 5px;
 `;
