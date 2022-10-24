@@ -86,7 +86,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
       new Date() >= new Date('2022/10/24 10:00:00') &&
         localStorage.getItem('mainResultModalInvisible') !==
           new Date().getDate().toString() &&
-        !(data?.application?.isFinalSubmission === true),
+        data?.application?.isFinalSubmission === true,
     );
   }, [data?.application?.isFinalSubmission]);
 
