@@ -136,7 +136,7 @@ const ContentBox: React.FC<ContentType> = ({
     setModalRegistrationNumber(registrationNumber);
     setModalName(name);
     setShowScoreModal();
-    setScoreModalValue(score ?? 0);
+    setScoreModalValue(score);
   };
 
   return (

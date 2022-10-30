@@ -9,7 +9,7 @@ interface StoreType {
   setShowScoreModal: () => void;
   setModalRegistrationNumber: (registrationNumber: number) => void;
   setModalName: (name: string) => void;
-  setScoreModalValue: (value: number) => void;
+  setScoreModalValue: (value: number | null) => void;
 }
 
 const useStore = create<StoreType>(set => ({
