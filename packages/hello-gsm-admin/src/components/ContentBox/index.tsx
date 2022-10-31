@@ -74,6 +74,12 @@ const ContentBox: React.FC<ContentType> = ({
     }
   }, [showScoreModal]);
 
+  useEffect(() => {
+    setScore(
+      parseFloat(application_score?.personalityEvaluationScore ?? '') || null,
+    );
+  }, [application_score]);
+
   const documentSubmission = async () => {
     if (new Date() >= new Date('2022-10-21 20:00:00')) {
       return toast.error('서류제출 여부 할당 기간이 아닙니다.');
