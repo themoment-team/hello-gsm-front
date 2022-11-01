@@ -19,6 +19,7 @@ export interface StatusApplication {
       secondWantedMajor: '인공지능과' | '스마트IoT과' | '소프트웨어개발과';
       thirdWantedMajor: '인공지능과' | '스마트IoT과' | '소프트웨어개발과';
       educationStatus: '졸업예정' | '졸업' | '검정고시';
+      majorResult?: '인공지능과' | '스마트IoT과' | '소프트웨어개발과';
     };
   };
 }

@@ -10,9 +10,15 @@ interface ResultModal {
   name: string;
   pass: boolean;
   isMobile: boolean;
+  majorResult?: '소프트웨어개발과' | '스마트IoT과' | '인공지능과';
 }
 
-const MainResultModal: React.FC<ResultModal> = ({ name, pass, isMobile }) => {
+const MainResultModal: React.FC<ResultModal> = ({
+  name,
+  pass,
+  isMobile,
+  majorResult,
+}) => {
   const [isFirstResultPeriod, setIsFirstResultPeriod] = useState<boolean>(true);
   const [isPass, setIsPass] = useState<boolean>(pass);
   const { setShowMainResultModal } = useStore();
@@ -70,17 +76,28 @@ const MainResultModal: React.FC<ResultModal> = ({ name, pass, isMobile }) => {
                 ))}
             </S.Text>
           ) : (
-            <S.Text>
-              {name}님의 2023학년도 {isMobile && <br />}
-              광주소프트웨어마이스터고등학교
-              <br />
-              {isPass ? (
-                <S.PassText>최종 합격</S.PassText>
-              ) : (
-                <S.FailText>최종 불합격</S.FailText>
+            <>
+              <S.Text>
+                {name}님의 2023학년도 {isMobile && <br />}
+                광주소프트웨어마이스터고등학교
+                <br />
+                {isPass ? (
+                  <>
+                    {majorResult}에 <S.PassText>최종 합격</S.PassText>
+                  </>
+                ) : (
+                  <S.FailText>최종 불합격</S.FailText>
+                )}
+                하셨습니다.
+              </S.Text>
+              {isPass && (
+                <S.FinalPassPostScript>
+                  제출서류 : 입학등록동의서 1부(11.7.월까지),
+                  <br />
+                  건강진단서 1부(11.14.월까지)우편과 방문접수에 한함.
+                </S.FinalPassPostScript>
               )}
-              하셨습니다.
-            </S.Text>
+            </>
           )}
           <S.PostScript>
             메인 페이지 하단에 결과 발표에서 {isMobile && <br />}
@@ -120,6 +137,28 @@ const MainResultModal: React.FC<ResultModal> = ({ name, pass, isMobile }) => {
               확인
             </S.Button>
           )
+        ) : isPass ? (
+          <S.ButtonWrap>
+            <S.Button
+              css={css`
+                background: #dee449;
+                svg {
+                  margin-top: 3px;
+                  @media ${device.mobile} {
+                    width: 10px;
+                    height: 14px;
+                  }
+                }
+              `}
+              onClick={() => push('/최종합격자_제출_서류.hwp')}
+            >
+              <I.DownloadIcon />
+              <S.ButtonText>제출서류</S.ButtonText>
+            </S.Button>
+            <S.Button onClick={() => setShowMainResultModal(false)}>
+              확인
+            </S.Button>
+          </S.ButtonWrap>
         ) : (
           <S.Button onClick={() => setShowMainResultModal(false)}>
             확인
