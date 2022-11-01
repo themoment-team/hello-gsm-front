@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import * as S from './style';
 import * as I from 'Assets/svg';
 import { MainDescStatusType } from 'type/user';
+import { useRouter } from 'next/router';
+import device from 'shared/config';
 
 const MainPageDescription: React.FC<MainDescStatusType> = ({
   selectedIndex,
@@ -17,6 +19,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   const [index, setIndex] = useState<number>(1);
   const name = data?.name ?? '';
   const registrationNumber = data?.application?.registrationNumber ?? '';
+  const { push } = useRouter();
 
   useEffect(() => {
     setIsFirstPeriod(
@@ -158,10 +161,26 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             {name}님 2022학년도 광주소프트웨어마이스터고등학교
           </S.DescriptionLine>
           <S.DescriptionLine>
-            <S.Blue>최종 합격</S.Blue>하셨습니다.
+            {data?.application?.application_details.majorResult}에{' '}
+            <S.Blue>최종 합격</S.Blue> 하셨습니다.
           </S.DescriptionLine>
+          <S.PostScript>
+            제출서류 : 입학등록동의서 1부(11.7.월까지),
+            <br />
+            건강진단서 1부(11.14.월까지)우편과 방문접수에 한함.
+          </S.PostScript>
           <S.PostScript>접수 번호 {registrationNumber}</S.PostScript>
-          <S.Celebration>
+          <S.Button onClick={() => push('/최종합격자_제출_서류.hwp')}>
+            <I.DownloadIcon />
+            <S.ButtonText>제출서류</S.ButtonText>
+          </S.Button>
+          <S.Celebration
+            css={css`
+              @media ${device.tablet} {
+                display: none;
+              }
+            `}
+          >
             <I.Celebration />
           </S.Celebration>
         </S.Description>
