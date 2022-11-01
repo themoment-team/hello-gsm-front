@@ -46,7 +46,7 @@ export const Text = styled.p`
   text-align: center;
   color: #0f0921;
   @media ${device.mobile} {
-    font-size: 16px;
+    font-size: 15px;
     line-height: 23px;
   }
 `;
@@ -57,6 +57,20 @@ export const PassText = styled.span`
 
 export const FailText = styled.span`
   color: #fa4953;
+`;
+
+export const FinalPassPostScript = styled.p`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 23px;
+  text-align: center;
+  color: #0f0921;
+  margin-top: 10px;
+  @media ${device.mobile} {
+    font-weight: 400;
+    font-size: 11.5px;
+    line-height: 19px;
+  }
 `;
 
 export const PostScript = styled.p`
