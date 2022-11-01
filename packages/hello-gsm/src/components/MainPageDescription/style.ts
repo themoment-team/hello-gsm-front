@@ -46,8 +46,11 @@ export const PostScript = styled.p`
   @media ${device.tablet} {
     font-size: 17px;
   }
+  @media (max-width: 640px) {
+    line-height: 20px;
+  }
   @media ${device.mobile} {
-    font-size: 12px;
+    font-size: 11px;
     margin-top: 10px;
   }
 `;
@@ -95,4 +98,41 @@ export const Celebration = styled.div`
   @media ${device.mobile} {
     top: 150px;
   }
+`;
+
+export const Button = styled.button`
+  width: 155px;
+  height: 45px;
+  background: #dee449;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  svg {
+    margin-top: 3px;
+    @media ${device.mobile} {
+      width: 10px;
+      height: 14px;
+    }
+  }
+  @media (max-width: 640px) {
+    margin-top: 10px;
+  }
+  @media ${device.mobile} {
+    width: 148px;
+    height: 37px;
+    font-size: 16px;
+  }
+`;
+
+export const ButtonText = styled.span`
+  color: #0f0921;
+  margin-left: 5px;
 `;
