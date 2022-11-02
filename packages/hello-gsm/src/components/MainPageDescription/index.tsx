@@ -19,6 +19,9 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   const [index, setIndex] = useState<number>(1);
   const name = data?.name ?? '';
   const registrationNumber = data?.application?.registrationNumber ?? '';
+  const [majorResult, setMajorResult] = useState<
+    '인공지능과' | '스마트IoT과' | '소프트웨어개발과' | null
+  >(data?.application?.application_details?.majorResult ?? null);
   const { push } = useRouter();
 
   useEffect(() => {
@@ -31,6 +34,10 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   useEffect(() => {
     setPass(isFirstPeriod ? firstResult : finalResult);
   }, [isFirstPeriod]);
+
+  useEffect(() => {
+    setMajorResult(data?.application?.application_details?.majorResult ?? null);
+  }, [data?.application?.application_details?.majorResult]);
 
   useEffect(() => {
     today > new Date('2023/03/01 00:00:00')
@@ -161,8 +168,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             {name}님 2022학년도 광주소프트웨어마이스터고등학교
           </S.DescriptionLine>
           <S.DescriptionLine>
-            {data?.application?.application_details.majorResult}에{' '}
-            <S.Blue>최종 합격</S.Blue> 하셨습니다.
+            {majorResult}에 <S.Blue>최종 합격</S.Blue> 하셨습니다.
           </S.DescriptionLine>
           <S.PostScript>
             제출서류 : 입학등록동의서 1부(11.7.월까지),
