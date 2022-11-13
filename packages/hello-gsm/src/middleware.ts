@@ -49,4 +49,8 @@ export function middleware(req: NextRequest) {
       return NextResponse.redirect(origin);
     }
   }
+
+  if (pathname === '/auth/signin') {
+    return NextResponse.redirect(origin);
+  }
 }

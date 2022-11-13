@@ -92,25 +92,6 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
 
   return (
     <S.MainPage>
-      {showMainResultModal && (
-        <MainResultModal
-          name={data?.name ?? ''}
-          pass={
-            isFirstResultPeriod
-              ? data?.application?.firstResultScreening
-                ? true
-                : false
-              : data?.application?.finalResultScreening
-              ? true
-              : false
-          }
-          isMobile={isMobile}
-          majorResult={
-            data?.application?.application_details.majorResult ?? undefined
-          }
-        />
-      )}
-      {showMainNonLoginModal && <MainNonLoginModal />}
       <Header />
       <S.MainContent>
         <S.TitleWrap>

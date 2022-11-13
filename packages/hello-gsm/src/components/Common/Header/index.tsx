@@ -59,17 +59,7 @@ const Header: React.FC = () => {
           </Link>
         </S.NavBar>
         {!logged ? (
-          <S.MemberBox
-            css={css`
-              justify-content: center;
-            `}
-          >
-            <Link href="/auth/signin" passHref>
-              <S.MemberContent css={select('/auth/signin')}>
-                로그인
-              </S.MemberContent>
-            </Link>
-          </S.MemberBox>
+          <S.MemberBox />
         ) : (
           <S.MemberBox>
             <Link href="/mypage" passHref>

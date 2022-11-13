@@ -40,20 +40,8 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   }, [data?.application?.application_details?.majorResult]);
 
   useEffect(() => {
-    today > new Date('2023/03/01 00:00:00')
-      ? setIndex(0)
-      : setIndex(selectedIndex);
-    if (selectedIndex === 5) {
-      if (data) {
-        today >= new Date('2022/10/24 10:00:00') &&
-        (data.application?.isFinalSubmission ?? false)
-          ? setIndex(5)
-          : setIndex(7);
-      } else {
-        setIndex(6);
-      }
-    }
-  }, [selectedIndex]);
+    setIndex(0);
+  }, []);
 
   switch (index) {
     case 1:
