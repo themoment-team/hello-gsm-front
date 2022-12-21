@@ -1,0 +1,13 @@
+User-agent: *
+
+Disallow: /auth/
+Disallow: /calculator/
+Disallow: /application
+Disallow: /apply
+Disallow: /brower
+Disallow: /information
+Disallow: /inspection
+Disallow: /manual
+Disallow: /mypage
+
+Sitemap: https://hellogsm.kr/sitemap.xml
