@@ -27,11 +27,6 @@ export const Operating = [
     imageURL: 'https://github.com/Mindohyeon.png',
     githubURL: 'https://github.com/Mindohyeon',
   },
-  {
-    name: '진시윤',
-    imageURL: 'https://github.com/ssyy0122.png',
-    githubURL: 'https://github.com/ssyy0122',
-  },
 ];
 
 export const Design = [
