@@ -113,7 +113,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
       {showMainNonLoginModal && <MainNonLoginModal />}
       <Header />
       <S.MainContent>
-        <S.TitleWrap>
+        <div>
           <S.Title>
             꿈과 끼를 마음껏{' '}
             <span
@@ -195,7 +195,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
               <S.ApplyTerm>2023. 06. 15 ~ 2023. 06. 24</S.ApplyTerm>
             </S.TermWrapper>
           </div>
-        </S.TitleWrap>
+        </div>
         <BubbleButton link="/calculator/choose">
           🧾 모의 성적 계산해보기
         </BubbleButton>

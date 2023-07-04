@@ -16,12 +16,6 @@ export const MainContent = styled.div`
   margin-top: 10.38rem;
 `;
 
-export const TitleWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
 export const TitleBox = styled.div`
   height: 18.75rem;
   display: flex;
