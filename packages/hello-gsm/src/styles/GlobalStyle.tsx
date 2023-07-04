@@ -66,11 +66,11 @@ export function GlobalStyle() {
         }
 
         button {
-          font-family: 'Noto Sans KR', sans-serif;
+          font-family: 'Pretendard Variable', sans-serif;
         }
 
         input {
-          font-family: 'Noto Sans KR', sans-serif;
+          font-family: 'Pretendard Variable', sans-serif;
         }
       `}
     />

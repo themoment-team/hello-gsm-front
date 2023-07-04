@@ -140,28 +140,10 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
                   📑 원서접수 하러가기
                 </LinkButton>
               ) : (
-                <S.ToApply
-                  css={css`
-                    background: #a2a2a2;
-                    border-radius: 0.75rem;
-                    box-shadow: 0rem 0.3125rem 1.25rem 0rem #a2a2a2;
-                    pointer-events: none;
-                  `}
-                >
-                  접수 완료
-                </S.ToApply>
+                <S.ToApply disabled>접수 완료</S.ToApply>
               )
             ) : (
-              <S.ToApply
-                css={css`
-                  background: #a2a2a2;
-                  border-radius: 0.75rem;
-                  box-shadow: 0rem 0.3125rem 1.25rem 0rem #a2a2a2;
-                  pointer-events: none;
-                `}
-              >
-                접수 기간이 아닙니다.
-              </S.ToApply>
+              <S.ToApply disabled>접수 기간이 아닙니다.</S.ToApply>
             )
           ) : (
             <S.ToApply

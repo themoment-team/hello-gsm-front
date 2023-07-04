@@ -46,11 +46,9 @@ export const ApplyBox = styled.div`
   justify-content: space-between;
 `;
 
-export const ToApply = styled.a`
+export const ToApply = styled.button`
   width: 18.75rem;
   height: 3.75rem;
-  display: block;
-  box-sizing: border-box;
   border-radius: 0.75rem;
   display: flex;
   justify-content: center;
@@ -60,20 +58,18 @@ export const ToApply = styled.a`
   color: #303030;
   background: #dbe44e;
   box-shadow: 0rem 0.3125rem 1.25rem 0rem #dbe44e;
+  border: none;
 
   :hover {
     transition: box-shadow 0.5s;
     box-shadow: 0rem 0rem 3.125rem 0rem #dbe44e;
   }
 
-  @media ${device.tablet} {
-    color: #2c2a34;
-  }
-  @media ${device.mobile} {
-    font-size: 1rem;
-  }
-  @media ${device.mobile} {
-    height: 2.6875rem;
+  &:disabled {
+    background: #a2a2a2;
+    border-radius: 0.75rem;
+    box-shadow: 0rem 0.3125rem 1.25rem 0rem #a2a2a2;
+    pointer-events: none;
   }
 `;
 
