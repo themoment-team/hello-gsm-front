@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
-import Link from 'next/link';
 import {
   Header,
   Footer,
@@ -45,7 +44,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
     css`
       color: #ffffff;
       font-weight: 700;
-      font-size: '24px';
+      font-size: '1.5rem';
       padding: 0;
       &:before,
       &:after {
@@ -144,8 +143,8 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
                 <S.ToApply
                   css={css`
                     background: #a2a2a2;
-                    border-radius: 12px;
-                    box-shadow: 0px 5px 20px 0px #a2a2a2;
+                    border-radius: 0.75rem;
+                    box-shadow: 0rem 0.3125rem 1.25rem 0rem #a2a2a2;
                     pointer-events: none;
                   `}
                 >
@@ -156,8 +155,8 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
               <S.ToApply
                 css={css`
                   background: #a2a2a2;
-                  border-radius: 12px;
-                  box-shadow: 0px 5px 20px 0px #a2a2a2;
+                  border-radius: 0.75rem;
+                  box-shadow: 0rem 0.3125rem 1.25rem 0rem #a2a2a2;
                   pointer-events: none;
                 `}
               >
@@ -167,7 +166,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
           ) : (
             <S.ToApply
               css={css`
-                height: 65px;
+                height: 4.0625rem;
                 background: #615d6c;
                 box-shadow: none;
                 :hover {

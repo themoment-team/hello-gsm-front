@@ -69,7 +69,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
           </S.DescriptionLine>
           <S.DescriptionLine
             css={css`
-              margin-top: 50px;
+              margin-top: 3.125rem;
             `}
           >
             2. 입력사항에 오류가 있거나 허위로 입력한 경우 접수가 취소될 수
@@ -80,14 +80,14 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
           </S.DescriptionLine>
           <S.DescriptionLine
             css={css`
-              margin-top: 50px;
+              margin-top: 3.125rem;
             `}
           >
             3. 접수번호는 원서 최종 제출 후 자동으로 부여됩니다.
           </S.DescriptionLine>
           <S.PostScript
             css={css`
-              margin-top: 50px;
+              margin-top: 3.125rem;
             `}
           >
             2022.10.17. ~ 2022.10.20.
