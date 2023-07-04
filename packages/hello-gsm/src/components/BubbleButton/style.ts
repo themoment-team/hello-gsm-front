@@ -6,7 +6,7 @@ export const ToCalculator = styled.button`
   right: 10%;
   padding: 1rem 1.5rem;
   background-color: #f3f3f3;
-  border-radius: 12px;
+  border-radius: 0.75rem;
   cursor: pointer;
   border: none;
 
@@ -17,10 +17,10 @@ export const ToCalculator = styled.button`
   font-weight: 600;
 
   &:nth-of-type(1) {
-    top: 860px;
+    top: 53.75rem;
   }
   &:nth-of-type(2) {
-    top: 960px;
+    top: 60rem;
   }
 
   &:hover {
@@ -30,10 +30,10 @@ export const ToCalculator = styled.button`
 
   @media ${device.tablet} {
     &:nth-of-type(1) {
-      top: 700px;
+      top: 43.75rem;
     }
     &:nth-of-type(2) {
-      top: 800px;
+      top: 50rem;
     }
   }
 
