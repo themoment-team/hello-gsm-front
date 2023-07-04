@@ -4,18 +4,17 @@ import device from 'shared/config';
 export const ToCalculator = styled.button`
   position: absolute;
   right: 10%;
-  padding: 0 42px;
-  height: 63px;
+  padding: 1rem 1.5rem;
   background-color: #f3f3f3;
-  color: #303030;
   border-radius: 12px;
-  text-align: center;
-  font-size: 22px;
-  line-height: 63px;
-  text-align: center;
   cursor: pointer;
-  font-weight: 700;
   border: none;
+
+  color: ${({ theme }) => theme.color.black};
+  text-align: center;
+
+  ${({ theme }) => theme.typo.h4}
+  font-weight: 600;
 
   &:nth-of-type(1) {
     top: 860px;
@@ -24,27 +23,11 @@ export const ToCalculator = styled.button`
     top: 960px;
   }
 
-  &:after {
-    border-top: 20px solid #f3f3f3;
-    border-left: 20px solid transparent;
-    border-bottom-right-radius: 2px;
-    border-bottom: 0px solid transparent;
-    content: '';
-    position: absolute;
-    top: 63px;
-    left: 90%;
-  }
-
   &:hover {
     background: rgba(243, 243, 243, 0.52);
-    transform: scale(1.05);
     transition: 0.3s;
   }
-  &:hover::after {
-    border-top: 20px solid rgba(243, 243, 243, 0.52);
-    transform: scale(1.05);
-    transition: 0.3s;
-  }
+
   @media ${device.tablet} {
     &:nth-of-type(1) {
       top: 700px;

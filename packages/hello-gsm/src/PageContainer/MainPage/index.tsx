@@ -197,10 +197,11 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
             </S.TermWrapper>
           </div>
         </S.TitleWrap>
-
-        <BubbleButton link="/manual">여러 계정으로 로그인 하는 법</BubbleButton>
         <BubbleButton link="/calculator/choose">
-          모의 성적 계산 해보기
+          🧾 모의 성적 계산해보기
+        </BubbleButton>
+        <BubbleButton link="/manual">
+          ❓️ 여러 계정으로 로그인 하는 방법
         </BubbleButton>
 
         <S.ContentBox>
