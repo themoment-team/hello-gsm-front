@@ -1,4 +1,4 @@
-import { fadeInAndOut } from 'shared/Styles/Animations';
+import { fadeInAndOut } from 'styles/Animations';
 import styled from '@emotion/styled';
 
 export const SuccessModal = styled.div`
