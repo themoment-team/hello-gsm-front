@@ -1,7 +1,7 @@
 const FooterGSMLogo = () => (
   <svg
-    width="231"
-    height="141"
+    width="14.4375rem"
+    height="8.8125rem"
     viewBox="0 0 231 141"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

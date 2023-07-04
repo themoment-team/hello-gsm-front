@@ -7,179 +7,119 @@ export const MainPage = styled.div`
 `;
 
 export const MainContent = styled.div`
-  height: 1700px;
+  padding: 0 13vw;
+  height: 106.25rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 300px;
-  margin-top: 20vh;
-  @media ${device.tablet} {
-    height: 1300px;
-    margin-top: 100px;
-    margin-bottom: 200px;
-  }
-  @media ${device.mobile} {
-    height: 900px;
-    margin-top: 50px;
-    margin-bottom: 100px;
-  }
-`;
+  margin-bottom: 18.75rem;
+  margin-top: 10.38rem;
 
-export const TitleWrap = styled.div`
-  width: 88%;
-  height: 520px;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  @media ${device.laptop} {
-    align-items: center;
-  }
-  @media ${device.mobile} {
-    height: 400px;
-  }
-  @media (max-width: 430px) {
-    height: 350px;
+  @media (${device.mobile}) {
+    padding: 0 7vw;
   }
 `;
 
 export const TitleBox = styled.div`
-  height: 300px;
+  height: 18.75rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  @media ${device.laptop} {
-    align-items: center;
-    text-align: center;
-  }
-  @media ${device.mobile} {
-    height: 230px;
-  }
-  @media (max-width: 430px) {
-    height: 180px;
-  }
 `;
 
-export const Title = styled.p`
-  font-weight: 700;
-  font-size: 96px;
-  line-height: 110px;
-  @media (max-width: 805px) {
-    font-size: 75px;
-  }
-  @media ${device.mobile} {
-    font-size: 50px;
-    line-height: 64px;
-  }
-  @media (max-width: 430px) {
-    font-size: 40px;
-    line-height: 50px;
-  }
-  @media (max-width: 335px) {
-    font-size: 35px;
-    line-height: 45px;
-  }
+export const Title = styled.h1`
+  ${({ theme }) => theme.typo.h1}
+  color: ${({ theme }) => theme.color.white};
+  font-weight: 600;
+  margin-bottom: 1rem;
 `;
 
 export const Description = styled.p`
-  width: 340px;
+  ${({ theme }) => theme.typo.h3}
+  color: ${({ theme }) => theme.color.white};
   font-weight: 400;
-  font-size: 24px;
-  line-height: 35px;
-  color: rgba(255, 255, 255, 0.66);
-  @media (max-width: 430px) {
-    width: 280px;
-    font-size: 20px;
-    line-height: 30px;
-  }
+  margin-bottom: 3rem;
 `;
 
 export const ApplyBox = styled.div`
-  width: 280px;
-  height: 120px;
+  width: 17.5rem;
+  height: 7.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  @media ${device.laptop} {
-    width: 350px;
-  }
-  @media ${device.mobile} {
-    width: 240px;
-  }
 `;
 
-export const ToApply = styled.a`
-  width: 100%;
-  height: 60px;
-  display: block;
-  box-sizing: border-box;
-  border-radius: 12px;
+export const ToApply = styled.button`
+  width: 18.75rem;
+  height: 3.75rem;
+  border-radius: 0.75rem;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #303030;
   background: #dbe44e;
-  box-shadow: 0px 5px 20px 0px #dbe44e;
+  box-shadow: 0rem 0.3125rem 1.25rem 0rem #dbe44e;
+  border: none;
+
   :hover {
     transition: box-shadow 0.5s;
-    box-shadow: 0px 0px 50px 0px #dbe44e;
+    box-shadow: 0rem 0rem 3.125rem 0rem #dbe44e;
   }
-  @media ${device.tablet} {
-    color: #2c2a34;
-  }
-  @media ${device.mobile} {
-    font-size: 16px;
-  }
-  @media ${device.mobile} {
-    height: 43px;
+
+  &:disabled {
+    background: #a2a2a2;
+    border-radius: 0.75rem;
+    box-shadow: 0rem 0.3125rem 1.25rem 0rem #a2a2a2;
+    pointer-events: none;
   }
 `;
 
-export const ApplyTerm = styled.p`
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 29px;
+export const TermWrapper = styled.ul`
+  color: #ffffff;
+  padding-left: 0.8125rem;
+`;
+
+export const ApplyTerm = styled.li`
+  ${({ theme }) => theme.typo.h3}
+  font-weight: 400;
 `;
 
 export const Underline = styled.div`
-  width: 55px;
-  border: 2px solid #ffffff;
+  width: 6.25rem;
+  height: 0.0625rem;
+  background: #ffffff;
+  margin: 3.75rem 0;
 `;
 
 export const ContentBox = styled.div`
-  width: 80%;
-  height: 800px;
+  width: 100%;
+  height: 50rem;
   background: rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(48px);
+  backdrop-filter: blur(3rem);
   margin: 0 auto;
-  border-radius: 24px;
+  border-radius: 1.5rem;
   position: relative;
-  @media ${device.laptop} {
-    width: 90%;
-  }
-  @media ${device.tablet} {
-    width: 95%;
-    height: 550px;
-  }
-  @media ${device.mobile} {
-    height: 350px;
-  }
+
+  border-radius: 2.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+
+  border: 1px solid #ffffff;
 `;
 
 export const ContentHeader = styled.div`
   width: 100%;
-  height: 130px;
+  height: 8.125rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   position: relative;
   z-index: 1;
+
   @media ${device.mobile} {
-    height: 90px;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: baseline;
@@ -193,22 +133,13 @@ export const ContentHeaderLine = styled.div`
 `;
 
 export const ContentSelect = styled.button`
-  font-weight: 400;
-  font-size: 20px;
+  ${({ theme }) => theme.typo.h3}
   color: #d6d6d6;
   cursor: pointer;
   background: none;
   border: none;
-  padding: 0 18.745px;
+  padding: 0 1.1716rem;
   margin: 0;
-  @media ${device.tablet} {
-    font-size: 18px;
-    padding: 0 16.87px;
-  }
-  @media ${device.mobile} {
-    font-size: 11px;
-    padding: 0 10.125px;
-  }
 `;
 
 const Ball = styled.div`
@@ -218,59 +149,59 @@ const Ball = styled.div`
 `;
 
 export const GreenBall = styled(Ball)`
-  width: 253px;
-  height: 253px;
+  width: 15.8125rem;
+  height: 15.8125rem;
   background: linear-gradient(
     207.52deg,
     #fcffad 13.95%,
     #dee449 27.08%,
     rgba(48, 95, 2, 0.57) 91.31%
   );
-  top: 200px;
+  top: 12.5rem;
   right: 23%;
   @media ${device.tablet} {
-    width: 80px;
-    height: 80px;
-    top: 720px;
+    width: 5rem;
+    height: 5rem;
+    top: 45rem;
     right: 24%;
   }
   @media ${device.mobile} {
-    width: 66px;
-    height: 66px;
-    top: 330px;
+    width: 4.125rem;
+    height: 4.125rem;
+    top: 20.625rem;
     left: 90%;
   }
 `;
 
 export const BigBlueBall = styled(Ball)`
-  width: 1037px;
-  height: 1037px;
+  width: 64.8125rem;
+  height: 64.8125rem;
   background: linear-gradient(
     198.09deg,
     #7be7ff 14.23%,
     #3290ff 30.3%,
     rgba(0, 33, 65, 0.63) 90.22%
   );
-  box-shadow: -12px -12px 24px rgba(0, 0, 0, 0.25);
-  top: 450px;
+  box-shadow: -0.75rem -0.75rem 1.5rem rgba(0, 0, 0, 0.25);
+  top: 28.125rem;
   left: 67%;
   @media ${device.tablet} {
-    width: 331px;
-    height: 331px;
-    top: 728px;
+    width: 20.6875rem;
+    height: 20.6875rem;
+    top: 45.5rem;
     left: 78%;
   }
   @media ${device.mobile} {
-    width: 276px;
-    height: 276px;
-    top: 477px;
+    width: 17.25rem;
+    height: 17.25rem;
+    top: 29.8125rem;
     left: 80%;
   }
 `;
 
 export const YellowBall = styled(Ball)`
-  width: 136px;
-  height: 136px;
+  width: 8.5rem;
+  height: 8.5rem;
   background: linear-gradient(
     202.92deg,
     #fcffc0 7.76%,
@@ -278,39 +209,39 @@ export const YellowBall = styled(Ball)`
     #d0da44 60.66%,
     #70a52e 90.6%
   );
-  box-shadow: 4px 4px 31px rgba(0, 0, 0, 0.25);
-  top: 1350px;
+  box-shadow: 0.25rem 0.25rem 1.9375rem rgba(0, 0, 0, 0.25);
+  top: 84.375rem;
   left: 88%;
   @media ${device.tablet} {
     display: none;
   }
   @media ${device.mobile} {
-    width: 127px;
-    height: 127px;
-    top: 935px;
+    width: 7.9375rem;
+    height: 7.9375rem;
+    top: 58.4375rem;
     left: 5%;
   }
 `;
 
 export const OrangeBall = styled(Ball)`
-  width: 312px;
-  height: 312px;
+  width: 19.5rem;
+  height: 19.5rem;
   background: linear-gradient(220deg, #e1da40 10.2%, #f29100 88.36%);
-  top: 1351px;
+  top: 84.4375rem;
   left: 26%;
   @media ${device.tablet} {
-    width: 118px;
-    height: 118px;
-    top: 1100px;
+    width: 7.375rem;
+    height: 7.375rem;
+    top: 68.75rem;
   }
   @media ${device.mobile} {
-    top: 700px;
+    top: 43.75rem;
   }
 `;
 
 export const SmallBlueBall = styled(Ball)`
-  width: 227px;
-  height: 227px;
+  width: 14.1875rem;
+  height: 14.1875rem;
   background: linear-gradient(
     220deg,
     #5da7ff 10.2%,
@@ -318,35 +249,35 @@ export const SmallBlueBall = styled(Ball)`
     #00366b 88.36%
   );
   left: 54%;
-  top: 1650px;
+  top: 103.125rem;
   @media ${device.tablet} {
-    width: 86px;
-    height: 86px;
-    top: 1188px;
+    width: 5.375rem;
+    height: 5.375rem;
+    top: 74.25rem;
   }
   @media ${device.mobile} {
-    width: 93px;
-    height: 93px;
-    top: 880px;
+    width: 5.8125rem;
+    height: 5.8125rem;
+    top: 55rem;
     left: 90%;
   }
 `;
 
 export const MintBall = styled(Ball)`
-  width: 481px;
-  height: 481px;
+  width: 30.0625rem;
+  height: 30.0625rem;
   background: linear-gradient(
     220deg,
     #9cddff 10.2%,
     #48afe4 32.84%,
     rgba(0, 51, 77, 0.51) 88.36%
   );
-  top: 1750px;
-  left: -70px;
+  top: 109.375rem;
+  left: -4.375rem;
   @media ${device.tablet} {
-    width: 225px;
-    height: 225px;
-    top: 1351px;
+    width: 14.0625rem;
+    height: 14.0625rem;
+    top: 84.4375rem;
   }
   @media ${device.mobile} {
     display: none;
@@ -354,21 +285,21 @@ export const MintBall = styled(Ball)`
 `;
 
 export const NanoBlueBall = styled(Ball)`
-  width: 99px;
-  height: 99px;
+  width: 6.1875rem;
+  height: 6.1875rem;
   background: linear-gradient(
     220deg,
     #7be8ff 10.2%,
     #339aff 24.7%,
     #004891 88.36%
   );
-  box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.25);
-  top: 2000px;
+  box-shadow: -0.125rem 0.125rem 0.625rem rgba(0, 0, 0, 0.25);
+  top: 125rem;
   left: 24%;
   @media ${device.tablet} {
-    width: 66px;
-    height: 66px;
-    top: 1450px;
+    width: 4.125rem;
+    height: 4.125rem;
+    top: 90.625rem;
   }
   @media ${device.mobile} {
     display: none;

@@ -17,14 +17,6 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(`${origin}/browser`);
   }
 
-  // Safari 브라우저로 접속했을 시
-  if (
-    (browser.name === 'Safari' || browser.name === 'Mobile Safari') &&
-    pathname !== '/browser'
-  ) {
-    return NextResponse.redirect(`${origin}/browser`);
-  }
-
   if (
     process.env.OPERATIONAL_STATUS === 'inspection' &&
     pathname !== '/inspection'
@@ -44,8 +36,12 @@ export function middleware(req: NextRequest) {
       return NextResponse.redirect(origin);
     }
 
-    // pc가 아닐 시
+    if (browser.name === 'Safari') {
+      return NextResponse.redirect(`${origin}/browser`);
+    }
+
     if (device.type === ('mobile' || 'tablet')) {
+      // pc가 아닐 시
       return NextResponse.redirect(origin);
     }
   }

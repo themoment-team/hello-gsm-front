@@ -1,5 +1,6 @@
 import { css, Global } from '@emotion/react';
 import emotionReset from 'emotion-reset';
+import device from 'shared/config';
 
 export function GlobalStyle() {
   return (
@@ -7,13 +8,30 @@ export function GlobalStyle() {
       styles={css`
         ${emotionReset}
 
-        body,
+        html,
         * {
           font-family: 'Pretendard Variable', Pretendard, -apple-system,
             BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
             'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
             'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
           box-sizing: border-box;
+
+          font-size: 16px;
+
+          @media ${device.laptop} {
+            font-size: 10px;
+          }
+
+          @media ${device.tablet} {
+            font-size: 8px;
+          }
+
+          @media ${device.mobile} {
+            font-size: 6px;
+          }
+        }
+
+        body {
           background-color: #0f0921;
         }
 
@@ -48,11 +66,11 @@ export function GlobalStyle() {
         }
 
         button {
-          font-family: 'Noto Sans KR', sans-serif;
+          font-family: 'Pretendard Variable', sans-serif;
         }
 
         input {
-          font-family: 'Noto Sans KR', sans-serif;
+          font-family: 'Pretendard Variable', sans-serif;
         }
       `}
     />

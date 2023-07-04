@@ -1,6 +1,7 @@
 export { default as ApplyBarBox } from './ApplyBarBox';
 export { default as Header } from './Common/Header';
 export { default as Footer } from './Common/Footer';
+export { default as LinkButton } from './Common/LinkButton';
 export { default as SEOHelmet } from './Common/SEOHelmet';
 export { default as Enterprises } from './Enterprises';
 export { default as FAQBox } from './FAQBox';
