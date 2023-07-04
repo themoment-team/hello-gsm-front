@@ -2,18 +2,16 @@ import styled from '@emotion/styled';
 import device from 'shared/config';
 
 export const ToCalculator = styled.button`
+  ${({ theme }) => theme.typo.h4}
   position: absolute;
   right: 10%;
   padding: 1rem 1.5rem;
+  text-align: center;
   background-color: #f3f3f3;
   border-radius: 0.75rem;
   cursor: pointer;
   border: none;
-
   color: ${({ theme }) => theme.color.black};
-  text-align: center;
-
-  ${({ theme }) => theme.typo.h4}
   font-weight: 600;
 
   &:nth-of-type(1) {

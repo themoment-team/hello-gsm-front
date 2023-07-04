@@ -29,8 +29,8 @@ export const TitleBox = styled.div`
 
 export const Title = styled.h1`
   ${({ theme }) => theme.typo.h1}
-  font-weight: 600;
   color: ${({ theme }) => theme.color.white};
+  font-weight: 600;
   margin-bottom: 1rem;
 `;
 
