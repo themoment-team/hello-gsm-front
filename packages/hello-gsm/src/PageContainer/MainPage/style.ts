@@ -7,11 +7,11 @@ export const MainPage = styled.div`
 `;
 
 export const MainContent = styled.div`
+  padding: 0 13vw;
   height: 1700px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   margin-bottom: 300px;
   margin-top: 20vh;
   @media ${device.tablet} {
@@ -27,9 +27,6 @@ export const MainContent = styled.div`
 `;
 
 export const TitleWrap = styled.div`
-  width: 88%;
-  height: 520px;
-  color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -62,9 +59,14 @@ export const TitleBox = styled.div`
 `;
 
 export const Title = styled.p`
-  font-weight: 700;
-  font-size: 96px;
-  line-height: 110px;
+  color: #ffffff;
+  font-size: 3rem;
+
+  font-style: normal;
+  font-weight: 600;
+  line-height: 4.4375rem;
+  margin-bottom: 1rem;
+
   @media (max-width: 805px) {
     font-size: 75px;
   }
@@ -83,16 +85,12 @@ export const Title = styled.p`
 `;
 
 export const Description = styled.p`
-  width: 340px;
+  color: #ffffff;
+  /* h3/Regular */
+  font-size: 1.5rem;
+  font-style: normal;
   font-weight: 400;
-  font-size: 24px;
-  line-height: 35px;
-  color: rgba(255, 255, 255, 0.66);
-  @media (max-width: 430px) {
-    width: 280px;
-    font-size: 20px;
-    line-height: 30px;
-  }
+  line-height: 2.25rem;
 `;
 
 export const ApplyBox = styled.div`
@@ -151,7 +149,7 @@ export const Underline = styled.div`
 `;
 
 export const ContentBox = styled.div`
-  width: 80%;
+  width: 100%;
   height: 800px;
   background: rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(48px);

@@ -5,11 +5,10 @@ export const HeaderWrap = styled.div`
   color: #ffffff;
   user-select: none;
   height: 70px;
-  width: 88%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
+  padding: 0 13vw;
 `;
 
 export const LogoContent = styled.a`
@@ -21,7 +20,7 @@ export const LogoContent = styled.a`
 `;
 
 export const NavBar = styled.div`
-  width: 660px;
+  width: 425px;
   display: flex;
   justify-content: space-between;
   @media (max-width: 1200px) {
