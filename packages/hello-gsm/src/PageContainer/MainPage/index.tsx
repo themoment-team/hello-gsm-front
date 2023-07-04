@@ -9,8 +9,9 @@ import {
   BubbleButton,
   MainResultModal,
   MainNonLoginModal,
+  LinkButton,
 } from 'components';
-import { css } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 import { StatusType } from 'type/user';
 import useStore from 'Stores/StoreContainer';
 import device from 'shared/config';
@@ -58,6 +59,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
       }
     `;
 
+  const theme = useTheme();
   useEffect(() => {
     setIsFirstResultPeriod(new Date() < new Date('2022/11/2 10:00:00'));
     setIsMobile(window.innerWidth < 640 ? true : false);
@@ -89,7 +91,6 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
         data?.application?.isFinalSubmission === true,
     );
   }, [data?.application?.isFinalSubmission]);
-
   return (
     <S.MainPage>
       {showMainResultModal && (
@@ -118,7 +119,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
             꿈과 끼를 마음껏{' '}
             <span
               css={css`
-                color: blue;
+                color: ${theme.color.primary.sky};
               `}
             >
               Up!
@@ -130,28 +131,15 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
             광주소프트웨어마이스터고등학교 입학 지원 시스템
           </S.Description>
 
-          <S.ApplyBox>
-            {isPC ? (
-              isAcceptable ? (
-                !data?.application?.isFinalSubmission ? (
-                  <Link
-                    href={logged ? '/information' : '/auth/signin'}
-                    passHref
-                  >
-                    <S.ToApply>원서 접수 하러가기</S.ToApply>
-                  </Link>
-                ) : (
-                  <S.ToApply
-                    css={css`
-                      background: #a2a2a2;
-                      border-radius: 12px;
-                      box-shadow: 0px 5px 20px 0px #a2a2a2;
-                      pointer-events: none;
-                    `}
-                  >
-                    접수 완료
-                  </S.ToApply>
-                )
+          {isPC ? (
+            isAcceptable ? (
+              !data?.application?.isFinalSubmission ? (
+                <LinkButton
+                  href={logged ? '/information' : '/auth/signin'}
+                  color="sky"
+                >
+                  📑 원서접수 하러가기
+                </LinkButton>
               ) : (
                 <S.ToApply
                   css={css`
@@ -161,28 +149,53 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
                     pointer-events: none;
                   `}
                 >
-                  접수 기간이 아닙니다.
+                  접수 완료
                 </S.ToApply>
               )
             ) : (
               <S.ToApply
                 css={css`
-                  height: 65px;
-                  background: #615d6c;
-                  box-shadow: none;
-                  :hover {
-                    box-shadow: none;
-                  }
+                  background: #a2a2a2;
+                  border-radius: 12px;
+                  box-shadow: 0px 5px 20px 0px #a2a2a2;
+                  pointer-events: none;
                 `}
               >
-                {isAcceptable
-                  ? '원서 접수는 pc로만 가능해요'
-                  : '접수 기간이 아닙니다.'}
+                접수 기간이 아닙니다.
               </S.ToApply>
-            )}
-            <S.ApplyTerm>접수 기간: 10.17. ~ 10.20.</S.ApplyTerm>
+            )
+          ) : (
+            <S.ToApply
+              css={css`
+                height: 65px;
+                background: #615d6c;
+                box-shadow: none;
+                :hover {
+                  box-shadow: none;
+                }
+              `}
+            >
+              {isAcceptable
+                ? '원서 접수는 pc로만 가능해요'
+                : '접수 기간이 아닙니다.'}
+            </S.ToApply>
+          )}
+
+          <div>
             <S.Underline />
-          </S.ApplyBox>
+            <S.TermWrapper>
+              <S.ApplyTerm
+                css={css`
+                  list-style: initial;
+                  list-style-position: inside;
+                  font-weight: 600;
+                `}
+              >
+                접수 기간
+              </S.ApplyTerm>
+              <S.ApplyTerm>2023. 06. 15 ~ 2023. 06. 24</S.ApplyTerm>
+            </S.TermWrapper>
+          </div>
         </S.TitleWrap>
 
         <BubbleButton link="/manual">여러 계정으로 로그인 하는 법</BubbleButton>

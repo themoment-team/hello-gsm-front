@@ -5,9 +5,6 @@ export const Button = styled.button`
   background-color: inherit;
   border-radius: 1rem;
   cursor: pointer;
-
-  /* h5/Semibold */
-  font-size: 1.125rem;
+  ${({ theme }) => theme.typo.h5}
   font-weight: 600;
-  line-height: 1.6875rem;
 `;

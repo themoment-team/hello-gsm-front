@@ -58,13 +58,11 @@ export const TitleBox = styled.div`
   }
 `;
 
-export const Title = styled.p`
-  color: #ffffff;
-  font-size: 3rem;
-
-  font-style: normal;
+export const Title = styled.h1`
+  ${({ theme }) => theme.typo.h1}
   font-weight: 600;
-  line-height: 4.4375rem;
+  color: ${({ theme }) => theme.color.white};
+
   margin-bottom: 1rem;
 
   @media (max-width: 805px) {
@@ -85,12 +83,10 @@ export const Title = styled.p`
 `;
 
 export const Description = styled.p`
-  color: #ffffff;
-  /* h3/Regular */
-  font-size: 1.5rem;
-  font-style: normal;
+  ${({ theme }) => theme.typo.h3}
+  color: ${({ theme }) => theme.color.white};
   font-weight: 400;
-  line-height: 2.25rem;
+  margin-bottom: 3rem;
 `;
 
 export const ApplyBox = styled.div`
@@ -109,7 +105,7 @@ export const ApplyBox = styled.div`
 `;
 
 export const ToApply = styled.a`
-  width: 100%;
+  width: 300px;
   height: 60px;
   display: block;
   box-sizing: border-box;
@@ -137,15 +133,23 @@ export const ToApply = styled.a`
   }
 `;
 
-export const ApplyTerm = styled.p`
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 29px;
+export const ApplyInfo = styled.ul``;
+
+export const TermWrapper = styled.ul`
+  color: #ffffff;
+  padding-left: 13px;
+`;
+
+export const ApplyTerm = styled.li`
+  ${({ theme }) => theme.typo.h3}
+  font-weight: 400;
 `;
 
 export const Underline = styled.div`
-  width: 55px;
-  border: 2px solid #ffffff;
+  width: 6.25rem;
+  height: 0.0625rem;
+  background: #ffffff;
+  margin: 3.75rem 0;
 `;
 
 export const ContentBox = styled.div`
