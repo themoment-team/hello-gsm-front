@@ -97,7 +97,6 @@ const SchoolPage: NextPage = () => {
       <S.BlueBall />
       <S.SkyBlueBall />
       <S.SmallBlueBall />
-      <Footer />
     </>
   );
 };

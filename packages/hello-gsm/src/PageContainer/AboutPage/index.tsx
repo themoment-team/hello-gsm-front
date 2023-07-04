@@ -263,7 +263,6 @@ const AboutPage: NextPage = () => {
           <S.SmallBall style={{ left: '19vh', top: '209vh' }} />
         </S.Section>
       </S.AboutPage>
-      <Footer />
     </>
   );
 };

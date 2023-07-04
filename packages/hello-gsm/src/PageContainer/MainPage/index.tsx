@@ -238,7 +238,6 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
       <S.SmallBlueBall />
       <S.MintBall />
       <S.NanoBlueBall />
-      <Footer />
     </S.MainPage>
   );
 };
