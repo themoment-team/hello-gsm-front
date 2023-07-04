@@ -5,7 +5,7 @@ import {
   ScoreResultModal,
   FreeSemesterBtn,
 } from 'components';
-import * as S from 'shared/Styles/Calculate';
+import * as S from 'styles/Calculate';
 import * as I from 'Assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { useState } from 'react';

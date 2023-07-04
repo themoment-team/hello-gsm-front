@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
-import { GlobalStyle } from 'shared/Styles/GlobalStyle';
+import { GlobalStyle } from 'styles/GlobalStyle';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router';
 import * as gtag from 'lib/gtag';
 import Script from 'next/script';
+import { ThemeProvider } from '@emotion/react';
+import { theme } from 'styles/theme';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -44,8 +46,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         }}
       />
       <GlobalStyle />
-      <ToastContainer />
-      <Component {...pageProps} />
+      <ThemeProvider theme={theme}>
+        <ToastContainer />
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   );
 }

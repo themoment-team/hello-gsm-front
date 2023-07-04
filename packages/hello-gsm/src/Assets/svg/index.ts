@@ -21,3 +21,4 @@ export { default as PrintIcon } from './PrintIcon';
 export { default as SignUpSuccess } from './SignUpSuccess';
 export { default as ChromeLogo } from './ChromeLogo';
 export { default as DownloadIcon } from './DownloadIcon';
+export { default as FooterGSMLogo } from './FooterGSMLogo';
