@@ -14,6 +14,10 @@ export const MainContent = styled.div`
   justify-content: space-between;
   margin-bottom: 18.75rem;
   margin-top: 10.38rem;
+
+  @media (${device.mobile}) {
+    padding: 0 7vw;
+  }
 `;
 
 export const TitleBox = styled.div`

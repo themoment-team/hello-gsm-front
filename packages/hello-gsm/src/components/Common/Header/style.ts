@@ -9,6 +9,10 @@ export const HeaderWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 13vw;
+
+  @media (${device.mobile}) {
+    padding: 0 7vw;
+  }
 `;
 
 export const LogoContent = styled.a`
