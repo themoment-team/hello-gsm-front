@@ -49,19 +49,25 @@ export const NavContent = styled.a`
 `;
 
 export const MemberBox = styled.div`
-  width: 9.375rem;
+  height: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  @media ${device.laptop} {
-    width: 8.125rem;
-  }
+  gap: 2rem;
+
   @media ${device.tablet} {
     display: none;
   }
 `;
 
-export const MemberContent = styled.a``;
+export const AuthButton = styled.button`
+  color: ${({ theme }) => theme.color.white};
+  font-weight: 700;
+  padding: 0.375rem 1rem;
+  border-radius: 6.25rem;
+  background: #2c273c;
+  border: none;
+  cursor: pointer;
+`;
 
 export const HamBurger = styled.div`
   display: none;
@@ -70,15 +76,4 @@ export const HamBurger = styled.div`
   @media ${device.tablet} {
     display: block;
   }
-`;
-
-export const Logout = styled.button`
-  color: #dddddd;
-  font-weight: 400;
-  font-size: 1.125rem;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
 `;
