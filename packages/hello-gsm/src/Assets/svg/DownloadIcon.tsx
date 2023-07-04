@@ -1,7 +1,7 @@
 const DownloadIcon = () => (
   <svg
-    width="14"
-    height="18"
+    width="0.875rem"
+    height="1.125rem"
     viewBox="0 0 14 18"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
