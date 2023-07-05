@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import device from 'shared/config';
 
 export const MyPage = styled.div`
   height: 100vh;
@@ -116,9 +115,4 @@ export const IsNotPC = styled.p`
   font-size: 1.25rem;
   line-height: 1.8125rem;
   color: #bcbac1;
-  @media ${device.mobile} {
-    width: 14.375rem;
-    font-size: 1.125rem;
-    line-height: 1.625rem;
-  }
 `;
