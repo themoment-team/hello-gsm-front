@@ -1,12 +1,18 @@
 const LeftButton = () => (
   <svg
-    width="11"
-    height="17"
-    viewBox="0 0 11 17"
+    width="1.25rem"
+    height="1.25rem"
+    viewBox="0 0 20 20"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M10 1.09888L2 8.59888L10 16.0989" stroke="white" strokeWidth="2" />
+    <path
+      d="M12.5 4.16667L6.66667 10L12.5 15.8333"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
