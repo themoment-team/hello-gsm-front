@@ -64,7 +64,7 @@ const MyPage: NextPage<StatusType> = ({
   const isSubmitted = () => (
     <S.ButtonBox
       css={css`
-        width: 335px;
+        width: 20.9375rem;
       `}
     >
       <Link href="/application" passHref>
@@ -73,7 +73,7 @@ const MyPage: NextPage<StatusType> = ({
           rel="noopener noreferrer"
           css={css`
             background: #59c5ff;
-            box-shadow: 0px 13px 30px -10px #59c5ff;
+            box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #59c5ff;
           `}
         >
           원서 다운
@@ -83,7 +83,7 @@ const MyPage: NextPage<StatusType> = ({
         onClick={() => showModal('download')}
         css={css`
           background: #35dcbe;
-          box-shadow: 0px 13px 30px -10px #35dcbe;
+          box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #35dcbe;
         `}
       >
         제출 서류 다운
@@ -94,19 +94,19 @@ const MyPage: NextPage<StatusType> = ({
   const isNotSubmitted = () => (
     <S.ButtonAndDescription
       css={css`
-        height: 210px;
+        height: 13.125rem;
       `}
     >
       <S.ButtonBox
         css={css`
-          width: 660px;
+          width: 41.25rem;
         `}
       >
         <S.Button
           onClick={() => showModal('delete')}
           css={css`
             background: #d82142;
-            box-shadow: 0px 13px 30px -10px #d82142;
+            box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #d82142;
           `}
         >
           원서 삭제
@@ -115,7 +115,7 @@ const MyPage: NextPage<StatusType> = ({
           <S.Button
             css={css`
               background: #dbe44e;
-              box-shadow: 0px 13px 30px -10px #dbe44e;
+              box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #dbe44e;
             `}
           >
             원서 수정
@@ -125,7 +125,7 @@ const MyPage: NextPage<StatusType> = ({
           <S.Button
             css={css`
               background: #5fc4fb;
-              box-shadow: 0px 13px 30px -10px #5fc4fb;
+              box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #5fc4fb;
             `}
           >
             성적 입력
@@ -141,12 +141,12 @@ const MyPage: NextPage<StatusType> = ({
             finalSubmitAcceptable
               ? css`
                   background: #49f58e;
-                  box-shadow: 0px 13px 30px -10px #49f58e;
+                  box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #49f58e;
                 `
               : css`
                   color: #505050;
                   background: #a1a1a1;
-                  box-shadow: 0px 13px 30px -10px #a1a1a1;
+                  box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #a1a1a1;
                   cursor: default;
                 `
           }
@@ -178,7 +178,7 @@ const MyPage: NextPage<StatusType> = ({
         css={css`
           color: #505050;
           background: #a1a1a1;
-          box-shadow: 0px 13px 30px -10px #a1a1a1;
+          box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #a1a1a1;
           cursor: default;
         `}
       >

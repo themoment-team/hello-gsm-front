@@ -50,15 +50,15 @@ export const ButtonBox = styled.div`
 `;
 
 export const Button = styled.button`
-  width: 160px;
-  height: 45px;
-  border-radius: 10px;
+  width: 10rem;
+  height: 2.8125rem;
+  border-radius: 0.625rem;
   background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 1.25rem;
   color: #0f0921;
   cursor: pointer;
   border: 0;
@@ -81,47 +81,44 @@ export const ButtonAndDescription = styled.div`
 `;
 
 export const ApplicationLink = styled.a`
-  width: 160px;
-  height: 45px;
-  border-radius: 10px;
+  width: 10rem;
+  height: 2.8125rem;
+  border-radius: 0.625rem;
   background: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 1.25rem;
   color: #0f0921;
   cursor: pointer;
 `;
 
 export const IsNotPCWrap = styled.div`
-  height: 75px;
+  height: 4.6875rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  @media ${device.mobile} {
-    height: 70px;
-  }
 `;
 
 export const Point = styled.div`
-  width: 10px;
-  height: 10px;
+  width: 0.625rem;
+  height: 0.625rem;
   background: rgba(255, 255, 255, 0.87);
   border-radius: 100%;
 `;
 
 export const IsNotPC = styled.p`
-  width: 260px;
+  width: 16.25rem;
   text-align: center;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 29px;
+  font-size: 1.25rem;
+  line-height: 1.8125rem;
   color: #bcbac1;
   @media ${device.mobile} {
-    width: 230px;
-    font-size: 18px;
-    line-height: 26px;
+    width: 14.375rem;
+    font-size: 1.125rem;
+    line-height: 1.625rem;
   }
 `;
