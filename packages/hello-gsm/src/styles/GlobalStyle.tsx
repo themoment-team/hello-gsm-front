@@ -19,15 +19,15 @@ export function GlobalStyle() {
           font-size: 16px;
 
           @media ${device.laptop} {
-            font-size: 10px;
+            font-size: 14px;
           }
 
           @media ${device.tablet} {
-            font-size: 8px;
+            font-size: 12px;
           }
 
           @media ${device.mobile} {
-            font-size: 6px;
+            font-size: 10px;
           }
         }
 

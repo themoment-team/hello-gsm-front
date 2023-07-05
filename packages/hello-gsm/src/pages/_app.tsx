@@ -8,6 +8,7 @@ import * as gtag from 'lib/gtag';
 import Script from 'next/script';
 import { ThemeProvider } from '@emotion/react';
 import { theme } from 'styles/theme';
+import { Footer } from 'components';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -49,6 +50,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <ToastContainer />
         <Component {...pageProps} />
+        <Footer />
       </ThemeProvider>
     </>
   );

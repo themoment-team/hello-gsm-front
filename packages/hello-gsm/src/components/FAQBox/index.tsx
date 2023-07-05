@@ -36,18 +36,14 @@ const FAQBox: React.FC<FAQBoxType> = ({ question, answer, keyword }) => {
         }
       `}
     >
-      <S.Title
-        css={css`
-          color: ${isFAQSearching && 'rgba(15, 9, 33, 0.52);'};
-        `}
-      >
+      <S.Title>
         {isFAQSearching
           ? question.split(keyword).map((title: string, index: number) => {
               return index < question.split(keyword).length - 1 ? (
-                <>
+                <span key={index}>
                   {title}
-                  <S.IsSearching key={index}>{keyword}</S.IsSearching>
-                </>
+                  <S.IsSearching>{keyword}</S.IsSearching>
+                </span>
               ) : (
                 title
               );

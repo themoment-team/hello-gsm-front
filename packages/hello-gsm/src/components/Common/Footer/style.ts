@@ -7,6 +7,7 @@ export const Footer = styled.footer`
   align-items: center;
   padding: 3.75rem 5rem;
   position: relative;
+  bottom: 0;
 `;
 
 export const FooterContent = styled.div`

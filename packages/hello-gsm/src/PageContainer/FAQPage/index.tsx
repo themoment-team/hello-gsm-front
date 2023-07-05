@@ -6,6 +6,7 @@ import { Header, FAQBox, FAQModal } from 'components';
 import useStore from 'Stores/StoreContainer';
 import auth from 'Api/auth';
 import { FAQType } from 'type/faq';
+import { css } from '@emotion/react';
 
 type FAQDataType = {
   faqData: FAQType[];
@@ -71,7 +72,10 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
     pageIndex > 1 && setPageIndex(pageIndex => pageIndex - 1);
 
   const selectStyle = (index: number) =>
-    pageIndex === index && { color: '#ffffff' };
+    pageIndex === index &&
+    css`
+      font-weight: 700;
+    `;
 
   return (
     <>
@@ -101,7 +105,10 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
           </S.FAQList>
           {!isFAQSearching && (
             <S.FAQListIndex>
-              <S.ChangeAllowButton onClick={minusPageIndex}>
+              <S.ChangeAllowButton
+                onClick={minusPageIndex}
+                disabled={pageIndex === 1}
+              >
                 <I.LeftButton />
               </S.ChangeAllowButton>
               <S.FAQListIndexButtonWrapper>
@@ -115,15 +122,16 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
                   3
                 </S.ListIndex>
               </S.FAQListIndexButtonWrapper>
-              <S.ChangeAllowButton onClick={plusPageIndex}>
+              <S.ChangeAllowButton
+                onClick={plusPageIndex}
+                disabled={pageIndex === 3}
+              >
                 <I.RightButton />
               </S.ChangeAllowButton>
             </S.FAQListIndex>
           )}
         </S.FAQContent>
       </S.FAQPage>
-      <S.SkyBlueBall />
-      <S.BlueBall />
     </>
   );
 };
