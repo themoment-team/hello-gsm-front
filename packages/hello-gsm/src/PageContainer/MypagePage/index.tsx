@@ -11,6 +11,7 @@ import {
   MypageModal,
   MypageSuccessModal,
   MypageInformation,
+  LinkButton,
 } from 'components';
 import { toast } from 'react-toastify';
 import acceptable from 'shared/acceptable';
@@ -162,16 +163,9 @@ const MyPage: NextPage<StatusType> = ({
 
   const isNotSaved = () => (
     <S.ButtonAndDescription>
-      <Link href="/information" passHref>
-        <S.Button
-          css={css`
-            background: #dbe44e;
-            box-shadow: 0px 13px 30px -10px #dbe44e;
-          `}
-        >
-          원서 작성
-        </S.Button>
-      </Link>
+      <LinkButton href="/information" color="sky">
+        📑 원서 작성하기
+      </LinkButton>
       <S.MypageDescription>
         원서를 작성완료 하셨다면 새로고침 부탁드립니다.
       </S.MypageDescription>
@@ -201,22 +195,15 @@ const MyPage: NextPage<StatusType> = ({
       {showMypageModal && <MypageModal />}
       {showMypageSuccessModal && <MypageSuccessModal />}
       <Header />
-      <S.Content
-        css={css`
-          height: ${isPC && saved && !submitted && '440px'};
-          height: ${isPC && (!saved || !isAcceptable) && '320px'};
-        `}
-      >
-        <S.UserBox>
-          <Image
-            src={userImg}
-            alt="image"
-            width="140"
-            height="140"
-            css={{ borderRadius: '100%' }}
-          />
-          <S.Name>{name}</S.Name>
-        </S.UserBox>
+      <S.Content>
+        <S.UserSection>
+          <S.Title>내정보</S.Title>
+          <S.UserImgBox>
+            <Image src={userImg} alt="image" layout="fill" />
+          </S.UserImgBox>
+          <S.Name>{name}님</S.Name>
+        </S.UserSection>
+
         {isPC
           ? isAcceptable
             ? saved
@@ -227,10 +214,6 @@ const MyPage: NextPage<StatusType> = ({
             : isNotAcceptable()
           : isNotPC()}
       </S.Content>
-      <S.GreenBall />
-      <S.BigBlueBall />
-      <S.MiddleBlueBall />
-      <S.SmallBlueBall />
     </S.MyPage>
   );
 };
