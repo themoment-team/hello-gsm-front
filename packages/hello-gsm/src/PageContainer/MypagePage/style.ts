@@ -52,7 +52,7 @@ export const Button = styled.button`
   width: 10rem;
   height: 2.8125rem;
   border-radius: 0.625rem;
-  background: #ffffff;
+  background: ${({ theme }) => theme.color.white};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,7 +83,7 @@ export const ApplicationLink = styled.a`
   width: 10rem;
   height: 2.8125rem;
   border-radius: 0.625rem;
-  background: #ffffff;
+  background: ${({ theme }) => theme.color.white};
   display: flex;
   justify-content: center;
   align-items: center;
