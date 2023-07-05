@@ -1,46 +1,36 @@
 import styled from '@emotion/styled';
-import device from 'shared/config';
 
 export const FAQBox = styled.button`
   width: 100%;
-  height: 65px;
+  height: 4.0625rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: white;
-  margin: 15px 0;
-  border-radius: 10px;
-  font-size: 20px;
-  padding: 0 40px;
+  border-radius: 1rem;
+  background: #19132a;
+  border: none;
+  border-radius: 0.625rem;
+  margin: 0.9375rem 0;
+  padding: 0 2.5rem;
   cursor: pointer;
+
   &:hover {
     transition: background 0.3s;
-    background: rgba(255, 255, 255, 0.47);
-  }
-  @media ${device.mobile} {
-    height: 35px;
-    padding: 0 20px;
+    background: ${({ theme }) => theme.color.gray['060']};
   }
 `;
 
 export const Title = styled.p`
-  display: inline;
+  ${({ theme }) => theme.typo.h4}
+  color: ${({ theme }) => theme.color.white};
   font-weight: 700;
-  color: #0f0921;
+
   &::before {
     content: 'Q. ';
-    color: #42bafe;
-  }
-  @media ${device.mobile} {
-    font-size: 10px;
+    color: ${({ theme }) => theme.color.primary['lime']};
   }
 `;
 
 export const IsSearching = styled.span`
-  color: #0f0921;
-  font-weight: 900;
-  font-size: 22px;
-  @media ${device.mobile} {
-    font-size: 10px;
-  }
+  color: ${({ theme }) => theme.color.primary['lime']};
 `;
