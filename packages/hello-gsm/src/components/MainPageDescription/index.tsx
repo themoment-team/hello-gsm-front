@@ -144,7 +144,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
         pass ? (
           <S.Description>
             <S.DescriptionLine>
-              {name}님 2023학년도 광주소프트웨어마이스터고등학교
+              {name}님 2024학년도 광주소프트웨어마이스터고등학교
             </S.DescriptionLine>
             <S.DescriptionLine>
               <S.Blue>1차 합격</S.Blue>하셨습니다.
@@ -157,7 +157,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
         ) : (
           <S.Description>
             <S.DescriptionLine>
-              {name}님 2023학년도 광주소프트웨어마이스터고등학교
+              {name}님 2024학년도 광주소프트웨어마이스터고등학교
             </S.DescriptionLine>
             <S.DescriptionLine>
               1차 서류 심사 결과 <S.Red>불합격</S.Red>하셨습니다.
@@ -168,7 +168,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
       ) : pass ? (
         <S.Description>
           <S.DescriptionLine>
-            {name}님 2023학년도 광주소프트웨어마이스터고등학교
+            {name}님 2024학년도 광주소프트웨어마이스터고등학교
           </S.DescriptionLine>
           <S.DescriptionLine>
             {majorResult}에 <S.Blue>최종 합격</S.Blue> 하셨습니다.
@@ -196,7 +196,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
       ) : (
         <S.Description>
           <S.DescriptionLine>
-            {name}님 2023학년도 광주소프트웨어마이스터고등학교
+            {name}님 2024학년도 광주소프트웨어마이스터고등학교
           </S.DescriptionLine>
           <S.DescriptionLine>
             <S.Red>최종 불합격</S.Red>하셨습니다.

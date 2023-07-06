@@ -54,7 +54,7 @@ const MainResultModal: React.FC<ResultModal> = ({
         <S.MainResultModalContent>
           {isFirstResultPeriod ? (
             <S.Text>
-              {name}님의 2023학년도 {isMobile && <br />}
+              {name}님의 2024학년도 {isMobile && <br />}
               광주소프트웨어마이스터고등학교
               <br />
               1차 서류 심사 결과{' '}
@@ -79,7 +79,7 @@ const MainResultModal: React.FC<ResultModal> = ({
           ) : (
             <>
               <S.Text>
-                {name}님의 2023학년도 {isMobile && <br />}
+                {name}님의 2024학년도 {isMobile && <br />}
                 광주소프트웨어마이스터고등학교
                 <br />
                 {isPass ? (
