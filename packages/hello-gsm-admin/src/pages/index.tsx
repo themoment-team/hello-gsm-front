@@ -18,52 +18,52 @@ const Home: NextPage<ApplicantsType> = ({ list, count }) => {
   );
 };
 
-const getListAndCount = async (accessToken: string) => {
-  try {
-    const [list, count] = await Promise.all([
-      application.getList(1, '', accessToken),
-      application.getCount(accessToken),
-    ]);
-    return {
-      props: { list: list.data, count: count.data.count },
-    };
-  } catch (error) {
-    return {
-      props: {},
-      redirect: {
-        destination: '/signin',
-      },
-    };
-  }
-};
+// const getListAndCount = async (accessToken: string) => {
+//   try {
+//     const [list, count] = await Promise.all([
+//       application.getList(1, '', accessToken),
+//       application.getCount(accessToken),
+//     ]);
+//     return {
+//       props: { list: list.data, count: count.data.count },
+//     };
+//   } catch (error) {
+//     return {
+//       props: {},
+//       redirect: {
+//         destination: '/signin',
+//       },
+//     };
+//   }
+// };
 
-export const getServerSideProps: GetServerSideProps = async ctx => {
-  const accessToken = `adminAccessToken=${ctx.req.cookies.adminAccessToken}`;
-  const refreshToken = `adminRefreshToken=${ctx.req.cookies.adminRefreshToken}`;
+// export const getServerSideProps: GetServerSideProps = async ctx => {
+//   const accessToken = `adminAccessToken=${ctx.req.cookies.adminAccessToken}`;
+//   const refreshToken = `adminRefreshToken=${ctx.req.cookies.adminRefreshToken}`;
 
-  if (ctx.req.cookies.adminRefreshToken) {
-    if (ctx.req.cookies.adminAccessToken) {
-      return getListAndCount(accessToken);
-    } else {
-      try {
-        const { headers }: HeaderType = await auth.refresh(refreshToken);
-        const accessToken = headers['set-cookie'][0].split(';')[0];
-        ctx.res.setHeader('set-cookie', headers['set-cookie']);
-        return getListAndCount(accessToken);
-      } catch (error) {
-        return {
-          props: {},
-        };
-      }
-    }
-  } else {
-    return {
-      props: {},
-      redirect: {
-        destination: '/signin',
-      },
-    };
-  }
-};
+//   if (ctx.req.cookies.adminRefreshToken) {
+//     if (ctx.req.cookies.adminAccessToken) {
+//       return getListAndCount(accessToken);
+//     } else {
+//       try {
+//         // const { headers }: HeaderType = await auth.refresh(refreshToken);
+//         const accessToken = headers['set-cookie'][0].split(';')[0];
+//         ctx.res.setHeader('set-cookie', headers['set-cookie']);
+//         return getListAndCount(accessToken);
+//       } catch (error) {
+//         return {
+//           props: {},
+//         };
+//       }
+//     }
+//   } else {
+//     return {
+//       // props: {},
+//       // redirect: {
+//       //   destination: '/signin',
+//       // },
+//     };
+//   }
+// };
 
 export default Home;
