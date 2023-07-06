@@ -83,7 +83,7 @@ const ContentBox: React.FC<ContentType> = ({
   }, [application_score]);
 
   const documentSubmission = async () => {
-    // 1차 합격 여부를 할당하는 기간
+    // 1차 서류제출 여부를 할당하는 기간
     if (new Date() >= new Date('2023/10/20 20:00:00')) {
       return toast.error('서류제출 여부 할당 기간이 아닙니다.');
     }
