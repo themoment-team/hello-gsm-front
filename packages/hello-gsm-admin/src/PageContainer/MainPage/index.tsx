@@ -20,6 +20,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const { showScoreModal } = useStore();
 
   useEffect(() => {
+    // 수험표를 출력할 수 있는 기간
     setPrintable(new Date() >= new Date('2023/10/20 00:00:00'));
   }, []);
 

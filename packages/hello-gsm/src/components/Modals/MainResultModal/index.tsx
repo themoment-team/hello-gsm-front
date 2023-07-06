@@ -25,6 +25,7 @@ const MainResultModal: React.FC<ResultModal> = ({
   const { push } = useRouter();
 
   useEffect(() => {
+    // 최종 합격 결과 나오기 전
     setIsFirstResultPeriod(new Date() < new Date('2023/11/1 10:00:00'));
   }, []);
 

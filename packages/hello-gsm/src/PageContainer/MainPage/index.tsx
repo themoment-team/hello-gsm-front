@@ -60,6 +60,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
 
   const theme = useTheme();
   useEffect(() => {
+    // 최종 합격 나오기 전
     setIsFirstResultPeriod(new Date() < new Date('2023/11/1 10:00:00'));
     setIsMobile(window.innerWidth < 640 ? true : false);
     setIsAcceptable(acceptable);
@@ -75,6 +76,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
 
   useEffect(() => {
     setShowMainNonLoginModal(
+      // 1차 합격 발표 날짜
       new Date() >= new Date('2023/10/23 10:00:00') &&
         !logged &&
         localStorage.getItem('mainNonLoginModalInvisible') !==
@@ -84,6 +86,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
 
   useEffect(() => {
     setShowMainResultModal(
+      // 1차 합격 발표 날짜
       new Date() >= new Date('2023/10/23 10:00:00') &&
         localStorage.getItem('mainResultModalInvisible') !==
           new Date().getDate().toString() &&

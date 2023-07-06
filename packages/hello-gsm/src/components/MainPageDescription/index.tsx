@@ -25,6 +25,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   const { push } = useRouter();
 
   useEffect(() => {
+    // 첫번째 합격 결과 보여주는 날짜
     setIsFirstPeriod(
       new Date() >= new Date('2023/10/23 10:00:00') &&
         new Date() < new Date('2023/11/01 10:00:00'),
@@ -40,11 +41,13 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   }, [data?.application?.application_details?.majorResult]);
 
   useEffect(() => {
+    // 입학 전형이 끝난 이후
     today > new Date('2024/03/01 00:00:00')
       ? setIndex(0)
       : setIndex(selectedIndex);
     if (selectedIndex === 5) {
       if (data) {
+        // 1차 전형 합격 날짜
         today >= new Date('2023/10/23 10:00:00') &&
         (data.application?.isFinalSubmission ?? false)
           ? setIndex(5)

@@ -52,7 +52,9 @@ const ContentBox: React.FC<ContentType> = ({
   } = useStore();
 
   useEffect(() => {
+    // 1차 시험 결과를 조화할 수 있는 날짜
     setIsFirstResult(new Date() >= new Date('2023/10/20 00:00:00'));
+    // 2차 시험 결과를 조회할 수 있는 날짜
     setIsFinalResult(new Date() >= new Date('2023/11/01 00:00:00'));
   }, []);
 
@@ -81,6 +83,7 @@ const ContentBox: React.FC<ContentType> = ({
   }, [application_score]);
 
   const documentSubmission = async () => {
+    // 1차 합격 여부를 할당하는 기간
     if (new Date() >= new Date('2023/10/20 20:00:00')) {
       return toast.error('서류제출 여부 할당 기간이 아닙니다.');
     }
@@ -131,6 +134,7 @@ const ContentBox: React.FC<ContentType> = ({
 
   const scoreButtonClick = () => {
     if (
+      // 2차 성적을 입력하는 기간
       new Date() <= new Date('2023/10/27 16:00:00') ||
       new Date() >= new Date('2023/10/31 22:10:00')
     ) {
