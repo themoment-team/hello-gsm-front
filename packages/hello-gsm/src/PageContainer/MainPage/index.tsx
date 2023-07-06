@@ -177,7 +177,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
               >
                 접수 기간
               </S.ApplyTerm>
-              <S.ApplyTerm>2023. 06. 15 ~ 2023. 06. 24</S.ApplyTerm>
+              <S.ApplyTerm>2023. 10. 16 ~ 2023. 10. 19</S.ApplyTerm>
             </S.TermWrapper>
           </div>
         </div>
