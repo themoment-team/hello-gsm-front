@@ -26,8 +26,8 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
 
   useEffect(() => {
     setIsFirstPeriod(
-      new Date() >= new Date('2022/10/24 10:00:00') &&
-        new Date() < new Date('2022/11/02 10:00:00'),
+      new Date() >= new Date('2023/10/23 10:00:00') &&
+        new Date() < new Date('2023/11/01 10:00:00'),
     );
   }, []);
 
@@ -40,12 +40,12 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   }, [data?.application?.application_details?.majorResult]);
 
   useEffect(() => {
-    today > new Date('2023/03/01 00:00:00')
+    today > new Date('2024/03/01 00:00:00')
       ? setIndex(0)
       : setIndex(selectedIndex);
     if (selectedIndex === 5) {
       if (data) {
-        today >= new Date('2022/10/24 10:00:00') &&
+        today >= new Date('2023/10/23 10:00:00') &&
         (data.application?.isFinalSubmission ?? false)
           ? setIndex(5)
           : setIndex(7);

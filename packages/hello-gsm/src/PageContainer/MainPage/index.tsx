@@ -60,7 +60,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
 
   const theme = useTheme();
   useEffect(() => {
-    setIsFirstResultPeriod(new Date() < new Date('2022/11/2 10:00:00'));
+    setIsFirstResultPeriod(new Date() < new Date('2023/11/1 10:00:00'));
     setIsMobile(window.innerWidth < 640 ? true : false);
     setIsAcceptable(acceptable);
     setIsPC(
@@ -75,7 +75,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
 
   useEffect(() => {
     setShowMainNonLoginModal(
-      new Date() >= new Date('2022/10/24 10:00:00') &&
+      new Date() >= new Date('2023/10/23 10:00:00') &&
         !logged &&
         localStorage.getItem('mainNonLoginModalInvisible') !==
           new Date().getDate().toString(),
@@ -84,7 +84,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
 
   useEffect(() => {
     setShowMainResultModal(
-      new Date() >= new Date('2022/10/24 10:00:00') &&
+      new Date() >= new Date('2023/10/23 10:00:00') &&
         localStorage.getItem('mainResultModalInvisible') !==
           new Date().getDate().toString() &&
         data?.application?.isFinalSubmission === true,

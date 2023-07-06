@@ -25,7 +25,7 @@ const MainResultModal: React.FC<ResultModal> = ({
   const { push } = useRouter();
 
   useEffect(() => {
-    setIsFirstResultPeriod(new Date() < new Date('2022/11/2 10:00:00'));
+    setIsFirstResultPeriod(new Date() < new Date('2023/11/1 10:00:00'));
   }, []);
 
   useEffect(() => {
