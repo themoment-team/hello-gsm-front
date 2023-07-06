@@ -20,7 +20,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const { showScoreModal } = useStore();
 
   useEffect(() => {
-    setPrintable(new Date() >= new Date('2023-10-20 00:00:00'));
+    setPrintable(new Date() >= new Date('2023/10/20 00:00:00'));
   }, []);
 
   const getList = useCallback(async () => {

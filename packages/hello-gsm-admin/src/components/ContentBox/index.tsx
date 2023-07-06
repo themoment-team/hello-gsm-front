@@ -52,8 +52,8 @@ const ContentBox: React.FC<ContentType> = ({
   } = useStore();
 
   useEffect(() => {
-    setIsFirstResult(new Date() >= new Date('2022-10-20 00:00:00'));
-    setIsFinalResult(new Date() >= new Date('2022-11-01 00:00:00'));
+    setIsFirstResult(new Date() >= new Date('2023/10/20 00:00:00'));
+    setIsFinalResult(new Date() >= new Date('2023/11/01 00:00:00'));
   }, []);
 
   useEffect(() => {
@@ -81,7 +81,7 @@ const ContentBox: React.FC<ContentType> = ({
   }, [application_score]);
 
   const documentSubmission = async () => {
-    if (new Date() >= new Date('2022-10-20 20:00:00')) {
+    if (new Date() >= new Date('2023/10/20 20:00:00')) {
       return toast.error('서류제출 여부 할당 기간이 아닙니다.');
     }
     const data = {
@@ -131,8 +131,8 @@ const ContentBox: React.FC<ContentType> = ({
 
   const scoreButtonClick = () => {
     if (
-      new Date() <= new Date('2022-10-27 16:00:00') ||
-      new Date() >= new Date('2022-10-31 22:10:00')
+      new Date() <= new Date('2023/10/27 16:00:00') ||
+      new Date() >= new Date('2023/10/31 22:10:00')
     ) {
       return toast.error('2차 성적 입력 기간이 아닙니다.');
     }
