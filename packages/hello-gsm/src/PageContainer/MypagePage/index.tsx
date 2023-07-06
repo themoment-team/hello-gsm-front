@@ -6,7 +6,12 @@ import { css } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
 import { StatusType } from 'type/user';
 import Image from 'next/image';
-import { MypageModal, MypageSuccessModal, MypageInformation } from 'components';
+import {
+  MypageModal,
+  MypageSuccessModal,
+  MypageInformation,
+  LinkButton,
+} from 'components';
 import { toast } from 'react-toastify';
 import acceptable from 'shared/acceptable';
 
