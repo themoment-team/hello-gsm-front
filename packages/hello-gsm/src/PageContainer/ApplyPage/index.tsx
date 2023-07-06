@@ -5,7 +5,6 @@ import * as I from 'Assets/svg';
 import { css } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
 import {
-  Header,
   DepartmentModal,
   FindAddressModal,
   FindSchoolModal,
@@ -232,7 +231,6 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       {showFindSchoolModal && <FindSchoolModal />}
       {showDepartmentModal && <DepartmentModal />}
       {showApplyPostModal && <ApplyPostModal />}
-      <Header />
       <S.ApplyPage>
         <ApplyBarBox />
         <S.ApplyPageContent onSubmit={handleSubmit(onSubmit)}>

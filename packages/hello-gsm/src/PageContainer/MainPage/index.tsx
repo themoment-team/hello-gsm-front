@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import {
-  Header,
-  Footer,
   MainPageDescription,
   BubbleButton,
   MainResultModal,
@@ -111,7 +109,6 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
         />
       )}
       {showMainNonLoginModal && <MainNonLoginModal />}
-      <Header />
       <S.MainContent>
         <div>
           <S.Title>

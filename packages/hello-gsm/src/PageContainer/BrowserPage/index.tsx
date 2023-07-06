@@ -1,12 +1,10 @@
 import type { NextPage } from 'next';
 import * as S from './style';
 import * as I from 'Assets/svg';
-import { Header } from 'components';
 
 const BrowserPage: NextPage = () => {
   return (
     <>
-      <Header />
       <S.BrowserPage>
         <S.SkyBlueBall />
         <S.GreenBall />

@@ -6,12 +6,7 @@ import { css } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
 import { StatusType } from 'type/user';
 import Image from 'next/image';
-import {
-  Header,
-  MypageModal,
-  MypageSuccessModal,
-  MypageInformation,
-} from 'components';
+import { MypageModal, MypageSuccessModal, MypageInformation } from 'components';
 import { toast } from 'react-toastify';
 import acceptable from 'shared/acceptable';
 
@@ -200,7 +195,6 @@ const MyPage: NextPage<StatusType> = ({
     <S.MyPage>
       {showMypageModal && <MypageModal />}
       {showMypageSuccessModal && <MypageSuccessModal />}
-      <Header />
       <S.Content
         css={css`
           height: ${isPC && saved && !submitted && '440px'};
