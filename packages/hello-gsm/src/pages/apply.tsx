@@ -13,16 +13,13 @@ const Apply: NextPage<GetApplicationType> = ({ data }) => {
 
   const [step, setStep] = useState<'원서' | '성적'>('원서');
 
-  const preventClose = (e: BeforeUnloadEvent) => {
-    e.preventDefault();
-    e.returnValue = '';
-  };
-
   useEffect(() => {
-    (() => {
-      window.addEventListener('beforeunload', preventClose);
-    })();
+    const preventClose = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      e.returnValue = '';
+    };
 
+    window.addEventListener('beforeunload', preventClose);
     return () => {
       window.removeEventListener('beforeunload', preventClose);
     };
