@@ -13,7 +13,7 @@ import {
   LinkButton,
 } from 'components';
 import { toast } from 'react-toastify';
-import { acceptable } from 'shared/acceptable';
+import { applyAcceptable } from 'shared/Date/firstScreening';
 
 const MyPage: NextPage<StatusType> = ({
   data: { name, userImg, application },
@@ -42,7 +42,7 @@ const MyPage: NextPage<StatusType> = ({
   };
 
   useEffect(() => {
-    setIsAcceptable(acceptable);
+    setIsAcceptable(applyAcceptable);
     setLogged(true);
     setIsPC(
       !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(

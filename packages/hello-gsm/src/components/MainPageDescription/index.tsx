@@ -6,17 +6,18 @@ import * as I from 'Assets/svg';
 import { MainDescStatusType } from 'type/user';
 import { useRouter } from 'next/router';
 import device from 'shared/config';
+
+import formatDate from 'Utils/Date/formatDate';
 import {
   endApply,
   endFirstResult,
-  isFinalEnd,
   isFirstResult,
   isStartFirstResult,
   startApply,
-  startFinalTest,
   startFirstResult,
-} from 'shared/acceptable';
-import formatDate from 'Utils/Date/formatDate';
+} from 'shared/Date/firstScreening';
+import { isFinalEnd } from 'shared/Date/afterApply';
+import { startFinalTest } from 'shared/Date/secondScreening';
 
 const MainPageDescription: React.FC<MainDescStatusType> = ({
   selectedIndex,

@@ -5,7 +5,7 @@ import * as I from 'Assets/svg';
 import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 import device from 'shared/config';
-import { isStartFinalResult } from 'shared/acceptable';
+import { isStartFinalResult } from 'shared/Date/afterApply';
 
 interface ResultModal {
   name: string;

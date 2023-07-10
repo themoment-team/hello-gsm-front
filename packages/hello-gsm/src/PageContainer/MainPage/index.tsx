@@ -12,14 +12,14 @@ import { css, useTheme } from '@emotion/react';
 import { StatusType } from 'type/user';
 import useStore from 'Stores/StoreContainer';
 import device from 'shared/config';
+import formatDate from 'Utils/Date/formatDate';
+import { isStartFinalResult } from 'shared/Date/afterApply';
 import {
-  acceptable,
+  applyAcceptable,
   endApply,
-  isStartFinalResult,
   isStartFirstResult,
   startApply,
-} from 'shared/acceptable';
-import formatDate from 'Utils/Date/formatDate';
+} from 'shared/Date/firstScreening';
 
 const contentSelects = [
   '원서 작성',
@@ -68,7 +68,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
     // 최종 합격 나오기 전
     setIsFirstResultPeriod(!isStartFinalResult);
     setIsMobile(window.innerWidth < 640 ? true : false);
-    setIsAcceptable(acceptable);
+    setIsAcceptable(applyAcceptable);
     setIsPC(
       !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(
         navigator.userAgent,
