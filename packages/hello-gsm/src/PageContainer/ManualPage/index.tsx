@@ -1,4 +1,3 @@
-import { Header } from 'components';
 import type { NextPage } from 'next';
 import * as S from 'PageContainer/InformationPage/style';
 import * as DS from 'components/InformationDescription/style';
@@ -56,7 +55,6 @@ const ManualPage: NextPage = () => {
 
   return (
     <ManualPageStyle>
-      <Header />
       <S.InformationContent
         css={css`
           height: 460px;

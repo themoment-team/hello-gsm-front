@@ -3,7 +3,7 @@ import device from 'shared/config';
 
 export const MainPage = styled.div`
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
 `;
 
 export const MainContent = styled.div`

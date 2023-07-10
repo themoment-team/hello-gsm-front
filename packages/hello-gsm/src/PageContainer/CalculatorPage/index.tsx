@@ -281,7 +281,6 @@ const CalculatorPage: NextPage<UserIdxType> = ({
 
   return (
     <>
-      <Header />
       {showScoreResult && <ScoreResultModal result={resultArray} />}
       <S.Title>성적입력</S.Title>
 

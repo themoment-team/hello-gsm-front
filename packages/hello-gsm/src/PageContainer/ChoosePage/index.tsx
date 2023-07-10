@@ -1,4 +1,3 @@
-import { Header } from 'components';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
@@ -25,7 +24,6 @@ const ChoosePage: NextPage = () => {
   };
   return (
     <>
-      <Header />
       <S.ChoosePage>
         <S.ChooseForm onSubmit={handleSubmit(onValid)}>
           <S.ChooseTitle>

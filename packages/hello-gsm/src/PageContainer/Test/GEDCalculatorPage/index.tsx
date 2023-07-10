@@ -1,4 +1,4 @@
-import { Header, GEDScoreResultModal } from 'components';
+import { GEDScoreResultModal } from 'components';
 import type { NextPage } from 'next';
 import { useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
@@ -40,7 +40,6 @@ const TestGEDCalculatorPage: NextPage = () => {
 
   return (
     <>
-      <Header />
       {showScoreResult && <GEDScoreResultModal result={resultNumber} />}
       <S.GEDPage>
         <S.Title>성적입력(검정고시)</S.Title>

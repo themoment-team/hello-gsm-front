@@ -1,10 +1,5 @@
 import type { NextPage } from 'next';
-import {
-  Header,
-  ScoreSelect,
-  ScoreResultModal,
-  FreeSemesterBtn,
-} from 'components';
+import { ScoreSelect, ScoreResultModal, FreeSemesterBtn } from 'components';
 import * as S from 'styles/Calculate';
 import * as I from 'Assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
@@ -152,7 +147,6 @@ const TestCalculatorPage: NextPage = () => {
 
   return (
     <>
-      <Header />
       {showScoreResult && <ScoreResultModal result={resultArray} />}
       <S.Title>성적입력</S.Title>
 

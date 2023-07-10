@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import * as I from 'Assets/svg';
 import * as S from './style';
-import { Header, FAQBox, FAQModal } from 'components';
+import { FAQBox, FAQModal } from 'components';
 import useStore from 'Stores/StoreContainer';
 import auth from 'Api/auth';
 import { FAQType } from 'type/faq';
@@ -80,7 +80,6 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   return (
     <>
       {showFAQModal && <FAQModal />}
-      <Header />
       <S.FAQPage>
         <S.Title>자주 묻는 질문</S.Title>
         <S.FAQContent>
