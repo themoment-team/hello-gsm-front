@@ -3,6 +3,11 @@ import application from 'Api/application';
 import auth from 'Api/auth';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import {
+  isDuringFinalResult,
+  isStartFinalResult,
+  isStartFirstResult,
+} from 'shared/acceptable';
 import useStore from 'Stores/StoreContainer';
 import { ApplicantType } from 'Types/application';
 import * as S from './style';
@@ -53,9 +58,9 @@ const ContentBox: React.FC<ContentType> = ({
 
   useEffect(() => {
     // 1차 시험 결과를 조화할 수 있는 날짜
-    setIsFirstResult(new Date() >= new Date('2023/10/20 00:00:00'));
+    setIsFirstResult(isStartFirstResult);
     // 2차 시험 결과를 조회할 수 있는 날짜
-    setIsFinalResult(new Date() >= new Date('2023/11/01 00:00:00'));
+    setIsFinalResult(isStartFinalResult);
   }, []);
 
   useEffect(() => {
@@ -84,7 +89,7 @@ const ContentBox: React.FC<ContentType> = ({
 
   const documentSubmission = async () => {
     // 1차 서류제출 여부를 할당하는 기간
-    if (new Date() >= new Date('2023/10/20 20:00:00')) {
+    if (isStartFirstResult) {
       return toast.error('서류제출 여부 할당 기간이 아닙니다.');
     }
     const data = {
@@ -135,8 +140,7 @@ const ContentBox: React.FC<ContentType> = ({
   const scoreButtonClick = () => {
     if (
       // 2차 성적을 입력하는 기간
-      new Date() <= new Date('2023/10/27 16:00:00') ||
-      new Date() >= new Date('2023/10/31 22:10:00')
+      isDuringFinalResult
     ) {
       return toast.error('2차 성적 입력 기간이 아닙니다.');
     }
