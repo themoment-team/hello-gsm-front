@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { Header, InformationDescription } from 'components';
+import { InformationDescription } from 'components';
 import * as S from './style';
 import { css } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
@@ -52,7 +52,6 @@ const InformationPage: NextPage = () => {
 
   return (
     <S.InformationPage>
-      <Header />
       <S.InformationContent>
         <S.InformationHeader>
           <S.Title>입학 절차</S.Title>

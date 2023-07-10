@@ -30,19 +30,19 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  if (applicationFormURL.includes(pathname)) {
-    // 원서 접수 가능 기간이 아닐 시
-    if (!acceptable) {
-      return NextResponse.redirect(origin);
-    }
+  // if (applicationFormURL.includes(pathname)) {
+  //   // 원서 접수 가능 기간이 아닐 시
+  //   if (!acceptable) {
+  //     return NextResponse.redirect(origin);
+  //   }
 
-    if (browser.name === 'Safari') {
-      return NextResponse.redirect(`${origin}/browser`);
-    }
+  //   if (browser.name === 'Safari') {
+  //     return NextResponse.redirect(`${origin}/browser`);
+  //   }
 
-    if (device.type === ('mobile' || 'tablet')) {
-      // pc가 아닐 시
-      return NextResponse.redirect(origin);
-    }
-  }
+  //   if (device.type === ('mobile' || 'tablet')) {
+  //     // pc가 아닐 시
+  //     return NextResponse.redirect(origin);
+  //   }
+  // }
 }

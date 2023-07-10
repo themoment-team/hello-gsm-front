@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import * as S from './style';
 import { FieldErrors, useForm } from 'react-hook-form';
-import { Header, SignUpResultModal } from 'components';
+import { SignUpResultModal } from 'components';
 import { css } from '@emotion/react';
 import dayjs from 'dayjs';
 import auth from 'Api/auth';
@@ -83,7 +83,6 @@ const SignUpPage: NextPage = () => {
 
   return (
     <>
-      <Header />
       {showResult && <SignUpResultModal />}
       <S.SignUpPage>
         <S.SignUpForm onSubmit={handleSubmit(onValid, inValid)}>

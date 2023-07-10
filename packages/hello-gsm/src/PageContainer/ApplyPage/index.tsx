@@ -5,7 +5,6 @@ import * as I from 'Assets/svg';
 import { css } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
 import {
-  Header,
   DepartmentModal,
   FindAddressModal,
   FindSchoolModal,
@@ -23,7 +22,10 @@ import auth from 'Api/auth';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 
-const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
+const ApplyPage: NextPage<GetApplicationType & { onNext: () => void }> = ({
+  data,
+  onNext,
+}) => {
   const imgInput = useRef<HTMLInputElement>(null);
   const [imgURL, setImgURL] = useState<string>('');
   const [isIdPhoto, setIsIdPhoto] = useState<boolean>(true);
@@ -232,7 +234,6 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
       {showFindSchoolModal && <FindSchoolModal />}
       {showDepartmentModal && <DepartmentModal />}
       {showApplyPostModal && <ApplyPostModal />}
-      <Header />
       <S.ApplyPage>
         <ApplyBarBox />
         <S.ApplyPageContent onSubmit={handleSubmit(onSubmit)}>
@@ -552,7 +553,7 @@ const ApplyPage: NextPage<GetApplicationType> = ({ data }) => {
               background: ${graduationStatus === '검정고시' && '#8B8B8B'};
             `}
           />
-          <S.NextButton type="submit" onClick={validate}>
+          <S.NextButton type="submit" onClick={onNext}>
             다음
           </S.NextButton>
         </S.ApplyPageContent>

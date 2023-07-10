@@ -7,7 +7,6 @@ import useStore from 'Stores/StoreContainer';
 import { StatusType } from 'type/user';
 import Image from 'next/image';
 import {
-  Header,
   MypageModal,
   MypageSuccessModal,
   MypageInformation,
@@ -194,7 +193,6 @@ const MyPage: NextPage<StatusType> = ({
     <S.MyPage>
       {showMypageModal && <MypageModal />}
       {showMypageSuccessModal && <MypageSuccessModal />}
-      <Header />
       <S.Content>
         <S.UserSection>
           <S.Title>내정보</S.Title>
@@ -203,7 +201,6 @@ const MyPage: NextPage<StatusType> = ({
           </S.UserImgBox>
           <S.Name>{name}님</S.Name>
         </S.UserSection>
-
         {isPC
           ? isAcceptable
             ? saved

@@ -1,12 +1,11 @@
 import type { NextPage } from 'next';
-import { Header } from 'components';
+
 import * as S from './style';
 import * as I from 'Assets/svg';
 
 const NotFoundPage: NextPage = () => {
   return (
     <>
-      <Header />
       <S.NotFoundPage>
         <S.SkyBlueBall />
         <S.GreenBall />
