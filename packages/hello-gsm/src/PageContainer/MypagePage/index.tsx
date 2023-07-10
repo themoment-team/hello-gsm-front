@@ -14,7 +14,7 @@ import {
   LinkButton,
 } from 'components';
 import { toast } from 'react-toastify';
-import acceptable from 'shared/acceptable';
+import { acceptable } from 'shared/acceptable';
 
 const MyPage: NextPage<StatusType> = ({
   data: { name, userImg, application },

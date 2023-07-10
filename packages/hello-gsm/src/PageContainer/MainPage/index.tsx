@@ -14,7 +14,11 @@ import { css, useTheme } from '@emotion/react';
 import { StatusType } from 'type/user';
 import useStore from 'Stores/StoreContainer';
 import device from 'shared/config';
-import acceptable from 'shared/acceptable';
+import {
+  acceptable,
+  isStartFinalResult,
+  isStartFirstResult,
+} from 'shared/acceptable';
 
 const contentSelects = [
   '원서 작성',
@@ -61,7 +65,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
   const theme = useTheme();
   useEffect(() => {
     // 최종 합격 나오기 전
-    setIsFirstResultPeriod(new Date() < new Date('2023/11/1 10:00:00'));
+    setIsFirstResultPeriod(!isStartFinalResult);
     setIsMobile(window.innerWidth < 640 ? true : false);
     setIsAcceptable(acceptable);
     setIsPC(
@@ -77,7 +81,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
   useEffect(() => {
     setShowMainNonLoginModal(
       // 1차 합격 발표 날짜
-      new Date() >= new Date('2023/10/23 10:00:00') &&
+      isStartFirstResult &&
         !logged &&
         localStorage.getItem('mainNonLoginModalInvisible') !==
           new Date().getDate().toString(),
@@ -87,7 +91,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
   useEffect(() => {
     setShowMainResultModal(
       // 1차 합격 발표 날짜
-      new Date() >= new Date('2023/10/23 10:00:00') &&
+      isStartFirstResult &&
         localStorage.getItem('mainResultModalInvisible') !==
           new Date().getDate().toString() &&
         data?.application?.isFinalSubmission === true,

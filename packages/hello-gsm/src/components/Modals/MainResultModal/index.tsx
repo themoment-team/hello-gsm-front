@@ -5,6 +5,7 @@ import * as I from 'Assets/svg';
 import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 import device from 'shared/config';
+import { isStartFinalResult } from 'shared/acceptable';
 
 interface ResultModal {
   name: string;
@@ -26,7 +27,7 @@ const MainResultModal: React.FC<ResultModal> = ({
 
   useEffect(() => {
     // 최종 합격 결과 나오기 전
-    setIsFirstResultPeriod(new Date() < new Date('2023/11/1 10:00:00'));
+    setIsFirstResultPeriod(!isStartFinalResult);
   }, []);
 
   useEffect(() => {

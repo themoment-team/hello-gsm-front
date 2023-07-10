@@ -6,12 +6,16 @@ import * as I from 'Assets/svg';
 import { MainDescStatusType } from 'type/user';
 import { useRouter } from 'next/router';
 import device from 'shared/config';
+import {
+  isFinalEnd,
+  isFirstResult,
+  isStartFirstResult,
+} from 'shared/acceptable';
 
 const MainPageDescription: React.FC<MainDescStatusType> = ({
   selectedIndex,
   data,
 }) => {
-  const today = new Date();
   const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(true);
   const [pass, setPass] = useState<boolean>(false);
   const firstResult = data?.application?.firstResultScreening ? true : false;
@@ -26,10 +30,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
 
   useEffect(() => {
     // 첫번째 합격 결과 보여주는 날짜
-    setIsFirstPeriod(
-      new Date() >= new Date('2023/10/23 10:00:00') &&
-        new Date() < new Date('2023/11/01 10:00:00'),
-    );
+    setIsFirstPeriod(isFirstResult);
   }, []);
 
   useEffect(() => {
@@ -42,14 +43,11 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
 
   useEffect(() => {
     // 입학 전형이 끝난 이후
-    today > new Date('2024/03/01 00:00:00')
-      ? setIndex(0)
-      : setIndex(selectedIndex);
+    isFinalEnd ? setIndex(0) : setIndex(selectedIndex);
     if (selectedIndex === 5) {
       if (data) {
         // 1차 전형 합격 날짜
-        today >= new Date('2023/10/23 10:00:00') &&
-        (data.application?.isFinalSubmission ?? false)
+        isStartFirstResult && (data.application?.isFinalSubmission ?? false)
           ? setIndex(5)
           : setIndex(7);
       } else {
