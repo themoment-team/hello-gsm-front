@@ -81,7 +81,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
           <S.Title>광주소프트웨어마이스터고등학교 입학원서</S.Title>
           <S.Wrap>
             <S.SubTitle style={{ fontSize: '1.5vh', fontWeight: 700 }}>
-              2023학년도 신입생 입학전형
+              2024학년도 신입생 입학전형
             </S.SubTitle>
             <S.Box>
               <S.ApplyNum>접수번호</S.ApplyNum>
@@ -181,7 +181,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
             <ApplicantsStatus data={data} />
             <S.Details>
               <S.Pledge>
-                위 학생은 2023학년도 귀교 제1학년에 입학하고자 소정의 서류를
+                위 학생은 2024학년도 귀교 제1학년에 입학하고자 소정의 서류를
                 갖추어 지원하며, &nbsp;
                 <strong>
                   다른 산업수요맞춤형(마이스터)고등학교에 이중지원하지 않을 것을
@@ -215,7 +215,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
             <div className="warterMark">견본</div>
             <p>[서식 3]</p>
             <S.Title style={{ fontSize: '2vh' }}>
-              2023학년도 광주소프트웨어마이스터고등학교 입학 전형성적 입력
+              2024학년도 광주소프트웨어마이스터고등학교 입학 전형성적 입력
               확인서
             </S.Title>
             <S.Wrap>

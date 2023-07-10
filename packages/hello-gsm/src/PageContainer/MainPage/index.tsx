@@ -12,7 +12,14 @@ import { css, useTheme } from '@emotion/react';
 import { StatusType } from 'type/user';
 import useStore from 'Stores/StoreContainer';
 import device from 'shared/config';
-import acceptable from 'shared/acceptable';
+import formatDate from 'Utils/Date/formatDate';
+import { isStartFinalResult } from 'shared/Date/afterApply';
+import {
+  applyAcceptable,
+  endApply,
+  isStartFirstResult,
+  startApply,
+} from 'shared/Date/firstScreening';
 
 const contentSelects = [
   '원서 작성',
@@ -58,9 +65,10 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
 
   const theme = useTheme();
   useEffect(() => {
-    setIsFirstResultPeriod(new Date() < new Date('2022/11/2 10:00:00'));
+    // 최종 합격 나오기 전
+    setIsFirstResultPeriod(!isStartFinalResult);
     setIsMobile(window.innerWidth < 640 ? true : false);
-    setIsAcceptable(acceptable);
+    setIsAcceptable(applyAcceptable);
     setIsPC(
       !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(
         navigator.userAgent,
@@ -73,7 +81,8 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
 
   useEffect(() => {
     setShowMainNonLoginModal(
-      new Date() >= new Date('2022/10/24 10:00:00') &&
+      // 1차 합격 발표 날짜
+      isStartFirstResult &&
         !logged &&
         localStorage.getItem('mainNonLoginModalInvisible') !==
           new Date().getDate().toString(),
@@ -82,7 +91,8 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
 
   useEffect(() => {
     setShowMainResultModal(
-      new Date() >= new Date('2022/10/24 10:00:00') &&
+      // 1차 합격 발표 날짜
+      isStartFirstResult &&
         localStorage.getItem('mainResultModalInvisible') !==
           new Date().getDate().toString() &&
         data?.application?.isFinalSubmission === true,
@@ -171,7 +181,9 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
               >
                 접수 기간
               </S.ApplyTerm>
-              <S.ApplyTerm>2023. 06. 15 ~ 2023. 06. 24</S.ApplyTerm>
+              <S.ApplyTerm>
+                {formatDate(startApply)} ~ {formatDate(endApply)}
+              </S.ApplyTerm>
             </S.TermWrapper>
           </div>
         </div>

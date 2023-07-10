@@ -9,6 +9,7 @@ import application from 'Api/application';
 import auth from 'Api/auth';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
+import { isStartFirstResult } from 'shared/acceptable';
 
 const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const [printable, setPrintable] = useState<boolean>(false);
@@ -20,7 +21,8 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const { showScoreModal } = useStore();
 
   useEffect(() => {
-    setPrintable(new Date() >= new Date('2022-10-21 00:00:00'));
+    // 수험표를 출력할 수 있는 기간
+    setPrintable(isStartFirstResult);
   }, []);
 
   const getList = useCallback(async () => {
