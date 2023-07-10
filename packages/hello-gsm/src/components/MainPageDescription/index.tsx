@@ -7,10 +7,16 @@ import { MainDescStatusType } from 'type/user';
 import { useRouter } from 'next/router';
 import device from 'shared/config';
 import {
+  endApply,
+  endFirstResult,
   isFinalEnd,
   isFirstResult,
   isStartFirstResult,
+  startApply,
+  startFinalTest,
+  startFirstResult,
 } from 'shared/acceptable';
+import formatDate from 'Utils/Date/formatDate';
 
 const MainPageDescription: React.FC<MainDescStatusType> = ({
   selectedIndex,
@@ -91,7 +97,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
               margin-top: 3.125rem;
             `}
           >
-            2023.10.16. ~ 2023.10.19.
+            {formatDate(startApply)} ~ {formatDate(endApply)}
           </S.PostScript>
         </S.Description>
       );
@@ -102,8 +108,8 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             작성하신 입학 원서와 그 외 서류들을 출력하여 수기 부분을
           </S.DescriptionLine>
           <S.DescriptionLine>
-            모두 작성하신 후 10월 16일 9시부터 10월 19일 17시까지 교무실
-            원서접수처에
+            모두 작성하신 후 {formatDate(startApply, 'notYear')} 부터 {''}
+            {formatDate(endApply, 'notYear')}까지 교무실 원서접수처에
           </S.DescriptionLine>
           <S.DescriptionLine>제출해야합니다.</S.DescriptionLine>
           <S.PostScript>광주광역시 광산구 송정동 상무대로 312</S.PostScript>
@@ -118,7 +124,9 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
           <S.DescriptionLine>
             정원의 1.3배의 인원을 선출합니다.
           </S.DescriptionLine>
-          <S.PostScript>2022.10.23. 10시 발표</S.PostScript>
+          <S.PostScript>
+            {formatDate(startFirstResult, 'hours')} 발표
+          </S.PostScript>
         </S.Description>
       );
     case 4:
@@ -132,8 +140,9 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             중심으로 직무적성 소양평가를 치룹니다.
           </S.DescriptionLine>
           <S.PostScript>
-            2023.10.27. 14시 30분 직무적성 소양평가 진행 <br />
-            2023.11.01. 10시 최종 결과 발표
+            {formatDate(startFinalTest, 'minutes')} 직무적성 소양평가 진행{' '}
+            <br />
+            {formatDate(endFirstResult, 'hours')} 최종 결과 발표
           </S.PostScript>
         </S.Description>
       );
@@ -219,7 +228,9 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
           <S.DescriptionLine>
             1차 서류 심사와 인적성소양평가를 통해 최종 합격자를 선출합니다.
           </S.DescriptionLine>
-          <S.PostScript>2023.11.01. 10시 최종 결과 발표</S.PostScript>
+          <S.PostScript>
+            {formatDate(endFirstResult, 'hours')} 최종 결과 발표
+          </S.PostScript>
         </S.Description>
       );
     default:

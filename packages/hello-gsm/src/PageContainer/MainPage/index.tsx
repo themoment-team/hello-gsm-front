@@ -3,7 +3,6 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import {
   Header,
-  Footer,
   MainPageDescription,
   BubbleButton,
   MainResultModal,
@@ -16,9 +15,12 @@ import useStore from 'Stores/StoreContainer';
 import device from 'shared/config';
 import {
   acceptable,
+  endApply,
   isStartFinalResult,
   isStartFirstResult,
+  startApply,
 } from 'shared/acceptable';
+import formatDate from 'Utils/Date/formatDate';
 
 const contentSelects = [
   '원서 작성',
@@ -181,7 +183,9 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
               >
                 접수 기간
               </S.ApplyTerm>
-              <S.ApplyTerm>2023. 10. 16 ~ 2023. 10. 19</S.ApplyTerm>
+              <S.ApplyTerm>
+                {formatDate(startApply)} ~ {formatDate(endApply)}
+              </S.ApplyTerm>
             </S.TermWrapper>
           </div>
         </div>
