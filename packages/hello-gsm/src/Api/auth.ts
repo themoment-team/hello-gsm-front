@@ -5,39 +5,25 @@ import { AuthController } from 'Utils/Libs/requestUrls';
 
 class Auth {
   /**
-   * @returns 카카오 로그인 URL을 반환한다
+   * @returns 각 oauth 로그인 URL을 반환한다
    */
-  signin() {
-    return BASE_URL + AuthController.signin();
+  kakaoSignin() {
+    return BASE_URL + AuthController.kakao.signin();
   }
 
-  /**
-   * @param data - 회원가입에 필요한 파라미터
-   */
-  signup(data: SignUpType) {
-    try {
-      return RequestApi({
-        method: 'POST',
-        url: AuthController.signup(),
-        data: data,
-      });
-    } catch (error) {
-      return error;
-    }
+  googleSignin() {
+    return BASE_URL + AuthController.google.signin();
+  }
+
+  guthubSignin() {
+    return BASE_URL + AuthController.github.signin();
   }
 
   /**
    * 로그아웃을 위한 api
    */
   logout() {
-    try {
-      return RequestApi({
-        method: 'POST',
-        url: AuthController.logout(),
-      });
-    } catch (error) {
-      return error;
-    }
+    return BASE_URL + AuthController.github.signin();
   }
 
   /**
