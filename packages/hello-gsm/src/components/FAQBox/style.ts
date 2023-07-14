@@ -14,11 +14,6 @@ export const FAQBox = styled.button`
   padding: 1.2rem 2.5rem;
   cursor: pointer;
   gap: 1rem;
-
-  &:hover {
-    transition: background 0.3s;
-    background: ${({ theme }) => theme.color.gray['060']};
-  }
 `;
 
 export const Title = styled.p`

@@ -35,20 +35,7 @@ const FAQBox: React.FC<FAQBoxType> = ({
   };
 
   return (
-    <S.FAQBox
-      onClick={() => showAnswer(id)}
-      css={css`
-        &:hover {
-          background: ${isFAQSearching && 'rgba(255, 255, 255, 0.29);'};
-          p {
-            color: ${isFAQSearching && 'rgba(255, 255, 255, 0.65);'};
-          }
-          p > span {
-            color: ${isFAQSearching && '#ffffff'};
-          }
-        }
-      `}
-    >
+    <S.FAQBox onClick={() => showAnswer(id)}>
       <S.TitleContent>
         <S.Title>
           {isFAQSearching
