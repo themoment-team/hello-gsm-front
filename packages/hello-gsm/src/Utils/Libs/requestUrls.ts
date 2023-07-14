@@ -38,6 +38,23 @@ export const UserController = {
   },
 };
 
+export const IdentityController = {
+  sendCode: {
+    sendCode: () => {
+      return `identity/v1/identity/me/send-code`;
+    },
+    test: () => {
+      return `identity/v1/identity/me/send-code-test`;
+    },
+  },
+  authCode: () => {
+    return `identity/v1/identity/me/auth-code`;
+  },
+  myIdentity: () => {
+    return `identity/v1/identity/me`;
+  },
+};
+
 // 원서
 export const ApplicationController = {
   // get 서류정보 가져오기, delete 원서 삭제

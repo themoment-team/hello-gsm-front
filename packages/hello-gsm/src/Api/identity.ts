@@ -1,66 +1,76 @@
-import BASE_URL from 'shared/baseURL';
 import { SignUpType } from 'type/signup';
 import RequestApi from 'Utils/Libs/requestApi';
-import { AuthController } from 'Utils/Libs/requestUrls';
+import { IdentityController } from 'Utils/Libs/requestUrls';
 
-class Auth {
+class Identity {
   /**
    * @returns 각 oauth 로그인 URL을 반환한다
    */
-  kakaoSignin() {
-    return BASE_URL + AuthController.kakao.signin();
-  }
 
-  googleSignin() {
-    return BASE_URL + AuthController.google.signin();
-  }
-
-  guthubSignin() {
-    return BASE_URL + AuthController.github.signin();
-  }
-
-  /**
-   * 로그아웃을 위한 api
-   */
-  logout() {
-    return BASE_URL + AuthController.github.signin();
-  }
-
-  /**
-   * 토큰 재발급을 위한 api
-   */
-  refresh(refreshToken?: string) {
+  sendCode(phonNumber: string) {
     try {
-      return RequestApi(
-        {
-          method: 'POST',
-          url: AuthController.refresh(),
+      return RequestApi({
+        method: 'POST',
+        url: IdentityController.sendCode.sendCode(),
+        data: {
+          phonNumber,
         },
-        refreshToken,
-      );
+      });
     } catch (error: any) {
       return error;
     }
   }
 
-  /**
-   *
-   * @param accessToken - api 요청을 하기 위한 토큰
-   * @returns - 로그인 여부 확인
-   */
-  check(accessToken?: string) {
+  sendCodeTest(phonNumber: string) {
     try {
-      return RequestApi(
-        {
-          method: 'GET',
-          url: AuthController.check(),
+      return RequestApi({
+        method: 'POST',
+        url: IdentityController.sendCode.sendCode(),
+        data: {
+          phonNumber,
         },
-        accessToken,
-      );
+      });
+    } catch (error: any) {
+      return error;
+    }
+  }
+
+  authCode(code: string) {
+    try {
+      return RequestApi({
+        method: 'POST',
+        url: IdentityController.authCode(),
+        data: {
+          code,
+        },
+      });
+    } catch (error: any) {
+      return error;
+    }
+  }
+
+  getMyIdentity() {
+    try {
+      return RequestApi({
+        method: 'GET',
+        url: IdentityController.myIdentity(),
+      });
+    } catch (error: any) {
+      return error;
+    }
+  }
+
+  createMyIdentity(data: SignUpType) {
+    try {
+      return RequestApi({
+        method: 'POST',
+        url: IdentityController.myIdentity(),
+        data,
+      });
     } catch (error: any) {
       return error;
     }
   }
 }
 
-export default new Auth();
+export default new Identity();
