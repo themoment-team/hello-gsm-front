@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
 export const ChoosePage = styled.div`
-  height: calc(100vh - 70px);
+  height: calc(100vh - 4.375rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 2.5rem;
 `;
 
 export const ChooseTitle = styled.h1`
@@ -16,19 +16,19 @@ export const ChooseTitle = styled.h1`
 
 export const ChooseSection = styled.div`
   display: flex;
-  width: 500px;
-  height: 280px;
+  width: 31.25rem;
+  height: 17.5rem;
   justify-content: space-between;
 `;
 
 export const ChooseButton = styled.button`
   width: 30%;
-  height: 61px;
+  height: 3.8125rem;
   background-color: #484453;
   color: rgba(255, 255, 255, 0.45);
-  border-radius: 6px;
-  line-height: 61px;
+  border-radius: 0.375rem;
+  line-height: 3.8125rem;
   border: none;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 1.25rem;
 `;
