@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const FAQBox = styled.button`
   width: 100%;
-  height: 4.0625rem;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,8 +11,9 @@ export const FAQBox = styled.button`
   border: none;
   border-radius: 0.625rem;
   margin: 0.9375rem 0;
-  padding: 0 2.5rem;
+  padding: 1.4rem 2.5rem;
   cursor: pointer;
+  gap: 1rem;
 
   &:hover {
     transition: background 0.3s;
@@ -33,4 +34,12 @@ export const Title = styled.p`
 
 export const IsSearching = styled.span`
   color: ${({ theme }) => theme.color.primary['lime']};
+`;
+
+export const AnswerContent = styled.p`
+  color: ${({ theme }) => theme.color.white};
+  border-top: 0.8px solid ${({ theme }) => theme.color.white};
+  text-align: left;
+  padding-top: 1rem;
+  width: 100%;
 `;

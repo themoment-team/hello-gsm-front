@@ -79,7 +79,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
 
   return (
     <>
-      {showFAQModal && <FAQModal />}
+      {/* showFAQModal && <FAQModal /> */}
       <S.FAQPage>
         <S.Title>자주 묻는 질문</S.Title>
         <S.FAQContent>

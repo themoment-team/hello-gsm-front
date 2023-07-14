@@ -50,6 +50,7 @@ const FAQBox: React.FC<FAQBoxType> = ({ question, answer, keyword }) => {
             })
           : question}
       </S.Title>
+      <S.AnswerContent>{answer}</S.AnswerContent>
     </S.FAQBox>
   );
 };
