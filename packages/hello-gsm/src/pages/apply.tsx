@@ -5,7 +5,8 @@ import application from 'Api/application';
 import { HeaderType } from 'type/header';
 import auth from 'Api/auth';
 import { ApplyPage, CalculatorPage } from 'PageContainer';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { usePreventClose } from 'hooks/usePreventClose';
 
 const Apply: NextPage<GetApplicationType> = ({ data }) => {
   const seoTitle = '입학 지원';
@@ -13,17 +14,7 @@ const Apply: NextPage<GetApplicationType> = ({ data }) => {
 
   const [step, setStep] = useState<'원서' | '성적'>('원서');
 
-  useEffect(() => {
-    const preventClose = (e: BeforeUnloadEvent) => {
-      e.preventDefault();
-      e.returnValue = '';
-    };
-
-    window.addEventListener('beforeunload', preventClose);
-    return () => {
-      window.removeEventListener('beforeunload', preventClose);
-    };
-  }, []);
+  usePreventClose();
 
   return (
     <>
