@@ -2,13 +2,14 @@ import * as S from './style';
 import * as I from 'Assets/svg';
 import useStore from 'Stores/StoreContainer';
 import { FAQType } from 'type/faq';
-import { useState } from 'react';
 
 type FAQBoxType = FAQType & {
   keyword: string;
   id: number;
   answerIndex: number;
   setAnswerIndex: React.Dispatch<React.SetStateAction<number>>;
+  toggle: boolean;
+  setToggle: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const FAQBox: React.FC<FAQBoxType> = ({
@@ -18,10 +19,10 @@ const FAQBox: React.FC<FAQBoxType> = ({
   id,
   answerIndex,
   setAnswerIndex,
+  toggle,
+  setToggle,
 }) => {
   const { isFAQSearching } = useStore();
-
-  const [toggle, setToggle] = useState<boolean>(false);
 
   const showAnswer = (id: number) => {
     setToggle(pre => (answerIndex === id ? !pre : true));

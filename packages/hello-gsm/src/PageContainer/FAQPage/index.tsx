@@ -17,6 +17,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   const [keyword, setKeyword] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(1);
   const [answerIndex, setAnswerIndex] = useState<number>(0);
+  const [toggle, setToggle] = useState<boolean>(false);
 
   const { isFAQSearching, setIsFAQSearching, setLogged } = useStore();
 
@@ -101,6 +102,8 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
                 id={index}
                 answerIndex={answerIndex}
                 setAnswerIndex={setAnswerIndex}
+                toggle={toggle}
+                setToggle={setToggle}
               />
             ))}
           </S.FAQList>
@@ -113,13 +116,31 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
                 <I.LeftButton />
               </S.ChangeAllowButton>
               <S.FAQListIndexButtonWrapper>
-                <S.ListIndex onClick={() => selectPage(1)} css={selectStyle(1)}>
+                <S.ListIndex
+                  onClick={() => {
+                    selectPage(1);
+                    setToggle(false);
+                  }}
+                  css={selectStyle(1)}
+                >
                   1
                 </S.ListIndex>
-                <S.ListIndex onClick={() => selectPage(2)} css={selectStyle(2)}>
+                <S.ListIndex
+                  onClick={() => {
+                    selectPage(2);
+                    setToggle(false);
+                  }}
+                  css={selectStyle(2)}
+                >
                   2
                 </S.ListIndex>
-                <S.ListIndex onClick={() => selectPage(3)} css={selectStyle(3)}>
+                <S.ListIndex
+                  onClick={() => {
+                    selectPage(3);
+                    setToggle(false);
+                  }}
+                  css={selectStyle(3)}
+                >
                   3
                 </S.ListIndex>
               </S.FAQListIndexButtonWrapper>
