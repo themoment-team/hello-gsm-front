@@ -12,7 +12,7 @@ import {
   ArtSport,
 } from 'Utils/Calculate';
 import useStore from 'Stores/StoreContainer';
-import { usePreventClose } from 'hooks/usePreventClose';
+import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
 
 interface ScoreForm {
   // 과목/점수 배열
@@ -53,8 +53,6 @@ const TestCalculatorPage: NextPage = () => {
   ];
   const nonSubjects = ['체육', '미술', '음악'];
   const grades = [1, 2, 3];
-
-  usePreventClose();
 
   // 저장 버튼을 눌렀을 때
   const onValid = async ({

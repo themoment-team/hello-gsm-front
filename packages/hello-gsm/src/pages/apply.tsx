@@ -6,7 +6,7 @@ import { HeaderType } from 'type/header';
 import auth from 'Api/auth';
 import { ApplyPage, CalculatorPage } from 'PageContainer';
 import { useState } from 'react';
-import { usePreventClose } from 'hooks/usePreventClose';
+import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
 
 const Apply: NextPage<GetApplicationType> = ({ data }) => {
   const seoTitle = '입학 지원';
@@ -14,7 +14,7 @@ const Apply: NextPage<GetApplicationType> = ({ data }) => {
 
   const [step, setStep] = useState<'원서' | '성적'>('원서');
 
-  usePreventClose();
+  usePreventBackAndClose();
 
   return (
     <>
