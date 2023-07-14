@@ -1,7 +1,6 @@
 import * as S from './style';
 import * as I from 'Assets/svg';
 import useStore from 'Stores/StoreContainer';
-import { css } from '@emotion/react';
 import { FAQType } from 'type/faq';
 import { useState } from 'react';
 
@@ -20,12 +19,7 @@ const FAQBox: React.FC<FAQBoxType> = ({
   answerIndex,
   setAnswerIndex,
 }) => {
-  const {
-    isFAQSearching,
-    setShowFAQModal,
-    setFAQModalTitle,
-    setFAQModalContent,
-  } = useStore();
+  const { isFAQSearching } = useStore();
 
   const [toggle, setToggle] = useState<boolean>(false);
 

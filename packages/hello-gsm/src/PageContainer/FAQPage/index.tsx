@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import * as I from 'Assets/svg';
 import * as S from './style';
-import { FAQBox, FAQModal } from 'components';
+import { FAQBox } from 'components';
 import useStore from 'Stores/StoreContainer';
 import auth from 'Api/auth';
 import { FAQType } from 'type/faq';
@@ -18,8 +18,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   const [pageIndex, setPageIndex] = useState<number>(1);
   const [answerIndex, setAnswerIndex] = useState<number>(0);
 
-  const { showFAQModal, isFAQSearching, setIsFAQSearching, setLogged } =
-    useStore();
+  const { isFAQSearching, setIsFAQSearching, setLogged } = useStore();
 
   const searching = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
@@ -80,7 +79,6 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
 
   return (
     <>
-      {/* showFAQModal && <FAQModal /> */}
       <S.FAQPage>
         <S.Title>자주 묻는 질문</S.Title>
         <S.FAQContent>
