@@ -11,7 +11,7 @@ export const FAQBox = styled.button`
   border: none;
   border-radius: 0.625rem;
   margin: 0.9375rem 0;
-  padding: 1.4rem 2.5rem;
+  padding: 1.2rem 2.5rem;
   cursor: pointer;
   gap: 1rem;
 
@@ -34,6 +34,13 @@ export const Title = styled.p`
 
 export const IsSearching = styled.span`
   color: ${({ theme }) => theme.color.primary['lime']};
+`;
+
+export const TitleContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 `;
 
 export const AnswerContent = styled.p`
