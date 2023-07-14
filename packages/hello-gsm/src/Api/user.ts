@@ -5,12 +5,26 @@ class User {
   /**
    * @returns 유저의 상태를 반환한다
    */
-  status(accessToken: string) {
+  userStatus(accessToken: string, userId: string) {
     try {
       return RequestApi(
         {
           method: 'GET',
-          url: UserController.status(),
+          url: UserController.info.user(userId),
+        },
+        accessToken,
+      );
+    } catch (error: any) {
+      return error;
+    }
+  }
+
+  myStatus(accessToken: string) {
+    try {
+      return RequestApi(
+        {
+          method: 'GET',
+          url: UserController.info.my(),
         },
         accessToken,
       );
@@ -22,19 +36,6 @@ class User {
   /**
    * @returns 회원가입 시에 기입한 유저의 정보를 반환한다
    */
-  info(accessToken?: string) {
-    try {
-      return RequestApi(
-        {
-          method: 'GET',
-          url: UserController.info(),
-        },
-        accessToken,
-      );
-    } catch (error: any) {
-      return error;
-    }
-  }
 }
 
 export default new User();
