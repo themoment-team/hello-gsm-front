@@ -3,25 +3,61 @@ import { AuthController } from 'Utils/Libs/requestUrls';
 
 class Auth {
   /**
-   * @returns 각 oauth 로그인 URL을 반환합니다.
+   * @returns 각 oauth 로그인 URL을 반환한다
    */
   kakaoSignin() {
-    return BASE_URL + AuthController.signin.kakao();
+    return BASE_URL + AuthController.kakao.signin();
   }
 
   googleSignin() {
-    return BASE_URL + AuthController.signin.google();
+    return BASE_URL + AuthController.google.signin();
   }
 
   guthubSignin() {
-    return BASE_URL + AuthController.signin.github();
+    return BASE_URL + AuthController.github.signin();
   }
 
   /**
-   * @returns 로그아웃을 위한 api
+   * 로그아웃을 위한 api
    */
   logout() {
-    return BASE_URL + AuthController.logout();
+    return BASE_URL + AuthController.github.signin();
+  }
+
+  /**
+   * 토큰 재발급을 위한 api
+   */
+  refresh(refreshToken?: string) {
+    try {
+      return RequestApi(
+        {
+          method: 'POST',
+          url: AuthController.refresh(),
+        },
+        refreshToken,
+      );
+    } catch (error: any) {
+      return error;
+    }
+  }
+
+  /**
+   *
+   * @param accessToken - api 요청을 하기 위한 토큰
+   * @returns - 로그인 여부 확인
+   */
+  check(accessToken?: string) {
+    try {
+      return RequestApi(
+        {
+          method: 'GET',
+          url: AuthController.check(),
+        },
+        accessToken,
+      );
+    } catch (error: any) {
+      return error;
+    }
   }
 }
 
