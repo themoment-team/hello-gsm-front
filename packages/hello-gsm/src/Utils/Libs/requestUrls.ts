@@ -1,13 +1,22 @@
 // 회원
 export const AuthController = {
-  signin: () => {
-    return `/auth/kakao`;
+  kakao: {
+    signin: () => {
+      return `/auth/v1/oauth2/authorization/kakao`;
+    },
   },
-  signup: () => {
-    return `/auth/register`;
+  google: {
+    signin: () => {
+      return `/auth/v1/oauth2/authorization/google`;
+    },
+  },
+  github: {
+    signin: () => {
+      return `/auth/v1/oauth2/authorization/github`;
+    },
   },
   logout: () => {
-    return `/auth/logout`;
+    return `/auth/v1/logout`;
   },
   refresh: () => {
     return `/auth/refresh`;
@@ -19,11 +28,13 @@ export const AuthController = {
 
 // 유저 상태
 export const UserController = {
-  status: () => {
-    return `/user`;
-  },
-  info: () => {
-    return `/user/info`;
+  info: {
+    user: (userId: string) => {
+      return `/user/v1/user/${userId}`;
+    },
+    my: () => {
+      return `/user/v1/user/me`;
+    },
   },
 };
 
