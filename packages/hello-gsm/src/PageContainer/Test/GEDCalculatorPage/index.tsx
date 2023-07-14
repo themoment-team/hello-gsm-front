@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import useStore from 'Stores/StoreContainer';
 import { GEDCalculate, Rounds } from 'Utils/Calculate';
 import * as S from 'PageContainer/GEDCalculatorPage/style';
-import { usePreventClose } from 'hooks/usePreventClose';
+import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
 
 interface ScoreType {
   curriculumScoreSubtotal: number; // 전과목 득점
@@ -19,8 +19,6 @@ const TestGEDCalculatorPage: NextPage = () => {
   const { showScoreResult, setShowScoreResult } = useStore();
   const [resultNumber, setResultNumber] = useState<number[]>(); //결과 화면 컴포넌트에 보일 점수
   // 이전에 제출한 경험 여부 판단
-
-  usePreventClose();
 
   const onValid = async ({
     curriculumScoreSubtotal,
@@ -40,6 +38,8 @@ const TestGEDCalculatorPage: NextPage = () => {
     console.log(Errors);
     toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
   };
+
+  usePreventBackAndClose();
 
   return (
     <>
