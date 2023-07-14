@@ -1,3 +1,4 @@
+import BASE_URL from 'shared/baseURL';
 import { SignUpType } from 'type/signup';
 import RequestApi from 'Utils/Libs/requestApi';
 import { IdentityController } from 'Utils/Libs/requestUrls';
@@ -65,6 +66,29 @@ class Identity {
       return RequestApi({
         method: 'POST',
         url: IdentityController.myIdentity(),
+        data,
+      });
+    } catch (error: any) {
+      return error;
+    }
+  }
+
+  getUserIdentity(userID: string) {
+    try {
+      return RequestApi({
+        method: 'GET',
+        url: IdentityController.getUserIdentity(userID),
+      });
+    } catch (error: any) {
+      return error;
+    }
+  }
+
+  updateMyIdentity(data: SignUpType) {
+    try {
+      return RequestApi({
+        method: 'PUT',
+        url: IdentityController.updateMyIdentity(),
         data,
       });
     } catch (error: any) {

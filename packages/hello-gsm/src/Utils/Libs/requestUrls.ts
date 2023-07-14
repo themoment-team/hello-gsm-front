@@ -53,6 +53,12 @@ export const IdentityController = {
   myIdentity: () => {
     return `identity/v1/identity/me`;
   },
+  getUserIdentity: (userID: string) => {
+    return `identity/v1/identity/${userID}`;
+  },
+  updateMyIdentity: () => {
+    return `identity/v1/identity/me`;
+  },
 };
 
 // 원서
