@@ -36,19 +36,20 @@ export const IdentityController = {
 
 // 지원자 관리
 export const ApplicationController = {
-  getList: (page: number, name?: string) => {
-    return `/application?page=${page}&name=${name || ''}`;
+  // get 특정 사용자의 원서 정보 조회하기
+  userInformation: (userId: string) => {
+    return `/application/v1/application/${userId}`;
   },
-  getCount: () => {
-    return `/application/count`;
+  // get 모든 사용자의 원서 정보 조회하기
+  allApplication: (page: number, size: number) => {
+    return `/application/v1/application/all?page=${page}&size=${size}`;
   },
-  document: () => {
-    return `/application/document`;
+  // put 특정 사용자의 원서 정보 수정하기
+  userApplication: (userId: string) => {
+    return `/application/v1/status/${userId}`;
   },
-  score: () => {
-    return `/application/score`;
-  },
-  ticket: () => {
-    return `/application/ticket`;
+  // get 모든 사용자의 수험표 정보 조회하기
+  tickets: (page: number, size: number) => {
+    return `/application/v1/tickets?page=${page}&size=${size}`;
   },
 };

@@ -25,26 +25,6 @@ class Application {
 
   /**
    *
-   * @param userId - 특장 서용자의 Id
-   * @param accessToken
-   * @returns 특정 사용자의 원서 정보를 반환합니다.
-   */
-  getUserApplication(userId: string, accessToken?: string) {
-    try {
-      return RequestApi(
-        {
-          method: 'GET',
-          url: ApplicationController.userInformation(userId),
-        },
-        accessToken,
-      );
-    } catch (error: any) {
-      return error;
-    }
-  }
-
-  /**
-   *
    * @param data - 원서 정보
    * @returns 생성 결과를 반환합니다.
    */
@@ -93,39 +73,6 @@ class Application {
   }
 
   /**
-   *
-   * @param page - 페이지
-   * @param size - 원서 크기
-   * @returns - 모든 사용자의 원서가 반환됩니다.
-   */
-  getAllApplication(page: number, size: number) {
-    try {
-      return RequestApi({
-        method: 'GET',
-        url: ApplicationController.allApplication(page, size),
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  /**
-   *
-   * @param userId - 특정 사용자의 Id
-   * @returns - 수정 결과가 반환됩니다.
-   */
-  updateUserApplication(userId: string) {
-    try {
-      return RequestApi({
-        method: 'PUT',
-        url: ApplicationController.userApplication(userId),
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  /**
    * 최종 제출을 위한 api
    */
   finalSubmission() {
@@ -133,23 +80,6 @@ class Application {
       return RequestApi({
         method: 'PUT',
         url: ApplicationController.finalSubmission(),
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  /**
-   *
-   * @param page - 페이지
-   * @param size - 원서 크기
-   * @returns 모든 사용자의 수험표 정보를 반환합니다.
-   */
-  getAllTickets(page: number, size: number) {
-    try {
-      return RequestApi({
-        method: 'GET',
-        url: ApplicationController.allTickets(page, size),
       });
     } catch (error) {
       return error;

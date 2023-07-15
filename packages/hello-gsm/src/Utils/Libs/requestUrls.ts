@@ -52,25 +52,9 @@ export const ApplicationController = {
   myInformation: () => {
     return `/application/v1/application/me`;
   },
-  // get 특정 사용자의 원서 정보 조회하기
-  userInformation: (userId: string) => {
-    return `/application/v1/application/${userId}`;
-  },
-  // get 모든 사용자의 원서 정보 조회하기
-  allApplication: (page: number, size: number) => {
-    return `/application/v1/application/all?page=${page}&size=${size}`;
-  },
-  // put 특정 사용자의 원서 정보 수정하기
-  userApplication: (userId: string) => {
-    return `/application/v1/status/${userId}`;
-  },
   // put 원서 최종 제출하기
   finalSubmission: () => {
     return `/application/v1/final-submit`;
-  },
-  // get 모든 사용자의 수험표 정보 조회하기
-  allTickets: (page: number, size: number) => {
-    return `/application/v1/tickets?page=${page}&size=${size}`;
   },
   // post 증명사진 저장 및 수정
   image: () => {

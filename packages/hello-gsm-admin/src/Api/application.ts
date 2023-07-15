@@ -1,21 +1,18 @@
-import { DocumentType, ScoreType } from 'Types/application';
 import RequestApi from 'Utils/Libs/requestApi';
 import { ApplicationController } from 'Utils/Libs/requestUrls';
 
 class Application {
   /**
-   * 지원자들 리스트를 가져온다
-   * @param page 1 부터 시작하는 페이지 인덱스
-   * @param name 지원자 이름으로 검색
-   * @param accessToken api 요청을 하기 위한 토큰
-   * @returns 지원자들 리스트
+   * @param userId - 특장 서용자의 Id
+   * @param accessToken
+   * @returns 특정 사용자의 원서 정보를 반환합니다.
    */
-  getList(page: number, name?: string, accessToken?: string) {
+  getUserApplication(userId: string, accessToken?: string) {
     try {
       return RequestApi(
         {
           method: 'GET',
-          url: ApplicationController.getList(page, name),
+          url: ApplicationController.userInformation(userId),
         },
         accessToken,
       );
@@ -23,68 +20,54 @@ class Application {
       return error;
     }
   }
+
   /**
-   * 최종 제출자들의 인원을 가져온다
-   * @param accessToken api 요청을 하기 위한 토큰
-   * @returns 최종 제출 인원
+   * @param page - 페이지
+   * @param size - 원서 크기
+   * @returns - 모든 사용자의 원서가 반환됩니다.
    */
-  getCount(accessToken?: string) {
+  getAllApplication(page: number, size: number, accessToken?: string) {
     try {
       return RequestApi(
         {
           method: 'GET',
-          url: ApplicationController.getCount(),
+          url: ApplicationController.allApplication(page, size),
         },
         accessToken,
       );
-    } catch (error: any) {
+    } catch (error) {
       return error;
     }
   }
+
   /**
-   * 관리자가 서류를 받았을 때 서류 제출 여부를 체킹한다
-   * @param data 서류 제출 완료 여부
+   * @param userId - 특정 사용자의 Id
+   * @returns - 수정 결과가 반환됩니다.
    */
-  document(data: DocumentType) {
+  updateUserApplication(userId: string) {
     try {
       return RequestApi({
-        method: 'PATCH',
-        url: ApplicationController.document(),
-        data: data,
+        method: 'PUT',
+        url: ApplicationController.userApplication(userId),
       });
     } catch (error) {
       return error;
     }
   }
+
   /**
-   * 인적성 평가 점수를 입력한다
-   * @param data 수험번호, 인적성 평가 점수
+   *
+   * @param page - 페이지
+   * @param size - 원서 크기
+   * @returns 1차 합격자들의 수험표 출력을 위한 정보를 반환합니다.
    */
-  score(data: ScoreType) {
+  getAllTickets(page: number, size: number) {
     try {
       return RequestApi({
-        method: 'PATCH',
-        url: ApplicationController.score(),
-        data: data,
+        method: 'GET',
+        url: ApplicationController.tickets(page, size),
       });
     } catch (error) {
-      return error;
-    }
-  }
-  /**
-   * 1차 합격자들의 수험표 출력을 위한 정보를 가져온다
-   * @returns 1차 합격자들의 수험표 정보
-   */
-  ticket(accessToken?: string) {
-    try {
-      return RequestApi(
-        {
-          method: 'GET',
-          url: ApplicationController.ticket(),
-        },
-        accessToken,
-      );
-    } catch (error: any) {
       return error;
     }
   }
