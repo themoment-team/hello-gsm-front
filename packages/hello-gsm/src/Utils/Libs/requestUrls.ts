@@ -33,13 +33,11 @@ export const UserController = {
 };
 
 export const IdentityController = {
-  sendCode: {
-    sendCode: () => {
-      return `identity/v1/identity/me/send-code`;
-    },
-    test: () => {
-      return `identity/v1/identity/me/send-code-test`;
-    },
+  sendCode: () => {
+    return `identity/v1/identity/me/send-code`;
+  },
+  sendCodeTest: () => {
+    return `identity/v1/identity/me/send-code-test`;
   },
   authCode: () => {
     return `identity/v1/identity/me/auth-code`;
@@ -49,9 +47,6 @@ export const IdentityController = {
   },
   getUserIdentity: (userID: string) => {
     return `identity/v1/identity/${userID}`;
-  },
-  updateMyIdentity: () => {
-    return `identity/v1/identity/me`;
   },
 };
 

@@ -4,15 +4,11 @@ import RequestApi from 'Utils/Libs/requestApi';
 import { IdentityController } from 'Utils/Libs/requestUrls';
 
 class Identity {
-  /**
-   * @returns 각 oauth 로그인 URL을 반환한다
-   */
-
   sendCode(phonNumber: string) {
     try {
       return RequestApi({
         method: 'POST',
-        url: IdentityController.sendCode.sendCode(),
+        url: IdentityController.sendCode(),
         data: {
           phonNumber,
         },
@@ -26,7 +22,7 @@ class Identity {
     try {
       return RequestApi({
         method: 'POST',
-        url: IdentityController.sendCode.sendCode(),
+        url: IdentityController.sendCodeTest(),
         data: {
           phonNumber,
         },
@@ -88,7 +84,7 @@ class Identity {
     try {
       return RequestApi({
         method: 'PUT',
-        url: IdentityController.updateMyIdentity(),
+        url: IdentityController.myIdentity(),
         data,
       });
     } catch (error: any) {
