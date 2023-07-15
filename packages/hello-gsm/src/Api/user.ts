@@ -3,11 +3,10 @@ import { UserController } from 'Utils/Libs/requestUrls';
 
 class User {
   /**
-   *
    * @param accessToken
    * @returns 현재 사용자 정보를 반환합니다.
    */
-  myInfo(accessToken: string) {
+  myInfo(accessToken?: string) {
     try {
       return RequestApi(
         {

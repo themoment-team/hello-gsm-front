@@ -22,6 +22,7 @@ class Application {
   }
 
   /**
+   * @param accessToken
    * @param page - 페이지
    * @param size - 원서 크기
    * @returns - 모든 사용자의 원서가 반환됩니다.
@@ -41,32 +42,39 @@ class Application {
   }
 
   /**
+   * @param accessToken
    * @param userId - 특정 사용자의 Id
    * @returns - 수정 결과가 반환됩니다.
    */
-  updateUserApplication(userId: string) {
+  updateUserApplication(userId: string, accessToken?: string) {
     try {
-      return RequestApi({
-        method: 'PUT',
-        url: ApplicationController.userApplication(userId),
-      });
+      return RequestApi(
+        {
+          method: 'PUT',
+          url: ApplicationController.userApplication(userId),
+        },
+        accessToken,
+      );
     } catch (error) {
       return error;
     }
   }
 
   /**
-   *
+   * @param accessToken
    * @param page - 페이지
    * @param size - 원서 크기
    * @returns 1차 합격자들의 수험표 출력을 위한 정보를 반환합니다.
    */
-  getAllTickets(page: number, size: number) {
+  getAllTickets(page: number, size: number, accessToken?: string) {
     try {
-      return RequestApi({
-        method: 'GET',
-        url: ApplicationController.tickets(page, size),
-      });
+      return RequestApi(
+        {
+          method: 'GET',
+          url: ApplicationController.tickets(page, size),
+        },
+        accessToken,
+      );
     } catch (error) {
       return error;
     }
