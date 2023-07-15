@@ -5,14 +5,16 @@ import { ApplicationController } from 'Utils/Libs/requestUrls';
 
 class Application {
   /**
-   * @returns 원서에 저장된 정보를 반환한다
+   *
+   * @param accessToken
+   * @returns 현재 사용자의 원서 정보를 반환합니다.
    */
-  getMyInformation(accessToken?: string) {
+  getMyApplication(accessToken?: string) {
     try {
       return RequestApi(
         {
           method: 'GET',
-          url: ApplicationController.myApplication(),
+          url: ApplicationController.myInformation(),
         },
         accessToken,
       );
@@ -21,7 +23,13 @@ class Application {
     }
   }
 
-  getUserInformation(userId: string, accessToken?: string) {
+  /**
+   *
+   * @param userId - 특장 서용자의 Id
+   * @param accessToken
+   * @returns 특정 사용자의 원서 정보를 반환합니다.
+   */
+  getUserApplication(userId: string, accessToken?: string) {
     try {
       return RequestApi(
         {
@@ -35,11 +43,16 @@ class Application {
     }
   }
 
+  /**
+   *
+   * @param data - 원서 정보
+   * @returns 생성 결과를 반환합니다.
+   */
   createApplication(data: ApplyFormType) {
     try {
       return RequestApi({
         method: 'POST',
-        url: ApplicationController.myApplication(),
+        url: ApplicationController.myInformation(),
         data: data,
       });
     } catch (error) {
@@ -47,23 +60,17 @@ class Application {
     }
   }
 
+  /**
+   *
+   * @param data - 원서 정보
+   * @returns 수정 결과를 반환합니다.
+   */
   updateApplication(data: ApplyFormType) {
     try {
       return RequestApi({
         method: 'PUT',
-        url: ApplicationController.myApplication(),
+        url: ApplicationController.myInformation(),
         data: data,
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  deleteApplication() {
-    try {
-      return RequestApi({
-        method: 'DELETE',
-        url: ApplicationController.myApplication(),
       });
     } catch (error) {
       return error;
@@ -72,18 +79,25 @@ class Application {
 
   /**
    * 원서 삭제를 위한 api
+   * @returns 삭제 결과를 반환합니다.
    */
-  deleteInformation() {
+  deleteApplication() {
     try {
       return RequestApi({
         method: 'DELETE',
-        url: ApplicationController.myApplication(),
+        url: ApplicationController.myInformation(),
       });
     } catch (error) {
       return error;
     }
   }
 
+  /**
+   *
+   * @param page - 페이지
+   * @param size - 원서 크기
+   * @returns - 모든 사용자의 원서가 반환됩니다.
+   */
   getAllApplication(page: number, size: number) {
     try {
       return RequestApi({
@@ -95,6 +109,11 @@ class Application {
     }
   }
 
+  /**
+   *
+   * @param userName - 특정 사용자의 이름
+   * @returns - 수정 결과가 반환됩니다.
+   */
   updateUserApplication(userName: string) {
     try {
       return RequestApi({
@@ -120,6 +139,12 @@ class Application {
     }
   }
 
+  /**
+   *
+   * @param page - 페이지
+   * @param size - 원서 크기
+   * @returns 모든 사용자의 수험표 정보를 반환합니다.
+   */
   getAllTickets(page: number, size: number) {
     try {
       return RequestApi({
@@ -132,6 +157,8 @@ class Application {
   }
 
   /**
+   *
+   * @param data - 증명사진
    * 증명사진 저장 및 수정을 위한 api
    */
   postImage(data: FormData) {
