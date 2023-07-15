@@ -1,17 +1,13 @@
 // 회원
 export const AuthController = {
-  kakao: {
-    signin: () => {
+  signin: {
+    kakao: () => {
       return `/auth/v1/oauth2/authorization/kakao`;
     },
-  },
-  google: {
-    signin: () => {
+    google: () => {
       return `/auth/v1/oauth2/authorization/google`;
     },
-  },
-  github: {
-    signin: () => {
+    github: () => {
       return `/auth/v1/oauth2/authorization/github`;
     },
   },

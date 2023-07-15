@@ -8,22 +8,22 @@ class Auth {
    * @returns 각 oauth 로그인 URL을 반환한다
    */
   kakaoSignin() {
-    return BASE_URL + AuthController.kakao.signin();
+    return BASE_URL + AuthController.signin.kakao();
   }
 
   googleSignin() {
-    return BASE_URL + AuthController.google.signin();
+    return BASE_URL + AuthController.signin.google();
   }
 
   guthubSignin() {
-    return BASE_URL + AuthController.github.signin();
+    return BASE_URL + AuthController.signin.github();
   }
 
   /**
    * 로그아웃을 위한 api
    */
   logout() {
-    return BASE_URL + AuthController.github.signin();
+    return BASE_URL + AuthController.logout();
   }
 
   /**
