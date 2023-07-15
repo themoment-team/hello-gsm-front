@@ -18,6 +18,14 @@ export const AuthController = {
   },
 };
 
+// 유저 상태
+export const UserController = {
+  // get 특정 사용자 정보 조회하기
+  userInfo: (userId: string) => {
+    return `/user/v1/user/${userId}`;
+  },
+};
+
 // 지원자 관리
 export const ApplicationController = {
   getList: (page: number, name?: string) => {

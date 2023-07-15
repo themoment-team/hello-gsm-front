@@ -20,10 +20,6 @@ export const AuthController = {
 
 // 유저 상태
 export const UserController = {
-  // get 특정 사용자 정보 조회하기
-  userInfo: (userId: string) => {
-    return `/user/v1/user/${userId}`;
-  },
   // get 현재 사용자 정보 조회하기
   myInfo: () => {
     return `/user/v1/user/me`;
