@@ -111,14 +111,14 @@ class Application {
 
   /**
    *
-   * @param userName - 특정 사용자의 이름
+   * @param userId - 특정 사용자의 Id
    * @returns - 수정 결과가 반환됩니다.
    */
-  updateUserApplication(userName: string) {
+  updateUserApplication(userId: string) {
     try {
       return RequestApi({
         method: 'PUT',
-        url: ApplicationController.userApplication(userName),
+        url: ApplicationController.userApplication(userId),
       });
     } catch (error) {
       return error;

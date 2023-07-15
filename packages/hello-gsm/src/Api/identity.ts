@@ -8,7 +8,6 @@ interface newSignUpType extends SignUpType {
 
 class Identity {
   /**
-   *
    * @param phonNumber - 사용자의 전화번호
    * @returns 본인인증 코드를 발송합니다.
    */
@@ -27,7 +26,6 @@ class Identity {
   }
 
   /**
-   *
    * @param phonNumber - 사용자의 전화번호
    * @returns 현재 사용자의 본인인증 코드를 SMS로 발신하고, 본인인증 코드를 가져옵니다.
    */
@@ -79,7 +77,6 @@ class Identity {
   }
 
   /**
-   *
    * @param data - 회원가입에 필요한 파라미터
    */
   createMyIdentity(data: newSignUpType) {
@@ -111,7 +108,6 @@ class Identity {
   }
 
   /**
-   *
    * @param data - 회원가입에 필요한 파라미터
    */
   updateMyIdentity(data: newSignUpType) {
