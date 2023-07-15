@@ -1,16 +1,20 @@
 // 회원
 export const AuthController = {
-  signin: () => {
-    return `/auth/login`;
+  // 각 oauth 로그인 URL 반환
+  signin: {
+    kakao: () => {
+      return `/auth/v1/oauth2/authorization/kakao`;
+    },
+    google: () => {
+      return `/auth/v1/oauth2/authorization/google`;
+    },
+    github: () => {
+      return `/auth/v1/oauth2/authorization/github`;
+    },
   },
+  // logout URL 반환
   logout: () => {
-    return `/auth/logout`;
-  },
-  refresh: () => {
-    return `/auth/refresh`;
-  },
-  check: () => {
-    return `/auth/check`;
+    return `/auth/v1/logout`;
   },
 };
 

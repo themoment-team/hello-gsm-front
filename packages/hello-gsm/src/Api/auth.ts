@@ -1,10 +1,8 @@
 import BASE_URL from 'shared/baseURL';
-import RequestApi from 'Utils/Libs/requestApi';
 import { AuthController } from 'Utils/Libs/requestUrls';
 
 class Auth {
   /**
-   *
    * @returns 각 oauth 로그인 URL을 반환합니다.
    */
   kakaoSignin() {
@@ -20,7 +18,6 @@ class Auth {
   }
 
   /**
-   *
    * @returns 로그아웃을 위한 api
    */
   logout() {
