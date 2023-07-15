@@ -1,7 +1,5 @@
 import axios from 'axios';
-import BASE_URL from 'shared/baseURL';
-import { ApplicationType } from 'type/application';
-import { ScoreType, GEDScoreType } from 'type/score';
+import { ApplyFormType } from 'type/application';
 import RequestApi from 'Utils/Libs/requestApi';
 import { ApplicationController } from 'Utils/Libs/requestUrls';
 
@@ -9,16 +7,65 @@ class Application {
   /**
    * @returns 원서에 저장된 정보를 반환한다
    */
-  getInformation(accessToken?: string) {
+  getMyInformation(accessToken?: string) {
     try {
       return RequestApi(
         {
           method: 'GET',
-          url: ApplicationController.information(),
+          url: ApplicationController.myApplication(),
         },
         accessToken,
       );
     } catch (error: any) {
+      return error;
+    }
+  }
+
+  getUserInformation(userId: string, accessToken?: string) {
+    try {
+      return RequestApi(
+        {
+          method: 'GET',
+          url: ApplicationController.userInformation(userId),
+        },
+        accessToken,
+      );
+    } catch (error: any) {
+      return error;
+    }
+  }
+
+  createApplication(data: ApplyFormType) {
+    try {
+      return RequestApi({
+        method: 'POST',
+        url: ApplicationController.myApplication(),
+        data: data,
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  updateApplication(data: ApplyFormType) {
+    try {
+      return RequestApi({
+        method: 'PUT',
+        url: ApplicationController.myApplication(),
+        data: data,
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  deleteApplication() {
+    try {
+      return RequestApi({
+        method: 'DELETE',
+        url: ApplicationController.myApplication(),
+      });
+    } catch (error) {
       return error;
     }
   }
@@ -30,127 +77,29 @@ class Application {
     try {
       return RequestApi({
         method: 'DELETE',
-        url: ApplicationController.information(),
+        url: ApplicationController.myApplication(),
       });
     } catch (error) {
       return error;
     }
   }
 
-  /**
-   * @param data - 1차 제출(인적 사항) 파라미터
-   */
-  postFirstSubmission(data: ApplicationType) {
+  getAllApplication(page: number, size: number) {
     try {
       return RequestApi({
-        method: 'POST',
-        url: ApplicationController.firstSubmission(),
-        data: data,
+        method: 'GET',
+        url: ApplicationController.allApplication(page, size),
       });
     } catch (error) {
       return error;
     }
   }
 
-  /**
-   * @param data - 2차 제출(성적) 파라미터
-   */
-  postSecondSubmisson(data: ScoreType) {
+  updateUserApplication(userName: string) {
     try {
       return RequestApi({
-        method: 'POST',
-        url: ApplicationController.secondSubmission(),
-        data: data,
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  /**
-   * @param data - 1차 수정(인적 사항) 파라미터
-   */
-  patchFirstSubmission(data: ApplicationType) {
-    try {
-      return RequestApi({
-        method: 'PATCH',
-        url: ApplicationController.firstSubmission(),
-        data: data,
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  /**
-   * @param data - 2차 수정(성적) 파라미터
-   */
-  patchSecondSubmisson(data: ScoreType) {
-    try {
-      return RequestApi({
-        method: 'PATCH',
-        url: ApplicationController.secondSubmission(),
-        data: data,
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  /**
-   * @param data - 2차 졸업자 제출(성적) 파라미터
-   */
-  postGraduationSubmission(data: ScoreType) {
-    try {
-      return RequestApi({
-        method: 'POST',
-        url: ApplicationController.graduationSubmission(),
-        data: data,
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  /**
-   * @param data - 2차 졸업자 수정(성적) 파라미터
-   */
-  patchGraduationSubmission(data: ScoreType) {
-    try {
-      return RequestApi({
-        method: 'PATCH',
-        url: ApplicationController.graduationSubmission(),
-        data: data,
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  /**
-   * @param data - 2차 검정고시 제출(성적) 파라미터
-   */
-  postGedSubmission(data: GEDScoreType) {
-    try {
-      return RequestApi({
-        method: 'POST',
-        url: ApplicationController.gedSubmission(),
-        data: data,
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  /**
-   * @param data - 2차 검정고시 수정(성적) 파라미터
-   */
-  patchGedSubmission(data: GEDScoreType) {
-    try {
-      return RequestApi({
-        method: 'PATCH',
-        url: ApplicationController.gedSubmission(),
-        data: data,
+        method: 'PUT',
+        url: ApplicationController.userApplication(userName),
       });
     } catch (error) {
       return error;
@@ -160,11 +109,22 @@ class Application {
   /**
    * 최종 제출을 위한 api
    */
-  patchFinalSubmission() {
+  finalSubmission() {
     try {
       return RequestApi({
-        method: 'PATCH',
+        method: 'PUT',
         url: ApplicationController.finalSubmission(),
+      });
+    } catch (error) {
+      return error;
+    }
+  }
+
+  getAllTickets(page: number, size: number) {
+    try {
+      return RequestApi({
+        method: 'GET',
+        url: ApplicationController.allTickets(page, size),
       });
     } catch (error) {
       return error;
@@ -178,10 +138,8 @@ class Application {
     try {
       return axios({
         method: 'POST',
-        baseURL: BASE_URL,
         url: ApplicationController.image(),
-        data: data,
-        withCredentials: true,
+        data,
         headers: {
           'Content-Type': 'multipart/form-data',
         },

@@ -53,30 +53,30 @@ export const IdentityController = {
 // 원서
 export const ApplicationController = {
   // get 서류정보 가져오기, delete 원서 삭제
-  information: () => {
-    return `/application`;
+  myApplication: () => {
+    return `/application/v1/application/me`;
+  },
+  userInformation: (userId: string) => {
+    return `/application/v1/application/${userId}`;
   },
   // post 1차 서류 제출, patch 1차 서류 제출 수정
-  firstSubmission: () => {
-    return `/application/firstSubmission`;
+  allApplication: (page: number, size: number) => {
+    return `/application/v1/application/all?page=${page}&size=${size}`;
   },
   // post 2차 서류 제출, patch 2차 서류 제출 수정
-  secondSubmission: () => {
-    return `/application/secondSubmission`;
+  userApplication: (userId: string) => {
+    return `/application/v1/status/${userId}`;
   },
   // post 졸업자 2차 서류 제출, patch 졸업자 2차 서류 수정
-  graduationSubmission: () => {
-    return `/application/graduationSubmission`;
+  finalSubmission: () => {
+    return `/application/v1/final-submit`;
   },
   // post 검정고시 2차 서류 제출, patch 검정고시 2차 서류 수정
-  gedSubmission: () => {
-    return `/application/gedSubmission`;
-  },
-  finalSubmission: () => {
-    return `/application/finalSubmission`;
+  allTickets: (page: number, size: number) => {
+    return `/application/v1/tickets?page=${page}&size=${size}`;
   },
   // post 증명사진 저장 및 수정
   image: () => {
-    return `/application/image`;
+    return `/application/v1/image`;
   },
 };
