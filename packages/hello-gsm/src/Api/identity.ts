@@ -2,6 +2,10 @@ import { SignUpType } from 'type/signup';
 import RequestApi from 'Utils/Libs/requestApi';
 import { IdentityController } from 'Utils/Libs/requestUrls';
 
+interface newSignUpType extends SignUpType {
+  code: string;
+}
+
 class Identity {
   /**
    * 본인인증 코드를 발송한다.
@@ -71,7 +75,7 @@ class Identity {
   /**
    * 본인인증 코드와 개인정보를 입력받아 Identity를 생성한다.
    */
-  createMyIdentity(data: SignUpType) {
+  createMyIdentity(data: newSignUpType) {
     try {
       return RequestApi({
         method: 'POST',
@@ -100,7 +104,7 @@ class Identity {
   /**
    *  현재 사용자의 본인인증 정보를 수장한다.
    */
-  updateMyIdentity(data: SignUpType) {
+  updateMyIdentity(data: newSignUpType) {
     try {
       return RequestApi({
         method: 'PUT',
