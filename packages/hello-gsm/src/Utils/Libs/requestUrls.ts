@@ -34,19 +34,19 @@ export const UserController = {
 
 export const IdentityController = {
   sendCode: () => {
-    return `identity/v1/identity/me/send-code`;
+    return `/identity/v1/identity/me/send-code`;
   },
   sendCodeTest: () => {
-    return `identity/v1/identity/me/send-code-test`;
+    return `/identity/v1/identity/me/send-code-test`;
   },
   authCode: () => {
-    return `identity/v1/identity/me/auth-code`;
+    return `/identity/v1/identity/me/auth-code`;
   },
   myIdentity: () => {
-    return `identity/v1/identity/me`;
+    return `/identity/v1/identity/me`;
   },
   getUserIdentity: (userID: string) => {
-    return `identity/v1/identity/${userID}`;
+    return `/identity/v1/identity/${userID}`;
   },
 };
 
