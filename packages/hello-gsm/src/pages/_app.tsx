@@ -8,7 +8,7 @@ import * as gtag from 'lib/gtag';
 import Script from 'next/script';
 import { ThemeProvider } from '@emotion/react';
 import { theme } from 'styles/theme';
-import { Footer, Header } from 'components';
+import { ChannelTalk, Footer, Header } from 'components';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -53,6 +53,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
         <Footer />
       </ThemeProvider>
+      <ChannelTalk />
     </>
   );
 }
