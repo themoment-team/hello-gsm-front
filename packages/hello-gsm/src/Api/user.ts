@@ -25,7 +25,7 @@ class User {
   /**
    *
    * @param accessToken
-   * @returns 현재 사용자 정보를 반환합니다..
+   * @returns 현재 사용자 정보를 반환합니다.
    */
   myInfo(accessToken: string) {
     try {
