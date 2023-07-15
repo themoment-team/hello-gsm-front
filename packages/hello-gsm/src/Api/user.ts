@@ -5,12 +5,12 @@ class User {
   /**
    * @returns 유저의 상태를 반환한다
    */
-  userStatus(accessToken: string, userId: string) {
+  userInfo(accessToken: string, userId: string) {
     try {
       return RequestApi(
         {
           method: 'GET',
-          url: UserController.info.user(userId),
+          url: UserController.userInfo(userId),
         },
         accessToken,
       );
@@ -19,12 +19,12 @@ class User {
     }
   }
 
-  myStatus(accessToken: string) {
+  myInfo(accessToken: string) {
     try {
       return RequestApi(
         {
           method: 'GET',
-          url: UserController.info.my(),
+          url: UserController.myInfo(),
         },
         accessToken,
       );

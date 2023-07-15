@@ -24,13 +24,11 @@ export const AuthController = {
 
 // 유저 상태
 export const UserController = {
-  info: {
-    user: (userId: string) => {
-      return `/user/v1/user/${userId}`;
-    },
-    my: () => {
-      return `/user/v1/user/me`;
-    },
+  userInfo: (userId: string) => {
+    return `/user/v1/user/${userId}`;
+  },
+  myInfo: () => {
+    return `/user/v1/user/me`;
   },
 };
 
