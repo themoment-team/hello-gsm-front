@@ -1,9 +1,11 @@
-import BASE_URL from 'shared/baseURL';
 import { SignUpType } from 'type/signup';
 import RequestApi from 'Utils/Libs/requestApi';
 import { IdentityController } from 'Utils/Libs/requestUrls';
 
 class Identity {
+  /**
+   * 본인인증 코드를 발송한다.
+   */
   sendCode(phonNumber: string) {
     try {
       return RequestApi({
@@ -18,6 +20,9 @@ class Identity {
     }
   }
 
+  /**
+   * @returns 현재 사용자의 본인인증 코드를 SMS로 발신하고, 본인인증 코드를 가져온다.
+   */
   sendCodeTest(phonNumber: string) {
     try {
       return RequestApi({
@@ -32,6 +37,9 @@ class Identity {
     }
   }
 
+  /**
+   * 휴대폰으로 발송된 인증 코드를 인증한다.
+   */
   authCode(code: string) {
     try {
       return RequestApi({
@@ -46,6 +54,9 @@ class Identity {
     }
   }
 
+  /**
+   * @returns 현재 사용자의 본인인증 정보를 가져온다.
+   */
   getMyIdentity() {
     try {
       return RequestApi({
@@ -57,6 +68,9 @@ class Identity {
     }
   }
 
+  /**
+   * 본인인증 코드와 개인정보를 입력받아 Identity를 생성한다.
+   */
   createMyIdentity(data: SignUpType) {
     try {
       return RequestApi({
@@ -69,6 +83,9 @@ class Identity {
     }
   }
 
+  /**
+   * @returns 특정 사용자의 본인인증 정보를 가져온다.
+   */
   getUserIdentity(userID: string) {
     try {
       return RequestApi({
@@ -80,6 +97,9 @@ class Identity {
     }
   }
 
+  /**
+   *  현재 사용자의 본인인증 정보를 수장한다.
+   */
   updateMyIdentity(data: SignUpType) {
     try {
       return RequestApi({

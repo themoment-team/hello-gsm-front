@@ -3,7 +3,7 @@ import { UserController } from 'Utils/Libs/requestUrls';
 
 class User {
   /**
-   * @returns 유저의 상태를 반환한다
+   * @returns 특정 사용자 정보를 반환한다
    */
   userInfo(accessToken: string, userId: string) {
     try {
@@ -19,6 +19,9 @@ class User {
     }
   }
 
+  /**
+   * @returns 현재 사용자 정보를 반환한다.
+   */
   myInfo(accessToken: string) {
     try {
       return RequestApi(
@@ -32,10 +35,6 @@ class User {
       return error;
     }
   }
-
-  /**
-   * @returns 회원가입 시에 기입한 유저의 정보를 반환한다
-   */
 }
 
 export default new User();

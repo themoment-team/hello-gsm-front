@@ -1,5 +1,4 @@
 import BASE_URL from 'shared/baseURL';
-import { SignUpType } from 'type/signup';
 import RequestApi from 'Utils/Libs/requestApi';
 import { AuthController } from 'Utils/Libs/requestUrls';
 
@@ -25,6 +24,8 @@ class Auth {
   logout() {
     return BASE_URL + AuthController.logout();
   }
+
+  ///////////////////////////////////////////////////////////////////
 
   /**
    * 토큰 재발급을 위한 api
