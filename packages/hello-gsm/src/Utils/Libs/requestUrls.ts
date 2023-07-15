@@ -26,13 +26,13 @@ export const UserController = {
   },
 };
 
-// 유저 인증
+// 유저 신원
 export const IdentityController = {
   // post 사용자에게 본인인증 코드 발송시키기
   sendCode: () => {
     return `/identity/v1/identity/me/send-code`;
   },
-  // post 본인인증 코드 발신, 가져오기
+  // post 본인인증 코드 발신, 가져오기 **테스트 환경에서만 사용 가능합니다.**
   sendCodeTest: () => {
     return `/identity/v1/identity/me/send-code-test`;
   },
@@ -43,10 +43,6 @@ export const IdentityController = {
   // get 현재 사용자의 본인인증 정보 조회, post identity 생성하기, put identity 수정하기
   myIdentity: () => {
     return `/identity/v1/identity/me`;
-  },
-  // get 특정 사용자의 본인인증 정보 조회하기
-  getUserIdentity: (userID: string) => {
-    return `/identity/v1/identity/${userID}`;
   },
 };
 

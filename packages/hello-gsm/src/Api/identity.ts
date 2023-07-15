@@ -10,6 +10,7 @@ class Identity {
   /**
    * @param phonNumber - 사용자의 전화번호
    * @returns 본인인증 코드를 발송합니다.
+   * 테스트 환경에서만 사용 가능합니다
    */
   sendCode(phonNumber: string) {
     try {
@@ -85,22 +86,6 @@ class Identity {
         method: 'POST',
         url: IdentityController.myIdentity(),
         data,
-      });
-    } catch (error: any) {
-      return error;
-    }
-  }
-
-  /**
-   *
-   * @param userID
-   * @returns 특정 사용자의 본인인증 정보를 가져옵니다.
-   */
-  getUserIdentity(userID: string) {
-    try {
-      return RequestApi({
-        method: 'GET',
-        url: IdentityController.getUserIdentity(userID),
       });
     } catch (error: any) {
       return error;
