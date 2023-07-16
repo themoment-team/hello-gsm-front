@@ -29,8 +29,8 @@ export const UserController = {
 // 유저 신원
 export const IdentityController = {
   // get 특정 사용자의 본인인증 정보 조회하기
-  getUserIdentity: (userID: string) => {
-    return `/identity/v1/identity/${userID}`;
+  getUserIdentity: (userId: string) => {
+    return `/identity/v1/identity/${userId}`;
   },
 };
 
