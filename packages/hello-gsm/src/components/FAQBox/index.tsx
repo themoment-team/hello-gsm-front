@@ -9,6 +9,7 @@ type FAQBoxType = FAQType & {
   id: number;
   answerIndex: number;
   setAnswerIndex: React.Dispatch<React.SetStateAction<number>>;
+  pageIndex: number;
 };
 
 const FAQBox: React.FC<FAQBoxType> = ({
@@ -18,6 +19,7 @@ const FAQBox: React.FC<FAQBoxType> = ({
   id,
   answerIndex,
   setAnswerIndex,
+  pageIndex,
 }) => {
   const { isFAQSearching } = useStore();
   const [toggle, setToggle] = useState<boolean>(false);
@@ -26,6 +28,11 @@ const FAQBox: React.FC<FAQBoxType> = ({
     setToggle(pre => !pre);
     setAnswerIndex(id);
   };
+
+  useEffect(() => {
+    setToggle(false);
+    setAnswerIndex(-1);
+  }, [pageIndex, setAnswerIndex, keyword]);
 
   return (
     <S.FAQBox onClick={() => showAnswer(id)}>

@@ -101,6 +101,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
                 id={index}
                 answerIndex={answerIndex}
                 setAnswerIndex={setAnswerIndex}
+                pageIndex={pageIndex}
               />
             ))}
           </S.FAQList>
