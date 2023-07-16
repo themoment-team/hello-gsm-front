@@ -3,7 +3,7 @@ import { ApplicationController } from 'Utils/Libs/requestUrls';
 
 class Application {
   /**
-   * @param userId - 특장 서용자의 Id
+   * @param userId - 특정 서용자의 Id
    * @param accessToken
    * @returns 특정 사용자의 원서 정보를 반환합니다.
    */
