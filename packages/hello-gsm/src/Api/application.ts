@@ -1,4 +1,5 @@
 import axios from 'axios';
+import BASE_URL from 'shared/baseURL';
 import { ApplyFormType } from 'type/application';
 import RequestApi from 'Utils/Libs/requestApi';
 import { ApplicationController } from 'Utils/Libs/requestUrls';
@@ -101,23 +102,21 @@ class Application {
   }
 
   /**
-   * @param accessToken
    * @param data - 증명사진
    * 증명사진 저장 및 수정을 위한 api
    */
-  postImage(data: FormData, accessToken?: string) {
+  postImage(data: FormData) {
     try {
-      return axios(
-        {
-          method: 'POST',
-          url: ApplicationController.image(),
-          data,
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
+      return axios({
+        method: 'POST',
+        baseURL: BASE_URL,
+        url: ApplicationController.image(),
+        data: data,
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
         },
-        accessToken,
-      );
+      });
     } catch (error: any) {
       return error;
     }
