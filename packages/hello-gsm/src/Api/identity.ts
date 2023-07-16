@@ -13,7 +13,7 @@ class Identity {
    * @returns 본인인증 코드를 발송합니다.
    * 테스트 환경에서만 사용 가능합니다
    */
-  sendCode(phonNumber: string, accessToken?: string) {
+  postCode(phonNumber: string, accessToken?: string) {
     try {
       return RequestApi(
         {
@@ -35,7 +35,7 @@ class Identity {
    * @param phonNumber - 사용자의 전화번호
    * @returns 현재 사용자의 본인인증 코드를 SMS로 발신하고, 본인인증 코드를 가져옵니다.
    */
-  sendCodeTest(phonNumber: string, accessToken?: string) {
+  postCodeTest(phonNumber: string, accessToken?: string) {
     try {
       return RequestApi(
         {
@@ -57,7 +57,7 @@ class Identity {
    * @param code - 인증 코드
    * @returns 휴대폰으로 발송된 인증 코드를 인증합니다.
    */
-  authCode(code: string, accessToken?: string) {
+  postAuthCode(code: string, accessToken?: string) {
     try {
       return RequestApi(
         {
@@ -96,7 +96,7 @@ class Identity {
    * @param accessToken
    * @param data - 회원가입에 필요한 파라미터
    */
-  createMyIdentity(data: newSignUpType, accessToken?: string) {
+  postMyIdentity(data: newSignUpType, accessToken?: string) {
     try {
       return RequestApi(
         {
@@ -115,7 +115,7 @@ class Identity {
    * @param accessToken
    * @param data - 회원가입에 필요한 파라미터
    */
-  updateMyIdentity(data: newSignUpType, accessToken?: string) {
+  putMyIdentity(data: newSignUpType, accessToken?: string) {
     try {
       return RequestApi(
         {

@@ -29,7 +29,7 @@ class Application {
    * @param data - 원서 정보
    * @returns 생성 결과를 반환합니다.
    */
-  createApplication(data: ApplyFormType, accessToken?: string) {
+  postApplication(data: ApplyFormType, accessToken?: string) {
     try {
       return RequestApi(
         {
@@ -49,7 +49,7 @@ class Application {
    * @param data - 원서 정보
    * @returns 수정 결과를 반환합니다.
    */
-  updateApplication(data: ApplyFormType, accessToken?: string) {
+  putApplication(data: ApplyFormType, accessToken?: string) {
     try {
       return RequestApi(
         {
@@ -87,7 +87,7 @@ class Application {
    * @param accessToken
    * 최종 제출을 위한 api
    */
-  finalSubmission(accessToken?: string) {
+  putFinalSubmission(accessToken?: string) {
     try {
       return RequestApi(
         {

@@ -7,7 +7,7 @@ class User {
    * @param userId - user의 Id
    * @returns 특정 사용자 정보를 반환합니다.
    */
-  userInfo(userId: string, accessToken?: string) {
+  getUserInfo(userId: string, accessToken?: string) {
     try {
       return RequestApi(
         {

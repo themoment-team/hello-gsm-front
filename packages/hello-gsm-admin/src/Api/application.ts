@@ -46,7 +46,7 @@ class Application {
    * @param userId - 특정 사용자의 Id
    * @returns - 수정 결과가 반환됩니다.
    */
-  updateUserApplication(userId: string, accessToken?: string) {
+  putUserApplication(userId: string, accessToken?: string) {
     try {
       return RequestApi(
         {
