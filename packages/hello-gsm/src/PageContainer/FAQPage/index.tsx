@@ -114,30 +114,17 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
                 <I.LeftButton />
               </S.ChangeAllowButton>
               <S.FAQListIndexButtonWrapper>
-                <S.ListIndex
-                  onClick={() => {
-                    selectPage(1);
-                  }}
-                  css={selectStyle(1)}
-                >
-                  1
-                </S.ListIndex>
-                <S.ListIndex
-                  onClick={() => {
-                    selectPage(2);
-                  }}
-                  css={selectStyle(2)}
-                >
-                  2
-                </S.ListIndex>
-                <S.ListIndex
-                  onClick={() => {
-                    selectPage(3);
-                  }}
-                  css={selectStyle(3)}
-                >
-                  3
-                </S.ListIndex>
+                {[1, 2, 3].map(num => (
+                  <S.ListIndex
+                    key={num}
+                    onClick={() => {
+                      selectPage(num);
+                    }}
+                    css={selectStyle(num)}
+                  >
+                    {num}
+                  </S.ListIndex>
+                ))}
               </S.FAQListIndexButtonWrapper>
               <S.ChangeAllowButton
                 onClick={plusPageIndex}
