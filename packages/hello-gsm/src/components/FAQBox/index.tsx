@@ -6,9 +6,6 @@ import { useEffect, useState } from 'react';
 
 type FAQBoxType = FAQType & {
   keyword: string;
-  id: number;
-  answerIndex: number;
-  setAnswerIndex: React.Dispatch<React.SetStateAction<number>>;
   pageIndex: number;
 };
 
@@ -16,26 +13,24 @@ const FAQBox: React.FC<FAQBoxType> = ({
   question,
   answer,
   keyword,
-  id,
-  answerIndex,
-  setAnswerIndex,
   pageIndex,
 }) => {
   const { isFAQSearching } = useStore();
   const [toggle, setToggle] = useState<boolean>(false);
+  const [isAnimation, setIsAnimation] = useState<boolean>(false);
 
-  const showAnswer = (id: number) => {
-    setToggle(pre => !pre);
-    setAnswerIndex(id);
+  const showAnswer = () => {
+    setToggle(!toggle);
+    setIsAnimation(true);
   };
 
   useEffect(() => {
     setToggle(false);
-    setAnswerIndex(-1);
-  }, [pageIndex, setAnswerIndex, keyword]);
+    setIsAnimation(false);
+  }, [pageIndex, keyword]);
 
   return (
-    <S.FAQBox onClick={() => showAnswer(id)}>
+    <S.FAQBox onClick={showAnswer}>
       <S.TitleContent>
         <S.Title>
           {isFAQSearching
@@ -53,7 +48,7 @@ const FAQBox: React.FC<FAQBoxType> = ({
         </S.Title>
         {toggle ? <I.UpButton /> : <I.DownButton />}
       </S.TitleContent>
-      <S.AnswerContent isAnimation={toggle} isClicked={answerIndex === id}>
+      <S.AnswerContent isClicked={toggle} isAnimation={isAnimation}>
         {answer}
       </S.AnswerContent>
     </S.FAQBox>

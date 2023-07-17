@@ -30,7 +30,7 @@ const fadeOutAnimation = keyframes`
   }
 `;
 
-export const FAQBox = styled.button<{ isAnimation?: boolean }>`
+export const FAQBox = styled.button<{ isClicked?: boolean }>`
   width: 100%;
   height: 100%;
   display: flex;
@@ -46,7 +46,7 @@ export const FAQBox = styled.button<{ isAnimation?: boolean }>`
   gap: 1rem;
 
   ${props =>
-    props.isAnimation &&
+    props.isClicked &&
     css`
       animation: ${fadeAnimation} 0.5s;
     `}
@@ -75,8 +75,8 @@ export const TitleContent = styled.div`
 `;
 
 export const AnswerContent = styled.p<{
-  isAnimation?: boolean;
   isClicked?: boolean;
+  isAnimation?: boolean;
 }>`
   color: ${({ theme }) => theme.color.white};
   text-align: left;
@@ -90,7 +90,7 @@ export const AnswerContent = styled.p<{
   transition: opacity 0.3s max-height 0.3s position 0.5s;
 
   ${props =>
-    props.isAnimation &&
+    props.isClicked &&
     css`
       border-top: 0.8px solid;
       animation: ${fadeAnimation} 0.5s;
@@ -100,8 +100,8 @@ export const AnswerContent = styled.p<{
     `}
 
   ${props =>
-    props.isClicked &&
-    !props.isAnimation &&
+    props.isAnimation &&
+    !props.isClicked &&
     css`
       border-top: 0.8px solid;
       animation: ${fadeOutAnimation} 0.5s;

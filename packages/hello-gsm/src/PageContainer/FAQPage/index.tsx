@@ -16,7 +16,6 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   const [faqList, setFaqList] = useState<FAQType[]>(faqData);
   const [keyword, setKeyword] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(1);
-  const [answerIndex, setAnswerIndex] = useState<number>(-1);
 
   const { isFAQSearching, setIsFAQSearching, setLogged } = useStore();
 
@@ -98,9 +97,6 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
                 question={faq.question}
                 answer={faq.answer}
                 keyword={keyword}
-                id={index}
-                answerIndex={answerIndex}
-                setAnswerIndex={setAnswerIndex}
                 pageIndex={pageIndex}
               />
             ))}
