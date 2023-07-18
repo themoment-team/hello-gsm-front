@@ -12,6 +12,7 @@ import {
   ArtSport,
 } from 'Utils/Calculate';
 import useStore from 'Stores/StoreContainer';
+import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
 
 interface ScoreForm {
   // 과목/점수 배열
@@ -145,11 +146,11 @@ const TestCalculatorPage: NextPage = () => {
     );
   };
 
+  usePreventBackAndClose();
   return (
     <>
       {showScoreResult && <ScoreResultModal result={resultArray} />}
       <S.Title>성적입력</S.Title>
-
       <S.SystemSection>
         <S.SystemLabel>
           <input

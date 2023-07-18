@@ -131,7 +131,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
               Up!
             </span>{' '}
             할 수 있는 <br />
-            광주 소프트웨어 마이스터고등학교
+            광주소프트웨어마이스터고등학교
           </S.Title>
           <S.Description>
             광주소프트웨어마이스터고등학교 입학 지원 시스템
