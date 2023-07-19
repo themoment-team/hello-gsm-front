@@ -3,12 +3,14 @@ import styled from '@emotion/styled';
 
 const fadeAnimation = keyframes`
   0% {
+    visibility: hidden;
     opacity: 0;
     max-height: 0;
-    position: relative;
     padding-top: 0;
+    position: relative;
   }
   100% {
+    visibility: visible;
     opacity: 1;
     max-height: 1000px;
     position: relative;
@@ -17,16 +19,18 @@ const fadeAnimation = keyframes`
 
 const fadeOutAnimation = keyframes`
   0% {
+    visibility: visible;
     opacity: 1;
     max-height: 1000px;
     position: relative;
   }
   100% {
+    visibility: hidden;
     opacity: 0;
     max-height: 0;
-    position: relative;
     border-top: 0;
     padding-top: 0;
+    position: relative;
   }
 `;
 
@@ -44,12 +48,13 @@ export const FAQBox = styled.button<{ isClicked?: boolean }>`
   padding: 1.2rem 2.5rem;
   cursor: pointer;
   gap: 1rem;
+  position: relative;
 
   ${props =>
     props.isClicked &&
     css`
       animation: ${fadeAnimation} 0.5s;
-    `}
+    `};
 `;
 
 export const Title = styled.p`
@@ -80,30 +85,32 @@ export const AnswerContent = styled.p<{
 }>`
   color: ${({ theme }) => theme.color.white};
   text-align: left;
-  border-top: 0;
   padding-top: 1rem;
-  width: 100%;
   max-height: 0;
+  width: 100%;
   opacity: 0;
   overflow: hidden;
-  position: fixed;
+  visibility: hidden;
+  position: absolute;
   transition: opacity 0.3s max-height 0.3s position 0.5s;
 
   ${props =>
     props.isClicked &&
     css`
-      border-top: 0.8px solid;
       animation: ${fadeAnimation} 0.5s;
+      border-top: 0.8px solid;
       opacity: 1;
       max-height: 1000px;
       position: relative;
+      visibility: visible;
     `}
 
   ${props =>
     props.isAnimation &&
     !props.isClicked &&
     css`
-      border-top: 0.8px solid;
       animation: ${fadeOutAnimation} 0.5s;
+      border-top: 0.8px solid;
+      visibility: hidden;
     `};
 `;
