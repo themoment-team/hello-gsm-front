@@ -34,16 +34,14 @@ const FAQBox: React.FC<FAQBoxType> = ({
       <S.TitleContent>
         <S.Title>
           {isFAQSearching
-            ? question.split(keyword).map((title: string, index: number) => {
-                return index < question.split(keyword).length - 1 ? (
-                  <span key={index}>
-                    {title}
+            ? question.split(keyword).map((title: string, index: number) => (
+                <span key={index}>
+                  {title}
+                  {index < question.split(keyword).length - 1 && (
                     <S.IsSearching>{keyword}</S.IsSearching>
-                  </span>
-                ) : (
-                  title
-                );
-              })
+                  )}
+                </span>
+              ))
             : question}
         </S.Title>
         {toggle ? <I.UpButton /> : <I.DownButton />}
