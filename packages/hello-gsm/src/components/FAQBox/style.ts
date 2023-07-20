@@ -39,10 +39,11 @@ export const FAQBox = styled.button`
   background: #19132a;
   border: none;
   border-radius: 0.625rem;
-  margin: 0.46875rem 0;
+  margin: 0.9375rem 0;
   padding: 1.2rem 2.5rem;
   cursor: pointer;
   position: relative;
+  display: block;
 `;
 
 export const Title = styled.p`
