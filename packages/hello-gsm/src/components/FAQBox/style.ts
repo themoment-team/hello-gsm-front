@@ -7,13 +7,12 @@ const fadeAnimation = keyframes`
     opacity: 0;
     max-height: 0;
     padding-top: 0;
-    position: relative;
   }
   100% {
     visibility: visible;
     opacity: 1;
-    max-height: 1000px;
-    position: relative;
+    max-height: 200px;
+    padding-top: 1rem;
   }
 `;
 
@@ -21,33 +20,28 @@ const fadeOutAnimation = keyframes`
   0% {
     visibility: visible;
     opacity: 1;
-    max-height: 1000px;
-    position: relative;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    max-height: 200px;
   }
   100% {
     visibility: hidden;
     opacity: 0;
-    max-height: 0;
-    border-top: 0;
     padding-top: 0;
-    position: relative;
+    margin-top: 0;
+    max-height: 0;
   }
 `;
-
 export const FAQBox = styled.button`
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   border-radius: 1rem;
   background: #19132a;
   border: none;
   border-radius: 0.625rem;
-  margin: 0.9375rem 0;
+  margin: 0.46875rem 0;
   padding: 1.2rem 2.5rem;
   cursor: pointer;
-  gap: 1rem;
   position: relative;
 `;
 
@@ -79,23 +73,24 @@ export const AnswerContent = styled.p<{
 }>`
   color: ${({ theme }) => theme.color.white};
   text-align: left;
-  padding-top: 1rem;
+  border-top: 0.8px solid;
+  padding-top: 0;
   max-height: 0;
   width: 100%;
   opacity: 0;
   overflow: hidden;
   visibility: hidden;
-  position: absolute;
   transition: opacity 0.3s max-height 0.3s position 0.5s;
 
   ${({ isClicked }) =>
     isClicked &&
     css`
-      animation: ${fadeAnimation} 0.5s;
+      animation: ${fadeAnimation} 0.4s;
       border-top: 0.8px solid;
       opacity: 1;
-      max-height: 1000px;
-      position: relative;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      max-height: 200px;
       visibility: visible;
     `}
 
@@ -103,8 +98,9 @@ export const AnswerContent = styled.p<{
     isAnimation &&
     !isClicked &&
     css`
-      animation: ${fadeOutAnimation} 0.5s;
+      animation: ${fadeOutAnimation} 0.3s ease;
       border-top: 0.8px solid;
-      visibility: hidden;
+      padding-top: 0;
+      max-height: 0;
     `};
 `;
