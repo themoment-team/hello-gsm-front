@@ -1,55 +1,54 @@
 import * as S from './style';
+import * as I from 'Assets/svg';
 import useStore from 'Stores/StoreContainer';
-import { css } from '@emotion/react';
 import { FAQType } from 'type/faq';
+import { useEffect, useState } from 'react';
 
 type FAQBoxType = FAQType & {
   keyword: string;
+  pageIndex: number;
 };
 
-const FAQBox: React.FC<FAQBoxType> = ({ question, answer, keyword }) => {
-  const {
-    isFAQSearching,
-    setShowFAQModal,
-    setFAQModalTitle,
-    setFAQModalContent,
-  } = useStore();
+const FAQBox: React.FC<FAQBoxType> = ({
+  question,
+  answer,
+  keyword,
+  pageIndex,
+}) => {
+  const { isFAQSearching } = useStore();
+  const [toggle, setToggle] = useState<boolean>(false);
+  const [isAnimation, setIsAnimation] = useState<boolean>(false);
 
   const showAnswer = () => {
-    setShowFAQModal();
-    setFAQModalTitle(question);
-    setFAQModalContent(answer);
+    setToggle(!toggle);
+    setIsAnimation(true);
   };
 
+  useEffect(() => {
+    setToggle(false);
+    setIsAnimation(false);
+  }, [pageIndex, keyword]);
+
   return (
-    <S.FAQBox
-      onClick={showAnswer}
-      css={css`
-        &:hover {
-          background: ${isFAQSearching && 'rgba(255, 255, 255, 0.29);'};
-          p {
-            color: ${isFAQSearching && 'rgba(255, 255, 255, 0.65);'};
-          }
-          p > span {
-            color: ${isFAQSearching && '#ffffff'};
-          }
-        }
-      `}
-    >
-      <S.Title>
-        {isFAQSearching
-          ? question.split(keyword).map((title: string, index: number) => {
-              return index < question.split(keyword).length - 1 ? (
+    <S.FAQBox onClick={showAnswer}>
+      <S.TitleContent>
+        <S.Title>
+          {isFAQSearching
+            ? question.split(keyword).map((title: string, index: number) => (
                 <span key={index}>
                   {title}
-                  <S.IsSearching>{keyword}</S.IsSearching>
+                  {index < question.split(keyword).length - 1 && (
+                    <S.IsSearching>{keyword}</S.IsSearching>
+                  )}
                 </span>
-              ) : (
-                title
-              );
-            })
-          : question}
-      </S.Title>
+              ))
+            : question}
+        </S.Title>
+        {toggle ? <I.UpButton /> : <I.DownButton />}
+      </S.TitleContent>
+      <S.AnswerContent isClicked={toggle} isAnimation={isAnimation}>
+        {answer}
+      </S.AnswerContent>
     </S.FAQBox>
   );
 };

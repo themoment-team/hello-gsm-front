@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import * as I from 'Assets/svg';
 import * as S from './style';
-import { FAQBox, FAQModal } from 'components';
+import { FAQBox } from 'components';
 import useStore from 'Stores/StoreContainer';
 import auth from 'Api/auth';
 import { FAQType } from 'type/faq';
@@ -17,8 +17,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   const [keyword, setKeyword] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(1);
 
-  const { showFAQModal, isFAQSearching, setIsFAQSearching, setLogged } =
-    useStore();
+  const { isFAQSearching, setIsFAQSearching, setLogged } = useStore();
 
   const searching = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
@@ -79,7 +78,6 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
 
   return (
     <>
-      {showFAQModal && <FAQModal />}
       <S.FAQPage>
         <S.Title>자주 묻는 질문</S.Title>
         <S.FAQContent>
@@ -99,6 +97,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
                 question={faq.question}
                 answer={faq.answer}
                 keyword={keyword}
+                pageIndex={pageIndex}
               />
             ))}
           </S.FAQList>
@@ -111,15 +110,17 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
                 <I.LeftButton />
               </S.ChangeAllowButton>
               <S.FAQListIndexButtonWrapper>
-                <S.ListIndex onClick={() => selectPage(1)} css={selectStyle(1)}>
-                  1
-                </S.ListIndex>
-                <S.ListIndex onClick={() => selectPage(2)} css={selectStyle(2)}>
-                  2
-                </S.ListIndex>
-                <S.ListIndex onClick={() => selectPage(3)} css={selectStyle(3)}>
-                  3
-                </S.ListIndex>
+                {[1, 2, 3].map(num => (
+                  <S.ListIndex
+                    key={num}
+                    onClick={() => {
+                      selectPage(num);
+                    }}
+                    css={selectStyle(num)}
+                  >
+                    {num}
+                  </S.ListIndex>
+                ))}
               </S.FAQListIndexButtonWrapper>
               <S.ChangeAllowButton
                 onClick={plusPageIndex}

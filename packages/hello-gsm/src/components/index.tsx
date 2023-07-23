@@ -8,7 +8,6 @@ export { default as FAQBox } from './FAQBox';
 export { default as InformationDescription } from './InformationDescription';
 export { default as MainPageDescription } from './MainPageDescription';
 export { default as DepartmentModal } from './Modals/DepartmentModal';
-export { default as FAQModal } from './Modals/FAQModal';
 export { default as FindAddressModal } from './Modals/FindAddressModal';
 export { default as FindSchoolModal } from './Modals/FindSchoolModal';
 export { default as MypageModal } from './Modals/MypageModal';
