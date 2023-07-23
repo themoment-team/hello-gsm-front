@@ -4,14 +4,15 @@ import { UserController } from 'Utils/Libs/requestUrls';
 class User {
   /**
    * @param accessToken
-   * @returns 현재 사용자 정보를 반환합니다.
+   * @param userId - user의 Id
+   * @returns 특정 사용자 정보를 반환합니다.
    */
-  getMyInfo(accessToken?: string) {
+  getUserInfo(userId: string, accessToken?: string) {
     try {
       return RequestApi(
         {
           method: 'GET',
-          url: UserController.myInfo(),
+          url: UserController.userInfo(userId),
         },
         accessToken,
       );

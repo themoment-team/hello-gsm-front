@@ -1,20 +1,21 @@
 import axios from 'axios';
 import BASE_URL from 'shared/baseURL';
-import { ApplicationType } from 'type/application';
-import { ScoreType, GEDScoreType } from 'type/score';
+import { ApplyFormType } from 'type/application';
 import RequestApi from 'Utils/Libs/requestApi';
 import { ApplicationController } from 'Utils/Libs/requestUrls';
 
 class Application {
   /**
-   * @returns 원서에 저장된 정보를 반환한다
+   *
+   * @param accessToken
+   * @returns 현재 사용자의 원서 정보를 반환합니다.
    */
-  getInformation(accessToken?: string) {
+  getMyApplication(accessToken?: string) {
     try {
       return RequestApi(
         {
           method: 'GET',
-          url: ApplicationController.information(),
+          url: ApplicationController.myInformation(),
         },
         accessToken,
       );
@@ -24,154 +25,84 @@ class Application {
   }
 
   /**
+   * @param accessToken
+   * @param data - 원서 정보
+   * @returns 생성 결과를 반환합니다.
+   */
+  postApplication(data: ApplyFormType, accessToken?: string) {
+    try {
+      return RequestApi(
+        {
+          method: 'POST',
+          url: ApplicationController.myInformation(),
+          data: data,
+        },
+        accessToken,
+      );
+    } catch (error: any) {
+      return error;
+    }
+  }
+
+  /**
+   * @param accessToken
+   * @param data - 원서 정보
+   * @returns 수정 결과를 반환합니다.
+   */
+  putApplication(data: ApplyFormType, accessToken?: string) {
+    try {
+      return RequestApi(
+        {
+          method: 'PUT',
+          url: ApplicationController.myInformation(),
+          data: data,
+        },
+        accessToken,
+      );
+    } catch (error: any) {
+      return error;
+    }
+  }
+
+  /**
+   * @param accessToken
    * 원서 삭제를 위한 api
+   * @returns 삭제 결과를 반환합니다.
    */
-  deleteInformation() {
+  deleteApplication(accessToken?: string) {
     try {
-      return RequestApi({
-        method: 'DELETE',
-        url: ApplicationController.information(),
-      });
-    } catch (error) {
+      return RequestApi(
+        {
+          method: 'DELETE',
+          url: ApplicationController.myInformation(),
+        },
+        accessToken,
+      );
+    } catch (error: any) {
       return error;
     }
   }
 
   /**
-   * @param data - 1차 제출(인적 사항) 파라미터
-   */
-  postFirstSubmission(data: ApplicationType) {
-    try {
-      return RequestApi({
-        method: 'POST',
-        url: ApplicationController.firstSubmission(),
-        data: data,
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  /**
-   * @param data - 2차 제출(성적) 파라미터
-   */
-  postSecondSubmisson(data: ScoreType) {
-    try {
-      return RequestApi({
-        method: 'POST',
-        url: ApplicationController.secondSubmission(),
-        data: data,
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  /**
-   * @param data - 1차 수정(인적 사항) 파라미터
-   */
-  patchFirstSubmission(data: ApplicationType) {
-    try {
-      return RequestApi({
-        method: 'PATCH',
-        url: ApplicationController.firstSubmission(),
-        data: data,
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  /**
-   * @param data - 2차 수정(성적) 파라미터
-   */
-  patchSecondSubmisson(data: ScoreType) {
-    try {
-      return RequestApi({
-        method: 'PATCH',
-        url: ApplicationController.secondSubmission(),
-        data: data,
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  /**
-   * @param data - 2차 졸업자 제출(성적) 파라미터
-   */
-  postGraduationSubmission(data: ScoreType) {
-    try {
-      return RequestApi({
-        method: 'POST',
-        url: ApplicationController.graduationSubmission(),
-        data: data,
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  /**
-   * @param data - 2차 졸업자 수정(성적) 파라미터
-   */
-  patchGraduationSubmission(data: ScoreType) {
-    try {
-      return RequestApi({
-        method: 'PATCH',
-        url: ApplicationController.graduationSubmission(),
-        data: data,
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  /**
-   * @param data - 2차 검정고시 제출(성적) 파라미터
-   */
-  postGedSubmission(data: GEDScoreType) {
-    try {
-      return RequestApi({
-        method: 'POST',
-        url: ApplicationController.gedSubmission(),
-        data: data,
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  /**
-   * @param data - 2차 검정고시 수정(성적) 파라미터
-   */
-  patchGedSubmission(data: GEDScoreType) {
-    try {
-      return RequestApi({
-        method: 'PATCH',
-        url: ApplicationController.gedSubmission(),
-        data: data,
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-
-  /**
+   * @param accessToken
    * 최종 제출을 위한 api
    */
-  patchFinalSubmission() {
+  putFinalSubmission(accessToken?: string) {
     try {
-      return RequestApi({
-        method: 'PATCH',
-        url: ApplicationController.finalSubmission(),
-      });
-    } catch (error) {
+      return RequestApi(
+        {
+          method: 'PUT',
+          url: ApplicationController.finalSubmission(),
+        },
+        accessToken,
+      );
+    } catch (error: any) {
       return error;
     }
   }
 
   /**
+   * @param data - 증명사진
    * 증명사진 저장 및 수정을 위한 api
    */
   postImage(data: FormData) {
@@ -186,7 +117,7 @@ class Application {
           'Content-Type': 'multipart/form-data',
         },
       });
-    } catch (error) {
+    } catch (error: any) {
       return error;
     }
   }
