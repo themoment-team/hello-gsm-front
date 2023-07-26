@@ -1,0 +1,22 @@
+import * as S from './style';
+
+import { ReadingGlassesIcon } from 'assets/svg';
+
+const ListHeader = () => {
+  return (
+    <S.ListHeaderWrapper>
+      <div>
+        <S.FinalSubmit>최종 제출</S.FinalSubmit>
+        <S.SubmitNumber>{86}</S.SubmitNumber>
+      </div>
+      <S.ListHeaderContent>
+        <S.SearchInputBox>
+            <S.SearchInput placeholder="검색어를 입력해주세요."/>
+            <ReadingGlassesIcon />
+        </S.SearchInput>
+      </S.ListHeaderContent>
+    </S.ListHeaderWrapper>
+  );
+};
+
+export default ListHeader;
