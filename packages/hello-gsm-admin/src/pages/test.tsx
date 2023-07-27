@@ -1,7 +1,8 @@
 import { NextPage } from 'next';
+import { ListHeader } from 'components';
 
 const Test: NextPage = () => {
-  return <></>;
+  return <ListHeader />;
 };
 
 export default Test;

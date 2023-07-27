@@ -1,4 +1,4 @@
-import { styled } from '@emotion/styled';
+import styled from '@emotion/styled';
 
 export const ListHeaderWrapper = styled.div`
   display: flex;
@@ -10,6 +10,10 @@ export const ListHeaderContent = styled.div`
   width: calc(100vw - 221px - 69px);
   display: flex;
   justify-content: space-between;
+`;
+
+export const TitleWrapper = styled.div`
+  display: flex;
 `;
 
 const Title = styled.h5`
