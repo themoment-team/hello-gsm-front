@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import * as S from './style';
 import * as I from 'assets/svg';
-import { GooleLoginButton } from 'components';
+import { GoogleLoginButton } from 'components';
 
 const SignInPage: NextPage = () => {
   return (
@@ -20,7 +20,7 @@ const SignInPage: NextPage = () => {
           </S.LoginTitleWrap>
           <S.LoginTitle>로그인</S.LoginTitle>
         </S.LoginContent>
-        <GooleLoginButton>구글계정으로 로그인</GooleLoginButton>
+        <GoogleLoginButton>구글계정으로 로그인</GoogleLoginButton>
       </S.ContentWrap>
     </S.SignInPage>
   );
