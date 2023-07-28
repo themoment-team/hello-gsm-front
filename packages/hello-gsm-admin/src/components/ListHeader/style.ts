@@ -52,3 +52,8 @@ export const SearchInput = styled.input`
   border: 0;
   outline: none;
 `;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 16px;
+`;
