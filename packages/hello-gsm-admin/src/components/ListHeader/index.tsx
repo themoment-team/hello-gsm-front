@@ -10,7 +10,7 @@ const ListHeader: React.FC = () => {
   return (
     <S.ListHeaderWrapper>
       <S.TitleWrapper>
-        <S.FinalSubmit>최종 제출</S.FinalSubmit>
+        <S.FinalSubmit>최종 제출&nbsp;</S.FinalSubmit>
         <S.SubmitNumber>{86}</S.SubmitNumber>
       </S.TitleWrapper>
       <S.ListHeaderContent>
