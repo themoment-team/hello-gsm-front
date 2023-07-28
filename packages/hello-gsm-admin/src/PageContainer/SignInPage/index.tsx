@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import * as S from './style';
-import * as I from 'assets/svg';
 import { GoogleLoginButton } from 'components';
 
 const SignInPage: NextPage = () => {
