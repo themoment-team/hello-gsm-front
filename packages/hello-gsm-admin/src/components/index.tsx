@@ -6,3 +6,4 @@ export { default as ContentBox } from './ContentBox';
 export { default as Logout } from './Logout';
 export { default as ListHeader } from './ListHeader';
 export { default as PrintButton } from './PrintButton';
+export { default as GoogleLoginButton } from './GoogleLoginButton';

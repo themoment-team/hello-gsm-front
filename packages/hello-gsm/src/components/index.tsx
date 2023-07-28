@@ -24,3 +24,4 @@ export { default as ScoreResultModal } from './Modals/ScoreResultModal';
 export { default as FreeSemesterBtn } from './FreeSemesterBtn';
 export { default as ApplicantsStatus } from './ApplicantsStatus';
 export { default as BubbleButton } from './BubbleButton';
+export { default as ChannelTalk } from './ChannelTalk';
