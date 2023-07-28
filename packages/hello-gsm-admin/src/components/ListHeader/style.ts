@@ -36,7 +36,7 @@ export const SearchInputBox = styled.div`
   padding: 12px 16px 12px 20px;
   justify-content: space-between;
   border-radius: 10px;
-  border: 1px solid var(--grey-050, #e0e0e0);
+  border: 1px solid #e0e0e0;
 
   & > input::placeholder {
     color: #9e9e9e;
