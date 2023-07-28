@@ -35,6 +35,12 @@ export const SearchInputBox = styled.div`
   width: 340px;
   padding: 12px 16px 12px 20px;
   justify-content: space-between;
+  border-radius: 10px;
+  border: 1px solid var(--grey-050, #e0e0e0);
+
+  & > input::placeholder {
+    color: #9e9e9e;
+  }
 `;
 
 export const SearchInput = styled.input`
@@ -43,4 +49,6 @@ export const SearchInput = styled.input`
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
+  border: 0;
+  outline: none;
 `;
