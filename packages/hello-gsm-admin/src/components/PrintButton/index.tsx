@@ -18,10 +18,10 @@ const PrintType = {
 };
 
 const PrintButton: React.FC<PrintButtonProps> = ({ printType }) => (
-  <S.PrintButtonWrapper>
+  <S.PrintButton>
     {PrintType[printType].icon}
     <S.PrintText>{PrintType[printType].text} 출력</S.PrintText>
-  </S.PrintButtonWrapper>
+  </S.PrintButton>
 );
 
 export default PrintButton;

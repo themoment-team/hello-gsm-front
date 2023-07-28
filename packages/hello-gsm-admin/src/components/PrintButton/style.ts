@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const PrintButtonWrapper = styled.div`
+export const PrintButton = styled.button`
   display: flex;
   padding: 8px 12px;
   justify-content: space-between;
@@ -9,6 +9,7 @@ export const PrintButtonWrapper = styled.div`
   background: #2174d8;
   align-items: center;
   cursor: pointer;
+  border: 0;
 `;
 
 export const PrintText = styled.span`
