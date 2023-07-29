@@ -56,6 +56,19 @@ const ContentBox: React.FC<ContentType> = ({
     setScoreModalValue,
   } = useStore();
 
+  const formattedCellphoneNumber = cellphoneNumber.replace(
+    /(\d{3})(\d{4})(\d{4})/,
+    '$1-$2-$3',
+  );
+  const formattedGuardianCellphoneNumber = guardianCellphoneNumber.replace(
+    /(\d{3})(\d{4})(\d{4})/,
+    '$1-$2-$3',
+  );
+  const formattedTeacherCellphoneNumber =
+    teacherCellphoneNumber !== 'null'
+      ? teacherCellphoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')
+      : '검정고시';
+
   useEffect(() => {
     // 1차 시험 결과를 조화할 수 있는 날짜
     setIsFirstResult(isStartFirstResult);
@@ -157,11 +170,6 @@ const ContentBox: React.FC<ContentType> = ({
     <S.ContentBox>
       <S.Content>
         <S.RegistrationNumber>{applicationIdx}</S.RegistrationNumber>
-        <S.Name>{name}</S.Name>
-        <S.Screening>{screening}</S.Screening>
-        <S.SchoolName>
-          {schoolName !== 'null' ? schoolName : '검정고시'}
-        </S.SchoolName>
         <S.isDocumentReception>
           <S.Checkbox
             css={css`
@@ -170,13 +178,14 @@ const ContentBox: React.FC<ContentType> = ({
             onClick={documentSubmission}
           />
         </S.isDocumentReception>
-        <S.PhoneNumber>{cellphoneNumber}</S.PhoneNumber>
-        <S.GuardianNumber>{guardianCellphoneNumber}</S.GuardianNumber>
-        <S.TeacherNumber>
-          {teacherCellphoneNumber !== 'null'
-            ? teacherCellphoneNumber
-            : '검정고시'}
-        </S.TeacherNumber>
+        <S.Name>{name}</S.Name>
+        <S.Screening>{screening}</S.Screening>
+        <S.SchoolName>
+          {schoolName !== 'null' ? schoolName : '검정고시'}
+        </S.SchoolName>
+        <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
+        <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
+        <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
       </S.Content>
       <S.Button css={() => resultStyle(firstResult)}>{firstResult}</S.Button>
       {isFinalResult ? (
