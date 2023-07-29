@@ -11,9 +11,67 @@ import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { isStartFirstResult } from 'shared/acceptable';
 
+const ListDummyData: ApplicantType[] = [
+  {
+    cellphoneNumber: '01000000000',
+    name: '신희성',
+    application: {
+      applicationIdx: 1,
+      finalResultScreening: '합격',
+      firstResultScreening: '합격',
+      guardianCellphoneNumber: '01000000000',
+      isDocumentReception: true,
+      registrationNumber: 0,
+      schoolName: '금호중앙중학교',
+      screening: '일반전형',
+      teacherCellphoneNumber: '01000000000',
+      application_score: {
+        personalityEvaluationScore: '100',
+      },
+    },
+  },
+  {
+    cellphoneNumber: '01000000000',
+    name: '방가온',
+    application: {
+      applicationIdx: 2,
+      finalResultScreening: null,
+      firstResultScreening: '합격',
+      guardianCellphoneNumber: '01000000000',
+      isDocumentReception: true,
+      registrationNumber: 0,
+      schoolName: '수완중학교',
+      screening: '사회통합전형',
+      teacherCellphoneNumber: '01000000000',
+      application_score: {
+        personalityEvaluationScore: '50',
+      },
+    },
+  },
+  {
+    cellphoneNumber: '01000000000',
+    name: '박미리',
+    application: {
+      applicationIdx: 3,
+      finalResultScreening: '합격',
+      firstResultScreening: '합격',
+      guardianCellphoneNumber: '01000000000',
+      isDocumentReception: true,
+      registrationNumber: 0,
+      schoolName: '효광중학교',
+      screening: '일반전형',
+      teacherCellphoneNumber: '01000000000',
+      application_score: {
+        personalityEvaluationScore: '100',
+      },
+    },
+  },
+];
+
 const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const [printable, setPrintable] = useState<boolean>(false);
-  const [applicationList, setApplicationList] = useState<ApplicantType[]>(list);
+  const [applicationList, setApplicationList] =
+    useState<ApplicantType[]>(ListDummyData);
   const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
   const pageIndexRef = useRef<number>(2);
   const searchRef = useRef<HTMLInputElement>(null);
