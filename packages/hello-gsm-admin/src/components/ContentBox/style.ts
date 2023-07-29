@@ -57,12 +57,11 @@ export const isDocumentReception = styled.div`
   align-items: center;
 `;
 
-export const Checkbox = styled.span`
-  width: 25px;
-  height: 25px;
-  background: #bdbdbd;
-  border-radius: 5px;
-  cursor: pointer;
+export const DocumentReceptionText = styled.span<{
+  documentReception: boolean;
+}>`
+  color: ${({ documentReception }) =>
+    documentReception ? '#2174d8' : '#FF000F'};
 `;
 
 const Number = styled.p`

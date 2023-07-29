@@ -45,7 +45,7 @@ const ContentBox: React.FC<ContentType> = ({
   const [score, setScore] = useState<number | null>(
     parseFloat(application_score?.personalityEvaluationScore ?? '') || null,
   );
-  const [documentReception, setDocumentReception] = useState<boolean>(false);
+  const [documentReception, setDocumentReception] = useState<boolean>(true);
   const {
     showScoreModal,
     setShowScoreModal,
@@ -171,12 +171,9 @@ const ContentBox: React.FC<ContentType> = ({
       <S.Content>
         <S.RegistrationNumber>{applicationIdx}</S.RegistrationNumber>
         <S.isDocumentReception>
-          <S.Checkbox
-            css={css`
-              background: ${documentReception && '#19BAFF'};
-            `}
-            onClick={documentSubmission}
-          />
+          <S.DocumentReceptionText documentReception={documentReception}>
+            {documentReception ? '· 제출' : '· 미제출'}
+          </S.DocumentReceptionText>
         </S.isDocumentReception>
         <S.Name>{name}</S.Name>
         <S.Screening>{screening}</S.Screening>
