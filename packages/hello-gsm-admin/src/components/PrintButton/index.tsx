@@ -4,6 +4,7 @@ import { PrintIcon, ExcelIcon } from 'assets/svg';
 
 interface PrintButtonProps {
   printType: 'excel' | 'ticket';
+  attributes?: React.ButtonHTMLAttributes<HTMLButtonElement>;
 }
 
 const PrintType = {
@@ -17,8 +18,11 @@ const PrintType = {
   },
 };
 
-const PrintButton: React.FC<PrintButtonProps> = ({ printType }) => (
-  <S.PrintButton>
+const PrintButton: React.FC<PrintButtonProps> = ({
+  printType,
+  ...attributes
+}) => (
+  <S.PrintButton {...attributes}>
     {PrintType[printType].icon}
     <S.PrintText>{PrintType[printType].text} 출력</S.PrintText>
   </S.PrintButton>
