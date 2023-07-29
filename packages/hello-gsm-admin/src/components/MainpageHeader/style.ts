@@ -11,15 +11,15 @@ export const Header = styled.div`
 `;
 
 export const HeaderElement = styled.div`
-  width: 132px;
+  width: 100px;
   font-weight: 700;
   font-size: 20px;
   color: #f8f8f8;
   text-align: center;
-  :nth-of-type(4) {
+  :nth-of-type(5) {
     width: 190px;
   }
-  :nth-of-type(5) {
+  :nth-of-type(2) {
     width: 90px;
   }
   :nth-of-type(n + 6):nth-of-type(-n + 8) {
