@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import * as S from './style';
 
@@ -7,6 +7,10 @@ import { SearchIcon } from 'assets/svg';
 import { PrintButton } from 'components';
 
 const ListHeader: React.FC = () => {
+  const [isFocus, setIsFocus] = useState<boolean>(false);
+
+  const handleFocus = () => setIsFocus(prev => !prev);
+
   return (
     <S.ListHeaderWrapper>
       <S.TitleWrapper>
@@ -15,7 +19,11 @@ const ListHeader: React.FC = () => {
       </S.TitleWrapper>
       <S.ListHeaderContent>
         <S.SearchInputBox>
-          <S.SearchInput placeholder="검색어를 입력해주세요." />
+          <S.SearchInput
+            onFocus={handleFocus}
+            onBlur={handleFocus}
+            placeholder={isFocus ? '' : '검색어를 입력해주세요.'}
+          />
           <SearchIcon />
         </S.SearchInputBox>
         <S.ButtonWrapper>

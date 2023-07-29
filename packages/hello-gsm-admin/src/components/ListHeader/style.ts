@@ -45,12 +45,15 @@ export const SearchInputBox = styled.div`
 
 export const SearchInput = styled.input`
   width: 100%;
-  color: #9e9e9e;
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
   border: 0;
   outline: none;
+  color: black;
+  ::placeholder {
+    color: #9e9e9e;
+  }
 `;
 
 export const ButtonWrapper = styled.div`
