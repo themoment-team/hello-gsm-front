@@ -9,7 +9,7 @@ export const ContentBox = styled.div`
 `;
 
 export const Content = styled.div`
-  width: 1320px;
+  width: 1750px;
   height: 100%;
   border-radius: 10px;
   background: #ffffff;
@@ -38,7 +38,7 @@ export const Screening = styled.p`
   width: 132px;
   font-weight: 500;
   font-size: 18px;
-  color: rgba(38, 38, 38, 0.54);
+  color: black;
   text-align: center;
 `;
 
@@ -46,7 +46,7 @@ export const SchoolName = styled.p`
   width: 190px;
   font-weight: 500;
   font-size: 18px;
-  color: rgba(38, 38, 38, 0.54);
+  color: black;
   text-align: center;
 `;
 
@@ -67,7 +67,7 @@ export const DocumentReceptionText = styled.span<{
 const Number = styled.p`
   font-weight: 500;
   font-size: 18px;
-  color: rgba(38, 38, 38, 0.54);
+  color: #616161;
   text-align: center;
 `;
 
@@ -98,3 +98,9 @@ export const Button = styled.button`
   padding: 0;
   border: 0;
 `;
+
+export const FirstResultText = styled.p``;
+
+export const FinalScoreText = styled.p``;
+
+export const FinalResultText = styled.p``;

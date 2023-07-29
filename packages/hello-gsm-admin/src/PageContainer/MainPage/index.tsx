@@ -43,9 +43,7 @@ const ListDummyData: ApplicantType[] = [
       schoolName: '수완중학교',
       screening: '사회통합전형',
       teacherCellphoneNumber: '01000000000',
-      application_score: {
-        personalityEvaluationScore: '50',
-      },
+      application_score: null,
     },
   },
   {

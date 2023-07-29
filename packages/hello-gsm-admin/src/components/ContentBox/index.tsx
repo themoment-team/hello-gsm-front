@@ -131,20 +131,17 @@ const ContentBox: React.FC<ContentType> = ({
     switch (result) {
       case '미정':
         return css`
-          background: #625e6f;
-          color: rgba(31, 31, 31, 0.86);
+          color: #616161;
           cursor: default;
         `;
       case '합격':
         return css`
-          background: #19baff;
-          color: #ffffff;
+          color: #2174d8;
           cursor: default;
         `;
       case '불합격':
         return css`
-          background: #ff4747;
-          color: #ffffff;
+          color: #ff000f;
           cursor: default;
         `;
     }
@@ -169,7 +166,9 @@ const ContentBox: React.FC<ContentType> = ({
   return (
     <S.ContentBox>
       <S.Content>
-        <S.RegistrationNumber>{applicationIdx}</S.RegistrationNumber>
+        <S.RegistrationNumber>
+          {String(applicationIdx).padStart(4, '0')}
+        </S.RegistrationNumber>
         <S.isDocumentReception>
           <S.DocumentReceptionText documentReception={documentReception}>
             {documentReception ? '· 제출' : '· 미제출'}
@@ -183,13 +182,22 @@ const ContentBox: React.FC<ContentType> = ({
         <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
+        <S.FirstResultText css={() => resultStyle(firstResult)}>
+          {firstResult}
+        </S.FirstResultText>
+        <S.FinalScoreText
+          css={() => {
+            return { color: score ? 'black' : '#616161' };
+          }}
+        >
+          {score ?? '미입력'}
+        </S.FinalScoreText>
+        <S.FinalResultText
+          css={() => resultStyle(isFinalResult ? finalResult : '미정')}
+        >
+          {isFinalResult ? finalResult : '미정'}
+        </S.FinalResultText>
       </S.Content>
-      <S.Button css={() => resultStyle(firstResult)}>{firstResult}</S.Button>
-      {isFinalResult ? (
-        <S.Button css={() => resultStyle(finalResult)}>{finalResult}</S.Button>
-      ) : (
-        <S.Button onClick={scoreButtonClick}>{score ?? '입력'}</S.Button>
-      )}
     </S.ContentBox>
   );
 };
