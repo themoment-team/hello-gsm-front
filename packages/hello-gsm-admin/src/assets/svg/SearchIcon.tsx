@@ -1,4 +1,4 @@
-const ReadingGlassesIcon = () => (
+const SearchIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -22,4 +22,4 @@ const ReadingGlassesIcon = () => (
   </svg>
 );
 
-export default ReadingGlassesIcon;
+export default SearchIcon;

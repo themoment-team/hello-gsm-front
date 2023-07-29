@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as S from './style';
 
-import { ReadingGlassesIcon } from 'assets/svg';
+import { SearchIcon } from 'assets/svg';
 
 import { PrintButton } from 'components';
 
@@ -16,7 +16,7 @@ const ListHeader: React.FC = () => {
       <S.ListHeaderContent>
         <S.SearchInputBox>
           <S.SearchInput placeholder="검색어를 입력해주세요." />
-          <ReadingGlassesIcon />
+          <SearchIcon />
         </S.SearchInputBox>
         <S.ButtonWrapper>
           <PrintButton printType="excel" />
