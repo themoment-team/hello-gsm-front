@@ -1,6 +1,6 @@
 import * as S from './style';
 
-import { NewPrintIcon, ExcelIcon } from 'assets/svg';
+import { PrintIcon, ExcelIcon } from 'assets/svg';
 
 interface PrintButtonProps {
   printType: 'excel' | 'ticket';
@@ -12,7 +12,7 @@ const PrintType = {
     text: 'Excel',
   },
   ticket: {
-    icon: <NewPrintIcon />,
+    icon: <PrintIcon />,
     text: '수험표',
   },
 };
