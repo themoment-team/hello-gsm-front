@@ -9,7 +9,7 @@ export const ContentBox = styled.div`
 `;
 
 export const Content = styled.div`
-  width: 1750px;
+  width: 1800px;
   height: 100%;
   border-radius: 10px;
   background: #ffffff;
@@ -19,35 +19,35 @@ export const Content = styled.div`
 `;
 
 export const RegistrationNumber = styled.p`
-  width: 132px;
+  width: 100px;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 12px;
   color: #0f0921;
   text-align: center;
 `;
 
 export const Name = styled.p`
-  width: 132px;
+  width: 80px;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 12px;
   color: #0f0921;
-  text-align: center;
+  text-align: left;
 `;
 
 export const Screening = styled.p`
-  width: 132px;
+  width: 100px;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 12px;
   color: black;
-  text-align: center;
+  text-align: left;
 `;
 
 export const SchoolName = styled.p`
-  width: 190px;
+  width: 100px;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 12px;
   color: black;
-  text-align: center;
+  text-align: left;
 `;
 
 export const isDocumentReception = styled.div`
@@ -62,25 +62,28 @@ export const DocumentReceptionText = styled.span<{
 }>`
   color: ${({ documentReception }) =>
     documentReception ? '#2174d8' : '#FF000F'};
+  font-size: 12px;
+  width: 50px;
+  text-align: left;
 `;
 
 const Number = styled.p`
   font-weight: 500;
-  font-size: 18px;
+  font-size: 12px;
   color: #616161;
   text-align: center;
 `;
 
 export const PhoneNumber = styled(Number)`
-  width: 190px;
+  width: 100px;
 `;
 
 export const GuardianNumber = styled(Number)`
-  width: 190px;
+  width: 100px;
 `;
 
 export const TeacherNumber = styled(Number)`
-  width: 190px;
+  width: 100px;
 `;
 
 export const Button = styled.button`
@@ -99,8 +102,26 @@ export const Button = styled.button`
   border: 0;
 `;
 
-export const FirstResultText = styled.p``;
+export const FirstResultText = styled.p`
+  font-size: 12px;
+`;
 
-export const FinalScoreText = styled.p``;
+export const FinalScoreText = styled.p`
+  font-size: 12px;
+`;
 
-export const FinalResultText = styled.p``;
+export const FinalResultText = styled.p`
+  font-size: 12px;
+`;
+
+export const EditButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0);
+  gap: 5px;
+  color: #2174d8;
+  border: 1px solid #2174d8;
+  border-radius: 10px;
+  padding: 7px 18px;
+`;

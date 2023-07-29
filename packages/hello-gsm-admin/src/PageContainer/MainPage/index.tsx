@@ -25,9 +25,7 @@ const ListDummyData: ApplicantType[] = [
       schoolName: '금호중앙중학교',
       screening: '일반전형',
       teacherCellphoneNumber: '01000000000',
-      application_score: {
-        personalityEvaluationScore: '100',
-      },
+      application_score: null,
     },
   },
   {
@@ -43,7 +41,9 @@ const ListDummyData: ApplicantType[] = [
       schoolName: '수완중학교',
       screening: '사회통합전형',
       teacherCellphoneNumber: '01000000000',
-      application_score: null,
+      application_score: {
+        personalityEvaluationScore: '99.99',
+      },
     },
   },
   {
@@ -60,7 +60,7 @@ const ListDummyData: ApplicantType[] = [
       screening: '일반전형',
       teacherCellphoneNumber: '01000000000',
       application_score: {
-        personalityEvaluationScore: '100',
+        personalityEvaluationScore: '12.09',
       },
     },
   },

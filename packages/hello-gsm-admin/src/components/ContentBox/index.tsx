@@ -11,6 +11,7 @@ import {
 import useStore from 'Stores/StoreContainer';
 import { ApplicantType } from 'Types/application';
 import * as S from './style';
+import * as I from '../../assets/svg';
 
 interface ContentType {
   content: ApplicantType;
@@ -197,6 +198,14 @@ const ContentBox: React.FC<ContentType> = ({
         >
           {isFinalResult ? finalResult : '미정'}
         </S.FinalResultText>
+        <S.EditButton>
+          <I.BulbIcon />
+          상태 수정
+        </S.EditButton>
+        <S.EditButton>
+          <I.EditIcon />
+          원서 수정
+        </S.EditButton>
       </S.Content>
     </S.ContentBox>
   );
