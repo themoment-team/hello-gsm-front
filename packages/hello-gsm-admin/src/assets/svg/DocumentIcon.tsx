@@ -1,4 +1,4 @@
-const PrintIcon = () => {
+const DocumentIcon = () => {
   return (
     <svg
       width="15"
@@ -33,4 +33,4 @@ const PrintIcon = () => {
   );
 };
 
-export default PrintIcon;
+export default DocumentIcon;
