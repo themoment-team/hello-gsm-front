@@ -10,12 +10,10 @@ export const SideBar = styled.div`
 export const Title = styled.div`
   width: 166px;
   height: 94px;
-  box-sizing: content-box;
   font-family: Product Sans;
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
-  letter-spacing: 0em;
   text-align: left;
   color: black;
   margin: 0 auto;
@@ -37,7 +35,6 @@ export const ApplicantList = styled.div`
   font-family: Pretendard;
   font-size: 16px;
   font-weight: 600;
-  letter-spacing: 0em;
   text-align: left;
   color: #616161;
   height: 24px;
