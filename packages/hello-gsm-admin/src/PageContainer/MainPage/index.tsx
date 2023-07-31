@@ -1,4 +1,4 @@
-import { ContentBox, Logout, MainpageHeader, ScoreModal } from 'components';
+import { ContentBox, ListHeader, MainpageHeader, ScoreModal } from 'components';
 import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
@@ -7,8 +7,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { ApplicantsType, ApplicantType, GetListType } from 'Types/application';
 import application from 'Api/application';
 import auth from 'Api/auth';
-import Link from 'next/link';
-import { toast } from 'react-toastify';
 import { isStartFirstResult } from 'shared/acceptable';
 
 const ListDummyData: ApplicantType[] = [
@@ -177,36 +175,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
         `}
       />
       <S.MainPageContent>
-        <S.FunctionBox>
-          <S.CountBox>{`최종 제출 인원 : ${count ?? 0}명`}</S.CountBox>
-          <S.Searchbox>
-            <S.SearchInput
-              placeholder="검색어를 입력하세요"
-              ref={searchRef}
-              onKeyPress={enterEvent}
-            />
-            <S.SearchButton onClick={search}>검색</S.SearchButton>
-          </S.Searchbox>
-          <S.ButtonBox>
-            <Logout />
-            {printable ? (
-              <Link href="/ticket">
-                <S.Print>수험표 출력</S.Print>
-              </Link>
-            ) : (
-              <S.Print
-                onClick={() => toast.error('수험표 출력 가능 기간이 아닙니다.')}
-                css={css`
-                  background: #625e6f;
-                  color: rgba(31, 31, 31, 0.86);
-                  cursor: default;
-                `}
-              >
-                수험표 출력
-              </S.Print>
-            )}
-          </S.ButtonBox>
-        </S.FunctionBox>
+        <ListHeader />
         <MainpageHeader />
         <S.ContentList>
           {applicationList?.map((content, index: number) => (
@@ -215,8 +184,6 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
           {!isPageEnd && <S.Target ref={loadMoreRef} />}
         </S.ContentList>
       </S.MainPageContent>
-      <S.BlueBall />
-      <S.SkyBlueBall />
     </S.MainPage>
   );
 };

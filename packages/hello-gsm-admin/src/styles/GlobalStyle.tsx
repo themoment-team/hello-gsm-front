@@ -31,10 +31,6 @@ export function GlobalStyle() {
           }
         }
 
-        body {
-          background-color: #0f0921;
-        }
-
         a {
           text-decoration: none;
           color: #ffffff;
