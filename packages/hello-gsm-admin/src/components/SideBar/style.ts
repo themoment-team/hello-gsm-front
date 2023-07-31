@@ -32,7 +32,6 @@ export const ApplicantListBox = styled.div`
   width: 221px;
 `;
 export const ApplicantList = styled.div`
-  font-family: Pretendard;
   font-size: 16px;
   font-weight: 600;
   text-align: left;
@@ -69,7 +68,6 @@ export const Logout = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: Pretendard;
   font-size: 16px;
   font-weight: 400;
   line-height: 8px;
