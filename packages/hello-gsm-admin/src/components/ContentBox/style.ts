@@ -130,12 +130,12 @@ export const EditButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   background: rgba(0, 0, 0, 0);
   color: #2174d8;
   border: 1px solid #2174d8;
   border-radius: 10px;
-  padding: 7px 18px 7px 18px;
+  padding: 7px 16px 7px 16px;
   cursor: pointer;
 
   &:hover {
@@ -171,4 +171,5 @@ export const EditButton = styled.button`
       fill: #9e9e9e;
     }
   }
+  transition: ease-in-out 0.2s;
 `;
