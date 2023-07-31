@@ -65,68 +65,11 @@ const ListDummyData: ApplicantType[] = [
 ];
 
 const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
-  const [printable, setPrintable] = useState<boolean>(false);
   const [applicationList, setApplicationList] =
     useState<ApplicantType[]>(ListDummyData);
   const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
-  const pageIndexRef = useRef<number>(2);
-  const searchRef = useRef<HTMLInputElement>(null);
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const { showScoreModal } = useStore();
-
-  useEffect(() => {
-    // 수험표를 출력할 수 있는 기간
-    setPrintable(isStartFirstResult);
-  }, []);
-
-  const getList = useCallback(async () => {
-    const keyword = searchRef.current?.value;
-    try {
-      const { data }: GetListType = await application.getList(
-        pageIndexRef.current,
-        keyword,
-      );
-      setApplicationList(list => [...list, ...data]);
-      pageIndexRef.current++;
-      setIsPageEnd(data.length < 10 ? true : false);
-    } catch (error: any) {
-      // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
-      if (error.response?.status === 401) {
-        try {
-          // accessToken 발급
-          await auth.refresh();
-          getList();
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        console.log(error);
-      }
-    }
-  }, []);
-
-  const search = async () => {
-    const keyword = searchRef.current?.value;
-    try {
-      const { data }: GetListType = await application.getList(1, keyword);
-      pageIndexRef.current = 2;
-      setApplicationList(data);
-      setIsPageEnd(data.length < 10 ? true : false);
-    } catch (error: any) {
-      // accessToken 없을 시에 accessToken 발급 후 검색 결과 요청
-      if (error.response?.status === 401) {
-        try {
-          // accessToken 발급
-          await auth.refresh();
-          search();
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        console.log(error);
-      }
-    }
-  };
 
   const handleObserver = useCallback(
     async (
@@ -135,11 +78,10 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
     ) => {
       if (entry.isIntersecting) {
         observer.unobserve(entry.target);
-        await getList();
         observer.observe(entry.target);
       }
     },
-    [getList],
+    [],
   );
 
   useEffect(() => {
@@ -157,12 +99,6 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
 
     return () => observer && observer.disconnect();
   }, [handleObserver, isPageEnd]);
-
-  const enterEvent = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      search();
-    }
-  };
 
   return (
     <S.MainPage>

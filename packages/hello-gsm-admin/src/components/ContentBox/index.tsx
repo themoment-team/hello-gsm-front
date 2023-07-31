@@ -77,57 +77,6 @@ const ContentBox: React.FC<ContentType> = ({
     setIsFinalResult(isStartFinalResult);
   }, []);
 
-  useEffect(() => {
-    setDocumentReception(isDocumentReception);
-  }, [isDocumentReception]);
-
-  useEffect(() => {
-    setFirstResult(
-      !isFirstResult ? '미정' : firstResultScreening ? '합격' : '불합격',
-    );
-  }, [isFirstResult]);
-
-  useEffect(() => {
-    if (!showScoreModal) {
-      if (modalRegistrationNumber === registrationNumber) {
-        setScore(scoreModalValue);
-      }
-    }
-  }, [showScoreModal]);
-
-  useEffect(() => {
-    setScore(
-      parseFloat(application_score?.personalityEvaluationScore ?? '') || null,
-    );
-  }, [application_score]);
-
-  const documentSubmission = async () => {
-    // 1차 서류제출 여부를 할당하는 기간
-    if (isStartFirstResult) {
-      return toast.error('서류제출 여부 할당 기간이 아닙니다.');
-    }
-    const data = {
-      registrationNumber: registrationNumber,
-    };
-    try {
-      await application.document(data);
-      setDocumentReception(documentReception => !documentReception);
-    } catch (error: any) {
-      // accessToken 없을 시에 accessToken 발급 후 서류 제출 여부 요청
-      if (error.response.status === 401) {
-        try {
-          // accessToken 발급
-          await auth.refresh();
-          documentSubmission();
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        console.log(error);
-      }
-    }
-  };
-
   const resultStyle = (result: '미정' | '합격' | '불합격') => {
     switch (result) {
       case '미정':
