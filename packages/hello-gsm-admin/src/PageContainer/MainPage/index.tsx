@@ -34,9 +34,9 @@ const ListDummyData: ApplicantType[] = [
     application: {
       applicationIdx: 2,
       finalResultScreening: null,
-      firstResultScreening: '합격',
+      firstResultScreening: null,
       guardianCellphoneNumber: '01000000000',
-      isDocumentReception: true,
+      isDocumentReception: false,
       registrationNumber: 0,
       schoolName: '수완중학교',
       screening: '사회통합전형',

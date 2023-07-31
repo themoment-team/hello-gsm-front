@@ -13,7 +13,7 @@ export const ContentBox = styled.div`
 `;
 
 export const Content = styled.div`
-  width: 1200px;
+  width: 1205px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -65,6 +65,7 @@ export const DocumentReceptionText = styled.span<{
     documentReception ? '#2174d8' : '#FF000F'};
   font-size: 12px;
   text-align: left;
+  width: 50px;
 `;
 
 const Number = styled.p`
@@ -104,7 +105,7 @@ export const Button = styled.button`
 
 export const FirstResultText = styled.p`
   font-size: 12px;
-  width: 30px;
+  width: 40px;
 `;
 
 export const FinalScoreText = styled.p`
@@ -135,6 +136,7 @@ export const EditButton = styled.button`
   border: 1px solid #2174d8;
   border-radius: 10px;
   padding: 7px 18px 7px 18px;
+  cursor: pointer;
 
   &:hover {
     background: #d6e8ff;

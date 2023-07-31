@@ -14,7 +14,7 @@ export const ContentBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 5px;
+  padding-left: 8px;
 `;
 
 export const HeaderElement = styled.div`
@@ -23,10 +23,10 @@ export const HeaderElement = styled.div`
   color: #616161;
   text-align: left;
   :nth-of-type(1) {
-    width: 100px;
+    width: 90px;
   }
   :nth-of-type(2) {
-    width: 90px;
+    width: 85px;
   }
   :nth-of-type(3) {
     width: 80px;
@@ -38,7 +38,7 @@ export const HeaderElement = styled.div`
     width: 130px;
   }
   :nth-of-type(6) {
-    width: 130px;
+    width: 125px;
   }
   :nth-of-type(7) {
     width: 125px;
@@ -53,6 +53,6 @@ export const HeaderElement = styled.div`
     width: 80px;
   }
   :nth-of-type(11) {
-    width: 65px;
+    width: 60px;
   }
 `;
