@@ -132,7 +132,7 @@ const ContentBox: React.FC<ContentType> = ({
     switch (result) {
       case '미정':
         return css`
-          color: #616161;
+          color: #9e9e9e;
           cursor: default;
         `;
       case '합격':
@@ -172,7 +172,7 @@ const ContentBox: React.FC<ContentType> = ({
         </S.FirstResultText>
         <S.FinalScoreText
           css={() => {
-            return { color: score ? '#212121' : '#616161' };
+            return { color: score ? '#212121' : '#9E9E9E' };
           }}
         >
           {score ?? '미입력'}

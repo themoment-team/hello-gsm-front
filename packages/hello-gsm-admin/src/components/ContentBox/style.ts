@@ -71,7 +71,7 @@ export const DocumentReceptionText = styled.span<{
 const Number = styled.p`
   font-weight: 500;
   font-size: 12px;
-  color: #616161;
+  color: #9e9e9e;
   text-align: center;
 `;
 
