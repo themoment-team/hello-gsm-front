@@ -72,9 +72,9 @@ const ContentBox: React.FC<ContentType> = ({
 
   useEffect(() => {
     // 1차 시험 결과를 조화할 수 있는 날짜
-    setIsFirstResult(isStartFirstResult);
+    setIsFirstResult(true);
     // 2차 시험 결과를 조회할 수 있는 날짜
-    setIsFinalResult(isStartFinalResult);
+    setIsFinalResult(true);
   }, []);
 
   useEffect(() => {
@@ -188,7 +188,7 @@ const ContentBox: React.FC<ContentType> = ({
         </S.FirstResultText>
         <S.FinalScoreText
           css={() => {
-            return { color: score ? 'black' : '#616161' };
+            return { color: score ? '#212121' : '#616161' };
           }}
         >
           {score ?? '미입력'}
@@ -198,6 +198,8 @@ const ContentBox: React.FC<ContentType> = ({
         >
           {isFinalResult ? finalResult : '미정'}
         </S.FinalResultText>
+      </S.Content>
+      <S.EditButtonBox>
         <S.EditButton>
           <I.BulbIcon />
           상태 수정
@@ -206,7 +208,7 @@ const ContentBox: React.FC<ContentType> = ({
           <I.EditIcon />
           원서 수정
         </S.EditButton>
-      </S.Content>
+      </S.EditButtonBox>
     </S.ContentBox>
   );
 };

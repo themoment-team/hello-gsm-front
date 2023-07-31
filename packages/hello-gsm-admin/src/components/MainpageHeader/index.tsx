@@ -18,9 +18,11 @@ const MainpageHeader: React.FC = () => {
 
   return (
     <S.Header>
-      {headerElement.map((element: string, index: number) => (
-        <S.HeaderElement key={index}>{element}</S.HeaderElement>
-      ))}
+      <S.ContentBox>
+        {headerElement.map((element: string, index: number) => (
+          <S.HeaderElement key={index}>{element}</S.HeaderElement>
+        ))}
+      </S.ContentBox>
     </S.Header>
   );
 };

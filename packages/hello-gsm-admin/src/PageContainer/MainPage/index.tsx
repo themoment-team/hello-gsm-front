@@ -13,7 +13,7 @@ import { isStartFirstResult } from 'shared/acceptable';
 
 const ListDummyData: ApplicantType[] = [
   {
-    cellphoneNumber: '01000000000',
+    cellphoneNumber: '01038157596',
     name: '신희성',
     application: {
       applicationIdx: 1,
