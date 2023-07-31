@@ -98,7 +98,10 @@ export const ContentList = styled.div`
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
-    width: 0px;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   }
 `;
 
