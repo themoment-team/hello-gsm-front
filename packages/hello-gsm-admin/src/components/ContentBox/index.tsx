@@ -72,9 +72,9 @@ const ContentBox: React.FC<ContentType> = ({
 
   useEffect(() => {
     // 1차 시험 결과를 조화할 수 있는 날짜
-    setIsFirstResult(true);
+    setIsFirstResult(isStartFirstResult);
     // 2차 시험 결과를 조회할 수 있는 날짜
-    setIsFinalResult(true);
+    setIsFinalResult(isStartFinalResult);
   }, []);
 
   useEffect(() => {
@@ -146,22 +146,6 @@ const ContentBox: React.FC<ContentType> = ({
           cursor: default;
         `;
     }
-  };
-
-  const scoreButtonClick = () => {
-    if (
-      // 2차 성적을 입력하는 기간
-      isDuringFinalResult
-    ) {
-      return toast.error('2차 성적 입력 기간이 아닙니다.');
-    }
-    if (firstResult === '불합격') {
-      return toast.error('불합격자는 2차 성적 입력이 불가능합니다.');
-    }
-    setModalRegistrationNumber(registrationNumber);
-    setModalName(name);
-    setShowScoreModal();
-    setScoreModalValue(score);
   };
 
   return (
