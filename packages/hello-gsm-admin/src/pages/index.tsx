@@ -41,6 +41,7 @@ const Home: NextPage<ApplicantsType> = ({ list, count }) => {
 //   const accessToken = `adminAccessToken=${ctx.req.cookies.adminAccessToken}`;
 //   const refreshToken = `adminRefreshToken=${ctx.req.cookies.adminRefreshToken}`;
 
+
 //   if (ctx.req.cookies.adminRefreshToken) {
 //     if (ctx.req.cookies.adminAccessToken) {
 //       return getListAndCount(accessToken);
@@ -65,5 +66,6 @@ const Home: NextPage<ApplicantsType> = ({ list, count }) => {
 //     };
 //   }
 // };
+
 
 export default Home;
