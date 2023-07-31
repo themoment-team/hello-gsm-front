@@ -129,10 +129,44 @@ export const EditButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0);
   gap: 5px;
+  background: rgba(0, 0, 0, 0);
   color: #2174d8;
   border: 1px solid #2174d8;
   border-radius: 10px;
   padding: 7px 18px 7px 18px;
+
+  &:hover {
+    background: #d6e8ff;
+    color: #2174d8;
+    border: 1px solid #d6e8ff;
+    path {
+      fill: #2174d8;
+    }
+  }
+
+  &:active {
+    background: #2174d8;
+    color: #fff;
+    border: 1px solid #2174d8;
+    path {
+      fill: #fff;
+    }
+    rect {
+      fill: #fff;
+    }
+  }
+
+  &:disabled {
+    background: #e0e0e0;
+    color: #9e9e9e;
+    border: 1px solid #e0e0e0;
+    border: 0;
+    path {
+      fill: #9e9e9e;
+    }
+    rect {
+      fill: #9e9e9e;
+    }
+  }
 `;
