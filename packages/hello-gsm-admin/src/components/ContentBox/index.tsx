@@ -11,7 +11,7 @@ import {
 import useStore from 'Stores/StoreContainer';
 import { ApplicantType } from 'Types/application';
 import * as S from './style';
-import * as I from '../../assets/svg';
+import * as I from 'assets/svg';
 
 interface ContentType {
   content: ApplicantType;
