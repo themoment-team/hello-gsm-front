@@ -3,10 +3,13 @@ import styled from '@emotion/styled';
 export const ContentBox = styled.div`
   width: 100%;
   height: 70px;
-  margin: 20px 0;
   display: flex;
   justify-content: space-between;
   background: #ffffff;
+  border-top: 1px solid #eeeeee;
+  :nth-of-type(1) {
+    border-top: none;
+  }
 `;
 
 export const Content = styled.div`

@@ -5,6 +5,7 @@ export const Header = styled.div`
   height: 60px;
   border-bottom: 1px solid #eeeeee;
   margin-top: 10px;
+  background: #fff;
 `;
 
 export const ContentBox = styled.div`
@@ -31,13 +32,13 @@ export const HeaderElement = styled.div`
     width: 80px;
   }
   :nth-of-type(4) {
-    width: 110px;
+    width: 105px;
   }
   :nth-of-type(5) {
-    width: 135px;
+    width: 130px;
   }
   :nth-of-type(6) {
-    width: 140px;
+    width: 130px;
   }
   :nth-of-type(7) {
     width: 125px;
