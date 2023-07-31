@@ -7,7 +7,6 @@ export const ListHeaderWrapper = styled.div`
 `;
 
 export const ListHeaderContent = styled.div`
-  width: calc(100vw - 221px - 69px);
   display: flex;
   justify-content: space-between;
 `;
