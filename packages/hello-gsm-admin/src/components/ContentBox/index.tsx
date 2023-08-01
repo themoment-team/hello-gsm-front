@@ -122,9 +122,9 @@ const ContentBox: React.FC<ContentType> = ({
           {isFirstResult ? firstResult : '미정'}
         </S.FirstResultText>
         <S.FinalScoreText
-          css={() => {
-            return { color: score ? '#212121' : '#9E9E9E' };
-          }}
+          css={css`
+            color: ${score ? '#212121' : '#9E9E9E'};
+          `}
         >
           {score ?? '미입력'}
         </S.FinalScoreText>
