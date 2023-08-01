@@ -77,24 +77,19 @@ const ContentBox: React.FC<ContentType> = ({
     setIsFinalResult(isStartFinalResult);
   }, []);
 
-  const resultStyle = (result: '미정' | '합격' | '불합격') => {
-    switch (result) {
-      case '미정':
-        return css`
-          color: #9e9e9e;
-          cursor: default;
-        `;
-      case '합격':
-        return css`
-          color: #2174d8;
-          cursor: default;
-        `;
-      case '불합격':
-        return css`
-          color: #ff000f;
-          cursor: default;
-        `;
-    }
+  const newResultStyle = {
+    미정: css`
+      color: #9e9e9e;
+      cursor: default;
+    `,
+    합격: css`
+      color: #2174d8;
+      cursor: default;
+    `,
+    불합격: css`
+      color: #ff000f;
+      cursor: default;
+    `,
   };
 
   return (
@@ -117,7 +112,7 @@ const ContentBox: React.FC<ContentType> = ({
         <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
         <S.FirstResultText
-          css={() => resultStyle(isFirstResult ? firstResult : '미정')}
+          css={newResultStyle[isFirstResult ? firstResult : '미정']}
         >
           {isFirstResult ? firstResult : '미정'}
         </S.FirstResultText>
@@ -129,7 +124,7 @@ const ContentBox: React.FC<ContentType> = ({
           {score ?? '미입력'}
         </S.FinalScoreText>
         <S.FinalResultText
-          css={() => resultStyle(isFinalResult ? finalResult : '미정')}
+          css={newResultStyle[isFinalResult ? finalResult : '미정']}
         >
           {isFinalResult ? finalResult : '미정'}
         </S.FinalResultText>
