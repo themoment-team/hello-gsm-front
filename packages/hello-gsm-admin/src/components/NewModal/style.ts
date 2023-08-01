@@ -29,15 +29,22 @@ export const Desc = styled.div`
   color: #616161;
 `;
 
-export const ImgBox = styled.div`
+export const ButtonBox = styled.div`
   width: 848px;
   height: 200px;
   display: flex;
   justify-content: space-between;
 `;
+export const ModalOption = styled.button`
+  border: none;
+  background-color: white;
+  cursor: pointer;
+`;
+
 export const XIcon = styled.div`
   height: 24px;
   width: 848px;
   display: flex;
   justify-content: end;
+  cursor: pointer;
 `;

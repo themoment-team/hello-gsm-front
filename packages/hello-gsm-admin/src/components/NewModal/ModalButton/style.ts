@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const ModalButton = styled.div`
+export const ModalButton = styled.button`
   width: 416px;
   height: 48px;
   padding: 8px 20px 8px 20px;
@@ -12,4 +12,6 @@ export const ModalButton = styled.div`
   justify-content: center;
   color: white;
   font-weight: 700;
+  border: none;
+  cursor: pointer;
 `;
