@@ -37,9 +37,9 @@ const ContentBox: React.FC<ContentType> = ({
 }) => {
   const [isFirstResult, setIsFirstResult] = useState<boolean>(false);
   const [isFinalResult, setIsFinalResult] = useState<boolean>(false);
-  const [firstResult, setFirstResult] = useState<'미정' | '합격' | '불합격'>(
-    '미정',
-  );
+  const firstResult: '합격' | '불합격' = firstResultScreening
+    ? '합격'
+    : '불합격';
   const finalResult: '합격' | '불합격' = finalResultScreening
     ? '합격'
     : '불합격';
@@ -116,8 +116,10 @@ const ContentBox: React.FC<ContentType> = ({
         <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
-        <S.FirstResultText css={() => resultStyle(firstResult)}>
-          {firstResult}
+        <S.FirstResultText
+          css={() => resultStyle(isFirstResult ? firstResult : '미정')}
+        >
+          {isFirstResult ? firstResult : '미정'}
         </S.FirstResultText>
         <S.FinalScoreText
           css={() => {
