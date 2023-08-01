@@ -66,7 +66,7 @@ const ContentBox: React.FC<ContentType> = ({
     '$1-$2-$3',
   );
   const formattedTeacherCellphoneNumber =
-    teacherCellphoneNumber !== 'null'
+    teacherCellphoneNumber !== null
       ? teacherCellphoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')
       : '검정고시';
 
@@ -111,7 +111,7 @@ const ContentBox: React.FC<ContentType> = ({
         <S.Name>{name}</S.Name>
         <S.Screening>{screening}</S.Screening>
         <S.SchoolName>
-          {schoolName !== 'null' ? schoolName : '검정고시'}
+          {schoolName !== null ? schoolName : '검정고시'}
         </S.SchoolName>
         <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
