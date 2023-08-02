@@ -77,7 +77,7 @@ const ContentBox: React.FC<ContentType> = ({
     setIsFinalResult(isStartFinalResult);
   }, []);
 
-  const newResultStyle = {
+  const resultStyle = {
     미정: css`
       color: #9e9e9e;
       cursor: default;
@@ -112,7 +112,7 @@ const ContentBox: React.FC<ContentType> = ({
         <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
         <S.FirstResultText
-          css={newResultStyle[isFirstResult ? firstResult : '미정']}
+          css={resultStyle[isFirstResult ? firstResult : '미정']}
         >
           {isFirstResult ? firstResult : '미정'}
         </S.FirstResultText>
@@ -124,7 +124,7 @@ const ContentBox: React.FC<ContentType> = ({
           {score ?? '미입력'}
         </S.FinalScoreText>
         <S.FinalResultText
-          css={newResultStyle[isFinalResult ? finalResult : '미정']}
+          css={resultStyle[isFinalResult ? finalResult : '미정']}
         >
           {isFinalResult ? finalResult : '미정'}
         </S.FinalResultText>
