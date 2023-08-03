@@ -3,52 +3,36 @@ import * as S from './style';
 import * as I from 'assets/svg';
 import Image from 'next/image';
 import ModalButton from './ModalButton';
+import ModalContent from './ModalContents';
 
 interface ModalProps {
   StudentCode: string;
   name: string;
+  modalType: 'submit' | 'status' | 'pass';
 }
 
-const NewModal: React.FC<ModalProps> = ({ name, StudentCode }) => {
+const NewModal: React.FC<ModalProps> = ({ name, StudentCode, modalType }) => {
   const [isClose, setIsClose] = useState<boolean>(true);
-  const [selectedButtonId, setSelectedButtonId] = useState<string>('1');
-
+  const isStatus =
+    modalType === 'status'
+      ? { width: '888px', height: '513px' }
+      : { width: '416px', height: '441px' };
   const handleIsClose = () => {
     setIsClose(prev => !prev);
-  };
-
-  const handleButtonClick = (id: string) => {
-    setSelectedButtonId(id);
   };
 
   return (
     <div>
       {isClose && (
         <S.Modal>
-          <S.XIcon onClick={handleIsClose}>
+          <S.XIcon onClick={handleIsClose} style={{ width: isStatus.width }}>
             <I.XIcon />
           </S.XIcon>
-          <S.TitleBox>
-            <S.Title>수험번호 000</S.Title>
-            <S.Desc>이정우님의 어떤 상태를 수정하실건가요?</S.Desc>
-          </S.TitleBox>
-          <S.ButtonBox>
-            <S.ModalOption onClick={() => handleButtonClick('1')}>
-              <I.DocumentsSubmissionStatus
-                isActive={selectedButtonId !== '1'}
-              />
-            </S.ModalOption>
-            <S.ModalOption onClick={() => handleButtonClick('2')}>
-              <I.firstPassStatus isActive={selectedButtonId !== '2'} />
-            </S.ModalOption>
-            <S.ModalOption onClick={() => handleButtonClick('3')}>
-              <I.secondScoringStatus isActive={selectedButtonId !== '3'} />
-            </S.ModalOption>
-            <S.ModalOption onClick={() => handleButtonClick('4')}>
-              <I.secondScoringEntry isActive={selectedButtonId !== '4'} />
-            </S.ModalOption>
-          </S.ButtonBox>
-          <ModalButton isConfirm={true} />
+          <ModalContent
+            modalType="pass"
+            title="수험번호 000"
+            desc="변찬우님의 서류 제출 여부를 선택해주세요"
+          />
         </S.Modal>
       )}
     </div>

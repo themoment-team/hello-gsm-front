@@ -1,13 +1,13 @@
 import React from 'react';
 import * as S from './style';
 
-const ModalDescription: React.FC = () => {
+const ModalInput: React.FC = () => {
   return (
-    <div>
+    <S.ModalInput>
       <S.InputTitle>2차 점수</S.InputTitle>
-      <S.ModalInput placeholder="2차 점수를 입력해주세요" />
-    </div>
+      <S.Input placeholder="2차 점수를 입력해주세요" />
+    </S.ModalInput>
   );
 };
 
-export default ModalDescription;
+export default ModalInput;
