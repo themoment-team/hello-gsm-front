@@ -105,9 +105,7 @@ const ContentBox: React.FC<ContentType> = ({
         </S.isDocumentReception>
         <S.Name>{name}</S.Name>
         <S.Screening>{screening}</S.Screening>
-        <S.SchoolName>
-          {schoolName !== null ? schoolName : '검정고시'}
-        </S.SchoolName>
+        <S.SchoolName>{schoolName ?? '검정고시'}</S.SchoolName>
         <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
