@@ -100,7 +100,7 @@ const ContentBox: React.FC<ContentType> = ({
         </S.RegistrationNumber>
         <S.isDocumentReception>
           <S.DocumentReceptionText documentReception={documentReception}>
-            {documentReception ? '· 제출' : '· 미제출'}
+            · {documentReception ? '제출' : '미제출'}
           </S.DocumentReceptionText>
         </S.isDocumentReception>
         <S.Name>{name}</S.Name>
