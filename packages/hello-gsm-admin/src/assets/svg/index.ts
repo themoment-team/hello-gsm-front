@@ -7,3 +7,5 @@ export { default as DocumentsSubmissionStatus } from './modalOptions/DocumentsSu
 export { default as firstPassStatus } from './modalOptions/firstPassStatus';
 export { default as secondScoringEntry } from './modalOptions/secondScoringEntry';
 export { default as secondScoringStatus } from './modalOptions/secondScoringStatus';
+export { default as Fail } from './modalOptions/Fail';
+export { default as Pass } from './modalOptions/Pass';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './style';
 
 interface ModalButtonProps {
@@ -6,7 +6,11 @@ interface ModalButtonProps {
 }
 
 const ModalButton: React.FC<ModalButtonProps> = ({ isConfirm }) => {
-  return <S.ModalButton>{isConfirm ? '확인' : '다음'}</S.ModalButton>;
+  return (
+    <S.ModalButton isConfirm={isConfirm}>
+      {isConfirm ? '다음' : '확인'}
+    </S.ModalButton>
+  );
 };
 
 export default ModalButton;

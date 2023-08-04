@@ -2,11 +2,17 @@ import React, { useState } from 'react';
 import * as S from './style';
 import * as I from 'assets/svg';
 
-const ModalStatus: React.FC = () => {
-  const [selectedButtonId, setSelectedButtonId] = useState<string>('1');
+interface ModalStatusProps {
+  handleOptionSelect: () => void;
+}
+
+const ModalStatus: React.FC<ModalStatusProps> = ({ handleOptionSelect }) => {
+  const [selectedButtonId, setSelectedButtonId] = useState<string>('0');
   const handleButtonClick = (id: string) => {
     setSelectedButtonId(id);
+    handleOptionSelect();
   };
+
   return (
     <S.ButtonBox>
       <S.ModalOption onClick={() => handleButtonClick('1')}>
