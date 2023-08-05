@@ -182,24 +182,27 @@ const SignUpPage: NextPage = () => {
               : ''}
           </S.ErrorMessage>
 
-          <S.Input
-            type="text"
-            placeholder="핸드폰 번호를 입력해주세요."
-            {...register('cellphoneNumber', {
-              required: '* 핸드폰 번호를 입력해주세요.',
-              validate: {
-                notHypen: value =>
-                  !value.includes('-') || '( - )를 제외하고 입력해주세요.',
-              },
-              pattern: {
-                value: /^[0][1][0][0-9]{8}/,
-                message: '* 핸드폰 번호를 확인해주세요.',
-              },
-            })}
-            css={css`
-              margin-bottom: 12px !important;
-            `}
-          />
+          <S.TelNumContainer>
+            <S.Input
+              type="text"
+              placeholder="핸드폰 번호를 입력해주세요."
+              {...register('cellphoneNumber', {
+                required: '* 핸드폰 번호를 입력해주세요.',
+                validate: {
+                  notHypen: value =>
+                    !value.includes('-') || '( - )를 제외하고 입력해주세요.',
+                },
+                pattern: {
+                  value: /^[0][1][0][0-9]{8}/,
+                  message: '* 핸드폰 번호를 확인해주세요.',
+                },
+              })}
+              css={css`
+                margin-bottom: 0px !important;
+              `}
+            />
+            <S.CertificationButton>인증</S.CertificationButton>
+          </S.TelNumContainer>
           <S.ErrorMessage css={errors.cellphoneNumber && selectErrorStyle(410)}>
             {errors.cellphoneNumber?.message}
           </S.ErrorMessage>

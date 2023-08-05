@@ -18,7 +18,7 @@ export const SignUpForm = styled.form`
   width: 800px;
   input,
   select {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
   @media ${device.laptop} {
     width: 500px;
@@ -56,7 +56,7 @@ export const Input = styled.input`
   background-color: #484453;
   border-radius: 6px;
   box-sizing: border-box;
-  padding: 0 32px;
+  padding: 0 16px;
   border: none;
   color: #ffffff;
   font-size: 16px;
@@ -282,10 +282,37 @@ export const shake = keyframes`
   }                 
 `;
 
+export const TelNumContainer = styled.div`
+  width: 100%;
+  border-radius: 10px;
+  background: #484453;
+  display: flex;
+  padding-right: 16px;
+  align-items: center;
+  margin-bottom: 12px;
+`;
+
 export const NoticeText = styled.p`
   color: #9e9e9e;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
   width: 100%;
+`;
+
+export const CertificationButton = styled.button`
+  width: 57px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid #2174d8;
+  background: #42bafe;
+
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  cursor: pointer;
 `;
