@@ -116,7 +116,7 @@ export const TosBox = styled.div`
   height: 279px;
   background: #484453;
   border-radius: 10px;
-  margin-top: 50px;
+  margin-top: 40px;
   padding: 20px;
   overflow-y: scroll;
   line-height: 20px;
@@ -280,4 +280,12 @@ export const shake = keyframes`
   100% {
     transform: translate(1px, -2px) rotate(-1deg);
   }                 
+`;
+
+export const NoticeText = styled.p`
+  color: #9e9e9e;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  width: 100%;
 `;

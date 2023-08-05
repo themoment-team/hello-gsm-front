@@ -184,7 +184,7 @@ const SignUpPage: NextPage = () => {
 
           <S.Input
             type="text"
-            placeholder="핸드폰 번호를 입력해주세요. ( - ) 제외"
+            placeholder="핸드폰 번호를 입력해주세요."
             {...register('cellphoneNumber', {
               required: '* 핸드폰 번호를 입력해주세요.',
               validate: {
@@ -196,10 +196,14 @@ const SignUpPage: NextPage = () => {
                 message: '* 핸드폰 번호를 확인해주세요.',
               },
             })}
+            css={css`
+              margin-bottom: 12px !important;
+            `}
           />
           <S.ErrorMessage css={errors.cellphoneNumber && selectErrorStyle(410)}>
             {errors.cellphoneNumber?.message}
           </S.ErrorMessage>
+          <S.NoticeText>* -를 포함하지않은 번호만 입력해주세요.</S.NoticeText>
           <TosBox />
           <S.CheckLabel htmlFor="check">
             <input
