@@ -69,6 +69,9 @@ export const Input = styled.input`
   @media ${device.mobile} {
     padding: 0 16px;
   }
+  :disabled {
+    color: rgba(255, 255, 255, 0.43);
+  }
 `;
 
 export const RadioLabel = styled.label`
