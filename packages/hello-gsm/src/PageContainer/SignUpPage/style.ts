@@ -316,3 +316,12 @@ export const CertificationButton = styled.button`
   line-height: 20px;
   cursor: pointer;
 `;
+
+export const ReSend = styled.p`
+  width: 100px;
+  color: #42bafe;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  cursor: pointer;
+`;

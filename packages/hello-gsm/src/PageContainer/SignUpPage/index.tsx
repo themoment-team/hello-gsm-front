@@ -22,6 +22,7 @@ interface UserForm {
 
 const SignUpPage: NextPage = () => {
   const [showResult, setShowResult] = useState(false);
+  const [isSent, setIsSent] = useState<boolean>(false);
   const router = useRouter();
   const {
     register,
@@ -80,6 +81,15 @@ const SignUpPage: NextPage = () => {
       animation: `${S.shake} 0.3s`,
       top: top,
     });
+
+  const sendCertificationNumber = () => {
+    setIsSent(true);
+    console.log('인증번호 전송 로직 작성');
+  };
+
+  const checkCertificationNumber = () => {
+    console.log('인증번호 확인 로직 작성');
+  };
 
   return (
     <>
@@ -184,6 +194,7 @@ const SignUpPage: NextPage = () => {
 
           <S.TelNumContainer>
             <S.Input
+              disabled={isSent}
               type="text"
               placeholder="핸드폰 번호를 입력해주세요."
               {...register('cellphoneNumber', {
@@ -201,12 +212,46 @@ const SignUpPage: NextPage = () => {
                 margin-bottom: 0px !important;
               `}
             />
-            <S.CertificationButton>인증</S.CertificationButton>
+            {isSent ? (
+              <S.ReSend>인증번호 재전송</S.ReSend>
+            ) : (
+              <S.CertificationButton
+                onClick={sendCertificationNumber}
+                type="button"
+              >
+                인증
+              </S.CertificationButton>
+            )}
           </S.TelNumContainer>
+          {isSent && (
+            <S.TelNumContainer
+              css={css`
+                margin-top: 12px;
+              `}
+            >
+              <S.Input
+                type="text"
+                placeholder="인증번호를 입력해주세요."
+                css={css`
+                  margin-bottom: 0px !important;
+                `}
+              />
+              <S.CertificationButton
+                onClick={checkCertificationNumber}
+                type="button"
+              >
+                확인
+              </S.CertificationButton>
+            </S.TelNumContainer>
+          )}
           <S.ErrorMessage css={errors.cellphoneNumber && selectErrorStyle(410)}>
             {errors.cellphoneNumber?.message}
           </S.ErrorMessage>
-          <S.NoticeText>* -를 포함하지않은 번호만 입력해주세요.</S.NoticeText>
+          <S.NoticeText>
+            {isSent
+              ? '*입력하신 전화번호로 인증번호가 발송되었어요 .'
+              : '* -를 포함하지않은 번호만 입력해주세요.'}
+          </S.NoticeText>
           <TosBox />
           <S.CheckLabel htmlFor="check">
             <input
