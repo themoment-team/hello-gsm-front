@@ -1,14 +1,12 @@
 import styled from '@emotion/styled';
 
+export const ModalSubmit = styled.div`
+  width: 416px;
+  display: flex;
+`;
+
 export const ModalOption = styled.button`
   border: none;
   background-color: white;
   cursor: pointer;
-`;
-
-export const ButtonBox = styled.div`
-  width: 848px;
-  height: 200px;
-  display: flex;
-  justify-content: space-between;
 `;

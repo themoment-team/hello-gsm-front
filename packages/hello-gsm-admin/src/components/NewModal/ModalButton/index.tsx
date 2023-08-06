@@ -3,12 +3,13 @@ import * as S from './style';
 
 interface ModalButtonProps {
   isConfirm: boolean;
+  onClick: () => void;
 }
 
-const ModalButton: React.FC<ModalButtonProps> = ({ isConfirm }) => {
+const ModalButton: React.FC<ModalButtonProps> = ({ isConfirm, onClick }) => {
   return (
-    <S.ModalButton isConfirm={isConfirm}>
-      {isConfirm ? '다음' : '확인'}
+    <S.ModalButton disabled={isConfirm} isConfirm={isConfirm} onClick={onClick}>
+      다음
     </S.ModalButton>
   );
 };

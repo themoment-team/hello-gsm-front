@@ -9,3 +9,5 @@ export { default as secondScoringEntry } from './modalOptions/secondScoringEntry
 export { default as secondScoringStatus } from './modalOptions/secondScoringStatus';
 export { default as Fail } from './modalOptions/Fail';
 export { default as Pass } from './modalOptions/Pass';
+export { default as submit } from './modalOptions/submit';
+export { default as notSubmit } from './modalOptions/notSubmit';

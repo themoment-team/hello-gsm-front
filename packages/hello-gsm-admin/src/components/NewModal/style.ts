@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
-export const Modal = styled.div<{ isStatus: boolean }>`
+export const Modal = styled.div`
   padding: 24px 20px 48px 20px;
   border-radius: 10px;
-  width: ${props => (props.isStatus ? '888px' : '456px')};
+  width: 888px;
   gap: 10px;
   background-color: white;
   display: flex;
@@ -18,10 +18,13 @@ export const ModalContent = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  width: '848px';
+  height: '441px';
 `;
 export const ButtonBox = styled.div`
   display: flex;
   justify-content: space-between;
+  height: 290px;
 `;
 
 export const ModalOption = styled.button`
@@ -30,9 +33,9 @@ export const ModalOption = styled.button`
   cursor: pointer;
 `;
 
-export const XIcon = styled.div<{ isStatus: boolean }>`
+export const XIcon = styled.div`
   height: 24px;
-  width: ${props => (props.isStatus ? '888px' : '456px')};
+  width: 888px;
   display: flex;
   cursor: pointer;
   justify-content: end;
@@ -40,7 +43,7 @@ export const XIcon = styled.div<{ isStatus: boolean }>`
 `;
 
 export const TitleBox = styled.div`
-  width: inherit;
+  width: 840px;
   height: 53px;
 `;
 export const Title = styled.div`
@@ -54,4 +57,11 @@ export const Desc = styled.div`
   font-weight: 500;
   line-height: 24px;
   color: #616161;
+`;
+export const ContentBox = styled.div`
+  height: 441px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `;
