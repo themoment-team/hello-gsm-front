@@ -183,12 +183,11 @@ export const ErrorMessage = styled.p`
 
 export const LineList = styled.div`
   position: absolute;
-  padding-right: 30px;
-  border-right: 3px solid rgba(255, 255, 255, 0.17);
-  left: -40%;
+  padding: 40px 16px 0 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.17);
+  left: -26%;
   height: 800px;
   margin-top: 80px;
-  padding-top: 40px;
 
   @media ${device.laptop} {
     left: -50%;
@@ -214,7 +213,7 @@ export const Line = styled.div`
     display: block;
     position: relative;
     background-size: 10px 10px;
-    left: 178px;
+    left: 155px;
     top: -20px;
     width: 10px;
     height: 10px;
