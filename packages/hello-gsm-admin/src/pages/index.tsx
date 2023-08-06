@@ -46,7 +46,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
       return getListAndCount(accessToken);
     } else {
       try {
-        // const { headers }: HeaderType = await auth.refresh(refreshToken);
+        const { headers }: HeaderType = await auth.refresh(refreshToken);
         const accessToken = headers['set-cookie'][0].split(';')[0];
         ctx.res.setHeader('set-cookie', headers['set-cookie']);
         return getListAndCount(accessToken);
