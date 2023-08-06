@@ -83,7 +83,9 @@ const SignUpPage: NextPage = () => {
     });
 
   const sendCertificationNumber = () => {
-    setIsSent(true);
+    setTimeout(() => {
+      if (!errors.cellphoneNumber) setIsSent(true);
+    }, 300);
     console.log('인증번호 전송 로직 작성');
   };
 
@@ -194,7 +196,7 @@ const SignUpPage: NextPage = () => {
 
           <S.TelNumContainer>
             <S.Input
-              disabled={isSent}
+              disabled={isSent && !errors.cellphoneNumber}
               type="text"
               placeholder="핸드폰 번호를 입력해주세요."
               {...register('cellphoneNumber', {
@@ -212,18 +214,15 @@ const SignUpPage: NextPage = () => {
                 margin-bottom: 0px !important;
               `}
             />
-            {isSent ? (
+            {isSent && !errors.cellphoneNumber ? (
               <S.ReSend>인증번호 재전송</S.ReSend>
             ) : (
-              <S.CertificationButton
-                onClick={sendCertificationNumber}
-                type="button"
-              >
+              <S.CertificationButton onClick={sendCertificationNumber}>
                 인증
               </S.CertificationButton>
             )}
           </S.TelNumContainer>
-          {isSent && (
+          {isSent && !errors.cellphoneNumber && (
             <S.TelNumContainer
               css={css`
                 margin-top: 12px;
@@ -236,10 +235,7 @@ const SignUpPage: NextPage = () => {
                   margin-bottom: 0px !important;
                 `}
               />
-              <S.CertificationButton
-                onClick={checkCertificationNumber}
-                type="button"
-              >
+              <S.CertificationButton onClick={checkCertificationNumber}>
                 확인
               </S.CertificationButton>
             </S.TelNumContainer>
@@ -248,7 +244,7 @@ const SignUpPage: NextPage = () => {
             {errors.cellphoneNumber?.message}
           </S.ErrorMessage>
           <S.NoticeText>
-            {isSent
+            {isSent && !errors.cellphoneNumber
               ? '*입력하신 전화번호로 인증번호가 발송되었어요 .'
               : '* -를 포함하지않은 번호만 입력해주세요.'}
           </S.NoticeText>
