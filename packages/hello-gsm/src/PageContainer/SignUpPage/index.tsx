@@ -198,16 +198,16 @@ const SignUpPage: NextPage = () => {
             <S.Input
               disabled={isSent && !errors.cellphoneNumber}
               type="text"
-              placeholder="핸드폰 번호를 입력해주세요."
+              placeholder="전화번호를 입력해주세요."
               {...register('cellphoneNumber', {
-                required: '* 핸드폰 번호를 입력해주세요.',
+                required: '* 전화번호를 입력해주세요.',
                 validate: {
                   notHypen: value =>
                     !value.includes('-') || '( - )를 제외하고 입력해주세요.',
                 },
                 pattern: {
                   value: /^[0][1][0][0-9]{8}/,
-                  message: '* 핸드폰 번호를 확인해주세요.',
+                  message: '* 전화번호를 확인해주세요.',
                 },
               })}
               css={css`
@@ -273,7 +273,7 @@ const SignUpPage: NextPage = () => {
               생년월일
             </S.Line>
             <S.Line css={errors.cellphoneNumber && selectErrorStyle()}>
-              핸드폰 번호
+              전화번호
             </S.Line>
             <S.Line css={errors.agree && selectErrorStyle()}>
               개인정보 이용약관
