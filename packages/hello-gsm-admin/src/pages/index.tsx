@@ -1,4 +1,3 @@
-import React from 'react';
 import type { GetServerSideProps, NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import { MainPage } from 'PageContainer';
@@ -59,9 +58,9 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   } else {
     return {
       props: {},
-      // redirect: {
-      //   destination: '/signin',
-      // },
+      redirect: {
+        destination: '/signin',
+      },
     };
   }
 };
