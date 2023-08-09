@@ -7,13 +7,11 @@ interface ModalResultProps {
 }
 
 const ModalResult: React.FC<ModalResultProps> = ({ handleOptionSelect }) => {
-  const [selectedButtonId, setSelectedButtonId] = useState<string>('0');
-  const [isOptionSelected, setIsOptionSelected] = useState<boolean>(false); // Add this state
+  const [selectedButtonId, setSelectedButtonId] = useState<string>('1');
 
   const handleButtonClick = (id: string) => {
     setSelectedButtonId(id);
     handleOptionSelect(id);
-    setIsOptionSelected(true); // Set isOptionSelected to true when an option is selected
   };
 
   return (

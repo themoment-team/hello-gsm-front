@@ -16,7 +16,7 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
   const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false);
   const [selectedButtonId, setSelectedButtonId] = useState<string>('0');
   const [showModalResult, setShowModalResult] = useState<boolean>(false);
-  const [showModal, setShowModal] = useState<string>('');
+  const [showModal, setShowModal] = useState<string>('0');
 
   const handleIsClose = () => setIsClose(prev => !prev);
   const handleOptionSelect = () => {
@@ -40,26 +40,14 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
       {isClose && (
         <S.Modal
           style={{
-            width:
-              showModal === '1' ||
-              showModal === '2' ||
-              showModal === '3' ||
-              showModal === '4'
-                ? '456px'
-                : '888px',
+            width: showModal !== '0' ? '28.5rem' : '55.5rem',
           }}
         >
           <S.ModalContent>
             <S.XIcon
               onClick={handleIsClose}
               style={{
-                width:
-                  showModal === '1' ||
-                  showModal === '2' ||
-                  showModal === '3' ||
-                  showModal === '4'
-                    ? '456px'
-                    : '888px',
+                width: showModal !== '0' ? '28.5rem' : '55.5rem',
               }}
             >
               <I.XIcon />
@@ -81,6 +69,7 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
                 </S.TitleBox>
                 <ModalSubmit handleOptionSelect={handleOptionSelect} />
                 <ModalButton
+                  buttonTitle="확인"
                   isConfirm={!isButtonClicked}
                   onClick={() => handleModalButtonClick(selectedButtonId)}
                 />
@@ -96,6 +85,7 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
                 </S.TitleBox>
                 <ModalResult handleOptionSelect={handleOptionSelect} />
                 <ModalButton
+                  buttonTitle="확인"
                   isConfirm={!isButtonClicked}
                   onClick={() => handleModalButtonClick(selectedButtonId)}
                 />
@@ -103,7 +93,7 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
             )}
             {showModal === '3' && (
               <S.ContentBox>
-                <S.TitleBox style={{ width: '416px' }}>
+                <S.TitleBox style={{ width: '26rem' }}>
                   <S.Title>수험번호 {studentCode}</S.Title>
                   <S.Desc>
                     {name}님의 2차 합격 여부(인적성)를 선택해주세요.
@@ -111,6 +101,7 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
                 </S.TitleBox>
                 <ModalResult handleOptionSelect={handleOptionSelect} />
                 <ModalButton
+                  buttonTitle="확인"
                   isConfirm={!isButtonClicked}
                   onClick={() => handleModalButtonClick(selectedButtonId)}
                 />
@@ -118,12 +109,13 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
             )}
             {showModal === '4' && (
               <S.ContentBox>
-                <S.TitleBox style={{ width: '416px' }}>
+                <S.TitleBox style={{ width: '26rem' }}>
                   <S.Title>수험번호 {studentCode}</S.Title>
                   <S.Desc>{name}님의 2차 점수(인적성)를 입력해주세요.</S.Desc>
                 </S.TitleBox>
                 <ModalInput />
                 <ModalButton
+                  buttonTitle="확인"
                   isConfirm={!isButtonClicked}
                   onClick={() => handleModalButtonClick(selectedButtonId)}
                 />
@@ -152,6 +144,7 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
                   </S.ModalOption>
                 </S.ButtonBox>
                 <ModalButton
+                  buttonTitle="다음"
                   isConfirm={!isButtonClicked}
                   onClick={() => handleModalButtonClick(selectedButtonId)}
                 />

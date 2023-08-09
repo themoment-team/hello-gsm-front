@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const ModalResult = styled.div`
-  width: 416px;
+  width: 26rem;
   display: flex;
 `;
 export const ModalOption = styled.button`

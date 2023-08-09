@@ -1,5 +1,3 @@
-import React from 'react';
-
 const notSubmit = ({ isActive }: { isActive: boolean }) => {
   return (
     <div>

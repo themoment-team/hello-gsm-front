@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const ModalSubmit = styled.div`
-  width: 416px;
+  width: 26rem;
   display: flex;
 `;
 

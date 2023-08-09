@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import * as I from 'assets/svg';
 import * as S from './style';
+import ModalButton from '../ModalButton';
 
 interface ModalResultProps {
   handleOptionSelect: (optionId: string) => void;
 }
 
 const ModalSubmit: React.FC<ModalResultProps> = ({ handleOptionSelect }) => {
-  const [selectedButtonId, setSelectedButtonId] = useState<string>('0');
-
+  const [selectedButtonId, setSelectedButtonId] = useState<string>('1');
+  const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false);
   const handleButtonClick = (id: string) => {
     setSelectedButtonId(id);
+    setIsButtonClicked(true);
     handleOptionSelect(id);
   };
 

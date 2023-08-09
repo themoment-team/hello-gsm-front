@@ -1,30 +1,32 @@
 import styled from '@emotion/styled';
 
 export const InputTitle = styled.div`
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 700;
-  line-height: 18px;
+  line-height: 1.125rem;
   color: #9e9e9e;
 `;
+
 export const ModalInput = styled.div`
-  width: 416px;
-  height: 202px;
+  width: 26rem;
+  height: 12.625rem;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 0.625rem;
 `;
+
 export const Input = styled.input`
   display: flex;
-  width: 416px;
-  padding: 12px 20px;
+  width: 26rem;
+  padding: 0.75rem 1.25rem;
   align-items: center;
-  gap: 10px;
-  border-radius: 10px;
-  border: 1px solid #e0e0e0;
+  gap: 0.625rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #e0e0e0;
   outline: none;
   transition: all 100ms;
   &:focus {
-    border: 1px solid #2174d8;
+    border: 0.0625rem solid #2174d8;
   }
 `;
