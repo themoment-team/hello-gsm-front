@@ -42,26 +42,6 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
     });
   }, [keyword, pageIndex, isFAQSearching]);
 
-  useEffect(() => {
-    const checkLogin = async () => {
-      try {
-        await auth.check();
-        setLogged(true);
-      } catch (error: any) {
-        if (error.response?.status === 401) {
-          try {
-            // accessToken 발급
-            await auth.refresh();
-            setLogged(true);
-          } catch (error) {
-            setLogged(false);
-          }
-        }
-      }
-    };
-    checkLogin();
-  }, []);
-
   const selectPage = (index: number) => setPageIndex(index);
 
   const plusPageIndex = () =>

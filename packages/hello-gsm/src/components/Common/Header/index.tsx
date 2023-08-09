@@ -65,17 +65,7 @@ const Header: React.FC = () => {
           </Link>
         </S.NavBar>
         {!logged ? (
-          <S.MemberBox
-            css={css`
-              justify-content: flex-end;
-            `}
-          >
-            <Link href="/auth/signin" passHref>
-              <S.AuthButton css={select('/auth/signin')}>
-                로그인하기
-              </S.AuthButton>
-            </Link>
-          </S.MemberBox>
+          <S.MemberBox />
         ) : (
           <S.MemberBox>
             <Link href="/mypage" passHref>
