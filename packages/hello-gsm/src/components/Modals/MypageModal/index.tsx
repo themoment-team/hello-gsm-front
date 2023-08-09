@@ -3,7 +3,6 @@ import * as I from 'Assets/svg';
 import useStore from 'Stores/StoreContainer';
 import { css } from '@emotion/react';
 import application from 'Api/application';
-import auth from 'Api/auth';
 import { useRouter } from 'next/router';
 
 const MypageModal: React.FC = () => {
@@ -15,37 +14,21 @@ const MypageModal: React.FC = () => {
   // 최종 제출
   const finalSubmission = async () => {
     try {
-      await application.patchFinalSubmission();
+      await application.putFinalSubmission();
       setShowMypageSuccessModal();
     } catch (error: any) {
-      if (error.response.status === 401) {
-        try {
-          // accessToken 발급
-          await auth.refresh();
-          finalSubmission();
-        } catch (error) {
-          console.log(error);
-        }
-      }
+      console.log(error);
     }
   };
 
   // 원서 삭제
   const deleteApplication = async () => {
     try {
-      await application.deleteInformation();
+      await application.deleteApplication();
       localStorage.clear();
       window.location.reload();
     } catch (error: any) {
-      if (error.response.status === 401) {
-        try {
-          // accessToken 발급
-          await auth.refresh();
-          deleteApplication();
-        } catch (error) {
-          console.log(error);
-        }
-      }
+      console.log(error);
     }
   };
 

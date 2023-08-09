@@ -17,7 +17,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   const [keyword, setKeyword] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(1);
 
-  const { isFAQSearching, setIsFAQSearching, setLogged } = useStore();
+  const { isFAQSearching, setIsFAQSearching } = useStore();
 
   const searching = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
@@ -41,26 +41,6 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
       }
     });
   }, [keyword, pageIndex, isFAQSearching]);
-
-  useEffect(() => {
-    const checkLogin = async () => {
-      try {
-        await auth.check();
-        setLogged(true);
-      } catch (error: any) {
-        if (error.response?.status === 401) {
-          try {
-            // accessToken 발급
-            await auth.refresh();
-            setLogged(true);
-          } catch (error) {
-            setLogged(false);
-          }
-        }
-      }
-    };
-    checkLogin();
-  }, []);
 
   const selectPage = (index: number) => setPageIndex(index);
 

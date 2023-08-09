@@ -97,23 +97,8 @@ const GEDCalculatorPage: NextPage<UserIdxType> = ({
       setIsSubmission(true);
       toast.success('성적입력이 완료되었습니다.');
     } catch (err: any) {
-      // accessToken 없을 시에 accessToken 발급 후 TrySubmission 요청
-      if (err.response.status === 401) {
-        try {
-          // accessToken 발급
-          await auth.refresh();
-          await onValid({
-            curriculumScoreSubtotal,
-            nonCurriculumScoreSubtotal,
-          }); // 다시 요청
-        } catch (err) {
-          console.log(err);
-          toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
-        }
-      } else {
-        console.log(err);
-        toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
-      }
+      console.log(err);
+      toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
     }
   };
 

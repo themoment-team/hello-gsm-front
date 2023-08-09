@@ -17,10 +17,8 @@ import {
   ArtSport,
 } from 'Utils/Calculate';
 import application from 'Api/application';
-import auth from 'Api/auth';
-import { LocalScoreType, ScoreType } from 'type/score';
+import { ScoreType } from 'type/score';
 import useStore from 'Stores/StoreContainer';
-import setLocalstorage from 'hooks/setLocalstorage';
 import { toast } from 'react-toastify';
 
 interface ScoreForm {
@@ -38,14 +36,10 @@ interface ScoreForm {
 }
 
 interface UserIdxType {
-  userIdx: number;
   isSubmissionProp: boolean;
 }
 
-const CalculatorPage: NextPage<UserIdxType> = ({
-  userIdx,
-  isSubmissionProp,
-}) => {
+const CalculatorPage: NextPage<UserIdxType> = ({ isSubmissionProp }) => {
   const { register, handleSubmit, watch, setValue } = useForm<ScoreForm>();
 
   const {
@@ -77,46 +71,12 @@ const CalculatorPage: NextPage<UserIdxType> = ({
   const nonSubjects = ['체육', '미술', '음악'];
   const grades = [1, 2, 3];
 
-  // 로컬스토리지 값이 있을 때 초기 값 설정
-  useEffect(() => {
-    const localstorageData = window.localStorage.getItem(`${userIdx}`);
-    const scoreData: LocalScoreType | null = localstorageData
-      ? JSON.parse(localstorageData)
-      : null;
-    if (scoreData) {
-      const score1_1 = scoreData.score1_1;
-      const score1_2 = scoreData.score1_2;
-      const score2_1 = scoreData.score2_1;
-      const score2_2 = scoreData.score2_2;
-      const score3_1 = scoreData.score3_1;
-      const artSportsScore = scoreData.artSportsScore;
-      const absentScore = scoreData.absentScore;
-      const attendanceScore = scoreData.attendanceScore;
-      const volunteerScore = scoreData.volunteerScore;
-      const newSubjects = scoreData.newSubjects;
-      const freeSemester = scoreData.freeSemester;
-      const system = scoreData.system;
-      score1_1 && setValue('value1_1', score1_1);
-      score1_2 && setValue('value1_2', score1_2);
-      score2_1 && setValue('value2_1', score2_1);
-      score2_2 && setValue('value2_2', score2_2);
-      score3_1 && setValue('value3_1', score3_1);
-      artSportsScore && setValue('artSportsValue', artSportsScore);
-      absentScore && setValue('absentValue', absentScore);
-      attendanceScore && setValue('attendanceValue', attendanceScore);
-      volunteerScore && setValue('volunteerValue', volunteerScore);
-      newSubjects && setValue('newSubjects', newSubjects);
-      setFreeSemester(freeSemester || null);
-      setSystem(system || '자유학년제');
-    }
-  }, []);
-
   // api 요청 보내기
   const TrySubmission = async (data: ScoreType) => {
     // 이전에 제출한 적이 있으면 patch / 없다면 post
     isSubmission
-      ? await application.patchSecondSubmisson(data)
-      : await application.postSecondSubmisson(data);
+      ? await application.putApplication(data)
+      : await application.postApplication(data);
   };
 
   // 저장 버튼을 눌렀을 때
@@ -201,7 +161,6 @@ const CalculatorPage: NextPage<UserIdxType> = ({
         system: system,
         freeSemester: freeSemester,
       };
-      setLocalstorage(`${userIdx}`, scoreObject);
 
       // 결과 모달 제어
       setResultArray([
@@ -213,31 +172,7 @@ const CalculatorPage: NextPage<UserIdxType> = ({
       setShowScoreResult(); // 결과창 보여지게
       setIsSubmission(true); // 제출 여부 확인
     } catch (error: any) {
-      // accessToken 없을 시
-      if (error.response.status === 401) {
-        try {
-          // accessToken 발급 후 다시 api 요청
-          await auth.refresh();
-          await onValid({
-            value1_1,
-            value1_2,
-            value2_1,
-            value2_2,
-            value3_1,
-            artSportsValue,
-            volunteerValue,
-            absentValue,
-            attendanceValue,
-            newSubjects,
-          });
-        } catch (error) {
-          console.log(error);
-          toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
-        }
-      } else {
-        console.log(error);
-        toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
-      }
+      toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
     }
   };
 

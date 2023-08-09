@@ -11,7 +11,7 @@ import { SideBar } from 'components';
 const Header: React.FC = () => {
   const { pathname } = useRouter();
 
-  const { logged, setLogged, setShowSideBar } = useStore();
+  const { logged, setShowSideBar } = useStore();
 
   const select = (navPath: string) =>
     navPath === pathname &&
@@ -21,28 +21,6 @@ const Header: React.FC = () => {
         content: '';
       }
     `;
-
-  const logout = async () => {
-    try {
-      await auth.logout();
-      setLogged(false);
-      location.reload();
-    } catch (error: any) {
-      // accessToken 없을 시에 accessToken 발급 후 logout 요청
-      if (error.response.status === 401) {
-        try {
-          // accessToken 발급
-          await auth.refresh();
-          logout();
-        } catch (error) {
-          console.log(error);
-          location.reload();
-        }
-      } else {
-        console.log(error);
-      }
-    }
-  };
 
   return (
     <>
@@ -81,7 +59,9 @@ const Header: React.FC = () => {
             <Link href="/mypage" passHref>
               <S.NavContent css={select('/mypage')}>내 정보</S.NavContent>
             </Link>
-            <S.AuthButton onClick={logout}>로그아웃</S.AuthButton>
+            <a href={auth.logout()}>
+              <S.AuthButton>로그아웃</S.AuthButton>
+            </a>
           </S.MemberBox>
         )}
         <S.HamBurger onClick={() => setShowSideBar(true)}>
