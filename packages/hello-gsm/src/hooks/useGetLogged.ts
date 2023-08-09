@@ -9,7 +9,7 @@ const useGetLogged = () => {
       await user.getMyInfo();
       setLogged(true);
     } catch (error) {
-      setLogged(true);
+      setLogged(false);
     }
   };
 
