@@ -1,7 +1,7 @@
 const Celebration = () => (
   <svg
-    width="234"
-    height="241"
+    width="14.625rem"
+    height="15.0625rem"
     viewBox="0 0 234 241"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

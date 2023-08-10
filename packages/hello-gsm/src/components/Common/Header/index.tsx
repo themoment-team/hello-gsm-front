@@ -9,12 +9,18 @@ import * as I from 'Assets/svg';
 import { SideBar } from 'components';
 
 const Header: React.FC = () => {
-  const { pathname, replace } = useRouter();
+  const { pathname } = useRouter();
 
   const { logged, setLogged, setShowSideBar } = useStore();
 
   const select = (navPath: string) =>
-    navPath === pathname && { color: '#ffffff' };
+    navPath === pathname &&
+    css`
+      font-weight: 700;
+      &::after {
+        content: '';
+      }
+    `;
 
   const logout = async () => {
     try {
@@ -63,9 +69,9 @@ const Header: React.FC = () => {
         ) : (
           <S.MemberBox>
             <Link href="/mypage" passHref>
-              <S.MemberContent css={select('/mypage')}>내 정보</S.MemberContent>
+              <S.NavContent css={select('/mypage')}>내 정보</S.NavContent>
             </Link>
-            <S.Logout onClick={logout}>로그아웃</S.Logout>
+            <S.AuthButton onClick={logout}>로그아웃</S.AuthButton>
           </S.MemberBox>
         )}
         <S.HamBurger onClick={() => setShowSideBar(true)}>

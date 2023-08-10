@@ -1,66 +1,27 @@
-import { LoginType } from 'Types/user';
-import RequestApi from 'Utils/Libs/requestApi';
+import BASE_URL from 'shared/baseURL';
 import { AuthController } from 'Utils/Libs/requestUrls';
 
 class Auth {
   /**
-   * 로그인을 위한 api
-   * @param data 아이디, 비밀번호
+   * @returns 각 oauth 로그인 URL을 반환합니다.
    */
-  signin(data: LoginType) {
-    try {
-      return RequestApi({
-        method: 'POST',
-        url: AuthController.signin(),
-        data: data,
-      });
-    } catch (error) {
-      return error;
-    }
+  kakaoSignin() {
+    return BASE_URL + AuthController.signin.kakao();
   }
+
+  googleSignin() {
+    return BASE_URL + AuthController.signin.google();
+  }
+
+  guthubSignin() {
+    return BASE_URL + AuthController.signin.github();
+  }
+
   /**
-   * 로그아웃을 위한 api
+   * @returns 로그아웃을 위한 api
    */
   logout() {
-    try {
-      return RequestApi({
-        method: 'POST',
-        url: AuthController.logout(),
-      });
-    } catch (error) {
-      return error;
-    }
-  }
-  /**
-   * 엑세스 토큰 재발급을 위한 api
-   * @returns 엑세스 토큰이 재발급된다.
-   */
-  refresh(refreshToken?: string) {
-    try {
-      return RequestApi(
-        {
-          method: 'POST',
-          url: AuthController.refresh(),
-        },
-        refreshToken,
-      );
-    } catch (error: any) {
-      return error;
-    }
-  }
-  /**
-   * 로그인 상태를 체크한다
-   * @returns 로그인 상태
-   */
-  check() {
-    try {
-      return RequestApi({
-        method: 'GET',
-        url: AuthController.check(),
-      });
-    } catch (error) {
-      return error;
-    }
+    return BASE_URL + AuthController.logout();
   }
 }
 

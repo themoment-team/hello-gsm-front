@@ -1,4 +1,4 @@
-import { Header, GEDScoreResultModal } from 'components';
+import { GEDScoreResultModal } from 'components';
 import type { NextPage } from 'next';
 import { useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import useStore from 'Stores/StoreContainer';
 import { GEDCalculate, Rounds } from 'Utils/Calculate';
 import * as S from 'PageContainer/GEDCalculatorPage/style';
+import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
 
 interface ScoreType {
   curriculumScoreSubtotal: number; // 전과목 득점
@@ -38,9 +39,10 @@ const TestGEDCalculatorPage: NextPage = () => {
     toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
   };
 
+  usePreventBackAndClose();
+
   return (
     <>
-      <Header />
       {showScoreResult && <GEDScoreResultModal result={resultNumber} />}
       <S.GEDPage>
         <S.Title>성적입력(검정고시)</S.Title>

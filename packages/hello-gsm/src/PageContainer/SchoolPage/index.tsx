@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
 import Graph from './Graph';
-import { Header, Footer, Enterprises } from 'components';
+import { Enterprises } from 'components';
 
 interface EmployType {
   x: string;
@@ -38,7 +38,6 @@ const SchoolPage: NextPage = () => {
 
   return (
     <>
-      <Header />
       <S.SchoolPage>
         <S.Section1>
           <S.SchoolName>광주소프트웨어마이스터고등학교</S.SchoolName>
@@ -97,7 +96,6 @@ const SchoolPage: NextPage = () => {
       <S.BlueBall />
       <S.SkyBlueBall />
       <S.SmallBlueBall />
-      <Footer />
     </>
   );
 };

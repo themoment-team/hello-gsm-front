@@ -5,6 +5,7 @@ import * as I from 'Assets/svg';
 import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 import device from 'shared/config';
+import { isStartFinalResult } from 'shared/Date/afterApply';
 
 interface ResultModal {
   name: string;
@@ -25,7 +26,8 @@ const MainResultModal: React.FC<ResultModal> = ({
   const { push } = useRouter();
 
   useEffect(() => {
-    setIsFirstResultPeriod(new Date() < new Date('2022/11/2 10:00:00'));
+    // 최종 합격 결과 나오기 전
+    setIsFirstResultPeriod(!isStartFinalResult);
   }, []);
 
   useEffect(() => {
@@ -53,7 +55,7 @@ const MainResultModal: React.FC<ResultModal> = ({
         <S.MainResultModalContent>
           {isFirstResultPeriod ? (
             <S.Text>
-              {name}님의 2023학년도 {isMobile && <br />}
+              {name}님의 2024학년도 {isMobile && <br />}
               광주소프트웨어마이스터고등학교
               <br />
               1차 서류 심사 결과{' '}
@@ -78,7 +80,7 @@ const MainResultModal: React.FC<ResultModal> = ({
           ) : (
             <>
               <S.Text>
-                {name}님의 2023학년도 {isMobile && <br />}
+                {name}님의 2024학년도 {isMobile && <br />}
                 광주소프트웨어마이스터고등학교
                 <br />
                 {isPass ? (

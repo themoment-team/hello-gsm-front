@@ -7,13 +7,13 @@ import useStore from 'Stores/StoreContainer';
 import { StatusType } from 'type/user';
 import Image from 'next/image';
 import {
-  Header,
   MypageModal,
   MypageSuccessModal,
   MypageInformation,
+  LinkButton,
 } from 'components';
 import { toast } from 'react-toastify';
-import acceptable from 'shared/acceptable';
+import { applyAcceptable } from 'shared/Date/firstScreening';
 
 const MyPage: NextPage<StatusType> = ({
   data: { name, userImg, application },
@@ -42,7 +42,7 @@ const MyPage: NextPage<StatusType> = ({
   };
 
   useEffect(() => {
-    setIsAcceptable(acceptable);
+    setIsAcceptable(applyAcceptable);
     setLogged(true);
     setIsPC(
       !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(
@@ -63,7 +63,7 @@ const MyPage: NextPage<StatusType> = ({
   const isSubmitted = () => (
     <S.ButtonBox
       css={css`
-        width: 335px;
+        width: 20.9375rem;
       `}
     >
       <Link href="/application" passHref>
@@ -72,7 +72,7 @@ const MyPage: NextPage<StatusType> = ({
           rel="noopener noreferrer"
           css={css`
             background: #59c5ff;
-            box-shadow: 0px 13px 30px -10px #59c5ff;
+            box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #59c5ff;
           `}
         >
           원서 다운
@@ -82,7 +82,7 @@ const MyPage: NextPage<StatusType> = ({
         onClick={() => showModal('download')}
         css={css`
           background: #35dcbe;
-          box-shadow: 0px 13px 30px -10px #35dcbe;
+          box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #35dcbe;
         `}
       >
         제출 서류 다운
@@ -93,19 +93,19 @@ const MyPage: NextPage<StatusType> = ({
   const isNotSubmitted = () => (
     <S.ButtonAndDescription
       css={css`
-        height: 210px;
+        height: 13.125rem;
       `}
     >
       <S.ButtonBox
         css={css`
-          width: 660px;
+          width: 41.25rem;
         `}
       >
         <S.Button
           onClick={() => showModal('delete')}
           css={css`
             background: #d82142;
-            box-shadow: 0px 13px 30px -10px #d82142;
+            box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #d82142;
           `}
         >
           원서 삭제
@@ -114,7 +114,7 @@ const MyPage: NextPage<StatusType> = ({
           <S.Button
             css={css`
               background: #dbe44e;
-              box-shadow: 0px 13px 30px -10px #dbe44e;
+              box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #dbe44e;
             `}
           >
             원서 수정
@@ -124,7 +124,7 @@ const MyPage: NextPage<StatusType> = ({
           <S.Button
             css={css`
               background: #5fc4fb;
-              box-shadow: 0px 13px 30px -10px #5fc4fb;
+              box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #5fc4fb;
             `}
           >
             성적 입력
@@ -140,12 +140,12 @@ const MyPage: NextPage<StatusType> = ({
             finalSubmitAcceptable
               ? css`
                   background: #49f58e;
-                  box-shadow: 0px 13px 30px -10px #49f58e;
+                  box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #49f58e;
                 `
               : css`
                   color: #505050;
                   background: #a1a1a1;
-                  box-shadow: 0px 13px 30px -10px #a1a1a1;
+                  box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #a1a1a1;
                   cursor: default;
                 `
           }
@@ -162,16 +162,9 @@ const MyPage: NextPage<StatusType> = ({
 
   const isNotSaved = () => (
     <S.ButtonAndDescription>
-      <Link href="/information" passHref>
-        <S.Button
-          css={css`
-            background: #dbe44e;
-            box-shadow: 0px 13px 30px -10px #dbe44e;
-          `}
-        >
-          원서 작성
-        </S.Button>
-      </Link>
+      <LinkButton href="/information" color="sky">
+        📑 원서 작성하기
+      </LinkButton>
       <S.MypageDescription>
         원서를 작성완료 하셨다면 새로고침 부탁드립니다.
       </S.MypageDescription>
@@ -184,7 +177,7 @@ const MyPage: NextPage<StatusType> = ({
         css={css`
           color: #505050;
           background: #a1a1a1;
-          box-shadow: 0px 13px 30px -10px #a1a1a1;
+          box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #a1a1a1;
           cursor: default;
         `}
       >
@@ -200,23 +193,14 @@ const MyPage: NextPage<StatusType> = ({
     <S.MyPage>
       {showMypageModal && <MypageModal />}
       {showMypageSuccessModal && <MypageSuccessModal />}
-      <Header />
-      <S.Content
-        css={css`
-          height: ${isPC && saved && !submitted && '440px'};
-          height: ${isPC && (!saved || !isAcceptable) && '320px'};
-        `}
-      >
-        <S.UserBox>
-          <Image
-            src={userImg}
-            alt="image"
-            width="140"
-            height="140"
-            css={{ borderRadius: '100%' }}
-          />
-          <S.Name>{name}</S.Name>
-        </S.UserBox>
+      <S.Content>
+        <S.UserSection>
+          <S.Title>내정보</S.Title>
+          <S.UserImgBox>
+            <Image src={userImg} alt="image" layout="fill" />
+          </S.UserImgBox>
+          <S.Name>{name}님</S.Name>
+        </S.UserSection>
         {isPC
           ? isAcceptable
             ? saved
@@ -227,10 +211,6 @@ const MyPage: NextPage<StatusType> = ({
             : isNotAcceptable()
           : isNotPC()}
       </S.Content>
-      <S.GreenBall />
-      <S.BigBlueBall />
-      <S.MiddleBlueBall />
-      <S.SmallBlueBall />
     </S.MyPage>
   );
 };

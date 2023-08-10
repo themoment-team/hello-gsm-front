@@ -1,4 +1,3 @@
-import React from 'react';
 import type { GetServerSideProps, NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import { MainPage } from 'PageContainer';

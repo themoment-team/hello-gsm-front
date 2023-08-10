@@ -1,6 +1,6 @@
 import application from 'Api/application';
 import auth from 'Api/auth';
-import { Header, GEDScoreResultModal } from 'components';
+import { GEDScoreResultModal } from 'components';
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
@@ -124,7 +124,6 @@ const GEDCalculatorPage: NextPage<UserIdxType> = ({
 
   return (
     <>
-      <Header />
       {showScoreResult && <GEDScoreResultModal result={result} />}
       <S.GEDPage>
         <S.Title>성적입력(검정고시)</S.Title>

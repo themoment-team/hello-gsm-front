@@ -1,13 +1,11 @@
 import type { NextPage } from 'next';
 import * as S from './style';
-import { Header } from 'components';
 import * as I from 'Assets/svg';
 import auth from 'Api/auth';
 
 const SignInPage: NextPage = () => {
   return (
     <>
-      <Header />
       <S.SignInPage>
         <S.BigBall />
         <S.SmallBall />

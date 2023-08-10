@@ -1,11 +1,6 @@
 import type { NextPage } from 'next';
-import {
-  Header,
-  ScoreSelect,
-  ScoreResultModal,
-  FreeSemesterBtn,
-} from 'components';
-import * as S from 'shared/Styles/Calculate';
+import { ScoreSelect, ScoreResultModal, FreeSemesterBtn } from 'components';
+import * as S from 'styles/Calculate';
 import * as I from 'Assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { useState } from 'react';
@@ -17,6 +12,7 @@ import {
   ArtSport,
 } from 'Utils/Calculate';
 import useStore from 'Stores/StoreContainer';
+import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
 
 interface ScoreForm {
   // 과목/점수 배열
@@ -150,12 +146,11 @@ const TestCalculatorPage: NextPage = () => {
     );
   };
 
+  usePreventBackAndClose();
   return (
     <>
-      <Header />
       {showScoreResult && <ScoreResultModal result={resultArray} />}
       <S.Title>성적입력</S.Title>
-
       <S.SystemSection>
         <S.SystemLabel>
           <input

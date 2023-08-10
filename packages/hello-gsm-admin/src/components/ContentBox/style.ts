@@ -2,86 +2,89 @@ import styled from '@emotion/styled';
 
 export const ContentBox = styled.div`
   width: 100%;
-  height: 50px;
-  margin: 20px 0;
+  height: 80px;
   display: flex;
   justify-content: space-between;
+  background: #ffffff;
+  border-top: 1px solid #eeeeee;
+  :nth-of-type(1) {
+    border-top: none;
+  }
 `;
 
 export const Content = styled.div`
-  width: 1320px;
+  width: 1205px;
   height: 100%;
-  border-radius: 10px;
-  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
 export const RegistrationNumber = styled.p`
-  width: 132px;
-  font-weight: 700;
-  font-size: 18px;
+  width: 50px;
+  font-size: 12px;
   color: #0f0921;
   text-align: center;
 `;
 
 export const Name = styled.p`
-  width: 132px;
+  width: 40px;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 12px;
   color: #0f0921;
-  text-align: center;
+  text-align: left;
 `;
 
 export const Screening = styled.p`
-  width: 132px;
+  width: 70px;
   font-weight: 500;
-  font-size: 18px;
-  color: rgba(38, 38, 38, 0.54);
-  text-align: center;
+  font-size: 12px;
+  color: #212121;
+  text-align: left;
 `;
 
 export const SchoolName = styled.p`
-  width: 190px;
+  width: 90px;
   font-weight: 500;
-  font-size: 18px;
-  color: rgba(38, 38, 38, 0.54);
-  text-align: center;
+  font-size: 12px;
+  color: #212121;
+  text-align: left;
 `;
 
 export const isDocumentReception = styled.div`
-  width: 90px;
+  width: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const Checkbox = styled.span`
-  width: 25px;
-  height: 25px;
-  background: #bdbdbd;
-  border-radius: 5px;
-  cursor: pointer;
+export const DocumentReceptionText = styled.span<{
+  documentReception: boolean;
+}>`
+  color: ${({ documentReception }) =>
+    documentReception ? '#2174d8' : '#FF000F'};
+  font-size: 12px;
+  text-align: left;
+  width: 50px;
 `;
 
 const Number = styled.p`
   font-weight: 500;
-  font-size: 18px;
-  color: rgba(38, 38, 38, 0.54);
+  font-size: 12px;
+  color: #9e9e9e;
   text-align: center;
 `;
 
 export const PhoneNumber = styled(Number)`
-  width: 190px;
+  width: 90px;
 `;
 
 export const GuardianNumber = styled(Number)`
-  width: 190px;
+  width: 90px;
 `;
 
 export const TeacherNumber = styled(Number)`
-  width: 190px;
+  width: 90px;
 `;
 
 export const Button = styled.button`
@@ -98,4 +101,75 @@ export const Button = styled.button`
   cursor: pointer;
   padding: 0;
   border: 0;
+`;
+
+export const FirstResultText = styled.p`
+  font-size: 12px;
+  width: 40px;
+`;
+
+export const FinalScoreText = styled.p`
+  font-size: 12px;
+  width: 40px;
+`;
+
+export const FinalResultText = styled.p`
+  font-size: 12px;
+  width: 40px;
+`;
+
+export const EditButtonBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 260px;
+`;
+
+export const EditButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0);
+  color: #2174d8;
+  border: 1px solid #2174d8;
+  border-radius: 10px;
+  padding: 7px 16px 7px 16px;
+  cursor: pointer;
+
+  &:hover {
+    background: #d6e8ff;
+    color: #2174d8;
+    border: 1px solid #d6e8ff;
+    path {
+      fill: #2174d8;
+    }
+  }
+
+  &:active {
+    background: #2174d8;
+    color: #fff;
+    border: 1px solid #2174d8;
+    path {
+      fill: #fff;
+    }
+    rect {
+      fill: #fff;
+    }
+  }
+
+  &:disabled {
+    background: #e0e0e0;
+    color: #9e9e9e;
+    border: 1px solid #e0e0e0;
+    border: 0;
+    path {
+      fill: #9e9e9e;
+    }
+    rect {
+      fill: #9e9e9e;
+    }
+  }
+  transition: ease-in-out 0.2s;
 `;
