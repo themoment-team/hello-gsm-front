@@ -16,34 +16,16 @@ interface ScoreType {
 }
 
 interface UserIdxType {
-  userIdx: number;
   isSubmissionProp: boolean;
 }
 
-const GEDCalculatorPage: NextPage<UserIdxType> = ({
-  userIdx,
-  isSubmissionProp,
-}) => {
+const GEDCalculatorPage: NextPage<UserIdxType> = ({ isSubmissionProp }) => {
   const { register, handleSubmit, setValue } = useForm<ScoreType>();
 
   const { showScoreResult, setShowScoreResult } = useStore();
   const [result, setResult] = useState<number[]>(); //결과 화면 컴포넌트에 보일 점수
   // 이전에 제출한 경험 여부 판단
   const [isSubmission, setIsSubmission] = useState<boolean>(isSubmissionProp);
-
-  useEffect(() => {
-    const localstorageData = window.localStorage.getItem(`${userIdx}`);
-    const scoreData: GEDLocalScoreType | null = localstorageData
-      ? JSON.parse(localstorageData)
-      : null;
-    if (scoreData) {
-      setValue('curriculumScoreSubtotal', scoreData.curriculumScoreSubtotal);
-      setValue(
-        'nonCurriculumScoreSubtotal',
-        scoreData.nonCurriculumScoreSubtotal,
-      );
-    }
-  }, []);
 
   const TrySubmission = async ({
     curriculumScoreSubtotal,
@@ -89,8 +71,6 @@ const GEDCalculatorPage: NextPage<UserIdxType> = ({
         curriculumScoreSubtotal: curriculumScoreSubtotal,
         nonCurriculumScoreSubtotal: nonCurriculumScoreSubtotal,
       };
-
-      localStorage.setItem(`${userIdx}`, JSON.stringify(scoreObject));
 
       setResult([rankPercentage, scoreTotal]);
       setShowScoreResult();

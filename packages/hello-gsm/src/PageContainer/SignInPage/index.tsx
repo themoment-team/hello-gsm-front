@@ -11,7 +11,7 @@ const SignInPage: NextPage = () => {
         <S.SmallBall />
         <S.SignInForm>
           <S.Title>로그인</S.Title>
-          <S.SignInBtn href={auth.signin()}>
+          <S.SignInBtn href={auth.kakaoSignin()}>
             <I.KakaoLogo /> <p>카카오계정으로 로그인</p>
           </S.SignInBtn>
         </S.SignInForm>
