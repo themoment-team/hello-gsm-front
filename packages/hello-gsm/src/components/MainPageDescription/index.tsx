@@ -58,7 +58,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
           ? setIndex(5)
           : setIndex(7);
       } else {
-        setIndex(6);
+        setIndex(7);
       }
     }
   }, [selectedIndex]);
