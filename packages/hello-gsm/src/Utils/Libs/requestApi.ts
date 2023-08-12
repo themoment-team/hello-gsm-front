@@ -6,7 +6,7 @@ axios.interceptors.response.use(
     return response;
   },
   async error => {
-    if (error.response.status === 404) {
+    if (error.response.status === 401) {
       window.location.replace('/auth/signin');
     }
     return Promise.reject(error);
