@@ -17,7 +17,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   const [keyword, setKeyword] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(1);
 
-  const { isFAQSearching, setIsFAQSearching, setLogged } = useStore();
+  const { isFAQSearching, setIsFAQSearching } = useStore();
 
   const searching = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
