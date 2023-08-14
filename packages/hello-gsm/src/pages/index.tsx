@@ -1,22 +1,12 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import { SEOHelmet } from 'components';
-import user from 'Api/user';
-import { StatusType } from 'type/user';
-import { HeaderType } from 'type/header';
-import auth from 'Api/auth';
 import { MainPage } from 'PageContainer';
-import useStore from 'Stores/StoreContainer';
-import { useEffect } from 'react';
+import application from 'Api/application';
+import { ApplicationDataType } from 'type/application';
 
-const Home: NextPage<StatusType> = ({ data }) => {
+const Home: NextPage<ApplicationDataType> = ({ data }) => {
   const seoTitle = '홈';
   const desc = '광주소프트웨어마이스터고등학교 입학 지원 서비스입니다.';
-
-  const { setLogged } = useStore();
-
-  useEffect(() => {
-    data ? setLogged(true) : setLogged(false);
-  }, []);
 
   return (
     <>
@@ -26,45 +16,73 @@ const Home: NextPage<StatusType> = ({ data }) => {
   );
 };
 
-const getStatus = async (accessToken: string) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const { data }: StatusType = await user.status(accessToken);
+    const { data }: ApplicationDataType = await application.getMyApplication();
     return {
       props: {
         data,
       },
     };
   } catch (error) {
-    console.log(error);
     return {
-      props: {},
-    };
-  }
-};
-
-export const getServerSideProps: GetServerSideProps = async ctx => {
-  const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
-  const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
-
-  if (ctx.req.cookies.refreshToken) {
-    if (ctx.req.cookies.accessToken) {
-      return getStatus(accessToken);
-    } else {
-      try {
-        const { headers }: HeaderType = await auth.refresh(refreshToken);
-        const accessToken = headers['set-cookie'][0].split(';')[0];
-        ctx.res.setHeader('set-cookie', headers['set-cookie']);
-        return getStatus(accessToken);
-      } catch (error) {
-        console.log(error);
-        return {
-          props: {},
-        };
-      }
-    }
-  } else {
-    return {
-      props: {},
+      props: {
+        data: {
+          id: 1,
+          admissionInfo: {
+            applicantName: 'human',
+            applicantGender: 'MALE',
+            applicantBirth: '2023-06-30',
+            address: '광주광역시 광산구 송정동 상무대로 312',
+            detailAddress: '이세상 어딘가',
+            graduation: 'CANDIDATE',
+            telephone: '01012341234',
+            applicantPhoneNumber: '01012341234',
+            guardianName: '홍길동',
+            relationWithApplicant: '모',
+            guardianPhoneNumber: '01012341234',
+            teacherName: '홍길동',
+            teacherPhoneNumber: '01012341234',
+            schoolName: '광소마중',
+            schoolLocation: '광주 송정동 광소마중',
+            applicantImageUri: 'https://hellogsm.com',
+            desiredMajor: {
+              firstDesiredMajor: 'SW',
+              secondDesiredMajor: 'AI',
+              thirdDesiredMajor: 'IOT',
+            },
+            screening: 'GENERAL',
+          },
+          middleSchoolGrade:
+            '{"curriculumScoreSubtotal":100,"nonCurriculumScoreSubtotal":100,"rankPercentage":0,"scoreTotal":261}',
+          admissionGrade: {
+            totalScore: 298,
+            percentileRank: 0.7,
+            grade1Semester1Score: 18,
+            grade1Semester2Score: 36,
+            grade2Semester1Score: 36,
+            grade2Semester2Score: 48,
+            grade3Semester1Score: 64,
+            artisticScore: 60,
+            curricularSubtotalScore: 262,
+            attendanceScore: 30,
+            volunteerScore: 6,
+            extracurricularSubtotalScore: 36,
+          },
+          admissionStatus: {
+            isFinalSubmitted: true,
+            isPrintsArrived: false,
+            firstEvaluation: 'PASS',
+            secondEvaluation: 'FALL',
+            screeningSubmittedAt: null,
+            screeningFirstEvaluationAt: null,
+            screeningSecondEvaluationAt: null,
+            registrationNumber: null,
+            secondScore: null,
+            finalMajor: 'SW',
+          },
+        },
+      },
     };
   }
 };
