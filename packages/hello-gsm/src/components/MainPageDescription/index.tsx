@@ -23,38 +23,31 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   selectedIndex,
   data,
 }) => {
-  const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(true);
-  const [pass, setPass] = useState<boolean>(false);
-  const firstResult = data?.application?.firstResultScreening ? true : false;
-  const finalResult = data?.application?.finalResultScreening ? true : false;
+  const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(isFirstResult);
+  const firstResult =
+    data?.admissionStatus.firstEvaluation === 'PASS' ? true : false;
+  const finalResult =
+    data?.admissionStatus.secondEvaluation === 'PASS' ? true : false;
+  const [pass, setPass] = useState<boolean>(
+    isFirstPeriod ? firstResult : finalResult,
+  );
   const [index, setIndex] = useState<number>(1);
-  const name = data?.name ?? '';
-  const registrationNumber = data?.application?.registrationNumber ?? '';
-  const [majorResult, setMajorResult] = useState<
-    '인공지능과' | '스마트IoT과' | '소프트웨어개발과' | null
-  >(data?.application?.application_details?.majorResult ?? null);
+  const name = data?.admissionInfo.applicantName ?? '';
+  const registrationNumber = data?.admissionStatus.registrationNumber ?? '';
+  const [majorResult, setMajorResult] = useState<string | null>(
+    data?.admissionStatus.finalMajor ?? null,
+  );
+
   const { push } = useRouter();
-
-  useEffect(() => {
-    // 첫번째 합격 결과 보여주는 날짜
-    setIsFirstPeriod(isFirstResult);
-  }, []);
-
-  useEffect(() => {
-    setPass(isFirstPeriod ? firstResult : finalResult);
-  }, [isFirstPeriod]);
-
-  useEffect(() => {
-    setMajorResult(data?.application?.application_details?.majorResult ?? null);
-  }, [data?.application?.application_details?.majorResult]);
 
   useEffect(() => {
     // 입학 전형이 끝난 이후
     isFinalEnd ? setIndex(0) : setIndex(selectedIndex);
+
     if (selectedIndex === 5) {
       if (data) {
         // 1차 전형 합격 날짜
-        isStartFirstResult && (data.application?.isFinalSubmission ?? false)
+        isStartFirstResult && (data.admissionStatus.isFinalSubmitted ?? false)
           ? setIndex(5)
           : setIndex(7);
       } else {
