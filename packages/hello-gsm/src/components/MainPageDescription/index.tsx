@@ -62,7 +62,6 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
       }
     }
   }, [selectedIndex]);
-  }, []);
 
   switch (index) {
     case 1:
