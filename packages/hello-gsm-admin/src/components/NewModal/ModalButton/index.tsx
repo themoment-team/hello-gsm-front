@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 import * as S from './style';
 
-interface ModalButtonProps {
+interface ModalButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isConfirm: boolean;
   buttonTitle: '다음' | '확인';
-  onClick: () => void;
 }
 
 const ModalButton: React.FC<ModalButtonProps> = ({
   isConfirm,
-  onClick,
   buttonTitle,
+  ...props
 }) => {
   return (
-    <S.ModalButton disabled={isConfirm} isConfirm={isConfirm} onClick={onClick}>
+    <S.ModalButton isConfirm={isConfirm} disabled={isConfirm} {...props}>
       {buttonTitle}
     </S.ModalButton>
   );
