@@ -1,4 +1,4 @@
-type MajorType = 'SW' | 'IOT' | 'AI' | '';
+export type MajorType = 'SW' | 'IOT' | 'AI' | '';
 
 type GraduationStatusType = 'CANDIDATE' | 'GRADUATE' | 'GED';
 
@@ -10,7 +10,7 @@ type ScreeningType =
 
 type EvaluationStatusType = 'NOT_YET' | 'PASS' | 'FALL';
 
-interface CommonApplicationResponseType {
+export interface CommonApplicationResponseType {
   id: number;
   admissionInfo: {
     applicantName: string;
@@ -37,6 +37,7 @@ interface CommonApplicationResponseType {
     screening: ScreeningType;
   };
   middleSchoolGrade: string;
+  admissionGrade: GEDApplicationResponseType | ApplicationResponseType;
   admissionStatus: {
     isFinalSubmitted: boolean;
     isPrintsArrived: boolean;
@@ -51,9 +52,7 @@ interface CommonApplicationResponseType {
   };
 }
 
-export interface GEDApplicationResponseType
-  extends CommonApplicationResponseType {
-  middleSchoolGrade: string;
+interface GEDApplicationResponseType {
   admissionGrade: {
     totalScore: number;
     percentileRank: number;
@@ -62,7 +61,7 @@ export interface GEDApplicationResponseType
   };
 }
 
-export interface ApplicationResponseType extends CommonApplicationResponseType {
+interface ApplicationResponseType {
   admissionGrade: {
     totalScore: number;
     percentileRank: number;
@@ -99,62 +98,6 @@ export interface ApplyFormType {
   screening: ScreeningType;
 }
 
-export interface GetApplicationType {
-  user_idx: number;
-  userImg: string;
-  name: string;
-  birth: Date;
-  gender: 'MALE' | 'FEMALE';
-  cellphoneNumber: string;
-  application_image?: {
-    idPhotoUrl: string;
-  };
-  application?: {
-    applicationIdx: number;
-    registrationNumber?: number;
-    isFinalSubmission?: boolean;
-    isDocumentReception?: boolean;
-    firstResultScreening?: string;
-    finalResultScreening?: string;
-    guardianCellphoneNumber: string;
-    teacherCellphoneNumber?: string;
-    schoolName?: string;
-    screening: ScreeningType;
-    user_idx: number;
-    application_score?: {
-      applicationIdx: number;
-      score1_1: number;
-      score1_2: number;
-      score2_1: number;
-      score2_2: number;
-      score3_1: number;
-      score3_2: number;
-      generalCurriculumScoreSubtotal: number;
-      artSportsScore: number;
-      curriculumScoreSubtotal: number;
-      attendanceScore: number;
-      volunteerScore: number;
-      nonCurriculumScoreSubtotal: number;
-      personalityEvaluationScore?: number;
-      scoreTotal: number;
-      rankPercentage: number;
-    };
-    application_details?: {
-      applicationIdx: number;
-      address: string;
-      addressDetails?: string;
-      telephoneNumber?: string;
-      guardianName: string;
-      guardianRelation: string;
-      teacherName?: string;
-      schoolLocation?: string;
-      educationStatus: EvaluationStatusType;
-      graduationYear: string;
-      graduationMonth: string;
-      firstWantedMajor: MajorType;
-      secondWantedMajor: MajorType;
-      thirdWantedMajor: MajorType;
-      majorResult?: string;
-    };
-  };
+export interface ApplicationDataType {
+  data: CommonApplicationResponseType;
 }
