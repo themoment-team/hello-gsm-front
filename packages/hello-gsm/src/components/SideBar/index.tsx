@@ -58,13 +58,7 @@ const SideBar: NextPage = () => {
             <NavLink href="/faq">자주 묻는 질문</NavLink>
             {logged && <NavLink href="/mypage">내정보</NavLink>}
           </S.LinkWrapper>
-          {logged ? (
-            <S.LogOut onClick={logout}>로그아웃</S.LogOut>
-          ) : (
-            <S.Auth>
-              <NavLink href="/auth/signin">로그인</NavLink>
-            </S.Auth>
-          )}
+          {logged && <S.LogOut onClick={logout}>로그아웃</S.LogOut>}
         </S.NavSection>
       </S.SideBar>
     </>

@@ -8,3 +8,4 @@ export { default as ListHeader } from './ListHeader';
 export { default as PrintButton } from './PrintButton';
 export { default as GoogleLoginButton } from './GoogleLoginButton';
 export { default as NewModal } from './NewModal';
+export { default as SideBar } from './SideBar';
