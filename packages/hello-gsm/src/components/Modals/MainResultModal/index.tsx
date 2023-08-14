@@ -77,7 +77,7 @@ const MainResultModal: React.FC<ResultModal> = ({
                 <br />
                 {pass ? (
                   <>
-                    {majorResult}에 <S.PassText>최종 합격</S.PassText>
+                    {majorResult}과에 <S.PassText>최종 합격</S.PassText>
                   </>
                 ) : (
                   <S.FailText>최종 불합격</S.FailText>

@@ -172,7 +172,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             {name}님 2024학년도 광주소프트웨어마이스터고등학교
           </S.DescriptionLine>
           <S.DescriptionLine>
-            {majorResult}에 <S.Blue>최종 합격</S.Blue> 하셨습니다.
+            {majorResult}과에 <S.Blue>최종 합격</S.Blue> 하셨습니다.
           </S.DescriptionLine>
           <S.PostScript>
             제출서류 : 입학등록동의서 1부(11.7.월까지),
