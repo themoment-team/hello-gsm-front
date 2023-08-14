@@ -49,9 +49,7 @@ const Header: React.FC = () => {
             `}
           >
             <Link href="/auth/signin" passHref>
-              <S.AuthButton css={select('/auth/signin')}>
-                로그인하기
-              </S.AuthButton>
+              <S.AuthButton>로그인하기</S.AuthButton>
             </Link>
           </S.MemberBox>
         ) : (
