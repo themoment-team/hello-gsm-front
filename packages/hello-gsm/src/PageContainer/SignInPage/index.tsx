@@ -1,22 +1,33 @@
 import type { NextPage } from 'next';
 import * as S from './style';
-import * as I from 'Assets/svg';
 import auth from 'Api/auth';
+import Image from 'next/image';
 
 const SignInPage: NextPage = () => {
   return (
-    <>
-      <S.SignInPage>
-        <S.BigBall />
-        <S.SmallBall />
-        <S.SignInForm>
-          <S.Title>로그인</S.Title>
-          <S.SignInBtn href={auth.signin()}>
-            <I.KakaoLogo /> <p>카카오계정으로 로그인</p>
-          </S.SignInBtn>
-        </S.SignInForm>
-      </S.SignInPage>
-    </>
+    <S.SignInPage>
+      <S.SignInForm>
+        <S.Title>로그인</S.Title>
+        <S.SignInBtn href={auth.googleSignin()} className="google">
+          <Image
+            src="/images/GoogleIcon.png"
+            alt="google아이콘"
+            width={30}
+            height={30}
+          />{' '}
+          <p>구글계정으로 로그인</p>
+        </S.SignInBtn>
+        <S.SignInBtn href={auth.kakaoSignin()} className="kakao">
+          <Image
+            src="/images/KakaoIcon.png"
+            alt="kakao아이콘"
+            width={30}
+            height={30}
+          />
+          <p>카카오계정으로 로그인</p>
+        </S.SignInBtn>
+      </S.SignInForm>
+    </S.SignInPage>
   );
 };
 
