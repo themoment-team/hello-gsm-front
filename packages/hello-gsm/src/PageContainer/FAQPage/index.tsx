@@ -4,7 +4,6 @@ import * as I from 'Assets/svg';
 import * as S from './style';
 import { FAQBox } from 'components';
 import useStore from 'Stores/StoreContainer';
-import auth from 'Api/auth';
 import { FAQType } from 'type/faq';
 import { css } from '@emotion/react';
 
