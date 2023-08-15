@@ -4,18 +4,19 @@ type ScreeningType =
   | 'SPECIAL_VETERANS'
   | 'SPECIAL_ADMISSION';
 
-const formatScreening = (screening: ScreeningType) => {
-  switch (screening) {
-    case 'GENERAL':
-      return '일반전형';
-    case 'SOCIAL':
-      return '사회통합전형';
-    case 'SPECIAL_ADMISSION':
-      return '특례입학대상자';
-    case 'SPECIAL_VETERANS':
-      return '국가보훈대상자';
-    default:
-      return '일반전형';
-  }
+type ScreeningObjectType = {
+  [key in ScreeningType]: string;
 };
+
+const formatScreening = (screening: ScreeningType) => {
+  const screeningObject: ScreeningObjectType = {
+    GENERAL: '일반전형',
+    SOCIAL: '사회통합전형',
+    SPECIAL_ADMISSION: '특례입학대상자',
+    SPECIAL_VETERANS: '국가보훈대상자',
+  };
+
+  return screeningObject[screening];
+};
+
 export default formatScreening;
