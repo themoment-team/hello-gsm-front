@@ -1,0 +1,17 @@
+type MajorType = 'SW' | 'IOT' | 'AI';
+
+type MajorObjectType = {
+  [key in MajorType]: string;
+};
+
+const formatMajor = (major: MajorType) => {
+  const majorObject: MajorObjectType = {
+    SW: '소프트웨어개발과',
+    IOT: '스마트 IoT과',
+    AI: '인공지능과',
+  };
+
+  return majorObject[major];
+};
+
+export default formatMajor;
