@@ -114,7 +114,7 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
               : false
           }
           isMobile={isMobile}
-          majorResult={data?.admissionStatus.finalMajor ?? undefined}
+          majorResult={data?.admissionStatus.finalMajor ?? null}
         />
       )}
       {showMainNonLoginModal && <MainNonLoginModal />}

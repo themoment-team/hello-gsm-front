@@ -7,12 +7,13 @@ import * as S from './style';
 import device from 'shared/config';
 import { MajorType } from 'type/application';
 import { isFirstResult } from 'shared/Date/firstScreening';
+import formatMajor from 'Utils/Format/formatMajor';
 
 interface ResultModal {
   name: string;
   pass: boolean;
   isMobile: boolean;
-  majorResult?: MajorType;
+  majorResult: MajorType | null;
 }
 
 const MainResultModal: React.FC<ResultModal> = ({
@@ -77,7 +78,8 @@ const MainResultModal: React.FC<ResultModal> = ({
                 <br />
                 {pass ? (
                   <>
-                    {majorResult}과에 <S.PassText>최종 합격</S.PassText>
+                    {formatMajor(majorResult)}에
+                    <S.PassText>최종 합격</S.PassText>
                   </>
                 ) : (
                   <S.FailText>최종 불합격</S.FailText>

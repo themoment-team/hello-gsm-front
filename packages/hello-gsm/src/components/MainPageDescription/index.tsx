@@ -17,6 +17,8 @@ import {
 } from 'shared/Date/firstScreening';
 import { isFinalEnd } from 'shared/Date/afterApply';
 import { startFinalTest } from 'shared/Date/secondScreening';
+import formatMajor from 'Utils/Format/formatMajor';
+import { MajorType } from 'type/application';
 
 const MainPageDescription: React.FC<MainDescStatusType> = ({
   selectedIndex,
@@ -33,7 +35,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   const [index, setIndex] = useState<number>(1);
   const name = data?.admissionInfo.applicantName ?? '';
   const registrationNumber = data?.admissionStatus.registrationNumber ?? '';
-  const [majorResult, setMajorResult] = useState<string | null>(
+  const [majorResult, setMajorResult] = useState<MajorType | null>(
     data?.admissionStatus.finalMajor ?? null,
   );
 
@@ -171,7 +173,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             {name}님 2024학년도 광주소프트웨어마이스터고등학교
           </S.DescriptionLine>
           <S.DescriptionLine>
-            {majorResult}과에 <S.Blue>최종 합격</S.Blue> 하셨습니다.
+            {formatMajor(majorResult)}에 <S.Blue>최종 합격</S.Blue> 하셨습니다.
           </S.DescriptionLine>
           <S.PostScript>
             제출서류 : 입학등록동의서 1부(11.7.월까지),

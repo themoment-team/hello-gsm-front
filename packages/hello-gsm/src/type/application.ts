@@ -1,4 +1,4 @@
-type MajorType = 'SW' | 'IOT' | 'AI';
+export type MajorType = 'SW' | 'IOT' | 'AI';
 
 type GraduationStatusType = 'CANDIDATE' | 'GRADUATE' | 'GED';
 
