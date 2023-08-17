@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 import device from 'shared/config';
 
 export const SchoolPage = styled.div`
-  margin-top: 70px;
+  margin-top: 4.375rem;
   @media ${device.mobile} {
-    margin-top: 30px;
+    margin-top: 1.875rem;
   }
 `;
 
@@ -13,19 +13,19 @@ export const Section1 = styled.div`
   flex-direction: column;
   align-items: center;
   @media ${device.tablet} {
-    height: 600px;
+    height: 37.5rem;
   }
   @media ${device.mobile} {
-    height: 400px;
+    height: 25rem;
   }
 `;
 
 export const SchoolName = styled.p`
   color: #ffffff;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 2.5rem;
   @media ${device.mobile} {
-    font-size: 16px;
+    font-size: 1rem;
   }
 `;
 
@@ -33,8 +33,8 @@ export const VideoBox = styled.div`
   width: 69%;
   height: 35vw;
   background: rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(48px);
-  margin: 63px 0 51px;
+  backdrop-filter: blur(3rem);
+  margin: 3.9375rem 0 3.1875rem;
   @media ${device.tablet} {
     width: 95%;
     height: 50vw;
@@ -42,96 +42,96 @@ export const VideoBox = styled.div`
 `;
 
 export const ToHomepage = styled.a`
-  width: 281px;
-  height: 63px;
-  border: 1px solid #ffffff;
-  border-radius: 12px;
+  width: 17.5625rem;
+  height: 3.9375rem;
+  border: 0.0625rem solid #ffffff;
+  border-radius: 0.75rem;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   background: #ededed;
   font-weight: 700;
-  font-size: 22px;
+  font-size: 1.375rem;
   color: #0f0921;
   @media ${device.mobile} {
-    width: 90px;
-    height: 30px;
-    font-size: 15px;
+    width: 5.625rem;
+    height: 1.875rem;
+    font-size: 0.9375rem;
   }
 `;
 
 export const Section2 = styled.div`
-  padding: 185px 0 217px;
+  padding: 11.5625rem 0 13.5625rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   @media ${device.tablet} {
-    height: 400px;
+    height: 25rem;
   }
   @media ${device.mobile} {
-    height: 250px;
+    height: 15.625rem;
   }
 `;
 
 export const Section2Title = styled.p`
   font-weight: 700;
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #ffffff;
-  padding-bottom: 60px;
+  padding-bottom: 3.75rem;
   @media ${device.mobile} {
-    font-size: 16px;
-    padding-bottom: 30px;
+    font-size: 1rem;
+    padding-bottom: 1.875rem;
   }
 `;
 
 export const Section3 = styled.div`
-  height: 674px;
+  height: 42.125rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 101px;
+  margin-bottom: 6.3125rem;
   @media ${device.tablet} {
-    height: 500px;
-    margin-bottom: 50px;
+    height: 31.25rem;
+    margin-bottom: 3.125rem;
   }
-  @media (max-width: 300px) {
-    height: 300px;
+  @media (max-width: 18.75rem) {
+    height: 18.75rem;
   }
 `;
 
 export const Section3Title = styled.div`
   font-weight: 700;
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #ffffff;
-  margin-bottom: 35px;
+  margin-bottom: 2.1875rem;
   @media ${device.mobile} {
-    font-size: 16px;
-    margin-bottom: 20px;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
   }
 `;
 
 export const ColorMarkerWrapper = styled.div`
   display: flex;
-  height: 26px;
-  gap: 23px;
+  height: 1.625rem;
+  gap: 1.4375rem;
 `;
 
 export const ColorMarker = styled.div`
   display: flex;
-  gap: 9px;
+  gap: 0.5625rem;
   align-items: center;
 
   color: #fff;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 400;
 `;
 
 const Square = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 2px;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 0.125rem;
 `;
 
 export const BlueSquare = styled(Square)`
@@ -143,23 +143,24 @@ export const LimeSquare = styled(Square)`
 `;
 
 export const GraphWrapper = styled.div`
-  width: 1354px;
-  height: 576px;
+  max-width: 84.625rem;
+  width: 100%;
+  height: 36rem;
   display: flex;
   justify-content: flex-start;
-  gap: 20px;
+  gap: 1.25rem;
   position: relative;
 `;
 
 export const Blank = styled.div`
-  width: 43px;
+  width: 2.6875rem;
 `;
 
 export const Line = styled.div`
   width: 100%;
-  height: 3px;
+  height: 0.1875rem;
   position: absolute;
-  top: 533.5px;
+  top: 33.3438rem;
   z-index: -1;
   background: #9a9a9a;
 `;
@@ -172,9 +173,9 @@ export const StickWrapper = styled.div`
 `;
 
 export const Stick = styled.div<{ ratio: number; isCurIndex: boolean }>`
-  width: 60px;
+  width: 3.75rem;
   height: ${({ ratio }) => (393 / 100) * ratio}px;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   background: ${({ isCurIndex }) =>
     isCurIndex ? '#49bdff' : 'rgba(82, 82, 82, 0.60)'};
   cursor: pointer !important;
@@ -183,27 +184,27 @@ export const Stick = styled.div<{ ratio: number; isCurIndex: boolean }>`
 
 export const YearText = styled.span`
   color: #fff;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 700;
-  line-height: 20px;
+  line-height: 1.25rem;
 `;
 
 export const NotCurrentYearText = styled(YearText)`
-  font-size: 18px;
+  font-size: 1.125rem;
   color: rgba(255, 255, 255, 0.5);
 `;
 
 export const RatioText = styled(YearText)`
-  font-size: 18px;
-  margin-bottom: 14px;
+  font-size: 1.125rem;
+  margin-bottom: 0.875rem;
 `;
 
 export const Dot = styled.div`
-  width: 8px;
-  height: 8px;
+  width: 0.5rem;
+  height: 0.5rem;
   border-radius: 50%;
   background: #c4c4c4;
-  margin: 20px 0 17px;
+  margin: 1.25rem 0 1.0625rem;
 `;
 
 export const TotalWrapper = styled.div`
@@ -217,20 +218,20 @@ export const TotalWrapper = styled.div`
 
 export const BigTotal = styled.p`
   color: #fff;
-  font-size: 96px;
+  font-size: 6rem;
   font-weight: 700;
-  line-height: 139px;
+  line-height: 8.6875rem;
 `;
 
 export const MiddleTotal = styled(BigTotal)`
-  font-size: 40px;
-  line-height: 58px;
+  font-size: 2.5rem;
+  line-height: 3.625rem;
 `;
 
 export const SmallTotal = styled(BigTotal)`
-  font-size: 24px;
-  line-height: 35px;
-  margin-bottom: 14px;
+  font-size: 1.5rem;
+  line-height: 2.1875rem;
+  margin-bottom: 0.875rem;
 `;
 
 export const FlippedTotal = styled(BigTotal)`
@@ -244,7 +245,7 @@ export const FlippedTotal = styled(BigTotal)`
   transform: scaleY(-1);
 
   position: relative;
-  top: -70px;
+  top: -4.375rem;
 `;
 
 const Ball = styled.div`
@@ -254,15 +255,15 @@ const Ball = styled.div`
 `;
 
 export const GreenBall = styled(Ball)`
-  width: 176px;
-  height: 177px;
+  width: 11rem;
+  height: 11.0625rem;
   background: linear-gradient(
     220deg,
     #faffa4 10.2%,
     #e6ef54 32.84%,
     #2a3409 88.36%
   );
-  top: 400px;
+  top: 25rem;
   left: 59%;
   @media ${device.tablet} {
     display: none;
@@ -270,80 +271,71 @@ export const GreenBall = styled(Ball)`
 `;
 
 export const BlueBall = styled(Ball)`
-  width: 110px;
-  height: 110px;
+  width: 6.875rem;
+  height: 6.875rem;
   background: linear-gradient(
     220deg,
     #7be8ff 10.2%,
     #3b8ef0 32.84%,
     rgba(0, 51, 77, 0.51) 88.36%
   );
-  top: 804px;
+  top: 50.25rem;
   left: 82%;
   @media ${device.tablet} {
     display: none;
   }
   @media ${device.mobile} {
     display: block;
-    width: 32px;
-    height: 32px;
-    top: 450px;
+    width: 2rem;
+    height: 2rem;
+    top: 28.125rem;
     left: 85%;
   }
 `;
 
 export const SkyBlueBall = styled(Ball)`
-  width: 283px;
-  height: 283px;
+  width: 17.6875rem;
+  height: 17.6875rem;
   background: linear-gradient(
     220deg,
     #9cddff 10.2%,
     #48afe4 32.84%,
     rgba(0, 51, 77, 0.51) 88.36%
   );
-  top: 719px;
+  top: 44.9375rem;
   left: 6%;
   @media ${device.tablet} {
     display: none;
   }
   @media ${device.mobile} {
     display: block;
-    width: 75px;
-    height: 75px;
-    top: 430px;
+    width: 4.6875rem;
+    height: 4.6875rem;
+    top: 26.875rem;
     left: 2%;
   }
 `;
 
 export const SmallBlueBall = styled(Ball)`
-  width: 99px;
-  height: 99px;
+  width: 6.1875rem;
+  height: 6.1875rem;
   background: linear-gradient(
     220deg,
     #7be8ff 10.2%,
     #339aff 24.7%,
     #004891 88.36%
   );
-  box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.25);
-  top: 1980px;
+  box-shadow: -0.125rem 0.125rem 0.625rem rgba(0, 0, 0, 0.25);
+  top: 123.75rem;
   left: 8%;
   @media ${device.tablet} {
-    width: 45px;
-    height: 45px;
-    top: 1250px;
-    left: 3%;
-  }
-  @media ${device.mobile} {
-    width: 38px;
-    height: 38px;
-    top: 850px;
-    left: 2%;
+    display: none;
   }
 `;
 
 export const BigGreenBall = styled(Ball)`
-  width: 308px;
-  height: 308px;
+  width: 19.25rem;
+  height: 19.25rem;
   border-radius: 50%;
   background: linear-gradient(
     203deg,
@@ -352,7 +344,10 @@ export const BigGreenBall = styled(Ball)`
     rgba(208, 218, 68, 0.93) 63.85%,
     rgba(112, 165, 46, 0.93) 100%
   );
-  box-shadow: 4px 4px 31px 0px rgba(0, 0, 0, 0.25);
-  top: 1786px;
+  box-shadow: 0.25rem 0.25rem 1.9375rem 0rem rgba(0, 0, 0, 0.25);
+  top: 111.625rem;
   left: 75%;
+  @media ${device.tablet} {
+    display: none;
+  }
 `;
