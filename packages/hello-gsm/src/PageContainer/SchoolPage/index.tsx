@@ -73,6 +73,10 @@ const SchoolPage: NextPage = () => {
   //   select === 1 && setTotal(76);
   // }, [select]);
 
+  const handleStickClick = (index: number) => {
+    if (EmploymentRate[index].ratio) setCurIndex(index);
+  };
+
   return (
     <>
       <S.SchoolPage>
@@ -120,7 +124,7 @@ const SchoolPage: NextPage = () => {
                   <S.RatioText>{ratio}%</S.RatioText>
                 )}
                 <S.Stick
-                  onClick={() => setCurIndex(index)}
+                  onClick={() => handleStickClick(index)}
                   ratio={ratio ?? 2.5}
                   isCurIndex={curIndex === index}
                 />
@@ -133,6 +137,12 @@ const SchoolPage: NextPage = () => {
               </S.StickWrapper>
             ))}
             <S.Line />
+            <S.TotalWrapper>
+              <S.SmallTotal>총 취업자 수</S.SmallTotal>
+              <S.MiddleTotal>총 취업자 수</S.MiddleTotal>
+              <S.BigTotal>{400}명</S.BigTotal>
+              <S.FlippedTotal>{400}명</S.FlippedTotal>
+            </S.TotalWrapper>
           </S.GraphWrapper>
           {/* <S.GraphWrap>
             <S.SelectBox>
