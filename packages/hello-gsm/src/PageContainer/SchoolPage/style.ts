@@ -323,6 +323,47 @@ export const Dot = styled.div`
   margin: 20px 0 17px;
 `;
 
+export const TotalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 60%;
+  top: 30%;
+`;
+
+export const BigTotal = styled.p`
+  color: #fff;
+  font-size: 96px;
+  font-weight: 700;
+  line-height: 139px;
+`;
+
+export const MiddleTotal = styled(BigTotal)`
+  font-size: 40px;
+  line-height: 58px;
+`;
+
+export const SmallTotal = styled(BigTotal)`
+  font-size: 24px;
+  line-height: 35px;
+  margin-bottom: 14px;
+`;
+
+export const FlippedTotal = styled(BigTotal)`
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 34.17%,
+    rgba(255, 255, 255, 0.27) 100%
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: scaleY(-1);
+
+  position: relative;
+  top: -70px;
+`;
+
 const Ball = styled.div`
   border-radius: 100%;
   position: absolute;
