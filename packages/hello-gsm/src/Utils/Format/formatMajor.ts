@@ -1,4 +1,4 @@
-type MajorType = 'SW' | 'IOT' | 'AI';
+import { MajorType } from 'type/application';
 
 type MajorObjectType = {
   [key in MajorType]: string;
