@@ -11,7 +11,8 @@ import {
 import { css, useTheme } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
 import device from 'shared/config';
-import formatDate from 'Utils/Date/formatDate';
+import formatDate from 'Utils/Format/formatDate';
+
 import {
   applyAcceptable,
   endApply,
