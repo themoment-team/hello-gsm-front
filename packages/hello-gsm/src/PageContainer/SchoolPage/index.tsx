@@ -1,13 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
-import Graph from './Graph';
 import { Enterprises } from 'components';
-
-// interface EmployType {
-//   x: string;
-//   y: number;
-// }
 
 const EmploymentRate = [
   {
@@ -45,33 +39,7 @@ const EmploymentRate = [
 ];
 
 const SchoolPage: NextPage = () => {
-  const [select, setSelect] = useState<number>(0);
-
   const [curIndex, setCurIndex] = useState<number>(0);
-  // const [EmoployRate, setEmployRate] = useState<EmployType[]>([]);
-  // const [total, setTotal] = useState<number>(75);
-
-  // const data = [
-  //   [
-  //     { x: '취업\n80%', y: 60 },
-  //     { x: '기타\n20%', y: 15 },
-  //   ],
-  //   [
-  //     { x: '취업\n86.8%', y: 66 },
-  //     { x: '기타\n13.2%', y: 10 },
-  //   ],
-  // ];
-
-  const selectStyle = (index: number) =>
-    select === index && { color: '#ffffff' };
-
-  const selecting = (index: number) => setSelect(index);
-
-  // useEffect(() => {
-  //   setEmployRate(data[select]);
-  //   select === 0 && setTotal(75);
-  //   select === 1 && setTotal(76);
-  // }, [select]);
 
   const handleStickClick = (index: number) => {
     if (EmploymentRate[index].ratio) setCurIndex(index);
@@ -144,31 +112,6 @@ const SchoolPage: NextPage = () => {
               <S.FlippedTotal>{400}명</S.FlippedTotal>
             </S.TotalWrapper>
           </S.GraphWrapper>
-          {/* <S.GraphWrap>
-            <S.SelectBox>
-              <S.SelectBar />
-              <S.SelectOptionBox>
-                <S.SelectOption
-                  css={selectStyle(0)}
-                  onClick={() => selecting(0)}
-                >
-                  2020년
-                </S.SelectOption>
-                <S.SelectOption
-                  css={selectStyle(1)}
-                  onClick={() => selecting(1)}
-                >
-                  2021년
-                </S.SelectOption>
-              </S.SelectOptionBox>
-            </S.SelectBox>
-            <S.GraphBox>
-              <S.Title>총 {total}명</S.Title>
-              <S.Graph>
-                <Graph data={EmoployRate} />
-              </S.Graph>
-            </S.GraphBox>
-          </S.GraphWrap> */}
         </S.Section3>
       </S.SchoolPage>
       <S.GreenBall />
