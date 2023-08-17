@@ -12,8 +12,6 @@ export const Section1 = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  height: 1000px;
   @media ${device.tablet} {
     height: 600px;
   }
@@ -36,6 +34,7 @@ export const VideoBox = styled.div`
   height: 35vw;
   background: rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(48px);
+  margin: 63px 0 51px;
   @media ${device.tablet} {
     width: 95%;
     height: 50vw;
@@ -63,7 +62,7 @@ export const ToHomepage = styled.a`
 `;
 
 export const Section2 = styled.div`
-  height: 750px;
+  padding: 185px 0 217px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -88,12 +87,12 @@ export const Section2Title = styled.p`
 `;
 
 export const Section3 = styled.div`
-  height: 800px;
+  height: 674px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 200px;
+  margin-bottom: 101px;
   @media ${device.tablet} {
     height: 500px;
     margin-bottom: 50px;
@@ -261,7 +260,7 @@ export const BlueBall = styled(Ball)`
     #3b8ef0 32.84%,
     rgba(0, 51, 77, 0.51) 88.36%
   );
-  top: 900px;
+  top: 804px;
   left: 82%;
   @media ${device.tablet} {
     display: none;
@@ -284,7 +283,7 @@ export const SkyBlueBall = styled(Ball)`
     #48afe4 32.84%,
     rgba(0, 51, 77, 0.51) 88.36%
   );
-  top: 800px;
+  top: 719px;
   left: 6%;
   @media ${device.tablet} {
     display: none;
@@ -308,7 +307,7 @@ export const SmallBlueBall = styled(Ball)`
     #004891 88.36%
   );
   box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.25);
-  top: 2000px;
+  top: 1980px;
   left: 8%;
   @media ${device.tablet} {
     width: 45px;
@@ -322,4 +321,20 @@ export const SmallBlueBall = styled(Ball)`
     top: 850px;
     left: 2%;
   }
+`;
+
+export const BigGreenBall = styled(Ball)`
+  width: 308px;
+  height: 308px;
+  border-radius: 50%;
+  background: linear-gradient(
+    203deg,
+    rgba(252, 255, 192, 0.93) 0%,
+    rgba(247, 255, 95, 0.93) 29.48%,
+    rgba(208, 218, 68, 0.93) 63.85%,
+    rgba(112, 165, 46, 0.93) 100%
+  );
+  box-shadow: 4px 4px 31px 0px rgba(0, 0, 0, 0.25);
+  top: 1786px;
+  left: 75%;
 `;

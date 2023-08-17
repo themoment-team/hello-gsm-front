@@ -65,7 +65,7 @@ const SchoolPage: NextPage = () => {
         </S.Section2>
         <S.Section3>
           <S.Section3Title>취업률</S.Section3Title>
-          <S.GraphWrap>
+          {/* <S.GraphWrap>
             <S.SelectBox>
               <S.SelectBar />
               <S.SelectOptionBox>
@@ -89,13 +89,14 @@ const SchoolPage: NextPage = () => {
                 <Graph data={EmoployRate} />
               </S.Graph>
             </S.GraphBox>
-          </S.GraphWrap>
+          </S.GraphWrap> */}
         </S.Section3>
       </S.SchoolPage>
       <S.GreenBall />
       <S.BlueBall />
       <S.SkyBlueBall />
       <S.SmallBlueBall />
+      <S.BigGreenBall />
     </>
   );
 };
