@@ -125,3 +125,7 @@ export interface AdmissionInfoType {
     screening: ScreeningType;
   };
 }
+
+export interface ApplicationDataType {
+  data: ApplicationResponseType;
+}
