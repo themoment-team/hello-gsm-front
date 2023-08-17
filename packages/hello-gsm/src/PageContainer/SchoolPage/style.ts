@@ -295,6 +295,7 @@ export const Stick = styled.div<{ ratio: number; isCurIndex: boolean }>`
   background: ${({ isCurIndex }) =>
     isCurIndex ? '#49bdff' : 'rgba(82, 82, 82, 0.60)'};
   cursor: pointer !important;
+  transition: ease-in-out 0.2s;
 `;
 
 export const YearText = styled.span`
