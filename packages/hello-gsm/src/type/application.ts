@@ -99,62 +99,29 @@ export interface ApplyFormType {
   screening: ScreeningType;
 }
 
-export interface GetApplicationType {
-  user_idx: number;
-  userImg: string;
-  name: string;
-  birth: Date;
-  gender: 'MALE' | 'FEMALE';
-  cellphoneNumber: string;
-  application_image?: {
-    idPhotoUrl: string;
-  };
-  application?: {
-    applicationIdx: number;
-    registrationNumber?: number;
-    isFinalSubmission?: boolean;
-    isDocumentReception?: boolean;
-    firstResultScreening?: string;
-    finalResultScreening?: string;
-    guardianCellphoneNumber: string;
-    teacherCellphoneNumber?: string;
-    schoolName?: string;
+export interface AdmissionInfoType {
+  admissionInfo: {
+    applicantName: string;
+    applicantGender: 'MALE' | 'FEMALE';
+    applicantBirth: Date;
+    address: string;
+    detailAddress: string;
+    graduation: GraduationStatusType;
+    telephone: string;
+    applicantPhoneNumber: string;
+    guardianName: string;
+    relationWithApplicant: string;
+    guardianPhoneNumber: string;
+    teacherName: string;
+    teacherPhoneNumber: string;
+    schoolName: string;
+    schoolLocation: string;
+    applicantImageUri: string;
+    desiredMajor: {
+      firstDesiredMajor: MajorType;
+      secondDesiredMajor: MajorType;
+      thirdDesiredMajor: MajorType;
+    };
     screening: ScreeningType;
-    user_idx: number;
-    application_score?: {
-      applicationIdx: number;
-      score1_1: number;
-      score1_2: number;
-      score2_1: number;
-      score2_2: number;
-      score3_1: number;
-      score3_2: number;
-      generalCurriculumScoreSubtotal: number;
-      artSportsScore: number;
-      curriculumScoreSubtotal: number;
-      attendanceScore: number;
-      volunteerScore: number;
-      nonCurriculumScoreSubtotal: number;
-      personalityEvaluationScore?: number;
-      scoreTotal: number;
-      rankPercentage: number;
-    };
-    application_details?: {
-      applicationIdx: number;
-      address: string;
-      addressDetails?: string;
-      telephoneNumber?: string;
-      guardianName: string;
-      guardianRelation: string;
-      teacherName?: string;
-      schoolLocation?: string;
-      educationStatus: EvaluationStatusType;
-      graduationYear: string;
-      graduationMonth: string;
-      firstWantedMajor: MajorType;
-      secondWantedMajor: MajorType;
-      thirdWantedMajor: MajorType;
-      majorResult?: string;
-    };
   };
 }
