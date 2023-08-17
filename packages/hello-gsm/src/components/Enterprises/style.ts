@@ -75,3 +75,8 @@ export const EnterpriseImg = styled.div`
     height: 18px;
   }
 `;
+
+export const ExampleBlank = styled.div`
+  height: 10px;
+  margin-top: 38px;
+`;
