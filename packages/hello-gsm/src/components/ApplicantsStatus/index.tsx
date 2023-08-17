@@ -54,35 +54,35 @@ const ApplicantsStatus: React.FC<{ data: ApplicationResponseType }> = ({
           <S.Subject rowSpan={2}>합계 (환산총점)</S.Subject>
         </tr>
         <tr>
-          {admissionGrade.grade1Semester1Score > 0 ? (
+          {admissionGrade.grade1Semester1Score === 0 ? (
+            <S.Slash />
+          ) : (
             <td>{admissionGrade.grade1Semester1Score}</td>
-          ) : (
-            <S.Slash />
           )}
-          {admissionGrade.grade1Semester2Score > 0 ? (
+          {admissionGrade.grade1Semester2Score === 0 ? (
+            <S.Slash />
+          ) : (
             <td>{admissionGrade.grade1Semester2Score}</td>
-          ) : (
-            <S.Slash />
           )}
-          {admissionGrade.grade2Semester1Score > 0 ? (
+          {admissionGrade.grade2Semester1Score === 0 ? (
+            <S.Slash />
+          ) : (
             <td>{admissionGrade.grade2Semester1Score}</td>
-          ) : (
-            <S.Slash />
           )}
-          {admissionGrade.grade2Semester2Score > 0 ? (
+          {admissionGrade.grade2Semester2Score === 0 ? (
+            <S.Slash />
+          ) : (
             <td>{admissionGrade.grade2Semester2Score}</td>
-          ) : (
-            <S.Slash />
           )}
-          {admissionGrade.grade3Semester1Score > 0 ? (
+          {admissionGrade.grade3Semester1Score === 0 ? (
+            <S.Slash />
+          ) : (
             <td>{admissionGrade.grade3Semester1Score}</td>
-          ) : (
-            <S.Slash />
           )}
-          {admissionGrade.artisticScore > 0 ? (
-            <td>{admissionGrade.artisticScore}</td>
-          ) : (
+          {admissionGrade.artisticScore === 0 ? (
             <S.Slash />
+          ) : (
+            <td>{admissionGrade.artisticScore}</td>
           )}
           <td>
             {isGED(admissionGrade)
@@ -102,15 +102,15 @@ const ApplicantsStatus: React.FC<{ data: ApplicationResponseType }> = ({
           </td>
         </tr>
         <tr>
-          {admissionGrade.attendanceScore > 0 ? (
+          {admissionGrade.attendanceScore === 0 ? (
+            <S.Slash colSpan={3} />
+          ) : (
             <td colSpan={3}>{admissionGrade.attendanceScore}</td>
-          ) : (
-            <S.Slash colSpan={3} />
           )}
-          {admissionGrade.volunteerScore > 0 ? (
-            <td colSpan={3}>{admissionGrade.volunteerScore}</td>
-          ) : (
+          {admissionGrade.volunteerScore === 0 ? (
             <S.Slash colSpan={3} />
+          ) : (
+            <td colSpan={3}>{admissionGrade.volunteerScore}</td>
           )}
           <td>
             {' '}
