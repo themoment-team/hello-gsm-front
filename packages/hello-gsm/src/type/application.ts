@@ -55,7 +55,6 @@ interface CommonApplicationResponseType {
 
 export interface GEDApplicationResponseType
   extends CommonApplicationResponseType {
-  middleSchoolGrade: string;
   admissionGrade: {
     totalScore: number;
     percentileRank: number;
