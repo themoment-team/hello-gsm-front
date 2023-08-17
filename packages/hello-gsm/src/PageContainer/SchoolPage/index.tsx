@@ -75,6 +75,14 @@ const SchoolPage: NextPage = () => {
               <S.LimeSquare />
             </S.ColorMarker>
           </S.ColorMarkerWrapper>
+          <S.GraphWrapper>
+            <S.StickWrapper>
+              <S.RatioText>{100}%</S.RatioText>
+              <S.Stick />
+              <S.Dot />
+              <S.YearText>{2020}년</S.YearText>
+            </S.StickWrapper>
+          </S.GraphWrapper>
           {/* <S.GraphWrap>
             <S.SelectBox>
               <S.SelectBar />

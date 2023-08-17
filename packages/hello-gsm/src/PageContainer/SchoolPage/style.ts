@@ -231,6 +231,7 @@ export const Section3Title = styled.div`
 
 export const ColorMarkerWrapper = styled.div`
   display: flex;
+  height: 26px;
   gap: 23px;
 `;
 
@@ -256,6 +257,47 @@ export const BlueSquare = styled(Square)`
 
 export const LimeSquare = styled(Square)`
   background: #eef759;
+`;
+
+export const GraphWrapper = styled.div`
+  width: 1354px;
+  height: 576px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+`;
+
+export const StickWrapper = styled.div`
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const Stick = styled.div`
+  width: 60px;
+  height: 393px;
+  border-radius: 10px;
+  background: #49bdff;
+`;
+
+export const YearText = styled.div`
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+`;
+
+export const RatioText = styled(YearText)`
+  font-size: 18px;
+  margin-bottom: 14px;
+`;
+
+export const Dot = styled.div`
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  margin: 20px 0 17px;
 `;
 
 const Ball = styled.div`
