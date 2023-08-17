@@ -13,19 +13,16 @@ import {
 } from 'components';
 import { useForm } from 'react-hook-form';
 import application from 'Api/application';
-import {
-  ApplicationType,
-  ApplyFormType,
-  GetApplicationType,
-} from 'type/application';
-import auth from 'Api/auth';
+import { ApplicationResponseType, ApplyFormType } from 'type/application';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+import { IdentityType } from 'type/identity';
 
-const ApplyPage: NextPage<GetApplicationType & { onNext: () => void }> = ({
-  data,
-  onNext,
-}) => {
+const ApplyPage: NextPage<
+  { data: ApplicationResponseType; identityData: IdentityType } & {
+    onNext: () => void;
+  }
+> = ({ data, onNext, identityData }) => {
   const imgInput = useRef<HTMLInputElement>(null);
   const [imgURL, setImgURL] = useState<string>('');
   const [isIdPhoto, setIsIdPhoto] = useState<boolean>(true);
@@ -33,7 +30,7 @@ const ApplyPage: NextPage<GetApplicationType & { onNext: () => void }> = ({
   const [isAddressExist, setIsAddressExist] = useState<boolean>(true);
   const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(true);
   const [isEdit, setIsEdit] = useState<boolean>(false);
-  const userBirth = new Date(data.birth);
+  const userBirth = new Date(identityData.birth);
 
   const { push, replace } = useRouter();
 
@@ -70,41 +67,34 @@ const ApplyPage: NextPage<GetApplicationType & { onNext: () => void }> = ({
     formState: { errors },
   } = useForm<ApplyFormType>({
     defaultValues: {
-      addressDetails:
-        data.application?.application_details?.addressDetails || '',
-      telephoneNumber:
-        data.application?.application_details?.telephoneNumber || '',
-      screening: data.application?.screening || '일반전형',
-      graduationYear: data.application?.application_details?.graduationYear,
-      graduationMonth: data.application?.application_details?.graduationMonth,
-      educationStatus:
-        data.application?.application_details?.educationStatus || '졸업예정',
-      guardianName: data.application?.application_details?.guardianName,
-      guardianRelation: data.application?.application_details?.guardianRelation,
-      guardianCellphoneNumber: data.application?.guardianCellphoneNumber,
-      teacherName: data.application?.application_details?.teacherName,
-      teacherCellphoneNumber: data.application?.teacherCellphoneNumber,
+      detailAddress: data?.admissionInfo.detailAddress || '',
+      telephone: data?.admissionInfo.telephone || '',
+      screening: data?.admissionInfo.screening || '일반전형',
+      graduation: data?.admissionInfo.graduation || 'CANDIDATE',
+      guardianName: data?.admissionInfo.guardianName,
+      relationWithApplicant: data?.admissionInfo.relationWithApplicant,
+      guardianPhoneNumber: data?.admissionInfo.guardianPhoneNumber,
+      teacherName: data?.admissionInfo.teacherName,
+      teacherPhoneNumber: data?.admissionInfo.teacherPhoneNumber,
     },
   });
 
-  const graduationStatus = watch('educationStatus');
+  const graduationStatus = watch('graduation');
 
   useEffect(() => {
     setLogged(true);
-    if (data.application !== null) {
+    if (data?.middleSchoolGrade !== null) {
       setIsEdit(true);
     } else {
       setIsEdit(false);
     }
-    setImgURL(data.application_image?.idPhotoUrl || '');
-    setChoice1(data.application?.application_details?.firstWantedMajor || '');
-    setChoice2(data.application?.application_details?.secondWantedMajor || '');
-    setChoice3(data.application?.application_details?.thirdWantedMajor || '');
-    setSchoolName(data.application?.schoolName || '');
-    setSchoolLocation(
-      data.application?.application_details?.schoolLocation || '',
-    );
-    setApplicantAddress(data.application?.application_details?.address || '');
+    setImgURL(data?.admissionInfo.applicantImageUri || '');
+    setChoice1(data?.admissionInfo.desiredMajor.firstDesiredMajor || '');
+    setChoice2(data?.admissionInfo.desiredMajor.firstDesiredMajor || '');
+    setChoice3(data?.admissionInfo.desiredMajor.firstDesiredMajor || '');
+    setSchoolName(data?.admissionInfo.schoolName || '');
+    setSchoolLocation(data?.admissionInfo.schoolLocation || '');
+    setApplicantAddress(data?.admissionInfo.detailAddress || '');
   }, []);
 
   const registerImg = async () => {
@@ -112,41 +102,33 @@ const ApplyPage: NextPage<GetApplicationType & { onNext: () => void }> = ({
 
     imgInput.current?.files &&
       imgInput.current.files[0] &&
-      formData.append('photo', imgInput.current?.files[0]);
+      formData?.append('photo', imgInput.current?.files[0]);
 
-    formData.get('photo') && application.postImage(formData);
+    formData?.get('photo') && application.postImage(formData);
   };
 
   const submissionApplication = async (submitData: ApplyFormType) => {
-    const data: ApplicationType = {
-      application: {
-        teacherCellphoneNumber: submitData.teacherCellphoneNumber || undefined,
-        schoolName: schoolName || undefined,
-        guardianCellphoneNumber: submitData.guardianCellphoneNumber,
-        screening: submitData.screening,
-      },
-      applicationDetail: {
-        telephoneNumber: submitData.telephoneNumber || undefined,
+    const data = {
+      admissionInfo: {
         address: applicantAddress,
-        addressDetails: submitData.addressDetails || undefined,
-        guardianName: submitData.guardianName,
-        guardianRelation: submitData.guardianRelation,
-        educationStatus: submitData.educationStatus,
-        graduationYear: submitData.graduationYear,
-        graduationMonth: submitData.graduationMonth,
-        firstWantedMajor: choice1,
-        secondWantedMajor: choice2,
-        thirdWantedMajor: choice3,
-        teacherName: submitData.teacherName || undefined,
+        detailAddress: submitData?.detailAddress,
+        teacherPhoneNumber: submitData?.teacherPhoneNumber || undefined,
+        teacherName: submitData?.teacherName || undefined,
+        telephone: submitData?.telephone || undefined,
+        guardianPhoneNumber: submitData?.guardianPhoneNumber,
+        guardianName: submitData?.guardianName,
+        relationWithApplicant: submitData?.relationWithApplicant,
+        schoolName: schoolName || undefined,
         schoolLocation: schoolLocation || undefined,
+        graduation: submitData?.graduation,
+        desiredMajor: {
+          firstDesiredMajor: choice1,
+          secondDesiredMajor: choice2,
+          thirdDesiredMajor: choice3,
+        },
+        screening: submitData?.screening,
       },
     };
-
-    !isEdit
-      ? await application.postFirstSubmission(data)
-      : await application.patchFirstSubmission(data);
-
-    setIsEdit(true);
   };
 
   const apply = async (submitData: ApplyFormType) => {
@@ -155,26 +137,11 @@ const ApplyPage: NextPage<GetApplicationType & { onNext: () => void }> = ({
       await Promise.all([registerImg(), submissionApplication(submitData)]);
       setshowApplyPostModal();
       toast.success('원서가 저장되었습니다.');
-      watch('educationStatus') !== '검정고시'
-        ? push('/calculator')
-        : push('/calculator/ged');
+      // watch('gradu') !== '검정고시'
+      //   ? push('/calculator')
+      //   : push('/calculator/ged');
     } catch (error: any) {
       setshowApplyPostModal();
-      // accessToken 없을 시에 accessToken 발급 후 요청
-      if (error.response.status === 401) {
-        try {
-          // accessToken 발급
-          await auth.refresh();
-          apply(submitData);
-        } catch (error) {
-          console.log(error);
-          toast.error('재 로그인 후 다시 시도해주세요.');
-          replace('/auth/signin');
-        }
-      } else {
-        console.log(error);
-        toast.error('원서가 저장되지 않았습니다. 다시 시도해주세요.');
-      }
     }
   };
 
@@ -211,6 +178,7 @@ const ApplyPage: NextPage<GetApplicationType & { onNext: () => void }> = ({
     validate();
     if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
       await apply(data);
+      onNext();
     } else {
       return;
     }
@@ -221,7 +189,7 @@ const ApplyPage: NextPage<GetApplicationType & { onNext: () => void }> = ({
       ? setIsMajorSelected(true)
       : setIsMajorSelected(false);
     applicantAddress ? setIsAddressExist(true) : setIsAddressExist(false);
-    schoolName || graduationStatus === '검정고시'
+    schoolName || graduationStatus === 'GED'
       ? setIsSchoolNameExist(true)
       : setIsSchoolNameExist(false);
     imgURL ? setIsIdPhoto(true) : setIsIdPhoto(false);
@@ -255,18 +223,18 @@ const ApplyPage: NextPage<GetApplicationType & { onNext: () => void }> = ({
             ref={imgInput}
             onChange={e => readImg(e)}
           />
-          <S.NameBox>{data.name}</S.NameBox>
+          <S.NameBox>{identityData.name}</S.NameBox>
           <S.GenderBox>
             <S.GenderSelect
               css={css`
-                background: ${data.gender === '남자' && '#42bafe'};
+                background: ${identityData.gender === 'MALE' && '#42bafe'};
               `}
             >
               남자
             </S.GenderSelect>
             <S.GenderSelect
               css={css`
-                background: ${data.gender === '여자' && '#42bafe'};
+                background: ${identityData.gender === 'FEMALE' && '#42bafe'};
               `}
             >
               여자
@@ -289,7 +257,7 @@ const ApplyPage: NextPage<GetApplicationType & { onNext: () => void }> = ({
             <S.DetailAddress
               placeholder="상세주소"
               type="text"
-              {...register('addressDetails', {
+              {...register('detailAddress', {
                 required: false,
                 maxLength: {
                   value: 50,
@@ -300,7 +268,7 @@ const ApplyPage: NextPage<GetApplicationType & { onNext: () => void }> = ({
           </S.AddressBox>
           <S.HomeTelephone
             placeholder="집 전화번호를 입력해주세요. ('-'제외 9~10자리)"
-            {...register('telephoneNumber', {
+            {...register('telephone', {
               required: false,
               validate: {
                 notHypen: value =>
@@ -312,7 +280,7 @@ const ApplyPage: NextPage<GetApplicationType & { onNext: () => void }> = ({
               },
             })}
           />
-          <S.Cellphone>{data.cellphoneNumber}</S.Cellphone>
+          <S.Cellphone>{identityData.phoneNumber}</S.Cellphone>
           <S.Title>지원자 현황</S.Title>
           <S.TypeBox>
             <S.Type
@@ -341,80 +309,40 @@ const ApplyPage: NextPage<GetApplicationType & { onNext: () => void }> = ({
             <S.SchoolName>{schoolName}</S.SchoolName>
             <S.SchoolSearchButton
               css={css`
-                ${graduationStatus === '검정고시' &&
+                ${graduationStatus === 'GED' &&
                 'background: #a0a0a0; cursor: default;'}
               `}
               onClick={() =>
-                graduationStatus !== '검정고시' && setShowFindSchoolModal()
+                graduationStatus !== 'GED' && setShowFindSchoolModal()
               }
             >
               학교 검색
             </S.SchoolSearchButton>
           </S.SchoolBox>
           <S.GraduatedBox>
-            <S.GraduatedDateBox>
-              <S.GraduationYear
-                defaultValue={'default'}
-                {...register('graduationYear', {
-                  required: true,
-                  pattern: {
-                    value: /^[0-9]+$/,
-                    message: '* 졸업일을 선택해주세요.',
-                  },
-                })}
-              >
-                <option disabled value="default">
-                  연도
-                </option>
-                {[...Array(14)].map((_, index: number) => (
-                  <option key={index} value={'20' + (index + 10)}>
-                    20{index + 10}
-                  </option>
-                ))}
-              </S.GraduationYear>
-              <S.GraduationMonth
-                defaultValue={'default'}
-                {...register('graduationMonth', {
-                  required: true,
-                  pattern: {
-                    value: /^[0-9]+$/,
-                    message: '* 졸업일을 선택해주세요.',
-                  },
-                })}
-              >
-                <option disabled value="default">
-                  월
-                </option>
-                {[...Array(12)].map((_, index: number) => (
-                  <option key={index} value={index + 1}>
-                    {index + 1}
-                  </option>
-                ))}
-              </S.GraduationMonth>
-            </S.GraduatedDateBox>
             <S.GraduatedSelectBox>
               <S.GraduationType
-                {...register('educationStatus')}
+                {...register('graduation')}
                 type="radio"
-                value="졸업예정"
+                value="CANDIDATE"
                 id="willGraduate"
               />
               <S.GraduatedTypeLabel htmlFor="willGraduate">
                 졸업예정
               </S.GraduatedTypeLabel>
               <S.GraduationType
-                {...register('educationStatus')}
+                {...register('graduation')}
                 type="radio"
-                value="졸업"
+                value="GRADUATE"
                 id="graduated"
               />
               <S.GraduatedTypeLabel htmlFor="graduated">
                 졸업
               </S.GraduatedTypeLabel>
               <S.GraduationType
-                {...register('educationStatus')}
+                {...register('graduation')}
                 type="radio"
-                value="검정고시"
+                value="GED"
                 id="GED"
               />
               <S.GraduatedTypeLabel
@@ -423,7 +351,7 @@ const ApplyPage: NextPage<GetApplicationType & { onNext: () => void }> = ({
                   setSchoolLocation('');
                   setSchoolName('');
                   setValue('teacherName', '');
-                  setValue('teacherCellphoneNumber', '');
+                  setValue('teacherPhoneNumber', '');
                 }}
               >
                 검정고시
@@ -483,7 +411,7 @@ const ApplyPage: NextPage<GetApplicationType & { onNext: () => void }> = ({
             placeholder="보호자분의 성명을 입력해주세요."
           />
           <S.GuardianRelation
-            {...register('guardianRelation', {
+            {...register('relationWithApplicant', {
               required: '* 관계를 입력해주세요.',
               pattern: {
                 value: /^[가-힣]{1,20}$/,
@@ -493,7 +421,7 @@ const ApplyPage: NextPage<GetApplicationType & { onNext: () => void }> = ({
             placeholder="지원자분과의 관계를 입력해주세요."
           />
           <S.GuardianCellphone
-            {...register('guardianCellphoneNumber', {
+            {...register('guardianPhoneNumber', {
               required: '* 핸드폰 번호를 입력해주세요.',
               validate: {
                 notHypen: value =>
@@ -510,28 +438,26 @@ const ApplyPage: NextPage<GetApplicationType & { onNext: () => void }> = ({
           <S.TeacherName
             {...register('teacherName', {
               required:
-                graduationStatus !== '검정고시'
-                  ? '* 성함을 입력해주세요.'
-                  : false,
+                graduationStatus !== 'GED' ? '* 성함을 입력해주세요.' : false,
               pattern: {
                 value: /^[가-힣]{1,20}$/,
                 message: '* 성함을 확인해주세요.',
               },
             })}
             placeholder={
-              graduationStatus === '검정고시'
+              graduationStatus === 'GED'
                 ? ''
                 : '담임선생님의 성함을 입력해주세요.'
             }
-            disabled={graduationStatus === '검정고시'}
+            disabled={graduationStatus === 'GED'}
             css={css`
-              background: ${graduationStatus === '검정고시' && '#8B8B8B'};
+              background: ${graduationStatus === 'GED' && '#8B8B8B'};
             `}
           />
           <S.TeacherPhone
-            {...register('teacherCellphoneNumber', {
+            {...register('teacherPhoneNumber', {
               required:
-                graduationStatus !== '검정고시'
+                graduationStatus !== 'GED'
                   ? '* 핸드폰 번호를 확인해주세요.'
                   : false,
               validate: {
@@ -544,38 +470,31 @@ const ApplyPage: NextPage<GetApplicationType & { onNext: () => void }> = ({
               },
             })}
             placeholder={
-              graduationStatus === '검정고시'
+              graduationStatus === 'GED'
                 ? ''
                 : "담임선생님의 연락처를 입력해주세요. ('-'제외 11자리)"
             }
-            disabled={graduationStatus === '검정고시'}
+            disabled={graduationStatus === 'GED'}
             css={css`
-              background: ${graduationStatus === '검정고시' && '#8B8B8B'};
+              background: ${graduationStatus === 'GED' && '#8B8B8B'};
             `}
           />
-          <S.NextButton type="submit" onClick={onNext}>
-            다음
-          </S.NextButton>
+          <S.NextButton type="submit">다음</S.NextButton>
         </S.ApplyPageContent>
         <S.ErrorBox>
           <S.Error>{!isIdPhoto && '* 증명사진을 등록해주세요.'}</S.Error>
           <S.Error>{!isAddressExist && '* 주소지를 입력해주세요.'}</S.Error>
-          <S.Error>{errors.addressDetails?.message}</S.Error>
-          <S.Error>{errors.telephoneNumber?.message}</S.Error>
+          <S.Error>{errors.detailAddress?.message}</S.Error>
+          <S.Error>{errors.telephone?.message}</S.Error>
           <S.Error>
             {!isSchoolNameExist && '* 출신 중학교를 입력해주세요.'}
           </S.Error>
-          <S.Error>
-            {errors.graduationYear?.message
-              ? errors.graduationYear.message
-              : errors.graduationMonth?.message}
-          </S.Error>
           <S.Error>{!isMajorSelected && '* 지원학과를 선택해주세요.'}</S.Error>
           <S.Error>{errors.guardianName?.message}</S.Error>
-          <S.Error>{errors.guardianRelation?.message}</S.Error>
-          <S.Error>{errors.guardianCellphoneNumber?.message}</S.Error>
+          <S.Error>{errors.relationWithApplicant?.message}</S.Error>
+          <S.Error>{errors.guardianPhoneNumber?.message}</S.Error>
           <S.Error>{errors.teacherName?.message}</S.Error>
-          <S.Error>{errors.teacherCellphoneNumber?.message}</S.Error>
+          <S.Error>{errors.teacherPhoneNumber?.message}</S.Error>
         </S.ErrorBox>
       </S.ApplyPage>
     </>
