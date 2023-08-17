@@ -265,6 +265,20 @@ export const GraphWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   gap: 20px;
+  position: relative;
+`;
+
+export const Blank = styled.div`
+  width: 43px;
+`;
+
+export const Line = styled.div`
+  width: 100%;
+  height: 3px;
+  position: absolute;
+  top: 533.5px;
+  z-index: -1;
+  background: #9a9a9a;
 `;
 
 export const StickWrapper = styled.div`
@@ -274,17 +288,25 @@ export const StickWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const Stick = styled.div`
+export const Stick = styled.div<{ ratio: number; isCurIndex: boolean }>`
   width: 60px;
-  height: 393px;
+  height: ${({ ratio }) => (393 / 100) * ratio}px;
   border-radius: 10px;
-  background: #49bdff;
+  background: ${({ isCurIndex }) =>
+    isCurIndex ? '#49bdff' : 'rgba(82, 82, 82, 0.60)'};
+  cursor: pointer !important;
 `;
 
-export const YearText = styled.div`
+export const YearText = styled.span`
   color: #fff;
   font-size: 20px;
   font-weight: 700;
+  line-height: 20px;
+`;
+
+export const NotCurrentYearText = styled(YearText)`
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.5);
 `;
 
 export const RatioText = styled(YearText)`
@@ -296,7 +318,7 @@ export const Dot = styled.div`
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #fff;
+  background: #c4c4c4;
   margin: 20px 0 17px;
 `;
 

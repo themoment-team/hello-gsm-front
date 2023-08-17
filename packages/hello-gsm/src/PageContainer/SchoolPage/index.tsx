@@ -4,37 +4,74 @@ import * as S from './style';
 import Graph from './Graph';
 import { Enterprises } from 'components';
 
-interface EmployType {
-  x: string;
-  y: number;
-}
+// interface EmployType {
+//   x: string;
+//   y: number;
+// }
+
+const EmploymentRate = [
+  {
+    year: 2020,
+    ratio: 80,
+  },
+  {
+    year: 2021,
+    ratio: 86,
+  },
+  {
+    year: 2022,
+    ratio: 72,
+  },
+  {
+    year: 2023,
+    ratio: null,
+  },
+  {
+    year: 2024,
+    ratio: null,
+  },
+  {
+    year: 2025,
+    ratio: null,
+  },
+  {
+    year: 2026,
+    ratio: null,
+  },
+  {
+    year: 2027,
+    ratio: null,
+  },
+];
 
 const SchoolPage: NextPage = () => {
   const [select, setSelect] = useState<number>(0);
-  const [EmoployRate, setEmployRate] = useState<EmployType[]>([]);
-  const [total, setTotal] = useState<number>(75);
 
-  const data = [
-    [
-      { x: '취업\n80%', y: 60 },
-      { x: '기타\n20%', y: 15 },
-    ],
-    [
-      { x: '취업\n86.8%', y: 66 },
-      { x: '기타\n13.2%', y: 10 },
-    ],
-  ];
+  const [curIndex, setCurIndex] = useState<number>(0);
+  // const [EmoployRate, setEmployRate] = useState<EmployType[]>([]);
+  // const [total, setTotal] = useState<number>(75);
+
+  // const data = [
+  //   [
+  //     { x: '취업\n80%', y: 60 },
+  //     { x: '기타\n20%', y: 15 },
+  //   ],
+  //   [
+  //     { x: '취업\n86.8%', y: 66 },
+  //     { x: '기타\n13.2%', y: 10 },
+  //   ],
+  // ];
 
   const selectStyle = (index: number) =>
     select === index && { color: '#ffffff' };
 
   const selecting = (index: number) => setSelect(index);
 
-  useEffect(() => {
-    setEmployRate(data[select]);
-    select === 0 && setTotal(75);
-    select === 1 && setTotal(76);
-  }, [select]);
+  // useEffect(() => {
+  //   setEmployRate(data[select]);
+  //   select === 0 && setTotal(75);
+  //   select === 1 && setTotal(76);
+  // }, [select]);
 
   return (
     <>
@@ -76,12 +113,26 @@ const SchoolPage: NextPage = () => {
             </S.ColorMarker>
           </S.ColorMarkerWrapper>
           <S.GraphWrapper>
-            <S.StickWrapper>
-              <S.RatioText>{100}%</S.RatioText>
-              <S.Stick />
-              <S.Dot />
-              <S.YearText>{2020}년</S.YearText>
-            </S.StickWrapper>
+            <S.Blank />
+            {EmploymentRate.map(({ year, ratio }, index) => (
+              <S.StickWrapper key={index}>
+                {curIndex === index && ratio && (
+                  <S.RatioText>{ratio}%</S.RatioText>
+                )}
+                <S.Stick
+                  onClick={() => setCurIndex(index)}
+                  ratio={ratio ?? 2.5}
+                  isCurIndex={curIndex === index}
+                />
+                <S.Dot />
+                {curIndex === index ? (
+                  <S.YearText>{year}년</S.YearText>
+                ) : (
+                  <S.NotCurrentYearText>{year}년</S.NotCurrentYearText>
+                )}
+              </S.StickWrapper>
+            ))}
+            <S.Line />
           </S.GraphWrapper>
           {/* <S.GraphWrap>
             <S.SelectBox>
