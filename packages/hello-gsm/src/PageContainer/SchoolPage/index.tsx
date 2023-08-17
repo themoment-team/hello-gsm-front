@@ -65,6 +65,16 @@ const SchoolPage: NextPage = () => {
         </S.Section2>
         <S.Section3>
           <S.Section3Title>취업률</S.Section3Title>
+          <S.ColorMarkerWrapper>
+            <S.ColorMarker>
+              취업
+              <S.BlueSquare />
+            </S.ColorMarker>
+            <S.ColorMarker>
+              기타
+              <S.LimeSquare />
+            </S.ColorMarker>
+          </S.ColorMarkerWrapper>
           {/* <S.GraphWrap>
             <S.SelectBox>
               <S.SelectBar />
