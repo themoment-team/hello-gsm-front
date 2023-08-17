@@ -1,4 +1,4 @@
-type MajorType = 'SW' | 'IOT' | 'AI';
+type MajorType = 'SW' | 'IOT' | 'AI' | '';
 
 type GraduationStatusType = 'CANDIDATE' | 'GRADUATE' | 'GED';
 
@@ -19,15 +19,15 @@ interface CommonApplicationResponseType {
     address: string;
     detailAddress: string;
     graduation: GraduationStatusType;
-    telephone: string;
+    telephone?: string;
     applicantPhoneNumber: string;
     guardianName: string;
     relationWithApplicant: string;
     guardianPhoneNumber: string;
-    teacherName: string;
-    teacherPhoneNumber: string;
-    schoolName: string;
-    schoolLocation: string;
+    teacherName?: string;
+    teacherPhoneNumber?: string;
+    schoolName?: string;
+    schoolLocation?: string;
     applicantImageUri: string;
     desiredMajor: {
       firstDesiredMajor: MajorType;
@@ -93,7 +93,6 @@ export interface ApplyFormType {
   firstDesiredMajor: MajorType;
   secondDesiredMajor: MajorType;
   thirdDesiredMajor: MajorType;
-  middleSchoolGrade: string;
   schoolName: string;
   schoolLocation: string;
   screening: ScreeningType;
