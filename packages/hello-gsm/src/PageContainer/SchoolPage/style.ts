@@ -96,7 +96,7 @@ export const Section3 = styled.div`
 
 export const Section3Title = styled.div`
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.6875rem;
   color: #ffffff;
   margin-bottom: 2.1875rem;
   @media ${device.mobile} {
@@ -106,9 +106,7 @@ export const Section3Title = styled.div`
 `;
 
 export const ColorMarkerWrapper = styled.div`
-  display: flex;
   height: 1.625rem;
-  gap: 1.4375rem;
 `;
 
 export const ColorMarker = styled.div`
@@ -121,18 +119,11 @@ export const ColorMarker = styled.div`
   font-weight: 400;
 `;
 
-const Square = styled.div`
+export const Square = styled.div`
   width: 1.25rem;
   height: 1.25rem;
   border-radius: 0.125rem;
-`;
-
-export const BlueSquare = styled(Square)`
   background: #49bdff;
-`;
-
-export const LimeSquare = styled(Square)`
-  background: #eef759;
 `;
 
 export const GraphWrapper = styled.div`

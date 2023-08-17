@@ -77,11 +77,7 @@ const SchoolPage: NextPage = () => {
           <S.ColorMarkerWrapper>
             <S.ColorMarker>
               취업
-              <S.BlueSquare />
-            </S.ColorMarker>
-            <S.ColorMarker>
-              기타
-              <S.LimeSquare />
+              <S.Square />
             </S.ColorMarker>
           </S.ColorMarkerWrapper>
           <S.GraphWrapper>
