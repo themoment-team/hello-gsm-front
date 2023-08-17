@@ -92,13 +92,6 @@ export const Section3 = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 6.3125rem;
-  @media ${device.tablet} {
-    height: 31.25rem;
-    margin-bottom: 3.125rem;
-  }
-  @media (max-width: 18.75rem) {
-    height: 18.75rem;
-  }
 `;
 
 export const Section3Title = styled.div`
@@ -180,6 +173,10 @@ export const Stick = styled.div<{ ratio: number; isCurIndex: boolean }>`
     isCurIndex ? '#49bdff' : 'rgba(82, 82, 82, 0.60)'};
   cursor: pointer !important;
   transition: ease-in-out 0.2s;
+
+  @media ${device.mobile} {
+    height: ${({ ratio }) => (280 / 100) * ratio}px;
+  }
 `;
 
 export const YearText = styled.span`
@@ -349,5 +346,10 @@ export const BigGreenBall = styled(Ball)`
   left: 75%;
   @media ${device.tablet} {
     display: none;
+  }
+  @media (max-width: 1255px) {
+    left: 80%;
+    width: 11.25rem;
+    height: 11.25rem;
   }
 `;
