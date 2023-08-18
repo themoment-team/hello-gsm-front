@@ -14,7 +14,6 @@ import {
 import { useForm } from 'react-hook-form';
 import application from 'Api/application';
 import { ApplicationResponseType, ApplyFormType } from 'type/application';
-import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { IdentityType } from 'type/identity';
 
@@ -30,9 +29,7 @@ const ApplyPage: NextPage<
   const [isAddressExist, setIsAddressExist] = useState<boolean>(true);
   const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(true);
   const [isEdit, setIsEdit] = useState<boolean>(false);
-  const userBirth = new Date(identityData.birth);
-
-  const { push, replace } = useRouter();
+  const userBirth = new Date(identityData?.birth);
 
   const {
     showDepartmentModal,
@@ -54,7 +51,6 @@ const ApplyPage: NextPage<
     setShowFindAddressModal,
     applicantAddress,
     setApplicantAddress,
-    setLogged,
     showApplyPostModal,
     setshowApplyPostModal,
   } = useStore();
@@ -67,23 +63,24 @@ const ApplyPage: NextPage<
     formState: { errors },
   } = useForm<ApplyFormType>({
     defaultValues: {
+      applicantImageUri: data?.admissionInfo.applicantImageUri || '',
+      address: data?.admissionInfo.address || '',
       detailAddress: data?.admissionInfo.detailAddress || '',
-      telephone: data?.admissionInfo.telephone || '',
-      screening: data?.admissionInfo.screening || '일반전형',
       graduation: data?.admissionInfo.graduation || 'CANDIDATE',
+      telephone: data?.admissionInfo.telephone || '',
       guardianName: data?.admissionInfo.guardianName,
       relationWithApplicant: data?.admissionInfo.relationWithApplicant,
       guardianPhoneNumber: data?.admissionInfo.guardianPhoneNumber,
       teacherName: data?.admissionInfo.teacherName,
       teacherPhoneNumber: data?.admissionInfo.teacherPhoneNumber,
+      screening: data?.admissionInfo.screening || '일반전형',
     },
   });
 
   const graduationStatus = watch('graduation');
 
   useEffect(() => {
-    setLogged(true);
-    if (data?.middleSchoolGrade !== null) {
+    if (data?.middleSchoolGrade !== undefined) {
       setIsEdit(true);
     } else {
       setIsEdit(false);
@@ -94,7 +91,7 @@ const ApplyPage: NextPage<
     setChoice3(data?.admissionInfo.desiredMajor.firstDesiredMajor || '');
     setSchoolName(data?.admissionInfo.schoolName || '');
     setSchoolLocation(data?.admissionInfo.schoolLocation || '');
-    setApplicantAddress(data?.admissionInfo.detailAddress || '');
+    setApplicantAddress(data?.admissionInfo.address || '');
   }, []);
 
   const registerImg = async () => {
@@ -188,8 +185,10 @@ const ApplyPage: NextPage<
     choice1 && choice2 && choice3
       ? setIsMajorSelected(true)
       : setIsMajorSelected(false);
-    applicantAddress ? setIsAddressExist(true) : setIsAddressExist(false);
-    schoolName || graduationStatus === 'GED'
+    applicantAddress !== ''
+      ? setIsAddressExist(true)
+      : setIsAddressExist(false);
+    schoolName !== ''
       ? setIsSchoolNameExist(true)
       : setIsSchoolNameExist(false);
     imgURL ? setIsIdPhoto(true) : setIsIdPhoto(false);
@@ -204,7 +203,7 @@ const ApplyPage: NextPage<
       {showApplyPostModal && <ApplyPostModal />}
       <S.ApplyPage>
         <ApplyBarBox />
-        <S.ApplyPageContent onSubmit={handleSubmit(onSubmit)}>
+        <S.ApplyPageContent onSubmit={handleSubmit(onSubmit, validate)}>
           <S.Title>지원자 인적사항</S.Title>
           <S.ImgInputBox htmlFor="img-input">
             {imgURL ? (
@@ -223,18 +222,18 @@ const ApplyPage: NextPage<
             ref={imgInput}
             onChange={e => readImg(e)}
           />
-          <S.NameBox>{identityData.name}</S.NameBox>
+          <S.NameBox>{identityData?.name}</S.NameBox>
           <S.GenderBox>
             <S.GenderSelect
               css={css`
-                background: ${identityData.gender === 'MALE' && '#42bafe'};
+                background: ${identityData?.gender === 'MALE' && '#42bafe'};
               `}
             >
               남자
             </S.GenderSelect>
             <S.GenderSelect
               css={css`
-                background: ${identityData.gender === 'FEMALE' && '#42bafe'};
+                background: ${identityData?.gender === 'FEMALE' && '#42bafe'};
               `}
             >
               여자
@@ -280,7 +279,7 @@ const ApplyPage: NextPage<
               },
             })}
           />
-          <S.Cellphone>{identityData.phoneNumber}</S.Cellphone>
+          <S.Cellphone>{identityData?.phoneNumber}</S.Cellphone>
           <S.Title>지원자 현황</S.Title>
           <S.TypeBox>
             <S.Type
@@ -320,43 +319,41 @@ const ApplyPage: NextPage<
             </S.SchoolSearchButton>
           </S.SchoolBox>
           <S.GraduatedBox>
-            <S.GraduatedSelectBox>
-              <S.GraduationType
-                {...register('graduation')}
-                type="radio"
-                value="CANDIDATE"
-                id="willGraduate"
-              />
-              <S.GraduatedTypeLabel htmlFor="willGraduate">
-                졸업예정
-              </S.GraduatedTypeLabel>
-              <S.GraduationType
-                {...register('graduation')}
-                type="radio"
-                value="GRADUATE"
-                id="graduated"
-              />
-              <S.GraduatedTypeLabel htmlFor="graduated">
-                졸업
-              </S.GraduatedTypeLabel>
-              <S.GraduationType
-                {...register('graduation')}
-                type="radio"
-                value="GED"
-                id="GED"
-              />
-              <S.GraduatedTypeLabel
-                htmlFor="GED"
-                onClick={() => {
-                  setSchoolLocation('');
-                  setSchoolName('');
-                  setValue('teacherName', '');
-                  setValue('teacherPhoneNumber', '');
-                }}
-              >
-                검정고시
-              </S.GraduatedTypeLabel>
-            </S.GraduatedSelectBox>
+            <S.GraduationType
+              {...register('graduation')}
+              type="radio"
+              value="CANDIDATE"
+              id="willGraduate"
+            />
+            <S.GraduatedTypeLabel htmlFor="willGraduate">
+              졸업예정
+            </S.GraduatedTypeLabel>
+            <S.GraduationType
+              {...register('graduation')}
+              type="radio"
+              value="GRADUATE"
+              id="graduated"
+            />
+            <S.GraduatedTypeLabel htmlFor="graduated">
+              졸업
+            </S.GraduatedTypeLabel>
+            <S.GraduationType
+              {...register('graduation')}
+              type="radio"
+              value="GED"
+              id="GED"
+            />
+            <S.GraduatedTypeLabel
+              htmlFor="GED"
+              onClick={() => {
+                setSchoolLocation('');
+                setSchoolName('');
+                setValue('teacherName', '');
+                setValue('teacherPhoneNumber', '');
+              }}
+            >
+              검정고시
+            </S.GraduatedTypeLabel>
           </S.GraduatedBox>
           <S.DepartmentBox>
             <S.DepartmentContentBox>
@@ -489,6 +486,7 @@ const ApplyPage: NextPage<
           <S.Error>
             {!isSchoolNameExist && '* 출신 중학교를 입력해주세요.'}
           </S.Error>
+          <S.Error>{errors.graduation?.message}</S.Error>
           <S.Error>{!isMajorSelected && '* 지원학과를 선택해주세요.'}</S.Error>
           <S.Error>{errors.guardianName?.message}</S.Error>
           <S.Error>{errors.relationWithApplicant?.message}</S.Error>
