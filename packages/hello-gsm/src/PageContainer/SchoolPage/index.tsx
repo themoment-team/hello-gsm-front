@@ -18,11 +18,11 @@ const EmploymentRate = [
   },
   {
     year: 2023,
-    ratio: 95,
+    ratio: null,
   },
   {
     year: 2024,
-    ratio: 100,
+    ratio: null,
   },
   {
     year: 2025,
