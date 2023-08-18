@@ -175,6 +175,9 @@ export const YearText = styled.span`
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.25rem;
+  width: 4.35rem;
+  display: flex;
+  justify-content: center;
 `;
 
 export const NotCurrentYearText = styled(YearText)`
