@@ -165,6 +165,9 @@ export const Stick = styled.div<{ ratio: number; isCurIndex: boolean }>`
   cursor: pointer !important;
   transition: ease-in-out 0.2s;
 
+  @media ${device.tablet} {
+    height: ${({ ratio }) => (330 / 100) * ratio}px;
+  }
   @media ${device.mobile} {
     height: ${({ ratio }) => (280 / 100) * ratio}px;
   }
