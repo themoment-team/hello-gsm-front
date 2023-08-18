@@ -322,7 +322,7 @@ export const GraduationType = styled.input`
 `;
 
 export const GraduatedTypeLabel = styled.label`
-  width: 115px;
+  width: 250px;
   height: 100%;
   display: flex;
   justify-content: center;
