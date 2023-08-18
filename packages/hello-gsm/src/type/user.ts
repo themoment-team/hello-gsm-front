@@ -1,3 +1,5 @@
+import { CommonApplicationResponseType } from './application';
+
 interface StatusDataType extends StatusApplication {
   name: string;
   userImg: string;
@@ -30,7 +32,7 @@ export interface StatusType {
 
 export interface MainDescStatusType {
   selectedIndex: number;
-  data?: StatusDataType;
+  data?: CommonApplicationResponseType;
 }
 
 export interface InfoType {
