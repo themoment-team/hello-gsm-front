@@ -1,8 +1,4 @@
-type ScreeningType =
-  | 'GENERAL'
-  | 'SOCIAL'
-  | 'SPECIAL_VETERANS'
-  | 'SPECIAL_ADMISSION';
+import { ScreeningType } from 'type/application';
 
 type ScreeningObjectType = {
   [key in ScreeningType]: string;
