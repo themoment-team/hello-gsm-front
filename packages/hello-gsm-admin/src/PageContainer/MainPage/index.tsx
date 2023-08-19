@@ -139,6 +139,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const { showScoreModal } = useStore();
 
   const [searchValue, setSearchValue] = useState<string>('');
+  const [tmpValue, setTmpValue] = useState<string>('');
 
   const handleObserver = useCallback(
     async (
@@ -152,22 +153,6 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
     },
     [],
   );
-
-  const filterApplicationList = (): ApplicantType[] => {
-    const newApplicationList = applicationList?.filter(content => {
-      let isInclude = false;
-      const newContent = Object.values(content);
-      const divideObject = Object.values(newContent[2]);
-      newContent.pop();
-      newContent.push(...divideObject);
-      newContent.forEach(content => {
-        if (typeof content === 'string' && content.includes(searchValue))
-          isInclude = true;
-      });
-      return isInclude;
-    });
-    return newApplicationList;
-  };
 
   useEffect(() => {
     setApplicationList(List);
@@ -186,6 +171,14 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
     return () => observer && observer.disconnect();
   }, [handleObserver, isPageEnd]);
 
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      console.log('하하');
+      return setSearchValue(tmpValue);
+    }, 300);
+    return () => clearTimeout(debounce);
+  }, [tmpValue]);
+
   return (
     <S.MainPage>
       {showScoreModal && <ScoreModal />}
@@ -197,12 +190,27 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
         `}
       />
       <S.MainPageContent>
-        <ListHeader searchValue={searchValue} setSearchValue={setSearchValue} />
+        <ListHeader searchValue={tmpValue} setSearchValue={setTmpValue} />
         <MainpageHeader />
         <S.ContentList>
-          {filterApplicationList()?.map((content, index: number) => (
-            <ContentBox content={content} key={index} />
-          ))}
+          {applicationList
+            ?.filter(applicant => {
+              const values = Object.values(applicant).flatMap(value => {
+                if (typeof value === 'object' && value !== null) {
+                  return Object.values(value);
+                }
+                return value;
+              });
+
+              return values.some(value => {
+                if (typeof value === 'string' && value.includes(searchValue)) {
+                  return true;
+                }
+              });
+            })
+            ?.map((content, index: number) => (
+              <ContentBox content={content} key={index} />
+            ))}
           {!isPageEnd && <S.Target ref={loadMoreRef} />}
         </S.ContentList>
       </S.MainPageContent>
