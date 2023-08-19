@@ -138,6 +138,8 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const { showScoreModal } = useStore();
 
+  const [searchValue, setSearchValue] = useState<string>('');
+
   const handleObserver = useCallback(
     async (
       [entry]: IntersectionObserverEntry[],
@@ -179,7 +181,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
         `}
       />
       <S.MainPageContent>
-        <ListHeader />
+        <ListHeader searchValue={searchValue} setSearchValue={setSearchValue} />
         <MainpageHeader />
         <S.ContentList>
           {applicationList?.map((content, index: number) => (
