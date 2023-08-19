@@ -9,6 +9,129 @@ import application from 'Api/application';
 import auth from 'Api/auth';
 import { isStartFirstResult } from 'shared/acceptable';
 
+const List: ApplicantType[] = [
+  {
+    cellphoneNumber: '01012345678',
+    name: '이승제',
+    application: {
+      applicationIdx: 0,
+      finalResultScreening: null,
+      firstResultScreening: null,
+      guardianCellphoneNumber: '01012345678',
+      isDocumentReception: false,
+      registrationNumber: 0,
+      schoolName: '수완중학교',
+      screening: '일반전형',
+      teacherCellphoneNumber: '01012345678',
+      application_score: {
+        personalityEvaluationScore: 'string',
+      },
+    },
+  },
+  {
+    cellphoneNumber: '01098765432',
+    name: '전예빈',
+    application: {
+      applicationIdx: 1,
+      finalResultScreening: null,
+      firstResultScreening: null,
+      guardianCellphoneNumber: '01098765432',
+      isDocumentReception: false,
+      registrationNumber: 0,
+      schoolName: '왕의중학교',
+      screening: '사회통합전형',
+      teacherCellphoneNumber: '01098765432',
+      application_score: null,
+    },
+  },
+  {
+    cellphoneNumber: '01012345678',
+    name: '이정우',
+    application: {
+      applicationIdx: 2,
+      finalResultScreening: null,
+      firstResultScreening: null,
+      guardianCellphoneNumber: '01012345678',
+      isDocumentReception: false,
+      registrationNumber: 0,
+      schoolName: '금호중학교',
+      screening: '특별전형',
+      teacherCellphoneNumber: '01012345678',
+      application_score: {
+        personalityEvaluationScore: 'string',
+      },
+    },
+  },
+  {
+    cellphoneNumber: '01098765432',
+    name: '최장우',
+    application: {
+      applicationIdx: 3,
+      finalResultScreening: null,
+      firstResultScreening: null,
+      guardianCellphoneNumber: '01098765432',
+      isDocumentReception: false,
+      registrationNumber: 0,
+      schoolName: '아무중학교',
+      screening: '일반전형',
+      teacherCellphoneNumber: '01098765432',
+      application_score: null,
+    },
+  },
+  {
+    cellphoneNumber: '01012345678',
+    name: '하제우',
+    application: {
+      applicationIdx: 4,
+      finalResultScreening: null,
+      firstResultScreening: null,
+      guardianCellphoneNumber: '01012345678',
+      isDocumentReception: false,
+      registrationNumber: 0,
+      schoolName: '게로중학교',
+      screening: '사회통합전형',
+      teacherCellphoneNumber: '01012345678',
+      application_score: {
+        personalityEvaluationScore: 'string',
+      },
+    },
+  },
+  {
+    cellphoneNumber: '01098765432',
+    name: '박준호',
+    application: {
+      applicationIdx: 5,
+      finalResultScreening: null,
+      firstResultScreening: null,
+      guardianCellphoneNumber: '01098765432',
+      isDocumentReception: false,
+      registrationNumber: 0,
+      schoolName: '아나콘다중학교',
+      screening: '특별전형',
+      teacherCellphoneNumber: '01098765432',
+      application_score: null,
+    },
+  },
+  {
+    cellphoneNumber: '01012345678',
+    name: '김하온',
+    application: {
+      applicationIdx: 6,
+      finalResultScreening: null,
+      firstResultScreening: null,
+      guardianCellphoneNumber: '01012345678',
+      isDocumentReception: false,
+      registrationNumber: 0,
+      schoolName: '하온중학교',
+      screening: '일반전형',
+      teacherCellphoneNumber: '01012345678',
+      application_score: {
+        personalityEvaluationScore: 'string',
+      },
+    },
+  },
+];
+
 const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(list);
   const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
@@ -29,6 +152,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   );
 
   useEffect(() => {
+    setApplicationList(List);
     if (!loadMoreRef.current) return;
 
     const option = {
