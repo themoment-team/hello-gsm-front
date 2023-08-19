@@ -2,9 +2,9 @@ import type { GetServerSideProps, NextPage } from 'next';
 import application from 'Api/application';
 import { SEOHelmet } from 'components';
 import { ApplicationPage } from 'PageContainer';
-import { ApplicationResponseType } from 'type/application';
+import { ApplicationDataType } from 'type/application';
 
-const Application: NextPage<{ data: ApplicationResponseType }> = ({ data }) => {
+const Application: NextPage<ApplicationDataType> = ({ data }) => {
   const seoTitle = '원서출력';
   const desc = '지원자의 입학 원서 파일을 출력해줍니다.';
 
@@ -24,8 +24,7 @@ const Application: NextPage<{ data: ApplicationResponseType }> = ({ data }) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     // 최종제출이 완료 되었으면 원서 정보를 props로 보냄
-    const { data }: { data: ApplicationResponseType } =
-      await application.getMyApplication();
+    const { data }: ApplicationDataType = await application.getMyApplication();
 
     if (data.admissionStatus.isFinalSubmitted) {
       return {

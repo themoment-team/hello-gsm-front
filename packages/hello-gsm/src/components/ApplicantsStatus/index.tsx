@@ -1,12 +1,14 @@
 import React from 'react';
-import { ApplicationResponseType } from 'type/application';
+import { ApplicationDataType } from 'type/application';
 import { isGED } from 'type/ged';
 import { formatGraduation, formatMajor, formatScreening } from 'Utils/Format';
 import * as S from './style';
 
-const ApplicantsStatus: React.FC<{ data: ApplicationResponseType }> = ({
+const ApplicantsStatus: React.FC<ApplicationDataType> = ({
   data: { admissionGrade, admissionInfo },
 }) => {
+  const isGEDScore = isGED(admissionGrade);
+
   return (
     <S.Table>
       <tbody>
@@ -54,32 +56,32 @@ const ApplicantsStatus: React.FC<{ data: ApplicationResponseType }> = ({
           <S.Subject rowSpan={2}>합계 (환산총점)</S.Subject>
         </tr>
         <tr>
-          {admissionGrade.grade1Semester1Score === 0 ? (
+          {isGEDScore || admissionGrade.grade1Semester1Score === 0 ? (
             <S.Slash />
           ) : (
             <td>{admissionGrade.grade1Semester1Score}</td>
           )}
-          {admissionGrade.grade1Semester2Score === 0 ? (
+          {isGEDScore || admissionGrade.grade1Semester2Score === 0 ? (
             <S.Slash />
           ) : (
             <td>{admissionGrade.grade1Semester2Score}</td>
           )}
-          {admissionGrade.grade2Semester1Score === 0 ? (
+          {isGEDScore || admissionGrade.grade2Semester1Score === 0 ? (
             <S.Slash />
           ) : (
-            <td>{admissionGrade.grade2Semester1Score}</td>
+            <td>{isGEDScore || admissionGrade.grade2Semester1Score}</td>
           )}
-          {admissionGrade.grade2Semester2Score === 0 ? (
+          {isGEDScore || admissionGrade.grade2Semester2Score === 0 ? (
             <S.Slash />
           ) : (
             <td>{admissionGrade.grade2Semester2Score}</td>
           )}
-          {admissionGrade.grade3Semester1Score === 0 ? (
+          {isGEDScore || admissionGrade.grade3Semester1Score === 0 ? (
             <S.Slash />
           ) : (
             <td>{admissionGrade.grade3Semester1Score}</td>
           )}
-          {admissionGrade.artisticScore === 0 ? (
+          {isGEDScore || admissionGrade.artisticScore === 0 ? (
             <S.Slash />
           ) : (
             <td>{admissionGrade.artisticScore}</td>
@@ -102,12 +104,12 @@ const ApplicantsStatus: React.FC<{ data: ApplicationResponseType }> = ({
           </td>
         </tr>
         <tr>
-          {admissionGrade.attendanceScore === 0 ? (
+          {isGEDScore || admissionGrade.attendanceScore === 0 ? (
             <S.Slash colSpan={3} />
           ) : (
             <td colSpan={3}>{admissionGrade.attendanceScore}</td>
           )}
-          {admissionGrade.volunteerScore === 0 ? (
+          {isGEDScore || admissionGrade.volunteerScore === 0 ? (
             <S.Slash colSpan={3} />
           ) : (
             <td colSpan={3}>{admissionGrade.volunteerScore}</td>
