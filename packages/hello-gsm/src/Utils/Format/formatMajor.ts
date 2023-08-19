@@ -1,10 +1,12 @@
-type MajorType = 'SW' | 'IOT' | 'AI';
+import { MajorType } from 'type/application';
 
 type MajorObjectType = {
   [key in MajorType]: string;
 };
 
-const formatMajor = (major: MajorType) => {
+const formatMajor = (major: MajorType | null) => {
+  if (major === null) return '';
+
   const majorObject: MajorObjectType = {
     SW: '소프트웨어개발과',
     IOT: '스마트 IoT과',
