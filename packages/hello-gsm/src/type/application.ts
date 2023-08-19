@@ -39,7 +39,7 @@ export interface CommonApplicationResponseType {
     screening: ScreeningType;
   };
   middleSchoolGrade: string;
-  admissionGrade: GEDApplicationResponseType | ApplicationResponseType;
+  admissionGrade: GEDScore | CommonScore;
   admissionStatus: {
     isFinalSubmitted: boolean;
     isPrintsArrived: boolean;
@@ -54,30 +54,26 @@ export interface CommonApplicationResponseType {
   };
 }
 
-interface GEDApplicationResponseType {
-  admissionGrade: {
-    totalScore: number;
-    percentileRank: number;
-    gedTotalScore: number;
-    gedMaxScore: number;
-  };
+export interface GEDScore {
+  totalScore: number;
+  percentileRank: number;
+  gedTotalScore: number;
+  gedMaxScore: number;
 }
 
-interface ApplicationResponseType {
-  admissionGrade: {
-    totalScore: number;
-    percentileRank: number;
-    grade1Semester1Score: number;
-    grade1Semester2Score: number;
-    grade2Semester1Score: number;
-    grade2Semester2Score: number;
-    grade3Semester1Score: number;
-    artisticScore: number;
-    curricularSubtotalScore: number;
-    attendanceScore: number;
-    volunteerScore: number;
-    extracurricularSubtotalScore: number;
-  };
+export interface CommonScore {
+  totalScore: number;
+  percentileRank: number;
+  grade1Semester1Score: number;
+  grade1Semester2Score: number;
+  grade2Semester1Score: number;
+  grade2Semester2Score: number;
+  grade3Semester1Score: number;
+  artisticScore: number;
+  curricularSubtotalScore: number;
+  attendanceScore: number;
+  volunteerScore: number;
+  extracurricularSubtotalScore: number;
 }
 
 export interface ApplyFormType {
