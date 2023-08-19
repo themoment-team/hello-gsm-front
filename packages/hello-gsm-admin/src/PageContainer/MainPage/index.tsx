@@ -153,6 +153,22 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
     [],
   );
 
+  const filterApplicationList = (): ApplicantType[] => {
+    const newApplicationList = applicationList?.filter(content => {
+      let isInclude = false;
+      const newContent = Object.values(content);
+      const divideObject = Object.values(newContent[2]);
+      newContent.pop();
+      newContent.push(...divideObject);
+      newContent.forEach(content => {
+        if (typeof content === 'string' && content.includes(searchValue))
+          isInclude = true;
+      });
+      return isInclude;
+    });
+    return newApplicationList;
+  };
+
   useEffect(() => {
     setApplicationList(List);
     if (!loadMoreRef.current) return;
@@ -184,7 +200,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
         <ListHeader searchValue={searchValue} setSearchValue={setSearchValue} />
         <MainpageHeader />
         <S.ContentList>
-          {applicationList?.map((content, index: number) => (
+          {filterApplicationList()?.map((content, index: number) => (
             <ContentBox content={content} key={index} />
           ))}
           {!isPageEnd && <S.Target ref={loadMoreRef} />}
