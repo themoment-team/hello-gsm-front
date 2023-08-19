@@ -6,7 +6,6 @@ import * as I from 'Assets/svg';
 import { MainDescStatusType } from 'type/user';
 import { useRouter } from 'next/router';
 import device from 'shared/config';
-import formatDate from 'Utils/Format/formatDate';
 import {
   endApply,
   endFirstResult,
@@ -17,6 +16,7 @@ import {
 } from 'shared/Date/firstScreening';
 import { isFinalEnd } from 'shared/Date/afterApply';
 import { startFinalTest } from 'shared/Date/secondScreening';
+import { formatDate } from 'Utils/Format';
 import formatMajor from 'Utils/Format/formatMajor';
 import { MajorType } from 'type/application';
 

@@ -11,8 +11,6 @@ import {
 import { css, useTheme } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
 import device from 'shared/config';
-import formatDate from 'Utils/Format/formatDate';
-
 import {
   applyAcceptable,
   endApply,
@@ -20,6 +18,7 @@ import {
   isStartFirstResult,
   startApply,
 } from 'shared/Date/firstScreening';
+import { formatDate } from 'Utils/Format';
 import { ApplicationDataType } from 'type/application';
 
 const contentSelects = [

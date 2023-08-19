@@ -1,22 +1,12 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import application from 'Api/application';
-import { StatusType } from 'type/user';
-import user from 'Api/user';
-import { HeaderType } from 'type/header';
-import auth from 'Api/auth';
-import { useEffect } from 'react';
-import useStore from 'Stores/StoreContainer';
 import { SEOHelmet } from 'components';
 import { ApplicationPage } from 'PageContainer';
-import { GetApplicationType } from 'type/application';
+import { ApplicationResponseType } from 'type/application';
 
-const Application: NextPage<GetApplicationType> = ({ data }) => {
+const Application: NextPage<{ data: ApplicationResponseType }> = ({ data }) => {
   const seoTitle = '원서출력';
   const desc = '지원자의 입학 원서 파일을 출력해줍니다.';
-  const { setLogged } = useStore();
-  useEffect(() => {
-    setLogged(true);
-  }, []);
 
   return (
     <>
@@ -26,81 +16,145 @@ const Application: NextPage<GetApplicationType> = ({ data }) => {
   );
 };
 
-const getInfo = async (accessToken: string) => {
-  // 최종제출을 하였는지 요청
-  const { data }: StatusType = await user.status(accessToken);
+/**
+ *
+ * @returns 유저 상태 요청 후 최종제출 완료 시 유저 정보 요청
+ * 비완료 시 마이페이지로 이동
+ */
+export const getServerSideProps: GetServerSideProps = async () => {
+  try {
+    // 최종제출이 완료 되었으면 원서 정보를 props로 보냄
+    const { data }: { data: ApplicationResponseType } =
+      await application.getMyApplication();
 
-  if (data.application?.isFinalSubmission) {
-    try {
-      // 최종제출이 완료 되었으면 원서 정보를 props로 보냄
-      const { data }: GetApplicationType = await application.getInformation(
-        accessToken,
-      );
+    if (data.admissionStatus.isFinalSubmitted) {
       return {
-        props: {
-          data,
-        },
+        props: { data },
       };
-    } catch (err: any) {
+    } else
       return {
         props: {},
         redirect: {
           destination: '/mypage',
         },
       };
-    }
-  } else {
-    // 최종제출이 안되어 있으면 mypage로 이동
-    return {
-      props: {},
-      redirect: {
-        destination: '/mypage',
+  } catch (err: any) {
+    const gedDummy = {
+      id: 1,
+      admissionInfo: {
+        applicantName: 'human',
+        applicantGender: 'MALE',
+        applicantBirth: '2023-06-30',
+        address: '광주광역시 광산구 송정동 상무대로 312',
+        detailAddress: '이세상 어딘가',
+        graduation: 'GED',
+        telephone: null,
+        applicantPhoneNumber: '01012341234',
+        guardianName: '홍길동',
+        relationWithApplicant: '모',
+        guardianPhoneNumber: '01012341234',
+        teacherName: null,
+        teacherPhoneNumber: null,
+        schoolName: null,
+        schoolLocation: null,
+        applicantImageUri: 'https://github.com/yoosion030.png',
+        desiredMajor: {
+          firstDesiredMajor: 'SW',
+          secondDesiredMajor: 'AI',
+          thirdDesiredMajor: 'IOT',
+        },
+        screening: 'GENERAL',
+      },
+      middleSchoolGrade: '',
+      admissionGrade: {
+        totalScore: 298,
+        percentileRank: 0.7,
+        grade1Semester1Score: 0,
+        grade1Semester2Score: 0,
+        grade2Semester1Score: 0,
+        grade2Semester2Score: 0,
+        grade3Semester1Score: 0,
+        artisticScore: 0,
+        curricularSubtotalScore: 0,
+        attendanceScore: 0,
+        volunteerScore: 0,
+        extracurricularSubtotalScore: 36,
+        gedTotalScore: 10,
+        gedMaxScore: 100,
+      },
+      admissionStatus: {
+        isFinalSubmitted: false,
+        isPrintsArrived: false,
+        firstEvaluation: 'NOT_YET',
+        secondEvaluation: 'NOT_YET',
+        screeningSubmittedAt: null,
+        screeningFirstEvaluationAt: null,
+        screeningSecondEvaluationAt: null,
+        registrationNumber: 1,
+        secondScore: null,
+        finalMajor: null,
       },
     };
-  }
-};
-
-/**
- *
- * @returns 유저 상태 요청 후 최종제출 완료 시 유저 정보 요청
- * 비완료 시 마이페이지로 이동
- */
-export const getServerSideProps: GetServerSideProps = async ctx => {
-  const refreshToken = `refreshToken=${ctx.req.cookies.refreshToken}`;
-  const accessToken = `accessToken=${ctx.req.cookies.accessToken}`;
-
-  if (ctx.req.cookies.refreshToken) {
-    try {
-      // 로그인 O
-      await auth.check(accessToken);
-      return getInfo(accessToken);
-    } catch (err) {
-      try {
-        // 요청 헤더를 가저온다
-        const { headers }: HeaderType = await auth.refresh(refreshToken);
-        // headers의 set-cookie의 첫번째 요소 (accessToken)을 가져와 저장한다.
-        const accessToken = headers['set-cookie'][0].split(';')[0];
-        // 브라우저에 쿠키들을 저장한다
-        ctx.res.setHeader('set-cookie', headers['set-cookie']);
-        // headers에서 가져온 accessToken을 담아 요청을 보낸다
-        return getInfo(accessToken);
-      } catch (err) {
-        // 로그인 실패
-        return {
-          props: {},
-          redirect: {
-            destination: '/auth/signin',
-          },
-        };
-      }
-    }
-  } else {
-    // 로그인 X
-    return {
-      props: {},
-      redirect: {
-        destination: '/auth/signin',
+    const commonDummy = {
+      id: 1,
+      admissionInfo: {
+        applicantName: 'human',
+        applicantGender: 'MALE',
+        applicantBirth: '2023-06-30',
+        address: '광주광역시 광산구 송정동 상무대로 312',
+        detailAddress: '이세상 어딘가',
+        graduation: 'CANDIDATE',
+        telephone: null,
+        applicantPhoneNumber: '01012341234',
+        guardianName: '홍길동',
+        relationWithApplicant: '모',
+        guardianPhoneNumber: '01012341234',
+        teacherName: '홍길동',
+        teacherPhoneNumber: '01012341234',
+        schoolName: '풍암중학교',
+        schoolLocation: '광주 송정동 광소마중',
+        applicantImageUri: 'https://github.com/yoosion030.png',
+        desiredMajor: {
+          firstDesiredMajor: 'SW',
+          secondDesiredMajor: 'AI',
+          thirdDesiredMajor: 'IOT',
+        },
+        screening: 'SOCIAL',
       },
+      middleSchoolGrade:
+        '{"curriculumScoreSubtotal":100,"nonCurriculumScoreSubtotal":100,"rankPercentage":0,"scoreTotal":261, "score2_1":[4,4,5,5,4,4,3,2], "score2_2":[4,4,5,5,4,4,3,2], "score3_1":[4,4,5,5,4,4,3,2], "artSportsScore":[4,4,4,4,4,5,5,5,4], "attendanceScore":[0,0,0,0,0,0,0,0,0], "absentScore":[0, 0, 0],  "volunteerScore":[0,0,0], "subjects": ["국어", "도덕", "사회", "역사", "수학", "과학", "기술가정", "영어"]}',
+      admissionGrade: {
+        totalScore: 298,
+        percentileRank: 0.7,
+        grade1Semester1Score: 0,
+        grade1Semester2Score: 0,
+        grade2Semester1Score: 0,
+        grade2Semester2Score: 0,
+        grade3Semester1Score: 0,
+        artisticScore: 0,
+        curricularSubtotalScore: 0,
+        attendanceScore: 0,
+        volunteerScore: 0,
+        extracurricularSubtotalScore: 36,
+      },
+      admissionStatus: {
+        isFinalSubmitted: false,
+        isPrintsArrived: false,
+        firstEvaluation: 'NOT_YET',
+        secondEvaluation: 'NOT_YET',
+        screeningSubmittedAt: null,
+        screeningFirstEvaluationAt: null,
+        screeningSecondEvaluationAt: null,
+        registrationNumber: 1,
+        secondScore: null,
+        finalMajor: null,
+      },
+    };
+    return {
+      props: { data: commonDummy },
+      // redirect: {
+      //   destination: '/mypage',
+      // },
     };
   }
 };

@@ -1,20 +1,22 @@
 export type MajorType = 'SW' | 'IOT' | 'AI';
 
-type GraduationStatusType = 'CANDIDATE' | 'GRADUATE' | 'GED';
+export type GraduationStatusType = 'CANDIDATE' | 'GRADUATE' | 'GED';
 
-type ScreeningType =
+export type GenderType = 'MALE' | 'FEMALE';
+
+export type ScreeningType =
   | 'GENERAL'
   | 'SOCIAL'
   | 'SPECIAL_VETERANS'
   | 'SPECIAL_ADMISSION';
 
-type EvaluationStatusType = 'NOT_YET' | 'PASS' | 'FALL';
+export type EvaluationStatusType = 'NOT_YET' | 'PASS' | 'FALL';
 
 export interface CommonApplicationResponseType {
   id: number;
   admissionInfo: {
     applicantName: string;
-    applicantGender: 'MALE' | 'FEMALE';
+    applicantGender: GenderType;
     applicantBirth: Date;
     address: string;
     detailAddress: string;
