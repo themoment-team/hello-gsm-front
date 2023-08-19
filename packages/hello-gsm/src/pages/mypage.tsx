@@ -2,9 +2,9 @@ import type { GetServerSideProps, NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import { MypagePage } from 'PageContainer';
 import application from 'Api/application';
-import { ApplicationResponseType } from 'type/application';
+import { ApplicationDataType } from 'type/application';
 
-const MyPage: NextPage<{ data: ApplicationResponseType }> = ({ data }) => {
+const MyPage: NextPage<ApplicationDataType> = ({ data }) => {
   const seoTitle = '내 정보';
   const desc = '내 정보를 확인하고 원서 관리 및 원서 출력 등을 할 수 있습니다.';
 
@@ -23,8 +23,7 @@ const MyPage: NextPage<{ data: ApplicationResponseType }> = ({ data }) => {
  */
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const { data }: { data: ApplicationResponseType } =
-      await application.getMyApplication();
+    const { data }: ApplicationDataType = await application.getMyApplication();
     return {
       props: {
         data,
@@ -32,9 +31,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     };
   } catch (error) {
     return {
-      props: {
-        data: {},
-      },
+      props: {},
       redirect: {
         destination: '/auth/signin',
       },

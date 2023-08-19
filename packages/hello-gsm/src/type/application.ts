@@ -100,6 +100,33 @@ export interface ApplyFormType {
   screening: ScreeningType;
 }
 
+export interface AdmissionInfoType {
+  admissionInfo: {
+    applicantName: string;
+    applicantGender: 'MALE' | 'FEMALE';
+    applicantBirth: Date;
+    address: string;
+    detailAddress: string;
+    graduation: GraduationStatusType;
+    telephone: string;
+    applicantPhoneNumber: string;
+    guardianName: string;
+    relationWithApplicant: string;
+    guardianPhoneNumber: string;
+    teacherName: string;
+    teacherPhoneNumber: string;
+    schoolName: string;
+    schoolLocation: string;
+    applicantImageUri: string;
+    desiredMajor: {
+      firstDesiredMajor: MajorType;
+      secondDesiredMajor: MajorType;
+      thirdDesiredMajor: MajorType;
+    };
+    screening: ScreeningType;
+  };
+}
+
 export interface ApplicationDataType {
   data: CommonApplicationResponseType;
 }
