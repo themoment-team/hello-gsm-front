@@ -128,5 +128,5 @@ export interface AdmissionInfoType {
 }
 
 export interface ApplicationDataType {
-  data: ApplicationResponseType;
+  data: CommonApplicationResponseType;
 }
