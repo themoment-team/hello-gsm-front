@@ -179,6 +179,21 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
     return () => clearTimeout(debounce);
   }, [tmpValue]);
 
+  const filteredApplicationList = applicationList?.filter(applicant => {
+    const values = Object.values(applicant).flatMap(value => {
+      if (typeof value === 'object' && value !== null) {
+        return Object.values(value);
+      }
+      return value;
+    });
+
+    return values.some(value => {
+      if (typeof value === 'string' && value.includes(searchValue)) {
+        return true;
+      }
+    });
+  });
+
   return (
     <S.MainPage>
       {showScoreModal && <ScoreModal />}
@@ -193,24 +208,9 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
         <ListHeader searchValue={tmpValue} setSearchValue={setTmpValue} />
         <MainpageHeader />
         <S.ContentList>
-          {applicationList
-            ?.filter(applicant => {
-              const values = Object.values(applicant).flatMap(value => {
-                if (typeof value === 'object' && value !== null) {
-                  return Object.values(value);
-                }
-                return value;
-              });
-
-              return values.some(value => {
-                if (typeof value === 'string' && value.includes(searchValue)) {
-                  return true;
-                }
-              });
-            })
-            ?.map((content, index: number) => (
-              <ContentBox content={content} key={index} />
-            ))}
+          {filteredApplicationList?.map((content, index: number) => (
+            <ContentBox content={content} key={index} />
+          ))}
           {!isPageEnd && <S.Target ref={loadMoreRef} />}
         </S.ContentList>
       </S.MainPageContent>
