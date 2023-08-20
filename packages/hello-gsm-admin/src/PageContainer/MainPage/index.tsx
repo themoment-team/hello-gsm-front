@@ -173,7 +173,6 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
 
   useEffect(() => {
     const debounce = setTimeout(() => {
-      console.log('하하');
       return setSearchValue(tmpValue);
     }, 300);
     return () => clearTimeout(debounce);
