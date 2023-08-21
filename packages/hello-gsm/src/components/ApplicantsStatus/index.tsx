@@ -56,38 +56,27 @@ const ApplicantsStatus: React.FC<ApplicationDataType> = ({
           <S.Subject rowSpan={2}>합계 (환산총점)</S.Subject>
         </tr>
         <tr>
-          {isGEDScore || admissionGrade.grade1Semester1Score === 0 ? (
-            <S.Slash />
-          ) : (
-            <td>{admissionGrade.grade1Semester1Score}</td>
-          )}
-          {isGEDScore || admissionGrade.grade1Semester2Score === 0 ? (
-            <S.Slash />
-          ) : (
-            <td>{admissionGrade.grade1Semester2Score}</td>
-          )}
-          {isGEDScore || admissionGrade.grade2Semester1Score === 0 ? (
-            <S.Slash />
-          ) : (
-            <td>{isGEDScore || admissionGrade.grade2Semester1Score}</td>
-          )}
-          {isGEDScore || admissionGrade.grade2Semester2Score === 0 ? (
-            <S.Slash />
-          ) : (
-            <td>{admissionGrade.grade2Semester2Score}</td>
-          )}
-          {isGEDScore || admissionGrade.grade3Semester1Score === 0 ? (
-            <S.Slash />
-          ) : (
-            <td>{admissionGrade.grade3Semester1Score}</td>
-          )}
-          {isGEDScore || admissionGrade.artisticScore === 0 ? (
-            <S.Slash />
-          ) : (
-            <td>{admissionGrade.artisticScore}</td>
-          )}
+          <>
+            {[
+              [1, 1],
+              [1, 2],
+              [2, 1],
+              [2, 2],
+              [3, 1],
+            ].map(v => {
+              const gradeKey =
+                `grade${v[0]}Semester${v[1]}Score` as keyof typeof admissionGrade;
+
+              // 검정고시나 자유학기제로 점수가 없다면 빈칸 처리
+              return isGEDScore || admissionGrade[gradeKey] === 0 ? (
+                <S.Slash key={gradeKey} />
+              ) : (
+                <td key={gradeKey}>{admissionGrade[gradeKey]}</td>
+              );
+            })}
+          </>
           <td>
-            {isGED(admissionGrade)
+            {isGEDScore
               ? admissionGrade.gedTotalScore
               : admissionGrade.curricularSubtotalScore}
           </td>
