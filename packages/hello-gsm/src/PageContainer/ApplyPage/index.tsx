@@ -90,8 +90,8 @@ const ApplyPage: NextPage<
     }
 
     if (
-      data.admissionInfo.screening === 'SPECIAL_ADMISSION' ||
-      data.admissionInfo.screening === 'SPECIAL_VETERANS'
+      data?.admissionInfo.screening === 'SPECIAL_ADMISSION' ||
+      data?.admissionInfo.screening === 'SPECIAL_VETERANS'
     ) {
       setIsSpecialScreening(true);
     }
