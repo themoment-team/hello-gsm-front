@@ -15,6 +15,7 @@ interface schoolType {
   SCHUL_NM: string;
   ORG_RDNMA: string;
   LCTN_SC_NM: string;
+  SCHUL_KND_SC_NM: '고등학교' | '중학교' | '초등학교';
 }
 
 const FindSchoolModal: React.FC = () => {
@@ -50,6 +51,7 @@ const FindSchoolModal: React.FC = () => {
       } = await axios.get(
         `https://open.neis.go.kr/hub/schoolInfo?KEY=${process.env.NEIS_API_KEY}&Type=json&SCHUL_NM=${keyword}`,
       );
+
       setSchools(row);
     } catch (e) {
       console.log(e);
@@ -108,17 +110,19 @@ const FindSchoolModal: React.FC = () => {
               </S.ListTitle>
             </S.ListTitleBox>
             <S.ListContentBox>
-              {schools.map((school: schoolType, index: number) => {
-                return (
-                  <S.ListContent
-                    key={index}
-                    onClick={() => selectSchool(index)}
-                  >
-                    <S.SchoolName>{school.SCHUL_NM}</S.SchoolName>
-                    <S.SchoolAddress>{school.ORG_RDNMA}</S.SchoolAddress>
-                  </S.ListContent>
-                );
-              })}
+              {schools
+                .filter(v => v.SCHUL_KND_SC_NM === '중학교')
+                .map((school: schoolType, index: number) => {
+                  return (
+                    <S.ListContent
+                      key={index}
+                      onClick={() => selectSchool(index)}
+                    >
+                      <S.SchoolName>{school.SCHUL_NM}</S.SchoolName>
+                      <S.SchoolAddress>{school.ORG_RDNMA}</S.SchoolAddress>
+                    </S.ListContent>
+                  );
+                })}
             </S.ListContentBox>
           </S.ListBox>
         </S.ContentBox>

@@ -15,8 +15,8 @@ const Information: NextPage = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  return ssrMiddleware();
-};
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   return ssrMiddleware();
+// };
 
 export default Information;
