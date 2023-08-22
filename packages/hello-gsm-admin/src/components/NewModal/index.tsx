@@ -60,7 +60,6 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
                 <S.Desc>{name}님의 어떤 상태를 수정하실건가요?</S.Desc>
               </S.TitleBox>
             )}
-            ;
             {showModal === '1' && (
               <S.ContentBox>
                 <S.TitleBox style={{ width: '416px' }}>
@@ -128,19 +127,19 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
                 <S.ButtonBox>
                   <S.ModalOption onClick={() => handleButtonClick('1')}>
                     <I.DocumentsSubmissionStatus
-                      isActive={selectedButtonId !== '1'}
+                      isActive={selectedButtonId === '1'}
                     />
                   </S.ModalOption>
                   <S.ModalOption onClick={() => handleButtonClick('2')}>
-                    <I.firstPassStatus isActive={selectedButtonId !== '2'} />
+                    <I.FirstPassStatus isActive={selectedButtonId === '2'} />
                   </S.ModalOption>
                   <S.ModalOption onClick={() => handleButtonClick('3')}>
-                    <I.secondScoringStatus
-                      isActive={selectedButtonId !== '3'}
+                    <I.SecondScoringStatus
+                      isActive={selectedButtonId === '3'}
                     />
                   </S.ModalOption>
                   <S.ModalOption onClick={() => handleButtonClick('4')}>
-                    <I.secondScoringEntry isActive={selectedButtonId !== '4'} />
+                    <I.SecondScoringEntry isActive={selectedButtonId === '4'} />
                   </S.ModalOption>
                 </S.ButtonBox>
                 <ModalButton
