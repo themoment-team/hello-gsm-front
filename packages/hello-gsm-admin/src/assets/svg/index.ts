@@ -6,7 +6,7 @@ export { default as DocumentIcon } from './DocumentIcon';
 export { default as LogoutIcon } from './LogoutIcon';
 export { default as SearchIcon } from './SearchIcon';
 export { default as ExcelIcon } from './ExcelIcon';
-export { default as XIcon } from './XIcon';
+export { default as ModalCloseIcon } from './ModalCloseIcon';
 export { default as DocumentsSubmissionStatus } from './modalOptions/DocumentsSubmissionStatus';
 export { default as FirstPassStatus } from './modalOptions/FirstPassStatus';
 export { default as SecondScoringEntry } from './modalOptions/SecondScoringEntry';

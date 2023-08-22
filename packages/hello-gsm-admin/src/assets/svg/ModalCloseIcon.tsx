@@ -1,4 +1,4 @@
-const XIcon = () => (
+const ModalCloseIcon = () => (
   <svg
     width="24"
     height="24"
@@ -16,4 +16,4 @@ const XIcon = () => (
     />
   </svg>
 );
-export default XIcon;
+export default ModalCloseIcon;

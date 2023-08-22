@@ -50,7 +50,7 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
                 width: showModal !== '0' ? '28.5rem' : '55.5rem',
               }}
             >
-              <I.XIcon />
+              <I.ModalCloseIcon />
             </S.XIcon>
             {showModalResult ? (
               <></>
