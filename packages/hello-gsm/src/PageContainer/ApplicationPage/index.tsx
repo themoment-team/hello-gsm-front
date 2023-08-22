@@ -1,6 +1,5 @@
 import type { NextPage } from 'next';
 import * as S from './style';
-import { ApplicationResponseType } from 'type/application';
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { ApplicantsStatus } from 'components';
@@ -8,8 +7,10 @@ import * as I from 'Assets/svg';
 import { LocalScoreType } from 'type/score';
 import toStringArray from 'Utils/Array/toStringArray';
 import { formatGender } from 'Utils/Format';
+import { ApplicationDataType } from 'type/application';
+import { isGED } from 'type/ged';
 
-const ApplicationPage: NextPage<{ data: ApplicationResponseType }> = ({
+const ApplicationPage: NextPage<ApplicationDataType> = ({
   data: { admissionGrade, admissionInfo, admissionStatus, middleSchoolGrade },
   data,
 }) => {
@@ -45,8 +46,10 @@ const ApplicationPage: NextPage<{ data: ApplicationResponseType }> = ({
     setNonSubjects(scoreData?.nonSubjects || []);
   }, []);
 
+  const isGEDScore = isGED(admissionGrade);
+
   // 환산일수
-  const conversionDays = 30 - admissionGrade.attendanceScore / 3;
+  const conversionDays = !isGEDScore && 30 - admissionGrade.attendanceScore / 3;
 
   const userBirth = new Date(admissionInfo.applicantBirth);
   // 생년월일을 YYYY-MM-DD형식에 맞게 포맷
@@ -190,7 +193,7 @@ const ApplicationPage: NextPage<{ data: ApplicationResponseType }> = ({
         </S.Document>
       </S.ApplicationPage>
       {/* 검정고시가 아닌 학생만 성적 입력 확인서 보여주기 */}
-      {admissionInfo.graduation !== 'GED' && (
+      {!isGEDScore && (
         <S.ApplicationPage>
           <S.Document>
             <div className="warterMark">견본</div>
