@@ -13,12 +13,13 @@ import {
 } from 'components';
 import { useForm } from 'react-hook-form';
 import application from 'Api/application';
-import { ApplicationResponseType, ApplyFormType } from 'type/application';
+import { ApplicationDataType, ApplyFormType } from 'type/application';
 import { toast } from 'react-toastify';
 import { IdentityType } from 'type/identity';
+import formatMajor from 'Utils/Format/formatMajor';
 
 const ApplyPage: NextPage<
-  { data: ApplicationResponseType; identityData: IdentityType } & {
+  ApplicationDataType & { identityData: IdentityType } & {
     onNext: () => void;
   }
 > = ({ data, onNext, identityData }) => {
@@ -73,7 +74,7 @@ const ApplyPage: NextPage<
       guardianPhoneNumber: data?.admissionInfo.guardianPhoneNumber,
       teacherName: data?.admissionInfo.teacherName,
       teacherPhoneNumber: data?.admissionInfo.teacherPhoneNumber,
-      screening: data?.admissionInfo.screening || '일반전형',
+      screening: data?.admissionInfo.screening || 'GENERAL',
     },
   });
 
@@ -87,8 +88,8 @@ const ApplyPage: NextPage<
     }
     setImgURL(data?.admissionInfo.applicantImageUri || '');
     setChoice1(data?.admissionInfo.desiredMajor.firstDesiredMajor || '');
-    setChoice2(data?.admissionInfo.desiredMajor.firstDesiredMajor || '');
-    setChoice3(data?.admissionInfo.desiredMajor.firstDesiredMajor || '');
+    setChoice2(data?.admissionInfo.desiredMajor.secondDesiredMajor || '');
+    setChoice3(data?.admissionInfo.desiredMajor.thirdDesiredMajor || '');
     setSchoolName(data?.admissionInfo.schoolName || '');
     setSchoolLocation(data?.admissionInfo.schoolLocation || '');
     setApplicantAddress(data?.admissionInfo.address || '');
@@ -285,21 +286,21 @@ const ApplyPage: NextPage<
             <S.Type
               {...register('screening')}
               type="radio"
-              value="일반전형"
+              value="GENERAL"
               id="common"
             />
             <S.TypeLabel htmlFor="common">일반전형</S.TypeLabel>
             <S.Type
               {...register('screening')}
               type="radio"
-              value="사회통합전형"
+              value="SOCIAL"
               id="social"
             />
             <S.TypeLabel htmlFor="social">사회통합전형</S.TypeLabel>
             <S.Type
               {...register('screening')}
               type="radio"
-              value="특별전형"
+              value=""
               id="special"
             />
             <S.TypeLabel htmlFor="special">특별전형</S.TypeLabel>
@@ -363,7 +364,7 @@ const ApplyPage: NextPage<
                   setSelectedChoice(1);
                 }}
               >
-                {choice1 || '선택'}
+                {formatMajor(choice1) || '선택'}
               </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (1지망)
@@ -376,7 +377,7 @@ const ApplyPage: NextPage<
                   setSelectedChoice(2);
                 }}
               >
-                {choice2 || '선택'}
+                {formatMajor(choice2) || '선택'}
               </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (2지망)
@@ -389,7 +390,7 @@ const ApplyPage: NextPage<
                   setSelectedChoice(3);
                 }}
               >
-                {choice3 || '선택'}
+                {formatMajor(choice3) || '선택'}
               </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (3지망)
