@@ -1,6 +1,9 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import { SEOHelmet } from 'components';
-import { ApplicationResponseType } from 'type/application';
+import {
+  ApplicationDataType,
+  CommonApplicationResponseType,
+} from 'type/application';
 import application from 'Api/application';
 import { ApplyPage, CalculatorPage } from 'PageContainer';
 import { useState } from 'react';
@@ -9,7 +12,7 @@ import identity from 'Api/identity';
 import { IdentityType } from 'type/identity';
 
 interface ApplyProps {
-  applicationData: ApplicationResponseType;
+  applicationData: CommonApplicationResponseType;
   identityData: IdentityType;
 }
 
@@ -42,7 +45,7 @@ const Apply: NextPage<ApplyProps> = ({ applicationData, identityData }) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const { data: applicationData }: { data: ApplicationResponseType } =
+    const { data: applicationData }: ApplicationDataType =
       await application.getMyApplication();
     const { data: identityData }: { data: IdentityType } =
       await identity.getMyIdentity();
