@@ -96,7 +96,7 @@ export interface ApplyFormType {
   thirdDesiredMajor: MajorType;
   schoolName: string;
   schoolLocation: string;
-  screening: ScreeningType;
+  screening: ScreeningType | '';
 }
 
 export interface AdmissionInfoType {
