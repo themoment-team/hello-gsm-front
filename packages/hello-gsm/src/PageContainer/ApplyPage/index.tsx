@@ -76,7 +76,7 @@ const ApplyPage: NextPage<
       guardianPhoneNumber: data?.admissionInfo.guardianPhoneNumber,
       teacherName: data?.admissionInfo.teacherName,
       teacherPhoneNumber: data?.admissionInfo.teacherPhoneNumber,
-      screening: data?.admissionInfo.screening,
+      screening: data?.admissionInfo.screening || 'GENERAL',
     },
   });
 
@@ -195,7 +195,7 @@ const ApplyPage: NextPage<
     applicantAddress !== ''
       ? setIsAddressExist(true)
       : setIsAddressExist(false);
-    schoolName !== ''
+    schoolName !== '' || watch('graduation') === 'GED'
       ? setIsSchoolNameExist(true)
       : setIsSchoolNameExist(false);
     imgURL ? setIsIdPhoto(true) : setIsIdPhoto(false);
