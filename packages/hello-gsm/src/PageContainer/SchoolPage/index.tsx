@@ -91,7 +91,7 @@ const SchoolPage: NextPage = () => {
           <S.GraphWrapper>
             <S.Blank />
             {EmploymentRate.map(({ year, ratio }, index) => (
-              <S.StickWrapper key={index}>
+              <S.StickWrapper ratio={ratio} key={index}>
                 {curIndex === index && ratio && (
                   <S.RatioText>{ratio}%</S.RatioText>
                 )}

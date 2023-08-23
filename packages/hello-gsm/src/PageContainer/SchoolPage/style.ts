@@ -153,11 +153,15 @@ export const Line = styled.div`
   background: #9a9a9a;
 `;
 
-export const StickWrapper = styled.div`
+export const StickWrapper = styled.div<{ ratio: number | null }>`
   margin-top: auto;
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  @media (max-width: 500px) {
+    ${({ ratio }) => !ratio && 'display: none'}
+  }
 `;
 
 export const Stick = styled.div<{ ratio: number; isCurIndex: boolean }>`
@@ -266,7 +270,11 @@ export const FlippedTotal = styled(BigTotal)`
   transform: scaleY(-1);
 
   position: relative;
-  top: -0.575rem;
+  top: -3.375rem;
+
+  @media ${device.mobile} {
+    top: -3.075rem;
+  }
 
   @media (max-width: 500px) {
     font-size: 5rem;
