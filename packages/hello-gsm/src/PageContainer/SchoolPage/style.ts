@@ -134,6 +134,10 @@ export const GraphWrapper = styled.div`
   justify-content: flex-start;
   gap: 1.25rem;
   position: relative;
+
+  @media (max-width: 500px) {
+    gap: 0.35rem;
+  }
 `;
 
 export const Blank = styled.div`
@@ -222,17 +226,33 @@ export const BigTotal = styled.p`
   font-size: 6rem;
   font-weight: 700;
   line-height: 8.6875rem;
+
+  @media (max-width: 500px) {
+    font-size: 5rem;
+    line-height: 4.6875rem;
+  }
 `;
 
 export const MiddleTotal = styled(BigTotal)`
   font-size: 2.5rem;
   line-height: 3.625rem;
+
+  @media (max-width: 500px) {
+    font-size: 1.5rem;
+    line-height: 2.6875rem;
+  }
 `;
 
 export const SmallTotal = styled(BigTotal)`
   font-size: 1.5rem;
   line-height: 2.1875rem;
   margin-bottom: 0.875rem;
+
+  @media (max-width: 500px) {
+    margin-bottom: 0rem;
+    font-size: 1.2rem;
+    line-height: 1.6875rem;
+  }
 `;
 
 export const FlippedTotal = styled(BigTotal)`
@@ -246,7 +266,12 @@ export const FlippedTotal = styled(BigTotal)`
   transform: scaleY(-1);
 
   position: relative;
-  top: -4.375rem;
+  top: -0.575rem;
+
+  @media (max-width: 500px) {
+    font-size: 5rem;
+    line-height: 4.6875rem;
+  }
 `;
 
 const Ball = styled.div`
