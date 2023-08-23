@@ -1,40 +1,57 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
-import Graph from './Graph';
 import { Enterprises } from 'components';
 
-interface EmployType {
-  x: string;
-  y: number;
-}
+const EmploymentRate = [
+  {
+    year: 2020,
+    ratio: 82,
+    number: 59,
+  },
+  {
+    year: 2021,
+    ratio: 87,
+    number: 66,
+  },
+  {
+    year: 2022,
+    ratio: 81,
+    number: 59,
+  },
+  {
+    year: 2023,
+    ratio: 79,
+    number: 59,
+  },
+  {
+    year: 2024,
+    ratio: null,
+    number: null,
+  },
+  {
+    year: 2025,
+    ratio: null,
+    number: null,
+  },
+  {
+    year: 2026,
+    ratio: null,
+    number: null,
+  },
+  {
+    year: 2027,
+    ratio: null,
+    number: null,
+  },
+];
 
 const SchoolPage: NextPage = () => {
-  const [select, setSelect] = useState<number>(0);
-  const [EmoployRate, setEmployRate] = useState<EmployType[]>([]);
-  const [total, setTotal] = useState<number>(75);
+  const [curIndex, setCurIndex] = useState<number>(0);
 
-  const data = [
-    [
-      { x: '취업\n80%', y: 60 },
-      { x: '기타\n20%', y: 15 },
-    ],
-    [
-      { x: '취업\n86.8%', y: 66 },
-      { x: '기타\n13.2%', y: 10 },
-    ],
-  ];
-
-  const selectStyle = (index: number) =>
-    select === index && { color: '#ffffff' };
-
-  const selecting = (index: number) => setSelect(index);
-
-  useEffect(() => {
-    setEmployRate(data[select]);
-    select === 0 && setTotal(75);
-    select === 1 && setTotal(76);
-  }, [select]);
+  const handleStickClick = (index: number) => {
+    if (EmploymentRate[index].ratio) setCurIndex(index);
+  };
 
   return (
     <>
@@ -65,37 +82,51 @@ const SchoolPage: NextPage = () => {
         </S.Section2>
         <S.Section3>
           <S.Section3Title>취업률</S.Section3Title>
-          <S.GraphWrap>
-            <S.SelectBox>
-              <S.SelectBar />
-              <S.SelectOptionBox>
-                <S.SelectOption
-                  css={selectStyle(0)}
-                  onClick={() => selecting(0)}
-                >
-                  2020년
-                </S.SelectOption>
-                <S.SelectOption
-                  css={selectStyle(1)}
-                  onClick={() => selecting(1)}
-                >
-                  2021년
-                </S.SelectOption>
-              </S.SelectOptionBox>
-            </S.SelectBox>
-            <S.GraphBox>
-              <S.Title>총 {total}명</S.Title>
-              <S.Graph>
-                <Graph data={EmoployRate} />
-              </S.Graph>
-            </S.GraphBox>
-          </S.GraphWrap>
+          <S.ColorMarkerWrapper>
+            <S.ColorMarker>
+              취업
+              <S.Square />
+            </S.ColorMarker>
+          </S.ColorMarkerWrapper>
+          <S.GraphWrapper>
+            <S.Blank />
+            {EmploymentRate.map(({ year, ratio }, index) => (
+              <S.StickWrapper ratio={ratio} key={index}>
+                {curIndex === index && ratio && (
+                  <S.RatioText>{ratio}%</S.RatioText>
+                )}
+                <S.Stick
+                  onClick={() => handleStickClick(index)}
+                  ratio={ratio ?? 2.5}
+                  isCurIndex={curIndex === index}
+                />
+                <S.Dot />
+                {curIndex === index ? (
+                  <S.YearText>{year}년</S.YearText>
+                ) : (
+                  <S.NotCurrentYearText>{year}년</S.NotCurrentYearText>
+                )}
+              </S.StickWrapper>
+            ))}
+            <S.Line />
+            <S.TotalWrapper>
+              <S.SmallTotal>
+                {EmploymentRate[curIndex].year} 취업자 수
+              </S.SmallTotal>
+              <S.MiddleTotal>올해 취업자 수</S.MiddleTotal>
+              <S.BigTotal>{EmploymentRate[curIndex].number}명</S.BigTotal>
+              <S.FlippedTotal>
+                {EmploymentRate[curIndex].number}명
+              </S.FlippedTotal>
+            </S.TotalWrapper>
+          </S.GraphWrapper>
         </S.Section3>
       </S.SchoolPage>
       <S.GreenBall />
       <S.BlueBall />
       <S.SkyBlueBall />
       <S.SmallBlueBall />
+      <S.BigGreenBall />
     </>
   );
 };

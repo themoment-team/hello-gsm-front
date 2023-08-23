@@ -30,21 +30,24 @@ const Enterprises: React.FC = () => {
   ];
 
   return (
-    <S.EnterpriseWrap>
-      {enterprises.map((enterprise, index: number) => (
-        <S.EnterpriseLine key={index}>
-          {enterprise.map((name: string, index: number) => (
-            <S.Enterprise key={index}>
-              <S.EnterpriseImg
-                css={css`
-                  background-image: url(${name});
-                `}
-              />
-            </S.Enterprise>
-          ))}
-        </S.EnterpriseLine>
-      ))}
-    </S.EnterpriseWrap>
+    <>
+      <S.EnterpriseWrap>
+        {enterprises.map((enterprise, index: number) => (
+          <S.EnterpriseLine key={index}>
+            {enterprise.map((name: string, index: number) => (
+              <S.Enterprise key={index}>
+                <S.EnterpriseImg
+                  css={css`
+                    background-image: url(${name});
+                  `}
+                />
+              </S.Enterprise>
+            ))}
+          </S.EnterpriseLine>
+        ))}
+      </S.EnterpriseWrap>
+      <S.ExampleBlank />
+    </>
   );
 };
 
