@@ -171,6 +171,9 @@ export const Stick = styled.div<{ ratio: number; isCurIndex: boolean }>`
   @media ${device.mobile} {
     height: ${({ ratio }) => (280 / 100) * ratio}px;
   }
+  @media (max-width: 500px) {
+    width: 2rem;
+  }
 `;
 
 export const YearText = styled.span`
@@ -181,6 +184,10 @@ export const YearText = styled.span`
   width: 4.35rem;
   display: flex;
   justify-content: center;
+  @media (max-width: 500px) {
+    font-size: 0.875rem;
+    width: 3.5rem;
+  }
 `;
 
 export const NotCurrentYearText = styled(YearText)`
