@@ -172,7 +172,7 @@ export const Stick = styled.div<{ ratio: number; isCurIndex: boolean }>`
     height: ${({ ratio }) => (280 / 100) * ratio}px;
   }
   @media (max-width: 500px) {
-    width: 2rem;
+    width: 2.4rem;
   }
 `;
 
