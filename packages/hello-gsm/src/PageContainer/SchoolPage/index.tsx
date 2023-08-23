@@ -6,35 +6,43 @@ import { Enterprises } from 'components';
 const EmploymentRate = [
   {
     year: 2020,
-    ratio: 80,
+    ratio: 82,
+    number: 59,
   },
   {
     year: 2021,
-    ratio: 86,
+    ratio: 87,
+    number: 66,
   },
   {
     year: 2022,
-    ratio: 72,
+    ratio: 81,
+    number: 59,
   },
   {
     year: 2023,
-    ratio: null,
+    ratio: 79,
+    number: 59,
   },
   {
     year: 2024,
     ratio: null,
+    number: null,
   },
   {
     year: 2025,
     ratio: null,
+    number: null,
   },
   {
     year: 2026,
     ratio: null,
+    number: null,
   },
   {
     year: 2027,
     ratio: null,
+    number: null,
   },
 ];
 
@@ -102,10 +110,14 @@ const SchoolPage: NextPage = () => {
             ))}
             <S.Line />
             <S.TotalWrapper>
-              <S.SmallTotal>총 취업자 수</S.SmallTotal>
-              <S.MiddleTotal>총 취업자 수</S.MiddleTotal>
-              <S.BigTotal>{400}명</S.BigTotal>
-              <S.FlippedTotal>{400}명</S.FlippedTotal>
+              <S.SmallTotal>
+                {EmploymentRate[curIndex].year} 취업자 수
+              </S.SmallTotal>
+              <S.MiddleTotal>올해 취업자 수</S.MiddleTotal>
+              <S.BigTotal>{EmploymentRate[curIndex].number}명</S.BigTotal>
+              <S.FlippedTotal>
+                {EmploymentRate[curIndex].number}명
+              </S.FlippedTotal>
             </S.TotalWrapper>
           </S.GraphWrapper>
         </S.Section3>
