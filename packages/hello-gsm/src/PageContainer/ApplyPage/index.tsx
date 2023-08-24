@@ -189,6 +189,7 @@ const ApplyPage: NextPage<
   };
 
   const validate = () => {
+    watch('screening') === 'SPECIAL' && toast.error('전형을 선택해주세요.');
     choice1 && choice2 && choice3
       ? setIsMajorSelected(true)
       : setIsMajorSelected(false);
@@ -312,14 +313,26 @@ const ApplyPage: NextPage<
             <S.Type
               {...register('screening')}
               onClick={() => {
-                setValue('screening', '');
                 setIsSpecialScreening(true);
               }}
               type="radio"
               value="SPECIAL"
               id="SPECIAL"
             />
-            <S.TypeLabel htmlFor="SPECIAL">정원 외 특별전형</S.TypeLabel>
+            <S.TypeLabel
+              htmlFor="SPECIAL"
+              css={
+                isSpecialScreening &&
+                css`
+                  background: #42bafe;
+                  font-weight: 700;
+                  font-size: 20px;
+                  color: #f8f8f8;
+                `
+              }
+            >
+              정원 외 특별전형
+            </S.TypeLabel>
           </S.TypeBox>
           {isSpecialScreening && (
             <S.SpecialScreeningBox>
