@@ -38,14 +38,12 @@ export const LoginContent = styled.div`
 export const AdminTitle = styled.h3`
   font-size: 1.25rem;
   font-weight: 700;
-  font-style: normal;
   line-height: 1.5163rem;
   padding-left: 0.375rem;
 `;
 
 export const LoginTitle = styled.h2`
   font-size: 2.125rem;
-  font-style: normal;
   font-weight: 600;
   line-height: 3.125rem;
   margin-top: 0.375rem;

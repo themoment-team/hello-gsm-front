@@ -237,11 +237,8 @@ export const SpecialScreeningBox = styled.div`
   h3 {
     color: rgba(255, 255, 255, 0.5);
     text-align: center;
-    font-family: Noto Sans KR;
     font-size: 1rem;
-    font-style: normal;
     font-weight: 500;
-    line-height: normal;
     margin: 2rem 0 1.5rem;
   }
 `;

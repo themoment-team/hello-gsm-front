@@ -26,7 +26,6 @@ export const SignInForm = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-style: normal;
   font-weight: 700;
   font-size: 3rem;
   line-height: 4.375rem;
