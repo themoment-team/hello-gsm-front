@@ -5,11 +5,12 @@ import {
   CommonApplicationResponseType,
 } from 'type/application';
 import application from 'Api/application';
-import { ApplyPage, CalculatorPage } from 'PageContainer';
+import { ApplyPage, CalculatorPage, GEDCalculatorPage } from 'PageContainer';
 import { useState } from 'react';
 import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
 import identity from 'Api/identity';
 import { IdentityType } from 'type/identity';
+import useStore from 'Stores/StoreContainer';
 
 interface ApplyProps {
   applicationData: CommonApplicationResponseType;
@@ -22,7 +23,9 @@ const Apply: NextPage<ApplyProps> = ({ applicationData, identityData }) => {
 
   const [step, setStep] = useState<'원서' | '성적'>('원서');
 
-  // usePreventBackAndClose();
+  const { applyData } = useStore();
+
+  usePreventBackAndClose();
 
   return (
     <>
@@ -34,11 +37,19 @@ const Apply: NextPage<ApplyProps> = ({ applicationData, identityData }) => {
           onNext={() => setStep('성적')}
         />
       )}
-      {step === '성적' && (
-        <CalculatorPage
-          isSubmissionProp={applicationData?.middleSchoolGrade ? true : false}
-        />
-      )}
+      {step === '성적' &&
+        (applyData?.graduation === 'GED' ||
+        applicationData?.admissionInfo?.graduation === 'GED' ? (
+          <GEDCalculatorPage
+            score={applicationData?.middleSchoolGrade}
+            isSubmissionProp={applicationData?.middleSchoolGrade ? true : false}
+          />
+        ) : (
+          <CalculatorPage
+            score={applicationData?.middleSchoolGrade}
+            isSubmissionProp={applicationData?.middleSchoolGrade ? true : false}
+          />
+        ))}
     </>
   );
 };
