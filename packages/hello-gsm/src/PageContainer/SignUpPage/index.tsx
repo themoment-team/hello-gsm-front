@@ -51,7 +51,7 @@ const SignUpPage: NextPage = () => {
 
     const register = async () => {
       try {
-        await auth.signup({ birth, name, gender, cellphoneNumber });
+        // await auth.signup({ birth, name, gender, cellphoneNumber });
         setShowResult(true);
         setTimeout(() => {
           router.replace('/auth/signin');
