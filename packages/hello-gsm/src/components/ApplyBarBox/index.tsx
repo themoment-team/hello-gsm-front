@@ -1,7 +1,9 @@
 import React from 'react';
 import * as S from './style';
 
-const ApplyBarBox: React.FC = () => {
+const ApplyBarBox: React.FC<{ isSpecialScreening: boolean }> = ({
+  isSpecialScreening,
+}) => {
   const BarElements = [
     '증명사진',
     '성명',
@@ -24,7 +26,9 @@ const ApplyBarBox: React.FC = () => {
   return (
     <S.BarBox>
       {BarElements.map((element: string, index: number) => (
-        <S.BarElement key={index}>{element}</S.BarElement>
+        <S.BarElement key={index} isSpecialScreening={isSpecialScreening}>
+          {element}
+        </S.BarElement>
       ))}
     </S.BarBox>
   );

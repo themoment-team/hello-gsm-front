@@ -13,12 +13,13 @@ import {
 } from 'components';
 import { useForm } from 'react-hook-form';
 import application from 'Api/application';
-import { ApplicationResponseType, ApplyFormType } from 'type/application';
+import { ApplicationDataType, ApplyFormType } from 'type/application';
 import { toast } from 'react-toastify';
 import { IdentityType } from 'type/identity';
+import formatMajor from 'Utils/Format/formatMajor';
 
 const ApplyPage: NextPage<
-  { data: ApplicationResponseType; identityData: IdentityType } & {
+  ApplicationDataType & { identityData: IdentityType } & {
     onNext: () => void;
   }
 > = ({ data, onNext, identityData }) => {
@@ -30,6 +31,8 @@ const ApplyPage: NextPage<
   const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(true);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const userBirth = new Date(identityData?.birth);
+
+  const [isSpecialScreening, setIsSpecialScreening] = useState<boolean>(false);
 
   const {
     showDepartmentModal,
@@ -66,14 +69,14 @@ const ApplyPage: NextPage<
       applicantImageUri: data?.admissionInfo.applicantImageUri || '',
       address: data?.admissionInfo.address || '',
       detailAddress: data?.admissionInfo.detailAddress || '',
-      graduation: data?.admissionInfo.graduation || 'CANDIDATE',
+      graduation: data?.admissionInfo.graduation,
       telephone: data?.admissionInfo.telephone || '',
       guardianName: data?.admissionInfo.guardianName,
       relationWithApplicant: data?.admissionInfo.relationWithApplicant,
       guardianPhoneNumber: data?.admissionInfo.guardianPhoneNumber,
       teacherName: data?.admissionInfo.teacherName,
       teacherPhoneNumber: data?.admissionInfo.teacherPhoneNumber,
-      screening: data?.admissionInfo.screening || '일반전형',
+      screening: data?.admissionInfo.screening || 'GENERAL',
     },
   });
 
@@ -85,10 +88,18 @@ const ApplyPage: NextPage<
     } else {
       setIsEdit(false);
     }
+
+    if (
+      data?.admissionInfo.screening === 'SPECIAL_ADMISSION' ||
+      data?.admissionInfo.screening === 'SPECIAL_VETERANS'
+    ) {
+      setIsSpecialScreening(true);
+    }
+
     setImgURL(data?.admissionInfo.applicantImageUri || '');
     setChoice1(data?.admissionInfo.desiredMajor.firstDesiredMajor || '');
-    setChoice2(data?.admissionInfo.desiredMajor.firstDesiredMajor || '');
-    setChoice3(data?.admissionInfo.desiredMajor.firstDesiredMajor || '');
+    setChoice2(data?.admissionInfo.desiredMajor.secondDesiredMajor || '');
+    setChoice3(data?.admissionInfo.desiredMajor.thirdDesiredMajor || '');
     setSchoolName(data?.admissionInfo.schoolName || '');
     setSchoolLocation(data?.admissionInfo.schoolLocation || '');
     setApplicantAddress(data?.admissionInfo.address || '');
@@ -133,10 +144,6 @@ const ApplyPage: NextPage<
       setshowApplyPostModal();
       await Promise.all([registerImg(), submissionApplication(submitData)]);
       setshowApplyPostModal();
-      toast.success('원서가 저장되었습니다.');
-      // watch('gradu') !== '검정고시'
-      //   ? push('/calculator')
-      //   : push('/calculator/ged');
     } catch (error: any) {
       setshowApplyPostModal();
     }
@@ -182,13 +189,14 @@ const ApplyPage: NextPage<
   };
 
   const validate = () => {
+    watch('screening') === 'SPECIAL' && toast.error('전형을 선택해주세요.');
     choice1 && choice2 && choice3
       ? setIsMajorSelected(true)
       : setIsMajorSelected(false);
     applicantAddress !== ''
       ? setIsAddressExist(true)
       : setIsAddressExist(false);
-    schoolName !== ''
+    schoolName !== '' || watch('graduation') === 'GED'
       ? setIsSchoolNameExist(true)
       : setIsSchoolNameExist(false);
     imgURL ? setIsIdPhoto(true) : setIsIdPhoto(false);
@@ -202,7 +210,7 @@ const ApplyPage: NextPage<
       {showDepartmentModal && <DepartmentModal />}
       {showApplyPostModal && <ApplyPostModal />}
       <S.ApplyPage>
-        <ApplyBarBox />
+        <ApplyBarBox isSpecialScreening={isSpecialScreening} />
         <S.ApplyPageContent onSubmit={handleSubmit(onSubmit, validate)}>
           <S.Title>지원자 인적사항</S.Title>
           <S.ImgInputBox htmlFor="img-input">
@@ -284,26 +292,74 @@ const ApplyPage: NextPage<
           <S.TypeBox>
             <S.Type
               {...register('screening')}
+              onClick={() => {
+                setIsSpecialScreening(false);
+              }}
               type="radio"
-              value="일반전형"
-              id="common"
+              value="GENERAL"
+              id="GENERAL"
             />
-            <S.TypeLabel htmlFor="common">일반전형</S.TypeLabel>
+            <S.TypeLabel htmlFor="GENERAL">일반전형</S.TypeLabel>
             <S.Type
               {...register('screening')}
+              onClick={() => {
+                setIsSpecialScreening(false);
+              }}
               type="radio"
-              value="사회통합전형"
-              id="social"
+              value="SOCIAL"
+              id="SOCIAL"
             />
-            <S.TypeLabel htmlFor="social">사회통합전형</S.TypeLabel>
+            <S.TypeLabel htmlFor="SOCIAL">사회통합전형</S.TypeLabel>
             <S.Type
               {...register('screening')}
+              onClick={() => {
+                setIsSpecialScreening(true);
+              }}
               type="radio"
-              value="특별전형"
-              id="special"
+              value="SPECIAL"
+              id="SPECIAL"
             />
-            <S.TypeLabel htmlFor="special">특별전형</S.TypeLabel>
+            <S.TypeLabel
+              htmlFor="SPECIAL"
+              css={
+                isSpecialScreening &&
+                css`
+                  background: #42bafe;
+                  font-weight: 700;
+                  font-size: 20px;
+                  color: #f8f8f8;
+                `
+              }
+            >
+              정원 외 특별전형
+            </S.TypeLabel>
           </S.TypeBox>
+          {isSpecialScreening && (
+            <S.SpecialScreeningBox>
+              <h3>정원 외 특별전형</h3>
+
+              <S.ScreeningButton>
+                <S.Type
+                  {...register('screening')}
+                  type="radio"
+                  value="SPECIAL_VETERANS"
+                  id="SPECIAL_VETERANS"
+                />
+                <S.TypeLabel htmlFor="SPECIAL_VETERANS">
+                  국가보훈대상자
+                </S.TypeLabel>
+                <S.Type
+                  {...register('screening')}
+                  type="radio"
+                  value="SPECIAL_ADMISSION"
+                  id="SPECIAL_ADMISSION"
+                />
+                <S.TypeLabel htmlFor="SPECIAL_ADMISSION">
+                  특례입학대상자
+                </S.TypeLabel>
+              </S.ScreeningButton>
+            </S.SpecialScreeningBox>
+          )}
           <S.SchoolBox>
             <S.SchoolName>{schoolName}</S.SchoolName>
             <S.SchoolSearchButton
@@ -363,7 +419,7 @@ const ApplyPage: NextPage<
                   setSelectedChoice(1);
                 }}
               >
-                {choice1 || '선택'}
+                {formatMajor(choice1) || '선택'}
               </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (1지망)
@@ -376,7 +432,7 @@ const ApplyPage: NextPage<
                   setSelectedChoice(2);
                 }}
               >
-                {choice2 || '선택'}
+                {formatMajor(choice2) || '선택'}
               </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (2지망)
@@ -389,7 +445,7 @@ const ApplyPage: NextPage<
                   setSelectedChoice(3);
                 }}
               >
-                {choice3 || '선택'}
+                {formatMajor(choice3) || '선택'}
               </S.DepartmentSelectButton>
               <S.DepartmentOrderDescription>
                 (3지망)
@@ -478,7 +534,7 @@ const ApplyPage: NextPage<
           />
           <S.NextButton type="submit">다음</S.NextButton>
         </S.ApplyPageContent>
-        <S.ErrorBox>
+        <S.ErrorBox isSpecialScreening={isSpecialScreening}>
           <S.Error>{!isIdPhoto && '* 증명사진을 등록해주세요.'}</S.Error>
           <S.Error>{!isAddressExist && '* 주소지를 입력해주세요.'}</S.Error>
           <S.Error>{errors.detailAddress?.message}</S.Error>

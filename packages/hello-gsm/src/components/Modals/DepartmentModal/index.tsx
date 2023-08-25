@@ -16,9 +16,7 @@ const DepartmentModal: React.FC = () => {
     setChoice3,
   } = useStore();
 
-  const choiceDepartment = (
-    choice: '소프트웨어개발과' | '스마트IoT과' | '인공지능과' | '',
-  ) => {
+  const choiceDepartment = (choice: 'SW' | 'IOT' | 'AI' | '') => {
     setShowDepartmentModal();
     switch (selectedChoice) {
       case 1:
@@ -60,13 +58,13 @@ const DepartmentModal: React.FC = () => {
       <S.FAQModalBox>
         <S.Title>원하시는 과를 골라주세요</S.Title>
         <S.SelectBox>
-          <S.SelectContent onClick={() => choiceDepartment('인공지능과')}>
+          <S.SelectContent onClick={() => choiceDepartment('AI')}>
             인공지능과
           </S.SelectContent>
-          <S.SelectContent onClick={() => choiceDepartment('소프트웨어개발과')}>
+          <S.SelectContent onClick={() => choiceDepartment('SW')}>
             소프트웨어개발과
           </S.SelectContent>
-          <S.SelectContent onClick={() => choiceDepartment('스마트IoT과')}>
+          <S.SelectContent onClick={() => choiceDepartment('IOT')}>
             스마트IoT과
           </S.SelectContent>
         </S.SelectBox>
