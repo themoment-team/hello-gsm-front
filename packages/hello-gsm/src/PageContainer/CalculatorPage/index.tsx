@@ -1,10 +1,5 @@
 import type { NextPage } from 'next';
-import {
-  Header,
-  ScoreSelect,
-  ScoreResultModal,
-  FreeSemesterBtn,
-} from 'components';
+import { ScoreSelect, ScoreResultModal, FreeSemesterBtn } from 'components';
 import * as S from 'styles/Calculate';
 import * as I from 'Assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
@@ -17,7 +12,7 @@ import {
   ArtSport,
 } from 'Utils/Calculate';
 import application from 'Api/application';
-import { ScoreType } from 'type/score';
+import { LocalScoreType } from 'type/score';
 import useStore from 'Stores/StoreContainer';
 import { toast } from 'react-toastify';
 
@@ -35,11 +30,15 @@ interface ScoreForm {
   newSubjects: string[];
 }
 
-interface UserIdxType {
+interface CalculatorPageProps {
+  score: string;
   isSubmissionProp: boolean;
 }
 
-const CalculatorPage: NextPage<UserIdxType> = ({ isSubmissionProp }) => {
+const CalculatorPage: NextPage<CalculatorPageProps> = ({
+  score,
+  isSubmissionProp,
+}) => {
   const { register, handleSubmit, watch, setValue } = useForm<ScoreForm>();
 
   const {
@@ -48,6 +47,7 @@ const CalculatorPage: NextPage<UserIdxType> = ({ isSubmissionProp }) => {
     system,
     setSystem,
     freeSemester,
+    applyData,
     setFreeSemester,
   } = useStore();
 
@@ -70,14 +70,6 @@ const CalculatorPage: NextPage<UserIdxType> = ({ isSubmissionProp }) => {
   ];
   const nonSubjects = ['체육', '미술', '음악'];
   const grades = [1, 2, 3];
-
-  // api 요청 보내기
-  const TrySubmission = async (data: ScoreType) => {
-    // 이전에 제출한 적이 있으면 patch / 없다면 post
-    isSubmission
-      ? await application.putApplication(data)
-      : await application.postApplication(data);
-  };
 
   // 저장 버튼을 눌렀을 때
   const onValid = async ({
@@ -124,56 +116,53 @@ const CalculatorPage: NextPage<UserIdxType> = ({ isSubmissionProp }) => {
       3,
     ); // 총점
 
-    const rankPercentage = Rounds((1 - scoreTotal / 300) * 100, 3); // 석차백분율
-
-    // score값이 없는 값이라면 undefined 값을 보내게 함
-    const data: ScoreType = {
-      score1_1: score1_1 !== 0 ? score1_1 : undefined,
-      score1_2: score1_2 !== 0 ? score1_2 : undefined,
-      score2_1: score2_1 !== 0 ? score2_1 : undefined,
-      score2_2,
-      score3_1,
-      generalCurriculumScoreSubtotal,
-      artSportsScore,
-      attendanceScore,
-      curriculumScoreSubtotal,
-      volunteerScore,
-      nonCurriculumScoreSubtotal,
-      scoreTotal,
-      rankPercentage,
+    const scoreObject = {
+      score1_1: score1_1 !== 0 ? value1_1 : null,
+      score1_2: score1_2 !== 0 ? value1_2 : null,
+      score2_1: score2_1 !== 0 ? value2_1 : null,
+      score2_2: value2_2,
+      score3_1: value3_1,
+      artSportsScore: artSportsValue,
+      absentScore: absentValue,
+      attendanceScore: attendanceValue,
+      volunteerScore: volunteerValue,
+      subjects: subjects,
+      newSubjects: newSubjects,
+      nonSubjects: nonSubjects,
+      system: system,
+      freeSemester: system !== '자유학년제' ? freeSemester : null,
     };
 
-    try {
-      await TrySubmission(data);
-      const scoreObject = {
-        score1_1: value1_1,
-        score1_2: value1_2,
-        score2_1: value2_1,
-        score2_2: value2_2,
-        score3_1: value3_1,
-        artSportsScore: artSportsValue,
-        absentScore: absentValue,
-        attendanceScore: attendanceValue,
-        volunteerScore: volunteerValue,
-        subjects: subjects,
-        newSubjects: newSubjects,
-        nonSubjects: nonSubjects,
-        system: system,
-        freeSemester: freeSemester,
-      };
+    const middleSchoolGrade = JSON.stringify(scoreObject);
+    if (applyData !== null)
+      try {
+        // 이전에 제출한 적이 있으면 patch / 없다면 post
+        isSubmission
+          ? await application.putApplication({
+              ...applyData,
+              middleSchoolGrade,
+            })
+          : await application.postApplication({
+              ...applyData,
+              middleSchoolGrade,
+            });
 
-      // 결과 모달 제어
-      setResultArray([
-        generalCurriculumScoreSubtotal,
-        artSportsScore,
-        nonCurriculumScoreSubtotal,
-        scoreTotal,
-      ]);
-      setShowScoreResult(); // 결과창 보여지게
-      setIsSubmission(true); // 제출 여부 확인
-    } catch (error: any) {
-      toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
-    }
+        // 결과 모달 제어
+        setResultArray([
+          generalCurriculumScoreSubtotal,
+          artSportsScore,
+          nonCurriculumScoreSubtotal,
+          scoreTotal,
+        ]);
+        setShowScoreResult(); // 결과창 보여지게
+        setIsSubmission(true); // 제출 여부 확인
+      } catch (e) {
+        toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
+      }
+    else if (applyData === null)
+      toast.error(
+        '인적사항 정보가 저장되지 않았습니다. 처음부터 다시 시도해주세요.',
+      );
   };
 
   const inValid = (errors: FieldErrors) => {
@@ -213,6 +202,24 @@ const CalculatorPage: NextPage<UserIdxType> = ({ isSubmissionProp }) => {
       value3_1?.filter((_, i) => subjects.length + index !== i),
     );
   };
+
+  useEffect(() => {
+    const scoreData: LocalScoreType | null = score ? JSON.parse(score) : null;
+    if (scoreData) {
+      setValue('value1_1', scoreData.score1_1 ?? []);
+      setValue('value1_2', scoreData.score1_2 ?? []);
+      setValue('value2_1', scoreData.score2_1 ?? []);
+      setValue('value2_2', scoreData.score2_2 ?? []);
+      setValue('value3_1', scoreData.score3_1 ?? []);
+      setValue('artSportsValue', scoreData.artSportsScore);
+      setValue('absentValue', scoreData.absentScore);
+      setValue('attendanceValue', scoreData.attendanceScore);
+      setValue('volunteerValue', scoreData.volunteerScore);
+      setValue('newSubjects', scoreData.newSubjects ?? []);
+      setFreeSemester(scoreData.freeSemester || null);
+      setSystem(scoreData.system || '자유학년제');
+    }
+  }, []);
 
   return (
     <>
