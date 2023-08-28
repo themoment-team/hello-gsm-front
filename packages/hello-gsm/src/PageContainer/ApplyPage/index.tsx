@@ -111,7 +111,7 @@ const ApplyPage: NextPage<
       setshowApplyPostModal();
       const formData = new FormData();
       imgInput.current?.files &&
-        formData?.append('photo', imgInput.current?.files[0]);
+        formData?.append('file', imgInput.current?.files[0]);
 
       const { data }: { data: { url: string } } = await application.postImage(
         formData,
