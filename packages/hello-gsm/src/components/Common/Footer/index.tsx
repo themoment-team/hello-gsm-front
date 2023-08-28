@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 import * as I from 'Assets/svg';
 
 import * as S from './style';
@@ -14,18 +12,34 @@ const Footer = () => (
             ©2023 Copyright 광주소프트웨어마이스터고등학교 ALL RIGHTS RESERVED.
           </S.Copyright>
           <S.LinkWrapper>
-            <Link href="https://official.hellogsm.kr/policy/privacy">
+            <a
+              href="https://official.hellogsm.kr/policy/privacy"
+              target="_blank"
+              rel="noreferrer"
+            >
               개인정보처리방침
-            </Link>
-            <Link href="https://official.hellogsm.kr/policy/cctv">
+            </a>
+            <a
+              href="https://official.hellogsm.kr/policy/cctv"
+              target="_blank"
+              rel="noreferrer"
+            >
               영상정보처리기기운영·관리방침
-            </Link>
-            <Link href="https://official.hellogsm.kr/policy/copyright">
+            </a>
+            <a
+              href="https://official.hellogsm.kr/policy/copyright"
+              target="_blank"
+              rel="noreferrer"
+            >
               저작권신고 및 보호규정
-            </Link>
-            <Link href="https://official.hellogsm.kr/about/location">
+            </a>
+            <a
+              href="https://official.hellogsm.kr/about/location"
+              target="_blank"
+              rel="noreferrer"
+            >
               찾아오시는 길
-            </Link>
+            </a>
           </S.LinkWrapper>
         </S.SiteInfo>
         <S.SchoolInfo>
