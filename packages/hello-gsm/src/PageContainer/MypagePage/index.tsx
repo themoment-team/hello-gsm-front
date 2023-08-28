@@ -175,7 +175,7 @@ const MyPage: NextPage<ApplicationDataType> = ({ data }) => {
             <Image
               src={
                 data.admissionInfo.applicantImageUri ??
-                '/images/DefaultProfileImage.png'
+                '/Images/DefaultProfileImage.png'
               }
               alt="image"
               layout="fill"
