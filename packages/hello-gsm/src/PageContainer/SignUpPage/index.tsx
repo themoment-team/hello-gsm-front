@@ -115,18 +115,16 @@ const SignUpPage: NextPage = () => {
    *
    */
   const sendCertificationNumber = async (phoneNumber: string) => {
-    if (!errors.phoneNumber && /^[0][1][0][0-9]{8}/.test(phoneNumber))
+    if (!errors.phoneNumber && /^[0][1][0][0-9]{8}/.test(phoneNumber)) {
       setIsSent(true);
-    else {
-      toast.error('전화번호를 다시 확인해주세요.');
-      setIsSent(false);
-    }
-    if (isSent) {
       try {
         await identity.postCode(phoneNumber);
       } catch (e) {
         toast.error('인증번호 전송을 실패했습니다. 다시 시도해주세요.');
       }
+    } else {
+      toast.error('전화번호를 다시 확인해주세요.');
+      setIsSent(false);
     }
   };
 
