@@ -14,16 +14,14 @@ const ModalSubmit: React.FC<ModalResultProps> = ({ handleOptionSelect }) => {
   };
 
   return (
-    <div>
-      <S.ModalSubmit>
-        <S.ModalOption onClick={() => handleButtonClick(1)}>
-          <I.Submit isActive={selectedButtonId !== 1} />
-        </S.ModalOption>
-        <S.ModalOption onClick={() => handleButtonClick(2)}>
-          <I.NotSubmit isActive={selectedButtonId !== 2} />
-        </S.ModalOption>
-      </S.ModalSubmit>
-    </div>
+    <S.ModalSubmit>
+      <S.ModalOption onClick={() => handleButtonClick(1)}>
+        <I.Submit isActive={selectedButtonId !== 1} />
+      </S.ModalOption>
+      <S.ModalOption onClick={() => handleButtonClick(2)}>
+        <I.NotSubmit isActive={selectedButtonId !== 2} />
+      </S.ModalOption>
+    </S.ModalSubmit>
   );
 };
 

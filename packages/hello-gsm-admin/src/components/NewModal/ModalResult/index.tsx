@@ -15,16 +15,14 @@ const ModalResult: React.FC<ModalResultProps> = ({ handleOptionSelect }) => {
   };
 
   return (
-    <div>
-      <S.ModalResult>
-        <S.ModalOption onClick={() => handleButtonClick(1)}>
-          <I.Pass isActive={selectedButtonId !== 1} />
-        </S.ModalOption>
-        <S.ModalOption onClick={() => handleButtonClick(2)}>
-          <I.Fail isActive={selectedButtonId !== 2} />
-        </S.ModalOption>
-      </S.ModalResult>
-    </div>
+    <S.ModalResult>
+      <S.ModalOption onClick={() => handleButtonClick(1)}>
+        <I.Pass isActive={selectedButtonId !== 1} />
+      </S.ModalOption>
+      <S.ModalOption onClick={() => handleButtonClick(2)}>
+        <I.Fail isActive={selectedButtonId !== 2} />
+      </S.ModalOption>
+    </S.ModalResult>
   );
 };
 
