@@ -4,7 +4,7 @@ import { FieldErrors, useForm } from 'react-hook-form';
 import { SignUpResultModal } from 'components';
 import { css } from '@emotion/react';
 import dayjs from 'dayjs';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import TosBox from './TosBox';
 import { toast } from 'react-toastify';
@@ -27,6 +27,19 @@ const SignUpPage: NextPage = () => {
   const [isSent, setIsSent] = useState<boolean>(false);
   const [isVerified, setIsVerified] = useState<boolean>(false);
   const router = useRouter();
+
+  useEffect(() => {
+    const test = async () => {
+      try {
+        const data = await identity.getMyIdentity();
+        console.log(data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    test();
+  }, []);
 
   const {
     register,
