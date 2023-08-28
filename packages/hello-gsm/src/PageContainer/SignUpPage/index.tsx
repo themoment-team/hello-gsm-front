@@ -172,7 +172,7 @@ const SignUpPage: NextPage = () => {
               },
             })}
           />
-          <S.ErrorMessage css={errors.name && selectErrorStyle(255)}>
+          <S.ErrorMessage css={errors.name && selectErrorStyle(220)}>
             {errors.name?.message}
           </S.ErrorMessage>
 
@@ -225,7 +225,7 @@ const SignUpPage: NextPage = () => {
           <S.ErrorMessage
             css={
               (errors?.year || errors?.day || errors?.month) &&
-              selectErrorStyle(330)
+              selectErrorStyle(300)
             }
           >
             {errors?.year || errors?.day || errors?.month
@@ -296,7 +296,7 @@ const SignUpPage: NextPage = () => {
               </S.CertificationButton>
             </S.TelNumContainer>
           )}
-          <S.ErrorMessage css={errors.phoneNumber && selectErrorStyle(410)}>
+          <S.ErrorMessage css={errors.phoneNumber && selectErrorStyle(380)}>
             {errors.phoneNumber?.message}
           </S.ErrorMessage>
           <S.NoticeText>
@@ -313,7 +313,7 @@ const SignUpPage: NextPage = () => {
             />
             개인정보 이용약관을 확인했으며, 이에 동의합니다.
           </S.CheckLabel>
-          <S.ErrorMessage css={errors.agree && selectErrorStyle(810)}>
+          <S.ErrorMessage css={errors.agree && selectErrorStyle(780)}>
             {errors.agree?.message}
           </S.ErrorMessage>
           <S.Button>가입하기</S.Button>
