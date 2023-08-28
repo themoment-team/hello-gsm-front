@@ -1,70 +1,70 @@
 import styled from '@emotion/styled';
 
 export const Modal = styled.div`
-  padding: 24px 20px 48px 20px;
-  border-radius: 10px;
-  width: 888px;
-  gap: 10px;
+  padding: 1.5rem 1.25rem 3rem 1.25rem;
+  border-radius: 0.625rem;
+  width: 55.5rem;
+  gap: 0.625rem;
   background-color: white;
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 513px;
+  height: 32.0625rem;
 `;
 
 export const ModalContent = styled.div`
-  height: 441px;
+  height: 27.5625rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: '848px';
-  height: '441px';
+  width: '53rem';
+  height: '27.5625rem';
 `;
 export const ButtonBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 290px;
+  height: 18.125rem;
 `;
 
 export const ModalOption = styled.button`
   border: none;
-  height: 12.5rem;
+  height: 200px;
   background-color: white;
   cursor: pointer;
 `;
 
 export const XIcon = styled.div`
-  height: 1.5rem;
-  width: 55.5rem;
+  height: 24px;
+  width: 888px;
   display: flex;
   cursor: pointer;
   justify-content: end;
-  padding-right: 1.25rem;
+  padding-right: 20px;
 `;
 
 export const TitleBox = styled.div`
-  width: 52.5rem;
-  height: 3.3125rem;
+  width: 840px;
+  height: 53px;
 `;
 
 export const Title = styled.div`
-  font-size: 1.25rem;
+  font-size: 20px;
   font-weight: 600;
-  line-height: 1.8125rem;
-  padding-bottom: 0.3125rem;
+  line-height: 29px;
+  padding-bottom: 5px;
 `;
 
 export const Desc = styled.div`
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 500;
-  line-height: 1.5rem;
+  line-height: 24px;
   color: #616161;
 `;
 
 export const ContentBox = styled.div`
-  height: 27.5625rem;
+  height: 441px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
