@@ -15,7 +15,7 @@ const Home: NextPage<ApplicationDataType> = ({ data }) => {
 
   useEffect(() => {
     const isVerification = query.verification === 'true';
-    const isNotVerification = query.verfication === 'false';
+    const isNotVerification = query.verification === 'false';
     const isLoginFailure = query.login === 'failure';
 
     if (isVerification) {
