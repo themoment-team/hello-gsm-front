@@ -10,6 +10,7 @@ import TosBox from './TosBox';
 import { toast } from 'react-toastify';
 import { GenderType } from 'type/application';
 import identity from 'Api/identity';
+import user from 'Api/user';
 
 interface UserForm {
   gender: GenderType;
@@ -31,7 +32,7 @@ const SignUpPage: NextPage = () => {
   useEffect(() => {
     const test = async () => {
       try {
-        const data = await identity.getMyIdentity();
+        const data = await user.getMyInfo();
         console.log(data);
       } catch (e) {
         console.log(e);
