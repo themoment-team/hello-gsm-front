@@ -135,6 +135,7 @@ const SignUpPage: NextPage = () => {
       await identity.postAuthCode(code);
       setIsVerified(true);
     } catch (e: any) {
+      console.log(e);
       toast.error(e.message);
     }
   };
