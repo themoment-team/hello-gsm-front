@@ -12,7 +12,7 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
   return (
     <S.TicketPage>
       {data.map((user, i) => {
-        const userBirth = new Date(user.birth);
+        const userBirth = new Date(user.applicantBirth);
         // 생년월일을 YYYY-MM-DD형식에 맞게 포맷
         const Formatbirth = dayjs()
           .set('year', userBirth.getFullYear())
@@ -34,26 +34,23 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                 </tr>
                 <tr>
                   <td style={{ width: '15%' }}>2차 전형 (직무적성소양평가)</td>
-                  <S.Left>2022.10.28.(금) 14:30 ~ 16:30</S.Left>
+                  <S.Left>2023.10.27.(금) 14:30 ~ 16:30</S.Left>
                   <td rowSpan={6} style={{ width: '30%', height: '100%' }}>
-                    {user.application_image && (
-                      <img
-                        src={user.application_image.idPhotoUrl}
-                        alt="증명사진 오류"
-                      />
+                    {user.applicantImageUri && (
+                      <img src={user.applicantImageUri} alt="증명사진 오류" />
                     )}
                   </td>
                   <S.Subject>접수번호</S.Subject>
-                  <td>{user.application.registrationNumber}</td>
+                  <td>{user.registrationNumber}</td>
                 </tr>
                 <tr>
                   <td rowSpan={2}>합격자 발표</td>
                   <S.Left>본교 홈페이지</S.Left>
                   <S.Subject>성명</S.Subject>
-                  <td>{user.name}</td>
+                  <td>{user.applicantName}</td>
                 </tr>
                 <tr>
-                  <S.Left>2022.11. 2.(수) 10:00</S.Left>
+                  <S.Left>2023.11. 1.(수) 10:00</S.Left>
                   <S.Subject rowSpan={2}>생년월일</S.Subject>
                   <td rowSpan={2}>{Formatbirth}</td>
                 </tr>
@@ -63,16 +60,12 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                 </tr>
                 <tr>
                   <S.Left>
-                    2022.11. 2.(수) ~ 2022.11. 7.(월) <br />
+                    2023.11. 1.(수) ~ 2023.11. 6.(월) <br />
                     09:00 ~ 17:00 (토·일요일 제외, <br />
                     마감시간 이전 도착분에 한하여 유효함.)
                   </S.Left>
                   <S.Subject>출신학교</S.Subject>
-                  {user.application.schoolName ? (
-                    <td>{user.application.schoolName}</td>
-                  ) : (
-                    <S.Slash />
-                  )}
+                  {user.schoolName ? <td>{user.schoolName}</td> : <S.Slash />}
                 </tr>
                 <tr>
                   <td>합격자 서류</td>
@@ -80,15 +73,15 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                     건강진단서 1부 <br /> 입학등록동의서 1부
                   </S.Left>
                   <S.Subject>전형구분</S.Subject>
-                  <td>{user.application.screening}</td>
+                  <td>{user.screening}</td>
                 </tr>
                 <tr>
                   <td>신입생 비전캠프</td>
-                  <S.Left>2023. 1. 9.(월) ~ 2023. 1.11.(수) 예정</S.Left>
+                  <S.Left>2024. 1. 10.(월) ~ 2024. 1.12.(수) 예정</S.Left>
                   <td rowSpan={2} colSpan={2}>
                     위 사람은 2024학년도 <br /> 본교 신입생 입학전형 지원자임을
                     확인함.
-                    <p>2022년 10월 28일</p>
+                    <p>2023년 10월 28일</p>
                     <S.Right>
                       광주소프트웨어마이스터고등학교장 <br /> [직인생략]
                     </S.Right>
