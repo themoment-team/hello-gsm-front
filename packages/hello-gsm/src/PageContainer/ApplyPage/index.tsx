@@ -56,6 +56,7 @@ const ApplyPage: NextPage<
     setApplicantAddress,
     showApplyPostModal,
     setshowApplyPostModal,
+    setApplyData,
   } = useStore();
 
   const {
@@ -83,7 +84,7 @@ const ApplyPage: NextPage<
   const graduationStatus = watch('graduation');
 
   useEffect(() => {
-    if (data?.middleSchoolGrade !== undefined) {
+    if (data?.middleSchoolGrade !== null) {
       setIsEdit(true);
     } else {
       setIsEdit(false);
@@ -105,47 +106,65 @@ const ApplyPage: NextPage<
     setApplicantAddress(data?.admissionInfo.address || '');
   }, []);
 
-  const registerImg = async () => {
-    const formData = new FormData();
-
-    imgInput.current?.files &&
-      imgInput.current.files[0] &&
-      formData?.append('photo', imgInput.current?.files[0]);
-
-    formData?.get('photo') && application.postImage(formData);
-  };
-
-  const submissionApplication = async (submitData: ApplyFormType) => {
-    const data = {
-      admissionInfo: {
-        address: applicantAddress,
-        detailAddress: submitData?.detailAddress,
-        teacherPhoneNumber: submitData?.teacherPhoneNumber || undefined,
-        teacherName: submitData?.teacherName || undefined,
-        telephone: submitData?.telephone || undefined,
-        guardianPhoneNumber: submitData?.guardianPhoneNumber,
-        guardianName: submitData?.guardianName,
-        relationWithApplicant: submitData?.relationWithApplicant,
-        schoolName: schoolName || undefined,
-        schoolLocation: schoolLocation || undefined,
-        graduation: submitData?.graduation,
-        desiredMajor: {
-          firstDesiredMajor: choice1,
-          secondDesiredMajor: choice2,
-          thirdDesiredMajor: choice3,
-        },
-        screening: submitData?.screening,
-      },
-    };
-  };
-
   const apply = async (submitData: ApplyFormType) => {
     try {
       setshowApplyPostModal();
-      await Promise.all([registerImg(), submissionApplication(submitData)]);
+      const formData = new FormData();
+      imgInput.current?.files &&
+        formData?.append('photo', imgInput.current?.files[0]);
+
+      const { data }: { data: { url: string } } = await application.postImage(
+        formData,
+      );
+
+      const applyData: ApplyFormType = {
+        applicantImageUri: data.url,
+        address: applicantAddress,
+        detailAddress: submitData?.detailAddress,
+        teacherPhoneNumber: submitData?.teacherPhoneNumber || null,
+        teacherName: submitData?.teacherName || null,
+        telephone: submitData?.telephone || null,
+        guardianPhoneNumber: submitData?.guardianPhoneNumber,
+        guardianName: submitData?.guardianName,
+        relationWithApplicant: submitData?.relationWithApplicant,
+        schoolName: schoolName || null,
+        schoolLocation: schoolLocation || null,
+        graduation: submitData?.graduation,
+        firstDesiredMajor: choice1,
+        secondDesiredMajor: choice2,
+        thirdDesiredMajor: choice3,
+        screening: submitData?.screening,
+      };
+      setApplyData(applyData);
+      onNext();
+
       setshowApplyPostModal();
     } catch (error: any) {
       setshowApplyPostModal();
+      toast.error('원서 정보 저장 중 에러가 발생했습니다. 다시 시도해주세요.');
+
+      // TODO: merge 후 test code 삭제
+      const applyData: ApplyFormType = {
+        applicantImageUri:
+          'https://cdn.discordapp.com/attachments/814313035823841302/1143421994096918658/20230822_135001.jpg',
+        address: applicantAddress,
+        detailAddress: submitData?.detailAddress,
+        teacherPhoneNumber: submitData?.teacherPhoneNumber || null,
+        teacherName: submitData?.teacherName || null,
+        telephone: submitData?.telephone || null,
+        guardianPhoneNumber: submitData?.guardianPhoneNumber,
+        guardianName: submitData?.guardianName,
+        relationWithApplicant: submitData?.relationWithApplicant,
+        schoolName: schoolName || null,
+        schoolLocation: schoolLocation || null,
+        graduation: submitData?.graduation,
+        firstDesiredMajor: choice1,
+        secondDesiredMajor: choice2,
+        thirdDesiredMajor: choice3,
+        screening: submitData?.screening,
+      };
+      setApplyData(applyData);
+      onNext();
     }
   };
 
@@ -182,9 +201,8 @@ const ApplyPage: NextPage<
     validate();
     if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
       await apply(data);
-      onNext();
     } else {
-      return;
+      toast.error('정보 저장에 실패했습니다. 다시한번 시도해주세요.');
     }
   };
 
@@ -279,7 +297,7 @@ const ApplyPage: NextPage<
               required: false,
               validate: {
                 notHypen: value =>
-                  !value.includes('-') || '( - )를 제외하고 입력해주세요.',
+                  !value?.includes('-') || '( - )를 제외하고 입력해주세요.',
               },
               pattern: {
                 value: /^[0-9]{9,10}$/,
