@@ -1,3 +1,4 @@
+import { ApplicationFormType, ApplyFormType } from 'type/application';
 import create from 'zustand';
 
 interface StoreType {
@@ -26,6 +27,8 @@ interface StoreType {
   showApplyPostModal: boolean;
   showMainResultModal: boolean;
   showMainNonLoginModal: boolean;
+  applyData: ApplyFormType | null;
+  applicationData: ApplicationFormType | null;
 
   setLogged: (isLogged: boolean) => void;
   setShowFAQModal: () => void;
@@ -52,6 +55,8 @@ interface StoreType {
   setshowApplyPostModal: () => void;
   setShowMainResultModal: (isShow: boolean) => void;
   setShowMainNonLoginModal: (isShow: boolean) => void;
+  setApplyData: (data: ApplyFormType) => void;
+  setApplicationData: (data: ApplicationFormType) => void;
 }
 
 const useStore = create<StoreType>(set => ({
@@ -80,6 +85,8 @@ const useStore = create<StoreType>(set => ({
   showApplyPostModal: false,
   showMainResultModal: false,
   showMainNonLoginModal: false,
+  applicationData: null,
+  applyData: null,
 
   setLogged: isLogged => set({ logged: isLogged }),
   setShowFAQModal: () => set(state => ({ showFAQModal: !state.showFAQModal })),
@@ -115,6 +122,7 @@ const useStore = create<StoreType>(set => ({
     })),
   setShowMainResultModal: isShow => set({ showMainResultModal: isShow }),
   setShowMainNonLoginModal: isShow => set({ showMainNonLoginModal: isShow }),
+  setApplyData: data => set({ applyData: data }),
+  setApplicationData: data => set({ applicationData: data }),
 }));
-
 export default useStore;

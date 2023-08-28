@@ -1,6 +1,6 @@
 import axios from 'axios';
 import BASE_URL from 'shared/baseURL';
-import { ApplyFormType } from 'type/application';
+import { ApplicationFormType } from 'type/application';
 import RequestApi from 'Utils/Libs/requestApi';
 import { ApplicationController } from 'Utils/Libs/requestUrls';
 
@@ -24,7 +24,7 @@ class Application {
    * @param data - 원서 정보
    * @returns 생성 결과를 반환합니다.
    */
-  postApplication(data: ApplyFormType) {
+  postApplication(data: ApplicationFormType) {
     try {
       return RequestApi({
         method: 'POST',
@@ -40,7 +40,7 @@ class Application {
    * @param data - 원서 정보
    * @returns 수정 결과를 반환합니다.
    */
-  putApplication(data: ApplyFormType) {
+  putApplication(data: ApplicationFormType) {
     try {
       return RequestApi({
         method: 'PUT',

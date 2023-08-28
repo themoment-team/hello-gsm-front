@@ -1,5 +1,4 @@
 import application from 'Api/application';
-import auth from 'Api/auth';
 import { GEDScoreResultModal } from 'components';
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
@@ -15,37 +14,38 @@ interface ScoreType {
   nonCurriculumScoreSubtotal: number; // 전과목 만점
 }
 
-interface UserIdxType {
+interface GEDCalculatorPageProps {
+  score: string;
   isSubmissionProp: boolean;
 }
 
-const GEDCalculatorPage: NextPage<UserIdxType> = ({ isSubmissionProp }) => {
+const GEDCalculatorPage: NextPage<GEDCalculatorPageProps> = ({
+  score,
+  isSubmissionProp,
+}) => {
   const { register, handleSubmit, setValue } = useForm<ScoreType>();
 
-  const { showScoreResult, setShowScoreResult } = useStore();
+  const { showScoreResult, setShowScoreResult, applyData } = useStore();
   const [result, setResult] = useState<number[]>(); //결과 화면 컴포넌트에 보일 점수
   // 이전에 제출한 경험 여부 판단
   const [isSubmission, setIsSubmission] = useState<boolean>(isSubmissionProp);
 
-  const TrySubmission = async ({
-    curriculumScoreSubtotal,
-    nonCurriculumScoreSubtotal,
-    rankPercentage,
-    scoreTotal,
-  }: GEDScoreType) => {
-    isSubmission
-      ? await application.patchGedSubmission({
-          curriculumScoreSubtotal,
-          nonCurriculumScoreSubtotal,
-          rankPercentage,
-          scoreTotal,
-        })
-      : await application.postGedSubmission({
-          curriculumScoreSubtotal,
-          nonCurriculumScoreSubtotal,
-          rankPercentage,
-          scoreTotal,
-        });
+  const TrySubmission = async (data: GEDScoreType) => {
+    const middleSchoolGrade = JSON.stringify(data);
+    if (applyData !== null)
+      isSubmission
+        ? await application.putApplication({
+            ...applyData,
+            middleSchoolGrade,
+          })
+        : await application.postApplication({
+            ...applyData,
+            middleSchoolGrade,
+          });
+    else if (applyData === null)
+      toast.error(
+        '인적사항 정보가 저장되지 않았습니다. 처음부터 다시 시도해주세요.',
+      );
   };
 
   const onValid = async ({
@@ -67,11 +67,6 @@ const GEDCalculatorPage: NextPage<UserIdxType> = ({ isSubmissionProp }) => {
         scoreTotal,
       });
 
-      const scoreObject = {
-        curriculumScoreSubtotal: curriculumScoreSubtotal,
-        nonCurriculumScoreSubtotal: nonCurriculumScoreSubtotal,
-      };
-
       setResult([rankPercentage, scoreTotal]);
       setShowScoreResult();
       setIsSubmission(true);
@@ -86,6 +81,19 @@ const GEDCalculatorPage: NextPage<UserIdxType> = ({ isSubmissionProp }) => {
     console.log(Errors);
     toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
   };
+
+  useEffect(() => {
+    const scoreData: GEDLocalScoreType | null = score
+      ? JSON.parse(score)
+      : null;
+    if (scoreData) {
+      setValue('curriculumScoreSubtotal', scoreData.curriculumScoreSubtotal);
+      setValue(
+        'nonCurriculumScoreSubtotal',
+        scoreData.nonCurriculumScoreSubtotal,
+      );
+    }
+  }, []);
 
   return (
     <>

@@ -78,7 +78,7 @@ const ManualPage: NextPage = () => {
           </DS.DescriptionText>
         </DS.Description>
         <KakaoAccountButton onClick={location}>
-          <I.KakaoLogo /> <p>카카오계정 홈페이지</p>
+          <p>카카오계정 홈페이지</p>
         </KakaoAccountButton>
       </S.InformationContent>
       <S.YellowBall />
