@@ -12,17 +12,18 @@ export const Description = styled.div`
   position: relative;
 `;
 
-export const DescriptionTextSmall = styled.p`
+export const DescriptionTextSmall = styled.li`
   width: 740px;
   font-weight: 400;
-  font-size: 15px;
-  line-height: 22px;
+  font-size: 20px;
+  line-height: 30px;
   color: #0f0921;
+  list-style-type: decimal;
 `;
 
 export const HighlightSmall = styled.span`
   font-weight: 700;
-  font-size: 15px;
+  font-size: 20px;
 `;
 
 export const DescriptionText = styled.p`
@@ -35,12 +36,4 @@ export const DescriptionText = styled.p`
 export const Highlight = styled.span`
   font-weight: 700;
   font-size: 24px;
-`;
-
-export const PostScript = styled.p`
-  font-weight: 400;
-  font-size: 18px;
-  color: rgba(15, 9, 33, 0.44);
-  position: absolute;
-  bottom: 35px;
 `;
