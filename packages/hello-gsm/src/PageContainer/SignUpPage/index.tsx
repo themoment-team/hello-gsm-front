@@ -4,13 +4,12 @@ import { FieldErrors, useForm } from 'react-hook-form';
 import { SignUpResultModal } from 'components';
 import { css } from '@emotion/react';
 import dayjs from 'dayjs';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import TosBox from './TosBox';
 import { toast } from 'react-toastify';
 import { GenderType } from 'type/application';
 import identity from 'Api/identity';
-import user from 'Api/user';
 
 interface UserForm {
   gender: GenderType;
@@ -28,19 +27,6 @@ const SignUpPage: NextPage = () => {
   const [isSent, setIsSent] = useState<boolean>(false);
   const [isVerified, setIsVerified] = useState<boolean>(false);
   const router = useRouter();
-
-  useEffect(() => {
-    const test = async () => {
-      try {
-        const data = await user.getMyInfo();
-        console.log(data);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
-    test();
-  }, []);
 
   const {
     register,
@@ -130,13 +116,15 @@ const SignUpPage: NextPage = () => {
   };
 
   const checkCertificationNumber = async (code: string) => {
-    console.log('인증번호 확인 로직 작성');
     try {
       await identity.postAuthCode(code);
       setIsVerified(true);
     } catch (e: any) {
-      console.log(e);
-      toast.error(e.message);
+      if (e?.response.data.message) {
+        toast.error(e?.response.data.message);
+      } else {
+        toast.error('휴대폰 인증에 실패했습니다. 다시 시도해주세요.');
+      }
     }
   };
 
