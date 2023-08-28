@@ -96,9 +96,8 @@ const SignUpPage: NextPage = () => {
   };
 
   /**
-   *
+   * 인증번호를 발급하는 함수
    * @param phoneNumber: 전화번호
-   *
    */
   const sendCertificationNumber = async (phoneNumber: string) => {
     if (!errors.phoneNumber && /^[0][1][0][0-9]{8}/.test(phoneNumber)) {
@@ -115,10 +114,15 @@ const SignUpPage: NextPage = () => {
     }
   };
 
+  /**
+   * 인증번호를 확인하는 함수
+   * @param code - 발급 받은 인증번호
+   */
   const checkCertificationNumber = async (code: string) => {
     try {
       await identity.postAuthCode(code);
       setIsVerified(true);
+      toast.success('인증되었습니다.');
     } catch (e: any) {
       if (e?.response.data.message) {
         toast.error(e?.response.data.message);
