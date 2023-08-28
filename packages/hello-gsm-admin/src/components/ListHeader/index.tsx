@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import * as S from './style';
 
@@ -6,7 +6,15 @@ import { SearchIcon } from 'assets/svg';
 
 import { PrintButton } from 'components';
 
-const ListHeader: React.FC = () => {
+interface ListHeaderType {
+  searchValue: string;
+  setSearchValue: Dispatch<SetStateAction<string>>;
+}
+
+const ListHeader: React.FC<ListHeaderType> = ({
+  searchValue,
+  setSearchValue,
+}) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
   const handleFocus = () => setIsFocus(prev => !prev);
@@ -20,9 +28,11 @@ const ListHeader: React.FC = () => {
       <S.ListHeaderContent>
         <S.SearchInputBox>
           <S.SearchInput
+            value={searchValue}
             onFocus={handleFocus}
             onBlur={handleFocus}
             placeholder={isFocus ? '' : '검색어를 입력해주세요.'}
+            onChange={e => setSearchValue(e.target.value)}
           />
           <SearchIcon />
         </S.SearchInputBox>

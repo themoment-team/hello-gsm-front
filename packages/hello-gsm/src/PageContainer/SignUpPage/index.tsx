@@ -22,6 +22,7 @@ interface UserForm {
 
 const SignUpPage: NextPage = () => {
   const [showResult, setShowResult] = useState(false);
+  const [isSent, setIsSent] = useState<boolean>(false);
   const router = useRouter();
   const {
     register,
@@ -50,7 +51,7 @@ const SignUpPage: NextPage = () => {
 
     const register = async () => {
       try {
-        await auth.signup({ birth, name, gender, cellphoneNumber });
+        // await auth.signup({ birth, name, gender, cellphoneNumber });
         setShowResult(true);
         setTimeout(() => {
           router.replace('/auth/signin');
@@ -80,6 +81,17 @@ const SignUpPage: NextPage = () => {
       animation: `${S.shake} 0.3s`,
       top: top,
     });
+
+  const sendCertificationNumber = () => {
+    setTimeout(() => {
+      if (!errors.cellphoneNumber) setIsSent(true);
+    }, 300);
+    console.log('인증번호 전송 로직 작성');
+  };
+
+  const checkCertificationNumber = () => {
+    console.log('인증번호 확인 로직 작성');
+  };
 
   return (
     <>
@@ -182,24 +194,60 @@ const SignUpPage: NextPage = () => {
               : ''}
           </S.ErrorMessage>
 
-          <S.Input
-            type="text"
-            placeholder="핸드폰 번호를 입력해주세요. ( - ) 제외"
-            {...register('cellphoneNumber', {
-              required: '* 핸드폰 번호를 입력해주세요.',
-              validate: {
-                notHypen: value =>
-                  !value.includes('-') || '( - )를 제외하고 입력해주세요.',
-              },
-              pattern: {
-                value: /^[0][1][0][0-9]{8}/,
-                message: '* 핸드폰 번호를 확인해주세요.',
-              },
-            })}
-          />
+          <S.TelNumContainer>
+            <S.Input
+              disabled={isSent && !errors.cellphoneNumber}
+              type="text"
+              placeholder="전화번호를 입력해주세요."
+              {...register('cellphoneNumber', {
+                required: '* 전화번호를 입력해주세요.',
+                validate: {
+                  notHypen: value =>
+                    !value.includes('-') || '( - )를 제외하고 입력해주세요.',
+                },
+                pattern: {
+                  value: /^[0][1][0][0-9]{8}/,
+                  message: '* 전화번호를 확인해주세요.',
+                },
+              })}
+              css={css`
+                margin-bottom: 0px !important;
+              `}
+            />
+            {isSent && !errors.cellphoneNumber ? (
+              <S.ReSend>인증번호 재전송</S.ReSend>
+            ) : (
+              <S.CertificationButton onClick={sendCertificationNumber}>
+                인증
+              </S.CertificationButton>
+            )}
+          </S.TelNumContainer>
+          {isSent && !errors.cellphoneNumber && (
+            <S.TelNumContainer
+              css={css`
+                margin-top: 12px;
+              `}
+            >
+              <S.Input
+                type="text"
+                placeholder="인증번호를 입력해주세요."
+                css={css`
+                  margin-bottom: 0px !important;
+                `}
+              />
+              <S.CertificationButton onClick={checkCertificationNumber}>
+                확인
+              </S.CertificationButton>
+            </S.TelNumContainer>
+          )}
           <S.ErrorMessage css={errors.cellphoneNumber && selectErrorStyle(410)}>
             {errors.cellphoneNumber?.message}
           </S.ErrorMessage>
+          <S.NoticeText>
+            {isSent && !errors.cellphoneNumber
+              ? '*입력하신 전화번호로 인증번호가 발송되었어요 .'
+              : '* -를 포함하지않은 번호만 입력해주세요.'}
+          </S.NoticeText>
           <TosBox />
           <S.CheckLabel htmlFor="check">
             <input
@@ -225,7 +273,7 @@ const SignUpPage: NextPage = () => {
               생년월일
             </S.Line>
             <S.Line css={errors.cellphoneNumber && selectErrorStyle()}>
-              핸드폰 번호
+              전화번호
             </S.Line>
             <S.Line css={errors.agree && selectErrorStyle()}>
               개인정보 이용약관

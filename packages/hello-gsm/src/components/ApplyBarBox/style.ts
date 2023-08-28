@@ -6,7 +6,7 @@ export const BarBox = styled.div`
   border-right: 3px solid rgba(255, 255, 255, 0.17);
 `;
 
-export const BarElement = styled.p`
+export const BarElement = styled.p<{ isSpecialScreening: boolean }>`
   color: #f8f8f8;
   font-weight: 400;
   font-size: 20px;
@@ -50,27 +50,35 @@ export const BarElement = styled.p`
     top: 1110px;
   }
   :nth-of-type(9) {
-    top: 1190px;
+    top: ${({ isSpecialScreening }) =>
+      isSpecialScreening ? '1318px' : '1190px'};
   }
   :nth-of-type(10) {
-    top: 1250px;
+    top: ${({ isSpecialScreening }) =>
+      isSpecialScreening ? '1378px' : '1250px'};
   }
   :nth-of-type(11) {
-    top: 1330px;
+    top: ${({ isSpecialScreening }) =>
+      isSpecialScreening ? '1458px' : '1330px'};
   }
   :nth-of-type(12) {
-    top: 1540px;
+    top: ${({ isSpecialScreening }) =>
+      isSpecialScreening ? '1668px' : '1540px'};
   }
   :nth-of-type(13) {
-    top: 1625px;
+    top: ${({ isSpecialScreening }) =>
+      isSpecialScreening ? '1753px' : '1625px'};
   }
   :nth-of-type(14) {
-    top: 1710px;
+    top: ${({ isSpecialScreening }) =>
+      isSpecialScreening ? '1838px' : '1710px'};
   }
   :nth-of-type(15) {
-    top: 1900px;
+    top: ${({ isSpecialScreening }) =>
+      isSpecialScreening ? '2028px' : '1900px'};
   }
   :nth-of-type(16) {
-    top: 1980px;
+    top: ${({ isSpecialScreening }) =>
+      isSpecialScreening ? '2108px' : '1980px'};
   }
 `;

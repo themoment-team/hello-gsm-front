@@ -229,6 +229,30 @@ export const TypeLabel = styled.label`
   cursor: pointer;
 `;
 
+export const SpecialScreeningBox = styled.div`
+  width: 800px;
+  height: 128px;
+  text-align: cetner;
+
+  h3 {
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 2rem 0 1.5rem;
+  }
+`;
+
+export const ScreeningButton = styled.div`
+  display: flex;
+  gap: 10px;
+
+  label {
+    width: 50%;
+    height: 49px;
+  }
+`;
+
 export const SchoolBox = styled.div`
   width: 800px;
   height: 55px;
@@ -322,7 +346,7 @@ export const GraduationType = styled.input`
 `;
 
 export const GraduatedTypeLabel = styled.label`
-  width: 115px;
+  width: 250px;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -408,9 +432,56 @@ export const NextButton = styled.button`
   cursor: pointer;
 `;
 
-export const ErrorBox = styled.div`
+export const ErrorBox = styled.div<{ isSpecialScreening: boolean }>`
   width: 250px;
   position: relative;
+
+  p {
+    :nth-of-type(1) {
+      top: 100px;
+    }
+    :nth-of-type(2) {
+      top: 745px;
+    }
+    :nth-of-type(3) {
+      top: 830px;
+    }
+    :nth-of-type(4) {
+      top: 960px;
+    }
+    :nth-of-type(5) {
+      top: ${({ isSpecialScreening }) =>
+        isSpecialScreening ? '1478px' : '1350px'};
+    }
+    :nth-of-type(6) {
+      top: ${({ isSpecialScreening }) =>
+        isSpecialScreening ? '1558px' : '1430px'};
+    }
+    :nth-of-type(7) {
+      top: ${({ isSpecialScreening }) =>
+        isSpecialScreening ? '1668px' : '1530px'};
+    }
+    :nth-of-type(8) {
+      top: ${({ isSpecialScreening }) =>
+        isSpecialScreening ? '1898px' : '1760px'};
+    }
+    :nth-of-type(9) {
+      top: ${({ isSpecialScreening }) =>
+        isSpecialScreening ? '2008px' : '1870px'};
+    }
+    :nth-of-type(10) {
+      top: ${({ isSpecialScreening }) =>
+        isSpecialScreening ? '2108px' : '1970px'};
+    }
+    :nth-of-type(11) {
+      top: ${({ isSpecialScreening }) =>
+        isSpecialScreening ? '2308px' : '2170px'};
+    }
+    :nth-of-type(12) {
+      top: ${({ isSpecialScreening }) =>
+        isSpecialScreening ? '2418px' : '2280px'};
+    }
+  }
 `;
 
 export const Error = styled.p`
@@ -418,40 +489,4 @@ export const Error = styled.p`
   font-weight: 400;
   font-size: 18px;
   position: absolute;
-  :nth-of-type(1) {
-    top: 100px;
-  }
-  :nth-of-type(2) {
-    top: 745px;
-  }
-  :nth-of-type(3) {
-    top: 830px;
-  }
-  :nth-of-type(4) {
-    top: 960px;
-  }
-  :nth-of-type(5) {
-    top: 1350px;
-  }
-  :nth-of-type(6) {
-    top: 1430px;
-  }
-  :nth-of-type(7) {
-    top: 1530px;
-  }
-  :nth-of-type(8) {
-    top: 1760px;
-  }
-  :nth-of-type(9) {
-    top: 1870px;
-  }
-  :nth-of-type(10) {
-    top: 1970px;
-  }
-  :nth-of-type(11) {
-    top: 2170px;
-  }
-  :nth-of-type(12) {
-    top: 2280px;
-  }
 `;

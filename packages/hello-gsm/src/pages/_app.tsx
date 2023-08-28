@@ -9,6 +9,7 @@ import Script from 'next/script';
 import { ThemeProvider } from '@emotion/react';
 import { theme } from 'styles/theme';
 import { ChannelTalk, Footer, Header } from 'components';
+import useGetLogged from 'hooks/useGetLogged';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -24,6 +25,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       router.events.off('hashChangeComplete', handleRouteChange);
     };
   }, [router.events]);
+
+  useGetLogged();
 
   return (
     <>

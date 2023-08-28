@@ -18,7 +18,7 @@ export const SignUpForm = styled.form`
   width: 800px;
   input,
   select {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
   @media ${device.laptop} {
     width: 500px;
@@ -56,7 +56,7 @@ export const Input = styled.input`
   background-color: #484453;
   border-radius: 6px;
   box-sizing: border-box;
-  padding: 0 32px;
+  padding: 0 16px;
   border: none;
   color: #ffffff;
   font-size: 16px;
@@ -68,6 +68,9 @@ export const Input = styled.input`
   }
   @media ${device.mobile} {
     padding: 0 16px;
+  }
+  :disabled {
+    color: rgba(255, 255, 255, 0.43);
   }
 `;
 
@@ -116,7 +119,7 @@ export const TosBox = styled.div`
   height: 279px;
   background: #484453;
   border-radius: 10px;
-  margin-top: 50px;
+  margin-top: 40px;
   padding: 20px;
   overflow-y: scroll;
   line-height: 20px;
@@ -180,12 +183,11 @@ export const ErrorMessage = styled.p`
 
 export const LineList = styled.div`
   position: absolute;
-  padding-right: 30px;
-  border-right: 3px solid rgba(255, 255, 255, 0.17);
-  left: -40%;
+  padding: 40px 16px 0 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.17);
+  left: -26%;
   height: 800px;
   margin-top: 80px;
-  padding-top: 40px;
 
   @media ${device.laptop} {
     left: -50%;
@@ -211,7 +213,7 @@ export const Line = styled.div`
     display: block;
     position: relative;
     background-size: 10px 10px;
-    left: 178px;
+    left: 155px;
     top: -20px;
     width: 10px;
     height: 10px;
@@ -280,4 +282,48 @@ export const shake = keyframes`
   100% {
     transform: translate(1px, -2px) rotate(-1deg);
   }                 
+`;
+
+export const TelNumContainer = styled.div`
+  width: 100%;
+  border-radius: 10px;
+  background: #484453;
+  display: flex;
+  padding-right: 16px;
+  align-items: center;
+  margin-bottom: 12px;
+`;
+
+export const NoticeText = styled.p`
+  color: #9e9e9e;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  width: 100%;
+`;
+
+export const CertificationButton = styled.button`
+  width: 57px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid #2174d8;
+  background: #42bafe;
+
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  cursor: pointer;
+`;
+
+export const ReSend = styled.p`
+  width: 100px;
+  color: #42bafe;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  cursor: pointer;
 `;

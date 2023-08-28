@@ -4,7 +4,6 @@ import * as I from 'Assets/svg';
 import * as S from './style';
 import { FAQBox } from 'components';
 import useStore from 'Stores/StoreContainer';
-import auth from 'Api/auth';
 import { FAQType } from 'type/faq';
 import { css } from '@emotion/react';
 
@@ -17,7 +16,7 @@ const FAQPage: NextPage<FAQDataType> = ({ faqData }) => {
   const [keyword, setKeyword] = useState<string>('');
   const [pageIndex, setPageIndex] = useState<number>(1);
 
-  const { isFAQSearching, setIsFAQSearching, setLogged } = useStore();
+  const { isFAQSearching, setIsFAQSearching } = useStore();
 
   const searching = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);

@@ -15,6 +15,9 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const { showScoreModal } = useStore();
 
+  const [searchValue, setSearchValue] = useState<string>('');
+  const [tmpValue, setTmpValue] = useState<string>('');
+
   const handleObserver = useCallback(
     async (
       [entry]: IntersectionObserverEntry[],
@@ -44,6 +47,28 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
     return () => observer && observer.disconnect();
   }, [handleObserver, isPageEnd]);
 
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      return setSearchValue(tmpValue);
+    }, 300);
+    return () => clearTimeout(debounce);
+  }, [tmpValue]);
+
+  const filteredApplicationList = applicationList?.filter(applicant => {
+    const values = Object.values(applicant).flatMap(value => {
+      if (typeof value === 'object' && value !== null) {
+        return Object.values(value);
+      }
+      return value;
+    });
+
+    return values.some(value => {
+      if (typeof value === 'string' && value.includes(searchValue)) {
+        return true;
+      }
+    });
+  });
+
   return (
     <S.MainPage>
       {showScoreModal && <ScoreModal />}
@@ -55,10 +80,10 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
         `}
       />
       <S.MainPageContent>
-        <ListHeader />
+        <ListHeader searchValue={tmpValue} setSearchValue={setTmpValue} />
         <MainpageHeader />
         <S.ContentList>
-          {applicationList?.map((content, index: number) => (
+          {filteredApplicationList?.map((content, index: number) => (
             <ContentBox content={content} key={index} />
           ))}
           {!isPageEnd && <S.Target ref={loadMoreRef} />}

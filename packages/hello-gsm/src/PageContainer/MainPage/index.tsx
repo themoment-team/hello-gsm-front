@@ -9,17 +9,17 @@ import {
   LinkButton,
 } from 'components';
 import { css, useTheme } from '@emotion/react';
-import { StatusType } from 'type/user';
 import useStore from 'Stores/StoreContainer';
 import device from 'shared/config';
-import formatDate from 'Utils/Date/formatDate';
-import { isStartFinalResult } from 'shared/Date/afterApply';
 import {
   applyAcceptable,
   endApply,
+  isFirstResult,
   isStartFirstResult,
   startApply,
 } from 'shared/Date/firstScreening';
+import { formatDate } from 'Utils/Format';
+import { ApplicationDataType } from 'type/application';
 
 const contentSelects = [
   '원서 작성',
@@ -29,12 +29,13 @@ const contentSelects = [
   '결과 발표',
 ];
 
-const MainPage: NextPage<StatusType> = ({ data }) => {
+const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(1);
   const [isPC, setIsPC] = useState<boolean>(true);
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isAcceptable, setIsAcceptable] = useState<boolean>(false);
-  const [isFirstResultPeriod, setIsFirstResultPeriod] = useState<boolean>(true);
+  const [isFirstResultPeriod, setIsFirstResultPeriod] =
+    useState<boolean>(isFirstResult);
 
   const {
     showMainNonLoginModal,
@@ -65,8 +66,6 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
 
   const theme = useTheme();
   useEffect(() => {
-    // 최종 합격 나오기 전
-    setIsFirstResultPeriod(!isStartFinalResult);
     setIsMobile(window.innerWidth < 640 ? true : false);
     setIsAcceptable(applyAcceptable);
     setIsPC(
@@ -95,27 +94,26 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
       isStartFirstResult &&
         localStorage.getItem('mainResultModalInvisible') !==
           new Date().getDate().toString() &&
-        data?.application?.isFinalSubmission === true,
+        data?.admissionStatus?.isFinalSubmitted === true,
     );
-  }, [data?.application?.isFinalSubmission]);
+  }, [data?.admissionStatus?.isFinalSubmitted]);
+
   return (
     <S.MainPage>
       {showMainResultModal && (
         <MainResultModal
-          name={data?.name ?? ''}
+          name={data?.admissionInfo.applicantName ?? ''}
           pass={
             isFirstResultPeriod
-              ? data?.application?.firstResultScreening
+              ? data?.admissionStatus.firstEvaluation === 'PASS'
                 ? true
                 : false
-              : data?.application?.finalResultScreening
+              : data?.admissionStatus.secondEvaluation === 'PASS'
               ? true
               : false
           }
           isMobile={isMobile}
-          majorResult={
-            data?.application?.application_details.majorResult ?? undefined
-          }
+          majorResult={data?.admissionStatus.finalMajor ?? null}
         />
       )}
       {showMainNonLoginModal && <MainNonLoginModal />}
@@ -139,7 +137,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
 
           {isPC ? (
             isAcceptable ? (
-              !data?.application?.isFinalSubmission ? (
+              !data?.admissionStatus?.isFinalSubmitted ? (
                 <LinkButton
                   href={logged ? '/information' : '/auth/signin'}
                   color="sky"

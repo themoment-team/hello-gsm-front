@@ -77,7 +77,6 @@ export const WheelPicker = styled.div`
 
 export const PickerText = styled.div`
   width: 800px;
-  font-style: normal;
   font-weight: 700;
   font-size: 48px;
   line-height: 70px;

@@ -4,7 +4,6 @@ import * as S from './style';
 import { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
-import { StatusType } from 'type/user';
 import Image from 'next/image';
 import {
   MypageModal,
@@ -14,25 +13,19 @@ import {
 } from 'components';
 import { toast } from 'react-toastify';
 import { applyAcceptable } from 'shared/Date/firstScreening';
+import { ApplicationDataType } from 'type/application';
 
-const MyPage: NextPage<StatusType> = ({
-  data: { name, userImg, application },
-}) => {
-  const saved = application === null ? false : true;
-  const submitted = application?.isFinalSubmission ? true : false;
+const MyPage: NextPage<ApplicationDataType> = ({ data }) => {
+  const saved = data.admissionInfo === null ? false : true;
+  const submitted = data.admissionStatus.isFinalSubmitted ? true : false;
   const [isPC, setIsPC] = useState<boolean>(true);
-  const isGED =
-    application?.application_details?.educationStatus === '검정고시'
-      ? true
-      : false;
-  const finalSubmitAcceptable = application?.application_score ? true : false;
-  const [isAcceptable, setIsAcceptable] = useState<boolean>(false);
+  const finalSubmitAcceptable = data.middleSchoolGrade ? true : false;
+  const [isAcceptable, setIsAcceptable] = useState<boolean>(applyAcceptable);
 
   const {
     showMypageModal,
     setShowMypageModal,
     setMypageModalContent,
-    setLogged,
     showMypageSuccessModal,
   } = useStore();
 
@@ -42,8 +35,6 @@ const MyPage: NextPage<StatusType> = ({
   };
 
   useEffect(() => {
-    setIsAcceptable(applyAcceptable);
-    setLogged(true);
     setIsPC(
       !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(
         navigator.userAgent,
@@ -120,16 +111,6 @@ const MyPage: NextPage<StatusType> = ({
             원서 수정
           </S.Button>
         </Link>
-        <Link href={isGED ? '/calculator/ged' : '/calculator'} passHref>
-          <S.Button
-            css={css`
-              background: #5fc4fb;
-              box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #5fc4fb;
-            `}
-          >
-            성적 입력
-          </S.Button>
-        </Link>
         <S.Button
           onClick={() => {
             finalSubmitAcceptable
@@ -153,10 +134,7 @@ const MyPage: NextPage<StatusType> = ({
           최종제출
         </S.Button>
       </S.ButtonBox>
-      <MypageInformation application={application} />
-      <S.MypageDescription>
-        최종제출은 성적입력 후에 하실 수 있습니다.
-      </S.MypageDescription>
+      <MypageInformation admissionInfo={data.admissionInfo} />
     </S.ButtonAndDescription>
   );
 
@@ -165,9 +143,6 @@ const MyPage: NextPage<StatusType> = ({
       <LinkButton href="/information" color="sky">
         📑 원서 작성하기
       </LinkButton>
-      <S.MypageDescription>
-        원서를 작성완료 하셨다면 새로고침 부탁드립니다.
-      </S.MypageDescription>
     </S.ButtonAndDescription>
   );
 
@@ -184,7 +159,7 @@ const MyPage: NextPage<StatusType> = ({
         지원 기간 아님
       </S.Button>
       <S.MypageDescription>
-        지원 기간은 10월 17일부터 10월 20일까지 입니다.
+        지원 기간은 10월 16일부터 10월 19일까지 입니다.
       </S.MypageDescription>
     </S.ButtonAndDescription>
   );
@@ -197,9 +172,16 @@ const MyPage: NextPage<StatusType> = ({
         <S.UserSection>
           <S.Title>내정보</S.Title>
           <S.UserImgBox>
-            <Image src={userImg} alt="image" layout="fill" />
+            <Image
+              src={
+                data.admissionInfo.applicantImageUri ??
+                '/images/DefaultProfileImage.png'
+              }
+              alt="image"
+              layout="fill"
+            />
           </S.UserImgBox>
-          <S.Name>{name}님</S.Name>
+          <S.Name>{data.admissionInfo.applicantName}님</S.Name>
         </S.UserSection>
         {isPC
           ? isAcceptable
