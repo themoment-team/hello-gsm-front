@@ -55,7 +55,7 @@ const Header: React.FC = () => {
         ) : (
           <S.MemberBox>
             <Link href="/mypage" passHref>
-              <S.NavContent css={select('/mypage')}>내 정보</S.NavContent>
+              <S.NavContent css={select('/mypage')}>마이페이지</S.NavContent>
             </Link>
             <a href={auth.logout()}>
               <S.AuthButton>로그아웃</S.AuthButton>

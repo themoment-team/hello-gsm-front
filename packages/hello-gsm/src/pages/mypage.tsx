@@ -5,7 +5,7 @@ import application from 'Api/application';
 import { ApplicationDataType } from 'type/application';
 
 const MyPage: NextPage<ApplicationDataType> = ({ data }) => {
-  const seoTitle = '내 정보';
+  const seoTitle = '마이페이지';
   const desc = '내 정보를 확인하고 원서 관리 및 원서 출력 등을 할 수 있습니다.';
 
   return (
