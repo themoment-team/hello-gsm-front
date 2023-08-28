@@ -297,6 +297,7 @@ const SignUpPage: NextPage = () => {
               />
               <S.CertificationButton
                 onClick={() => checkCertificationNumber(watch('code'))}
+                type="button"
               >
                 확인
               </S.CertificationButton>
