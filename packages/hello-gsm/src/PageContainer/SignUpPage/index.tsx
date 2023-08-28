@@ -116,9 +116,9 @@ const SignUpPage: NextPage = () => {
    */
   const sendCertificationNumber = async (phoneNumber: string) => {
     if (!errors.phoneNumber && /^[0][1][0][0-9]{8}/.test(phoneNumber)) {
-      setIsSent(true);
       try {
         await identity.postCode(phoneNumber);
+        setIsSent(true);
       } catch (e) {
         toast.error('인증번호 전송을 실패했습니다. 다시 시도해주세요.');
       }
