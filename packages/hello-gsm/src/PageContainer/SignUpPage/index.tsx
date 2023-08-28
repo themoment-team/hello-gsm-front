@@ -25,6 +25,7 @@ interface UserForm {
 const SignUpPage: NextPage = () => {
   const [showResult, setShowResult] = useState(false);
   const [isSent, setIsSent] = useState<boolean>(false);
+  const [isVerified, setIsVerified] = useState<boolean>(false);
   const router = useRouter();
 
   const {
@@ -55,6 +56,7 @@ const SignUpPage: NextPage = () => {
     month,
     day,
     phoneNumber,
+    code,
   }: UserForm) => {
     /**
      * dayjs 라이브러리를 사용하여 YYYY-MM-DD 형식에 맞게 포맷
@@ -68,7 +70,13 @@ const SignUpPage: NextPage = () => {
 
     const register = async () => {
       try {
-        // await auth.signup({ birth, name, gender, phoneNumber });
+        await identity.postMyIdentity({
+          birth,
+          gender,
+          name,
+          phoneNumber,
+          code,
+        });
         setShowResult(true);
         setTimeout(() => {
           router.replace('/auth/signin');
@@ -77,7 +85,8 @@ const SignUpPage: NextPage = () => {
         toast.error(e.message);
       }
     };
-    if (!isSent) {
+
+    if (!isVerified) {
       toast.error('전화번호 인증을 해주세요.');
     } else register();
   };
@@ -86,6 +95,11 @@ const SignUpPage: NextPage = () => {
     console.log(errors);
   };
 
+  /**
+   *
+   * @param phoneNumber: 전화번호
+   *
+   */
   const sendCertificationNumber = async (phoneNumber: string) => {
     if (!errors.phoneNumber && /^[0][1][0][0-9]{8}/.test(phoneNumber))
       setIsSent(true);
@@ -102,8 +116,14 @@ const SignUpPage: NextPage = () => {
     }
   };
 
-  const checkCertificationNumber = () => {
+  const checkCertificationNumber = async (code: string) => {
     console.log('인증번호 확인 로직 작성');
+    try {
+      await identity.postAuthCode(code);
+      setIsVerified(true);
+    } catch (e: any) {
+      toast.error(e.message);
+    }
   };
 
   return (
@@ -262,7 +282,11 @@ const SignUpPage: NextPage = () => {
                   },
                 })}
               />
-              <S.CertificationButton>확인</S.CertificationButton>
+              <S.CertificationButton
+                onClick={() => checkCertificationNumber(watch('code'))}
+              >
+                확인
+              </S.CertificationButton>
             </S.TelNumContainer>
           )}
           <S.ErrorMessage css={errors.phoneNumber && selectErrorStyle(410)}>
