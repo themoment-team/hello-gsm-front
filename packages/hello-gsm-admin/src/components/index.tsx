@@ -9,3 +9,7 @@ export { default as PrintButton } from './PrintButton';
 export { default as GoogleLoginButton } from './GoogleLoginButton';
 export { default as NewModal } from './NewModal';
 export { default as SideBar } from './SideBar';
+export { default as ModalButton } from './NewModal/ModalButton';
+export { default as ModalInput } from './NewModal/ModalInput';
+export { default as ModalResult } from './NewModal/ModalResult';
+export { default as ModalSubmit } from './NewModal/ModalSubmit';

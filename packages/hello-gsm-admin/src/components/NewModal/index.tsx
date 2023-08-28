@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import * as S from './style';
 import * as I from 'assets/svg';
-import ModalButton from './ModalButton';
-import ModalResult from './ModalResult';
-import ModalInput from './ModalInput';
-import ModalSubmit from './ModalSubmit';
+import * as C from 'components';
 
 interface ModalProps {
   studentCode: string;
@@ -66,8 +63,8 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
                   <S.Title>수험번호 {studentCode}</S.Title>
                   <S.Desc>{name}님의 서류 제출 여부를 선택해주세요</S.Desc>
                 </S.TitleBox>
-                <ModalSubmit handleOptionSelect={handleOptionSelect} />
-                <ModalButton
+                <C.ModalSubmit handleOptionSelect={handleOptionSelect} />
+                <C.ModalButton
                   buttonTitle="확인"
                   isConfirm={!isButtonClicked}
                   onClick={() => handleModalButtonClick(selectedButtonId)}
@@ -82,8 +79,8 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
                     {name}님의 1차 합격 여부(서류)를 선택해주세요.
                   </S.Desc>
                 </S.TitleBox>
-                <ModalResult handleOptionSelect={handleOptionSelect} />
-                <ModalButton
+                <C.ModalResult handleOptionSelect={handleOptionSelect} />
+                <C.ModalButton
                   buttonTitle="확인"
                   isConfirm={!isButtonClicked}
                   onClick={() => handleModalButtonClick(selectedButtonId)}
@@ -98,8 +95,8 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
                     {name}님의 2차 합격 여부(인적성)를 선택해주세요.
                   </S.Desc>
                 </S.TitleBox>
-                <ModalResult handleOptionSelect={handleOptionSelect} />
-                <ModalButton
+                <C.ModalResult handleOptionSelect={handleOptionSelect} />
+                <C.ModalButton
                   buttonTitle="확인"
                   isConfirm={!isButtonClicked}
                   onClick={() => handleModalButtonClick(selectedButtonId)}
@@ -112,8 +109,8 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
                   <S.Title>수험번호 {studentCode}</S.Title>
                   <S.Desc>{name}님의 2차 점수(인적성)를 입력해주세요.</S.Desc>
                 </S.TitleBox>
-                <ModalInput />
-                <ModalButton
+                <C.ModalInput />
+                <C.ModalButton
                   buttonTitle="확인"
                   isConfirm={!isButtonClicked}
                   onClick={() => handleModalButtonClick(selectedButtonId)}
@@ -140,7 +137,7 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
                     <I.SecondScoringEntry isActive={selectedButtonId === 4} />
                   </S.ModalOption>
                 </S.ButtonBox>
-                <ModalButton
+                <C.ModalButton
                   buttonTitle="다음"
                   isConfirm={!isButtonClicked}
                   onClick={() => handleModalButtonClick(selectedButtonId)}
