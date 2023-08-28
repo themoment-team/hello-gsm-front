@@ -2,12 +2,10 @@ import type { NextPage } from 'next';
 import { InformationDescription } from 'components';
 import * as S from './style';
 import { css } from '@emotion/react';
-import useStore from 'Stores/StoreContainer';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 const InformationPage: NextPage = () => {
-  const { setLogged } = useStore();
   const [progressIndex, setProgressIndex] = useState<number>(0);
   const { push } = useRouter();
 
@@ -19,10 +17,6 @@ const InformationPage: NextPage = () => {
     '2차 전형',
     '결과 발표',
   ];
-
-  useEffect(() => {
-    setLogged(true);
-  }, []);
 
   const previusIndex = () => {
     setProgressIndex(index => (index > 0 ? --index : index));
