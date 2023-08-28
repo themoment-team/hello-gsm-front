@@ -9,8 +9,7 @@ interface newSignUpType extends SignUpType {
 class Identity {
   /**
    * @param phonNumber - 사용자의 전화번호
-   * @returns 본인인증 코드를 발송합니다.
-   * 테스트 환경에서만 사용 가능합니다
+   * @returns 현재 사용자의 본인인증 코드를 SMS로 발신하고, 본인인증 코드를 가져옵니다.
    */
   postCode(phonNumber: string) {
     try {
@@ -28,7 +27,8 @@ class Identity {
 
   /**
    * @param phonNumber - 사용자의 전화번호
-   * @returns 현재 사용자의 본인인증 코드를 SMS로 발신하고, 본인인증 코드를 가져옵니다.
+   * @returns 본인인증 코드를 발송합니다.
+   * 테스트 환경에서만 사용 가능합니다
    */
   postCodeTest(phonNumber: string) {
     try {
