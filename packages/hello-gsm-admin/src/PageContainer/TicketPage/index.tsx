@@ -3,6 +3,7 @@ import { TicketDataType } from 'Types/ticket';
 import * as S from './style';
 import dayjs from 'dayjs';
 import * as I from 'assets/svg';
+import formatScreening from 'Utils/Libs/formatScreening';
 
 const TicketPage: NextPage<TicketDataType> = ({ data }) => {
   const handlePrint = () => {
@@ -73,7 +74,7 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                     건강진단서 1부 <br /> 입학등록동의서 1부
                   </S.Left>
                   <S.Subject>전형구분</S.Subject>
-                  <td>{user.screening}</td>
+                  <td>{formatScreening(user.screening)}</td>
                 </tr>
                 <tr>
                   <td>신입생 비전캠프</td>

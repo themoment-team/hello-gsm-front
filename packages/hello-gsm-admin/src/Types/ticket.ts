@@ -4,7 +4,7 @@ export interface TicketDataType {
     applicantBirth: string;
     applicantImageUri: string;
     schoolName: string;
-    screening: string;
+    screening: 'GENERAL' | 'SOCIAL' | 'SPECIAL_VETERANS' | 'SPECIAL_ADMISSION';
     registrationNumber: number;
   }[];
 }
