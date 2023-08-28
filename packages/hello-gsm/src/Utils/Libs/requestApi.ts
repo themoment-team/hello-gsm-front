@@ -7,7 +7,10 @@ axios.interceptors.response.use(
   },
   async error => {
     if (error.response.status === 401) {
-      window.location.replace('/auth/signin');
+      // 현재 URL이 /auth/signin 이 아닌 경우에만 리다이렉트
+      if (window.location.pathname !== '/auth/signin') {
+        window.location.replace('/auth/signin');
+      }
     }
     return Promise.reject(error);
   },
