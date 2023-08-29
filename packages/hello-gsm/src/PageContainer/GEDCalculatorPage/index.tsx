@@ -1,5 +1,6 @@
 import application from 'Api/application';
 import { GEDScoreResultModal } from 'components';
+import useScrollToTop from 'hooks/useScrollToTop';
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
@@ -23,6 +24,7 @@ const GEDCalculatorPage: NextPage<GEDCalculatorPageProps> = ({
   score,
   isSubmissionProp,
 }) => {
+  useScrollToTop();
   const { register, handleSubmit, setValue } = useForm<ScoreType>();
 
   const { showScoreResult, setShowScoreResult, applyData } = useStore();

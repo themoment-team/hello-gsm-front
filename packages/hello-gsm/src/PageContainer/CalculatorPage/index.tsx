@@ -15,6 +15,7 @@ import application from 'Api/application';
 import { LocalScoreType } from 'type/score';
 import useStore from 'Stores/StoreContainer';
 import { toast } from 'react-toastify';
+import useScrollToTop from 'hooks/useScrollToTop';
 
 interface ScoreForm {
   // 과목/점수 배열
@@ -39,6 +40,8 @@ const CalculatorPage: NextPage<CalculatorPageProps> = ({
   score,
   isSubmissionProp,
 }) => {
+  useScrollToTop();
+
   const { register, handleSubmit, watch, setValue } = useForm<ScoreForm>();
 
   const {
