@@ -17,6 +17,7 @@ export const MainContent = styled.div`
 
   @media (${device.mobile}) {
     padding: 0 7vw;
+    height: 90rem;
   }
 `;
 
@@ -32,6 +33,10 @@ export const Title = styled.h1`
   color: ${({ theme }) => theme.color.white};
   font-weight: 600;
   margin-bottom: 1rem;
+
+  @media ${device.mobile} {
+    ${({ theme }) => theme.typo.h2}
+  }
 `;
 
 export const Description = styled.p`
@@ -74,6 +79,10 @@ export const ToApply = styled.button`
     border-radius: 0.75rem;
     box-shadow: 0rem 0.3125rem 1.25rem 0rem #a2a2a2;
     pointer-events: none;
+
+    @media ${device.mobile} {
+      ${({ theme }) => theme.typo.h4}
+    }
   }
 `;
 
@@ -140,6 +149,10 @@ export const ContentSelect = styled.button`
   border: none;
   padding: 0 1.1716rem;
   margin: 0;
+
+  @media ${device.mobile} {
+    ${({ theme }) => theme.typo.body1}
+  }
 `;
 
 const Ball = styled.div`

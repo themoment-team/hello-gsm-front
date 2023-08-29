@@ -86,15 +86,14 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
         localStorage.getItem('mainNonLoginModalInvisible') !==
           new Date().getDate().toString(),
     );
-  }, [logged]);
+  }, [logged, setShowMainNonLoginModal]);
 
   useEffect(() => {
     setShowMainResultModal(
       // 1차 합격 발표 날짜
       isStartFirstResult &&
         localStorage.getItem('mainResultModalInvisible') !==
-          new Date().getDate().toString() &&
-        data?.admissionStatus?.isFinalSubmitted === true,
+          new Date().getDate().toString(),
     );
   }, [data?.admissionStatus?.isFinalSubmitted]);
 
@@ -105,7 +104,7 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
           name={data?.admissionInfo.applicantName ?? ''}
           pass={
             isFirstResultPeriod
-              ? data?.admissionStatus.firstEvaluation === 'PASS'
+              ? data?.admissionStatus.firstEvaluation !== 'PASS'
                 ? true
                 : false
               : data?.admissionStatus.secondEvaluation === 'PASS'
@@ -151,16 +150,7 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
               <S.ToApply disabled>접수 기간이 아닙니다.</S.ToApply>
             )
           ) : (
-            <S.ToApply
-              css={css`
-                height: 4.0625rem;
-                background: #615d6c;
-                box-shadow: none;
-                :hover {
-                  box-shadow: none;
-                }
-              `}
-            >
+            <S.ToApply disabled>
               {isAcceptable
                 ? '원서 접수는 pc로만 가능해요'
                 : '접수 기간이 아닙니다.'}
