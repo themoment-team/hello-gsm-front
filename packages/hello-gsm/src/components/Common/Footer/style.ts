@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
+import device from 'shared/config';
 
 export const Footer = styled.footer`
   background-color: ${({ theme }) => theme.color.sub.navy};
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3.75rem 5rem;
+  padding: 3.75rem 0;
   position: relative;
-  bottom: 0;
 `;
 
 export const FooterContent = styled.div`
@@ -15,13 +15,32 @@ export const FooterContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media ${device.laptop} {
+    width: calc(100vw - 12.5rem);
+    align-items: end;
+    svg {
+      width: 9rem;
+      height: 8.8125rem;
+    }
+  }
+
+  @media ${device.laptop} {
+    width: calc(100vw - 7.5rem);
+    flex-direction: column;
+    align-items: start;
+    gap: 2.5rem;
+  }
 `;
 
 export const FooterTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
-  gap: 4.0625rem;
+  gap: 4.06rem;
+
+  @media ${device.laptop} {
+    align-items: start;
+  }
 `;
 
 export const SiteInfo = styled.div`
@@ -30,6 +49,11 @@ export const SiteInfo = styled.div`
   flex-direction: column;
   align-items: end;
   gap: 0.5rem;
+
+  @media ${device.laptop} {
+    flex-direction: column;
+    align-items: start;
+  }
 `;
 
 export const Copyright = styled.p`
@@ -44,6 +68,12 @@ export const LinkWrapper = styled.div`
     ${({ theme }) => theme.typo.h5}
     font-weight: 700;
   }
+
+  @media ${device.laptop} {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: start;
+  }
 `;
 
 export const SchoolInfo = styled.p`
@@ -51,4 +81,8 @@ export const SchoolInfo = styled.p`
   font-weight: 400;
   text-align: end;
   color: rgba(255, 255, 255, 0.6);
+
+  @media ${device.laptop} {
+    text-align: start;
+  }
 `;

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import device from 'shared/config';
 
 export const Description = styled.div`
   display: flex;
@@ -19,15 +20,22 @@ export const DescriptionLine = styled.p`
   margin-top: 0.9375rem;
   color: #ffffff;
   text-align: center;
+
+  @media ${device.mobile} {
+    ${({ theme }) => theme.typo.body1}
+  }
 `;
 
 export const PostScript = styled.p`
-  line-height: 1.875rem;
+  ${({ theme }) => theme.typo.h4}
   font-weight: 400;
-  font-size: 1.25rem;
   color: rgba(255, 255, 255, 0.7);
   margin-top: 0.9375rem;
   text-align: center;
+
+  @media ${device.mobile} {
+    ${({ theme }) => theme.typo.body1}
+  }
 `;
 
 export const Login = styled.a`
