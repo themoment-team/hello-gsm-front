@@ -52,7 +52,10 @@ const FindSchoolModal: React.FC = () => {
         `https://open.neis.go.kr/hub/schoolInfo?KEY=${process.env.NEIS_API_KEY}&Type=json&SCHUL_NM=${keyword}`,
       );
 
-      setSchools(row);
+      const filteredSchools = row.filter(
+        (v: { SCHUL_KND_SC_NM: string }) => v.SCHUL_KND_SC_NM === '중학교',
+      );
+      setSchools(filteredSchools);
     } catch (e) {
       console.log(e);
     }
@@ -110,19 +113,17 @@ const FindSchoolModal: React.FC = () => {
               </S.ListTitle>
             </S.ListTitleBox>
             <S.ListContentBox>
-              {schools
-                .filter(v => v.SCHUL_KND_SC_NM === '중학교')
-                .map((school: schoolType, index: number) => {
-                  return (
-                    <S.ListContent
-                      key={index}
-                      onClick={() => selectSchool(index)}
-                    >
-                      <S.SchoolName>{school.SCHUL_NM}</S.SchoolName>
-                      <S.SchoolAddress>{school.ORG_RDNMA}</S.SchoolAddress>
-                    </S.ListContent>
-                  );
-                })}
+              {schools.map((school: schoolType, index: number) => {
+                return (
+                  <S.ListContent
+                    key={index}
+                    onClick={() => selectSchool(index)}
+                  >
+                    <S.SchoolName>{school.SCHUL_NM}</S.SchoolName>
+                    <S.SchoolAddress>{school.ORG_RDNMA}</S.SchoolAddress>
+                  </S.ListContent>
+                );
+              })}
             </S.ListContentBox>
           </S.ListBox>
         </S.ContentBox>
