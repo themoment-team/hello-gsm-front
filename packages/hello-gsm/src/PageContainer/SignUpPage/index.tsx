@@ -4,69 +4,36 @@ import { FieldErrors, useForm } from 'react-hook-form';
 import { SignUpResultModal } from 'components';
 import { css } from '@emotion/react';
 import dayjs from 'dayjs';
-import auth from 'Api/auth';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import TosBox from './TosBox';
 import { toast } from 'react-toastify';
+import { GenderType } from 'type/application';
+import identity from 'Api/identity';
 
 interface UserForm {
-  gender: '남자' | '여자';
+  gender: GenderType;
   name: string;
   agree: boolean;
   year: string;
   month: string;
   day: string;
-  cellphoneNumber: string;
+  phoneNumber: string;
+  code: string;
 }
 
 const SignUpPage: NextPage = () => {
   const [showResult, setShowResult] = useState(false);
   const [isSent, setIsSent] = useState<boolean>(false);
+  const [isVerified, setIsVerified] = useState<boolean>(false);
   const router = useRouter();
+
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<UserForm>();
-
-  const onValid = ({
-    gender,
-    name,
-    year,
-    month,
-    day,
-    cellphoneNumber,
-  }: UserForm) => {
-    /**
-     * dayjs 라이브러리를 사용하여 YYYY-MM-DD 형식에 맞게 포맷
-     * 월은 0부터 시작
-     */
-
-    const birth = dayjs()
-      .set('year', Number(year))
-      .set('month', Number(month))
-      .set('date', Number(day))
-      .format('YYYY-MM-DD');
-
-    const register = async () => {
-      try {
-        // await auth.signup({ birth, name, gender, cellphoneNumber });
-        setShowResult(true);
-        setTimeout(() => {
-          router.replace('/auth/signin');
-        }, 3000);
-      } catch (e: any) {
-        toast.error(e.message);
-      }
-    };
-    register();
-  };
-
-  const inValid = (errors: FieldErrors) => {
-    console.log(errors);
-  };
-
   /**
    *
    * @param top : 각 컴포넌트 높이;
@@ -82,15 +49,88 @@ const SignUpPage: NextPage = () => {
       top: top,
     });
 
-  const sendCertificationNumber = () => {
-    setTimeout(() => {
-      if (!errors.cellphoneNumber) setIsSent(true);
-    }, 300);
-    console.log('인증번호 전송 로직 작성');
+  const onValid = ({
+    gender,
+    name,
+    year,
+    month,
+    day,
+    phoneNumber,
+    code,
+  }: UserForm) => {
+    /**
+     * dayjs 라이브러리를 사용하여 YYYY-MM-DD 형식에 맞게 포맷
+     * 월은 0부터 시작
+     */
+    const birth = dayjs()
+      .set('year', Number(year))
+      .set('month', Number(month))
+      .set('date', Number(day))
+      .format('YYYY-MM-DD');
+
+    const register = async () => {
+      try {
+        await identity.postMyIdentity({
+          birth,
+          gender,
+          name,
+          phoneNumber,
+          code,
+        });
+        setShowResult(true);
+        setTimeout(() => {
+          router.replace('/auth/signin');
+        }, 3000);
+      } catch (e: any) {
+        toast.error(e.message);
+      }
+    };
+
+    if (!isVerified) {
+      toast.error('전화번호 인증을 해주세요.');
+    } else register();
   };
 
-  const checkCertificationNumber = () => {
-    console.log('인증번호 확인 로직 작성');
+  const inValid = (errors: FieldErrors) => {
+    console.log(errors);
+  };
+
+  /**
+   * 인증번호를 발급하는 함수
+   * @param phoneNumber: 전화번호
+   */
+  const sendCertificationNumber = async (phoneNumber: string) => {
+    if (!errors.phoneNumber && /^[0][1][0][0-9]{8}/.test(phoneNumber)) {
+      try {
+        toast.success('인증번호를 전송했습니다.');
+        const { data } = await identity.postCodeTest(phoneNumber);
+        console.log(data);
+        setIsSent(true);
+      } catch (e) {
+        toast.error('인증번호 전송을 실패했습니다. 다시 시도해주세요.');
+      }
+    } else {
+      toast.error('전화번호를 다시 확인해주세요.');
+      setIsSent(false);
+    }
+  };
+
+  /**
+   * 인증번호를 확인하는 함수
+   * @param code - 발급 받은 인증번호
+   */
+  const checkCertificationNumber = async (code: string) => {
+    try {
+      await identity.postAuthCode(code);
+      setIsVerified(true);
+      toast.success('인증되었습니다.');
+    } catch (e: any) {
+      if (e?.response.data.message) {
+        toast.error(e?.response.data.message);
+      } else {
+        toast.error('휴대폰 인증에 실패했습니다. 다시 시도해주세요.');
+      }
+    }
   };
 
   return (
@@ -105,7 +145,7 @@ const SignUpPage: NextPage = () => {
                 {...register('gender', { required: '* 성별을 선택해주세요.' })}
                 type="radio"
                 id="gender"
-                value="남자"
+                value="MALE"
               />
               <div>남자</div>
             </S.RadioLabel>
@@ -114,7 +154,7 @@ const SignUpPage: NextPage = () => {
                 {...register('gender', { required: '* 성별을 선택해주세요.' })}
                 type="radio"
                 id="gender"
-                value="여자"
+                value="FEMALE"
               />
               <div>여자</div>
             </S.RadioLabel>
@@ -133,7 +173,7 @@ const SignUpPage: NextPage = () => {
               },
             })}
           />
-          <S.ErrorMessage css={errors.name && selectErrorStyle(255)}>
+          <S.ErrorMessage css={errors.name && selectErrorStyle(220)}>
             {errors.name?.message}
           </S.ErrorMessage>
 
@@ -186,7 +226,7 @@ const SignUpPage: NextPage = () => {
           <S.ErrorMessage
             css={
               (errors?.year || errors?.day || errors?.month) &&
-              selectErrorStyle(330)
+              selectErrorStyle(300)
             }
           >
             {errors?.year || errors?.day || errors?.month
@@ -196,10 +236,10 @@ const SignUpPage: NextPage = () => {
 
           <S.TelNumContainer>
             <S.Input
-              disabled={isSent && !errors.cellphoneNumber}
+              disabled={isSent && !errors.phoneNumber}
               type="text"
               placeholder="전화번호를 입력해주세요."
-              {...register('cellphoneNumber', {
+              {...register('phoneNumber', {
                 required: '* 전화번호를 입력해주세요.',
                 validate: {
                   notHypen: value =>
@@ -214,15 +254,22 @@ const SignUpPage: NextPage = () => {
                 margin-bottom: 0px !important;
               `}
             />
-            {isSent && !errors.cellphoneNumber ? (
-              <S.ReSend>인증번호 재전송</S.ReSend>
+            {isSent && !errors.phoneNumber ? (
+              <S.ReSend
+                onClick={() => sendCertificationNumber(watch('phoneNumber'))}
+              >
+                인증번호 재전송
+              </S.ReSend>
             ) : (
-              <S.CertificationButton onClick={sendCertificationNumber}>
+              <S.CertificationButton
+                onClick={() => sendCertificationNumber(watch('phoneNumber'))}
+                type="button"
+              >
                 인증
               </S.CertificationButton>
             )}
           </S.TelNumContainer>
-          {isSent && !errors.cellphoneNumber && (
+          {isSent && !errors.phoneNumber && (
             <S.TelNumContainer
               css={css`
                 margin-top: 12px;
@@ -234,18 +281,28 @@ const SignUpPage: NextPage = () => {
                 css={css`
                   margin-bottom: 0px !important;
                 `}
+                {...register('code', {
+                  required: '* 인증번호를 입력해주세요.',
+                  pattern: {
+                    value: /^\d{6}$/,
+                    message: '* 인증번호를 확인해주세요.',
+                  },
+                })}
               />
-              <S.CertificationButton onClick={checkCertificationNumber}>
+              <S.CertificationButton
+                onClick={() => checkCertificationNumber(watch('code'))}
+                type="button"
+              >
                 확인
               </S.CertificationButton>
             </S.TelNumContainer>
           )}
-          <S.ErrorMessage css={errors.cellphoneNumber && selectErrorStyle(410)}>
-            {errors.cellphoneNumber?.message}
+          <S.ErrorMessage css={errors.phoneNumber && selectErrorStyle(380)}>
+            {errors.phoneNumber?.message}
           </S.ErrorMessage>
           <S.NoticeText>
-            {isSent && !errors.cellphoneNumber
-              ? '*입력하신 전화번호로 인증번호가 발송되었어요 .'
+            {isSent && !errors.phoneNumber
+              ? '*입력하신 전화번호로 인증번호가 발송되었어요.'
               : '* -를 포함하지않은 번호만 입력해주세요.'}
           </S.NoticeText>
           <TosBox />
@@ -257,7 +314,7 @@ const SignUpPage: NextPage = () => {
             />
             개인정보 이용약관을 확인했으며, 이에 동의합니다.
           </S.CheckLabel>
-          <S.ErrorMessage css={errors.agree && selectErrorStyle(810)}>
+          <S.ErrorMessage css={errors.agree && selectErrorStyle(780)}>
             {errors.agree?.message}
           </S.ErrorMessage>
           <S.Button>가입하기</S.Button>
@@ -272,7 +329,7 @@ const SignUpPage: NextPage = () => {
             >
               생년월일
             </S.Line>
-            <S.Line css={errors.cellphoneNumber && selectErrorStyle()}>
+            <S.Line css={errors.phoneNumber && selectErrorStyle()}>
               전화번호
             </S.Line>
             <S.Line css={errors.agree && selectErrorStyle()}>

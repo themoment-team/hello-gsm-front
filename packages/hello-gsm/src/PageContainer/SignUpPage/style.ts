@@ -5,7 +5,7 @@ import device from 'shared/config';
 export const SignUpPage = styled.div`
   margin: 0 auto;
   background: #0f0921;
-  padding: 100px 0 200px;
+  padding: 60px 0 200px;
   display: flex;
   justify-content: center;
 `;
@@ -43,7 +43,7 @@ export const LadioSection = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 75px;
+  margin-bottom: 40px;
 
   @media ${device.mobile} {
     margin-bottom: 20px;
@@ -151,7 +151,7 @@ export const CheckLabel = styled.label`
     border-radius: 1px;
     margin: 0 10px 0;
   }
-  margin-bottom: 150px;
+  margin-bottom: 70px;
 
   @media ${device.laptop} {
     width: 100%;
@@ -223,7 +223,7 @@ export const Line = styled.div`
   }
 
   :nth-of-type(2) {
-    margin: 90px 0 0;
+    margin: 60px 0 0;
   }
   :nth-of-type(3) {
     margin: 40px 0 35px;

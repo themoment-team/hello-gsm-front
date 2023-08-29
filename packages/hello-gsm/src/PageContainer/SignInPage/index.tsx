@@ -10,7 +10,7 @@ const SignInPage: NextPage = () => {
         <S.Title>로그인</S.Title>
         <S.SignInBtn href={auth.googleSignin()} className="google">
           <Image
-            src="/images/GoogleIcon.png"
+            src="/Images/GoogleIcon.png"
             alt="google아이콘"
             width={30}
             height={30}
@@ -19,7 +19,7 @@ const SignInPage: NextPage = () => {
         </S.SignInBtn>
         <S.SignInBtn href={auth.kakaoSignin()} className="kakao">
           <Image
-            src="/images/KakaoIcon.png"
+            src="/Images/KakaoIcon.png"
             alt="kakao아이콘"
             width={30}
             height={30}
