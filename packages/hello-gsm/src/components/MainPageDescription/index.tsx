@@ -19,6 +19,7 @@ import { startFinalTest } from 'shared/Date/secondScreening';
 import { formatDate } from 'Utils/Format';
 import formatMajor from 'Utils/Format/formatMajor';
 import { MajorType } from 'type/application';
+import useStore from 'Stores/StoreContainer';
 
 const MainPageDescription: React.FC<MainDescStatusType> = ({
   selectedIndex,
@@ -40,6 +41,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   );
 
   const { push } = useRouter();
+  const { logged } = useStore();
 
   useEffect(() => {
     // 입학 전형이 끝난 이후
@@ -52,10 +54,14 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
           ? setIndex(5)
           : setIndex(7);
       } else {
-        setIndex(6);
+        if (logged) {
+          setIndex(7);
+        } else {
+          setIndex(6);
+        }
       }
     }
-  }, [selectedIndex]);
+  }, [data, logged, selectedIndex]);
 
   switch (index) {
     case 1:
