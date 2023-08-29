@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { NavContent } from 'components/Common/Header/style';
+import device from 'shared/config';
 
 interface AnimationProps {
   animation: boolean | null;
@@ -31,8 +32,9 @@ export const Background = styled.div<AnimationProps>`
 `;
 
 export const SideBar = styled.div<AnimationProps>`
+  ${({ theme }) => theme.typo.h4}
   display: ${props => (props.animation == null ? 'none' : 'flex')};
-  padding: 17px 17px 50px;
+  padding: 1.0625rem 1.0625rem 3.125rem;
   justify-content: space-between;
   width: 50vw;
   height: 100vh;
@@ -47,7 +49,7 @@ export const SideBar = styled.div<AnimationProps>`
 
   @keyframes slidein {
     from {
-      right: -500px;
+      right: -31.25rem;
     }
     to {
       right: 0;
@@ -58,7 +60,7 @@ export const SideBar = styled.div<AnimationProps>`
       right: 0;
     }
     to {
-      right: -500px;
+      right: -31.25rem;
     }
   }
 `;
@@ -72,7 +74,11 @@ export const NavSection = styled.div`
   flex-direction: column;
   justify-content: space-between;
   text-align: end;
-  padding-top: 100px;
+  padding: 6.25rem 0;
+
+  @media ${device.mobile} {
+    padding-bottom: 14rem;
+  }
 `;
 
 export const LinkWrapper = styled.div`
@@ -82,12 +88,12 @@ export const LinkWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const NavLink = styled(NavContent)``;
+export const NavLink = styled(NavContent)`
+  ${({ theme }) => theme.typo.h4}
+`;
 
 export const LogOut = styled.div`
   cursor: pointer;
-  font-size: 18px;
-  font-weight: 700;
   color: #bdbdbd;
 `;
 
