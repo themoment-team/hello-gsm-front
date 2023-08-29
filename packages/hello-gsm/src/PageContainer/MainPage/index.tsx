@@ -104,7 +104,7 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
           name={data?.admissionInfo.applicantName ?? ''}
           pass={
             isFirstResultPeriod
-              ? data?.admissionStatus.firstEvaluation !== 'PASS'
+              ? data?.admissionStatus.firstEvaluation === 'PASS'
                 ? true
                 : false
               : data?.admissionStatus.secondEvaluation === 'PASS'
