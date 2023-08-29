@@ -8,6 +8,7 @@ import useStore from 'Stores/StoreContainer';
 import { GEDLocalScoreType, GEDScoreType } from 'type/score';
 import { GEDCalculate, Rounds } from 'Utils/Calculate';
 import * as S from './style';
+import useScrollToTop from 'hooks/useScrollToTop';
 
 interface ScoreType {
   curriculumScoreSubtotal: number; // 전과목 득점
@@ -23,6 +24,7 @@ const GEDCalculatorPage: NextPage<GEDCalculatorPageProps> = ({
   score,
   isSubmissionProp,
 }) => {
+  useScrollToTop();
   const { register, handleSubmit, setValue } = useForm<ScoreType>();
 
   const { showScoreResult, setShowScoreResult, applyData } = useStore();
