@@ -158,6 +158,7 @@ export const StickWrapper = styled.div<{ ratio: number | null }>`
   display: flex;
   align-items: center;
   flex-direction: column;
+  ${({ ratio }) => ratio && 'cursor: pointer;'}
 
   @media (max-width: 500px) {
     ${({ ratio }) => !ratio && 'display: none'}
@@ -170,7 +171,6 @@ export const Stick = styled.div<{ ratio: number; isCurIndex: boolean }>`
   border-radius: 0.625rem;
   background: ${({ isCurIndex }) =>
     isCurIndex ? '#49bdff' : 'rgba(82, 82, 82, 0.60)'};
-  cursor: pointer !important;
   transition: ease-in-out 0.2s;
 
   @media ${device.tablet} {
@@ -192,7 +192,6 @@ export const YearText = styled.span`
   width: 4.35rem;
   display: flex;
   justify-content: center;
-  cursor: pointer;
   @media (max-width: 500px) {
     font-size: 0.875rem;
     width: 3.5rem;
