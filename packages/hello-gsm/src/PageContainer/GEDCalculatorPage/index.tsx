@@ -57,7 +57,8 @@ const GEDCalculatorPage: NextPage<GEDCalculatorPageProps> = ({
       nonCurriculumScoreSubtotal,
     );
 
-    const scoreTotal = Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
+    const scoreTotal =
+      rankPercentage && Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
 
     try {
       await TrySubmission({
