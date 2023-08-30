@@ -8,6 +8,7 @@ export const FindSchoolModal = styled.div`
   justify-content: center;
   align-items: center;
   position: fixed;
+  top: 0;
   z-index: 5;
   overflow: scroll;
   @media (max-height: 830px) {

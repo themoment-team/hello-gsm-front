@@ -9,6 +9,7 @@ export const ApplyPostModal = styled.div`
   align-items: center;
   position: fixed;
   z-index: 5;
+  top: 0;
 `;
 
 export const ContentWrap = styled.div`

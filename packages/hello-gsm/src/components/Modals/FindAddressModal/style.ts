@@ -9,6 +9,7 @@ export const FindAddressModal = styled.div`
   align-items: center;
   position: fixed;
   z-index: 5;
+  top: 0;
   @media (max-height: 500px) {
     overflow: scroll;
     align-items: flex-start;

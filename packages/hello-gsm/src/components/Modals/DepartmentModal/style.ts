@@ -8,6 +8,7 @@ export const DepartmentModal = styled.div`
   justify-content: center;
   align-items: center;
   position: fixed;
+  top: 0;
   z-index: 5;
 `;
 

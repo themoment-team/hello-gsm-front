@@ -18,6 +18,7 @@ export const ContentWrap = styled.div`
   align-items: center;
   justify-content: space-between;
   position: relative;
+  top: 0;
   z-index: 5;
   @media ${device.mobile} {
     height: 230px;
