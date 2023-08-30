@@ -34,3 +34,9 @@ export interface ApplicantsType {
   list: ApplicantType[];
   count: number;
 }
+
+export type ScreeningType =
+  | 'GENERAL'
+  | 'SOCIAL'
+  | 'SPECIAL_VETERANS'
+  | 'SPECIAL_ADMISSION';
