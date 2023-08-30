@@ -192,6 +192,7 @@ export const YearText = styled.span`
   width: 4.35rem;
   display: flex;
   justify-content: center;
+  cursor: pointer;
   @media (max-width: 500px) {
     font-size: 0.875rem;
     width: 3.5rem;

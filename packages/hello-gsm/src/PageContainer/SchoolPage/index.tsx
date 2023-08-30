@@ -101,7 +101,9 @@ const SchoolPage: NextPage = () => {
                 {curIndex === index ? (
                   <S.YearText>{year}년</S.YearText>
                 ) : (
-                  <S.NotCurrentYearText>{year}년</S.NotCurrentYearText>
+                  <S.NotCurrentYearText onClick={() => handleStickClick(index)}>
+                    {year}년
+                  </S.NotCurrentYearText>
                 )}
               </S.StickWrapper>
             ))}
