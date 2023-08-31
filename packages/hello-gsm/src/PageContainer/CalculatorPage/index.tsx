@@ -32,7 +32,7 @@ interface ScoreForm {
 }
 
 interface CalculatorPageProps {
-  score: string;
+  score: string | undefined;
   isSubmissionProp: boolean;
 }
 

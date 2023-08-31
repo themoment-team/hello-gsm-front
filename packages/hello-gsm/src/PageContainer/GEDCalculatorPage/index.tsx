@@ -16,7 +16,7 @@ interface ScoreType {
 }
 
 interface GEDCalculatorPageProps {
-  score: string;
+  score: string | undefined;
   isSubmissionProp: boolean;
 }
 

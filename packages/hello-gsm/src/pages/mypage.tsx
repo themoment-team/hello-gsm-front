@@ -14,10 +14,12 @@ import { toast } from 'react-toastify';
 const MyPage: NextPage = () => {
   const seoTitle = '마이페이지';
   const desc = '내 정보를 확인하고 원서 관리 및 원서 출력 등을 할 수 있습니다.';
+
+  const { push } = useRouter();
+
   const [applicationData, setApplicationData] =
     useState<CommonApplicationResponseType>();
   const [identityData, setIdentityData] = useState<IdentityType>();
-  const { push } = useRouter();
 
   const getApplication = async () => {
     try {
@@ -38,12 +40,16 @@ const MyPage: NextPage = () => {
   };
 
   const getUser = async () => {
-    const { data }: { data: UserInfoType } = await user.getMyInfo();
-    if (data.role === 'ROLE_UNAUTHENTICATED') {
-      push('/auth/signup');
-      toast.info('본인인증을 먼저 진행해주세요.');
-    } else {
-      getApplication();
+    try {
+      const { data }: { data: UserInfoType } = await user.getMyInfo();
+      if (data.role === 'ROLE_UNAUTHENTICATED') {
+        push('/auth/signup');
+        toast.info('본인인증을 먼저 진행해주세요.');
+      } else {
+        getApplication();
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
