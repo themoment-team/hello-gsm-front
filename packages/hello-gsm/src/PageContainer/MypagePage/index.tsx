@@ -170,7 +170,7 @@ const MyPage: NextPage<ApplicationDataType> = ({ data }) => {
       {showMypageSuccessModal && <MypageSuccessModal />}
       <S.Content>
         <S.UserSection>
-          <S.Title>내정보</S.Title>
+          <S.Title>마이페이지</S.Title>
           <S.UserImgBox>
             <Image
               src={
