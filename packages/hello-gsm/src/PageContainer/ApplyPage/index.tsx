@@ -141,7 +141,7 @@ const ApplyPage: NextPage<
       setshowApplyPostModal();
     } catch (error: any) {
       setshowApplyPostModal();
-      toast.error('원서 정보 저장 중 에러가 발생했습니다. 다시 시도해주세요.');
+      toast.error('원서 정보 저장 중 에러가 발생했어요. 다시 시도해주세요.');
 
       // TODO: merge 후 test code 삭제
       const applyData: ApplyFormType = {
@@ -173,11 +173,11 @@ const ApplyPage: NextPage<
 
     if (event.target.files) {
       if (event.target.files[0].size > 512000) {
-        toast.error('증명사진은 500KB 이하만 업로드 가능합니다.');
+        toast.error('증명사진은 500KB 이하만 업로드 가능해요.');
         return;
       }
       if (!event.target.files[0].type.includes('image')) {
-        toast.error('이미지 파일만 업로드 가능합니다.');
+        toast.error('이미지 파일만 업로드 가능해요.');
         return;
       }
       // 파일의 url을 읽는다.
@@ -202,7 +202,7 @@ const ApplyPage: NextPage<
     if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
       await apply(data);
     } else {
-      toast.error('정보 저장에 실패했습니다. 다시한번 시도해주세요.');
+      toast.error('정보 저장에 실패했어요. 다시한번 시도해주세요.');
     }
   };
 
