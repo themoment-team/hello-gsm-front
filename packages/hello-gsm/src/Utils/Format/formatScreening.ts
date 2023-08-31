@@ -10,6 +10,7 @@ const formatScreening = (screening: ScreeningType) => {
     SOCIAL: '사회통합전형',
     SPECIAL_ADMISSION: '특례입학대상자',
     SPECIAL_VETERANS: '국가보훈대상자',
+    '': '',
   };
 
   return screeningObject[screening];
