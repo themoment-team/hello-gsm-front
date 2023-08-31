@@ -52,10 +52,11 @@ const FindSchoolModal: React.FC = () => {
         `https://open.neis.go.kr/hub/schoolInfo?KEY=${process.env.NEIS_API_KEY}&Type=json&SCHUL_NM=${keyword}`,
       );
 
-      const filteredSchools = row.filter(
-        (v: { SCHUL_KND_SC_NM: string }) => v.SCHUL_KND_SC_NM === '중학교',
+      setSchools(
+        row.filter(
+          (v: { SCHUL_KND_SC_NM: string }) => v.SCHUL_KND_SC_NM === '중학교',
+        ),
       );
-      setSchools(filteredSchools);
     } catch (e) {
       console.log(e);
     }

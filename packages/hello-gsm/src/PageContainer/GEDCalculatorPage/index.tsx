@@ -46,7 +46,7 @@ const GEDCalculatorPage: NextPage<GEDCalculatorPageProps> = ({
           });
     else if (applyData === null)
       toast.error(
-        '인적사항 정보가 저장되지 않았습니다. 처음부터 다시 시도해주세요.',
+        '인적사항 정보가 저장되지 않았어요. 처음부터 다시 시도해주세요.',
       );
   };
 
@@ -59,7 +59,8 @@ const GEDCalculatorPage: NextPage<GEDCalculatorPageProps> = ({
       nonCurriculumScoreSubtotal,
     );
 
-    const scoreTotal = Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
+    const scoreTotal =
+      rankPercentage && Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
 
     try {
       await TrySubmission({
@@ -72,16 +73,16 @@ const GEDCalculatorPage: NextPage<GEDCalculatorPageProps> = ({
       setResult([rankPercentage, scoreTotal]);
       setShowScoreResult();
       setIsSubmission(true);
-      toast.success('성적입력이 완료되었습니다.');
+      toast.success('성적입력이 완료되었어요.');
     } catch (err: any) {
       console.log(err);
-      toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
+      toast.error('문제가 발생했어요. 다시 시도해주세요.');
     }
   };
 
   const inValid = (Errors: FieldErrors) => {
     console.log(Errors);
-    toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
+    toast.error('문제가 발생했어요. 다시 시도해주세요.');
   };
 
   useEffect(() => {

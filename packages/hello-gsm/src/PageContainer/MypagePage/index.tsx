@@ -122,7 +122,7 @@ const MyPage: NextPage<ApplicationIdentityType> = ({
           onClick={() => {
             finalSubmitAcceptable
               ? showModal('final')
-              : toast.error('성적을 입력하여야 최종제출이 가능합니다.');
+              : toast.error('성적을 입력하여야 최종제출이 가능해요.');
           }}
           css={
             finalSubmitAcceptable
