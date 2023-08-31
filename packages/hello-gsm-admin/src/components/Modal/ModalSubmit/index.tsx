@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as I from 'test/svg';
+import * as I from 'Assets/svg';
 import * as S from './style';
 
 interface ModalResultProps {
