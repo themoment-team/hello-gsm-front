@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import * as S from './style';
 
-import { SearchIcon } from 'assets/svg';
+import { SearchIcon } from 'test/svg';
 
 import { PrintButton } from 'components';
 

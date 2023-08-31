@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import { TicketDataType } from 'Types/ticket';
 import * as S from './style';
 import dayjs from 'dayjs';
-import * as I from 'assets/svg';
+import * as I from 'test/svg';
 import formatScreening from 'Utils/Libs/formatScreening';
 
 const TicketPage: NextPage<TicketDataType> = ({ data }) => {
