@@ -150,29 +150,6 @@ const ApplyPage: NextPage<
     } catch (error: any) {
       setshowApplyPostModal();
       toast.error('원서 정보 저장 중 에러가 발생했습니다. 다시 시도해주세요.');
-
-      // TODO: merge 후 test code 삭제
-      const applyData: ApplyFormType = {
-        applicantImageUri:
-          'https://cdn.discordapp.com/attachments/814313035823841302/1143421994096918658/20230822_135001.jpg',
-        address: applicantAddress,
-        detailAddress: submitData?.detailAddress,
-        teacherPhoneNumber: submitData?.teacherPhoneNumber || null,
-        teacherName: submitData?.teacherName || null,
-        telephone: submitData?.telephone || null,
-        guardianPhoneNumber: submitData?.guardianPhoneNumber,
-        guardianName: submitData?.guardianName,
-        relationWithApplicant: submitData?.relationWithApplicant,
-        schoolName: schoolName || null,
-        schoolLocation: schoolLocation || null,
-        graduation: submitData?.graduation,
-        firstDesiredMajor: choice1,
-        secondDesiredMajor: choice2,
-        thirdDesiredMajor: choice3,
-        screening: submitData?.screening,
-      };
-      setApplyData(applyData);
-      onNext();
     }
   };
 
