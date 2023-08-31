@@ -99,7 +99,7 @@ const InformationDescription: React.FC<IndexType> = ({ index }) => {
           <S.DescriptionText>
             내신과 봉사시간, 출결현황을 점수로 환산하여
             <br />
-            <S.Highlight>정원의 1.3배</S.Highlight>의 인원을 선출합니다.
+            <S.Highlight>정원의 1.3배</S.Highlight>의 인원을 발표합니다.
           </S.DescriptionText>
         </S.Description>
       );

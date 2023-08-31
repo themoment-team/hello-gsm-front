@@ -72,8 +72,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             날인하여
           </S.DescriptionLine>
           <S.DescriptionLine>
-            원서접수 기간 내에 등기 우편, 방문 제출 중 한가지의 방법으로
-            제출하여야 합니다.
+            원서접수 기간 내에 방문 제출하여야 합니다.
           </S.DescriptionLine>
           <S.DescriptionLine
             css={css`
@@ -123,7 +122,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             1차 서류 심사에서는 내신과 봉사시간, 출결현황을 점수로 환산하여
           </S.DescriptionLine>
           <S.DescriptionLine>
-            정원의 1.3배의 인원을 선출합니다.
+            정원의 1.3배의 인원을 발표합니다.
           </S.DescriptionLine>
           <S.PostScript>
             {formatDate(startFirstResult, 'hours')} 발표
@@ -227,7 +226,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
       return (
         <S.Description>
           <S.DescriptionLine>
-            1차 서류 심사와 인적성소양평가를 통해 최종 합격자를 선출합니다.
+            1차 서류 심사와 인적성소양평가를 통해 최종 합격자를 발표합니다.
           </S.DescriptionLine>
           <S.PostScript>
             {formatDate(endFirstResult, 'hours')} 최종 결과 발표
