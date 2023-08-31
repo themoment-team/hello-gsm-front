@@ -102,12 +102,12 @@ const SignUpPage: NextPage = () => {
   const sendCertificationNumber = async (phoneNumber: string) => {
     if (!errors.phoneNumber && /^[0][1][0][0-9]{8}/.test(phoneNumber)) {
       try {
-        toast.success('인증번호를 전송했습니다.');
+        toast.success('인증번호를 전송했어요.');
         const { data } = await identity.postCodeTest(phoneNumber);
         console.log(data);
         setIsSent(true);
       } catch (e) {
-        toast.error('인증번호 전송을 실패했습니다. 다시 시도해주세요.');
+        toast.error('인증번호 전송을 실패했어요. 다시 시도해주세요.');
       }
     } else {
       toast.error('전화번호를 다시 확인해주세요.');
@@ -123,12 +123,12 @@ const SignUpPage: NextPage = () => {
     try {
       await identity.postAuthCode(code);
       setIsVerified(true);
-      toast.success('인증되었습니다.');
+      toast.success('인증되었어요.');
     } catch (e: any) {
       if (e?.response.data.message) {
         toast.error(e?.response.data.message);
       } else {
-        toast.error('휴대폰 인증에 실패했습니다. 다시 시도해주세요.');
+        toast.error('휴대폰 인증에 실패했어요. 다시 시도해주세요.');
       }
     }
   };
