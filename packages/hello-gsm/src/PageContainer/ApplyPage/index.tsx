@@ -208,7 +208,7 @@ const ApplyPage: NextPage<
 
   const validate = () => {
     watch('screening') === 'SPECIAL' && toast.error('전형을 선택해주세요.');
-    choice1 && choice2 && choice3
+    choice1 !== '' && choice2 !== '' && choice3 !== ''
       ? setIsMajorSelected(true)
       : setIsMajorSelected(false);
     applicantAddress !== ''
