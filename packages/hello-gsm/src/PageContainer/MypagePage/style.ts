@@ -16,7 +16,9 @@ export const Content = styled.div`
 `;
 
 export const UserSection = styled.div`
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const Title = styled.h1`
