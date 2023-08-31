@@ -138,7 +138,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             자질과 능력을
           </S.DescriptionLine>
           <S.DescriptionLine>
-            중심으로 직무적성 소양평가를 치룹니다.
+            중심으로 직무적성 소양평가를 치릅니다.
           </S.DescriptionLine>
           <S.PostScript>
             {formatDate(startFinalTest, 'minutes')} 직무적성 소양평가 진행{' '}
