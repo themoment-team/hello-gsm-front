@@ -13,13 +13,20 @@ import {
 } from 'components';
 import { toast } from 'react-toastify';
 import { applyAcceptable } from 'shared/Date/firstScreening';
-import { ApplicationDataType } from 'type/application';
+import { ApplicationIdentityType } from 'type/data';
 
-const MyPage: NextPage<ApplicationDataType> = ({ data }) => {
-  const saved = data.admissionInfo === null ? false : true;
-  const submitted = data.admissionStatus.isFinalSubmitted ? true : false;
+const MyPage: NextPage<ApplicationIdentityType> = ({
+  applicationData,
+  identityData,
+}) => {
+  const saved = applicationData?.admissionInfo ? true : false;
+  const submitted = applicationData?.admissionStatus.isFinalSubmitted
+    ? true
+    : false;
   const [isPC, setIsPC] = useState<boolean>(true);
-  const finalSubmitAcceptable = data.middleSchoolGrade ? true : false;
+  const finalSubmitAcceptable = applicationData?.middleSchoolGrade
+    ? true
+    : false;
   const [isAcceptable, setIsAcceptable] = useState<boolean>(applyAcceptable);
 
   const {
@@ -134,7 +141,7 @@ const MyPage: NextPage<ApplicationDataType> = ({ data }) => {
           최종제출
         </S.Button>
       </S.ButtonBox>
-      <MypageInformation admissionInfo={data.admissionInfo} />
+      <MypageInformation admissionInfo={applicationData?.admissionInfo} />
     </S.ButtonAndDescription>
   );
 
@@ -174,14 +181,17 @@ const MyPage: NextPage<ApplicationDataType> = ({ data }) => {
           <S.UserImgBox>
             <Image
               src={
-                data.admissionInfo.applicantImageUri ??
+                applicationData?.admissionInfo.applicantImageUri ??
                 '/Images/DefaultProfileImage.png'
               }
               alt="image"
               layout="fill"
             />
           </S.UserImgBox>
-          <S.Name>{data.admissionInfo.applicantName}님</S.Name>
+          <S.Name>
+            {applicationData?.admissionInfo.applicantName ?? identityData?.name}
+            님
+          </S.Name>
         </S.UserSection>
         {isPC
           ? isAcceptable

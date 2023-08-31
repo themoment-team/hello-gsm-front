@@ -57,33 +57,36 @@ export interface ApplicationFormType {
 export type ApplyFormType = Omit<ApplicationFormType, 'middleSchoolGrade'>;
 
 export interface AdmissionInfoType {
-  admissionInfo: {
-    applicantName: string;
-    applicantGender: GenderType;
-    applicantBirth: Date;
-    address: string;
-    detailAddress: string;
-    graduation: GraduationStatusType;
-    telephone: string | null;
-    applicantPhoneNumber: string;
-    guardianName: string;
-    relationWithApplicant: string;
-    guardianPhoneNumber: string;
-    teacherName: string | null;
-    teacherPhoneNumber: string | null;
-    schoolName: string | null;
-    schoolLocation: string | null;
-    applicantImageUri: string;
-    desiredMajor: {
-      firstDesiredMajor: MajorType;
-      secondDesiredMajor: MajorType;
-      thirdDesiredMajor: MajorType;
-    };
-    screening: ScreeningType;
-  };
+  admissionInfo:
+    | {
+        applicantName: string;
+        applicantGender: GenderType;
+        applicantBirth: Date;
+        address: string;
+        detailAddress: string;
+        graduation: GraduationStatusType;
+        telephone: string | null;
+        applicantPhoneNumber: string;
+        guardianName: string;
+        relationWithApplicant: string;
+        guardianPhoneNumber: string;
+        teacherName: string | null;
+        teacherPhoneNumber: string | null;
+        schoolName: string | null;
+        schoolLocation: string | null;
+        applicantImageUri: string;
+        desiredMajor: {
+          firstDesiredMajor: MajorType;
+          secondDesiredMajor: MajorType;
+          thirdDesiredMajor: MajorType;
+        };
+        screening: ScreeningType;
+      }
+    | undefined;
 }
 
 export interface CommonApplicationResponseType {
+  name: string;
   id: number;
   admissionInfo: {
     applicantName: string;
