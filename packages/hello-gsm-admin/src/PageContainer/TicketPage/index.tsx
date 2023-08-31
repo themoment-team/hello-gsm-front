@@ -12,7 +12,7 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
 
   return (
     <S.TicketPage>
-      {data.map((user, i) => {
+      {data?.map((user, i) => {
         const userBirth = new Date(user.applicantBirth);
         // 생년월일을 YYYY-MM-DD형식에 맞게 포맷
         const Formatbirth = dayjs()
