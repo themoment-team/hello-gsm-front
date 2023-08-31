@@ -82,7 +82,7 @@ const GEDCalculatorPage: NextPage<GEDCalculatorPageProps> = ({
 
   const inValid = (Errors: FieldErrors) => {
     console.log(Errors);
-    toast.error('문제가 발생했어요. 다시.');
+    toast.error('문제가 발생했어요. 다시 시도해주세요.');
   };
 
   useEffect(() => {
