@@ -15,24 +15,15 @@ export const ToCalculator = styled.button`
   font-weight: 600;
 
   &:nth-of-type(1) {
-    top: 53.75rem;
+    top: 40rem;
   }
   &:nth-of-type(2) {
-    top: 60rem;
+    top: 45rem;
   }
 
   &:hover {
     background: rgba(243, 243, 243, 0.52);
     transition: 0.3s;
-  }
-
-  @media ${device.tablet} {
-    &:nth-of-type(1) {
-      top: 43.75rem;
-    }
-    &:nth-of-type(2) {
-      top: 50rem;
-    }
   }
 
   @media ${device.mobile} {

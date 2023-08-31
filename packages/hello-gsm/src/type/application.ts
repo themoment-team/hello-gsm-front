@@ -1,6 +1,6 @@
 type MajorType = 'SW' | 'IOT' | 'AI' | '';
 
-type GraduationStatusType = 'CANDIDATE' | 'GRADUATE' | 'GED';
+export type GraduationStatusType = 'CANDIDATE' | 'GRADUATE' | 'GED';
 
 type ScreeningType =
   | 'GENERAL'
