@@ -98,10 +98,10 @@ export const ContentList = styled.div`
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
-  -ms-overflow-style: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 
