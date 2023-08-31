@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import * as S from './style';
-import * as I from 'test/svg';
+import * as I from 'assets/svg';
 
 const BrowserPage: NextPage = () => {
   return (

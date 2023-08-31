@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './style';
-import * as I from 'test/svg';
+import * as I from 'assets/svg';
 const SlideBar: React.FC = () => {
   return (
     <S.SideBar>
