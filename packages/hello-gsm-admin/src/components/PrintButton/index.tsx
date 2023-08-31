@@ -1,6 +1,6 @@
 import * as S from './style';
 
-import { PrintIcon, ExcelIcon } from 'assets/svg';
+import { PrintIcon, ExcelIcon } from 'Assets/svg';
 
 interface PrintButtonProps {
   printType: 'excel' | 'ticket';

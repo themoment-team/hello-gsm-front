@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as S from './style';
-import * as I from 'assets/svg';
+import * as I from 'Assets/svg';
 import * as C from 'components';
 
 interface ModalProps {
