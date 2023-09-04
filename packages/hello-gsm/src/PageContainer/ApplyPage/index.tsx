@@ -13,9 +13,8 @@ import {
 } from 'components';
 import { useForm } from 'react-hook-form';
 import application from 'Api/application';
-import { ApplicationDataType, ApplyFormType } from 'type/application';
+import { ApplyFormType } from 'type/application';
 import { toast } from 'react-toastify';
-import { IdentityType } from 'type/identity';
 import formatMajor from 'Utils/Format/formatMajor';
 import { ApplicationIdentityType } from 'type/data';
 
@@ -66,26 +65,12 @@ const ApplyPage: NextPage<
     watch,
     setValue,
     formState: { errors },
-  } = useForm<ApplyFormType>({
-    defaultValues: {
-      applicantImageUri: applicationData?.admissionInfo.applicantImageUri || '',
-      address: applicationData?.admissionInfo.address || '',
-      detailAddress: applicationData?.admissionInfo.detailAddress || '',
-      graduation: applicationData?.admissionInfo.graduation,
-      telephone: applicationData?.admissionInfo.telephone || '',
-      guardianName: applicationData?.admissionInfo.guardianName,
-      relationWithApplicant:
-        applicationData?.admissionInfo.relationWithApplicant,
-      guardianPhoneNumber: applicationData?.admissionInfo.guardianPhoneNumber,
-      teacherName: applicationData?.admissionInfo.teacherName,
-      teacherPhoneNumber: applicationData?.admissionInfo.teacherPhoneNumber,
-      screening: applicationData?.admissionInfo.screening || 'GENERAL',
-    },
-  });
-  console.log(applicationData);
+  } = useForm<ApplyFormType>();
+
   const graduationStatus = watch('graduation');
 
   useEffect(() => {
+    const admissionInfo = applicationData?.admissionInfo;
     if (applicationData?.middleSchoolGrade !== null) {
       setIsEdit(true);
     } else {
@@ -98,21 +83,28 @@ const ApplyPage: NextPage<
     ) {
       setIsSpecialScreening(true);
     }
-
-    setImgURL(applicationData?.admissionInfo.applicantImageUri || '');
-    setChoice1(
-      applicationData?.admissionInfo.desiredMajor.firstDesiredMajor || '',
+    setValue('applicantImageUri', admissionInfo?.applicantImageUri ?? '');
+    setValue('address', admissionInfo?.address ?? '');
+    setValue('detailAddress', admissionInfo?.detailAddress ?? '');
+    setValue('graduation', admissionInfo?.graduation ?? 'CANDIDATE');
+    setValue('telephone', admissionInfo?.telephone ?? '');
+    setValue('guardianName', admissionInfo?.guardianName ?? '');
+    setValue(
+      'relationWithApplicant',
+      admissionInfo?.relationWithApplicant ?? '',
     );
-    setChoice2(
-      applicationData?.admissionInfo.desiredMajor.secondDesiredMajor || '',
-    );
-    setChoice3(
-      applicationData?.admissionInfo.desiredMajor.thirdDesiredMajor || '',
-    );
-    setSchoolName(applicationData?.admissionInfo.schoolName || '');
-    setSchoolLocation(applicationData?.admissionInfo.schoolLocation || '');
-    setApplicantAddress(applicationData?.admissionInfo.address || '');
-  }, []);
+    setValue('guardianPhoneNumber', admissionInfo?.guardianPhoneNumber ?? '');
+    setValue('teacherName', admissionInfo?.teacherName ?? '');
+    setValue('teacherPhoneNumber', admissionInfo?.teacherPhoneNumber ?? '');
+    setValue('screening', admissionInfo?.screening ?? '');
+    setImgURL(admissionInfo?.applicantImageUri ?? '');
+    setChoice1(admissionInfo?.desiredMajor.firstDesiredMajor ?? '');
+    setChoice2(admissionInfo?.desiredMajor.secondDesiredMajor ?? '');
+    setChoice3(admissionInfo?.desiredMajor.thirdDesiredMajor ?? '');
+    setSchoolName(admissionInfo?.schoolName ?? '');
+    setSchoolLocation(admissionInfo?.schoolLocation ?? '');
+    setApplicantAddress(admissionInfo?.address ?? '');
+  }, [applicationData, applicationData?.admissionInfo]);
 
   const apply = async (submitData: ApplyFormType) => {
     try {
@@ -122,14 +114,14 @@ const ApplyPage: NextPage<
         applicantImageUri: imgURL,
         address: applicantAddress,
         detailAddress: submitData?.detailAddress,
-        teacherPhoneNumber: submitData?.teacherPhoneNumber || null,
-        teacherName: submitData?.teacherName || null,
-        telephone: submitData?.telephone || null,
+        teacherPhoneNumber: submitData?.teacherPhoneNumber,
+        teacherName: submitData?.teacherName,
+        telephone: submitData?.telephone,
         guardianPhoneNumber: submitData?.guardianPhoneNumber,
         guardianName: submitData?.guardianName,
         relationWithApplicant: submitData?.relationWithApplicant,
-        schoolName: schoolName || null,
-        schoolLocation: schoolLocation || null,
+        schoolName: schoolName,
+        schoolLocation: schoolLocation,
         graduation: submitData?.graduation,
         firstDesiredMajor: choice1,
         secondDesiredMajor: choice2,
