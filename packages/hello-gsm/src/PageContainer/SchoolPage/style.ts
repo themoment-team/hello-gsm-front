@@ -16,16 +16,17 @@ export const Section1 = styled.div`
     height: 37.5rem;
   }
   @media ${device.mobile} {
-    height: 25rem;
+    height: 40rem;
   }
 `;
 
 export const SchoolName = styled.p`
   color: #ffffff;
   font-weight: 700;
-  font-size: 2.5rem;
+  ${({ theme }) => theme.typo.h2};
+
   @media ${device.mobile} {
-    font-size: 1rem;
+    ${({ theme }) => theme.typo.h3}
   }
 `;
 
@@ -54,11 +55,6 @@ export const ToHomepage = styled.a`
   font-weight: 700;
   font-size: 1.375rem;
   color: #0f0921;
-  @media ${device.mobile} {
-    width: 5.625rem;
-    height: 1.875rem;
-    font-size: 0.9375rem;
-  }
 `;
 
 export const Section2 = styled.div`
@@ -67,21 +63,16 @@ export const Section2 = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @media ${device.tablet} {
-    height: 25rem;
-  }
-  @media ${device.mobile} {
-    height: 15.625rem;
-  }
 `;
 
 export const Section2Title = styled.p`
+  ${({ theme }) => theme.typo.h2};
   font-weight: 700;
-  font-size: 1.5rem;
   color: #ffffff;
   padding-bottom: 3.75rem;
+
   @media ${device.mobile} {
-    font-size: 1rem;
+    ${({ theme }) => theme.typo.h3}
     padding-bottom: 1.875rem;
   }
 `;
@@ -100,7 +91,7 @@ export const Section3Title = styled.div`
   color: #ffffff;
   margin-bottom: 2.1875rem;
   @media ${device.mobile} {
-    font-size: 1rem;
+    ${({ theme }) => theme.typo.h3}
     margin-bottom: 1.25rem;
   }
 `;
