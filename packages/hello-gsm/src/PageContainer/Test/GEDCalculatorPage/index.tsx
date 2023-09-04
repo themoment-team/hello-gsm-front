@@ -36,7 +36,7 @@ const TestGEDCalculatorPage: NextPage = () => {
   };
 
   const inValid = (Errors: FieldErrors) => {
-    console.log(Errors);
+    console.error(Errors);
     toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
   };
 

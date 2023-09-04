@@ -35,7 +35,7 @@ const MyPage: NextPage = () => {
       const { data } = await identity.getMyIdentity();
       setIdentityData(data);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 
@@ -49,7 +49,7 @@ const MyPage: NextPage = () => {
         getApplication();
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 

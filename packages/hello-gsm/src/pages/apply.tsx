@@ -36,7 +36,7 @@ const Apply: NextPage = () => {
 
       setApplicationData(data);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 
