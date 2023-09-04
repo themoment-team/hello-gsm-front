@@ -23,9 +23,6 @@ const MyPage: NextPage<ApplicationIdentityType> = ({
     ? true
     : false;
   const [isPC, setIsPC] = useState<boolean>(true);
-  const finalSubmitAcceptable = applicationData?.middleSchoolGrade
-    ? true
-    : false;
   const [isAcceptable, setIsAcceptable] = useState<boolean>(applyAcceptable);
 
   const {
@@ -98,13 +95,8 @@ const MyPage: NextPage<ApplicationIdentityType> = ({
           📑 원서 수정하기
         </LinkButton>
         <LinkButton
-          color={
-            finalSubmitAcceptable
-              ? theme.color.gray['060']
-              : theme.color.primary.lime
-          }
+          color={theme.color.primary.lime}
           onClick={() => showModal('final')}
-          disabled={finalSubmitAcceptable}
         >
           📩 최종 제출하기
         </LinkButton>
