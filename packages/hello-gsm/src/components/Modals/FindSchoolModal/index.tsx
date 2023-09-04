@@ -58,7 +58,7 @@ const FindSchoolModal: React.FC = () => {
         ),
       );
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 
