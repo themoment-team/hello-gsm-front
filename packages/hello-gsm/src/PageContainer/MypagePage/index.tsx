@@ -98,7 +98,11 @@ const MyPage: NextPage<ApplicationIdentityType> = ({
           📑 원서 수정하기
         </LinkButton>
         <LinkButton
-          color={theme.color.primary.lime}
+          color={
+            finalSubmitAcceptable
+              ? theme.color.gray['060']
+              : theme.color.primary.lime
+          }
           onClick={() => showModal('final')}
           disabled={finalSubmitAcceptable}
         >
