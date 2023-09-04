@@ -126,5 +126,5 @@ export interface CommonApplicationResponseType {
 }
 
 export interface ApplicationDataType {
-  data: CommonApplicationResponseType;
+  data?: CommonApplicationResponseType;
 }
