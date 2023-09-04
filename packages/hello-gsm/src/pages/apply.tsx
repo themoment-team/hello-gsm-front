@@ -62,6 +62,7 @@ const Apply: NextPage = () => {
     getIdentity();
     getApplication();
   }, []);
+  console.log(applicationData);
 
   return (
     <>

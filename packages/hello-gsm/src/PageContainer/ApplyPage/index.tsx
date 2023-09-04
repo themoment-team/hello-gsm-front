@@ -82,7 +82,7 @@ const ApplyPage: NextPage<
       screening: applicationData?.admissionInfo.screening || 'GENERAL',
     },
   });
-
+  console.log(applicationData);
   const graduationStatus = watch('graduation');
 
   useEffect(() => {
