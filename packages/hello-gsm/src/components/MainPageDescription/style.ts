@@ -21,6 +21,10 @@ export const DescriptionLine = styled.p`
   color: #ffffff;
   text-align: center;
 
+  @media ${device.laptop} {
+    ${({ theme }) => theme.typo.h5}
+  }
+
   @media ${device.mobile} {
     ${({ theme }) => theme.typo.body1}
   }
@@ -32,6 +36,10 @@ export const PostScript = styled.p`
   color: rgba(255, 255, 255, 0.7);
   margin-top: 0.9375rem;
   text-align: center;
+
+  @media ${device.laptop} {
+    ${({ theme }) => theme.typo.h5}
+  }
 
   @media ${device.mobile} {
     ${({ theme }) => theme.typo.body1}
