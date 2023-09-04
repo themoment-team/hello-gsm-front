@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import { TicketDataType } from 'Types/ticket';
 import * as S from './style';
 import dayjs from 'dayjs';
-import * as I from 'assets/svg';
+import * as I from 'Assets/svg';
 import formatScreening from 'Utils/Libs/formatScreening';
 
 const TicketPage: NextPage<TicketDataType> = ({ data }) => {
@@ -12,7 +12,7 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
 
   return (
     <S.TicketPage>
-      {data.map((user, i) => {
+      {data?.map((user, i) => {
         const userBirth = new Date(user.applicantBirth);
         // 생년월일을 YYYY-MM-DD형식에 맞게 포맷
         const Formatbirth = dayjs()

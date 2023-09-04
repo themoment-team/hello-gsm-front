@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const GoogleLoginButton = styled.div`
+export const GoogleLoginButton = styled.a`
   width: 22.8125rem;
   height: 3rem;
   background-color: #ffffff;

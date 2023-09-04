@@ -1,4 +1,4 @@
-import { ContentBox, ListHeader, MainpageHeader, ScoreModal } from 'components';
+import { ContentBox, ListHeader, MainpageHeader } from 'components';
 import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
@@ -71,7 +71,6 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
 
   return (
     <S.MainPage>
-      {showScoreModal && <ScoreModal />}
       <Global
         styles={css`
           body {
