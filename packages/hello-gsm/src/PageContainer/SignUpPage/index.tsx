@@ -79,7 +79,7 @@ const SignUpPage: NextPage = () => {
         });
         setShowResult(true);
         setTimeout(() => {
-          router.replace('/');
+          router.replace('/auth/signin');
         }, 3000);
       } catch (e: any) {
         toast.error(e.message);
