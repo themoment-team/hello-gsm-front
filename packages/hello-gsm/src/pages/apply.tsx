@@ -1,9 +1,6 @@
-import type { GetServerSideProps, NextPage } from 'next';
+import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
-import {
-  ApplicationDataType,
-  CommonApplicationResponseType,
-} from 'type/application';
+import { CommonApplicationResponseType } from 'type/application';
 import application from 'Api/application';
 import { ApplyPage, CalculatorPage, GEDCalculatorPage } from 'PageContainer';
 import { useEffect, useState } from 'react';
@@ -13,11 +10,6 @@ import { IdentityType } from 'type/identity';
 import useStore from 'Stores/StoreContainer';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
-
-interface ApplyProps {
-  applicationData: CommonApplicationResponseType;
-  identityData: IdentityType;
-}
 
 const Apply: NextPage = () => {
   const seoTitle = '입학 지원';
@@ -62,7 +54,6 @@ const Apply: NextPage = () => {
     getIdentity();
     getApplication();
   }, []);
-  console.log(applicationData);
 
   return (
     <>
@@ -75,8 +66,7 @@ const Apply: NextPage = () => {
         />
       )}
       {step === '성적' &&
-        (applyData?.graduation === 'GED' ||
-        applicationData?.admissionInfo?.graduation === 'GED' ? (
+        (applyData?.graduation === 'GED' ? (
           <GEDCalculatorPage
             score={applicationData?.middleSchoolGrade}
             isSubmissionProp={applicationData?.middleSchoolGrade ? true : false}
