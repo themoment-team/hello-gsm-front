@@ -117,16 +117,9 @@ const ApplyPage: NextPage<
   const apply = async (submitData: ApplyFormType) => {
     try {
       setshowApplyPostModal();
-      const formData = new FormData();
-      imgInput.current?.files &&
-        formData?.append('file', imgInput.current?.files[0]);
-
-      const { data }: { data: { url: string } } = await application.postImage(
-        formData,
-      );
 
       const applyData: ApplyFormType = {
-        applicantImageUri: data.url,
+        applicantImageUri: imgURL,
         address: applicantAddress,
         detailAddress: submitData?.detailAddress,
         teacherPhoneNumber: submitData?.teacherPhoneNumber || null,
@@ -153,7 +146,7 @@ const ApplyPage: NextPage<
     }
   };
 
-  const readImg = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const readImg = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
 
     if (event.target.files) {
@@ -167,6 +160,20 @@ const ApplyPage: NextPage<
       }
       // 파일의 url을 읽는다.
       event.target.files[0] && reader.readAsDataURL(event.target.files[0]);
+
+      const formData = new FormData();
+      imgInput.current?.files &&
+        formData?.append('file', imgInput.current?.files[0]);
+
+      try {
+        const {
+          data: { url },
+        }: { data: { url: string } } = await application.postImage(formData);
+
+        setImgURL(url);
+      } catch (e) {
+        toast.error('이미지 저장 중 오류가 발생했어요. 다시 시도해주세요.');
+      }
     }
 
     // 읽기 동작 성공 시 미리보기 이미지 url 설정
@@ -182,12 +189,12 @@ const ApplyPage: NextPage<
     }
   };
 
-  const onSubmit = async (data: ApplyFormType) => {
+  const onSubmit = (data: ApplyFormType) => {
     validate();
     if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
-      await apply(data);
+      apply(data);
     } else {
-      toast.error('정보 저장에 실패했어요. 다시한번 시도해주세요.');
+      toast.error('정보 저장에 실패했어요. 다시 시도해주세요.');
     }
   };
 
