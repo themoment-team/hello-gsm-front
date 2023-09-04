@@ -1,5 +1,4 @@
 import type { NextPage } from 'next';
-import Link from 'next/link';
 import * as S from './style';
 import { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
@@ -11,9 +10,9 @@ import {
   MypageInformation,
   LinkButton,
 } from 'components';
-import { toast } from 'react-toastify';
 import { applyAcceptable } from 'shared/Date/firstScreening';
 import { ApplicationIdentityType } from 'type/data';
+import { theme } from 'styles/theme';
 
 const MyPage: NextPage<ApplicationIdentityType> = ({
   applicationData,
@@ -61,30 +60,19 @@ const MyPage: NextPage<ApplicationIdentityType> = ({
   const isSubmitted = () => (
     <S.ButtonBox
       css={css`
-        width: 20.9375rem;
+        width: 30rem;
       `}
     >
-      <Link href="/application" passHref>
-        <S.ApplicationLink
-          target="_blank"
-          rel="noopener noreferrer"
-          css={css`
-            background: #59c5ff;
-            box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #59c5ff;
-          `}
-        >
-          원서 다운
-        </S.ApplicationLink>
-      </Link>
-      <S.Button
+      <LinkButton href="/application" color={theme.color.primary.sky}>
+        🖨️ 원서 출력
+      </LinkButton>
+
+      <LinkButton
+        color={theme.color.primary.lime}
         onClick={() => showModal('download')}
-        css={css`
-          background: #35dcbe;
-          box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #35dcbe;
-        `}
       >
-        제출 서류 다운
-      </S.Button>
+        📂 제출 서류 다운로드
+      </LinkButton>
     </S.ButtonBox>
   );
 
@@ -96,50 +84,26 @@ const MyPage: NextPage<ApplicationIdentityType> = ({
     >
       <S.ButtonBox
         css={css`
-          width: 41.25rem;
+          width: 45.25rem;
         `}
       >
-        <S.Button
+        <LinkButton
+          color={theme.color.sub.orange}
           onClick={() => showModal('delete')}
-          css={css`
-            background: #d82142;
-            box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #d82142;
-          `}
         >
-          원서 삭제
-        </S.Button>
-        <Link href="/apply" passHref>
-          <S.Button
-            css={css`
-              background: #dbe44e;
-              box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #dbe44e;
-            `}
-          >
-            원서 수정
-          </S.Button>
-        </Link>
-        <S.Button
-          onClick={() => {
-            finalSubmitAcceptable
-              ? showModal('final')
-              : toast.error('성적을 입력하여야 최종제출이 가능해요.');
-          }}
-          css={
-            finalSubmitAcceptable
-              ? css`
-                  background: #49f58e;
-                  box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #49f58e;
-                `
-              : css`
-                  color: #505050;
-                  background: #a1a1a1;
-                  box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #a1a1a1;
-                  cursor: default;
-                `
-          }
+          🗑️ 원서 삭제
+        </LinkButton>
+
+        <LinkButton color={theme.color.primary.sky} href="/apply">
+          📑 원서 수정하기
+        </LinkButton>
+        <LinkButton
+          color={theme.color.primary.lime}
+          onClick={() => showModal('final')}
+          disabled={finalSubmitAcceptable}
         >
-          최종제출
-        </S.Button>
+          📩 최종 제출하기
+        </LinkButton>
       </S.ButtonBox>
       <MypageInformation admissionInfo={applicationData?.admissionInfo} />
     </S.ButtonAndDescription>
@@ -147,7 +111,7 @@ const MyPage: NextPage<ApplicationIdentityType> = ({
 
   const isNotSaved = () => (
     <S.ButtonAndDescription>
-      <LinkButton href="/information" color="sky">
+      <LinkButton href="/information" color={theme.color.primary.sky}>
         📑 원서 작성하기
       </LinkButton>
     </S.ButtonAndDescription>
@@ -155,16 +119,7 @@ const MyPage: NextPage<ApplicationIdentityType> = ({
 
   const isNotAcceptable = () => (
     <S.ButtonAndDescription>
-      <S.Button
-        css={css`
-          color: #505050;
-          background: #a1a1a1;
-          box-shadow: 0rem 0.8125rem 1.875rem -0.625rem #a1a1a1;
-          cursor: default;
-        `}
-      >
-        지원 기간 아님
-      </S.Button>
+      <LinkButton disabled>❌ 지원 기간이 아닙니다.</LinkButton>
       <S.MypageDescription>
         지원 기간은 10월 16일부터 10월 19일까지 입니다.
       </S.MypageDescription>
