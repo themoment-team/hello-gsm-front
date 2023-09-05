@@ -58,7 +58,7 @@ const FindSchoolModal: React.FC = () => {
         ),
       );
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 
@@ -115,10 +115,15 @@ const FindSchoolModal: React.FC = () => {
             </S.ListTitleBox>
             <S.ListContentBox>
               {schools.map((school: schoolType, index: number) => {
-                <S.ListContent key={index} onClick={() => selectSchool(index)}>
-                  <S.SchoolName>{school.SCHUL_NM}</S.SchoolName>
-                  <S.SchoolAddress>{school.ORG_RDNMA}</S.SchoolAddress>
-                </S.ListContent>;
+                return (
+                  <S.ListContent
+                    key={index}
+                    onClick={() => selectSchool(index)}
+                  >
+                    <S.SchoolName>{school.SCHUL_NM}</S.SchoolName>
+                    <S.SchoolAddress>{school.ORG_RDNMA}</S.SchoolAddress>
+                  </S.ListContent>
+                );
               })}
             </S.ListContentBox>
           </S.ListBox>

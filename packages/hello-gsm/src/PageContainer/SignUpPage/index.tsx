@@ -79,7 +79,7 @@ const SignUpPage: NextPage = () => {
         });
         setShowResult(true);
         setTimeout(() => {
-          router.replace('/auth/signin');
+          router.replace('/');
         }, 3000);
       } catch (e: any) {
         toast.error(e.message);
@@ -92,7 +92,7 @@ const SignUpPage: NextPage = () => {
   };
 
   const inValid = (errors: FieldErrors) => {
-    console.log(errors);
+    console.error(errors);
   };
 
   /**

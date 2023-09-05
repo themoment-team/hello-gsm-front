@@ -12,7 +12,7 @@ const Logout: React.FC = () => {
       replace('/signin');
     } catch (error: any) {
       // accessToken 없을 시에 accessToken 발급 후 logout 요청
-      console.log(error);
+      console.error(error);
     }
   };
 

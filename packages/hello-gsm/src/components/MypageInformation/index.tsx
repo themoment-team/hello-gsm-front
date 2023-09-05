@@ -15,16 +15,16 @@ const MypageInformation: React.FC<AdmissionInfoType> = ({ admissionInfo }) => {
       </S.InformationHeader>
       <S.InformationBody>
         <S.InformationBodyitem>
-          {formatScreening(admissionInfo?.screening)}
+          {formatScreening(admissionInfo?.screening ?? '')}
         </S.InformationBodyitem>
         <S.InformationBodyitem>
-          {formatMajor(admissionInfo?.desiredMajor.firstDesiredMajor)}
+          {formatMajor(admissionInfo?.desiredMajor.firstDesiredMajor ?? '')}
         </S.InformationBodyitem>
         <S.InformationBodyitem>
-          {formatMajor(admissionInfo?.desiredMajor.secondDesiredMajor)}
+          {formatMajor(admissionInfo?.desiredMajor.secondDesiredMajor ?? '')}
         </S.InformationBodyitem>
         <S.InformationBodyitem>
-          {formatMajor(admissionInfo?.desiredMajor.thirdDesiredMajor)}
+          {formatMajor(admissionInfo?.desiredMajor.thirdDesiredMajor ?? '')}
         </S.InformationBodyitem>
       </S.InformationBody>
     </S.Information>
