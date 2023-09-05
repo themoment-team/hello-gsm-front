@@ -11,8 +11,6 @@ import { isStartFirstResult } from 'shared/acceptable';
 
 const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(list);
-  const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
-  const loadMoreRef = useRef<HTMLDivElement>(null);
   const { showScoreModal } = useStore();
 
   const [searchValue, setSearchValue] = useState<string>('');
@@ -39,6 +37,19 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
       }
     });
   });
+
+  const getApplicationList = async () => {
+    try {
+      const { data } = await application.getAllApplication(1, 100);
+      console.log(data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    getApplicationList();
+  }, []);
 
   return (
     <S.MainPage>
