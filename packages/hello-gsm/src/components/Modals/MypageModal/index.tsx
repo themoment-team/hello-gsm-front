@@ -17,7 +17,7 @@ const MypageModal: React.FC = () => {
       await application.putFinalSubmission();
       setShowMypageSuccessModal();
     } catch (error: any) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -28,7 +28,7 @@ const MypageModal: React.FC = () => {
       localStorage.clear();
       window.location.reload();
     } catch (error: any) {
-      console.log(error);
+      console.error(error);
     }
   };
 

@@ -8,7 +8,8 @@ export type ScreeningType =
   | 'GENERAL'
   | 'SOCIAL'
   | 'SPECIAL_VETERANS'
-  | 'SPECIAL_ADMISSION';
+  | 'SPECIAL_ADMISSION'
+  | '';
 
 export type EvaluationStatusType = 'NOT_YET' | 'PASS' | 'FALL';
 
@@ -57,7 +58,7 @@ export interface ApplicationFormType {
 export type ApplyFormType = Omit<ApplicationFormType, 'middleSchoolGrade'>;
 
 export interface AdmissionInfoType {
-  admissionInfo: {
+  admissionInfo?: {
     applicantName: string;
     applicantGender: GenderType;
     applicantBirth: Date;
@@ -84,6 +85,7 @@ export interface AdmissionInfoType {
 }
 
 export interface CommonApplicationResponseType {
+  name: string;
   id: number;
   admissionInfo: {
     applicantName: string;

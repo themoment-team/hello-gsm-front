@@ -102,7 +102,7 @@ const CalculatorPage: NextPage = () => {
   };
 
   const inValid = (errors: FieldErrors) => {
-    console.log(errors);
+    console.error(errors);
   };
 
   // 추가과목 삭제

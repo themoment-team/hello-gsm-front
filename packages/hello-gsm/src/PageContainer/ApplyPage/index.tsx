@@ -13,16 +13,16 @@ import {
 } from 'components';
 import { useForm } from 'react-hook-form';
 import application from 'Api/application';
-import { ApplicationDataType, ApplyFormType } from 'type/application';
+import { ApplyFormType } from 'type/application';
 import { toast } from 'react-toastify';
-import { IdentityType } from 'type/identity';
 import formatMajor from 'Utils/Format/formatMajor';
+import { ApplicationIdentityType } from 'type/data';
 
 const ApplyPage: NextPage<
-  ApplicationDataType & { identityData: IdentityType } & {
+  ApplicationIdentityType & {
     onNext: () => void;
   }
-> = ({ data, onNext, identityData }) => {
+> = ({ applicationData, onNext, identityData }) => {
   const imgInput = useRef<HTMLInputElement>(null);
   const [imgURL, setImgURL] = useState<string>('');
   const [isIdPhoto, setIsIdPhoto] = useState<boolean>(true);
@@ -30,7 +30,7 @@ const ApplyPage: NextPage<
   const [isAddressExist, setIsAddressExist] = useState<boolean>(true);
   const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(true);
   const [isEdit, setIsEdit] = useState<boolean>(false);
-  const userBirth = new Date(identityData?.birth);
+  const userBirth = identityData && new Date(identityData?.birth);
 
   const [isSpecialScreening, setIsSpecialScreening] = useState<boolean>(false);
 
@@ -65,63 +65,56 @@ const ApplyPage: NextPage<
     watch,
     setValue,
     formState: { errors },
-  } = useForm<ApplyFormType>({
-    defaultValues: {
-      applicantImageUri: data?.admissionInfo.applicantImageUri || '',
-      address: data?.admissionInfo.address || '',
-      detailAddress: data?.admissionInfo.detailAddress || '',
-      graduation: data?.admissionInfo.graduation,
-      telephone: data?.admissionInfo.telephone || '',
-      guardianName: data?.admissionInfo.guardianName,
-      relationWithApplicant: data?.admissionInfo.relationWithApplicant,
-      guardianPhoneNumber: data?.admissionInfo.guardianPhoneNumber,
-      teacherName: data?.admissionInfo.teacherName,
-      teacherPhoneNumber: data?.admissionInfo.teacherPhoneNumber,
-      screening: data?.admissionInfo.screening || 'GENERAL',
-    },
-  });
+  } = useForm<ApplyFormType>();
 
   const graduationStatus = watch('graduation');
 
   useEffect(() => {
-    if (data?.middleSchoolGrade !== null) {
+    const admissionInfo = applicationData?.admissionInfo;
+    if (applicationData?.middleSchoolGrade !== null) {
       setIsEdit(true);
     } else {
       setIsEdit(false);
     }
 
     if (
-      data?.admissionInfo.screening === 'SPECIAL_ADMISSION' ||
-      data?.admissionInfo.screening === 'SPECIAL_VETERANS'
+      applicationData?.admissionInfo.screening === 'SPECIAL_ADMISSION' ||
+      applicationData?.admissionInfo.screening === 'SPECIAL_VETERANS'
     ) {
       setIsSpecialScreening(true);
     }
-
-    setImgURL(data?.admissionInfo.applicantImageUri || '');
-    setChoice1(data?.admissionInfo.desiredMajor.firstDesiredMajor || '');
-    setChoice2(data?.admissionInfo.desiredMajor.secondDesiredMajor || '');
-    setChoice3(data?.admissionInfo.desiredMajor.thirdDesiredMajor || '');
-    setSchoolName(data?.admissionInfo.schoolName || '');
-    setSchoolLocation(data?.admissionInfo.schoolLocation || '');
-    setApplicantAddress(data?.admissionInfo.address || '');
-  }, []);
+    setValue('applicantImageUri', admissionInfo?.applicantImageUri ?? '');
+    setValue('address', admissionInfo?.address ?? '');
+    setValue('detailAddress', admissionInfo?.detailAddress ?? '');
+    setValue('graduation', admissionInfo?.graduation ?? 'CANDIDATE');
+    setValue('telephone', admissionInfo?.telephone ?? '');
+    setValue('guardianName', admissionInfo?.guardianName ?? '');
+    setValue(
+      'relationWithApplicant',
+      admissionInfo?.relationWithApplicant ?? '',
+    );
+    setValue('guardianPhoneNumber', admissionInfo?.guardianPhoneNumber ?? '');
+    setValue('teacherName', admissionInfo?.teacherName ?? '');
+    setValue('teacherPhoneNumber', admissionInfo?.teacherPhoneNumber ?? '');
+    setValue('screening', admissionInfo?.screening ?? '');
+    setImgURL(admissionInfo?.applicantImageUri ?? '');
+    setChoice1(admissionInfo?.desiredMajor.firstDesiredMajor ?? '');
+    setChoice2(admissionInfo?.desiredMajor.secondDesiredMajor ?? '');
+    setChoice3(admissionInfo?.desiredMajor.thirdDesiredMajor ?? '');
+    setSchoolName(admissionInfo?.schoolName ?? '');
+    setSchoolLocation(admissionInfo?.schoolLocation ?? '');
+    setApplicantAddress(admissionInfo?.address ?? '');
+  }, [applicationData, applicationData?.admissionInfo]);
 
   const apply = async (submitData: ApplyFormType) => {
     try {
       setshowApplyPostModal();
-      const formData = new FormData();
-      imgInput.current?.files &&
-        formData?.append('file', imgInput.current?.files[0]);
-
-      const { data }: { data: { url: string } } = await application.postImage(
-        formData,
-      );
 
       const applyData: ApplyFormType = {
-        applicantImageUri: data.url,
+        applicantImageUri: imgURL,
         address: applicantAddress,
         detailAddress: submitData?.detailAddress,
-        teacherPhoneNumber: submitData?.teacherPhoneNumber || null,
+        teacherPhoneNumber: submitData?.teacherPhoneNumber,
         teacherName: submitData?.teacherName || null,
         telephone: submitData?.telephone || null,
         guardianPhoneNumber: submitData?.guardianPhoneNumber,
@@ -142,33 +135,10 @@ const ApplyPage: NextPage<
     } catch (error: any) {
       setshowApplyPostModal();
       toast.error('원서 정보 저장 중 에러가 발생했어요. 다시 시도해주세요.');
-
-      // TODO: merge 후 test code 삭제
-      const applyData: ApplyFormType = {
-        applicantImageUri:
-          'https://cdn.discordapp.com/attachments/814313035823841302/1143421994096918658/20230822_135001.jpg',
-        address: applicantAddress,
-        detailAddress: submitData?.detailAddress,
-        teacherPhoneNumber: submitData?.teacherPhoneNumber || null,
-        teacherName: submitData?.teacherName || null,
-        telephone: submitData?.telephone || null,
-        guardianPhoneNumber: submitData?.guardianPhoneNumber,
-        guardianName: submitData?.guardianName,
-        relationWithApplicant: submitData?.relationWithApplicant,
-        schoolName: schoolName || null,
-        schoolLocation: schoolLocation || null,
-        graduation: submitData?.graduation,
-        firstDesiredMajor: choice1,
-        secondDesiredMajor: choice2,
-        thirdDesiredMajor: choice3,
-        screening: submitData?.screening,
-      };
-      setApplyData(applyData);
-      onNext();
     }
   };
 
-  const readImg = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const readImg = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
 
     if (event.target.files) {
@@ -182,6 +152,20 @@ const ApplyPage: NextPage<
       }
       // 파일의 url을 읽는다.
       event.target.files[0] && reader.readAsDataURL(event.target.files[0]);
+
+      const formData = new FormData();
+      imgInput.current?.files &&
+        formData?.append('file', imgInput.current?.files[0]);
+
+      try {
+        const {
+          data: { url },
+        }: { data: { url: string } } = await application.postImage(formData);
+
+        setImgURL(url);
+      } catch (e) {
+        toast.error('이미지 저장 중 오류가 발생했어요. 다시 시도해주세요.');
+      }
     }
 
     // 읽기 동작 성공 시 미리보기 이미지 url 설정
@@ -197,18 +181,18 @@ const ApplyPage: NextPage<
     }
   };
 
-  const onSubmit = async (data: ApplyFormType) => {
+  const onSubmit = (data: ApplyFormType) => {
     validate();
     if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
-      await apply(data);
+      apply(data);
     } else {
-      toast.error('정보 저장에 실패했어요. 다시한번 시도해주세요.');
+      toast.error('정보 저장에 실패했어요. 다시 시도해주세요.');
     }
   };
 
   const validate = () => {
     watch('screening') === 'SPECIAL' && toast.error('전형을 선택해주세요.');
-    choice1 && choice2 && choice3
+    choice1 !== '' && choice2 !== '' && choice3 !== ''
       ? setIsMajorSelected(true)
       : setIsMajorSelected(false);
     applicantAddress !== ''
@@ -266,9 +250,19 @@ const ApplyPage: NextPage<
             </S.GenderSelect>
           </S.GenderBox>
           <S.BirthBox>
-            <S.Birth>{userBirth.getFullYear()}</S.Birth>
-            <S.Birth>{userBirth.getMonth() + 1}</S.Birth>
-            <S.Birth>{userBirth.getDate()}</S.Birth>
+            {userBirth ? (
+              <>
+                <S.Birth>{userBirth.getFullYear()}</S.Birth>
+                <S.Birth>{userBirth.getMonth() + 1}</S.Birth>
+                <S.Birth>{userBirth.getDate()}</S.Birth>
+              </>
+            ) : (
+              <>
+                <S.Birth></S.Birth>
+                <S.Birth></S.Birth>
+                <S.Birth></S.Birth>
+              </>
+            )}
           </S.BirthBox>
           <S.AddressBox>
             <S.AddressDescription>주소지 검색</S.AddressDescription>

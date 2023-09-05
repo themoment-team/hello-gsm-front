@@ -16,7 +16,7 @@ interface ScoreType {
 }
 
 interface GEDCalculatorPageProps {
-  score: string;
+  score: string | undefined;
   isSubmissionProp: boolean;
 }
 
@@ -75,13 +75,13 @@ const GEDCalculatorPage: NextPage<GEDCalculatorPageProps> = ({
       setIsSubmission(true);
       toast.success('성적입력이 완료되었어요.');
     } catch (err: any) {
-      console.log(err);
+      console.error(err);
       toast.error('문제가 발생했어요. 다시 시도해주세요.');
     }
   };
 
   const inValid = (Errors: FieldErrors) => {
-    console.log(Errors);
+    console.error(Errors);
     toast.error('문제가 발생했어요. 다시 시도해주세요.');
   };
 

@@ -139,22 +139,20 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
               !data?.admissionStatus?.isFinalSubmitted ? (
                 <LinkButton
                   href={logged ? '/information' : '/auth/signin'}
-                  color="sky"
+                  color={theme.color.primary.sky}
                 >
                   📑 원서접수 하러가기
                 </LinkButton>
               ) : (
-                <S.ToApply disabled>접수 완료</S.ToApply>
+                <LinkButton color={theme.color.primary.lime}>
+                  ✅ 접수 완료
+                </LinkButton>
               )
             ) : (
-              <S.ToApply disabled>접수 기간이 아닙니다.</S.ToApply>
+              <LinkButton disabled>❌ 접수 기간이 아닙니다.</LinkButton>
             )
           ) : (
-            <S.ToApply disabled>
-              {isAcceptable
-                ? '원서 접수는 pc로만 가능해요'
-                : '접수 기간이 아닙니다.'}
-            </S.ToApply>
+            <LinkButton disabled>🖥️ 원서 접수는 pc로만 가능해요</LinkButton>
           )}
 
           <div>
