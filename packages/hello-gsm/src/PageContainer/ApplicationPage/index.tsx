@@ -71,10 +71,12 @@ const ApplicationPage: NextPage<ApplicationDataType> = ({ data }) => {
     <>
       <Global
         styles={css`
-          body {
-            header,
-            footer {
-              display: none !important;
+          @media print {
+            body {
+              header,
+              footer {
+                display: none;
+              }
             }
           }
         `}
