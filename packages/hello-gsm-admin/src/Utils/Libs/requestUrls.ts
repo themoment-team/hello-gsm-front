@@ -52,6 +52,7 @@ export const ApplicationController = {
   tickets: (page: number, size: number) => {
     return `/application/v1/tickets?page=${page}&size=${size}`;
   },
+  // get 최종제출이 완료된 사용자를 검색
   searchApplication: (
     page: number,
     size: number,
