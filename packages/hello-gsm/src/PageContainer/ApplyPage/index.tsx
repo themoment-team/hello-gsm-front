@@ -25,11 +25,10 @@ const ApplyPage: NextPage<
 > = ({ applicationData, onNext, identityData }) => {
   const imgInput = useRef<HTMLInputElement>(null);
   const [imgURL, setImgURL] = useState<string>('');
-  const [isIdPhoto, setIsIdPhoto] = useState<boolean>(true);
-  const [isMajorSelected, setIsMajorSelected] = useState<boolean>(true);
-  const [isAddressExist, setIsAddressExist] = useState<boolean>(true);
-  const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(true);
-  const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [isIdPhoto, setIsIdPhoto] = useState<boolean>(false);
+  const [isMajorSelected, setIsMajorSelected] = useState<boolean>(false);
+  const [isAddressExist, setIsAddressExist] = useState<boolean>(false);
+  const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(false);
   const userBirth = identityData && new Date(identityData?.birth);
 
   const [isSpecialScreening, setIsSpecialScreening] = useState<boolean>(false);
@@ -71,11 +70,6 @@ const ApplyPage: NextPage<
 
   useEffect(() => {
     const admissionInfo = applicationData?.admissionInfo;
-    if (applicationData?.middleSchoolGrade !== null) {
-      setIsEdit(true);
-    } else {
-      setIsEdit(false);
-    }
 
     if (
       applicationData?.admissionInfo.screening === 'SPECIAL_ADMISSION' ||
@@ -105,9 +99,18 @@ const ApplyPage: NextPage<
     setSchoolLocation(admissionInfo?.schoolLocation ?? '');
     setApplicantAddress(admissionInfo?.address ?? '');
     console.log(admissionInfo?.schoolName, schoolName);
-  }, [applicationData, applicationData?.admissionInfo]);
 
-  console.log(schoolName);
+    choice1 !== '' && choice2 !== '' && choice3 !== ''
+      ? setIsMajorSelected(true)
+      : setIsMajorSelected(false);
+    applicantAddress !== ''
+      ? setIsAddressExist(true)
+      : setIsAddressExist(false);
+    schoolName !== '' || watch('graduation') === 'GED'
+      ? setIsSchoolNameExist(true)
+      : setIsSchoolNameExist(false);
+    imgURL !== '' ? setIsIdPhoto(true) : setIsIdPhoto(false);
+  }, [applicationData, applicationData?.admissionInfo]);
 
   const apply = (submitData: ApplyFormType) => {
     setshowApplyPostModal();
@@ -204,6 +207,8 @@ const ApplyPage: NextPage<
     imgURL !== '' ? setIsIdPhoto(true) : setIsIdPhoto(false);
     !isIdPhoto && toast.error('증명사진을 등록해주세요.');
   };
+
+  console.log(schoolName, isSchoolNameExist);
 
   return (
     <>
