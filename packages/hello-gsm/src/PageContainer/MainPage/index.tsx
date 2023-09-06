@@ -144,7 +144,7 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
                   📑 원서접수 하러가기
                 </LinkButton>
               ) : (
-                <LinkButton color={theme.color.primary.lime}>
+                <LinkButton color={theme.color.primary.lime} disabled>
                   ✅ 접수 완료
                 </LinkButton>
               )
