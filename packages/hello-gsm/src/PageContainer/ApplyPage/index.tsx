@@ -114,7 +114,7 @@ const ApplyPage: NextPage<
         applicantImageUri: imgURL,
         address: applicantAddress,
         detailAddress: submitData?.detailAddress,
-        teacherPhoneNumber: submitData?.teacherPhoneNumber,
+        teacherPhoneNumber: submitData?.teacherPhoneNumber || null,
         teacherName: submitData?.teacherName || null,
         telephone: submitData?.telephone || null,
         guardianPhoneNumber: submitData?.guardianPhoneNumber,
