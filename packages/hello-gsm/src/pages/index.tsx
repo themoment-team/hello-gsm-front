@@ -53,7 +53,7 @@ const Home: NextPage = () => {
     }
 
     getApplication();
-  }, []);
+  }, [query]);
 
   return (
     <>
