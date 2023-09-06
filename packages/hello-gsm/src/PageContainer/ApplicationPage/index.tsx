@@ -45,7 +45,7 @@ const ApplicationPage: NextPage<ApplicationDataType> = ({ data }) => {
     setSubjects(scoreData?.subjects || []);
     setNewSubjects(scoreData?.newSubjects || []);
     setNonSubjects(scoreData?.nonSubjects || []);
-  }, []);
+  }, [middleSchoolGrade]);
 
   const isGEDScore = isGED(admissionGrade);
 
