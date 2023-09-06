@@ -25,10 +25,10 @@ const Application: NextPage = () => {
       console.log(data);
 
       if (!data?.admissionStatus.isFinalSubmitted) {
-        // push('/mypage');
+        push('/mypage');
       }
     } catch (e) {
-      // push('/mypage');
+      push('/mypage');
     }
   };
 
