@@ -40,7 +40,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
 
   const getApplicationList = async () => {
     try {
-      const { data } = await application.getAllApplication(1, 100);
+      const { data }: any = await application.getSearchApplication(1, 100);
       console.log(data);
     } catch (e) {
       console.error(e);

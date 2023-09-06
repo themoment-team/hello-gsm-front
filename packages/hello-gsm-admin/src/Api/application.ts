@@ -63,6 +63,27 @@ class Application {
       return error;
     }
   }
+  /**
+   * @param page - 페이지
+   * @param size - 원서크기
+   * @param tag - 검색태그
+   * @param keyword - 검색 키워드
+   */
+  getSearchApplication(
+    page: number,
+    size: number,
+    tag?: string,
+    keyword?: string,
+  ) {
+    try {
+      return RequestApi({
+        method: 'GET',
+        url: ApplicationController.searchApplication(page, size),
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  }
 }
 
 export default new Application();

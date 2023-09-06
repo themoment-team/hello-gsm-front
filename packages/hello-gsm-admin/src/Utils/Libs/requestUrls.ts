@@ -52,4 +52,12 @@ export const ApplicationController = {
   tickets: (page: number, size: number) => {
     return `/application/v1/tickets?page=${page}&size=${size}`;
   },
+  searchApplication: (
+    page: number,
+    size: number,
+    tag?: string,
+    keyword?: string,
+  ) => {
+    return `/application/v1/application/search?page=${page}&size=${size}&tag=APPLICANT&keyword=${keyword}`;
+  },
 };
