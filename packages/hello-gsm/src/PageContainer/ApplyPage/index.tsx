@@ -109,36 +109,31 @@ const ApplyPage: NextPage<
 
   console.log(schoolName);
 
-  const apply = async (submitData: ApplyFormType) => {
-    try {
-      setshowApplyPostModal();
+  const apply = (submitData: ApplyFormType) => {
+    setshowApplyPostModal();
 
-      const applyData: ApplyFormType = {
-        applicantImageUri: imgURL,
-        address: applicantAddress,
-        detailAddress: submitData?.detailAddress,
-        teacherPhoneNumber: submitData?.teacherPhoneNumber || null,
-        teacherName: submitData?.teacherName || null,
-        telephone: submitData?.telephone || null,
-        guardianPhoneNumber: submitData?.guardianPhoneNumber,
-        guardianName: submitData?.guardianName,
-        relationWithApplicant: submitData?.relationWithApplicant,
-        schoolName: schoolName || null,
-        schoolLocation: schoolLocation || null,
-        graduation: submitData?.graduation,
-        firstDesiredMajor: choice1,
-        secondDesiredMajor: choice2,
-        thirdDesiredMajor: choice3,
-        screening: submitData?.screening,
-      };
-      setApplyData(applyData);
-      onNext();
+    const applyData: ApplyFormType = {
+      applicantImageUri: imgURL,
+      address: applicantAddress,
+      detailAddress: submitData?.detailAddress,
+      teacherPhoneNumber: submitData?.teacherPhoneNumber || null,
+      teacherName: submitData?.teacherName || null,
+      telephone: submitData?.telephone || null,
+      guardianPhoneNumber: submitData?.guardianPhoneNumber,
+      guardianName: submitData?.guardianName,
+      relationWithApplicant: submitData?.relationWithApplicant,
+      schoolName: schoolName || null,
+      schoolLocation: schoolLocation || null,
+      graduation: submitData?.graduation,
+      firstDesiredMajor: choice1,
+      secondDesiredMajor: choice2,
+      thirdDesiredMajor: choice3,
+      screening: submitData?.screening,
+    };
+    setApplyData(applyData);
+    onNext();
 
-      setshowApplyPostModal();
-    } catch (error: any) {
-      setshowApplyPostModal();
-      toast.error('원서 정보 저장 중 에러가 발생했어요. 다시 시도해주세요.');
-    }
+    setshowApplyPostModal();
   };
 
   const readImg = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -155,20 +150,6 @@ const ApplyPage: NextPage<
       }
       // 파일의 url을 읽는다.
       event.target.files[0] && reader.readAsDataURL(event.target.files[0]);
-
-      const formData = new FormData();
-      imgInput.current?.files &&
-        formData?.append('file', imgInput.current?.files[0]);
-
-      try {
-        const {
-          data: { url },
-        }: { data: { url: string } } = await application.postImage(formData);
-
-        setImgURL(url);
-      } catch (e) {
-        toast.error('이미지 저장 중 오류가 발생했어요. 다시 시도해주세요.');
-      }
     }
 
     // 읽기 동작 성공 시 미리보기 이미지 url 설정
@@ -182,12 +163,29 @@ const ApplyPage: NextPage<
     if (imgInput.current?.files && imgInput.current?.files[0] === undefined) {
       setImgURL('');
     }
+
+    const formData = new FormData();
+    imgInput.current?.files &&
+      formData?.append('file', imgInput.current?.files[0]);
+
+    try {
+      const {
+        data: { url },
+      }: { data: { url: string } } = await application.postImage(formData);
+
+      setImgURL(url);
+      toast.success('이미지가 등록되었어요.');
+    } catch (e) {
+      toast.error('이미지 저장 중 오류가 발생했어요. 다시 시도해주세요.');
+    }
   };
 
   const onSubmit = (data: ApplyFormType) => {
     validate();
     if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
       apply(data);
+    } else {
+      toast.error('원서 정보 저장 중 에러가 발생했어요. 다시 시도해주세요.');
     }
   };
 
