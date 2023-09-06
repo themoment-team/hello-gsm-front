@@ -172,15 +172,25 @@ const ApplyPage: NextPage<
     }
   };
 
-  const onSubmit = async (data: ApplyFormType) => {
-    const isValidationSuccessful = validate();
+  const onSubmit = (data: ApplyFormType) => {
+    (watch('screening') === 'SPECIAL' || watch('screening') === '') &&
+      toast.error('전형을 선택해주세요.');
+    choice1 !== '' && choice2 !== '' && choice3 !== ''
+      ? setIsMajorSelected(true)
+      : setIsMajorSelected(false);
+    applicantAddress !== ''
+      ? setIsAddressExist(true)
+      : setIsAddressExist(false);
+    schoolName !== '' || watch('graduation') === 'GED'
+      ? setIsSchoolNameExist(true)
+      : setIsSchoolNameExist(false);
+    imgURL !== '' ? setIsIdPhoto(true) : setIsIdPhoto(false);
+    !isIdPhoto && toast.error('증명사진을 등록해주세요.');
 
-    if (isValidationSuccessful) {
-      if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
-        apply(data);
-      } else {
-        toast.error('원서 정보 저장 중 에러가 발생했어요. 다시 시도해주세요.');
-      }
+    if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
+      apply(data);
+    } else {
+      toast.error('원서 정보 저장 중 에러가 발생했어요. 다시 시도해주세요.');
     }
   };
 
@@ -198,11 +208,7 @@ const ApplyPage: NextPage<
       : setIsSchoolNameExist(false);
     imgURL !== '' ? setIsIdPhoto(true) : setIsIdPhoto(false);
     !isIdPhoto && toast.error('증명사진을 등록해주세요.');
-
-    return true;
   };
-
-  console.log(schoolName, isSchoolNameExist);
 
   return (
     <>
