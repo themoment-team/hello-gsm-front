@@ -123,9 +123,10 @@ const ApplyPage: NextPage<
       screening: submitData?.screening,
     };
     setApplyData(applyData);
-    onNext();
 
     setshowApplyPostModal();
+    if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto)
+      onNext();
   };
 
   const readImg = async (event: React.ChangeEvent<HTMLInputElement>) => {
