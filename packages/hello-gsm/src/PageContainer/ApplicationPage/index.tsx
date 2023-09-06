@@ -9,6 +9,7 @@ import toStringArray from 'Utils/Array/toStringArray';
 import { formatGender } from 'Utils/Format';
 import { ApplicationDataType } from 'type/application';
 import { isGED } from 'type/ged';
+import { css, Global } from '@emotion/react';
 
 const ApplicationPage: NextPage<ApplicationDataType> = ({ data }) => {
   // 로컬스토리지 값을 가져와서 등급으로 표시
@@ -68,6 +69,16 @@ const ApplicationPage: NextPage<ApplicationDataType> = ({ data }) => {
 
   return (
     <>
+      <Global
+        styles={css`
+          body {
+            header,
+            footer {
+              display: none;
+            }
+          }
+        `}
+      />
       {/* 입학원서 */}
       <S.ApplicationPage>
         <S.Document>

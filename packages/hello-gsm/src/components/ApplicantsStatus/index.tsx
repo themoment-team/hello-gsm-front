@@ -74,6 +74,7 @@ const ApplicantsStatus: React.FC<ApplicationDataType> = ({ data }) => {
               );
             })}
           </>
+          {isGEDScore ? <S.Slash /> : <td>{admissionGrade?.artisticScore}</td>}
           <td>
             {isGEDScore
               ? admissionGrade?.gedTotalScore
