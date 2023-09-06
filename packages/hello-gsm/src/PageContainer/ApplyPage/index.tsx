@@ -204,8 +204,8 @@ const ApplyPage: NextPage<
     schoolName !== '' || watch('graduation') === 'GED'
       ? setIsSchoolNameExist(true)
       : setIsSchoolNameExist(false);
-    imgURL ? setIsIdPhoto(true) : setIsIdPhoto(false);
-    !isEdit && !imgURL && toast.error('증명사진을 등록해주세요.');
+    imgURL !== '' ? setIsIdPhoto(true) : setIsIdPhoto(false);
+    !isIdPhoto && toast.error('증명사진을 등록해주세요.');
   };
 
   return (
