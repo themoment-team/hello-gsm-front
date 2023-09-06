@@ -1,17 +1,33 @@
-import type { GetServerSideProps, NextPage } from 'next';
+import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import { MainPage } from 'PageContainer';
 import application from 'Api/application';
-import { ApplicationDataType } from 'type/application';
+import {
+  ApplicationDataType,
+  CommonApplicationResponseType,
+} from 'type/application';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
-const Home: NextPage<ApplicationDataType> = ({ data }) => {
+const Home: NextPage = () => {
   const seoTitle = '홈';
   const desc = '광주소프트웨어마이스터고등학교 입학 지원 서비스입니다.';
 
   const { query, push } = useRouter();
+
+  const [applicationData, setApplicationData] =
+    useState<CommonApplicationResponseType>();
+
+  const getApplication = async () => {
+    try {
+      const { data }: ApplicationDataType =
+        await application.getMyApplication();
+      setApplicationData(data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   useEffect(() => {
     const isVerification = query.verification === 'true';
@@ -35,29 +51,16 @@ const Home: NextPage<ApplicationDataType> = ({ data }) => {
     if (isLogoutSuccess) {
       toast.success('로그아웃 되었습니다.');
     }
+
+    getApplication();
   }, []);
 
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
-      <MainPage data={data} />
+      <MainPage data={applicationData} />
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  try {
-    const { data }: ApplicationDataType = await application.getMyApplication();
-    return {
-      props: {
-        data,
-      },
-    };
-  } catch (error) {
-    return {
-      props: {},
-    };
-  }
 };
 
 export default Home;
