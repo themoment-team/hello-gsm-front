@@ -104,7 +104,10 @@ const ApplyPage: NextPage<
     setSchoolName(admissionInfo?.schoolName ?? '');
     setSchoolLocation(admissionInfo?.schoolLocation ?? '');
     setApplicantAddress(admissionInfo?.address ?? '');
+    console.log(admissionInfo?.schoolName, schoolName);
   }, [applicationData, applicationData?.admissionInfo]);
+
+  console.log(schoolName);
 
   const apply = async (submitData: ApplyFormType) => {
     try {
