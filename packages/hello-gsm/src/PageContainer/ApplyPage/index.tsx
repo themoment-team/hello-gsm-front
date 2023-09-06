@@ -99,7 +99,9 @@ const ApplyPage: NextPage<
     setSchoolLocation(admissionInfo?.schoolLocation ?? '');
     setApplicantAddress(admissionInfo?.address ?? '');
     console.log(admissionInfo?.schoolName, schoolName);
+  }, [applicationData, applicationData?.admissionInfo]);
 
+  useEffect(() => {
     choice1 !== '' && choice2 !== '' && choice3 !== ''
       ? setIsMajorSelected(true)
       : setIsMajorSelected(false);
@@ -110,7 +112,7 @@ const ApplyPage: NextPage<
       ? setIsSchoolNameExist(true)
       : setIsSchoolNameExist(false);
     imgURL !== '' ? setIsIdPhoto(true) : setIsIdPhoto(false);
-  }, [applicationData, applicationData?.admissionInfo]);
+  }, [applicantAddress, choice1, choice2, choice3, imgURL, schoolName, watch]);
 
   const apply = (submitData: ApplyFormType) => {
     setshowApplyPostModal();
@@ -183,7 +185,7 @@ const ApplyPage: NextPage<
     }
   };
 
-  const onSubmit = (data: ApplyFormType) => {
+  const onSubmit = async (data: ApplyFormType) => {
     validate();
     if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
       apply(data);
