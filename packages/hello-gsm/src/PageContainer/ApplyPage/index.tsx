@@ -125,8 +125,8 @@ const ApplyPage: NextPage<
     setApplyData(applyData);
 
     setshowApplyPostModal();
-    if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto)
-      onNext();
+
+    onNext();
   };
 
   const readImg = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -208,7 +208,12 @@ const ApplyPage: NextPage<
   const onSubmit = async (data: ApplyFormType) => {
     try {
       await validate();
-
+      const isMajorSelected =
+        choice1 !== '' && choice2 !== '' && choice3 !== '';
+      const isAddressExist = applicantAddress !== '';
+      const isSchoolNameExist =
+        schoolName !== '' || watch('graduation') === 'GED';
+      const isIdPhoto = imgURL !== '';
       if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
         apply(data);
       } else {
