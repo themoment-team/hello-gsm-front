@@ -174,10 +174,6 @@ const ApplyPage: NextPage<
   };
 
   const validate = async (): Promise<void> => {
-    if (watch('screening') === 'SPECIAL' || watch('screening') === '') {
-      toast.error('전형을 선택해주세요.');
-    }
-
     if (choice1 !== '' && choice2 !== '' && choice3 !== '') {
       setIsMajorSelected(true);
     } else {
@@ -196,6 +192,10 @@ const ApplyPage: NextPage<
       setIsSchoolNameExist(false);
     }
 
+    if (watch('screening') === 'SPECIAL' || watch('screening') === '') {
+      toast.error('전형을 선택해주세요.');
+    }
+
     if (imgURL !== '') {
       setIsIdPhoto(true);
     } else {
@@ -204,25 +204,19 @@ const ApplyPage: NextPage<
     }
   };
 
-  console.log(isSchoolNameExist);
-  const onSubmit = async (data: ApplyFormType) => {
-    try {
-      await validate();
-      const isMajorSelected =
-        choice1 !== '' && choice2 !== '' && choice3 !== '';
-      const isAddressExist = applicantAddress !== '';
-      const isSchoolNameExist =
-        schoolName !== '' || watch('graduation') === 'GED';
-      const isIdPhoto = imgURL !== '';
-      if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
-        apply(data);
-      } else {
-        toast.error('원서 정보 저장 중 에러가 발생했어요. 다시 시도해주세요.');
-      }
-    } catch (error) {
-      // Handle any errors that occur during validation or submission
-      console.error('An error occurred:', error);
-      toast.error('오류가 발생했어요. 다시 시도해주세요.');
+  const onSubmit = (data: ApplyFormType) => {
+    validate();
+
+    const isMajorSelected = choice1 !== '' && choice2 !== '' && choice3 !== '';
+    const isAddressExist = applicantAddress !== '';
+    const isSchoolNameExist =
+      schoolName !== '' || watch('graduation') === 'GED';
+    const isIdPhoto = imgURL !== '';
+
+    if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
+      apply(data);
+    } else {
+      toast.error('원서 정보 저장 중 에러가 발생했어요. 다시 시도해주세요.');
     }
   };
 
