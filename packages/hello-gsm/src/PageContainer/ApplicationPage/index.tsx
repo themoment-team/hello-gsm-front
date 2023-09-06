@@ -74,7 +74,7 @@ const ApplicationPage: NextPage<ApplicationDataType> = ({ data }) => {
           body {
             header,
             footer {
-              display: none;
+              display: none !important;
             }
           }
         `}
