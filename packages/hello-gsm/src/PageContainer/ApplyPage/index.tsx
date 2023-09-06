@@ -205,13 +205,13 @@ const ApplyPage: NextPage<
   };
 
   const onSubmit = async (data: ApplyFormType) => {
-    await validate();
-
-    if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
-      apply(data);
-    } else {
-      toast.error('원서 정보 저장 중 에러가 발생했어요. 다시 시도해주세요.');
-    }
+    await validate().then(() => {
+      if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
+        apply(data);
+      } else {
+        toast.error('원서 정보 저장 중 에러가 발생했어요. 다시 시도해주세요.');
+      }
+    });
   };
 
   return (
@@ -222,7 +222,9 @@ const ApplyPage: NextPage<
       {showApplyPostModal && <ApplyPostModal />}
       <S.ApplyPage>
         <ApplyBarBox isSpecialScreening={isSpecialScreening} />
-        <S.ApplyPageContent onSubmit={handleSubmit(onSubmit, validate)}>
+        <S.ApplyPageContent
+          onSubmit={handleSubmit(onSubmit, async () => await validate())}
+        >
           <S.Title>지원자 인적사항</S.Title>
           <S.ImgInputBox htmlFor="img-input">
             {imgURL ? (
