@@ -25,10 +25,10 @@ const ApplyPage: NextPage<
 > = ({ applicationData, onNext, identityData }) => {
   const imgInput = useRef<HTMLInputElement>(null);
   const [imgURL, setImgURL] = useState<string>('');
-  const [isIdPhoto, setIsIdPhoto] = useState<boolean>(false);
-  const [isMajorSelected, setIsMajorSelected] = useState<boolean>(false);
-  const [isAddressExist, setIsAddressExist] = useState<boolean>(false);
-  const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(false);
+  const [isIdPhoto, setIsIdPhoto] = useState<boolean>(true);
+  const [isMajorSelected, setIsMajorSelected] = useState<boolean>(true);
+  const [isAddressExist, setIsAddressExist] = useState<boolean>(true);
+  const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(true);
   const userBirth = identityData && new Date(identityData?.birth);
 
   const [isSpecialScreening, setIsSpecialScreening] = useState<boolean>(false);
@@ -181,9 +181,6 @@ const ApplyPage: NextPage<
       } else {
         toast.error('원서 정보 저장 중 에러가 발생했어요. 다시 시도해주세요.');
       }
-    } else {
-      // 검증에 실패한 경우 오류 처리
-      toast.error('유효성 검사 실패');
     }
   };
 
