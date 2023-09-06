@@ -85,7 +85,6 @@ export interface AdmissionInfoType {
 }
 
 export interface CommonApplicationResponseType {
-  name: string;
   id: number;
   admissionInfo: {
     applicantName: string;
