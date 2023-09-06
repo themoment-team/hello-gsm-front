@@ -188,13 +188,12 @@ const ApplyPage: NextPage<
     validate();
     if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
       apply(data);
-    } else {
-      toast.error('정보 저장에 실패했어요. 다시 시도해주세요.');
     }
   };
 
   const validate = () => {
-    watch('screening') === 'SPECIAL' && toast.error('전형을 선택해주세요.');
+    (watch('screening') === 'SPECIAL' || watch('screening') === '') &&
+      toast.error('전형을 선택해주세요.');
     choice1 !== '' && choice2 !== '' && choice3 !== ''
       ? setIsMajorSelected(true)
       : setIsMajorSelected(false);
