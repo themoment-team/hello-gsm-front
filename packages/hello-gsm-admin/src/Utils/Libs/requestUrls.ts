@@ -59,7 +59,7 @@ export const ApplicationController = {
     keyword?: string,
   ) => {
     return `/application/v1/application/search?page=${page}&size=${size}${
-      tag && keyword && `&tag=${tag}&keyword=${keyword}`
+      tag ? `&tag=${tag}&keyword=${keyword}` : ''
     }`;
   },
 };
