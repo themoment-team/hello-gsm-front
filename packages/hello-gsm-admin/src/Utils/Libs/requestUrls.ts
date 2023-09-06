@@ -58,6 +58,8 @@ export const ApplicationController = {
     tag?: string,
     keyword?: string,
   ) => {
-    return `/application/v1/application/search?page=${page}&size=${size}`;
+    return `/application/v1/application/search?page=${page}&size=${size}${
+      tag && keyword && `&tag=${tag}&keyword=${keyword}`
+    }`;
   },
 };
