@@ -175,7 +175,6 @@ const ApplyPage: NextPage<
   const validate = async (): Promise<void> => {
     if (watch('screening') === 'SPECIAL' || watch('screening') === '') {
       toast.error('전형을 선택해주세요.');
-      return;
     }
 
     if (choice1 !== '' && choice2 !== '' && choice3 !== '') {
