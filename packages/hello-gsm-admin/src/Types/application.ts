@@ -59,6 +59,9 @@ export interface GetListType {
 export interface ApplicantsType {
   list: ApplicantType[];
   count: number;
+  searchParams: {
+    pageNumber: string;
+  };
 }
 
 export type ScreeningType =
