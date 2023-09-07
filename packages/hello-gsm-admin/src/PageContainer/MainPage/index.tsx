@@ -4,48 +4,22 @@ import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { css, Global } from '@emotion/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ApplicantsType, ApplicantType, GetListType } from 'Types/application';
+import {
+  ApplicantsType,
+  ApplicantType,
+  GetListType,
+  SearchApplicationType,
+} from 'Types/application';
 import application from 'Api/application';
 import auth from 'Api/auth';
 import { isStartFirstResult } from 'shared/acceptable';
 
 const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(list);
-  const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
-  const loadMoreRef = useRef<HTMLDivElement>(null);
   const { showScoreModal } = useStore();
 
   const [searchValue, setSearchValue] = useState<string>('');
   const [tmpValue, setTmpValue] = useState<string>('');
-
-  const handleObserver = useCallback(
-    async (
-      [entry]: IntersectionObserverEntry[],
-      observer: IntersectionObserver,
-    ) => {
-      if (entry.isIntersecting) {
-        observer.unobserve(entry.target);
-        observer.observe(entry.target);
-      }
-    },
-    [],
-  );
-
-  useEffect(() => {
-    if (!loadMoreRef.current) return;
-
-    const option = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0,
-    };
-
-    const observer = new IntersectionObserver(handleObserver, option);
-
-    loadMoreRef.current && observer.observe(loadMoreRef.current);
-
-    return () => observer && observer.disconnect();
-  }, [handleObserver, isPageEnd]);
 
   useEffect(() => {
     const debounce = setTimeout(() => {
@@ -69,6 +43,20 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
     });
   });
 
+  const getApplicationList = async () => {
+    try {
+      const { data }: SearchApplicationType =
+        await application.getSearchApplication(0, 8);
+      console.log(data);
+    } catch (error: any) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getApplicationList();
+  }, []);
+
   return (
     <S.MainPage>
       <Global
@@ -83,9 +71,10 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
         <MainpageHeader />
         <S.ContentList>
           {filteredApplicationList?.map((content, index: number) => (
-            <ContentBox content={content} key={index} />
+            <>
+              <ContentBox content={content} key={index} />
+            </>
           ))}
-          {!isPageEnd && <S.Target ref={loadMoreRef} />}
         </S.ContentList>
       </S.MainPageContent>
     </S.MainPage>
