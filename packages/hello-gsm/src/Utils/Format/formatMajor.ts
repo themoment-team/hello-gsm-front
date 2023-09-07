@@ -3,8 +3,8 @@ import { MajorType } from 'type/application';
 type MajorObjectType = {
   [key in MajorType]: string;
 };
-const formatMajor = (major: MajorType | null): string => {
-  if (major === null) return '';
+const formatMajor = (major: MajorType | undefined | null): string => {
+  if (!major) return '';
 
   const majorObject: MajorObjectType = {
     SW: '소프트웨어개발과',

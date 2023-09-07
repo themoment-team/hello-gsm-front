@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import device from 'shared/config';
 
-export const HeaderWrap = styled.div`
+export const HeaderWrap = styled.header`
   color: #ffffff;
   user-select: none;
   height: 4.375rem;
@@ -24,7 +24,7 @@ export const LogoContent = styled.a`
   }
 `;
 
-export const NavBar = styled.div`
+export const NavBar = styled.nav`
   width: 26.5625rem;
   display: flex;
   justify-content: space-between;
