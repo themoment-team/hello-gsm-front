@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-const Home: NextPage<ApplicantsType> = ({ list, count, searchParams }) => {
+const Home: NextPage<ApplicantsType> = ({ list, count }) => {
   const seoTitle = '홈';
   const desc = '지원자들의 정보를 확인합니다.';
 
@@ -23,7 +23,7 @@ const Home: NextPage<ApplicantsType> = ({ list, count, searchParams }) => {
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
-      <MainPage list={list} count={count} searchParams={searchParams} />
+      <MainPage list={list} count={count} />
     </>
   );
 };

@@ -14,15 +14,12 @@ import application from 'Api/application';
 import auth from 'Api/auth';
 import { isStartFirstResult } from 'shared/acceptable';
 
-const MainPage: NextPage<ApplicantsType> = ({ list, count, searchParams }) => {
-  console.log(searchParams);
+const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(list);
   const { showScoreModal } = useStore();
 
   const [searchValue, setSearchValue] = useState<string>('');
   const [tmpValue, setTmpValue] = useState<string>('');
-
-  const pageNumber = Number(searchParams.pageNumber ?? 1);
 
   useEffect(() => {
     const debounce = setTimeout(() => {
