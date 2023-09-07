@@ -150,6 +150,10 @@ export const ContentSelect = styled.button`
   padding: 0 1.1716rem;
   margin: 0;
 
+  @media ${device.laptop} {
+    ${({ theme }) => theme.typo.h5}
+  }
+
   @media ${device.mobile} {
     ${({ theme }) => theme.typo.body1}
   }

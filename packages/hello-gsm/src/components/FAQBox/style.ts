@@ -1,5 +1,6 @@
 import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
+import device from 'shared/config';
 
 const fadeAnimation = keyframes`
   0% {
@@ -32,6 +33,7 @@ const fadeOutAnimation = keyframes`
     max-height: 0;
   }
 `;
+
 export const FAQBox = styled.button`
   width: 100%;
   height: 100%;
@@ -44,6 +46,10 @@ export const FAQBox = styled.button`
   cursor: pointer;
   position: relative;
   display: block;
+
+  @media ${device.mobile} {
+    padding: 1.2rem 1rem;
+  }
 `;
 
 export const Title = styled.p`
@@ -54,6 +60,10 @@ export const Title = styled.p`
   &::before {
     content: 'Q. ';
     color: ${({ theme }) => theme.color.primary['lime']};
+  }
+
+  @media ${device.mobile} {
+    ${({ theme }) => theme.typo.h5}
   }
 `;
 
