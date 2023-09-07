@@ -292,7 +292,7 @@ const ApplyPage: NextPage<
               placeholder="상세주소"
               type="text"
               {...register('detailAddress', {
-                required: false,
+                required: '* 상세주소를 입력해주세요.',
                 maxLength: {
                   value: 50,
                   message: '* 상세주소는 50글자 이하입니다.',
