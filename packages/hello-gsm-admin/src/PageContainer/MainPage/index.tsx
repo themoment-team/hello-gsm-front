@@ -49,7 +49,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
         await application.getSearchApplication(0, 8);
       console.log(data);
     } catch (error: any) {
-      console.log(error);
+      console.error(error);
     }
   };
 
