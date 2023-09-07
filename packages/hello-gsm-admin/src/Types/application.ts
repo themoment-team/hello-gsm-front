@@ -2,6 +2,8 @@ export interface DocumentType {
   registrationNumber: number;
 }
 
+export type EvaluationStatusType = 'NOT_YET' | 'PASS' | 'FALL';
+
 export interface ScoreType {
   registrationNumber: number;
   personalityEvaluationScore: number;
@@ -24,6 +26,30 @@ export interface ApplicantType {
       personalityEvaluationScore: string;
     };
   };
+}
+
+export interface SearchApplicationInfoType {
+  info: {
+    count: number;
+  };
+  applications: {
+    applicationId: number;
+    isFinalSubmitted: boolean;
+    isPrintsArrived: boolean;
+    applicantName: string;
+    screening: string;
+    schoolName: ScreeningType;
+    applicantPhoneNumber: string;
+    guardianPhoneNumber: string;
+    teacherPhoneNumber: string;
+    firstEvaluation: EvaluationStatusType;
+    secondEvaluation: EvaluationStatusType;
+    secondScore: number;
+  }[];
+}
+
+export interface SearchApplicationType {
+  data: SearchApplicationInfoType;
 }
 
 export interface GetListType {
