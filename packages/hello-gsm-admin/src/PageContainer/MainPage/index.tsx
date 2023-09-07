@@ -4,7 +4,12 @@ import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { css, Global } from '@emotion/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ApplicantsType, ApplicantType, GetListType } from 'Types/application';
+import {
+  ApplicantsType,
+  ApplicantType,
+  GetListType,
+  SearchApplicationType,
+} from 'Types/application';
 import application from 'Api/application';
 import auth from 'Api/auth';
 import { isStartFirstResult } from 'shared/acceptable';
@@ -40,10 +45,11 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
 
   const getApplicationList = async () => {
     try {
-      const { data }: any = await application.getSearchApplication(1, 100);
+      const { data }: SearchApplicationType =
+        await application.getSearchApplication(1, 100);
       console.log(data);
-    } catch (e) {
-      console.error(e);
+    } catch (error: any) {
+      return error;
     }
   };
 

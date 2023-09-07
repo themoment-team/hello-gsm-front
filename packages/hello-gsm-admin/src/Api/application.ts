@@ -78,10 +78,10 @@ class Application {
     try {
       return RequestApi({
         method: 'GET',
-        url: ApplicationController.searchApplication(page, size),
+        url: ApplicationController.searchApplication(page, size, tag, keyword),
       });
-    } catch (e) {
-      console.error(e);
+    } catch (error: any) {
+      return error;
     }
   }
 }
