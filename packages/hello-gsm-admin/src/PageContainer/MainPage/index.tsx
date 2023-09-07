@@ -46,7 +46,12 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const getApplicationList = async () => {
     try {
       const { data }: SearchApplicationType =
-        await application.getSearchApplication(1, 100);
+        await application.getSearchApplication(
+          0,
+          1,
+          'APPLICANT',
+          '%ED%99%8D%EA%B8%B8',
+        );
       console.log(data);
     } catch (error: any) {
       return error;
