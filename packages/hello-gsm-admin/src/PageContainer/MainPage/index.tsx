@@ -46,15 +46,10 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const getApplicationList = async () => {
     try {
       const { data }: SearchApplicationType =
-        await application.getSearchApplication(
-          0,
-          1,
-          'APPLICANT',
-          '%ED%99%8D%EA%B8%B8',
-        );
+        await application.getSearchApplication(0, 8);
       console.log(data);
     } catch (error: any) {
-      return error;
+      console.log(error);
     }
   };
 
@@ -76,7 +71,9 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
         <MainpageHeader />
         <S.ContentList>
           {filteredApplicationList?.map((content, index: number) => (
-            <ContentBox content={content} key={index} />
+            <>
+              <ContentBox content={content} key={index} />
+            </>
           ))}
         </S.ContentList>
       </S.MainPageContent>
