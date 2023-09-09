@@ -30,7 +30,8 @@ export interface ApplicantType {
 
 export interface SearchApplicationInfoType {
   info: {
-    count: number;
+    totalPages: number;
+    totalElements: number;
   };
   applications: {
     applicationId: number;
