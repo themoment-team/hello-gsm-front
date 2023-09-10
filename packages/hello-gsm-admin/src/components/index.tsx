@@ -11,3 +11,4 @@ export { default as ModalButton } from './Modal/ModalButton';
 export { default as ModalInput } from './Modal/ModalInput';
 export { default as ModalResult } from './Modal/ModalResult';
 export { default as ModalSubmit } from './Modal/ModalSubmit';
+export { default as PaginationController } from './Pagination';

@@ -1,4 +1,9 @@
-import { ContentBox, ListHeader, MainpageHeader } from 'components';
+import {
+  ContentBox,
+  ListHeader,
+  MainpageHeader,
+  PaginationController,
+} from 'components';
 import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
@@ -8,7 +13,7 @@ import {
   ApplicantsType,
   ApplicantType,
   GetListType,
-  SearchApplicationType,
+  SearchApplicationInfoType,
 } from 'Types/application';
 import application from 'Api/application';
 import auth from 'Api/auth';
@@ -17,9 +22,10 @@ import { isStartFirstResult } from 'shared/acceptable';
 const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const [applicationList, setApplicationList] = useState<ApplicantType[]>(list);
   const { showScoreModal } = useStore();
-
   const [searchValue, setSearchValue] = useState<string>('');
   const [tmpValue, setTmpValue] = useState<string>('');
+  const [applicationData, setApplicationData] =
+    useState<SearchApplicationInfoType>();
 
   useEffect(() => {
     const debounce = setTimeout(() => {
@@ -45,8 +51,9 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
 
   const getApplicationList = async () => {
     try {
-      const { data }: SearchApplicationType =
+      const { data }: { data: SearchApplicationInfoType } =
         await application.getSearchApplication(0, 8);
+      setApplicationData(data);
       console.log(data);
     } catch (error: any) {
       console.error(error);
@@ -58,26 +65,37 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   }, []);
 
   return (
-    <S.MainPage>
-      <Global
-        styles={css`
-          body {
-            overflow: ${showScoreModal ? 'hidden' : 'visible'};
-          }
-        `}
-      />
-      <S.MainPageContent>
-        <ListHeader searchValue={tmpValue} setSearchValue={setTmpValue} />
-        <MainpageHeader />
-        <S.ContentList>
-          {filteredApplicationList?.map((content, index: number) => (
-            <>
-              <ContentBox content={content} key={index} />
-            </>
-          ))}
-        </S.ContentList>
-      </S.MainPageContent>
-    </S.MainPage>
+    <>
+      <S.MainPage>
+        <Global
+          styles={css`
+            body {
+              overflow: ${showScoreModal ? 'hidden' : 'visible'};
+            }
+          `}
+        />
+        <S.MainPageContent>
+          <ListHeader searchValue={tmpValue} setSearchValue={setTmpValue} />
+          <MainpageHeader />
+          <S.ContentList>
+            {filteredApplicationList?.map((content, index: number) => (
+              <>
+                <ContentBox content={content} key={index} />
+              </>
+            ))}
+            <S.Test />
+            <S.Test />
+            <S.Test />
+            <S.Test />
+            <S.Test />
+            <S.Test />
+            <S.Test />
+            <S.Test />
+          </S.ContentList>
+          <PaginationController totalPages={20} />
+        </S.MainPageContent>
+      </S.MainPage>
+    </>
   );
 };
 
