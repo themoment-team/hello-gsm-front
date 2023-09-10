@@ -2,11 +2,13 @@ import * as S from './style';
 import PaginationIcon from 'Assets/svg/PaginationIcon';
 
 interface PaginationControllerProps {
-  totalPages?: number;
+  totalPages: number;
+  pageNumber: number;
 }
 
 const PaginationController: React.FC<PaginationControllerProps> = ({
   totalPages,
+  pageNumber,
 }) => {
   return (
     <S.Test>
@@ -15,7 +17,15 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
       </S.PaginationButton>
       <S.NumberWrap>
         {[...Array(totalPages)].map((_, index) => {
-          return <span key={index + 1}>{index + 1}</span>;
+          const showNumber = index + 1;
+          return (
+            <S.PageNumberButton
+              key={showNumber}
+              selected={pageNumber === showNumber}
+            >
+              {showNumber}
+            </S.PageNumberButton>
+          );
         })}
       </S.NumberWrap>
       <S.PaginationButton>
