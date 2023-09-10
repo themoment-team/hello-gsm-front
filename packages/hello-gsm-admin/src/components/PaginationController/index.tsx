@@ -1,5 +1,6 @@
 import * as S from './style';
 import PaginationIcon from 'Assets/svg/PaginationIcon';
+import { useRouter } from 'next/router';
 
 interface PaginationControllerProps {
   totalPages: number;
@@ -10,10 +11,21 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
   totalPages,
   pageNumber,
 }) => {
+  const router = useRouter();
+  const pathName = router.pathname;
+
+  const updatePageNumber = (pageNumber: number) => {
+    console.log(pageNumber);
+    router.push(`${pathName}?pageNumber=${pageNumber}`);
+  };
   return (
     <S.Test>
-      <S.PaginationButton type="button">
-        <PaginationIcon turn="right" />
+      <S.PaginationButton
+        type="button"
+        onClick={() => updatePageNumber(pageNumber - 1)}
+        disabled={pageNumber === 1}
+      >
+        <PaginationIcon turn="right" disabled={pageNumber === 1} />
       </S.PaginationButton>
       <S.NumberWrap>
         {[...Array(totalPages)].map((_, index) => {
@@ -21,6 +33,7 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
           return (
             <S.PageNumberButton
               key={showNumber}
+              onClick={() => updatePageNumber(showNumber)}
               selected={pageNumber === showNumber}
             >
               {showNumber}
@@ -28,8 +41,12 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
           );
         })}
       </S.NumberWrap>
-      <S.PaginationButton>
-        <PaginationIcon turn="left" />
+      <S.PaginationButton
+        type="button"
+        onClick={() => updatePageNumber(pageNumber + 1)}
+        disabled={pageNumber === totalPages}
+      >
+        <PaginationIcon turn="left" disabled={pageNumber === totalPages} />
       </S.PaginationButton>
     </S.Test>
   );
