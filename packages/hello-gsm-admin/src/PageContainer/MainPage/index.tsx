@@ -64,10 +64,6 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   };
   getApplicationList();
 
-  useEffect(() => {
-    getApplicationList();
-  }, []);
-
   return (
     <>
       <S.MainPage>
