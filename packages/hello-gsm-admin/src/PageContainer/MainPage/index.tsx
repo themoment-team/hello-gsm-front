@@ -66,7 +66,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
 
   useEffect(() => {
     getApplicationList();
-  }, [pageNumber]);
+  }, []);
 
   return (
     <>
