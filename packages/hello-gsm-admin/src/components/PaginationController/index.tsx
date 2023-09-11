@@ -15,7 +15,6 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
   const pathName = router.pathname;
 
   const updatePageNumber = (pageNumber: number) => {
-    console.log(pageNumber);
     router.push(`${pathName}?pageNumber=${pageNumber}`);
   };
   return (

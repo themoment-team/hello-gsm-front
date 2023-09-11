@@ -29,6 +29,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
     useState<SearchApplicationInfoType>();
   const router = useRouter();
   const pageNumber = Number(router.query.pageNumber ?? 1);
+  console.log(pageNumber);
   // useEffect(() => {
   //   const debounce = setTimeout(() => {
   //     return setSearchValue(tmpValue);
