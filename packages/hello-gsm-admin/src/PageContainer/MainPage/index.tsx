@@ -62,6 +62,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
       console.error(error);
     }
   };
+  getApplicationList();
 
   useEffect(() => {
     getApplicationList();
