@@ -63,8 +63,10 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   };
 
   useEffect(() => {
-    getApplicationList();
-  }, [pageNumber]);
+    if (pageNumber == Number(router.query.pageNumber)) {
+      getApplicationList();
+    }
+  }, [router.query.pageNumber]);
 
   return (
     <>
@@ -95,7 +97,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
             <S.Test />
           </S.ContentList>
           <PaginationController
-            totalPages={applicationData?.info.totalPages ?? 10}
+            totalPages={applicationData?.info.totalPages ?? 9}
             pageNumber={pageNumber}
           />
         </S.MainPageContent>
