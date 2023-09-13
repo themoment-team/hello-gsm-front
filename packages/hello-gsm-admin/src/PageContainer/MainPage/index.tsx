@@ -51,7 +51,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   //   });
   // });
 
-  const getApplicationList = async () => {
+  const getApplicationList = async (pageNumber: number) => {
     try {
       const { data }: { data: SearchApplicationInfoType } =
         await application.getSearchApplication(pageNumber, 8);
@@ -63,10 +63,8 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   };
 
   useEffect(() => {
-    if (pageNumber == Number(router.query.pageNumber)) {
-      getApplicationList();
-    }
-  }, []);
+    getApplicationList(pageNumber);
+  }, [pageNumber]);
 
   return (
     <>
