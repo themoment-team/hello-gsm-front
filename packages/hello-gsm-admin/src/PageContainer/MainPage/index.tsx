@@ -66,7 +66,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
     if (pageNumber == Number(router.query.pageNumber)) {
       getApplicationList();
     }
-  }, [router.query.pageNumber]);
+  }, []);
 
   return (
     <>
