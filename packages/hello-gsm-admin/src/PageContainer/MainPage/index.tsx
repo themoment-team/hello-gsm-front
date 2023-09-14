@@ -52,15 +52,14 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   // });
 
   const getApplicationList = async (pageNumber: number) => {
-    console.log('무한 반복 왜 뜨냐 ');
-    // try {
-    //   const { data }: { data: SearchApplicationInfoType } =
-    //     await application.getSearchApplication(pageNumber, 8);
-    //   setApplicationData(data);
-    //   console.log(data);
-    // } catch (error: any) {
-    //   console.error(error);
-    // }
+    try {
+      const { data }: { data: SearchApplicationInfoType } =
+        await application.getSearchApplication(pageNumber, 8);
+      setApplicationData(data);
+      console.log(data);
+    } catch (error: any) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
