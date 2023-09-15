@@ -29,7 +29,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const [applicationData, setApplicationData] =
     useState<SearchApplicationInfoType>();
   const router = useRouter();
-  const pageNumber = Number(router.query.pageNumber ?? 1);
+  const pageNumber = Number(router.query.pageNumber ?? 0);
 
   // useEffect(() => {
   //   const debounce = setTimeout(() => {
@@ -92,7 +92,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
             })}
           </S.ContentList>
           <PaginationController
-            totalPages={applicationData?.info.totalPages ?? 0}
+            totalPages={applicationData?.info.totalPages ?? 20}
             pageNumber={pageNumber}
           />
         </S.MainPageContent>
