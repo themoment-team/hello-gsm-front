@@ -27,6 +27,9 @@ export interface ApplicantType {
     };
   };
 }
+export interface GetListType {
+  data: ApplicantType[];
+}
 
 export interface SearchApplicationInfoType {
   info: {
@@ -38,8 +41,8 @@ export interface SearchApplicationInfoType {
     isFinalSubmitted: boolean;
     isPrintsArrived: boolean;
     applicantName: string;
-    screening: string;
-    schoolName: ScreeningType;
+    screening: ScreeningType;
+    schoolName: string;
     applicantPhoneNumber: string;
     guardianPhoneNumber: string;
     teacherPhoneNumber: string;
@@ -49,12 +52,23 @@ export interface SearchApplicationInfoType {
   }[];
 }
 
-export interface SearchApplicationType {
-  data: SearchApplicationInfoType;
+export interface ApplicationListType {
+  applicationId: number;
+  isFinalSubmitted: boolean;
+  isPrintsArrived: boolean;
+  applicantName: string;
+  screening: ScreeningType;
+  schoolName: string;
+  applicantPhoneNumber: string;
+  guardianPhoneNumber: string;
+  teacherPhoneNumber: string;
+  firstEvaluation: EvaluationStatusType;
+  secondEvaluation: EvaluationStatusType;
+  secondScore: number;
 }
 
-export interface GetListType {
-  data: ApplicantType[];
+export interface SearchApplicationType {
+  data: SearchApplicationInfoType;
 }
 
 export interface ApplicantsType {

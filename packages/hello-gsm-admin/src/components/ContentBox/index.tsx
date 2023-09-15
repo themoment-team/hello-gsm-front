@@ -9,43 +9,39 @@ import {
   isStartFirstResult,
 } from 'shared/acceptable';
 import useStore from 'Stores/StoreContainer';
-import { ApplicantType } from 'Types/application';
+import {
+  ApplicantType,
+  SearchApplicationInfoType,
+  ApplicationListType,
+} from 'Types/application';
 import * as S from './style';
 import * as I from 'Assets/svg';
 
-interface ContentType {
-  content: ApplicantType;
+interface ContentBoxProp {
+  content: ApplicationListType;
 }
 
-const ContentBox: React.FC<ContentType> = ({
+const ContentBox: React.FC<ContentBoxProp> = ({
   content: {
-    name,
-    cellphoneNumber,
-    application: {
-      applicationIdx,
-      finalResultScreening,
-      firstResultScreening,
-      guardianCellphoneNumber,
-      isDocumentReception,
-      registrationNumber,
-      schoolName,
-      screening,
-      teacherCellphoneNumber,
-      application_score,
-    },
+    applicationId,
+    applicantName,
+    applicantPhoneNumber,
+    teacherPhoneNumber,
+    guardianPhoneNumber,
+    screening,
+    isFinalSubmitted,
+    isPrintsArrived,
+    firstEvaluation,
+    secondEvaluation,
+    schoolName,
+    secondScore,
   },
 }) => {
   const [isFirstResult, setIsFirstResult] = useState<boolean>(false);
   const [isFinalResult, setIsFinalResult] = useState<boolean>(false);
-  const firstResult: '합격' | '불합격' = firstResultScreening
-    ? '합격'
-    : '불합격';
-  const finalResult: '합격' | '불합격' = finalResultScreening
-    ? '합격'
-    : '불합격';
-  const [score, setScore] = useState<number | null>(
-    parseFloat(application_score?.personalityEvaluationScore ?? '') || null,
-  );
+  const firstResult: '합격' | '불합격' = secondEvaluation ? '합격' : '불합격';
+  const finalResult: '합격' | '불합격' = firstEvaluation ? '합격' : '불합격';
+  const [score, setScore] = useState<number | null>(secondScore || null);
   const [documentReception, setDocumentReception] = useState<boolean>(true);
   const {
     showScoreModal,
@@ -57,17 +53,17 @@ const ContentBox: React.FC<ContentType> = ({
     setScoreModalValue,
   } = useStore();
 
-  const formattedCellphoneNumber = cellphoneNumber.replace(
+  const formattedCellphoneNumber = applicantPhoneNumber.replace(
     /(\d{3})(\d{4})(\d{4})/,
     '$1-$2-$3',
   );
-  const formattedGuardianCellphoneNumber = guardianCellphoneNumber.replace(
+  const formattedGuardianCellphoneNumber = guardianPhoneNumber.replace(
     /(\d{3})(\d{4})(\d{4})/,
     '$1-$2-$3',
   );
   const formattedTeacherCellphoneNumber =
-    teacherCellphoneNumber !== null
-      ? teacherCellphoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')
+    teacherPhoneNumber !== null
+      ? teacherPhoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')
       : '검정고시';
 
   useEffect(() => {
@@ -96,14 +92,14 @@ const ContentBox: React.FC<ContentType> = ({
     <S.ContentBox>
       <S.Content>
         <S.RegistrationNumber>
-          {String(applicationIdx).padStart(4, '0')}
+          {String(applicationId).padStart(4, '0')}
         </S.RegistrationNumber>
         <S.isDocumentReception>
           <S.DocumentReceptionText documentReception={documentReception}>
             · {documentReception ? '제출' : '미제출'}
           </S.DocumentReceptionText>
         </S.isDocumentReception>
-        <S.Name>{name}</S.Name>
+        <S.Name>{applicantName}</S.Name>
         <S.Screening>{screening}</S.Screening>
         <S.SchoolName>{schoolName ?? '검정고시'}</S.SchoolName>
         <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
