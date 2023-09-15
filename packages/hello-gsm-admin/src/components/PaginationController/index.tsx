@@ -27,7 +27,7 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
         <PaginationIcon turn="right" disabled={pageNumber === 1} />
       </S.PaginationButton>
       <S.NumberWrap>
-        {[...Array(totalPages)].map((_, index) => {
+        {[...[totalPages]].map((_, index) => {
           const showNumber = index + 1;
           return (
             <S.PageNumberButton
