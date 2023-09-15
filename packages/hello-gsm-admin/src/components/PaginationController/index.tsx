@@ -32,7 +32,7 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
           return (
             <S.PageNumberButton
               key={showNumber}
-              onClick={() => updatePageNumber(showNumber - 1)}
+              onClick={() => updatePageNumber(showNumber)}
               selected={pageNumber === showNumber}
             >
               {showNumber}
