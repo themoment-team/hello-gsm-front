@@ -87,7 +87,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
               </>
             ))} */}
             {applicationData?.applications.map(i => {
-              <ContentBox content={i} />;
+              return <ContentBox content={i} key={i.applicationId} />;
             })}
           </S.ContentList>
           <PaginationController
