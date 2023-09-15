@@ -29,7 +29,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const [applicationData, setApplicationData] =
     useState<SearchApplicationInfoType>();
   const router = useRouter();
-  const pageNumber = Number(router.query.pageNumber ?? 0);
+  const pageNumber = Number(router.query.pageNumber ?? 1);
 
   // useEffect(() => {
   //   const debounce = setTimeout(() => {
@@ -56,7 +56,7 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   const getApplicationList = async (pageNumber: number) => {
     try {
       const { data }: { data: SearchApplicationInfoType } =
-        await application.getSearchApplication(pageNumber, 8);
+        await application.getSearchApplication(pageNumber - 1, 8);
       setApplicationData(data);
       console.log(data);
     } catch (error: any) {
