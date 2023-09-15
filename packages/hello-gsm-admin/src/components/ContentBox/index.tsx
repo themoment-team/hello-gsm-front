@@ -79,8 +79,6 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     setIsFinalResult(isStartFinalResult);
   }, []);
 
-  console.log(firstEvaluation);
-  console.log(secondEvaluation);
   const resultStyle = {
     NOT_YET: css`
       color: #9e9e9e;
