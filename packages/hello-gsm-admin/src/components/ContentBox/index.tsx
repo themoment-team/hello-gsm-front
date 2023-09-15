@@ -16,10 +16,15 @@ import {
 } from 'Types/application';
 import * as S from './style';
 import * as I from 'Assets/svg';
+import formatScreening from 'Utils/Libs/formatScreening';
 
 interface ContentBoxProp {
   content: ApplicationListType;
 }
+
+type resultObjectType = {
+  [key in 'PASS' | 'NOT_YET']: string;
+};
 
 const ContentBox: React.FC<ContentBoxProp> = ({
   content: {
@@ -37,12 +42,10 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     secondScore,
   },
 }) => {
-  console.log(applicantName);
-  console.log(secondScore);
   const [isFirstResult, setIsFirstResult] = useState<boolean>(false);
   const [isFinalResult, setIsFinalResult] = useState<boolean>(false);
-  const firstResult: '합격' | '불합격' = secondEvaluation ? '합격' : '불합격';
-  const finalResult: '합격' | '불합격' = firstEvaluation ? '합격' : '불합격';
+  const firstResult: 'PASS' | 'NOT_YET' = secondEvaluation ? 'PASS' : 'NOT_YET';
+  const finalResult: 'PASS' | 'NOT_YET' = firstEvaluation ? 'PASS' : 'NOT_YET';
   const [score, setScore] = useState<number | null>(secondScore || null);
   const [documentReception, setDocumentReception] = useState<boolean>(true);
   const {
@@ -80,14 +83,22 @@ const ContentBox: React.FC<ContentBoxProp> = ({
       color: #9e9e9e;
       cursor: default;
     `,
-    합격: css`
+    PASS: css`
       color: #2174d8;
       cursor: default;
     `,
-    불합격: css`
+    NOT_YET: css`
       color: #ff000f;
       cursor: default;
     `,
+  };
+
+  const formatResult = (result: 'PASS' | 'NOT_YET') => {
+    const resultObject: resultObjectType = {
+      PASS: '합격',
+      NOT_YET: '불합격',
+    };
+    return resultObject[result];
   };
 
   return (
@@ -102,7 +113,7 @@ const ContentBox: React.FC<ContentBoxProp> = ({
           </S.DocumentReceptionText>
         </S.isDocumentReception>
         <S.Name>{applicantName}</S.Name>
-        <S.Screening>{screening}</S.Screening>
+        <S.Screening>{formatScreening(screening)}</S.Screening>
         <S.SchoolName>{schoolName ?? '검정고시'}</S.SchoolName>
         <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
@@ -110,7 +121,7 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         <S.FirstResultText
           css={resultStyle[isFirstResult ? firstResult : '미정']}
         >
-          {isFirstResult ? firstResult : '미정'}
+          {isFirstResult ? formatResult(firstResult) : '미정'}
         </S.FirstResultText>
         <S.FinalScoreText
           css={css`
@@ -122,7 +133,7 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         <S.FinalResultText
           css={resultStyle[isFinalResult ? finalResult : '미정']}
         >
-          {isFinalResult ? finalResult : '미정'}
+          {isFinalResult ? formatResult(finalResult) : '미정'}
         </S.FinalResultText>
       </S.Content>
       <S.EditButtonBox>
