@@ -69,35 +69,33 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   }, [pageNumber]);
 
   return (
-    <>
-      <S.MainPage>
-        <Global
-          styles={css`
-            body {
-              overflow: ${showScoreModal ? 'hidden' : 'visible'};
-            }
-          `}
-        />
-        <S.MainPageContent>
-          <ListHeader searchValue={tmpValue} setSearchValue={setTmpValue} />
-          <MainpageHeader />
-          <S.ContentList>
-            {/* {filteredApplicationList?.map((content, index: number) => (
+    <S.MainPage>
+      <Global
+        styles={css`
+          body {
+            overflow: ${showScoreModal ? 'hidden' : 'visible'};
+          }
+        `}
+      />
+      <S.MainPageContent>
+        <ListHeader searchValue={tmpValue} setSearchValue={setTmpValue} />
+        <MainpageHeader />
+        <S.ContentList>
+          {/* {filteredApplicationList?.map((content, index: number) => (
               <>
                 <ContentBox content={content} key={index} />
               </>
             ))} */}
-            {applicationData?.applications.map(i => {
-              return <ContentBox content={i} key={i.applicationId} />;
-            })}
-          </S.ContentList>
-          <PaginationController
-            totalPages={applicationData?.info.totalPages ?? 20}
-            pageNumber={pageNumber}
-          />
-        </S.MainPageContent>
-      </S.MainPage>
-    </>
+          {applicationData?.applications.map(i => {
+            return <ContentBox content={i} key={i.applicationId} />;
+          })}
+        </S.ContentList>
+        <PaginationController
+          totalPages={applicationData?.info.totalPages ?? 20}
+          pageNumber={pageNumber}
+        />
+      </S.MainPageContent>
+    </S.MainPage>
   );
 };
 
