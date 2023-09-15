@@ -12,6 +12,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   ApplicantsType,
   ApplicantType,
+  ApplicationListType,
   GetListType,
   SearchApplicationInfoType,
 } from 'Types/application';

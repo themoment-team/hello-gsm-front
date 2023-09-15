@@ -13,6 +13,7 @@ import {
   ApplicantType,
   SearchApplicationInfoType,
   ApplicationListType,
+  EvaluationStatusType,
 } from 'Types/application';
 import * as S from './style';
 import * as I from 'Assets/svg';
@@ -23,7 +24,7 @@ interface ContentBoxProp {
 }
 
 type resultObjectType = {
-  [key in 'PASS' | 'NOT_YET']: string;
+  [key in EvaluationStatusType]: string;
 };
 
 const ContentBox: React.FC<ContentBoxProp> = ({
@@ -44,8 +45,8 @@ const ContentBox: React.FC<ContentBoxProp> = ({
 }) => {
   const [isFirstResult, setIsFirstResult] = useState<boolean>(false);
   const [isFinalResult, setIsFinalResult] = useState<boolean>(false);
-  const firstResult: 'PASS' | 'NOT_YET' = secondEvaluation ? 'PASS' : 'NOT_YET';
-  const finalResult: 'PASS' | 'NOT_YET' = firstEvaluation ? 'PASS' : 'NOT_YET';
+  const firstResult: EvaluationStatusType = firstEvaluation;
+  const finalResult: EvaluationStatusType = secondEvaluation;
   const [score, setScore] = useState<number | null>(secondScore || null);
   const [documentReception, setDocumentReception] = useState<boolean>(true);
   const {
@@ -78,8 +79,10 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     setIsFinalResult(isStartFinalResult);
   }, []);
 
+  console.log(firstEvaluation);
+  console.log(secondEvaluation);
   const resultStyle = {
-    미정: css`
+    NOT_YET: css`
       color: #9e9e9e;
       cursor: default;
     `,
@@ -87,16 +90,17 @@ const ContentBox: React.FC<ContentBoxProp> = ({
       color: #2174d8;
       cursor: default;
     `,
-    NOT_YET: css`
+    FALL: css`
       color: #ff000f;
       cursor: default;
     `,
   };
 
-  const formatResult = (result: 'PASS' | 'NOT_YET') => {
+  const formatResult = (result: EvaluationStatusType) => {
     const resultObject: resultObjectType = {
       PASS: '합격',
-      NOT_YET: '불합격',
+      FALL: '불합격',
+      NOT_YET: '미정',
     };
     return resultObject[result];
   };
@@ -109,7 +113,7 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         </S.RegistrationNumber>
         <S.isDocumentReception>
           <S.DocumentReceptionText documentReception={documentReception}>
-            · {documentReception ? '제출' : '미제출'}
+            · {isPrintsArrived ? '제출' : '미제출'}
           </S.DocumentReceptionText>
         </S.isDocumentReception>
         <S.Name>{applicantName}</S.Name>
@@ -118,10 +122,8 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
-        <S.FirstResultText
-          css={resultStyle[isFirstResult ? firstResult : '미정']}
-        >
-          {isFirstResult ? formatResult(firstResult) : '미정'}
+        <S.FirstResultText css={isFinalResult && resultStyle[firstResult]}>
+          {isFirstResult && formatResult(firstResult)}
         </S.FirstResultText>
         <S.FinalScoreText
           css={css`
@@ -130,10 +132,8 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         >
           {score ?? '미입력'}
         </S.FinalScoreText>
-        <S.FinalResultText
-          css={resultStyle[isFinalResult ? finalResult : '미정']}
-        >
-          {isFinalResult ? formatResult(finalResult) : '미정'}
+        <S.FinalResultText css={isFinalResult && resultStyle[finalResult]}>
+          {isFinalResult && formatResult(finalResult)}
         </S.FinalResultText>
       </S.Content>
       <S.EditButtonBox>
