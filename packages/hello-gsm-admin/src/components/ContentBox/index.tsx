@@ -37,6 +37,8 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     secondScore,
   },
 }) => {
+  console.log(applicantName);
+  console.log(secondScore);
   const [isFirstResult, setIsFirstResult] = useState<boolean>(false);
   const [isFinalResult, setIsFinalResult] = useState<boolean>(false);
   const firstResult: '합격' | '불합격' = secondEvaluation ? '합격' : '불합격';
