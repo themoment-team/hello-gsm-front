@@ -36,7 +36,7 @@ export const Name = styled.p`
 `;
 
 export const Screening = styled.p`
-  width: 70px;
+  width: 75px;
   font-weight: 500;
   font-size: 12px;
   color: #212121;

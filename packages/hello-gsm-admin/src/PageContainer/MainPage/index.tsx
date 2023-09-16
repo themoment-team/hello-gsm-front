@@ -14,8 +14,28 @@ import application from 'Api/application';
 import auth from 'Api/auth';
 import { isStartFirstResult } from 'shared/acceptable';
 
+const ListDummyData: ApplicantType[] = [
+  {
+    cellphoneNumber: '01038157596',
+    name: '신희성',
+    application: {
+      applicationIdx: 1,
+      finalResultScreening: '합격',
+      firstResultScreening: '합격',
+      guardianCellphoneNumber: '01000000000',
+      isDocumentReception: true,
+      registrationNumber: 0,
+      schoolName: '금호중앙중학교',
+      screening: '국가보훈대상자',
+      teacherCellphoneNumber: '01000000000',
+      application_score: null,
+    },
+  },
+];
+
 const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
-  const [applicationList, setApplicationList] = useState<ApplicantType[]>(list);
+  const [applicationList, setApplicationList] =
+    useState<ApplicantType[]>(ListDummyData);
   const { showScoreModal } = useStore();
 
   const [searchValue, setSearchValue] = useState<string>('');
