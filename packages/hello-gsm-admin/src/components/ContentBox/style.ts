@@ -130,12 +130,13 @@ export const EditButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
   background: rgba(0, 0, 0, 0);
   color: #2174d8;
   border: 1px solid #2174d8;
   border-radius: 10px;
-  padding: 7px 16px 7px 16px;
+  gap: 5px;
+  padding: 8px 16px 8px 16px;
+  font-weight: 600;
   cursor: pointer;
 
   &:hover {
