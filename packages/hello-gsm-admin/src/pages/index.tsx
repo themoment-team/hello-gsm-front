@@ -14,7 +14,7 @@ const Home: NextPage<ApplicantsType> = ({ list, count }) => {
 
   useEffect(() => {
     const isVerification = query.verification === 'true';
-    query.pageNumber;
+
     if (isVerification) {
       toast.success('로그인 되었습니다.');
     }
