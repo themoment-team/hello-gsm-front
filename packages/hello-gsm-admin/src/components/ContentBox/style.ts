@@ -21,14 +21,15 @@ export const Content = styled.div`
 `;
 
 export const RegistrationNumber = styled.p`
-  width: 50px;
+  width: 60px;
   font-size: 12px;
   color: #0f0921;
-  text-align: center;
+  text-align: left;
+  padding-left: 10px;
 `;
 
 export const Name = styled.p`
-  width: 40px;
+  width: 50px;
   font-weight: 500;
   font-size: 12px;
   color: #0f0921;
@@ -36,7 +37,7 @@ export const Name = styled.p`
 `;
 
 export const Screening = styled.p`
-  width: 75px;
+  width: 80px;
   font-weight: 500;
   font-size: 12px;
   color: #212121;
@@ -76,15 +77,15 @@ const Number = styled.p`
 `;
 
 export const PhoneNumber = styled(Number)`
-  width: 90px;
+  width: 100px;
 `;
 
 export const GuardianNumber = styled(Number)`
-  width: 90px;
+  width: 100px;
 `;
 
 export const TeacherNumber = styled(Number)`
-  width: 90px;
+  width: 100px;
 `;
 
 export const Button = styled.button`
@@ -110,7 +111,7 @@ export const FirstResultText = styled.p`
 
 export const FinalScoreText = styled.p`
   font-size: 12px;
-  width: 40px;
+  width: 50px;
 `;
 
 export const FinalResultText = styled.p`
