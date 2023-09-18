@@ -49,9 +49,9 @@ const ListHeader: React.FC<ListHeaderType> = ({
                 }
               }}
             >
-              <option value="PHONE_NUMBER">전화번호</option>
-              <option value="SCHOOL">중학교 이름</option>
               <option value="APPLICANT">지원자 이름</option>
+              <option value="SCHOOL">중학교 이름</option>
+              <option value="PHONE_NUMBER">전화번호</option>
             </S.SelectBox>
           </S.SelectWrapper>
           <S.SearchInputBox>
