@@ -14,20 +14,24 @@ import { SearchApplicationInfoType } from 'Types/application';
 import application from 'Api/application';
 import { useRouter } from 'next/router';
 
+type SearchTagType = 'PHONE_NUMBER' | 'SCHOOL' | 'APPLICANT' | null;
+
 const MainPage: NextPage = () => {
   const { showScoreModal } = useStore();
   const [tmpValue, setTmpValue] = useState<string>('');
+  const [searchKeyword, setSearchKeyword] = useState<string>('');
+  const [searchTag, setSearchTag] = useState<SearchTagType>(null);
   const [applicationData, setApplicationData] =
     useState<SearchApplicationInfoType>();
   const router = useRouter();
   const pageNumber = Number(router.query.pageNumber ?? 1);
 
-  // useEffect(() => {
-  //   const debounce = setTimeout(() => {
-  //     return setSearchValue(tmpValue);
-  //   }, 300);
-  //   return () => clearTimeout(debounce);
-  // }, [tmpValue]);
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      return setSearchKeyword(tmpValue);
+    }, 300);
+    return () => clearTimeout(debounce);
+  }, [tmpValue]);
 
   // const filteredApplicationList = applicationList?.filter(applicant => {
   //   const values = Object.values(applicant).flatMap(value => {
