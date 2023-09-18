@@ -4,7 +4,8 @@ type GraduationObjectType = {
   [key in GraduationStatusType]: string;
 };
 
-const formatGraduation = (graduation: GraduationStatusType) => {
+const formatGraduation = (graduation: GraduationStatusType | undefined) => {
+  if (!graduation) return '';
   const graduationObject: GraduationObjectType = {
     CANDIDATE: '졸업예정',
     GRADUATE: '졸업',

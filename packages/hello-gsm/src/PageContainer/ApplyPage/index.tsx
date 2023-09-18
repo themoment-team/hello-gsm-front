@@ -29,7 +29,6 @@ const ApplyPage: NextPage<
   const [isMajorSelected, setIsMajorSelected] = useState<boolean>(true);
   const [isAddressExist, setIsAddressExist] = useState<boolean>(true);
   const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(true);
-  const [isEdit, setIsEdit] = useState<boolean>(false);
   const userBirth = identityData && new Date(identityData?.birth);
 
   const [isSpecialScreening, setIsSpecialScreening] = useState<boolean>(false);
@@ -71,11 +70,6 @@ const ApplyPage: NextPage<
 
   useEffect(() => {
     const admissionInfo = applicationData?.admissionInfo;
-    if (applicationData?.middleSchoolGrade !== null) {
-      setIsEdit(true);
-    } else {
-      setIsEdit(false);
-    }
 
     if (
       applicationData?.admissionInfo.screening === 'SPECIAL_ADMISSION' ||
@@ -104,38 +98,35 @@ const ApplyPage: NextPage<
     setSchoolName(admissionInfo?.schoolName ?? '');
     setSchoolLocation(admissionInfo?.schoolLocation ?? '');
     setApplicantAddress(admissionInfo?.address ?? '');
+    console.log(admissionInfo?.schoolName, schoolName);
   }, [applicationData, applicationData?.admissionInfo]);
 
-  const apply = async (submitData: ApplyFormType) => {
-    try {
-      setshowApplyPostModal();
+  const apply = (submitData: ApplyFormType) => {
+    setshowApplyPostModal();
 
-      const applyData: ApplyFormType = {
-        applicantImageUri: imgURL,
-        address: applicantAddress,
-        detailAddress: submitData?.detailAddress,
-        teacherPhoneNumber: submitData?.teacherPhoneNumber,
-        teacherName: submitData?.teacherName || null,
-        telephone: submitData?.telephone || null,
-        guardianPhoneNumber: submitData?.guardianPhoneNumber,
-        guardianName: submitData?.guardianName,
-        relationWithApplicant: submitData?.relationWithApplicant,
-        schoolName: schoolName || null,
-        schoolLocation: schoolLocation || null,
-        graduation: submitData?.graduation,
-        firstDesiredMajor: choice1,
-        secondDesiredMajor: choice2,
-        thirdDesiredMajor: choice3,
-        screening: submitData?.screening,
-      };
-      setApplyData(applyData);
-      onNext();
+    const applyData: ApplyFormType = {
+      applicantImageUri: imgURL,
+      address: applicantAddress,
+      detailAddress: submitData?.detailAddress,
+      teacherPhoneNumber: submitData?.teacherPhoneNumber || null,
+      teacherName: submitData?.teacherName || null,
+      telephone: submitData?.telephone || null,
+      guardianPhoneNumber: submitData?.guardianPhoneNumber,
+      guardianName: submitData?.guardianName,
+      relationWithApplicant: submitData?.relationWithApplicant,
+      schoolName: schoolName || null,
+      schoolLocation: schoolLocation || null,
+      graduation: submitData?.graduation,
+      firstDesiredMajor: choice1,
+      secondDesiredMajor: choice2,
+      thirdDesiredMajor: choice3,
+      screening: submitData?.screening,
+    };
+    setApplyData(applyData);
 
-      setshowApplyPostModal();
-    } catch (error: any) {
-      setshowApplyPostModal();
-      toast.error('원서 정보 저장 중 에러가 발생했어요. 다시 시도해주세요.');
-    }
+    setshowApplyPostModal();
+
+    onNext();
   };
 
   const readImg = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -152,20 +143,6 @@ const ApplyPage: NextPage<
       }
       // 파일의 url을 읽는다.
       event.target.files[0] && reader.readAsDataURL(event.target.files[0]);
-
-      const formData = new FormData();
-      imgInput.current?.files &&
-        formData?.append('file', imgInput.current?.files[0]);
-
-      try {
-        const {
-          data: { url },
-        }: { data: { url: string } } = await application.postImage(formData);
-
-        setImgURL(url);
-      } catch (e) {
-        toast.error('이미지 저장 중 오류가 발생했어요. 다시 시도해주세요.');
-      }
     }
 
     // 읽기 동작 성공 시 미리보기 이미지 url 설정
@@ -179,30 +156,68 @@ const ApplyPage: NextPage<
     if (imgInput.current?.files && imgInput.current?.files[0] === undefined) {
       setImgURL('');
     }
+
+    const formData = new FormData();
+    imgInput.current?.files &&
+      formData?.append('file', imgInput.current?.files[0]);
+
+    try {
+      const {
+        data: { url },
+      }: { data: { url: string } } = await application.postImage(formData);
+
+      setImgURL(url);
+      toast.success('이미지가 등록되었어요.');
+    } catch (e) {
+      toast.error('이미지 저장 중 오류가 발생했어요. 다시 시도해주세요.');
+    }
+  };
+
+  const validate = async (): Promise<void> => {
+    if (choice1 !== '' && choice2 !== '' && choice3 !== '') {
+      setIsMajorSelected(true);
+    } else {
+      setIsMajorSelected(false);
+    }
+
+    if (applicantAddress !== '') {
+      setIsAddressExist(true);
+    } else {
+      setIsAddressExist(false);
+    }
+
+    if (schoolName !== '' || watch('graduation') === 'GED') {
+      setIsSchoolNameExist(true);
+    } else {
+      setIsSchoolNameExist(false);
+    }
+
+    if (watch('screening') === 'SPECIAL' || watch('screening') === '') {
+      toast.error('전형을 선택해주세요.');
+    }
+
+    if (imgURL !== '') {
+      setIsIdPhoto(true);
+    } else {
+      setIsIdPhoto(false);
+      toast.error('증명사진을 등록해주세요.');
+    }
   };
 
   const onSubmit = (data: ApplyFormType) => {
     validate();
+
+    const isMajorSelected = choice1 !== '' && choice2 !== '' && choice3 !== '';
+    const isAddressExist = applicantAddress !== '';
+    const isSchoolNameExist =
+      schoolName !== '' || watch('graduation') === 'GED';
+    const isIdPhoto = imgURL !== '';
+
     if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
       apply(data);
     } else {
-      toast.error('정보 저장에 실패했어요. 다시 시도해주세요.');
+      toast.error('원서 정보 저장 중 에러가 발생했어요. 다시 시도해주세요.');
     }
-  };
-
-  const validate = () => {
-    watch('screening') === 'SPECIAL' && toast.error('전형을 선택해주세요.');
-    choice1 !== '' && choice2 !== '' && choice3 !== ''
-      ? setIsMajorSelected(true)
-      : setIsMajorSelected(false);
-    applicantAddress !== ''
-      ? setIsAddressExist(true)
-      : setIsAddressExist(false);
-    schoolName !== '' || watch('graduation') === 'GED'
-      ? setIsSchoolNameExist(true)
-      : setIsSchoolNameExist(false);
-    imgURL ? setIsIdPhoto(true) : setIsIdPhoto(false);
-    !isEdit && !imgURL && toast.error('증명사진을 등록해주세요.');
   };
 
   return (
@@ -277,7 +292,7 @@ const ApplyPage: NextPage<
               placeholder="상세주소"
               type="text"
               {...register('detailAddress', {
-                required: false,
+                required: '* 상세주소를 입력해주세요.',
                 maxLength: {
                   value: 50,
                   message: '* 상세주소는 50글자 이하입니다.',

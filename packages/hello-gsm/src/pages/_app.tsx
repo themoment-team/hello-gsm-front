@@ -56,7 +56,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
         <Footer />
       </ThemeProvider>
-      <ChannelTalk />
+      {router.pathname !== '/application' && <ChannelTalk />}
     </>
   );
 }
