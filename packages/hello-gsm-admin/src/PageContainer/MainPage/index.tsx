@@ -32,21 +32,6 @@ const MainPage: NextPage = () => {
     return () => clearTimeout(debounce);
   }, [tmpValue]);
 
-  // const filteredApplicationList = applicationList?.filter(applicant => {
-  //   const values = Object.values(applicant).flatMap(value => {
-  //     if (typeof value === 'object' && value !== null) {
-  //       return Object.values(value);
-  //     }
-  //     return value;
-  //   });
-
-  //   return values.some(value => {
-  //     if (typeof value === 'string' && value.includes(searchValue)) {
-  //       return true;
-  //     }
-  //   });
-  // });
-
   const getApplicationList = async (pageNumber: number) => {
     try {
       const { data }: { data: SearchApplicationInfoType } =
