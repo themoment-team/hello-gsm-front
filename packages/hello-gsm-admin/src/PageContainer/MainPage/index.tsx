@@ -13,8 +13,7 @@ import { useEffect, useState } from 'react';
 import { SearchApplicationInfoType } from 'Types/application';
 import application from 'Api/application';
 import { useRouter } from 'next/router';
-
-type SearchTagType = 'PHONE_NUMBER' | 'SCHOOL' | 'APPLICANT' | '';
+import { SearchTagType } from 'Types/searchTag';
 
 const MainPage: NextPage = () => {
   const { showScoreModal } = useStore();

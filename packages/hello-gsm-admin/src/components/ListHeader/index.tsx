@@ -6,7 +6,7 @@ import { SearchIcon } from 'Assets/svg';
 
 import { PrintButton } from 'components';
 
-type SearchTagType = 'PHONE_NUMBER' | 'SCHOOL' | 'APPLICANT' | '';
+import { SearchTagType } from 'Types/searchTag';
 
 interface ListHeaderType {
   searchValue: string;
