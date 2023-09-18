@@ -51,7 +51,12 @@ const MainPage: NextPage = () => {
   const getApplicationList = async (pageNumber: number) => {
     try {
       const { data }: { data: SearchApplicationInfoType } =
-        await application.getSearchApplication(pageNumber - 1, 8);
+        await application.getSearchApplication(
+          pageNumber - 1,
+          8,
+          searchTag,
+          searchKeyword,
+        );
       setApplicationData(data);
       console.log(data);
     } catch (error: any) {
@@ -61,7 +66,7 @@ const MainPage: NextPage = () => {
 
   useEffect(() => {
     getApplicationList(pageNumber);
-  }, [pageNumber]);
+  }, [pageNumber, searchKeyword, searchTag]);
 
   return (
     <S.MainPage>
