@@ -14,13 +14,13 @@ import { SearchApplicationInfoType } from 'Types/application';
 import application from 'Api/application';
 import { useRouter } from 'next/router';
 
-type SearchTagType = 'PHONE_NUMBER' | 'SCHOOL' | 'APPLICANT' | null;
+type SearchTagType = 'PHONE_NUMBER' | 'SCHOOL' | 'APPLICANT' | '';
 
 const MainPage: NextPage = () => {
   const { showScoreModal } = useStore();
   const [tmpValue, setTmpValue] = useState<string>('');
   const [searchKeyword, setSearchKeyword] = useState<string>('');
-  const [searchTag, setSearchTag] = useState<SearchTagType>(null);
+  const [searchTag, setSearchTag] = useState<SearchTagType>('');
   const [applicationData, setApplicationData] =
     useState<SearchApplicationInfoType>();
   const router = useRouter();
@@ -67,7 +67,12 @@ const MainPage: NextPage = () => {
     <S.MainPage>
       <SideBar />
       <S.MainPageContent>
-        <ListHeader searchValue={tmpValue} setSearchValue={setTmpValue} />
+        <ListHeader
+          searchValue={tmpValue}
+          setSearchValue={setTmpValue}
+          setSearchTag={setSearchTag}
+          searchTag={searchTag}
+        />
         <MainpageHeader />
         <S.ContentList>
           {applicationData?.applications.map(data => {

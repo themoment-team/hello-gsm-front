@@ -6,14 +6,20 @@ import { SearchIcon } from 'Assets/svg';
 
 import { PrintButton } from 'components';
 
+type SearchTagType = 'PHONE_NUMBER' | 'SCHOOL' | 'APPLICANT' | '';
+
 interface ListHeaderType {
   searchValue: string;
   setSearchValue: Dispatch<SetStateAction<string>>;
+  setSearchTag: Dispatch<SetStateAction<SearchTagType>>;
+  searchTag: SearchTagType;
 }
 
 const ListHeader: React.FC<ListHeaderType> = ({
   searchValue,
   setSearchValue,
+  setSearchTag,
+  searchTag,
 }) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
@@ -28,7 +34,21 @@ const ListHeader: React.FC<ListHeaderType> = ({
       <S.ListHeaderContent>
         <S.ButtonWrapper>
           <S.SelectWrapper>
-            <S.SelectBox name="tags" id="tag">
+            <S.SelectBox
+              name="tags"
+              id="tag"
+              value={searchTag}
+              onChange={e => {
+                const tagValue = e.target.value;
+                if (
+                  tagValue === 'PHONE_NUMBER' ||
+                  tagValue === 'SCHOOL' ||
+                  tagValue === 'APPLICANT'
+                ) {
+                  setSearchTag(tagValue);
+                }
+              }}
+            >
               <option value="PHONE_NUMBER">전화번호</option>
               <option value="SCHOOL">중학교 이름</option>
               <option value="APPLICANT">지원자 이름</option>
