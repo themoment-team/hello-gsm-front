@@ -6,14 +6,13 @@ export const MainPage = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
   overflow-x: hidden;
-  overflow-y: hidden;
 `;
 
 export const MainPageContent = styled.div`
   width: 1530px;
   margin: 0 auto;
+  padding-top: 84px;
 `;
 
 export const FunctionBox = styled.div`
@@ -94,8 +93,8 @@ export const Print = styled.a`
 `;
 
 export const ContentList = styled.div`
-  height: 688px;
   margin-bottom: 81px;
+  height: 688px;
 `;
 
 export const Target = styled.div`
@@ -132,12 +131,4 @@ export const SkyBlueBall = styled(Ball)`
     rgba(97, 197, 219, 0.6) 37.16%,
     rgba(0, 132, 201, 0.162) 91.31%
   );
-`;
-
-export const Test = styled.div`
-  width: 100%;
-  height: 92px;
-  background-color: yellow;
-  border: 1px solid black;
-  box-sizing: border-box;
 `;

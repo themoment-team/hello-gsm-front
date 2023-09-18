@@ -59,3 +59,15 @@ export const ButtonWrapper = styled.div`
   display: flex;
   gap: 16px;
 `;
+
+export const SelectBox = styled.select`
+  display: flex;
+  height: 44px;
+  padding: 12px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  border: 1px solid var(--Grey-050, #e0e0e0);
+  background: #fff;
+`;
