@@ -98,7 +98,6 @@ const ApplyPage: NextPage<
     setSchoolName(admissionInfo?.schoolName ?? '');
     setSchoolLocation(admissionInfo?.schoolLocation ?? '');
     setApplicantAddress(admissionInfo?.address ?? '');
-    console.log(admissionInfo?.schoolName, schoolName);
   }, [applicationData, applicationData?.admissionInfo]);
 
   const apply = (submitData: ApplyFormType) => {
