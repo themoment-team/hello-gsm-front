@@ -110,6 +110,7 @@ const SignUpPage: NextPage = () => {
       }
     } else {
       toast.error('전화번호를 다시 확인해주세요.');
+      setIsSent(false);
     }
   };
 
