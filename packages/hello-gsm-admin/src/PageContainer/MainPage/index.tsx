@@ -3,28 +3,19 @@ import {
   ListHeader,
   MainpageHeader,
   PaginationController,
+  SideBar,
 } from 'components';
 import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { css, Global } from '@emotion/react';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import {
-  ApplicantsType,
-  ApplicantType,
-  ApplicationListType,
-  GetListType,
-  SearchApplicationInfoType,
-} from 'Types/application';
+import { useEffect, useState } from 'react';
+import { SearchApplicationInfoType } from 'Types/application';
 import application from 'Api/application';
-import auth from 'Api/auth';
-import { isStartFirstResult } from 'shared/acceptable';
 import { useRouter } from 'next/router';
 
-const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
-  // const [applicationList, setApplicationList] = useState<ApplicantType[]>(list);
+const MainPage: NextPage = () => {
   const { showScoreModal } = useStore();
-  const [searchValue, setSearchValue] = useState<string>('');
   const [tmpValue, setTmpValue] = useState<string>('');
   const [applicationData, setApplicationData] =
     useState<SearchApplicationInfoType>();
@@ -70,28 +61,17 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
 
   return (
     <S.MainPage>
-      <Global
-        styles={css`
-          body {
-            overflow: ${showScoreModal ? 'hidden' : 'visible'};
-          }
-        `}
-      />
+      <SideBar />
       <S.MainPageContent>
         <ListHeader searchValue={tmpValue} setSearchValue={setTmpValue} />
         <MainpageHeader />
         <S.ContentList>
-          {/* {filteredApplicationList?.map((content, index: number) => (
-              <>
-                <ContentBox content={content} key={index} />
-              </>
-            ))} */}
-          {applicationData?.applications.map(i => {
-            return <ContentBox content={i} key={i.applicationId} />;
+          {applicationData?.applications.map(data => {
+            return <ContentBox content={data} key={data.applicationId} />;
           })}
         </S.ContentList>
         <PaginationController
-          totalPages={applicationData?.info.totalPages ?? 20}
+          totalPages={applicationData?.info.totalPages ?? 0}
           pageNumber={pageNumber}
         />
       </S.MainPageContent>

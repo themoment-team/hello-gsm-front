@@ -1,6 +1,7 @@
 import * as S from './style';
 import PaginationIcon from 'Assets/svg/PaginationIcon';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 interface PaginationControllerProps {
   totalPages: number;
@@ -17,8 +18,30 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
   const updatePageNumber = (pageNumber: number) => {
     router.push(`${pathName}?pageNumber=${pageNumber}`);
   };
+
+  const [pageNumbers, setPageNumbers] = useState<number[]>([1, 2, 3, 4]);
+
+  const pageLimit = 4;
+  const currentPage = pageNumber;
+  const currentPageGroup = Math.ceil(currentPage / pageLimit);
+  const startGroupPage = (currentPageGroup - 1) * pageLimit + 1;
+  const endGroupPage = currentPageGroup * pageLimit;
+
+  const updatePageGroup = () => {
+    setPageNumbers([]);
+    for (let i = startGroupPage; i <= endGroupPage; i++) {
+      setPageNumbers(prev => [...prev, i]);
+    }
+  };
+
+  useEffect(() => {
+    if (currentPage % 4 === 1 || currentPage % 4 === 0) {
+      updatePageGroup();
+    }
+  }, [currentPage]);
+
   return (
-    <S.Test>
+    <S.PaginationWrapper>
       <S.PaginationButton
         type="button"
         onClick={() => updatePageNumber(pageNumber - 1)}
@@ -27,13 +50,12 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
         <PaginationIcon turn="right" disabled={pageNumber === 1} />
       </S.PaginationButton>
       <S.NumberWrap>
-        {[...Array(totalPages)].map((_, index) => {
-          const showNumber = index + 1;
+        {pageNumbers.map(showNumber => {
           return (
             <S.PageNumberButton
               key={showNumber}
-              onClick={() => updatePageNumber(showNumber)}
               selected={pageNumber === showNumber}
+              onClick={() => updatePageNumber(showNumber)}
             >
               {showNumber}
             </S.PageNumberButton>
@@ -47,7 +69,7 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
       >
         <PaginationIcon turn="left" disabled={pageNumber === totalPages} />
       </S.PaginationButton>
-    </S.Test>
+    </S.PaginationWrapper>
   );
 };
 

@@ -94,16 +94,8 @@ export const Print = styled.a`
 `;
 
 export const ContentList = styled.div`
-  height: 600px;
-  overflow-y: scroll;
+  height: 688px;
   margin-bottom: 81px;
-
-  &::-webkit-scrollbar {
-    -ms-overflow-style: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
 `;
 
 export const Target = styled.div`
