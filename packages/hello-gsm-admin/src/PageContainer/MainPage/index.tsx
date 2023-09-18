@@ -52,6 +52,10 @@ const MainPage: NextPage = () => {
     getApplicationList(pageNumber);
   }, [pageNumber, searchKeyword, searchTag]);
 
+  useEffect(() => {
+    router.push(`${router.pathname}?pageNumber=${1}`);
+  }, [applicationData]);
+
   return (
     <S.MainPage>
       <SideBar />
