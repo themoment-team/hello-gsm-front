@@ -1,7 +1,6 @@
-import type { GetServerSideProps, NextPage } from 'next';
+import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import { InformationPage } from 'PageContainer';
-import { ssrMiddleware } from 'Utils/ssrMiddleware';
 
 const Information: NextPage = () => {
   const seoTitle = '유의사항 및 입학 절차';
@@ -14,9 +13,5 @@ const Information: NextPage = () => {
     </>
   );
 };
-
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   return ssrMiddleware();
-// };
 
 export default Information;
