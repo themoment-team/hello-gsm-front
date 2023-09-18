@@ -19,7 +19,7 @@ const MainPage: NextPage = () => {
   const { showScoreModal } = useStore();
   const [tmpValue, setTmpValue] = useState<string>('');
   const [searchKeyword, setSearchKeyword] = useState<string>('');
-  const [searchTag, setSearchTag] = useState<SearchTagType>('');
+  const [searchTag, setSearchTag] = useState<SearchTagType>('APPLICANT');
   const [applicationData, setApplicationData] =
     useState<SearchApplicationInfoType>();
   const router = useRouter();
