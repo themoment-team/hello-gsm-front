@@ -60,14 +60,22 @@ export const ButtonWrapper = styled.div`
   gap: 16px;
 `;
 
-export const SelectBox = styled.select`
-  display: flex;
-  height: 44px;
-  padding: 12px 16px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
+export const SelectWrapper = styled.div`
+  width: 113px;
   border-radius: 10px;
-  border: 1px solid var(--Grey-050, #e0e0e0);
+  border: 1px solid #e0e0e0;
   background: #fff;
+  padding-left: 16px;
+`;
+
+export const SelectBox = styled.select`
+  height: 44px;
+  border: 0;
+  background: #fff;
+  outline: none;
+
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
 `;

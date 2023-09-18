@@ -26,16 +26,25 @@ const ListHeader: React.FC<ListHeaderType> = ({
         <S.SubmitNumber>{86}</S.SubmitNumber>
       </S.TitleWrapper>
       <S.ListHeaderContent>
-        <S.SearchInputBox>
-          <S.SearchInput
-            value={searchValue}
-            onFocus={handleFocus}
-            onBlur={handleFocus}
-            placeholder={isFocus ? '' : '검색어를 입력해주세요.'}
-            onChange={e => setSearchValue(e.target.value)}
-          />
-          <SearchIcon />
-        </S.SearchInputBox>
+        <S.ButtonWrapper>
+          <S.SelectWrapper>
+            <S.SelectBox name="tags" id="tag">
+              <option value="PHONE_NUMBER">전화번호</option>
+              <option value="SCHOOL">중학교 이름</option>
+              <option value="APPLICANT">지원자 이름</option>
+            </S.SelectBox>
+          </S.SelectWrapper>
+          <S.SearchInputBox>
+            <S.SearchInput
+              value={searchValue}
+              onFocus={handleFocus}
+              onBlur={handleFocus}
+              placeholder={isFocus ? '' : '검색어를 입력해주세요.'}
+              onChange={e => setSearchValue(e.target.value)}
+            />
+            <SearchIcon />
+          </S.SearchInputBox>
+        </S.ButtonWrapper>
         <S.ButtonWrapper>
           <PrintButton printType="excel" />
           <PrintButton printType="ticket" />
