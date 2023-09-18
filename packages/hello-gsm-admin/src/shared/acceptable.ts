@@ -8,7 +8,7 @@ export const isStartFirstResult = today >= startFirstResult;
 
 // 1월 1일 부터
 // 2차 시험 결과를 조회할 수 있는 기간
-const startFinalResult = new Date('2023/11/01 00:00:00');
+const startFinalResult = new Date('2023/10/20 00:00:00');
 export const isStartFinalResult = today >= startFinalResult;
 
 //

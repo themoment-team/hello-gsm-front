@@ -1,52 +1,54 @@
-import { ContentBox, ListHeader, MainpageHeader } from 'components';
+import {
+  ContentBox,
+  ListHeader,
+  MainpageHeader,
+  PaginationController,
+  SideBar,
+} from 'components';
 import type { NextPage } from 'next';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { css, Global } from '@emotion/react';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import {
-  ApplicantsType,
-  ApplicantType,
-  GetListType,
-  SearchApplicationType,
-} from 'Types/application';
+import { useEffect, useState } from 'react';
+import { SearchApplicationInfoType } from 'Types/application';
 import application from 'Api/application';
-import auth from 'Api/auth';
-import { isStartFirstResult } from 'shared/acceptable';
+import { useRouter } from 'next/router';
 
-const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
-  const [applicationList, setApplicationList] = useState<ApplicantType[]>(list);
+const MainPage: NextPage = () => {
   const { showScoreModal } = useStore();
-
-  const [searchValue, setSearchValue] = useState<string>('');
   const [tmpValue, setTmpValue] = useState<string>('');
+  const [applicationData, setApplicationData] =
+    useState<SearchApplicationInfoType>();
+  const router = useRouter();
+  const pageNumber = Number(router.query.pageNumber ?? 1);
 
-  useEffect(() => {
-    const debounce = setTimeout(() => {
-      return setSearchValue(tmpValue);
-    }, 300);
-    return () => clearTimeout(debounce);
-  }, [tmpValue]);
+  // useEffect(() => {
+  //   const debounce = setTimeout(() => {
+  //     return setSearchValue(tmpValue);
+  //   }, 300);
+  //   return () => clearTimeout(debounce);
+  // }, [tmpValue]);
 
-  const filteredApplicationList = applicationList?.filter(applicant => {
-    const values = Object.values(applicant).flatMap(value => {
-      if (typeof value === 'object' && value !== null) {
-        return Object.values(value);
-      }
-      return value;
-    });
+  // const filteredApplicationList = applicationList?.filter(applicant => {
+  //   const values = Object.values(applicant).flatMap(value => {
+  //     if (typeof value === 'object' && value !== null) {
+  //       return Object.values(value);
+  //     }
+  //     return value;
+  //   });
 
-    return values.some(value => {
-      if (typeof value === 'string' && value.includes(searchValue)) {
-        return true;
-      }
-    });
-  });
+  //   return values.some(value => {
+  //     if (typeof value === 'string' && value.includes(searchValue)) {
+  //       return true;
+  //     }
+  //   });
+  // });
 
-  const getApplicationList = async () => {
+  const getApplicationList = async (pageNumber: number) => {
     try {
-      const { data }: SearchApplicationType =
-        await application.getSearchApplication(0, 8);
+      const { data }: { data: SearchApplicationInfoType } =
+        await application.getSearchApplication(pageNumber - 1, 8);
+      setApplicationData(data);
       console.log(data);
     } catch (error: any) {
       console.error(error);
@@ -54,28 +56,24 @@ const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
   };
 
   useEffect(() => {
-    getApplicationList();
-  }, []);
+    getApplicationList(pageNumber);
+  }, [pageNumber]);
 
   return (
     <S.MainPage>
-      <Global
-        styles={css`
-          body {
-            overflow: ${showScoreModal ? 'hidden' : 'visible'};
-          }
-        `}
-      />
+      <SideBar />
       <S.MainPageContent>
         <ListHeader searchValue={tmpValue} setSearchValue={setTmpValue} />
         <MainpageHeader />
         <S.ContentList>
-          {filteredApplicationList?.map((content, index: number) => (
-            <>
-              <ContentBox content={content} key={index} />
-            </>
-          ))}
+          {applicationData?.applications.map(data => {
+            return <ContentBox content={data} key={data.applicationId} />;
+          })}
         </S.ContentList>
+        <PaginationController
+          totalPages={applicationData?.info.totalPages ?? 0}
+          pageNumber={pageNumber}
+        />
       </S.MainPageContent>
     </S.MainPage>
   );

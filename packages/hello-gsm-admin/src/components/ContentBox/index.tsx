@@ -9,43 +9,45 @@ import {
   isStartFirstResult,
 } from 'shared/acceptable';
 import useStore from 'Stores/StoreContainer';
-import { ApplicantType } from 'Types/application';
+import {
+  ApplicantType,
+  SearchApplicationInfoType,
+  ApplicationListType,
+  EvaluationStatusType,
+} from 'Types/application';
 import * as S from './style';
 import * as I from 'Assets/svg';
+import formatScreening from 'Utils/Libs/formatScreening';
 
-interface ContentType {
-  content: ApplicantType;
+interface ContentBoxProp {
+  content: ApplicationListType;
 }
 
-const ContentBox: React.FC<ContentType> = ({
+type resultObjectType = {
+  [key in EvaluationStatusType]: string;
+};
+
+const ContentBox: React.FC<ContentBoxProp> = ({
   content: {
-    name,
-    cellphoneNumber,
-    application: {
-      applicationIdx,
-      finalResultScreening,
-      firstResultScreening,
-      guardianCellphoneNumber,
-      isDocumentReception,
-      registrationNumber,
-      schoolName,
-      screening,
-      teacherCellphoneNumber,
-      application_score,
-    },
+    applicationId,
+    applicantName,
+    applicantPhoneNumber,
+    teacherPhoneNumber,
+    guardianPhoneNumber,
+    screening,
+    isFinalSubmitted,
+    isPrintsArrived,
+    firstEvaluation,
+    secondEvaluation,
+    schoolName,
+    secondScore,
   },
 }) => {
   const [isFirstResult, setIsFirstResult] = useState<boolean>(false);
   const [isFinalResult, setIsFinalResult] = useState<boolean>(false);
-  const firstResult: '합격' | '불합격' = firstResultScreening
-    ? '합격'
-    : '불합격';
-  const finalResult: '합격' | '불합격' = finalResultScreening
-    ? '합격'
-    : '불합격';
-  const [score, setScore] = useState<number | null>(
-    parseFloat(application_score?.personalityEvaluationScore ?? '') || null,
-  );
+  const firstResult: EvaluationStatusType = firstEvaluation;
+  const finalResult: EvaluationStatusType = secondEvaluation;
+  const [score, setScore] = useState<number | null>(secondScore || null);
   const [documentReception, setDocumentReception] = useState<boolean>(true);
   const {
     showScoreModal,
@@ -57,17 +59,17 @@ const ContentBox: React.FC<ContentType> = ({
     setScoreModalValue,
   } = useStore();
 
-  const formattedCellphoneNumber = cellphoneNumber.replace(
+  const formattedCellphoneNumber = applicantPhoneNumber.replace(
     /(\d{3})(\d{4})(\d{4})/,
     '$1-$2-$3',
   );
-  const formattedGuardianCellphoneNumber = guardianCellphoneNumber.replace(
+  const formattedGuardianCellphoneNumber = guardianPhoneNumber.replace(
     /(\d{3})(\d{4})(\d{4})/,
     '$1-$2-$3',
   );
   const formattedTeacherCellphoneNumber =
-    teacherCellphoneNumber !== null
-      ? teacherCellphoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')
+    teacherPhoneNumber !== null
+      ? teacherPhoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')
       : '검정고시';
 
   useEffect(() => {
@@ -78,41 +80,48 @@ const ContentBox: React.FC<ContentType> = ({
   }, []);
 
   const resultStyle = {
-    미정: css`
+    NOT_YET: css`
       color: #9e9e9e;
       cursor: default;
     `,
-    합격: css`
+    PASS: css`
       color: #2174d8;
       cursor: default;
     `,
-    불합격: css`
+    FALL: css`
       color: #ff000f;
       cursor: default;
     `,
+  };
+
+  const formatResult = (result: EvaluationStatusType) => {
+    const resultObject: resultObjectType = {
+      PASS: '합격',
+      FALL: '불합격',
+      NOT_YET: '미정',
+    };
+    return resultObject[result];
   };
 
   return (
     <S.ContentBox>
       <S.Content>
         <S.RegistrationNumber>
-          {String(applicationIdx).padStart(4, '0')}
+          {String(applicationId).padStart(4, '0')}
         </S.RegistrationNumber>
         <S.isDocumentReception>
           <S.DocumentReceptionText documentReception={documentReception}>
-            · {documentReception ? '제출' : '미제출'}
+            · {isPrintsArrived ? '제출' : '미제출'}
           </S.DocumentReceptionText>
         </S.isDocumentReception>
-        <S.Name>{name}</S.Name>
-        <S.Screening>{screening}</S.Screening>
+        <S.Name>{applicantName}</S.Name>
+        <S.Screening>{formatScreening(screening)}</S.Screening>
         <S.SchoolName>{schoolName ?? '검정고시'}</S.SchoolName>
         <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
-        <S.FirstResultText
-          css={resultStyle[isFirstResult ? firstResult : '미정']}
-        >
-          {isFirstResult ? firstResult : '미정'}
+        <S.FirstResultText css={isFinalResult && resultStyle[firstResult]}>
+          {isFirstResult && formatResult(firstResult)}
         </S.FirstResultText>
         <S.FinalScoreText
           css={css`
@@ -121,10 +130,8 @@ const ContentBox: React.FC<ContentType> = ({
         >
           {score ?? '미입력'}
         </S.FinalScoreText>
-        <S.FinalResultText
-          css={resultStyle[isFinalResult ? finalResult : '미정']}
-        >
-          {isFinalResult ? finalResult : '미정'}
+        <S.FinalResultText css={isFinalResult && resultStyle[finalResult]}>
+          {isFinalResult && formatResult(finalResult)}
         </S.FinalResultText>
       </S.Content>
       <S.EditButtonBox>

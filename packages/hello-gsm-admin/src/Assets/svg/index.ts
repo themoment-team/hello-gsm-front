@@ -15,3 +15,4 @@ export { default as Fail } from './modalOptions/Fail';
 export { default as Pass } from './modalOptions/Pass';
 export { default as Submit } from './modalOptions/Submit';
 export { default as NotSubmit } from './modalOptions/NotSubmit';
+export { default as PaginationIcon } from './PaginationIcon';

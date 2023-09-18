@@ -4,7 +4,7 @@ export const Header = styled.div`
   width: 100%;
   height: 60px;
   border-bottom: 1px solid #eeeeee;
-  margin-top: 10px;
+
   background: #fff;
 `;
 
