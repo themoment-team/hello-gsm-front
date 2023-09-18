@@ -5,6 +5,7 @@ import { UserInfoType } from 'type/user';
 import user from 'Api/user';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 const SignUp: NextPage = () => {
   const seoTitle = '회원가입';
@@ -17,6 +18,7 @@ const SignUp: NextPage = () => {
       const { data }: { data: UserInfoType } = await user.getMyInfo();
       if (data.role === 'ROLE_USER') {
         push('/');
+        toast.info('본인인증이 완료되어 있습니다.');
       }
     } catch (e) {
       console.error(e);
