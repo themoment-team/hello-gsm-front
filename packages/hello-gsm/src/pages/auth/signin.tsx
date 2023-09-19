@@ -22,7 +22,7 @@ const SignIn: NextPage = () => {
       } else if (data.role === 'ROLE_USER') {
         push('/');
         toast.info(
-          '로그인 되어있습니다. 새로 로그인하려면 로그아웃을 시도해주세요.',
+          '로그인 되어있어요. 새로 로그인하려면 로그아웃을 시도해주세요.',
         );
       }
     } catch (e) {
