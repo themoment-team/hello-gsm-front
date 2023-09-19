@@ -42,7 +42,6 @@ const MainPage: NextPage = () => {
           searchKeyword,
         );
       setApplicationData(data);
-      router.push(`${router.pathname}?pageNumber=${1}`);
       console.log(data);
     } catch (error: any) {
       console.error(error);
