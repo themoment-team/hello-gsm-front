@@ -17,7 +17,6 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
   const [showModalResult, setShowModalResult] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<number>(0);
 
-  const handleIsClose = () => setIsClose(prev => !prev);
   const handleOptionSelect = () => {
     setIsClose(true);
   };

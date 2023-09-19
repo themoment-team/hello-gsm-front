@@ -1,24 +1,23 @@
+import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/react';
+import useStore from 'Stores/StoreContainer';
+import * as S from './style';
+import * as I from 'Assets/svg';
 import application from 'Api/application';
 import auth from 'Api/auth';
-import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import {
   isDuringFinalResult,
   isStartFinalResult,
   isStartFirstResult,
 } from 'shared/acceptable';
-import useStore from 'Stores/StoreContainer';
 import {
   ApplicantType,
   SearchApplicationInfoType,
   ApplicationListType,
   EvaluationStatusType,
 } from 'Types/application';
-import * as S from './style';
-import * as I from 'Assets/svg';
 import formatScreening from 'Utils/Libs/formatScreening';
-
 import { Modal } from 'components';
 
 interface ContentBoxProp {
@@ -51,24 +50,10 @@ const ContentBox: React.FC<ContentBoxProp> = ({
   const finalResult: EvaluationStatusType = secondEvaluation;
   const [score, setScore] = useState<number | null>(secondScore || null);
   const [documentReception, setDocumentReception] = useState<boolean>(true);
-  const {
-    showScoreModal,
-    setShowScoreModal,
-    setModalName,
-    setShowStatusModal,
-    modalRegistrationNumber,
-    setModalRegistrationNumber,
-    scoreModalValue,
-    showStatusModal,
-    setScoreModalValue,
-  } = useStore();
+  const { setModalName, setModalRegistrationNumber, setScoreModalValue } =
+    useStore();
 
-  useEffect(() => {
-    // 1차 시험 결과를 조화할 수 있는 날짜
-    setIsFirstResult(isStartFirstResult);
-    // 2차 시험 결과를 조회할 수 있는 날짜
-    setIsFinalResult(isStartFinalResult);
-  }, []);
+  const [showStatusModal, setShowStatusModal] = useState<boolean>(false); // 개별 컨텐츠 박스의 모달 상태
 
   const resultStyle = {
     NOT_YET: css`
@@ -84,6 +69,13 @@ const ContentBox: React.FC<ContentBoxProp> = ({
       cursor: default;
     `,
   };
+
+  useEffect(() => {
+    // 1차 시험 결과를 조화할 수 있는 날짜
+    setIsFirstResult(isStartFirstResult);
+    // 2차 시험 결과를 조회할 수 있는 날짜
+    setIsFinalResult(isStartFinalResult);
+  }, []);
 
   const formatResult = (result: EvaluationStatusType) => {
     const resultObject: resultObjectType = {
@@ -131,7 +123,7 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         </S.FinalResultText>
       </S.Content>
       <S.EditButtonBox>
-        <S.EditButton onClick={setShowStatusModal}>
+        <S.EditButton onClick={() => setShowStatusModal(true)}>
           <I.BulbIcon />
           상태 수정
         </S.EditButton>
