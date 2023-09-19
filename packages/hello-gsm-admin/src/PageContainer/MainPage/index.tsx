@@ -79,10 +79,13 @@ const MainPage: NextPage = () => {
           })}
         </S.ContentList>
         {applicationData?.info.totalPages && (
-          <PaginationController
-            totalPages={applicationData.info.totalPages}
-            pageNumber={pageNumber}
-          />
+          <>
+            <PaginationController
+              totalPages={applicationData.info.totalPages}
+              pageNumber={pageNumber}
+            />
+            <h1>{applicationData.info.totalPages}</h1>
+          </>
         )}
       </S.MainPageContent>
     </S.MainPage>
