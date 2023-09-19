@@ -70,7 +70,7 @@ const MainPage: NextPage = () => {
           submitCount={
             applicationData?.applications.filter(
               (data, index) => data.isFinalSubmitted,
-            ).length
+            ).length ?? 0
           }
         />
         <MainpageHeader />
