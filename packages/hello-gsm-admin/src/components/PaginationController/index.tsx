@@ -19,10 +19,9 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
     router.push(`${pathName}?pageNumber=${pageNumber}`);
   };
 
-  const [pageNumbers, setPageNumbers] = useState<number[]>([1, 2, 3, 4]);
+  const [pageNumbers, setPageNumbers] = useState<number[]>([]);
 
-  console.log(totalPages);
-  const pageLimit = 4;
+  const pageLimit = totalPages < 4 ? totalPages : 4;
   const currentPage = pageNumber;
   const currentPageGroup = Math.ceil(currentPage / pageLimit);
   const startGroupPage = (currentPageGroup - 1) * pageLimit + 1;
@@ -39,6 +38,10 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
     if (currentPage % 4 === 1 || currentPage % 4 === 0) {
       updatePageGroup();
     }
+    const newPageNumbers = [1, 2, 3, 4];
+    newPageNumbers.length = pageLimit;
+    console.log(newPageNumbers);
+    setPageNumbers(newPageNumbers);
   }, [currentPage]);
 
   return (

@@ -42,7 +42,6 @@ const MainPage: NextPage = () => {
           searchKeyword,
         );
       setApplicationData(data);
-      console.log(data.info.totalPages);
     } catch (error: any) {
       console.error(error);
     }
