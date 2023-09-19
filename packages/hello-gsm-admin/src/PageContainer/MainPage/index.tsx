@@ -78,10 +78,12 @@ const MainPage: NextPage = () => {
             return <ContentBox content={data} key={data.applicationId} />;
           })}
         </S.ContentList>
-        <PaginationController
-          totalPages={applicationData?.info.totalPages ?? 0}
-          pageNumber={pageNumber}
-        />
+        {applicationData?.info.totalPages && (
+          <PaginationController
+            totalPages={applicationData.info.totalPages}
+            pageNumber={pageNumber}
+          />
+        )}
       </S.MainPageContent>
     </S.MainPage>
   );
