@@ -68,9 +68,8 @@ const MainPage: NextPage = () => {
           setSearchTag={setSearchTag}
           searchTag={searchTag}
           submitCount={
-            applicationData?.applications.filter(
-              (data, index) => data.isFinalSubmitted,
-            ).length ?? 0
+            applicationData?.applications.filter(data => data.isFinalSubmitted)
+              .length ?? 0
           }
         />
         <MainpageHeader />
