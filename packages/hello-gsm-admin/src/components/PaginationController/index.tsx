@@ -40,13 +40,13 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
     }
   }, [currentPage]);
 
-  // useEffect(() => {
-  //   const newPageNumbers = [1, 2, 3, 4];
-  //   newPageNumbers.length = pageLimit;
-  //   console.log(newPageNumbers);
-  //   setPageNumbers(newPageNumbers);
-  //   updatePageGroup();
-  // }, [totalPages]);
+  useEffect(() => {
+    const newPageNumbers = [1, 2, 3, 4];
+    newPageNumbers.length = pageLimit;
+    console.log(newPageNumbers);
+    setPageNumbers(newPageNumbers);
+    updatePageGroup();
+  }, [pageLimit]);
 
   return (
     <S.PaginationWrapper>
