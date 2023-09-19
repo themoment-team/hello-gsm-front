@@ -51,7 +51,6 @@ const MainPage: NextPage = () => {
   useEffect(() => {
     if (searchKeyword && searchTag) {
       router.push(`${router.pathname}?pageNumber=${1}`);
-      return;
     }
     getApplicationList(pageNumber);
   }, [pageNumber, searchKeyword, searchTag]);
