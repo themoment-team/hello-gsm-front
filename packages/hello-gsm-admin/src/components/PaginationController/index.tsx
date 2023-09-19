@@ -30,9 +30,8 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
 
   const updatePageGroup = () => {
     setPageNumbers([]);
-    for (let i = startGroupPage; i <= endGroupPage; i++) {
+    for (let i = startGroupPage; i <= endGroupPage; i++)
       setPageNumbers(prev => [...prev, i]);
-    }
   };
 
   useEffect(() => {
