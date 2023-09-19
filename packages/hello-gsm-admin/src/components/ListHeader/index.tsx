@@ -13,6 +13,7 @@ interface ListHeaderType {
   setSearchValue: Dispatch<SetStateAction<string>>;
   setSearchTag: Dispatch<SetStateAction<SearchTagType>>;
   searchTag: SearchTagType;
+  submitCount: number;
 }
 
 const ListHeader: React.FC<ListHeaderType> = ({
@@ -20,6 +21,7 @@ const ListHeader: React.FC<ListHeaderType> = ({
   setSearchValue,
   setSearchTag,
   searchTag,
+  submitCount,
 }) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
@@ -29,7 +31,7 @@ const ListHeader: React.FC<ListHeaderType> = ({
     <S.ListHeaderWrapper>
       <S.TitleWrapper>
         <S.FinalSubmit>최종 제출&nbsp;</S.FinalSubmit>
-        <S.SubmitNumber>{86}</S.SubmitNumber>
+        <S.SubmitNumber>{submitCount}</S.SubmitNumber>
       </S.TitleWrapper>
       <S.ListHeaderContent>
         <S.ButtonWrapper>

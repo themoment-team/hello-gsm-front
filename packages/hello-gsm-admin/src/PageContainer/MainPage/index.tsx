@@ -42,6 +42,7 @@ const MainPage: NextPage = () => {
           searchKeyword,
         );
       setApplicationData(data);
+      console.log(data);
     } catch (error: any) {
       console.error(error);
     }
@@ -66,6 +67,11 @@ const MainPage: NextPage = () => {
           setSearchValue={setTmpValue}
           setSearchTag={setSearchTag}
           searchTag={searchTag}
+          submitCount={
+            applicationData?.applications.filter(
+              (data, index) => data.isFinalSubmitted,
+            ).length
+          }
         />
         <MainpageHeader />
         <S.ContentList>
@@ -74,7 +80,7 @@ const MainPage: NextPage = () => {
           })}
         </S.ContentList>
         <PaginationController
-          totalPages={applicationData?.info.totalPages ?? 1}
+          totalPages={applicationData?.info.totalPages ?? 0}
           pageNumber={pageNumber}
         />
       </S.MainPageContent>
