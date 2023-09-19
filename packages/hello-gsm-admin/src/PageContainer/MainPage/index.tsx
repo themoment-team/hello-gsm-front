@@ -49,11 +49,14 @@ const MainPage: NextPage = () => {
   };
 
   useEffect(() => {
+    getApplicationList(pageNumber);
+  }, [pageNumber]);
+
+  useEffect(() => {
     if (searchKeyword && searchTag) {
       router.push(`${router.pathname}?pageNumber=${1}`);
     }
-    getApplicationList(pageNumber);
-  }, [pageNumber, searchKeyword, searchTag]);
+  }, [searchKeyword, searchTag]);
 
   return (
     <S.MainPage>
