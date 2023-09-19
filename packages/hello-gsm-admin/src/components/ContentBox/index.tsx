@@ -19,6 +19,8 @@ import * as S from './style';
 import * as I from 'Assets/svg';
 import formatScreening from 'Utils/Libs/formatScreening';
 
+import { Modal } from 'components';
+
 interface ContentBoxProp {
   content: ApplicationListType;
 }
@@ -53,24 +55,13 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     showScoreModal,
     setShowScoreModal,
     setModalName,
+    setShowStatusModal,
     modalRegistrationNumber,
     setModalRegistrationNumber,
     scoreModalValue,
+    showStatusModal,
     setScoreModalValue,
   } = useStore();
-
-  const formattedCellphoneNumber = applicantPhoneNumber.replace(
-    /(\d{3})(\d{4})(\d{4})/,
-    '$1-$2-$3',
-  );
-  const formattedGuardianCellphoneNumber = guardianPhoneNumber.replace(
-    /(\d{3})(\d{4})(\d{4})/,
-    '$1-$2-$3',
-  );
-  const formattedTeacherCellphoneNumber =
-    teacherPhoneNumber !== null
-      ? teacherPhoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')
-      : '검정고시';
 
   useEffect(() => {
     // 1차 시험 결과를 조화할 수 있는 날짜
@@ -105,6 +96,11 @@ const ContentBox: React.FC<ContentBoxProp> = ({
 
   return (
     <S.ContentBox>
+      {showStatusModal && (
+        <S.ModalContainer>
+          <Modal name={applicantName} studentCode={applicationId} />
+        </S.ModalContainer>
+      )}
       <S.Content>
         <S.RegistrationNumber>
           {String(applicationId).padStart(4, '0')}
@@ -117,9 +113,9 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         <S.Name>{applicantName}</S.Name>
         <S.Screening>{formatScreening(screening)}</S.Screening>
         <S.SchoolName>{schoolName ?? '검정고시'}</S.SchoolName>
-        <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
-        <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
-        <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
+        <S.PhoneNumber>{applicantPhoneNumber}</S.PhoneNumber>
+        <S.GuardianNumber>{guardianPhoneNumber}</S.GuardianNumber>
+        <S.TeacherNumber>{teacherPhoneNumber}</S.TeacherNumber>
         <S.FirstResultText css={isFinalResult && resultStyle[firstResult]}>
           {isFirstResult && formatResult(firstResult)}
         </S.FirstResultText>
@@ -135,7 +131,7 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         </S.FinalResultText>
       </S.Content>
       <S.EditButtonBox>
-        <S.EditButton>
+        <S.EditButton onClick={setShowStatusModal}>
           <I.BulbIcon />
           상태 수정
         </S.EditButton>

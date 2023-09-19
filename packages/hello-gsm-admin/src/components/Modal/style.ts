@@ -10,6 +10,7 @@ export const Modal = styled.div`
   align-items: center;
   flex-direction: column;
   height: 32.0625rem;
+  position: absolute;
 `;
 
 export const ModalContent = styled.div`
