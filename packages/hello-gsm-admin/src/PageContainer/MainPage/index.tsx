@@ -50,7 +50,7 @@ const MainPage: NextPage = () => {
 
   useEffect(() => {
     getApplicationList(pageNumber);
-  }, [pageNumber]);
+  }, [pageNumber, searchKeyword, searchTag]);
 
   useEffect(() => {
     if (searchKeyword && searchTag) {
