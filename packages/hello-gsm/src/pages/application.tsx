@@ -22,13 +22,12 @@ const Application: NextPage = () => {
       const { data }: ApplicationDataType =
         await application.getMyApplication();
       setApplicationData(data);
-      console.log(data);
 
       if (!data?.admissionStatus.isFinalSubmitted) {
         push('/mypage');
       }
     } catch (e) {
-      push('/mypage');
+      console.error(e);
     }
   };
 

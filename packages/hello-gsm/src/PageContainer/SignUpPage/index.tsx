@@ -103,8 +103,7 @@ const SignUpPage: NextPage = () => {
     if (!errors.phoneNumber && /^[0][1][0][0-9]{8}/.test(phoneNumber)) {
       try {
         toast.success('인증번호를 전송했어요.');
-        const { data } = await identity.postCodeTest(phoneNumber);
-        console.log(data);
+        await identity.postCode(phoneNumber);
         setIsSent(true);
       } catch (e) {
         toast.error('인증번호 전송을 실패했어요. 다시 시도해주세요.');
