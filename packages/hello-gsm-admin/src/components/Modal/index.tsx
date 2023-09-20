@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import * as S from './style';
 import * as I from 'Assets/svg';
 import * as C from 'components';
+import status from 'Api/status';
 
-import useStore from 'Stores/StoreContainer';
+import { toast } from 'react-toastify';
 
 interface ModalProps {
   studentCode: number;
@@ -11,7 +12,7 @@ interface ModalProps {
   onClose: () => void;
 }
 
-const NewModal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
+const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
   const [isClose, setIsClose] = useState<boolean>(true);
   const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false);
   const [selectedButtonId, setSelectedButtonId] = useState<number>(0);
@@ -25,29 +26,39 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
   const handleCloseModal = () => {
     onClose();
   };
+
   const handleButtonClick = (id: number) => {
     setIsButtonClicked(true);
     setSelectedButtonId(id);
   };
 
-  const handleModalButtonClick = (selectedButtonId: number) => {
+  const handleModalButtonClick = (
+    selectedButtonId: number,
+    userId: number,
+    buttonTitle: '다음' | '확인',
+  ) => {
     setShowModal(selectedButtonId);
     setIsButtonClicked(false);
     setShowModalResult(true);
+
     setIsButtonClicked(true);
+
+    if (buttonTitle === '확인') {
+      modifiedStatus(userId);
+      handleCloseModal();
+      toast.success('상태수정에 성공하였어요.');
+    }
   };
 
-  const {
-    showScoreModal,
-    setShowScoreModal,
-    setModalName,
-    setShowStatusModal,
-    modalRegistrationNumber,
-    setModalRegistrationNumber,
-    scoreModalValue,
-    showStatusModal,
-    setScoreModalValue,
-  } = useStore();
+  // 최종 제출
+  const modifiedStatus = async (userId: number) => {
+    try {
+      await status.putStatus(userId);
+      toast.success('상태수정이 완료되었어요.');
+    } catch (error: any) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -91,7 +102,9 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
               <C.ModalButton
                 buttonTitle="확인"
                 isConfirm={!isButtonClicked}
-                onClick={() => handleModalButtonClick(selectedButtonId)}
+                onClick={() =>
+                  handleModalButtonClick(selectedButtonId, studentCode, '확인')
+                }
               />
             </S.ContentBox>
           )}
@@ -105,7 +118,9 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
               <C.ModalButton
                 buttonTitle="확인"
                 isConfirm={!isButtonClicked}
-                onClick={() => handleModalButtonClick(selectedButtonId)}
+                onClick={() =>
+                  handleModalButtonClick(selectedButtonId, studentCode, '확인')
+                }
               />
             </S.ContentBox>
           )}
@@ -121,7 +136,9 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
               <C.ModalButton
                 buttonTitle="확인"
                 isConfirm={!isButtonClicked}
-                onClick={() => handleModalButtonClick(selectedButtonId)}
+                onClick={() =>
+                  handleModalButtonClick(selectedButtonId, studentCode, '확인')
+                }
               />
             </S.ContentBox>
           )}
@@ -135,7 +152,9 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
               <C.ModalButton
                 buttonTitle="확인"
                 isConfirm={!isButtonClicked}
-                onClick={() => handleModalButtonClick(selectedButtonId)}
+                onClick={() =>
+                  handleModalButtonClick(selectedButtonId, studentCode, '확인')
+                }
               />
             </S.ContentBox>
           )}
@@ -162,7 +181,9 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
               <C.ModalButton
                 buttonTitle="다음"
                 isConfirm={!isButtonClicked}
-                onClick={() => handleModalButtonClick(selectedButtonId)}
+                onClick={() =>
+                  handleModalButtonClick(selectedButtonId, studentCode, '다음')
+                }
               />
             </S.ContentBox>
           )}
@@ -172,4 +193,4 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
   );
 };
 
-export default NewModal;
+export default Modal;

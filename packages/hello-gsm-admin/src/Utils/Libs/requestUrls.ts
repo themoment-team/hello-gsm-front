@@ -37,7 +37,7 @@ export const IdentityController = {
 // 유저 상태 변경
 export const StatusController = {
   // put 유저 상태 변경
-  putStatus: (userId: string) => {
+  putStatus: (userId: number) => {
     return `/status/${userId}`;
   },
 };

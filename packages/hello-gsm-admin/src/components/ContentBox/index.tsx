@@ -53,7 +53,7 @@ const ContentBox: React.FC<ContentBoxProp> = ({
   const { setModalName, setModalRegistrationNumber, setScoreModalValue } =
     useStore();
 
-  const [showStatusModal, setShowStatusModal] = useState<boolean>(false); // 개별 컨텐츠 박스의 모달 상태
+  const [showStatusModal, setShowStatusModal] = useState<boolean>(false);
 
   const resultStyle = {
     NOT_YET: css`
