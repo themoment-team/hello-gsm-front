@@ -49,8 +49,8 @@ export const ApplicationController = {
     return `/application/v1/status/${userId}`;
   },
   // get 모든 사용자의 수험표 정보 조회하기
-  tickets: (page: number, size: number) => {
-    return `/application/v1/tickets?page=${page}&size=${size}`;
+  tickets: () => {
+    return `/application/v1/tickets`;
   },
   // get 최종제출이 완료된 사용자를 검색
   searchApplication: (
