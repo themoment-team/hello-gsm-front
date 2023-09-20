@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from './style';
 import * as I from 'Assets/svg';
+import auth from 'Api/auth';
 const SlideBar: React.FC = () => {
   return (
     <S.SideBar>
@@ -12,7 +13,7 @@ const SlideBar: React.FC = () => {
       <S.LogoutBox>
         <S.InnerLogoutBox>
           <I.LogoutIcon />
-          <S.Logout>로그아웃</S.Logout>
+          <S.Logout href={auth.logout()}>로그아웃</S.Logout>
         </S.InnerLogoutBox>
       </S.LogoutBox>
     </S.SideBar>
