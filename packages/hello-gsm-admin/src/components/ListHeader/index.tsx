@@ -41,14 +41,8 @@ const ListHeader: React.FC<ListHeaderType> = ({
               id="tag"
               value={searchTag}
               onChange={e => {
-                const tagValue = e.target.value;
-                if (
-                  tagValue === 'PHONE_NUMBER' ||
-                  tagValue === 'SCHOOL' ||
-                  tagValue === 'APPLICANT'
-                ) {
+                const tagValue = e.target.value as SearchTagType;
                   setSearchTag(tagValue);
-                }
               }}
             >
               <option value="APPLICANT">지원자 이름</option>
