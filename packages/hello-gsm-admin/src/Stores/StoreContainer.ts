@@ -1,4 +1,5 @@
 import create from 'zustand';
+import { CommonApplicationResponseType } from '../Types/application';
 
 interface StoreType {
   showScoreModal: boolean;
@@ -11,6 +12,8 @@ interface StoreType {
   setModalRegistrationNumber: (registrationNumber: number) => void;
   setModalName: (name: string) => void;
   setScoreModalValue: (value: number | null) => void;
+  setApplyData: (data: CommonApplicationResponseType) => void;
+  applyData: CommonApplicationResponseType | null;
 }
 
 const useStore = create<StoreType>(set => ({
@@ -19,7 +22,9 @@ const useStore = create<StoreType>(set => ({
   modalName: '',
   scoreModalValue: null,
   showStatusModal: false,
+  applyData: null,
 
+  setApplyData: data => set({ applyData: data }),
   setShowStatusModal: () =>
     set(state => ({ showStatusModal: !state.showStatusModal })),
   setShowScoreModal: () =>

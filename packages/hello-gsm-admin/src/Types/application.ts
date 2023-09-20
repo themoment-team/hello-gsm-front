@@ -67,6 +67,25 @@ export interface ApplicationListType {
   secondScore: number;
 }
 
+export type MajorType = 'SW' | 'IOT' | 'AI' | '';
+
+export interface CommonApplicationResponseType {
+  isFinalSubmitted: boolean;
+  isPrintsArrived: boolean;
+  firstEvaluation: EvaluationStatusType;
+  secondEvaluation: EvaluationStatusType;
+  screeningSubmittedAt: ScreeningType | null;
+  screeningFirstEvaluationAt: ScreeningType | null;
+  screeningSecondEvaluationAt: ScreeningType | null;
+  registrationNumber: number | null;
+  secondScore: number | null;
+  finalMajor: MajorType | null;
+}
+
+export interface ApplicationDataType {
+  data: CommonApplicationResponseType;
+}
+
 export interface SearchApplicationType {
   data: SearchApplicationInfoType;
 }
