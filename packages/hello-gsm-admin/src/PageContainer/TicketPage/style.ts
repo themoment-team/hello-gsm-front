@@ -24,7 +24,7 @@ export const Ticket = styled.div`
   margin: 0 auto 100px;
 
   :nth-child(2n) {
-    margin: 0 auto 150px;
+    margin: 0 auto 120px;
   }
 `;
 
