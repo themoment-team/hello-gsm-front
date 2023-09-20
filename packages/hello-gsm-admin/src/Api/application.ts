@@ -49,20 +49,19 @@ class Application {
   }
 
   /**
-   * @param page - 페이지
-   * @param size - 원서 크기
    * @returns 1차 합격자들의 수험표 출력을 위한 정보를 반환합니다.
    */
-  getAllTickets(page: number, size: number) {
+  getAllTickets() {
     try {
       return RequestApi({
         method: 'GET',
-        url: ApplicationController.tickets(page, size),
+        url: ApplicationController.tickets(),
       });
     } catch (error: any) {
       return error;
     }
   }
+
   /**
    * @param page - 페이지
    * @param size - 원서크기

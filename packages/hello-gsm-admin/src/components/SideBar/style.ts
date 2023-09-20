@@ -65,7 +65,7 @@ export const InnerLogoutBox = styled.button`
   background: #ffffff;
   cursor: pointer;
 `;
-export const Logout = styled.div`
+export const Logout = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;

@@ -43,8 +43,6 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     secondScore,
   },
 }) => {
-  const [isFirstResult, setIsFirstResult] = useState<boolean>(false);
-  const [isFinalResult, setIsFinalResult] = useState<boolean>(false);
   const firstResult: EvaluationStatusType = firstEvaluation;
   const finalResult: EvaluationStatusType = secondEvaluation;
   const [score, setScore] = useState<number | null>(secondScore || null);
@@ -71,13 +69,6 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     teacherPhoneNumber !== null
       ? teacherPhoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')
       : '검정고시';
-
-  useEffect(() => {
-    // 1차 시험 결과를 조화할 수 있는 날짜
-    setIsFirstResult(isStartFirstResult);
-    // 2차 시험 결과를 조회할 수 있는 날짜
-    setIsFinalResult(isStartFinalResult);
-  }, []);
 
   const resultStyle = {
     NOT_YET: css`
@@ -120,8 +111,8 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
-        <S.FirstResultText css={isFinalResult && resultStyle[firstResult]}>
-          {isFirstResult && formatResult(firstResult)}
+        <S.FirstResultText css={resultStyle[firstResult]}>
+          {formatResult(firstResult)}
         </S.FirstResultText>
         <S.FinalScoreText
           css={css`
@@ -130,8 +121,8 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         >
           {score ?? '미입력'}
         </S.FinalScoreText>
-        <S.FinalResultText css={isFinalResult && resultStyle[finalResult]}>
-          {isFinalResult && formatResult(finalResult)}
+        <S.FinalResultText css={resultStyle[finalResult]}>
+          {formatResult(finalResult)}
         </S.FinalResultText>
       </S.Content>
       <S.EditButtonBox>
