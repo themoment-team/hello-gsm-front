@@ -25,13 +25,14 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
   const currentPage = pageNumber;
   const currentPageGroup = Math.ceil(currentPage / pageLimit);
   const startGroupPage = (currentPageGroup - 1) * pageLimit + 1;
-  const endGroupPage =
-    totalPages / 4 === 0 ? currentPageGroup * pageLimit : totalPages % 4;
+  const endGroupPage = currentPageGroup * pageLimit;
 
   const updatePageGroup = () => {
     setPageNumbers([]);
     for (let i = startGroupPage; i <= endGroupPage; i++)
-      setPageNumbers(prev => [...prev, i]);
+      if (i > totalPages) {
+        setPageNumbers(prev => [...prev, i]);
+      }
   };
 
   useEffect(() => {
