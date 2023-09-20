@@ -67,10 +67,7 @@ const MainPage: NextPage = () => {
           setSearchValue={setTmpValue}
           setSearchTag={setSearchTag}
           searchTag={searchTag}
-          submitCount={
-            applicationData?.applications.filter(data => data.isFinalSubmitted)
-              .length ?? 0
-          }
+          submitCount={applicationData?.info.totalElements ?? 0}
         />
         <MainpageHeader />
         <S.ContentList>
