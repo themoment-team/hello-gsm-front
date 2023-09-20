@@ -47,18 +47,20 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
   }, [pageLimit]);
 
   return (
-    <S.PaginationWrapper>
+    <S.PaginationWrapper id="1">
       <S.PaginationButton
+        id="2"
         type="button"
         onClick={() => updatePageNumber(pageNumber - 1)}
         disabled={pageNumber === 1}
       >
         <PaginationIcon turn="right" disabled={pageNumber === 1} />
       </S.PaginationButton>
-      <S.NumberWrap>
+      <S.NumberWrap id="3">
         {pageNumbers.map(showNumber => {
           return (
             <S.PageNumberButton
+              id="4"
               key={showNumber}
               selected={pageNumber === showNumber}
               onClick={() => updatePageNumber(showNumber)}
@@ -69,6 +71,7 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
         })}
       </S.NumberWrap>
       <S.PaginationButton
+        id="5"
         type="button"
         onClick={() => updatePageNumber(pageNumber + 1)}
         disabled={pageNumber === totalPages}
