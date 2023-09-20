@@ -18,7 +18,7 @@ const SignUp: NextPage = () => {
       const { data }: { data: UserInfoType } = await user.getMyInfo();
       if (data.role === 'ROLE_USER') {
         push('/');
-        toast.info('본인인증이 완료되어 있습니다.');
+        toast.info('본인인증이 완료되어 있어요.');
       }
     } catch (e) {
       console.error(e);
