@@ -42,7 +42,7 @@ const ListHeader: React.FC<ListHeaderType> = ({
               value={searchTag}
               onChange={e => {
                 const tagValue = e.target.value as SearchTagType;
-                  setSearchTag(tagValue);
+                setSearchTag(tagValue);
               }}
             >
               <option value="APPLICANT">지원자 이름</option>
