@@ -5,6 +5,15 @@ export const TicketPage = styled.div`
   background-color: #ffffff;
   @media print {
     -webkit-print-color-adjust: exact;
+    .warterMark {
+      display: none;
+    }
+    @page {
+      margin: 0;
+    }
+    body {
+      margin: 1.6cm;
+    }
   }
 `;
 
