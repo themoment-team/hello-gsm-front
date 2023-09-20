@@ -86,11 +86,19 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     return resultObject[result];
   };
 
+  const onCloseShowStatusModal = () => {
+    setShowStatusModal(false);
+  };
+
   return (
     <S.ContentBox>
       {showStatusModal && (
         <S.ModalContainer>
-          <Modal name={applicantName} studentCode={applicationId} />
+          <Modal
+            name={applicantName}
+            studentCode={applicationId}
+            onClose={onCloseShowStatusModal}
+          />
         </S.ModalContainer>
       )}
       <S.Content>

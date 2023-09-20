@@ -8,9 +8,10 @@ import useStore from 'Stores/StoreContainer';
 interface ModalProps {
   studentCode: number;
   name: string;
+  onClose: () => void;
 }
 
-const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
+const NewModal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
   const [isClose, setIsClose] = useState<boolean>(true);
   const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false);
   const [selectedButtonId, setSelectedButtonId] = useState<number>(0);
@@ -21,6 +22,9 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
     setIsClose(true);
   };
 
+  const handleCloseModal = () => {
+    onClose();
+  };
   const handleButtonClick = (id: number) => {
     setIsButtonClicked(true);
     setSelectedButtonId(id);
@@ -54,12 +58,20 @@ const NewModal: React.FC<ModalProps> = ({ name, studentCode }) => {
           }}
         >
           <S.XIcon
-            onClick={setShowStatusModal}
             style={{
               width: showModal !== 0 ? '28.5rem' : '55.5rem',
             }}
           >
-            <I.ModalCloseIcon />
+            <div
+              style={{
+                width: '24px',
+                height: '24px',
+                cursor: 'pointer',
+              }}
+              onClick={handleCloseModal}
+            >
+              <I.ModalCloseIcon />
+            </div>
           </S.XIcon>
           {showModalResult ? (
             <></>

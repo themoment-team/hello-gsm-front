@@ -38,9 +38,7 @@ export const ModalOption = styled.button`
 
 export const XIcon = styled.div`
   height: 24px;
-  width: 888px;
   display: flex;
-  cursor: pointer;
   justify-content: end;
   padding-right: 20px;
 `;
