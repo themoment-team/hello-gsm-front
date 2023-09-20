@@ -55,7 +55,7 @@ const ListHeader: React.FC<ListHeaderType> = ({
               value={searchValue}
               onFocus={handleFocus}
               onBlur={handleFocus}
-              placeholder={isFocus ? '' : '검색어를 입력해주세요.'}
+placeholder={!isFocus && '검색어를 입력해주세요.'} 
               onChange={e => setSearchValue(e.target.value)}
             />
             <SearchIcon />
