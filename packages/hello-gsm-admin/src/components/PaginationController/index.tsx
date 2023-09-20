@@ -19,9 +19,9 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
     router.push(`${pathName}?pageNumber=${pageNumber}`);
   };
 
-  const [pageNumbers, setPageNumbers] = useState<number[]>([1, 2, 3, 4]);
+  const [pageNumbers, setPageNumbers] = useState<number[]>([]);
 
-  const pageLimit = 4;
+  const pageLimit = totalPages < 4 ? totalPages : 4;
   const currentPage = pageNumber;
   const currentPageGroup = Math.ceil(currentPage / pageLimit);
   const startGroupPage = (currentPageGroup - 1) * pageLimit + 1;
@@ -29,9 +29,8 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
 
   const updatePageGroup = () => {
     setPageNumbers([]);
-    for (let i = startGroupPage; i <= endGroupPage; i++) {
+    for (let i = startGroupPage; i <= endGroupPage; i++)
       setPageNumbers(prev => [...prev, i]);
-    }
   };
 
   useEffect(() => {
@@ -39,6 +38,13 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
       updatePageGroup();
     }
   }, [currentPage]);
+
+  useEffect(() => {
+    const newPageNumbers = [1, 2, 3, 4];
+    newPageNumbers.length = pageLimit;
+    setPageNumbers(newPageNumbers);
+    updatePageGroup();
+  }, [pageLimit]);
 
   return (
     <S.PaginationWrapper>
@@ -50,17 +56,15 @@ const PaginationController: React.FC<PaginationControllerProps> = ({
         <PaginationIcon turn="right" disabled={pageNumber === 1} />
       </S.PaginationButton>
       <S.NumberWrap>
-        {pageNumbers.map(showNumber => {
-          return (
-            <S.PageNumberButton
-              key={showNumber}
-              selected={pageNumber === showNumber}
-              onClick={() => updatePageNumber(showNumber)}
-            >
-              {showNumber}
-            </S.PageNumberButton>
-          );
-        })}
+        {pageNumbers.map(showNumber => (
+          <S.PageNumberButton
+            key={showNumber}
+            selected={pageNumber === showNumber}
+            onClick={() => updatePageNumber(showNumber)}
+          >
+            {showNumber}
+          </S.PageNumberButton>
+        ))}
       </S.NumberWrap>
       <S.PaginationButton
         type="button"

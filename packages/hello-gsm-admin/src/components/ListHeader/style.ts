@@ -59,3 +59,23 @@ export const ButtonWrapper = styled.div`
   display: flex;
   gap: 16px;
 `;
+
+export const SelectWrapper = styled.div`
+  width: 113px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  padding-left: 16px;
+`;
+
+export const SelectBox = styled.select`
+  height: 44px;
+  border: 0;
+  background: #fff;
+  outline: none;
+
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+`;
