@@ -89,6 +89,9 @@ export const PrintBtn = styled.button`
   border: none;
   svg {
     width: 2.5vh;
+    path {
+      fill: #000000;
+    }
   }
   &:hover {
     transition: 0.5s;
