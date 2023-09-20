@@ -1,19 +1,13 @@
 import styled from '@emotion/styled';
 
 export const TicketPage = styled.div`
-  padding: 50px 0;
+  padding-top: 50px;
   background-color: #ffffff;
   @media print {
+    div {
+      padding-top: 0;
+    }
     -webkit-print-color-adjust: exact;
-    .warterMark {
-      display: none;
-    }
-    @page {
-      margin: 0;
-    }
-    body {
-      margin: 1.6cm;
-    }
   }
 `;
 
@@ -21,10 +15,10 @@ export const Ticket = styled.div`
   width: 63vh;
   height: 40vh;
 
-  margin: 0 auto 100px;
+  margin: 0px auto 100px;
 
   :nth-child(2n) {
-    margin: 0 auto 120px;
+    margin: 100px auto 150px;
   }
 `;
 
