@@ -29,6 +29,7 @@ const Modal: React.FC<ModalProps> = ({
   const [selectedButtonId, setSelectedButtonId] = useState<number>(0);
   const [showModalResult, setShowModalResult] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<number>(0);
+  const [inputValue, setInputValue] = useState<string>('');
 
   // 상태 업데이트를 위한 변수 초기화
   const [finalSubmitted, setFinalSubmitted] = useState<boolean>(false);
@@ -44,66 +45,24 @@ const Modal: React.FC<ModalProps> = ({
   const [screeningSecondEvaluationAt, setScreeningSecondEvaluationAt] =
     useState<string>('GENERAL');
   const [registrationNumber, setRegistrationNumber] = useState<boolean>(false);
-  const [secondScore, setSecondScore] = useState<number | undefined>(undefined);
+  const [secondScore, setSecondScore] = useState<string>('');
   const [finalMajor, setFinalMajor] = useState<string>('SW');
 
-  // 선택한 옵션 닫기
   const handleOptionSelect = () => {
     setIsClose(true);
   };
 
-  // 모달 닫기
   const handleCloseModal = () => {
     onClose();
   };
 
-  // Store에서 데이터 가져오기
   const { setApplyData } = useStore();
 
-  // 버튼 클릭 처리
   const handleButtonClick = (id: number) => {
     setIsButtonClicked(true);
     setSelectedButtonId(id);
   };
 
-  // 모달 내부 버튼 클릭 처리
-  const handleModalButtonClick = (
-    selectedButtonId: number,
-    userId: number,
-    buttonTitle: '다음' | '확인',
-  ) => {
-    setShowModal(selectedButtonId);
-    setIsButtonClicked(false);
-    setShowModalResult(true);
-
-    setIsButtonClicked(true);
-
-    switch (selectedButtonId) {
-      case 1:
-        setPrintsArrived(true);
-        break;
-      case 2:
-        setFirstEvaluation('PASS');
-        break;
-      case 3:
-        setSecondEvaluation('NOT_YET');
-        break;
-      case 4:
-        setSecondScore(0);
-        break;
-      default:
-        // 선택한 버튼 ID가 다른 경우에 대한 처리를 여기에 추가하세요.
-        break;
-    }
-
-    if (buttonTitle === '확인') {
-      modifiedStatus(userId);
-      handleCloseModal();
-      toast.success('상태 수정에 성공하였어요.');
-    }
-  };
-
-  // 데이터 저장
   const applyData: CommonApplicationResponseType = {
     isFinalSubmitted: finalSubmitted,
     isPrintsArrived: printsArrived,
@@ -117,21 +76,58 @@ const Modal: React.FC<ModalProps> = ({
     finalMajor: finalMajor,
   };
 
+  const handleModalButtonClick = (
+    selectedButtonId: number,
+    userId: number,
+    buttonTitle: '다음' | '확인',
+  ) => {
+    if (buttonTitle === '확인') {
+      modifiedStatus(userId);
+      handleCloseModal();
+      toast.success('상태 수정에 성공하였어요.');
+      apply(applyData);
+    } else {
+      setShowModal(selectedButtonId);
+      setIsButtonClicked(false);
+      setShowModalResult(true);
+
+      setIsButtonClicked(true);
+
+      switch (selectedButtonId) {
+        case 1:
+          handleOptionSelect === 1
+            ? setPrintsArrived(true)
+            : setPrintsArrived(false);
+          break;
+        case 2:
+          handleOptionSelect === 1
+            ? setFirstEvaluation('PASS')
+            : setFirstEvaluation('FALL');
+          break;
+        case 3:
+          handleOptionSelect === 1
+            ? setSecondEvaluation('PASS')
+            : setSecondEvaluation('FALL');
+          break;
+        case 4:
+          setSecondScore(inputValue);
+          console.log(inputValue);
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
   // 데이터를 서버로 전송
-  const apply = async (submitData: CommonApplicationResponseType) => {
+  const apply = async (applyData: CommonApplicationResponseType) => {
     try {
       setApplyData(applyData);
-      // onNext(); // onNext 함수가 선언되지 않았으므로 필요한 경우 추가하세요.
-
-      // setshowApplyPostModal(); // setshowApplyPostModal 함수가 선언되지 않았으므로 필요한 경우 추가하세요.
-      toast.success('원서 정보 저장에 성공했어요.');
     } catch (error: any) {
-      // setshowApplyPostModal(); // setshowApplyPostModal 함수가 선언되지 않았으므로 필요한 경우 추가하세요.
       toast.error('원서 정보 저장 중 에러가 발생했어요. 다시 시도해주세요.');
     }
   };
 
-  // 최종 제출 상태 업데이트
   const modifiedStatus = async (userId: number) => {
     try {
       await status.putStatus(userId);
@@ -229,7 +225,7 @@ const Modal: React.FC<ModalProps> = ({
                 <S.Title>수험번호 {studentCode}</S.Title>
                 <S.Desc>{name}님의 2차 점수(인적성)를 입력해주세요.</S.Desc>
               </S.TitleBox>
-              <C.ModalInput />
+              <C.ModalInput setInputValue={setInputValue} />
               <C.ModalButton
                 buttonTitle="확인"
                 isConfirm={!isButtonClicked}
