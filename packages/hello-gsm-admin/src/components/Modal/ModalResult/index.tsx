@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import * as I from 'Assets/svg';
 import * as S from './style';
+import useStore from 'Stores/StoreContainer';
 
 interface ModalResultProps {
   handleOptionSelect: (optionId: number) => void;
@@ -8,10 +9,12 @@ interface ModalResultProps {
 
 const ModalResult: React.FC<ModalResultProps> = ({ handleOptionSelect }) => {
   const [selectedButtonId, setSelectedButtonId] = useState<number>(1);
+  const { setSelectedOption } = useStore();
 
   const handleButtonClick = (id: number) => {
     setSelectedButtonId(id);
     handleOptionSelect(id);
+    setSelectedOption(id);
   };
 
   return (

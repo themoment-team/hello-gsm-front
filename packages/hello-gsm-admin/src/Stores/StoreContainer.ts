@@ -1,5 +1,9 @@
 import create from 'zustand';
-import { CommonApplicationResponseType } from '../Types/application';
+import {
+  CommonApplicationResponseType,
+  EvaluationStatusType,
+  MajorType,
+} from '../Types/application';
 
 interface StoreType {
   showScoreModal: boolean;
@@ -14,6 +18,15 @@ interface StoreType {
   setScoreModalValue: (value: number | null) => void;
   setApplyData: (data: CommonApplicationResponseType) => void;
   applyData: CommonApplicationResponseType | null;
+  firstEvaluation: EvaluationStatusType;
+  secondEvaluation: EvaluationStatusType;
+  secondScore: string;
+  registrationNumber: number;
+  finalMajor: MajorType;
+  selectedOption: number;
+  setFirstEvaluation: (result: EvaluationStatusType) => void;
+  setSecondEvaluation: (result: EvaluationStatusType) => void;
+  setSelectedOption: (option: number) => void;
 }
 
 const useStore = create<StoreType>(set => ({
@@ -23,7 +36,17 @@ const useStore = create<StoreType>(set => ({
   scoreModalValue: null,
   showStatusModal: false,
   applyData: null,
+  firstEvaluation: 'NOT_YET',
+  secondEvaluation: 'NOT_YET',
+  secondScore: '0',
+  registrationNumber: 0,
+  finalMajor: '',
+  selectedOption: 0,
 
+  setSelectedOption: option => set({ selectedOption: option }),
+
+  setSecondEvaluation: result => set({ secondEvaluation: result }),
+  setFirstEvaluation: result => set({ firstEvaluation: result }),
   setApplyData: data => set({ applyData: data }),
   setShowStatusModal: () =>
     set(state => ({ showStatusModal: !state.showStatusModal })),

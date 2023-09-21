@@ -2,12 +2,14 @@ import React from 'react';
 import * as S from './style';
 
 interface ModalInputProps {
-  setInputValue: (value: string) => void;
+  setInputValue: (value: number) => void;
 }
 
 const ModalInput: React.FC<ModalInputProps> = ({ setInputValue }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
+    const inputValue = event.target.value;
+    const numericValue = parseFloat(inputValue);
+    setInputValue(numericValue);
   };
 
   return (

@@ -7,6 +7,7 @@ import useStore from 'Stores/StoreContainer';
 import {
   CommonApplicationResponseType,
   EvaluationStatusType,
+  ScreeningType,
 } from 'Types/application';
 import { toast } from 'react-toastify';
 
@@ -14,39 +15,26 @@ interface ModalProps {
   studentCode: number;
   name: string;
   onClose: () => void;
-  applicant: CommonApplicationResponseType;
 }
 
-const Modal: React.FC<ModalProps> = ({
-  name,
-  studentCode,
-  onClose,
-  applicant,
-}) => {
-  // 모달 상태 변수 초기화
+const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
   const [isClose, setIsClose] = useState<boolean>(true);
   const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false);
   const [selectedButtonId, setSelectedButtonId] = useState<number>(0);
   const [showModalResult, setShowModalResult] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<number>(0);
-  const [inputValue, setInputValue] = useState<string>('');
+  const [inputValue, setInputValue] = useState<number>(0);
 
-  // 상태 업데이트를 위한 변수 초기화
   const [finalSubmitted, setFinalSubmitted] = useState<boolean>(false);
   const [printsArrived, setPrintsArrived] = useState<boolean>(false);
-  const [firstEvaluation, setFirstEvaluation] =
-    useState<EvaluationStatusType>('NOT_YET');
-  const [secondEvaluation, setSecondEvaluation] =
-    useState<EvaluationStatusType>('NOT_YET');
-  const [screeningSubmittedAt, setScreeningSubmittedAt] =
-    useState<string>('GENERAL');
+  useState<EvaluationStatusType>('NOT_YET');
+  useState<EvaluationStatusType>('NOT_YET');
+
   const [screeningFirstEvaluationAt, setScreeningFirstEvaluationAt] =
-    useState<string>('GENERAL');
+    useState<ScreeningType>('GENERAL');
   const [screeningSecondEvaluationAt, setScreeningSecondEvaluationAt] =
-    useState<string>('GENERAL');
-  const [registrationNumber, setRegistrationNumber] = useState<boolean>(false);
-  const [secondScore, setSecondScore] = useState<string>('');
-  const [finalMajor, setFinalMajor] = useState<string>('SW');
+    useState<ScreeningType>('GENERAL');
+  const [secondScore, setSecondScore] = useState<number>(0);
 
   const handleOptionSelect = () => {
     setIsClose(true);
@@ -56,7 +44,16 @@ const Modal: React.FC<ModalProps> = ({
     onClose();
   };
 
-  const { setApplyData } = useStore();
+  const {
+    setApplyData,
+    firstEvaluation,
+    secondEvaluation,
+    registrationNumber,
+    finalMajor,
+    selectedOption,
+    setSecondEvaluation,
+    setFirstEvaluation,
+  } = useStore();
 
   const handleButtonClick = (id: number) => {
     setIsButtonClicked(true);
@@ -68,7 +65,6 @@ const Modal: React.FC<ModalProps> = ({
     isPrintsArrived: printsArrived,
     firstEvaluation: firstEvaluation,
     secondEvaluation: secondEvaluation,
-    screeningSubmittedAt: screeningSubmittedAt,
     screeningFirstEvaluationAt: screeningFirstEvaluationAt,
     screeningSecondEvaluationAt: screeningSecondEvaluationAt,
     registrationNumber: registrationNumber,
@@ -95,17 +91,17 @@ const Modal: React.FC<ModalProps> = ({
 
       switch (selectedButtonId) {
         case 1:
-          handleOptionSelect === 1
+          selectedOption === 1
             ? setPrintsArrived(true)
             : setPrintsArrived(false);
           break;
         case 2:
-          handleOptionSelect === 1
+          selectedOption === 1
             ? setFirstEvaluation('PASS')
             : setFirstEvaluation('FALL');
           break;
         case 3:
-          handleOptionSelect === 1
+          selectedOption === 1
             ? setSecondEvaluation('PASS')
             : setSecondEvaluation('FALL');
           break;
@@ -119,7 +115,6 @@ const Modal: React.FC<ModalProps> = ({
     }
   };
 
-  // 데이터를 서버로 전송
   const apply = async (applyData: CommonApplicationResponseType) => {
     try {
       setApplyData(applyData);

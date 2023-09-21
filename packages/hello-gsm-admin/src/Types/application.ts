@@ -74,7 +74,6 @@ export interface CommonApplicationResponseType {
   isPrintsArrived: boolean;
   firstEvaluation: EvaluationStatusType;
   secondEvaluation: EvaluationStatusType;
-  screeningSubmittedAt: ScreeningType | null;
   screeningFirstEvaluationAt: ScreeningType | null;
   screeningSecondEvaluationAt: ScreeningType | null;
   registrationNumber: number | null;
