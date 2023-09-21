@@ -25,7 +25,6 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
   const [showModal, setShowModal] = useState<number>(0);
   const [inputValue, setInputValue] = useState<number>(0);
 
-  const [finalSubmitted, setFinalSubmitted] = useState<boolean>(false);
   const [printsArrived, setPrintsArrived] = useState<boolean>(false);
   useState<EvaluationStatusType>('NOT_YET');
   useState<EvaluationStatusType>('NOT_YET');
@@ -60,8 +59,9 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
     setSelectedButtonId(id);
   };
 
+  //관라자 페이지에는 최종제출 된 사용자만 보여짐
   const applyData: CommonApplicationResponseType = {
-    isFinalSubmitted: finalSubmitted,
+    isFinalSubmitted: true,
     isPrintsArrived: printsArrived,
     firstEvaluation: firstEvaluation,
     secondEvaluation: secondEvaluation,
@@ -77,18 +77,11 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
     userId: number,
     buttonTitle: '다음' | '확인',
   ) => {
+    const isNumber = (value: number) => {
+      return !isNaN(Number(value));
+    };
     if (buttonTitle === '확인') {
       modifiedStatus(userId);
-      handleCloseModal();
-      toast.success('상태 수정에 성공하였어요.');
-      apply(applyData);
-    } else {
-      setShowModal(selectedButtonId);
-      setIsButtonClicked(false);
-      setShowModalResult(true);
-
-      setIsButtonClicked(true);
-
       switch (selectedButtonId) {
         case 1:
           selectedOption === 1
@@ -106,12 +99,23 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
             : setSecondEvaluation('FALL');
           break;
         case 4:
-          setSecondScore(inputValue);
-          console.log(inputValue);
-          break;
-        default:
-          break;
+          if (isNumber(inputValue)) {
+            setSecondScore(inputValue);
+            console.log(inputValue);
+          } else {
+            toast.error('입력하신 값이 숫자가 아닙니다.');
+            break;
+          }
+          handleCloseModal();
+          toast.success('상태 수정에 성공하였어요.');
+          apply(applyData);
       }
+    } else {
+      setShowModal(selectedButtonId);
+      setIsButtonClicked(false);
+      setShowModalResult(true);
+
+      setIsButtonClicked(true);
     }
   };
 
@@ -119,7 +123,7 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
     try {
       setApplyData(applyData);
     } catch (error: any) {
-      toast.error('원서 정보 저장 중 에러가 발생했어요. 다시 시도해주세요.');
+      toast.error('상태 수정 저장 중 에러가 발생했어요. 다시 시도해주세요.');
     }
   };
 
