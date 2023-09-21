@@ -4,9 +4,8 @@ import { isGED } from 'type/ged';
 import { formatGraduation, formatMajor, formatScreening } from 'Utils/Format';
 import * as S from './style';
 
-const ApplicantsStatus: React.FC<ApplicationDataType> = ({
-  data: { admissionGrade, admissionInfo },
-}) => {
+const ApplicantsStatus: React.FC<ApplicationDataType> = ({ data }) => {
+  const { admissionGrade, admissionInfo } = data ?? {};
   const isGEDScore = isGED(admissionGrade);
 
   return (
@@ -21,17 +20,17 @@ const ApplicantsStatus: React.FC<ApplicationDataType> = ({
           <S.Subject colSpan={2} rowSpan={2}>
             출신중학교
           </S.Subject>
-          {admissionInfo.schoolName ? (
-            <td colSpan={2}>{admissionInfo.schoolName}</td>
+          {admissionInfo?.schoolName ? (
+            <td colSpan={2}>{admissionInfo?.schoolName}</td>
           ) : (
             <S.Slash colSpan={2} />
           )}
-          <td colSpan={6}>{formatGraduation(admissionInfo.graduation)}</td>
+          <td colSpan={6}>{formatGraduation(admissionInfo?.graduation)}</td>
         </tr>
         <tr>
           <S.Subject>지역명</S.Subject>
-          {admissionInfo.schoolLocation ? (
-            <td colSpan={7}>{admissionInfo.schoolLocation}</td>
+          {admissionInfo?.schoolLocation ? (
+            <td colSpan={7}>{admissionInfo?.schoolLocation}</td>
           ) : (
             <S.Slash colSpan={7} />
           )}
@@ -40,7 +39,7 @@ const ApplicantsStatus: React.FC<ApplicationDataType> = ({
           <S.Subject colSpan={9}>전 형 구 분</S.Subject>
         </tr>
         <tr>
-          <td colSpan={9}>{formatScreening(admissionInfo.screening)}</td>
+          <td colSpan={9}>{formatScreening(admissionInfo?.screening)}</td>
         </tr>
         <tr>
           <S.Subject rowSpan={2} style={{ width: '10%' }}>
@@ -68,17 +67,18 @@ const ApplicantsStatus: React.FC<ApplicationDataType> = ({
                 `grade${v[0]}Semester${v[1]}Score` as keyof typeof admissionGrade;
 
               // 검정고시나 자유학기제로 점수가 없다면 빈칸 처리
-              return isGEDScore || admissionGrade[gradeKey] === 0 ? (
+              return isGEDScore || admissionGrade?.[gradeKey] === 0 ? (
                 <S.Slash key={gradeKey} />
               ) : (
-                <td key={gradeKey}>{admissionGrade[gradeKey]}</td>
+                <td key={gradeKey}>{admissionGrade?.[gradeKey]}</td>
               );
             })}
           </>
+          {isGEDScore ? <S.Slash /> : <td>{admissionGrade?.artisticScore}</td>}
           <td>
             {isGEDScore
-              ? admissionGrade.gedTotalScore
-              : admissionGrade.curricularSubtotalScore}
+              ? admissionGrade?.gedTotalScore
+              : admissionGrade?.curricularSubtotalScore}
           </td>
         </tr>
         <tr>
@@ -89,25 +89,25 @@ const ApplicantsStatus: React.FC<ApplicationDataType> = ({
           <S.Subject colSpan={3}>봉사활동</S.Subject>
           <S.Subject>소계</S.Subject>
           <td colSpan={2} rowSpan={2}>
-            {admissionGrade.totalScore}
+            {admissionGrade?.totalScore}
           </td>
         </tr>
         <tr>
-          {isGEDScore || admissionGrade.attendanceScore === 0 ? (
+          {isGEDScore || admissionGrade?.attendanceScore === 0 ? (
             <S.Slash colSpan={3} />
           ) : (
-            <td colSpan={3}>{admissionGrade.attendanceScore}</td>
+            <td colSpan={3}>{admissionGrade?.attendanceScore}</td>
           )}
-          {isGEDScore || admissionGrade.volunteerScore === 0 ? (
+          {isGEDScore || admissionGrade?.volunteerScore === 0 ? (
             <S.Slash colSpan={3} />
           ) : (
-            <td colSpan={3}>{admissionGrade.volunteerScore}</td>
+            <td colSpan={3}>{admissionGrade?.volunteerScore}</td>
           )}
           <td>
             {' '}
             {isGED(admissionGrade)
-              ? admissionGrade.gedMaxScore
-              : admissionGrade.extracurricularSubtotalScore}
+              ? admissionGrade?.gedMaxScore
+              : admissionGrade?.extracurricularSubtotalScore}
           </td>
         </tr>
         <tr>
@@ -122,13 +122,13 @@ const ApplicantsStatus: React.FC<ApplicationDataType> = ({
         </tr>
         <tr>
           <td colSpan={3}>
-            {formatMajor(admissionInfo.desiredMajor.firstDesiredMajor)}
+            {formatMajor(admissionInfo?.desiredMajor.firstDesiredMajor)}
           </td>
           <td colSpan={3}>
-            {formatMajor(admissionInfo.desiredMajor.secondDesiredMajor)}
+            {formatMajor(admissionInfo?.desiredMajor.secondDesiredMajor)}
           </td>
           <td colSpan={3}>
-            {formatMajor(admissionInfo.desiredMajor.thirdDesiredMajor)}
+            {formatMajor(admissionInfo?.desiredMajor.thirdDesiredMajor)}
           </td>
         </tr>
         <tr>

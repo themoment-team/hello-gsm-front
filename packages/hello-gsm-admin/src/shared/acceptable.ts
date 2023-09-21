@@ -3,12 +3,12 @@ const today = new Date();
 // 10월 20일 부터
 // 수험표 출력할 수 있는 기간, 1차 시험 결과를 조회할 수 있는 기간, 1차 서류제출 여부를 할당하는 기간
 
-const startFirstResult = new Date('2023/9/15 00:00:00');
+const startFirstResult = new Date('2023/10/20 00:00:00');
 export const isStartFirstResult = today >= startFirstResult;
 
 // 1월 1일 부터
 // 2차 시험 결과를 조회할 수 있는 기간
-const startFinalResult = new Date('2023/9/15 00:00:00');
+const startFinalResult = new Date('2023/10/20 00:00:00');
 export const isStartFinalResult = today >= startFinalResult;
 
 //

@@ -33,14 +33,15 @@ export const Content = styled.div`
 `;
 
 export const RegistrationNumber = styled.p`
-  width: 50px;
+  width: 60px;
   font-size: 12px;
   color: #0f0921;
-  text-align: center;
+  text-align: left;
+  padding-left: 10px;
 `;
 
 export const Name = styled.p`
-  width: 40px;
+  width: 50px;
   font-weight: 500;
   font-size: 12px;
   color: #0f0921;
@@ -48,7 +49,7 @@ export const Name = styled.p`
 `;
 
 export const Screening = styled.p`
-  width: 70px;
+  width: 80px;
   font-weight: 500;
   font-size: 12px;
   color: #212121;
@@ -88,15 +89,15 @@ const Number = styled.p`
 `;
 
 export const PhoneNumber = styled(Number)`
-  width: 90px;
+  width: 100px;
 `;
 
 export const GuardianNumber = styled(Number)`
-  width: 90px;
+  width: 100px;
 `;
 
 export const TeacherNumber = styled(Number)`
-  width: 90px;
+  width: 100px;
 `;
 
 export const Button = styled.button`
@@ -122,7 +123,7 @@ export const FirstResultText = styled.p`
 
 export const FinalScoreText = styled.p`
   font-size: 12px;
-  width: 40px;
+  width: 50px;
 `;
 
 export const FinalResultText = styled.p`
@@ -142,12 +143,13 @@ export const EditButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
   background: rgba(0, 0, 0, 0);
   color: #2174d8;
   border: 1px solid #2174d8;
   border-radius: 10px;
-  padding: 7px 16px 7px 16px;
+  gap: 5px;
+  padding: 8px 16px 8px 16px;
+  font-weight: 600;
   cursor: pointer;
 
   &:hover {

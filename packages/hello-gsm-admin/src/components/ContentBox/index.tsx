@@ -44,14 +44,25 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     secondScore,
   },
 }) => {
-  const [isFirstResult, setIsFirstResult] = useState<boolean>(false);
-  const [isFinalResult, setIsFinalResult] = useState<boolean>(false);
   const firstResult: EvaluationStatusType = firstEvaluation;
   const finalResult: EvaluationStatusType = secondEvaluation;
   const [score, setScore] = useState<number | null>(secondScore || null);
   const [documentReception, setDocumentReception] = useState<boolean>(true);
   const { setModalName, setModalRegistrationNumber, setScoreModalValue } =
     useStore();
+
+  const formattedCellphoneNumber = applicantPhoneNumber.replace(
+    /(\d{3})(\d{4})(\d{4})/,
+    '$1-$2-$3',
+  );
+  const formattedGuardianCellphoneNumber = guardianPhoneNumber.replace(
+    /(\d{3})(\d{4})(\d{4})/,
+    '$1-$2-$3',
+  );
+  const formattedTeacherCellphoneNumber =
+    teacherPhoneNumber !== null
+      ? teacherPhoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')
+      : '검정고시';
 
   const [showStatusModal, setShowStatusModal] = useState<boolean>(false);
 
@@ -113,6 +124,11 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         <S.Name>{applicantName}</S.Name>
         <S.Screening>{formatScreening(screening)}</S.Screening>
         <S.SchoolName>{schoolName ?? '검정고시'}</S.SchoolName>
+        <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
+        <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
+        <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
+        <S.FirstResultText css={resultStyle[firstResult]}>
+          {formatResult(firstResult)}
         <S.PhoneNumber>{applicantPhoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{guardianPhoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{teacherPhoneNumber}</S.TeacherNumber>
@@ -126,8 +142,8 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         >
           {score ?? '미입력'}
         </S.FinalScoreText>
-        <S.FinalResultText css={isFinalResult && resultStyle[finalResult]}>
-          {isFinalResult && formatResult(finalResult)}
+        <S.FinalResultText css={resultStyle[finalResult]}>
+          {formatResult(finalResult)}
         </S.FinalResultText>
       </S.Content>
       <S.EditButtonBox>

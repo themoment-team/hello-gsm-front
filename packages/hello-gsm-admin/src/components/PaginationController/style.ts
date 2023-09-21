@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const Test = styled.div`
+export const PaginationWrapper = styled.div`
   width: fit-content;
   height: 25px;
   margin: 0 auto;

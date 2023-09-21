@@ -1,10 +1,11 @@
-type GenderType = 'MALE' | 'FEMALE';
+import { GenderType } from 'type/application';
 
 type GenderObjectType = {
   [key in GenderType]: string;
 };
 
-const formatGender = (gender: GenderType) => {
+const formatGender = (gender: GenderType | undefined) => {
+  if (gender === undefined) return '';
   const genderObject: GenderObjectType = {
     MALE: '남자',
     FEMALE: '여자',

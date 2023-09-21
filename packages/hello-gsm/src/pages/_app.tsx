@@ -10,6 +10,7 @@ import { ThemeProvider } from '@emotion/react';
 import { theme } from 'styles/theme';
 import { ChannelTalk, Footer, Header } from 'components';
 import useGetLogged from 'hooks/useGetLogged';
+import { useMiddleware } from 'hooks/useMiddleware';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -27,6 +28,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router.events]);
 
   useGetLogged();
+  useMiddleware();
 
   return (
     <>
@@ -56,7 +58,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
         <Footer />
       </ThemeProvider>
-      <ChannelTalk />
+      {router.pathname !== '/application' && <ChannelTalk />}
     </>
   );
 }

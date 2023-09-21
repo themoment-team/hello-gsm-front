@@ -1,4 +1,4 @@
-import type { GetServerSideProps, NextPage } from 'next';
+import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import { MypagePage } from 'PageContainer';
 import application from 'Api/application';
@@ -67,23 +67,5 @@ const MyPage: NextPage = () => {
     </>
   );
 };
-
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   try {
-//     const { data }: ApplicationDataType = await application.getMyApplication();
-//     return {
-//       props: {
-//         data,
-//       },
-//     };
-//   } catch (error) {
-//     return {
-//       props: {},
-//       redirect: {
-//         destination: '/auth/signin',
-//       },
-//     };
-//   }
-// };
 
 export default MyPage;
