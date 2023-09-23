@@ -81,7 +81,6 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
       return !isNaN(Number(value));
     };
     if (buttonTitle === '확인') {
-      modifiedStatus(userId);
       switch (selectedButtonId) {
         case 1:
           if (selectedOption === 1) {
@@ -114,9 +113,9 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
           }
           break;
       }
+      modifiedStatus(userId, applyData);
       handleCloseModal();
       toast.success('상태 수정에 성공하였어요.');
-      apply(applyData);
     } else {
       setShowModal(selectedButtonId);
       setIsButtonClicked(false);
@@ -126,19 +125,16 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
     }
   };
 
-  const apply = async (applyData: CommonApplicationResponseType) => {
-    try {
-      setApplyData(applyData);
-    } catch (error: any) {
-      toast.error('상태 수정 저장 중 에러가 발생했어요. 다시 시도해주세요.');
-    }
-  };
-
-  const modifiedStatus = async (userId: number) => {
+  const modifiedStatus = async (
+    userId: number,
+    applyData: CommonApplicationResponseType,
+  ) => {
     try {
       await status.putStatus(userId);
+      setApplyData(applyData);
       toast.success('상태 수정이 완료되었어요.');
     } catch (error: any) {
+      toast.error('상태 수정 저장 중 에러가 발생했어요. 다시 시도해주세요.');
       console.error(error);
     }
   };

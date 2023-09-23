@@ -7,7 +7,7 @@ class Status {
    * @param userID
    * @returns 특정 사용자의 본인인증 정보를 가져옵니다.
    */
-  putStatus(userID: number, accessToken?: string) {
+  putStatus(userID: number) {
     try {
       return RequestApi({
         method: 'PUT',
