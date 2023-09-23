@@ -10,6 +10,7 @@ import {
   ScreeningType,
 } from 'Types/application';
 import { toast } from 'react-toastify';
+import { deflate } from 'zlib';
 
 interface ModalProps {
   studentCode: number;
@@ -84,19 +85,25 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
       modifiedStatus(userId);
       switch (selectedButtonId) {
         case 1:
-          selectedOption === 1
-            ? setPrintsArrived(true)
-            : setPrintsArrived(false);
+          if (selectedOption === 1) {
+            setPrintsArrived(true);
+          } else {
+            setPrintsArrived(false);
+          }
           break;
         case 2:
-          selectedOption === 1
-            ? setFirstEvaluation('PASS')
-            : setFirstEvaluation('FALL');
+          if (selectedOption === 1) {
+            setFirstEvaluation('PASS');
+          } else {
+            setFirstEvaluation('FALL');
+          }
           break;
         case 3:
-          selectedOption === 1
-            ? setSecondEvaluation('PASS')
-            : setSecondEvaluation('FALL');
+          if (selectedOption === 1) {
+            setSecondEvaluation('PASS');
+          } else {
+            setSecondEvaluation('FALL');
+          }
           break;
         case 4:
           if (isNumber(inputValue)) {
@@ -106,6 +113,8 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
             toast.error('입력하신 값이 숫자가 아닙니다.');
             break;
           }
+          break;
+        default:
           handleCloseModal();
           toast.success('상태 수정에 성공하였어요.');
           apply(applyData);
