@@ -10,7 +10,6 @@ import {
   ScreeningType,
 } from 'Types/application';
 import { toast } from 'react-toastify';
-import { deflate } from 'zlib';
 
 interface ModalProps {
   studentCode: number;
@@ -114,11 +113,10 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
             break;
           }
           break;
-        default:
-          handleCloseModal();
-          toast.success('상태 수정에 성공하였어요.');
-          apply(applyData);
       }
+      handleCloseModal();
+      toast.success('상태 수정에 성공하였어요.');
+      apply(applyData);
     } else {
       setShowModal(selectedButtonId);
       setIsButtonClicked(false);
