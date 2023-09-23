@@ -32,7 +32,7 @@ const MainPage: NextPage = () => {
     return () => clearTimeout(debounce);
   }, [tmpValue]);
 
-  const getApplicationList = async () => {
+  const getApplicationList = async (pageNumber: number) => {
     try {
       const { data }: { data: SearchApplicationInfoType } =
         await application.getSearchApplication(

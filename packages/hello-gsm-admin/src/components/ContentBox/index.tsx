@@ -81,13 +81,6 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     `,
   };
 
-  useEffect(() => {
-    // 1차 시험 결과를 조화할 수 있는 날짜
-    setIsFirstResult(isStartFirstResult);
-    // 2차 시험 결과를 조회할 수 있는 날짜
-    setIsFinalResult(isStartFinalResult);
-  }, []);
-
   const formatResult = (result: EvaluationStatusType) => {
     const resultObject: resultObjectType = {
       PASS: '합격',
@@ -127,13 +120,13 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
-        <S.FirstResultText css={resultStyle[firstResult]}>
-          {formatResult(firstResult)}
+        <S.FirstResultText css={resultStyle[firstResult]} />
+        {formatResult(firstResult)}
         <S.PhoneNumber>{applicantPhoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{guardianPhoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{teacherPhoneNumber}</S.TeacherNumber>
-        <S.FirstResultText css={isFinalResult && resultStyle[firstResult]}>
-          {isFirstResult && formatResult(firstResult)}
+        <S.FirstResultText css={finalResult && resultStyle[firstResult]}>
+          {firstResult && formatResult(firstResult)}
         </S.FirstResultText>
         <S.FinalScoreText
           css={css`
