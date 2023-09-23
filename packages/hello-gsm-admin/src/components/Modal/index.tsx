@@ -45,6 +45,7 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
 
   const {
     setApplyData,
+    applyData,
     firstEvaluation,
     secondEvaluation,
     registrationNumber,
@@ -57,19 +58,6 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
   const handleButtonClick = (id: number) => {
     setIsButtonClicked(true);
     setSelectedButtonId(id);
-  };
-
-  //관라자 페이지에는 최종제출 된 사용자만 보여짐
-  const applyData: CommonApplicationResponseType = {
-    isFinalSubmitted: true,
-    isPrintsArrived: printsArrived,
-    firstEvaluation: firstEvaluation,
-    secondEvaluation: secondEvaluation,
-    screeningFirstEvaluationAt: screeningFirstEvaluationAt,
-    screeningSecondEvaluationAt: screeningSecondEvaluationAt,
-    registrationNumber: registrationNumber,
-    secondScore: secondScore,
-    finalMajor: finalMajor,
   };
 
   const handleModalButtonClick = (
@@ -113,9 +101,8 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
           }
           break;
       }
-      modifiedStatus(userId, applyData);
+      modifiedStatus(userId);
       handleCloseModal();
-      toast.success('상태 수정에 성공하였어요.');
     } else {
       setShowModal(selectedButtonId);
       setIsButtonClicked(false);
@@ -125,18 +112,17 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
     }
   };
 
-  const modifiedStatus = async (
-    userId: number,
-    applyData: CommonApplicationResponseType,
-  ) => {
-    try {
-      await status.putStatus(userId);
-      setApplyData(applyData);
-      toast.success('상태 수정이 완료되었어요.');
-    } catch (error: any) {
-      toast.error('상태 수정 저장 중 에러가 발생했어요. 다시 시도해주세요.');
-      console.error(error);
-    }
+  const modifiedStatus = async (userId: number) => {
+    if (applyData !== null) {
+      try {
+        await status.putStatus(applyData, userId);
+        toast.success('상태 수정이 완료되었어요.');
+      } catch (error: any) {
+        toast.error('상태 수정 저장 중 에러가 발생했어요. 다시 시도해주세요.');
+        console.error(error);
+      }
+    } else if (applyData === null)
+      toast.error('원서 상태 정보가 저장되지 않았습니다. 다시 시도해주세요.');
   };
 
   return (
