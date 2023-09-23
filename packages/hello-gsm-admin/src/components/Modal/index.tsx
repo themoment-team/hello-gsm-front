@@ -29,10 +29,6 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
   useState<EvaluationStatusType>('NOT_YET');
   useState<EvaluationStatusType>('NOT_YET');
 
-  const [screeningFirstEvaluationAt, setScreeningFirstEvaluationAt] =
-    useState<ScreeningType>('GENERAL');
-  const [screeningSecondEvaluationAt, setScreeningSecondEvaluationAt] =
-    useState<ScreeningType>('GENERAL');
   const [secondScore, setSecondScore] = useState<number>(0);
 
   const handleOptionSelect = () => {
@@ -101,13 +97,25 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
           }
           break;
       }
+      const applyData: CommonApplicationResponseType = {
+        isFinalSubmitted: true,
+        isPrintsArrived: true,
+        firstEvaluation: firstEvaluation,
+        secondEvaluation: secondEvaluation,
+        screeningFirstEvaluationAt: 'SOCIAL',
+        screeningSecondEvaluationAt: 'GENERAL',
+        registrationNumber: registrationNumber,
+        secondScore: secondScore,
+        finalMajor: 'SW',
+      };
+      setApplyData(applyData);
+
       modifiedStatus(userId);
       handleCloseModal();
     } else {
       setShowModal(selectedButtonId);
       setIsButtonClicked(false);
       setShowModalResult(true);
-
       setIsButtonClicked(true);
     }
   };
