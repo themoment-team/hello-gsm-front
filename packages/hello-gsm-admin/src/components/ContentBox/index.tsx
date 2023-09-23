@@ -120,7 +120,6 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
-        <S.FirstResultText css={resultStyle[firstResult]} />
         <S.PhoneNumber>{applicantPhoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{guardianPhoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{teacherPhoneNumber}</S.TeacherNumber>
