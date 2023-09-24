@@ -103,19 +103,7 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
           }
           break;
       }
-      const applyData: CommonApplicationResponseType = {
-        isFinalSubmitted: true,
-        isPrintsArrived: printsArrived,
-        firstEvaluation: firstEvaluation,
-        secondEvaluation: secondEvaluation,
-        screeningFirstEvaluationAt: screeningFirstEvaluationAt,
-        screeningSecondEvaluationAt: screeningSecondEvaluationAt,
-        registrationNumber: registrationNumber,
-        secondScore: secondScore,
-        finalMajor: 'SW',
-      };
-      setApplyData(applyData);
-      console.log(applyData);
+
       modifiedStatus(userId);
       handleCloseModal();
     } else {

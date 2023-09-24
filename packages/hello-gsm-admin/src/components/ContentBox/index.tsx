@@ -3,20 +3,7 @@ import { css } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 import * as I from 'Assets/svg';
-import application from 'Api/application';
-import auth from 'Api/auth';
-import { toast } from 'react-toastify';
-import {
-  isDuringFinalResult,
-  isStartFinalResult,
-  isStartFirstResult,
-} from 'shared/acceptable';
-import {
-  ApplicantType,
-  SearchApplicationInfoType,
-  ApplicationListType,
-  EvaluationStatusType,
-} from 'Types/application';
+import { ApplicationListType, EvaluationStatusType } from 'Types/application';
 import formatScreening from 'Utils/Libs/formatScreening';
 import { Modal } from 'components';
 
@@ -123,9 +110,6 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         <S.PhoneNumber>{applicantPhoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{guardianPhoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{teacherPhoneNumber}</S.TeacherNumber>
-        <S.FirstResultText css={finalResult && resultStyle[firstResult]}>
-          {firstResult && formatResult(firstResult)}
-        </S.FirstResultText>
         <S.FinalScoreText
           css={css`
             color: ${score ? '#212121' : '#9E9E9E'};

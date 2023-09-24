@@ -26,10 +26,16 @@ interface StoreType {
   finalMajor: MajorType;
   selectedOption: number;
   printsArrived: boolean;
+  formattedCellphoneNumber: string;
+  formattedGuardianCellphoneNumber: string;
+  formattedTeacherCellphoneNumber: string;
   screeningFirstEvaluationAt: ScreeningType;
   screeningSecondEvaluationAt: ScreeningType;
-  setFirstEvaluation: (result: EvaluationStatusType) => void;
   setPrintsArrived: (result: boolean) => void;
+  setFirstEvaluation: (result: EvaluationStatusType) => void;
+  setFormattedCellphoneNumber: (value: string) => void;
+  setFormattedGuardianCellphoneNumber: (value: string) => void;
+  setFormattedTeacherCellphoneNumber: (value: string) => void;
   setSecondEvaluation: (result: EvaluationStatusType) => void;
   setSelectedOption: (option: number) => void;
   setScreeningFirstEvaluationAt: (option: ScreeningType) => void;
@@ -52,7 +58,15 @@ const useStore = create<StoreType>(set => ({
   printsArrived: true,
   screeningFirstEvaluationAt: 'SOCIAL',
   screeningSecondEvaluationAt: 'GENERAL',
-
+  formattedCellphoneNumber: '',
+  formattedGuardianCellphoneNumber: '',
+  formattedTeacherCellphoneNumber: '',
+  setFormattedCellphoneNumber: value =>
+    set({ formattedCellphoneNumber: value }),
+  setFormattedGuardianCellphoneNumber: value =>
+    set({ formattedGuardianCellphoneNumber: value }),
+  setFormattedTeacherCellphoneNumber: value =>
+    set({ formattedTeacherCellphoneNumber: value }),
   setSelectedOption: option => set({ selectedOption: option }),
   setPrintsArrived: result => set({ printsArrived: result }),
   setScreeningFirstEvaluationAt: option =>
