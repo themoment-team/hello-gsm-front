@@ -24,7 +24,9 @@ interface StoreType {
   registrationNumber: number;
   finalMajor: MajorType;
   selectedOption: number;
+  printsArrived: boolean;
   setFirstEvaluation: (result: EvaluationStatusType) => void;
+  setPrintsArrived: (result: boolean) => void;
   setSecondEvaluation: (result: EvaluationStatusType) => void;
   setSelectedOption: (option: number) => void;
 }
@@ -42,8 +44,10 @@ const useStore = create<StoreType>(set => ({
   registrationNumber: 0,
   finalMajor: '',
   selectedOption: 0,
+  printsArrived: true,
 
   setSelectedOption: option => set({ selectedOption: option }),
+  setPrintsArrived: result => set({ printsArrived: result }),
 
   setSecondEvaluation: result => set({ secondEvaluation: result }),
   setFirstEvaluation: result => set({ firstEvaluation: result }),

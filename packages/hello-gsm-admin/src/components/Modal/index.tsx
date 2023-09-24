@@ -25,7 +25,6 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
   const [showModal, setShowModal] = useState<number>(0);
   const [inputValue, setInputValue] = useState<number>(0);
 
-  const [printsArrived, setPrintsArrived] = useState<boolean>(false);
   useState<EvaluationStatusType>('NOT_YET');
   useState<EvaluationStatusType>('NOT_YET');
 
@@ -49,6 +48,8 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
     selectedOption,
     setSecondEvaluation,
     setFirstEvaluation,
+    printsArrived,
+    setPrintsArrived,
   } = useStore();
 
   const handleButtonClick = (id: number) => {
@@ -99,7 +100,7 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
       }
       const applyData: CommonApplicationResponseType = {
         isFinalSubmitted: true,
-        isPrintsArrived: true,
+        isPrintsArrived: printsArrived,
         firstEvaluation: firstEvaluation,
         secondEvaluation: secondEvaluation,
         screeningFirstEvaluationAt: 'SOCIAL',
@@ -130,8 +131,10 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
         toast.error('상태 수정 저장 중 에러가 발생했어요. 다시 시도해주세요.');
         console.error(error);
       }
-    } else if (applyData === null) console.log(applyData);
-    toast.error('원서 상태 정보가 저장되지 않았습니다. 다시 시도해주세요.');
+    } else if (applyData === null) {
+      console.log(applyData);
+      toast.error('원서 상태 정보가 저장되지 않았습니다. 다시 시도해주세요.');
+    }
   };
 
   return (
