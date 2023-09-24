@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import * as I from 'Assets/svg';
 import * as C from 'components';
@@ -40,7 +40,6 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
 
   const {
     setApplyData,
-    applyData,
     firstEvaluation,
     secondEvaluation,
     registrationNumber,
@@ -50,7 +49,13 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
     setFirstEvaluation,
     printsArrived,
     setPrintsArrived,
+    screeningFirstEvaluationAt,
+    screeningSecondEvaluationAt,
   } = useStore();
+
+  useEffect(() => {
+    console.log(firstEvaluation);
+  }, [firstEvaluation]);
 
   const handleButtonClick = (id: number) => {
     setIsButtonClicked(true);
@@ -103,8 +108,8 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
         isPrintsArrived: printsArrived,
         firstEvaluation: firstEvaluation,
         secondEvaluation: secondEvaluation,
-        screeningFirstEvaluationAt: 'SOCIAL',
-        screeningSecondEvaluationAt: 'GENERAL',
+        screeningFirstEvaluationAt: screeningFirstEvaluationAt,
+        screeningSecondEvaluationAt: screeningSecondEvaluationAt,
         registrationNumber: registrationNumber,
         secondScore: secondScore,
         finalMajor: finalMajor,
@@ -128,8 +133,8 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
         isPrintsArrived: printsArrived,
         firstEvaluation: firstEvaluation,
         secondEvaluation: secondEvaluation,
-        screeningFirstEvaluationAt: 'SOCIAL',
-        screeningSecondEvaluationAt: 'GENERAL',
+        screeningFirstEvaluationAt: screeningFirstEvaluationAt,
+        screeningSecondEvaluationAt: screeningSecondEvaluationAt,
         registrationNumber: registrationNumber,
         secondScore: secondScore,
         finalMajor: finalMajor,

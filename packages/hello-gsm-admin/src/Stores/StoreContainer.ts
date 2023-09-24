@@ -3,6 +3,7 @@ import {
   CommonApplicationResponseType,
   EvaluationStatusType,
   MajorType,
+  ScreeningType,
 } from '../Types/application';
 
 interface StoreType {
@@ -25,10 +26,14 @@ interface StoreType {
   finalMajor: MajorType;
   selectedOption: number;
   printsArrived: boolean;
+  screeningFirstEvaluationAt: ScreeningType;
+  screeningSecondEvaluationAt: ScreeningType;
   setFirstEvaluation: (result: EvaluationStatusType) => void;
   setPrintsArrived: (result: boolean) => void;
   setSecondEvaluation: (result: EvaluationStatusType) => void;
   setSelectedOption: (option: number) => void;
+  setScreeningFirstEvaluationAt: (option: ScreeningType) => void;
+  setScreeningSecondEvaluationAt: (option: ScreeningType) => void;
 }
 
 const useStore = create<StoreType>(set => ({
@@ -45,9 +50,15 @@ const useStore = create<StoreType>(set => ({
   finalMajor: '',
   selectedOption: 0,
   printsArrived: true,
+  screeningFirstEvaluationAt: 'SOCIAL',
+  screeningSecondEvaluationAt: 'GENERAL',
 
   setSelectedOption: option => set({ selectedOption: option }),
   setPrintsArrived: result => set({ printsArrived: result }),
+  setScreeningFirstEvaluationAt: option =>
+    set({ screeningFirstEvaluationAt: option }),
+  setScreeningSecondEvaluationAt: option =>
+    set({ screeningSecondEvaluationAt: option }),
 
   setSecondEvaluation: result => set({ secondEvaluation: result }),
   setFirstEvaluation: result => set({ firstEvaluation: result }),
