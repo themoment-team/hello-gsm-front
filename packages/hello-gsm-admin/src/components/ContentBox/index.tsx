@@ -83,15 +83,6 @@ const ContentBox: React.FC<ContentBoxProp> = ({
 
   return (
     <S.ContentBox>
-      {showStatusModal && (
-        <S.ModalContainer>
-          <Modal
-            name={applicantName}
-            studentCode={applicationId}
-            onClose={onCloseShowStatusModal}
-          />
-        </S.ModalContainer>
-      )}
       <S.Content>
         <S.RegistrationNumber>
           {String(applicationId).padStart(4, '0')}
@@ -107,6 +98,9 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
+        <S.FirstResultText css={resultStyle[firstResult]}>
+          {formatResult(firstResult)}
+        </S.FirstResultText>
         <S.FinalScoreText
           css={css`
             color: ${score ? '#212121' : '#9E9E9E'};
@@ -119,7 +113,7 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         </S.FinalResultText>
       </S.Content>
       <S.EditButtonBox>
-        <S.EditButton onClick={() => setShowStatusModal(true)}>
+        <S.EditButton>
           <I.BulbIcon />
           상태 수정
         </S.EditButton>
