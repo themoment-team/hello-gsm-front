@@ -47,7 +47,7 @@ const useStore = create<StoreType>(set => ({
   secondEvaluation: 'NOT_YET',
   secondScore: '0',
   registrationNumber: 0,
-  finalMajor: '',
+  finalMajor: null,
   selectedOption: 0,
   printsArrived: true,
   screeningFirstEvaluationAt: 'SOCIAL',

@@ -67,7 +67,7 @@ export interface ApplicationListType {
   secondScore: number;
 }
 
-export type MajorType = 'SW' | 'IOT' | 'AI' | '';
+export type MajorType = 'SW' | 'IOT' | 'AI' | null;
 
 export interface CommonApplicationResponseType {
   isFinalSubmitted: boolean;
