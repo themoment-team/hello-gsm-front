@@ -114,6 +114,25 @@ export const Select = styled.select`
   border: none;
 `;
 
+export const NoticeSection = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+`;
+
+export const NoticeText = styled.p`
+  color: #9e9e9e;
+`;
+
+export const ResetText = styled.p`
+  color: #42bafe;
+  cursor: pointer;
+  padding-right: 16px;
+`;
+
 export const TosBox = styled.div`
   width: 100%;
   height: 279px;
@@ -229,8 +248,9 @@ export const Line = styled.div`
     margin: 40px 0 35px;
   }
   :nth-of-type(5) {
-    margin: 100px 0;
+    margin: 180px 0;
   }
+
   @media ${device.tablet} {
     color: #0f0921;
     user-select: none;
@@ -292,14 +312,6 @@ export const TelNumContainer = styled.div`
   padding-right: 16px;
   align-items: center;
   margin-bottom: 12px;
-`;
-
-export const NoticeText = styled.p`
-  color: #9e9e9e;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  width: 100%;
 `;
 
 export const CertificationButton = styled.button`
