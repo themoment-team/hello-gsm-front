@@ -112,7 +112,7 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
         screeningSecondEvaluationAt: screeningSecondEvaluationAt,
         registrationNumber: registrationNumber,
         secondScore: secondScore,
-        finalMajor: finalMajor,
+        finalMajor: 'SW',
       };
       setApplyData(applyData);
       console.log(applyData);
