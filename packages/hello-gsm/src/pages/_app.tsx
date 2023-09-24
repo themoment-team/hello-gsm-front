@@ -25,10 +25,14 @@ function MyApp({ Component, pageProps }: AppProps) {
       router.events.off('routeChangeComplete', handleRouteChange);
       router.events.off('hashChangeComplete', handleRouteChange);
     };
-  }, [router]);
+  }, [router.events]);
 
   useGetLogged();
   useMiddleware();
+  console.log(router.pathname);
+
+  console.log(router);
+  console.log(router.push);
 
   return (
     <>
