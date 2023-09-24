@@ -107,9 +107,6 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
-        <S.PhoneNumber>{applicantPhoneNumber}</S.PhoneNumber>
-        <S.GuardianNumber>{guardianPhoneNumber}</S.GuardianNumber>
-        <S.TeacherNumber>{teacherPhoneNumber}</S.TeacherNumber>
         <S.FinalScoreText
           css={css`
             color: ${score ? '#212121' : '#9E9E9E'};
