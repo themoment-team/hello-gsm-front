@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     // 페이지 이동할 때마다 showChannelTalk 토글
     setShowChannelTalk(router.pathname !== '/application');
-  }, [router.pathname]);
+  }, [router]);
 
   return (
     <>
