@@ -4,11 +4,7 @@ import * as I from 'Assets/svg';
 import * as C from 'components';
 import status from 'Api/status';
 import useStore from 'Stores/StoreContainer';
-import {
-  CommonApplicationResponseType,
-  EvaluationStatusType,
-  ScreeningType,
-} from 'Types/application';
+import { CommonApplicationResponseType } from 'Types/application';
 import { toast } from 'react-toastify';
 
 interface ModalProps {
@@ -24,9 +20,6 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
   const [showModalResult, setShowModalResult] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<number>(0);
   const [inputValue, setInputValue] = useState<number>(0);
-
-  useState<EvaluationStatusType>('NOT_YET');
-  useState<EvaluationStatusType>('NOT_YET');
 
   const [secondScore, setSecondScore] = useState<number>(0);
 
@@ -49,8 +42,8 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
     setFirstEvaluationResult,
     printsArrived,
     setPrintsArrived,
-    screeningFirstEvaluationAt,
-    screeningSecondEvaluationAt,
+    screeningFirstEvaluation,
+    screeningSecondEvaluation,
   } = useStore();
 
   const handleButtonClick = (id: number) => {
@@ -117,8 +110,8 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
         isPrintsArrived: printsArrived,
         firstEvaluation: firstEvaluationResult,
         secondEvaluation: secondEvaluationResult,
-        screeningFirstEvaluationAt: screeningFirstEvaluationAt,
-        screeningSecondEvaluationAt: screeningSecondEvaluationAt,
+        screeningFirstEvaluationAt: screeningFirstEvaluation,
+        screeningSecondEvaluationAt: screeningSecondEvaluation,
         registrationNumber: registrationNumber,
         secondScore: secondScore,
         finalMajor: null,

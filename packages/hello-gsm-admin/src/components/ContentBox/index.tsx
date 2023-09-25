@@ -25,8 +25,6 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     screening,
     isFinalSubmitted,
     isPrintsArrived,
-    firstEvaluation,
-    secondEvaluation,
     schoolName,
     secondScore,
   },
@@ -36,9 +34,15 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     setFirstEvaluationResult,
     secondEvaluationResult,
     setSecondEvaluationResult,
+    finalSubmitted,
+    setFinalSubmitted,
   } = useStore();
-  setFirstEvaluationResult(firstEvaluation);
-  setSecondEvaluationResult(secondEvaluationResult);
+
+  useEffect(() => {
+    setFinalSubmitted(finalSubmitted);
+    setFirstEvaluationResult(firstEvaluationResult);
+    setSecondEvaluationResult(secondEvaluationResult);
+  }, [finalSubmitted, firstEvaluationResult, secondEvaluationResult]);
   const [score, setScore] = useState<number | null>(secondScore || null);
   const [documentReception, setDocumentReception] = useState<boolean>(true);
 
