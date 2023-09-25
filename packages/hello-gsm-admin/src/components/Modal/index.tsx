@@ -21,8 +21,6 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
   const [showModal, setShowModal] = useState<number>(0);
   const [inputValue, setInputValue] = useState<number>(0);
 
-  const [secondScore, setSecondScore] = useState<number>(0);
-
   const handleOptionSelect = () => {
     setIsClose(true);
   };
@@ -44,6 +42,8 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
     setPrintsArrived,
     screeningFirstEvaluation,
     screeningSecondEvaluation,
+    scoreValue,
+    setScoreValue,
   } = useStore();
 
   const handleButtonClick = (id: number) => {
@@ -84,7 +84,7 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
           break;
         case 4:
           if (isNumber(inputValue)) {
-            setSecondScore(inputValue);
+            setScoreValue(inputValue);
             console.log(inputValue);
           } else {
             toast.error('입력하신 값이 숫자가 아닙니다.');
@@ -92,7 +92,6 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
           }
           break;
       }
-
       modifiedStatus(userId);
       handleCloseModal();
     } else {
@@ -113,7 +112,7 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
         screeningFirstEvaluationAt: screeningFirstEvaluation,
         screeningSecondEvaluationAt: screeningSecondEvaluation,
         registrationNumber: registrationNumber,
-        secondScore: secondScore,
+        secondScore: scoreValue,
         finalMajor: null,
       };
       console.log(submittedApplyData);

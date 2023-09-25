@@ -21,7 +21,7 @@ interface StoreType {
   applyData: CommonApplicationResponseType | null;
   firstEvaluationResult: EvaluationStatusType;
   secondEvaluationResult: EvaluationStatusType;
-  secondScore: string;
+  scoreValue: number;
   registrationNumber: number;
   finalMajor: MajorType;
   selectedOption: number;
@@ -33,6 +33,7 @@ interface StoreType {
   screeningSecondEvaluation: ScreeningType;
   finalSubmitted: boolean;
 
+  setScoreValue: (value: number) => void;
   setFinalSubmitted: (result: boolean) => void;
   setFinalMajor: (result: MajorType) => void;
   setPrintsArrived: (result: boolean) => void;
@@ -55,7 +56,7 @@ const useStore = create<StoreType>(set => ({
   applyData: null,
   firstEvaluationResult: 'NOT_YET',
   secondEvaluationResult: 'NOT_YET',
-  secondScore: '0',
+  scoreValue: 0,
   registrationNumber: 0,
   finalMajor: null,
   selectedOption: 0,
@@ -66,6 +67,7 @@ const useStore = create<StoreType>(set => ({
   formattedGuardianCellphoneNumber: '',
   formattedTeacherCellphoneNumber: '',
   finalSubmitted: false,
+  setScoreValue: value => set({ scoreValue: value }),
   setFinalSubmitted: result => set({ finalSubmitted: result }),
   setFinalMajor: result => set({ finalMajor: result }),
   setFormattedCellphoneNumber: value =>

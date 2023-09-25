@@ -36,14 +36,16 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     setSecondEvaluationResult,
     finalSubmitted,
     setFinalSubmitted,
+    scoreValue,
+    setScoreValue,
   } = useStore();
 
   useEffect(() => {
     setFinalSubmitted(finalSubmitted);
     setFirstEvaluationResult(firstEvaluationResult);
     setSecondEvaluationResult(secondEvaluationResult);
+    setScoreValue(secondScore);
   }, [finalSubmitted, firstEvaluationResult, secondEvaluationResult]);
-  const [score, setScore] = useState<number | null>(secondScore || null);
   const [documentReception, setDocumentReception] = useState<boolean>(true);
 
   const formattedCellphoneNumber = applicantPhoneNumber.replace(
@@ -120,10 +122,10 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         </S.FirstResultText>
         <S.FinalScoreText
           css={css`
-            color: ${score ? '#212121' : '#9E9E9E'};
+            color: ${scoreValue ? '#212121' : '#9E9E9E'};
           `}
         >
-          {score ?? '미입력'}
+          {scoreValue ?? '미입력'}
         </S.FinalScoreText>
         <S.FinalResultText css={resultStyle[secondEvaluationResult]}>
           {formatResult(secondEvaluationResult)}
