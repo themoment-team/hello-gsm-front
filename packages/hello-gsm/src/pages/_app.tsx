@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import type { AppProps } from 'next/app';
 import { GlobalStyle } from 'styles/GlobalStyle';
 import { ToastContainer } from 'react-toastify';
@@ -30,7 +30,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   useGetLogged();
   useMiddleware();
 
-  const showChannelTalk = router.pathname !== '/application';
+  const [showChannelTalk, setShowChannelTalk] = useState(true);
+  useEffect(() => {
+    // 페이지 이동할 때마다 showChannelTalk 토글
+    setShowChannelTalk(router.pathname !== '/application');
+  }, [router.pathname]);
 
   return (
     <>
