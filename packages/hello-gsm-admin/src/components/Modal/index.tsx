@@ -4,16 +4,56 @@ import * as I from 'Assets/svg';
 import * as C from 'components';
 import status from 'Api/status';
 import useStore from 'Stores/StoreContainer';
-import { CommonApplicationResponseType } from 'Types/application';
+import {
+  CommonApplicationResponseType,
+  EvaluationStatusType,
+  MajorType,
+  ScreeningType,
+} from 'Types/application';
 import { toast } from 'react-toastify';
 
 interface ModalProps {
   studentCode: number;
   name: string;
   onClose: () => void;
+  isFinalSubmitted: boolean;
+  isPrintsArrived: boolean;
+  firstEvaluation: EvaluationStatusType;
+  secondEvaluation: EvaluationStatusType;
+  screeningFirstEvaluationAt: ScreeningType;
+  screeningSecondEvaluationAt: ScreeningType;
+  registrationNumber: number;
+  secondScore: number;
+  finalMajor: MajorType;
 }
 
-const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
+const Modal: React.FC<ModalProps> = ({
+  name,
+  studentCode,
+  onClose,
+  isFinalSubmitted,
+  isPrintsArrived,
+  firstEvaluation,
+  secondEvaluation,
+  screeningFirstEvaluationAt,
+  screeningSecondEvaluationAt,
+  registrationNumber,
+  secondScore,
+  finalMajor,
+}) => {
+  const [FinalMajor, setFinalMajor] = useState<MajorType>(finalMajor);
+  const [FinalSubmitted, setFinalSubmitted] =
+    useState<boolean>(isFinalSubmitted);
+  const [PrintsArrived, setPrintsArrived] = useState<boolean>(false);
+  const [ScreeningFirstEvaluationAt, setScreeningFirstEvaluationAt] =
+    useState<ScreeningType>(screeningFirstEvaluationAt);
+  const [ScreeningSecondEvaluationAt, setScreeningSecondEvaluationAt] =
+    useState<ScreeningType>(screeningSecondEvaluationAt);
+  const [SecondScore, setSecondScore] = useState<number>(0);
+  const [FirstEvaluation, setFirstEvaluation] =
+    useState<EvaluationStatusType>(firstEvaluation);
+  const [SecondEvaluation, setSecondEvaluation] =
+    useState<EvaluationStatusType>(secondEvaluation);
   const [isClose, setIsClose] = useState<boolean>(true);
   const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false);
   const [selectedButtonId, setSelectedButtonId] = useState<number>(0);
@@ -29,22 +69,7 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
     onClose();
   };
 
-  const {
-    setApplyData,
-    firstEvaluationResult,
-    secondEvaluationResult,
-    registrationNumber,
-    finalMajor,
-    selectedOption,
-    setSecondEvaluationResult,
-    setFirstEvaluationResult,
-    printsArrived,
-    setPrintsArrived,
-    screeningFirstEvaluation,
-    screeningSecondEvaluation,
-    scoreValue,
-    setScoreValue,
-  } = useStore();
+  const { selectedOption } = useStore();
 
   const handleButtonClick = (id: number) => {
     setIsButtonClicked(true);
@@ -70,21 +95,21 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
           break;
         case 2:
           if (selectedOption === 1) {
-            setFirstEvaluationResult('PASS');
+            setFirstEvaluation('PASS');
           } else {
-            setFirstEvaluationResult('FALL');
+            setFirstEvaluation('FALL');
           }
           break;
         case 3:
           if (selectedOption === 1) {
-            setSecondEvaluationResult('PASS');
+            setSecondEvaluation('PASS');
           } else {
-            setSecondEvaluationResult('FALL');
+            setSecondEvaluation('FALL');
           }
           break;
         case 4:
           if (isNumber(inputValue)) {
-            setScoreValue(inputValue);
+            setSecondScore(inputValue);
             console.log(inputValue);
           } else {
             toast.error('입력하신 값이 숫자가 아닙니다.');
@@ -104,19 +129,16 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
   const modifiedStatus = async (userId: number) => {
     try {
       const submittedApplyData: CommonApplicationResponseType = {
-        isFinalSubmitted: true,
-        isPrintsArrived: printsArrived,
-        firstEvaluation: firstEvaluationResult,
-        secondEvaluation: secondEvaluationResult,
-        screeningFirstEvaluationAt: screeningFirstEvaluation,
-        screeningSecondEvaluationAt: screeningSecondEvaluation,
+        isFinalSubmitted: FinalSubmitted,
+        isPrintsArrived: PrintsArrived,
+        firstEvaluation: FirstEvaluation,
+        secondEvaluation: SecondEvaluation,
+        screeningFirstEvaluationAt: ScreeningFirstEvaluationAt,
+        screeningSecondEvaluationAt: ScreeningSecondEvaluationAt,
         registrationNumber: registrationNumber,
-        secondScore: scoreValue,
-        finalMajor: finalMajor,
+        secondScore: SecondScore,
+        finalMajor: FinalMajor,
       };
-      console.log(submittedApplyData);
-
-      setApplyData(submittedApplyData);
 
       await status.putStatus(submittedApplyData, userId);
       toast.success('상태 수정이 완료되었어요.');

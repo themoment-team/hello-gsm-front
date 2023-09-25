@@ -3,13 +3,16 @@ import { css } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 import * as I from 'Assets/svg';
-import { ApplicationListType, EvaluationStatusType } from 'Types/application';
+import {
+  ApplicationListType,
+  EvaluationStatusType,
+  MajorType,
+} from 'Types/application';
 import formatScreening from 'Utils/Libs/formatScreening';
 import { Modal } from 'components';
 
 interface ContentBoxProp {
   content: ApplicationListType;
-  clickedApplicantId: number;
 }
 
 type resultObjectType = {
@@ -24,35 +27,16 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     teacherPhoneNumber,
     guardianPhoneNumber,
     screening,
-    isFinalSubmitted,
     isPrintsArrived,
     schoolName,
     secondScore,
+    finalMajor,
+    firstEvaluation,
+    secondEvaluation,
+    screeningFirstEvaluationAt,
+    screeningSecondEvaluationAt,
   },
-  clickedApplicantId,
 }) => {
-  const {
-    firstEvaluationResult,
-    setFirstEvaluationResult,
-    secondEvaluationResult,
-    setSecondEvaluationResult,
-    finalSubmitted,
-    setFinalSubmitted,
-    scoreValue,
-    setScoreValue,
-    printsArrived,
-    setPrintsArrived,
-  } = useStore();
-
-  useEffect(() => {
-    if (clickedApplicantId === applicationId) {
-      setFinalSubmitted(finalSubmitted);
-      setFirstEvaluationResult(firstEvaluationResult);
-      setSecondEvaluationResult(secondEvaluationResult);
-      setScoreValue(secondScore);
-      setPrintsArrived(printsArrived);
-    }
-  }, [finalSubmitted, firstEvaluationResult, secondEvaluationResult]);
   const [documentReception, setDocumentReception] = useState<boolean>(true);
 
   const formattedCellphoneNumber = applicantPhoneNumber.replace(
@@ -105,7 +89,16 @@ const ContentBox: React.FC<ContentBoxProp> = ({
           <Modal
             name={applicantName}
             studentCode={applicationId}
+            isPrintsArrived={isPrintsArrived}
+            firstEvaluation={firstEvaluation}
+            secondEvaluation={secondEvaluation}
+            screeningFirstEvaluationAt={screening}
+            screeningSecondEvaluationAt={screening}
+            registrationNumber={applicationId}
+            secondScore={secondScore}
+            finalMajor={finalMajor}
             onClose={onCloseShowStatusModal}
+            isFinalSubmitted={true}
           />
         </S.ModalContainer>
       )}
@@ -115,7 +108,7 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         </S.RegistrationNumber>
         <S.isDocumentReception>
           <S.DocumentReceptionText documentReception={documentReception}>
-            · {printsArrived ? '제출' : '미제출'}
+            · {isPrintsArrived ? '제출' : '미제출'}
           </S.DocumentReceptionText>
         </S.isDocumentReception>
         <S.Name>{applicantName}</S.Name>
@@ -124,18 +117,18 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
-        <S.FirstResultText css={resultStyle[firstEvaluationResult]}>
-          {formatResult(firstEvaluationResult)}
+        <S.FirstResultText css={resultStyle[firstEvaluation]}>
+          {formatResult(firstEvaluation)}
         </S.FirstResultText>
         <S.FinalScoreText
           css={css`
-            color: ${scoreValue ? '#212121' : '#9E9E9E'};
+            color: ${secondScore ? '#212121' : '#9E9E9E'};
           `}
         >
-          {scoreValue ?? '미입력'}
+          {secondScore ?? '미입력'}
         </S.FinalScoreText>
-        <S.FinalResultText css={resultStyle[secondEvaluationResult]}>
-          {formatResult(secondEvaluationResult)}
+        <S.FinalResultText css={resultStyle[secondEvaluation]}>
+          {formatResult(secondEvaluation)}
         </S.FinalResultText>
       </S.Content>
       <S.EditButtonBox>
