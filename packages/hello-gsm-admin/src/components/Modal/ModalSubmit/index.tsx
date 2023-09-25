@@ -7,7 +7,7 @@ interface ModalResultProps {
 }
 
 const ModalSubmit: React.FC<ModalResultProps> = ({ handleOptionSelect }) => {
-  const [selectedButtonId, setSelectedButtonId] = useState<number>(1);
+  const [selectedButtonId, setSelectedButtonId] = useState<number>(0);
   const handleButtonClick = (id: number) => {
     setSelectedButtonId(id);
     handleOptionSelect(id);
