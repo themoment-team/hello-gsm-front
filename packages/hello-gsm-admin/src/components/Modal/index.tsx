@@ -5,6 +5,7 @@ import * as C from 'components';
 import status from 'Api/status';
 import useStore from 'Stores/StoreContainer';
 import {
+  ApplicationListType,
   CommonApplicationResponseType,
   EvaluationStatusType,
   MajorType,
@@ -13,46 +14,30 @@ import {
 import { toast } from 'react-toastify';
 
 interface ModalProps {
-  studentCode: number;
-  name: string;
+  data: ApplicationListType;
   onClose: () => void;
-  isFinalSubmitted: boolean;
-  setIsFinalSubmitted: (result: boolean) => void;
-  isPrintsArrived: boolean;
-  setIsPrintsArrived: (result: boolean) => void;
-  firstEvaluation: EvaluationStatusType;
-  setFirstEvaluation: (result: EvaluationStatusType) => void;
-  secondEvaluation: EvaluationStatusType;
-  setSecondEvaluation: (result: EvaluationStatusType) => void;
-  secondScore: number;
-  setSecondScore: (inputValue: number) => void;
-  finalMajor: MajorType;
-  setFinalMajor: (result: MajorType) => void;
+  getApplicationList: any;
 }
 
-const Modal: React.FC<ModalProps> = ({
-  name,
-  studentCode,
-  onClose,
-  isFinalSubmitted,
-  setIsFinalSubmitted,
-  isPrintsArrived,
-  setIsPrintsArrived,
-  firstEvaluation,
-  setFirstEvaluation,
-  secondEvaluation,
-  setSecondEvaluation,
-  secondScore,
-  setSecondScore,
-  finalMajor,
-  setFinalMajor,
-}) => {
+const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
   const [isClose, setIsClose] = useState<boolean>(true);
   const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false);
   const [selectedButtonId, setSelectedButtonId] = useState<number>(0);
   const [showModalResult, setShowModalResult] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<number>(0);
   const [inputValue, setInputValue] = useState<number>(0);
+  const [submittedApplyData, setSubmittedApplyData] =
+    useState<CommonApplicationResponseType>({
+      isFinalSubmitted: data.isFinalSubmitted,
+      isPrintsArrived: data.isPrintsArrived,
+      firstEvaluation: data.firstEvaluation,
+      secondEvaluation: data.secondEvaluation,
+      screeningFirstEvaluationAt: data.screeningFirstEvaluationAt,
+      screeningSecondEvaluationAt: data.screeningSecondEvaluationAt,
+      registrationNumber: data.applicationId,
+      secondScore: data.secondScore,
+      finalMajor: data.finalMajor,
+    });
 
   const handleOptionSelect = () => {
     setIsClose(true);
@@ -69,9 +54,8 @@ const Modal: React.FC<ModalProps> = ({
     setSelectedButtonId(id);
   };
 
-  const handleModalButtonClick = (
+  const handleModalButtonClick = async (
     selectedButtonId: number,
-    userId: number,
     buttonTitle: '다음' | '확인',
   ) => {
     const isNumber = (value: number) => {
@@ -81,28 +65,49 @@ const Modal: React.FC<ModalProps> = ({
       switch (selectedButtonId) {
         case 1:
           if (selectedOption === 1) {
-            setIsPrintsArrived(true);
+            setSubmittedApplyData({
+              ...submittedApplyData,
+              isPrintsArrived: true,
+            });
           } else {
-            setIsPrintsArrived(false);
+            setSubmittedApplyData({
+              ...submittedApplyData,
+              isPrintsArrived: false,
+            });
           }
           break;
         case 2:
           if (selectedOption === 1) {
-            setFirstEvaluation('PASS');
+            setSubmittedApplyData({
+              ...submittedApplyData,
+              firstEvaluation: 'PASS',
+            });
           } else {
-            setFirstEvaluation('FALL');
+            setSubmittedApplyData({
+              ...submittedApplyData,
+              firstEvaluation: 'FALL',
+            });
           }
           break;
         case 3:
           if (selectedOption === 1) {
-            setSecondEvaluation('PASS');
+            setSubmittedApplyData({
+              ...submittedApplyData,
+              firstEvaluation: 'PASS',
+            });
           } else {
-            setSecondEvaluation('FALL');
+            setSubmittedApplyData({
+              ...submittedApplyData,
+              firstEvaluation: 'FALL',
+            });
           }
           break;
         case 4:
           if (isNumber(inputValue)) {
-            setSecondScore(inputValue);
+            setSubmittedApplyData({
+              ...submittedApplyData,
+              secondScore: inputValue,
+            });
             console.log(inputValue);
           } else {
             toast.error('입력하신 값이 숫자가 아닙니다.');
@@ -110,38 +115,20 @@ const Modal: React.FC<ModalProps> = ({
           break;
       }
 
-      const submittedApplyData: CommonApplicationResponseType = {
-        isFinalSubmitted: isFinalSubmitted,
-        isPrintsArrived: isPrintsArrived,
-        firstEvaluation: firstEvaluation,
-        secondEvaluation: secondEvaluation,
-        screeningFirstEvaluationAt: 'GENERAL',
-        screeningSecondEvaluationAt: 'GENERAL',
-        registrationNumber: studentCode,
-        secondScore: secondScore,
-        finalMajor: finalMajor,
-      };
-      modifiedStatus(userId, submittedApplyData);
-      handleCloseModal();
+      try {
+        await status.putStatus(submittedApplyData, data.applicationId);
+        toast.success('상태 수정이 완료되었어요.');
+        handleCloseModal();
+        getApplicationList();
+      } catch (error: any) {
+        toast.error('상태 수정 저장 중 에러가 발생했어요. 다시 시도해주세요.');
+        console.error(error);
+      }
     } else {
       setShowModal(selectedButtonId);
       setIsButtonClicked(false);
       setShowModalResult(true);
       setIsButtonClicked(true);
-    }
-  };
-
-  const modifiedStatus = async (
-    userId: number,
-    submittedApplyData: CommonApplicationResponseType,
-  ) => {
-    try {
-      await status.putStatus(submittedApplyData, userId);
-      toast.success('상태 수정이 완료되었어요.');
-      handleCloseModal();
-    } catch (error: any) {
-      toast.error('상태 수정 저장 중 에러가 발생했어요. 다시 시도해주세요.');
-      console.error(error);
     }
   };
 
@@ -173,73 +160,73 @@ const Modal: React.FC<ModalProps> = ({
             <></>
           ) : (
             <S.TitleBox>
-              <S.Title>수험번호 {studentCode}</S.Title>
-              <S.Desc>{name}님의 어떤 상태를 수정하실건가요?</S.Desc>
+              <S.Title>수험번호 {data.applicationId}</S.Title>
+              <S.Desc>
+                {data.applicantName}님의 어떤 상태를 수정하실건가요?
+              </S.Desc>
             </S.TitleBox>
           )}
           {showModal === 1 && (
             <S.ContentBox>
               <S.TitleBox style={{ width: '416px' }}>
-                <S.Title>수험번호 {studentCode}</S.Title>
-                <S.Desc>{name}님의 서류 제출 여부를 선택해주세요</S.Desc>
+                <S.Title>수험번호 {data.applicationId}</S.Title>
+                <S.Desc>
+                  {data.applicantName}님의 서류 제출 여부를 선택해주세요
+                </S.Desc>
               </S.TitleBox>
               <C.ModalSubmit handleOptionSelect={handleOptionSelect} />
               <C.ModalButton
                 buttonTitle="확인"
                 isConfirm={!isButtonClicked}
-                onClick={() =>
-                  handleModalButtonClick(selectedButtonId, studentCode, '확인')
-                }
+                onClick={() => handleModalButtonClick(selectedButtonId, '확인')}
               />
             </S.ContentBox>
           )}
           {showModal === 2 && (
             <S.ContentBox>
               <S.TitleBox style={{ width: '416px' }}>
-                <S.Title>수험번호 {studentCode}</S.Title>
-                <S.Desc>{name}님의 1차 합격 여부(서류)를 선택해주세요.</S.Desc>
-              </S.TitleBox>
-              <C.ModalResult handleOptionSelect={handleOptionSelect} />
-              <C.ModalButton
-                buttonTitle="확인"
-                isConfirm={!isButtonClicked}
-                onClick={() =>
-                  handleModalButtonClick(selectedButtonId, studentCode, '확인')
-                }
-              />
-            </S.ContentBox>
-          )}
-          {showModal === 3 && (
-            <S.ContentBox>
-              <S.TitleBox style={{ width: '26rem' }}>
-                <S.Title>수험번호 {studentCode}</S.Title>
+                <S.Title>수험번호 {data.applicationId}</S.Title>
                 <S.Desc>
-                  {name}님의 2차 합격 여부(인적성)를 선택해주세요.
+                  {data.applicantName}님의 1차 합격 여부(서류)를 선택해주세요.
                 </S.Desc>
               </S.TitleBox>
               <C.ModalResult handleOptionSelect={handleOptionSelect} />
               <C.ModalButton
                 buttonTitle="확인"
                 isConfirm={!isButtonClicked}
-                onClick={() =>
-                  handleModalButtonClick(selectedButtonId, studentCode, '확인')
-                }
+                onClick={() => handleModalButtonClick(selectedButtonId, '확인')}
+              />
+            </S.ContentBox>
+          )}
+          {showModal === 3 && (
+            <S.ContentBox>
+              <S.TitleBox style={{ width: '26rem' }}>
+                <S.Title>수험번호 {data.applicationId}</S.Title>
+                <S.Desc>
+                  {data.applicantName}님의 2차 합격 여부(인적성)를 선택해주세요.
+                </S.Desc>
+              </S.TitleBox>
+              <C.ModalResult handleOptionSelect={handleOptionSelect} />
+              <C.ModalButton
+                buttonTitle="확인"
+                isConfirm={!isButtonClicked}
+                onClick={() => handleModalButtonClick(selectedButtonId, '확인')}
               />
             </S.ContentBox>
           )}
           {showModal === 4 && (
             <S.ContentBox>
               <S.TitleBox style={{ width: '26rem' }}>
-                <S.Title>수험번호 {studentCode}</S.Title>
-                <S.Desc>{name}님의 2차 점수(인적성)를 입력해주세요.</S.Desc>
+                <S.Title>수험번호 {data.applicationId}</S.Title>
+                <S.Desc>
+                  {data.applicantName}님의 2차 점수(인적성)를 입력해주세요.
+                </S.Desc>
               </S.TitleBox>
               <C.ModalInput setInputValue={setInputValue} />
               <C.ModalButton
                 buttonTitle="확인"
                 isConfirm={!isButtonClicked}
-                onClick={() =>
-                  handleModalButtonClick(selectedButtonId, studentCode, '확인')
-                }
+                onClick={() => handleModalButtonClick(selectedButtonId, '확인')}
               />
             </S.ContentBox>
           )}
@@ -266,9 +253,7 @@ const Modal: React.FC<ModalProps> = ({
               <C.ModalButton
                 buttonTitle="다음"
                 isConfirm={!isButtonClicked}
-                onClick={() =>
-                  handleModalButtonClick(selectedButtonId, studentCode, '다음')
-                }
+                onClick={() => handleModalButtonClick(selectedButtonId, '다음')}
               />
             </S.ContentBox>
           )}

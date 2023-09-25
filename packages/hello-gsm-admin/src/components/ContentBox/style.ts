@@ -72,10 +72,9 @@ export const isDocumentReception = styled.div`
 `;
 
 export const DocumentReceptionText = styled.span<{
-  documentReception: boolean;
+  isPrintsArrived: boolean;
 }>`
-  color: ${({ documentReception }) =>
-    documentReception ? '#2174d8' : '#FF000F'};
+  color: ${({ isPrintsArrived }) => (isPrintsArrived ? '#2174d8' : '#FF000F')};
   font-size: 12px;
   text-align: left;
   width: 50px;

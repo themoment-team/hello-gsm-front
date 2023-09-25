@@ -8,12 +8,7 @@ import {
 import type { NextPage } from 'next';
 import * as S from './style';
 import { useEffect, useState } from 'react';
-import {
-  SearchApplicationInfoType,
-  MajorType,
-  ScreeningType,
-  EvaluationStatusType,
-} from 'Types/application';
+import { SearchApplicationInfoType } from 'Types/application';
 import application from 'Api/application';
 import { useRouter } from 'next/router';
 import { SearchTagType } from 'Types/searchTag';
@@ -74,7 +69,13 @@ const MainPage: NextPage = () => {
         <MainpageHeader />
         <S.ContentList>
           {applicationData?.applications.map(data => {
-            return <ContentBox content={data} key={data.applicationId} />;
+            return (
+              <ContentBox
+                content={data}
+                key={data.applicationId}
+                getApplicationList={getApplicationList}
+              />
+            );
           })}
         </S.ContentList>
         {applicationData?.info.totalPages ? (
