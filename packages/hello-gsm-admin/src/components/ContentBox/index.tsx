@@ -9,6 +9,7 @@ import { Modal } from 'components';
 
 interface ContentBoxProp {
   content: ApplicationListType;
+  clickedApplicantId: number;
 }
 
 type resultObjectType = {
@@ -28,6 +29,7 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     schoolName,
     secondScore,
   },
+  clickedApplicantId,
 }) => {
   const {
     firstEvaluationResult,
@@ -38,13 +40,18 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     setFinalSubmitted,
     scoreValue,
     setScoreValue,
+    printsArrived,
+    setPrintsArrived,
   } = useStore();
 
   useEffect(() => {
-    setFinalSubmitted(finalSubmitted);
-    setFirstEvaluationResult(firstEvaluationResult);
-    setSecondEvaluationResult(secondEvaluationResult);
-    setScoreValue(secondScore);
+    if (clickedApplicantId === applicationId) {
+      setFinalSubmitted(finalSubmitted);
+      setFirstEvaluationResult(firstEvaluationResult);
+      setSecondEvaluationResult(secondEvaluationResult);
+      setScoreValue(secondScore);
+      setPrintsArrived(printsArrived);
+    }
   }, [finalSubmitted, firstEvaluationResult, secondEvaluationResult]);
   const [documentReception, setDocumentReception] = useState<boolean>(true);
 
@@ -108,7 +115,7 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         </S.RegistrationNumber>
         <S.isDocumentReception>
           <S.DocumentReceptionText documentReception={documentReception}>
-            · {isPrintsArrived ? '제출' : '미제출'}
+            · {printsArrived ? '제출' : '미제출'}
           </S.DocumentReceptionText>
         </S.isDocumentReception>
         <S.Name>{applicantName}</S.Name>

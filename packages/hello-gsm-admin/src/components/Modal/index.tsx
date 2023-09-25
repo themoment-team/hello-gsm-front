@@ -88,7 +88,6 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
             console.log(inputValue);
           } else {
             toast.error('입력하신 값이 숫자가 아닙니다.');
-            break;
           }
           break;
       }
@@ -113,7 +112,7 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
         screeningSecondEvaluationAt: screeningSecondEvaluation,
         registrationNumber: registrationNumber,
         secondScore: scoreValue,
-        finalMajor: null,
+        finalMajor: finalMajor,
       };
       console.log(submittedApplyData);
 

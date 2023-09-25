@@ -55,6 +55,11 @@ const MainPage: NextPage = () => {
     }
   }, [searchKeyword, searchTag]);
 
+  const [clickedApplicantId, setClickedApplicantId] = useState<number>(0);
+
+  const handleApplicantIdClick = (applicantId: number) => {
+    setClickedApplicantId(applicantId);
+  };
   return (
     <S.MainPage>
       <SideBar />
@@ -69,7 +74,18 @@ const MainPage: NextPage = () => {
         <MainpageHeader />
         <S.ContentList>
           {applicationData?.applications.map(data => {
-            return <ContentBox content={data} key={data.applicationId} />;
+            return (
+              <div
+                key={data.applicationId}
+                onClick={() => handleApplicantIdClick(data.applicationId)}
+              >
+                <ContentBox
+                  content={data}
+                  key={data.applicationId}
+                  clickedApplicantId={clickedApplicantId}
+                />
+              </div>
+            );
           })}
         </S.ContentList>
         {applicationData?.info.totalPages ? (
