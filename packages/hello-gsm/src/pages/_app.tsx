@@ -29,10 +29,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useGetLogged();
   useMiddleware();
-  console.log(router.pathname);
 
-  console.log(router);
-  console.log(router.push);
+  const showChannelTalk = router.pathname !== '/application';
 
   return (
     <>
@@ -62,7 +60,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
         <Footer />
       </ThemeProvider>
-      {router.pathname !== '/application' && <ChannelTalk />}
+      {showChannelTalk && <ChannelTalk />}
     </>
   );
 }
