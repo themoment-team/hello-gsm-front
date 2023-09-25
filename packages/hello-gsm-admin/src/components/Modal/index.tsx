@@ -40,13 +40,13 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
 
   const {
     setApplyData,
-    firstEvaluation,
-    secondEvaluation,
+    firstEvaluationResult,
+    secondEvaluationResult,
     registrationNumber,
     finalMajor,
     selectedOption,
-    setSecondEvaluation,
-    setFirstEvaluation,
+    setSecondEvaluationResult,
+    setFirstEvaluationResult,
     printsArrived,
     setPrintsArrived,
     screeningFirstEvaluationAt,
@@ -54,8 +54,8 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
   } = useStore();
 
   useEffect(() => {
-    console.log(firstEvaluation);
-  }, [firstEvaluation]);
+    console.log(firstEvaluationResult);
+  }, [firstEvaluationResult]);
 
   const handleButtonClick = (id: number) => {
     setIsButtonClicked(true);
@@ -81,16 +81,16 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
           break;
         case 2:
           if (selectedOption === 1) {
-            setFirstEvaluation('PASS');
+            setFirstEvaluationResult('PASS');
           } else {
-            setFirstEvaluation('FALL');
+            setFirstEvaluationResult('FALL');
           }
           break;
         case 3:
           if (selectedOption === 1) {
-            setSecondEvaluation('PASS');
+            setSecondEvaluationResult('PASS');
           } else {
-            setSecondEvaluation('FALL');
+            setSecondEvaluationResult('FALL');
           }
           break;
         case 4:
@@ -119,8 +119,8 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
       const submittedApplyData: CommonApplicationResponseType = {
         isFinalSubmitted: true,
         isPrintsArrived: printsArrived,
-        firstEvaluation: firstEvaluation,
-        secondEvaluation: secondEvaluation,
+        firstEvaluation: firstEvaluationResult,
+        secondEvaluation: secondEvaluationResult,
         screeningFirstEvaluationAt: screeningFirstEvaluationAt,
         screeningSecondEvaluationAt: screeningSecondEvaluationAt,
         registrationNumber: registrationNumber,

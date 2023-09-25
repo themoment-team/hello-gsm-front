@@ -31,7 +31,14 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     secondScore,
   },
 }) => {
-  const firstResult: EvaluationStatusType = firstEvaluation;
+  const {
+    firstEvaluationResult,
+    setFirstEvaluationResult,
+    secondEvaluationResult,
+    setSecondEvaluationResult,
+  } = useStore();
+  setFirstEvaluationResult(firstEvaluation);
+  setSecondEvaluationResult(secondEvaluationResult);
   const finalResult: EvaluationStatusType = secondEvaluation;
   const [score, setScore] = useState<number | null>(secondScore || null);
   const [documentReception, setDocumentReception] = useState<boolean>(true);
@@ -107,8 +114,8 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
-        <S.FirstResultText css={resultStyle[firstResult]}>
-          {formatResult(firstResult)}
+        <S.FirstResultText css={resultStyle[firstEvaluationResult]}>
+          {formatResult(firstEvaluationResult)}
         </S.FirstResultText>
         <S.FinalScoreText
           css={css`
@@ -117,8 +124,8 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         >
           {score ?? '미입력'}
         </S.FinalScoreText>
-        <S.FinalResultText css={resultStyle[finalResult]}>
-          {formatResult(finalResult)}
+        <S.FinalResultText css={resultStyle[secondEvaluationResult]}>
+          {formatResult(secondEvaluationResult)}
         </S.FinalResultText>
       </S.Content>
       <S.EditButtonBox>

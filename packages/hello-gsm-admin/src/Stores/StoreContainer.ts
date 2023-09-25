@@ -19,8 +19,8 @@ interface StoreType {
   setScoreModalValue: (value: number | null) => void;
   setApplyData: (data: CommonApplicationResponseType) => void;
   applyData: CommonApplicationResponseType | null;
-  firstEvaluation: EvaluationStatusType;
-  secondEvaluation: EvaluationStatusType;
+  firstEvaluationResult: EvaluationStatusType;
+  secondEvaluationResult: EvaluationStatusType;
   secondScore: string;
   registrationNumber: number;
   finalMajor: MajorType;
@@ -31,15 +31,16 @@ interface StoreType {
   formattedTeacherCellphoneNumber: string;
   screeningFirstEvaluationAt: ScreeningType;
   screeningSecondEvaluationAt: ScreeningType;
+  setFinalMajor: (result: MajorType) => void;
   setPrintsArrived: (result: boolean) => void;
-  setFirstEvaluation: (result: EvaluationStatusType) => void;
+  setFirstEvaluationResult: (result: EvaluationStatusType) => void;
   setFormattedCellphoneNumber: (value: string) => void;
   setFormattedGuardianCellphoneNumber: (value: string) => void;
   setFormattedTeacherCellphoneNumber: (value: string) => void;
-  setSecondEvaluation: (result: EvaluationStatusType) => void;
+  setSecondEvaluationResult: (result: EvaluationStatusType) => void;
   setSelectedOption: (option: number) => void;
   setScreeningFirstEvaluationAt: (option: ScreeningType) => void;
-  setScreeningSecondEvaluationAt: (option: ScreeningType) => void;
+  setScreeningSecondEvaluationResultAt: (option: ScreeningType) => void;
 }
 
 const useStore = create<StoreType>(set => ({
@@ -49,8 +50,8 @@ const useStore = create<StoreType>(set => ({
   scoreModalValue: null,
   showStatusModal: false,
   applyData: null,
-  firstEvaluation: 'NOT_YET',
-  secondEvaluation: 'NOT_YET',
+  firstEvaluationResult: 'NOT_YET',
+  secondEvaluationResult: 'NOT_YET',
   secondScore: '0',
   registrationNumber: 0,
   finalMajor: null,
@@ -61,6 +62,8 @@ const useStore = create<StoreType>(set => ({
   formattedCellphoneNumber: '',
   formattedGuardianCellphoneNumber: '',
   formattedTeacherCellphoneNumber: '',
+
+  setFinalMajor: result => set({ finalMajor: result }),
   setFormattedCellphoneNumber: value =>
     set({ formattedCellphoneNumber: value }),
   setFormattedGuardianCellphoneNumber: value =>
@@ -71,11 +74,11 @@ const useStore = create<StoreType>(set => ({
   setPrintsArrived: result => set({ printsArrived: result }),
   setScreeningFirstEvaluationAt: option =>
     set({ screeningFirstEvaluationAt: option }),
-  setScreeningSecondEvaluationAt: option =>
+  setScreeningSecondEvaluationResultAt: option =>
     set({ screeningSecondEvaluationAt: option }),
 
-  setSecondEvaluation: result => set({ secondEvaluation: result }),
-  setFirstEvaluation: result => set({ firstEvaluation: result }),
+  setSecondEvaluationResult: result => set({ secondEvaluationResult: result }),
+  setFirstEvaluationResult: result => set({ firstEvaluationResult: result }),
   setApplyData: data => set({ applyData: data }),
   setShowStatusModal: () =>
     set(state => ({ showStatusModal: !state.showStatusModal })),
