@@ -82,34 +82,51 @@ const Modal: React.FC<ModalProps> = ({
         case 1:
           if (selectedOption === 1) {
             setIsPrintsArrived(true);
+            modifiedStatus(userId);
           } else {
             setIsPrintsArrived(false);
+            modifiedStatus(userId);
           }
           break;
         case 2:
           if (selectedOption === 1) {
             setFirstEvaluation('PASS');
+            modifiedStatus(userId);
           } else {
             setFirstEvaluation('FALL');
+            modifiedStatus(userId);
           }
           break;
         case 3:
           if (selectedOption === 1) {
             setSecondEvaluation('PASS');
+            modifiedStatus(userId);
           } else {
             setSecondEvaluation('FALL');
+            modifiedStatus(userId);
           }
           break;
         case 4:
           if (isNumber(inputValue)) {
             setSecondScore(inputValue);
+            modifiedStatus(userId);
             console.log(inputValue);
           } else {
             toast.error('입력하신 값이 숫자가 아닙니다.');
           }
           break;
       }
+      handleCloseModal();
+    } else {
+      setShowModal(selectedButtonId);
+      setIsButtonClicked(false);
+      setShowModalResult(true);
+      setIsButtonClicked(true);
+    }
+  };
 
+  const modifiedStatus = async (userId: number) => {
+    try {
       const submittedApplyData: CommonApplicationResponseType = {
         isFinalSubmitted: isFinalSubmitted,
         isPrintsArrived: isPrintsArrived,
@@ -121,21 +138,7 @@ const Modal: React.FC<ModalProps> = ({
         secondScore: secondScore,
         finalMajor: finalMajor,
       };
-      modifiedStatus(userId, submittedApplyData);
-      handleCloseModal();
-    } else {
-      setShowModal(selectedButtonId);
-      setIsButtonClicked(false);
-      setShowModalResult(true);
-      setIsButtonClicked(true);
-    }
-  };
 
-  const modifiedStatus = async (
-    userId: number,
-    submittedApplyData: CommonApplicationResponseType,
-  ) => {
-    try {
       await status.putStatus(submittedApplyData, userId);
       toast.success('상태 수정이 완료되었어요.');
       handleCloseModal();
