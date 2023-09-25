@@ -109,18 +109,7 @@ const Modal: React.FC<ModalProps> = ({
           }
           break;
       }
-      modifiedStatus(userId);
-      handleCloseModal();
-    } else {
-      setShowModal(selectedButtonId);
-      setIsButtonClicked(false);
-      setShowModalResult(true);
-      setIsButtonClicked(true);
-    }
-  };
 
-  const modifiedStatus = async (userId: number) => {
-    try {
       const submittedApplyData: CommonApplicationResponseType = {
         isFinalSubmitted: isFinalSubmitted,
         isPrintsArrived: isPrintsArrived,
@@ -132,7 +121,21 @@ const Modal: React.FC<ModalProps> = ({
         secondScore: secondScore,
         finalMajor: finalMajor,
       };
+      modifiedStatus(userId, submittedApplyData);
+      handleCloseModal();
+    } else {
+      setShowModal(selectedButtonId);
+      setIsButtonClicked(false);
+      setShowModalResult(true);
+      setIsButtonClicked(true);
+    }
+  };
 
+  const modifiedStatus = async (
+    userId: number,
+    submittedApplyData: CommonApplicationResponseType,
+  ) => {
+    try {
       await status.putStatus(submittedApplyData, userId);
       toast.success('상태 수정이 완료되었어요.');
       handleCloseModal();
