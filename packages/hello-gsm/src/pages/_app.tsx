@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { GlobalStyle } from 'styles/GlobalStyle';
 import { ToastContainer } from 'react-toastify';
@@ -14,13 +14,10 @@ import { useMiddleware } from 'hooks/useMiddleware';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const [showChannelTalk, setShowChannelTalk] = useState(true);
 
   useEffect(() => {
     const handleRouteChange = (url: URL) => {
       gtag.pageview(url);
-      console.log(url.pathname);
-      setShowChannelTalk(url.pathname !== '/application');
     };
     router.events.on('routeChangeComplete', handleRouteChange);
     router.events.on('hashChangeComplete', handleRouteChange);
@@ -61,7 +58,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
         <Footer />
       </ThemeProvider>
-      {showChannelTalk ? <ChannelTalk /> : null}
+      {router.pathname !== '/application' && <ChannelTalk />}
     </>
   );
 }
