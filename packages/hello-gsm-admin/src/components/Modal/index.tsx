@@ -60,6 +60,12 @@ const Modal: React.FC<ModalProps> = ({
   const [showModalResult, setShowModalResult] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<number>(0);
   const [inputValue, setInputValue] = useState<number>(0);
+  useEffect(() => {
+    console.log(FirstEvaluation);
+    console.log(SecondEvaluation);
+    console.log(PrintsArrived);
+    console.log(SecondScore);
+  }, [FirstEvaluation, PrintsArrived, SecondEvaluation, SecondScore]);
 
   const handleOptionSelect = () => {
     setIsClose(true);
