@@ -8,7 +8,7 @@ interface ModalResultProps {
 }
 
 const ModalResult: React.FC<ModalResultProps> = ({ handleOptionSelect }) => {
-  const [selectedButtonId, setSelectedButtonId] = useState<number>(1);
+  const [selectedButtonId, setSelectedButtonId] = useState<number>();
   const { setSelectedOption } = useStore();
 
   const handleButtonClick = (id: number) => {

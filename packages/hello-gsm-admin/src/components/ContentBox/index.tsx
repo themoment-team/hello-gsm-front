@@ -33,13 +33,14 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     isPrintsArrived,
     firstEvaluation,
     secondEvaluation,
+    secondScore,
   },
 }) => {
   const [isFinalSubmitted, setIsFinalSubmitted] = useState(true);
   const [PrintsArrived, setIsPrintsArrived] = useState(isPrintsArrived);
   const [FirstEvaluation, setFirstEvaluation] = useState(firstEvaluation);
   const [SecondEvaluation, setSecondEvaluation] = useState(secondEvaluation);
-  const [secondScore, setSecondScore] = useState(0);
+  const [SecondScore, setSecondScore] = useState(secondScore);
   const [finalMajor, setFinalMajor] = useState<MajorType>(null);
   const [documentReception, setDocumentReception] = useState<boolean>(true);
 
@@ -106,7 +107,7 @@ const ContentBox: React.FC<ContentBoxProp> = ({
             setFirstEvaluation={setFirstEvaluation}
             secondEvaluation={SecondEvaluation}
             setSecondEvaluation={setSecondEvaluation}
-            secondScore={secondScore}
+            secondScore={SecondScore}
             setSecondScore={setSecondScore}
             finalMajor={finalMajor}
             setFinalMajor={setFinalMajor}
@@ -133,10 +134,10 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         </S.FirstResultText>
         <S.FinalScoreText
           css={css`
-            color: ${secondScore ? '#212121' : '#9E9E9E'};
+            color: ${SecondScore ? '#212121' : '#9E9E9E'};
           `}
         >
-          {secondScore ?? '미입력'}
+          {SecondScore ?? '미입력'}
         </S.FinalScoreText>
         <S.FinalResultText css={resultStyle[SecondEvaluation]}>
           {formatResult(SecondEvaluation)}
