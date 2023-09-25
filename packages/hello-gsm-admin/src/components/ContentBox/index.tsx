@@ -43,6 +43,10 @@ const ContentBox: React.FC<ContentBoxProp> = ({
   const [finalMajor, setFinalMajor] = useState<MajorType>(null);
   const [documentReception, setDocumentReception] = useState<boolean>(true);
 
+  useEffect(() => {
+    console.log(FirstEvaluation);
+    console.log(SecondEvaluation);
+  }, [FirstEvaluation, SecondEvaluation]);
   const formattedCellphoneNumber = applicantPhoneNumber.replace(
     /(\d{3})(\d{4})(\d{4})/,
     '$1-$2-$3',
