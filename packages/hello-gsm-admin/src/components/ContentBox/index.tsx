@@ -124,8 +124,8 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
-        <S.FirstResultText css={resultStyle[firstEvaluation]}>
-          {formatResult(firstEvaluation)}
+        <S.FirstResultText css={resultStyle[FirstEvaluation]}>
+          {formatResult(FirstEvaluation)}
         </S.FirstResultText>
         <S.FinalScoreText
           css={css`
@@ -134,8 +134,8 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         >
           {secondScore ?? '미입력'}
         </S.FinalScoreText>
-        <S.FinalResultText css={resultStyle[secondEvaluation]}>
-          {formatResult(secondEvaluation)}
+        <S.FinalResultText css={resultStyle[SecondEvaluation]}>
+          {formatResult(SecondEvaluation)}
         </S.FinalResultText>
       </S.Content>
       <S.EditButtonBox>
