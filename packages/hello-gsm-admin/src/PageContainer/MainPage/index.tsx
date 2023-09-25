@@ -8,7 +8,12 @@ import {
 import type { NextPage } from 'next';
 import * as S from './style';
 import { useEffect, useState } from 'react';
-import { SearchApplicationInfoType } from 'Types/application';
+import {
+  SearchApplicationInfoType,
+  MajorType,
+  ScreeningType,
+  EvaluationStatusType,
+} from 'Types/application';
 import application from 'Api/application';
 import { useRouter } from 'next/router';
 import { SearchTagType } from 'Types/searchTag';
@@ -54,8 +59,6 @@ const MainPage: NextPage = () => {
       router.push(`${router.pathname}?pageNumber=${1}`);
     }
   }, [searchKeyword, searchTag]);
-
-  const [clickedApplicantId, setClickedApplicantId] = useState<number>(0);
 
   return (
     <S.MainPage>

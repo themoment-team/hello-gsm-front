@@ -17,14 +17,17 @@ interface ModalProps {
   name: string;
   onClose: () => void;
   isFinalSubmitted: boolean;
+  setIsFinalSubmitted: (result: boolean) => void;
   isPrintsArrived: boolean;
+  setIsPrintsArrived: (result: boolean) => void;
   firstEvaluation: EvaluationStatusType;
+  setFirstEvaluation: (result: EvaluationStatusType) => void;
   secondEvaluation: EvaluationStatusType;
-  screeningFirstEvaluationAt: ScreeningType;
-  screeningSecondEvaluationAt: ScreeningType;
-  registrationNumber: number;
+  setSecondEvaluation: (result: EvaluationStatusType) => void;
   secondScore: number;
+  setSecondScore: (inputValue: number) => void;
   finalMajor: MajorType;
+  setFinalMajor: (result: MajorType) => void;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -32,40 +35,24 @@ const Modal: React.FC<ModalProps> = ({
   studentCode,
   onClose,
   isFinalSubmitted,
+  setIsFinalSubmitted,
   isPrintsArrived,
+  setIsPrintsArrived,
   firstEvaluation,
+  setFirstEvaluation,
   secondEvaluation,
-  screeningFirstEvaluationAt,
-  screeningSecondEvaluationAt,
-  registrationNumber,
+  setSecondEvaluation,
   secondScore,
+  setSecondScore,
   finalMajor,
+  setFinalMajor,
 }) => {
-  const [FinalMajor, setFinalMajor] = useState<MajorType>(finalMajor);
-  const [FinalSubmitted, setFinalSubmitted] =
-    useState<boolean>(isFinalSubmitted);
-  const [PrintsArrived, setPrintsArrived] = useState<boolean>(false);
-  const [ScreeningFirstEvaluationAt, setScreeningFirstEvaluationAt] =
-    useState<ScreeningType>(screeningFirstEvaluationAt);
-  const [ScreeningSecondEvaluationAt, setScreeningSecondEvaluationAt] =
-    useState<ScreeningType>(screeningSecondEvaluationAt);
-  const [SecondScore, setSecondScore] = useState<number>(0);
-  const [FirstEvaluation, setFirstEvaluation] =
-    useState<EvaluationStatusType>(firstEvaluation);
-  const [SecondEvaluation, setSecondEvaluation] =
-    useState<EvaluationStatusType>(secondEvaluation);
   const [isClose, setIsClose] = useState<boolean>(true);
   const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false);
   const [selectedButtonId, setSelectedButtonId] = useState<number>(0);
   const [showModalResult, setShowModalResult] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<number>(0);
   const [inputValue, setInputValue] = useState<number>(0);
-  useEffect(() => {
-    console.log(FirstEvaluation);
-    console.log(SecondEvaluation);
-    console.log(PrintsArrived);
-    console.log(SecondScore);
-  }, [FirstEvaluation, PrintsArrived, SecondEvaluation, SecondScore]);
 
   const handleOptionSelect = () => {
     setIsClose(true);
@@ -94,9 +81,9 @@ const Modal: React.FC<ModalProps> = ({
       switch (selectedButtonId) {
         case 1:
           if (selectedOption === 1) {
-            setPrintsArrived(true);
+            setIsPrintsArrived(true);
           } else {
-            setPrintsArrived(false);
+            setIsPrintsArrived(false);
           }
           break;
         case 2:
@@ -135,15 +122,15 @@ const Modal: React.FC<ModalProps> = ({
   const modifiedStatus = async (userId: number) => {
     try {
       const submittedApplyData: CommonApplicationResponseType = {
-        isFinalSubmitted: FinalSubmitted,
-        isPrintsArrived: PrintsArrived,
-        firstEvaluation: FirstEvaluation,
-        secondEvaluation: SecondEvaluation,
-        screeningFirstEvaluationAt: ScreeningFirstEvaluationAt,
-        screeningSecondEvaluationAt: ScreeningSecondEvaluationAt,
-        registrationNumber: registrationNumber,
-        secondScore: SecondScore,
-        finalMajor: FinalMajor,
+        isFinalSubmitted: isFinalSubmitted,
+        isPrintsArrived: isPrintsArrived,
+        firstEvaluation: firstEvaluation,
+        secondEvaluation: secondEvaluation,
+        screeningFirstEvaluationAt: 'GENERAL',
+        screeningSecondEvaluationAt: 'GENERAL',
+        registrationNumber: studentCode,
+        secondScore: secondScore,
+        finalMajor: finalMajor,
       };
 
       await status.putStatus(submittedApplyData, userId);

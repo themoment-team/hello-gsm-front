@@ -7,9 +7,11 @@ import {
   ApplicationListType,
   EvaluationStatusType,
   MajorType,
+  ScreeningType,
 } from 'Types/application';
 import formatScreening from 'Utils/Libs/formatScreening';
 import { Modal } from 'components';
+import { FinalSubmit } from 'components/ListHeader/style';
 
 interface ContentBoxProp {
   content: ApplicationListType;
@@ -27,16 +29,18 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     teacherPhoneNumber,
     guardianPhoneNumber,
     screening,
-    isPrintsArrived,
     schoolName,
-    secondScore,
-    finalMajor,
+    isPrintsArrived,
     firstEvaluation,
     secondEvaluation,
-    screeningFirstEvaluationAt,
-    screeningSecondEvaluationAt,
   },
 }) => {
+  const [isFinalSubmitted, setIsFinalSubmitted] = useState(true);
+  const [PrintsArrived, setIsPrintsArrived] = useState(isPrintsArrived);
+  const [FirstEvaluation, setFirstEvaluation] = useState(firstEvaluation);
+  const [SecondEvaluation, setSecondEvaluation] = useState(secondEvaluation);
+  const [secondScore, setSecondScore] = useState(0);
+  const [finalMajor, setFinalMajor] = useState<MajorType>(null);
   const [documentReception, setDocumentReception] = useState<boolean>(true);
 
   const formattedCellphoneNumber = applicantPhoneNumber.replace(
@@ -89,16 +93,19 @@ const ContentBox: React.FC<ContentBoxProp> = ({
           <Modal
             name={applicantName}
             studentCode={applicationId}
-            isPrintsArrived={isPrintsArrived}
-            firstEvaluation={firstEvaluation}
-            secondEvaluation={secondEvaluation}
-            screeningFirstEvaluationAt={screening}
-            screeningSecondEvaluationAt={screening}
-            registrationNumber={applicationId}
-            secondScore={secondScore}
-            finalMajor={finalMajor}
             onClose={onCloseShowStatusModal}
-            isFinalSubmitted={true}
+            isFinalSubmitted={isFinalSubmitted}
+            setIsFinalSubmitted={setIsFinalSubmitted}
+            isPrintsArrived={PrintsArrived}
+            setIsPrintsArrived={setIsPrintsArrived}
+            firstEvaluation={FirstEvaluation}
+            setFirstEvaluation={setFirstEvaluation}
+            secondEvaluation={SecondEvaluation}
+            setSecondEvaluation={setSecondEvaluation}
+            secondScore={secondScore}
+            setSecondScore={setSecondScore}
+            finalMajor={finalMajor}
+            setFinalMajor={setFinalMajor}
           />
         </S.ModalContainer>
       )}
