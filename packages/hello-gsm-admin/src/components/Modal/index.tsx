@@ -53,10 +53,6 @@ const Modal: React.FC<ModalProps> = ({ name, studentCode, onClose }) => {
     screeningSecondEvaluationAt,
   } = useStore();
 
-  useEffect(() => {
-    console.log(firstEvaluationResult);
-  }, [firstEvaluationResult]);
-
   const handleButtonClick = (id: number) => {
     setIsButtonClicked(true);
     setSelectedButtonId(id);

@@ -39,11 +39,8 @@ const ContentBox: React.FC<ContentBoxProp> = ({
   } = useStore();
   setFirstEvaluationResult(firstEvaluation);
   setSecondEvaluationResult(secondEvaluationResult);
-  const finalResult: EvaluationStatusType = secondEvaluation;
   const [score, setScore] = useState<number | null>(secondScore || null);
   const [documentReception, setDocumentReception] = useState<boolean>(true);
-  const { setModalName, setModalRegistrationNumber, setScoreModalValue } =
-    useStore();
 
   const formattedCellphoneNumber = applicantPhoneNumber.replace(
     /(\d{3})(\d{4})(\d{4})/,
