@@ -108,6 +108,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
               ...submittedApplyData,
               secondScore: inputValue,
             });
+
             console.log(inputValue);
           } else {
             toast.error('입력하신 값이 숫자가 아닙니다.');
