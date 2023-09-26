@@ -89,12 +89,13 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
   }, [logged, setShowMainNonLoginModal]);
 
   useEffect(() => {
-    setShowMainResultModal(
-      // 1차 합격 발표 날짜
-      isStartFirstResult &&
-        localStorage.getItem('mainResultModalInvisible') !==
-          new Date().getDate().toString(),
-    );
+    if (data)
+      setShowMainResultModal(
+        // 1차 합격 발표 날짜
+        isStartFirstResult &&
+          localStorage.getItem('mainResultModalInvisible') !==
+            new Date().getDate().toString(),
+      );
   }, [data?.admissionStatus?.isFinalSubmitted]);
 
   return (
