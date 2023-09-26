@@ -22,6 +22,7 @@ export const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 `;
 
 export const Content = styled.div`
