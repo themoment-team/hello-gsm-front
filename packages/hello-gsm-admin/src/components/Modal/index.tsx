@@ -97,7 +97,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
   useEffect(() => {
     console.log(isNextStep);
     console.log(selectedOption);
-  }, [isNextStep, selectedOption]);
+  }, [isNextStep, showModalOption]);
 
   return (
     <>
@@ -149,6 +149,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
               </S.ButtonBox>
               <C.ModalButton
                 buttonTitle={buttonTitle}
+                showModalOption={showModalOption}
                 onClick={() => setIsNextStep(true)}
               />
             </S.ContentBox>

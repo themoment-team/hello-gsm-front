@@ -3,14 +3,17 @@ import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 interface ModalButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   buttonTitle: '다음' | '확인';
+  showModalOption?: number;
 }
 
-const ModalButton: React.FC<ModalButtonProps> = ({ buttonTitle }) => {
-  const { selectedOption } = useStore();
+const ModalButton: React.FC<ModalButtonProps> = ({
+  buttonTitle,
+  showModalOption,
+}) => {
   return (
     <S.ModalButton
-      isConfirm={selectedOption === 0 ? true : false}
-      disabled={selectedOption === 0 ? true : false}
+      isConfirm={showModalOption === 0 ? true : false}
+      disabled={showModalOption === 0 ? true : false}
     >
       {buttonTitle}
     </S.ModalButton>
