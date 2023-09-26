@@ -13,9 +13,11 @@ const ModalResult = ({
 }) => {
   const resetSelectedResult = () => {
     if (selectedButtonId === 2) {
-      return data.firstEvaluation === 'PASS' ? 1 : 2;
+      if (data.firstEvaluation === 'PASS') return 1;
+      else if (data.firstEvaluation === 'FALL') return 2;
     } else if (selectedButtonId === 3) {
-      return data.secondEvaluation === 'PASS' ? 1 : 2;
+      if (data.secondEvaluation === 'PASS') return 1;
+      else if (data.secondEvaluation === 'FALL') return 2;
     }
   };
 

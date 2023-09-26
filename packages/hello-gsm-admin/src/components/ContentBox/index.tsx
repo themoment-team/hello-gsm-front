@@ -1,27 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { css } from '@emotion/react';
-import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 import * as I from 'Assets/svg';
-import {
-  ApplicationListType,
-  EvaluationStatusType,
-  MajorType,
-  ScreeningType,
-} from 'Types/application';
+import { ApplicationListType, EvaluationStatusType } from 'Types/application';
 import formatScreening from 'Utils/Libs/formatScreening';
 import { Modal } from 'components';
-import { FinalSubmit } from 'components/ListHeader/style';
 
 interface ContentBoxProp {
   content: ApplicationListType;
+  getApplicationList: () => void;
 }
 
 type resultObjectType = {
   [key in EvaluationStatusType]: string;
 };
 
-const ContentBox: React.FC<ContentBoxProp & { getApplicationList: any }> = ({
+const ContentBox: React.FC<ContentBoxProp> = ({
   content: {
     applicationId,
     applicantName,
