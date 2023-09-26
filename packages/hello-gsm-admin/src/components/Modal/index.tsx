@@ -44,36 +44,32 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
 
   const { selectedOption, setSelectedOption } = useStore();
 
-  const handleSubmit = (buttonTitle: string) => {
+  const handleSubmit = () => {
     const isNumber = (value: number) => {
       return !isNaN(Number(value));
     };
-    if (buttonTitle === '확인') {
-      const updatedData = { ...submittedApplyData };
+    const updatedData = { ...submittedApplyData };
 
-      switch (showModalOption) {
-        case 1:
-          updatedData.isPrintsArrived = selectedOption === 1 ? true : false;
-          break;
-        case 2:
-          updatedData.firstEvaluation = selectedOption === 1 ? 'PASS' : 'FALL';
-          break;
-        case 3:
-          updatedData.secondEvaluation = selectedOption === 1 ? 'PASS' : 'FALL';
-          break;
-        case 4:
-          if (isNumber(inputValue)) {
-            updatedData.secondScore = inputValue;
-            console.log(inputValue);
-          } else {
-            toast.error('입력하신 값이 숫자가 아닙니다.');
-          }
-          break;
-      }
-      setSubmittedApplyData(updatedData);
-    } else {
-      setIsNextStep(true);
+    switch (showModalOption) {
+      case 1:
+        updatedData.isPrintsArrived = selectedOption === 1 ? true : false;
+        break;
+      case 2:
+        updatedData.firstEvaluation = selectedOption === 1 ? 'PASS' : 'FALL';
+        break;
+      case 3:
+        updatedData.secondEvaluation = selectedOption === 1 ? 'PASS' : 'FALL';
+        break;
+      case 4:
+        if (isNumber(inputValue)) {
+          updatedData.secondScore = inputValue;
+          console.log(inputValue);
+        } else {
+          toast.error('입력하신 값이 숫자가 아닙니다.');
+        }
+        break;
     }
+    setSubmittedApplyData(updatedData);
   };
 
   useEffect(() => {
@@ -146,7 +142,10 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                   <I.SecondScoringEntry isActive={showModalOption === 4} />
                 </S.ModalOption>
               </S.ButtonBox>
-              <C.ModalButton buttonTitle={buttonTitle} />
+              <C.ModalButton
+                buttonTitle={buttonTitle}
+                onClick={() => setIsNextStep(true)}
+              />
             </S.ContentBox>
           </>
         )}
@@ -164,7 +163,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                 <C.ModalSubmit />
                 <C.ModalButton
                   buttonTitle="확인"
-                  onClick={() => handleSubmit('확인')}
+                  onClick={() => handleSubmit()}
                 />
               </S.ContentBox>
             )}
@@ -179,7 +178,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                 <C.ModalResult />
                 <C.ModalButton
                   buttonTitle="확인"
-                  onClick={() => handleSubmit('확인')}
+                  onClick={() => handleSubmit()}
                 />
               </S.ContentBox>
             )}
@@ -195,7 +194,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                 <C.ModalResult />
                 <C.ModalButton
                   buttonTitle="확인"
-                  onClick={() => handleSubmit('확인')}
+                  onClick={() => handleSubmit()}
                 />
               </S.ContentBox>
             )}
@@ -210,7 +209,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                 <C.ModalInput data={data} setInputValue={setInputValue} />
                 <C.ModalButton
                   buttonTitle="확인"
-                  onClick={() => handleSubmit('확인')}
+                  onClick={() => handleSubmit()}
                 />
               </S.ContentBox>
             )}
