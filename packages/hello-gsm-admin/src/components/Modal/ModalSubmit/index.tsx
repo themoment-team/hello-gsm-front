@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import * as I from 'Assets/svg';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
+import { ApplicationListType } from 'Types/application';
 
-const ModalSubmit: React.FC = () => {
-  const [selectedButtonId, setSelectedButtonId] = useState<number>();
+const ModalSubmit = ({ data }: { data: ApplicationListType }) => {
+  const [selectedButtonId, setSelectedButtonId] = useState<number>(
+    data.isPrintsArrived ? 1 : 2,
+  );
   const { setSelectedOption } = useStore();
 
   const handleButtonClick = (id: number) => {

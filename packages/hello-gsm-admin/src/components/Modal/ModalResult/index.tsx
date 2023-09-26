@@ -1,24 +1,41 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import * as I from 'Assets/svg';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
+import { ApplicationListType } from 'Types/application';
 
-const ModalResult: React.FC = () => {
-  const [selectedButtonId, setSelectedButtonId] = useState<number>();
+const ModalResult = ({
+  data,
+  selectedButtonId,
+}: {
+  data: ApplicationListType;
+  selectedButtonId: number;
+}) => {
+  const resetSelectedResult = () => {
+    if (selectedButtonId === 2) {
+      return data.firstEvaluation === 'PASS' ? 1 : 2;
+    } else if (selectedButtonId === 3) {
+      return data.secondEvaluation === 'PASS' ? 1 : 2;
+    }
+  };
+
+  const [selectedResult, setSelectedResult] = useState<number | undefined>(
+    resetSelectedResult,
+  );
   const { setSelectedOption } = useStore();
 
   const handleButtonClick = (id: number) => {
-    setSelectedButtonId(id);
+    setSelectedResult(id);
     setSelectedOption(id);
   };
 
   return (
     <S.ModalResult>
       <S.ModalOption onClick={() => handleButtonClick(1)}>
-        <I.Pass isActive={selectedButtonId !== 1} />
+        <I.Pass isActive={selectedResult !== 1} />
       </S.ModalOption>
       <S.ModalOption onClick={() => handleButtonClick(2)}>
-        <I.Fail isActive={selectedButtonId !== 2} />
+        <I.Fail isActive={selectedResult !== 2} />
       </S.ModalOption>
     </S.ModalResult>
   );

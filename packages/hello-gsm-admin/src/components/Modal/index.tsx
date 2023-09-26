@@ -24,7 +24,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
   const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false);
   const [selectedButtonId, setSelectedButtonId] = useState<number>(0);
   const [showModalResult, setShowModalResult] = useState<boolean>(false);
-  const [showModal, setShowModal] = useState<number>(0);
+
   const [inputValue, setInputValue] = useState<number>(0);
   const [submittedApplyData, setSubmittedApplyData] =
     useState<CommonApplicationResponseType>({
@@ -112,10 +112,8 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
           break;
       }
     } else {
-      setShowModal(selectedButtonId);
       setIsButtonClicked(false);
       setShowModalResult(true);
-      setIsButtonClicked(true);
     }
   };
 
@@ -127,6 +125,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
           toast.success('상태 수정이 완료되었어요.');
           handleCloseModal();
           getApplicationList();
+          setSelectedButtonId(0);
         } catch (error: any) {
           toast.error(
             '상태 수정 저장 중 에러가 발생했어요. 다시 시도해주세요.',
@@ -144,18 +143,18 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
       {isClose && (
         <S.Modal
           style={{
-            width: showModal !== 0 ? '28.5rem' : '55.5rem',
+            width: selectedButtonId !== 0 ? '28.5rem' : '55.5rem',
           }}
         >
           <S.XIcon
             style={{
-              width: showModal !== 0 ? '28.5rem' : '55.5rem',
+              width: selectedButtonId !== 0 ? '28.5rem' : '55.5rem',
             }}
           >
             <div
               style={{
-                width: '24px',
-                height: '24px',
+                width: '1.5rem',
+                height: '1.5rem',
                 cursor: 'pointer',
               }}
               onClick={handleCloseModal}
@@ -173,15 +172,15 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
               </S.Desc>
             </S.TitleBox>
           )}
-          {showModal === 1 && (
+          {selectedButtonId === 1 && (
             <S.ContentBox>
-              <S.TitleBox style={{ width: '416px' }}>
+              <S.TitleBox style={{ width: '26rem' }}>
                 <S.Title>수험번호 {data.applicationId}</S.Title>
                 <S.Desc>
                   {data.applicantName}님의 서류 제출 여부를 선택해주세요
                 </S.Desc>
               </S.TitleBox>
-              <C.ModalSubmit />
+              <C.ModalSubmit data={data} />
               <C.ModalButton
                 buttonTitle="확인"
                 isConfirm={!isButtonClicked}
@@ -189,15 +188,15 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
               />
             </S.ContentBox>
           )}
-          {showModal === 2 && (
+          {selectedButtonId === 2 && (
             <S.ContentBox>
-              <S.TitleBox style={{ width: '416px' }}>
+              <S.TitleBox style={{ width: '26rem' }}>
                 <S.Title>수험번호 {data.applicationId}</S.Title>
                 <S.Desc>
                   {data.applicantName}님의 1차 합격 여부(서류)를 선택해주세요.
                 </S.Desc>
               </S.TitleBox>
-              <C.ModalResult />
+              <C.ModalResult data={data} selectedButtonId={selectedButtonId} />
               <C.ModalButton
                 buttonTitle="확인"
                 isConfirm={!isButtonClicked}
@@ -205,7 +204,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
               />
             </S.ContentBox>
           )}
-          {showModal === 3 && (
+          {selectedButtonId === 3 && (
             <S.ContentBox>
               <S.TitleBox style={{ width: '26rem' }}>
                 <S.Title>수험번호 {data.applicationId}</S.Title>
@@ -213,7 +212,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                   {data.applicantName}님의 2차 합격 여부(인적성)를 선택해주세요.
                 </S.Desc>
               </S.TitleBox>
-              <C.ModalResult />
+              <C.ModalResult data={data} selectedButtonId={selectedButtonId} />
               <C.ModalButton
                 buttonTitle="확인"
                 isConfirm={!isButtonClicked}
@@ -221,7 +220,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
               />
             </S.ContentBox>
           )}
-          {showModal === 4 && (
+          {selectedButtonId === 4 && (
             <S.ContentBox>
               <S.TitleBox style={{ width: '26rem' }}>
                 <S.Title>수험번호 {data.applicationId}</S.Title>
