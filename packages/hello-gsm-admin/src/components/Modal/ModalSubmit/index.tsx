@@ -15,13 +15,15 @@ const ModalSubmit = ({
   isButtonClicked: boolean;
   handleModalButtonClick: (id: number, confirm: '다음' | '확인') => void;
 }) => {
-  const [selectedButtonId, setSelectedButtonId] = useState<number>(
-    data.isPrintsArrived ? 1 : 2,
-  );
-  const { setSelectedOption } = useStore();
+  const { setSelectedOption, selectedOption } = useStore();
+
+  setSelectedOption(data.isPrintsArrived ? 1 : 2);
 
   const handleButtonClick = (id: number) => {
-    setSelectedButtonId(id);
+    console.log('handleButtonClick');
+    console.log(id);
+    console.log('selectedOption');
+    console.log(selectedOption);
     setSelectedOption(id);
   };
 
@@ -33,16 +35,16 @@ const ModalSubmit = ({
       </S.TitleBox>
       <S.ModalSubmit>
         <S.ModalOption onClick={() => handleButtonClick(1)}>
-          <I.Submit isActive={selectedButtonId !== 1} />
+          <I.Submit isActive={selectedOption !== 1} />
         </S.ModalOption>
         <S.ModalOption onClick={() => handleButtonClick(2)}>
-          <I.NotSubmit isActive={selectedButtonId !== 2} />
+          <I.NotSubmit isActive={selectedOption !== 2} />
         </S.ModalOption>
       </S.ModalSubmit>
       <C.ModalButton
         buttonTitle="확인"
         isConfirm={!isButtonClicked}
-        onClick={() => handleModalButtonClick(selectedButtonId, '확인')}
+        onClick={() => handleModalButtonClick(selectedOption, '확인')}
       />
     </S.ContentBox>
   );
