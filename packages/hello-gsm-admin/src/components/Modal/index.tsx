@@ -54,7 +54,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
     setSelectedButtonId(id);
   };
 
-  const handleModalButtonClick = async (
+  const handleModalButtonClick = (
     selectedButtonId: number,
     buttonTitle: '다음' | '확인',
   ) => {
@@ -115,17 +115,6 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
           }
           break;
       }
-
-      try {
-        console.log(submittedApplyData);
-        await status.putStatus(submittedApplyData, data.applicationId);
-        toast.success('상태 수정이 완료되었어요.');
-        handleCloseModal();
-        getApplicationList();
-      } catch (error: any) {
-        toast.error('상태 수정 저장 중 에러가 발생했어요. 다시 시도해주세요.');
-        console.error(error);
-      }
     } else {
       setShowModal(selectedButtonId);
       setIsButtonClicked(false);
@@ -133,6 +122,26 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
       setIsButtonClicked(true);
     }
   };
+
+  useEffect(() => {
+    const updateList = async () => {
+      if (selectedButtonId) {
+        try {
+          await status.putStatus(submittedApplyData, data.applicationId);
+          toast.success('상태 수정이 완료되었어요.');
+          handleCloseModal();
+          getApplicationList();
+        } catch (error: any) {
+          toast.error(
+            '상태 수정 저장 중 에러가 발생했어요. 다시 시도해주세요.',
+          );
+          console.error(error);
+        }
+      }
+    };
+
+    updateList();
+  }, [submittedApplyData]);
 
   return (
     <>
