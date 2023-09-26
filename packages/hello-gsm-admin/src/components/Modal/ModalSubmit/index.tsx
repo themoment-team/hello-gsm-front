@@ -4,10 +4,11 @@ import * as S from './style';
 import * as C from 'components';
 
 import useStore from 'Stores/StoreContainer';
-import { ApplicationListType } from 'Types/application';
+import { CommonApplicationResponseType } from 'Types/application';
 
-const ModalSubmit = () => {
+const ModalSubmit = ({ data }: { data: CommonApplicationResponseType }) => {
   const { setSelectedOption, selectedOption } = useStore();
+  setSelectedOption(data.isPrintsArrived ? 1 : 2);
 
   return (
     <S.ModalSubmit>

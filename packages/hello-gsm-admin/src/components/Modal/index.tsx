@@ -166,7 +166,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                     {data.applicantName}님의 서류 제출 여부를 선택해주세요
                   </S.Desc>
                 </S.TitleBox>
-                <C.ModalSubmit />
+                <C.ModalSubmit data={submittedApplyData} />
                 <C.ModalButton
                   buttonTitle="확인"
                   onClick={() => handleSubmit()}
