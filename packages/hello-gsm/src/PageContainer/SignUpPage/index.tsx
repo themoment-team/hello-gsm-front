@@ -32,6 +32,7 @@ const SignUpPage: NextPage = () => {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<UserForm>();
   /**
@@ -102,8 +103,8 @@ const SignUpPage: NextPage = () => {
   const sendCertificationNumber = async (phoneNumber: string) => {
     if (!errors.phoneNumber && /^[0][1][0][0-9]{8}/.test(phoneNumber)) {
       try {
-        toast.success('인증번호를 전송했어요.');
         await identity.postCode(phoneNumber);
+        toast.success('인증번호를 전송했어요.');
         setIsSent(true);
       } catch (e) {
         toast.error('인증번호 전송을 실패했어요. 다시 시도해주세요.');
@@ -299,11 +300,22 @@ const SignUpPage: NextPage = () => {
           <S.ErrorMessage css={errors.phoneNumber && selectErrorStyle(380)}>
             {errors.phoneNumber?.message}
           </S.ErrorMessage>
-          <S.NoticeText>
-            {isSent && !errors.phoneNumber
-              ? '*입력하신 전화번호로 인증번호가 발송되었어요.'
-              : '* -를 포함하지않은 번호만 입력해주세요.'}
-          </S.NoticeText>
+          <S.NoticeSection>
+            <S.NoticeText>
+              {isSent && !errors.phoneNumber
+                ? '*입력하신 전화번호로 인증번호가 발송되었어요.'
+                : '* -를 포함하지않은 번호만 입력해주세요.'}
+            </S.NoticeText>
+            <S.ResetText
+              onClick={() => {
+                setValue('phoneNumber', '');
+                setIsSent(false);
+              }}
+            >
+              전화번호 초기화
+            </S.ResetText>
+          </S.NoticeSection>
+
           <TosBox />
           <S.CheckLabel htmlFor="check">
             <input
@@ -313,7 +325,9 @@ const SignUpPage: NextPage = () => {
             />
             개인정보 이용약관을 확인했으며, 이에 동의합니다.
           </S.CheckLabel>
-          <S.ErrorMessage css={errors.agree && selectErrorStyle(780)}>
+          <S.ErrorMessage
+            css={errors.agree && selectErrorStyle(isSent ? 860 : 780)}
+          >
             {errors.agree?.message}
           </S.ErrorMessage>
           <S.Button>가입하기</S.Button>
