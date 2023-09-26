@@ -44,10 +44,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   const [index, setIndex] = useState<number>(1);
   const name = data?.admissionInfo.applicantName ?? '';
   const registrationNumber = data?.admissionStatus.registrationNumber ?? '';
-
-  const [majorResult, setMajorResult] = useState<MajorType | null>(
-    data?.admissionStatus.finalMajor ?? null,
-  );
+  const majorResult = data?.admissionStatus.finalMajor ?? '';
 
   const { push } = useRouter();
   const { logged } = useStore();
