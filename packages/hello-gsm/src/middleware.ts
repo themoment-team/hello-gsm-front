@@ -4,6 +4,9 @@ export function middleware(req: NextRequest) {
   const acceptable =
     new Date() >= new Date('2023/10/16 00:00') &&
     new Date() <= new Date('2023/10/19 08:00');
+
+  console.log(new Date());
+
   const { origin, pathname } = req.nextUrl;
   const { device, browser } = userAgent(req);
   const applicationFormURL = [
