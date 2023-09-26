@@ -42,7 +42,7 @@ export const SearchWrapper = styled.div`
   gap: 0.75rem;
 
   @media ${device.mobile} {
-    width: 90%;
+    width: 90vw;
   }
 `;
 
