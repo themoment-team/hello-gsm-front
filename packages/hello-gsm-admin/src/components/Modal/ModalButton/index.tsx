@@ -11,10 +11,7 @@ const ModalButton: React.FC<ModalButtonProps> = ({
   showModalOption,
 }) => {
   return (
-    <S.ModalButton
-      isConfirm={showModalOption === 0 ? true : false}
-      disabled={showModalOption === 0 ? true : false}
-    >
+    <S.ModalButton isConfirm={showModalOption === 0 ? true : false}>
       {buttonTitle}
     </S.ModalButton>
   );
