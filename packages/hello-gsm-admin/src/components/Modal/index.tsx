@@ -39,10 +39,6 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
       finalMajor: data.finalMajor,
     });
 
-  const handleOptionSelect = () => {
-    setIsClose(true);
-  };
-
   const handleCloseModal = () => {
     onClose();
   };
@@ -185,7 +181,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                   {data.applicantName}님의 서류 제출 여부를 선택해주세요
                 </S.Desc>
               </S.TitleBox>
-              <C.ModalSubmit handleOptionSelect={handleOptionSelect} />
+              <C.ModalSubmit />
               <C.ModalButton
                 buttonTitle="확인"
                 isConfirm={!isButtonClicked}
@@ -201,7 +197,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                   {data.applicantName}님의 1차 합격 여부(서류)를 선택해주세요.
                 </S.Desc>
               </S.TitleBox>
-              <C.ModalResult handleOptionSelect={handleOptionSelect} />
+              <C.ModalResult />
               <C.ModalButton
                 buttonTitle="확인"
                 isConfirm={!isButtonClicked}
@@ -217,7 +213,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                   {data.applicantName}님의 2차 합격 여부(인적성)를 선택해주세요.
                 </S.Desc>
               </S.TitleBox>
-              <C.ModalResult handleOptionSelect={handleOptionSelect} />
+              <C.ModalResult />
               <C.ModalButton
                 buttonTitle="확인"
                 isConfirm={!isButtonClicked}
