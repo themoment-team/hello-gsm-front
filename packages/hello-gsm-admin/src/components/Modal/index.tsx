@@ -58,7 +58,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
 
       switch (selectedButtonId) {
         case 1:
-          updatedData.isPrintsArrived = selectedOption === 1;
+          updatedData.isPrintsArrived = selectedOption === 1 ? true : false;
           break;
         case 2:
           updatedData.firstEvaluation = selectedOption === 1 ? 'PASS' : 'FALL';
