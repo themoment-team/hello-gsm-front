@@ -13,10 +13,7 @@ const ModalSubmit = ({
 }: {
   data: ApplicationListType;
   isButtonClicked: boolean;
-  handleModalButtonClick: (
-    selectedButtonId: number,
-    buttonTitle: '다음' | '확인',
-  ) => void;
+  handleModalButtonClick: (id: number, confirm: '다음' | '확인') => void;
 }) => {
   const [selectedButtonId, setSelectedButtonId] = useState<number>(
     data.isPrintsArrived ? 1 : 2,

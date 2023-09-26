@@ -167,7 +167,10 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
               <C.ModalSubmit
                 data={data}
                 isButtonClicked={isButtonClicked}
-                handleModalButtonClick={handleModalButtonClick}
+                handleModalButtonClick={(
+                  id: number,
+                  confirm: '다음' | '확인',
+                ) => handleModalButtonClick(id, confirm)}
               />
             )}
             {selectedButtonId === 2 && (
