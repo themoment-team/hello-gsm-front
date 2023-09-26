@@ -9,9 +9,10 @@ interface ModalButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const ModalButton: React.FC<ModalButtonProps> = ({
   buttonTitle,
   showModalOption,
+  ...props
 }) => {
   return (
-    <S.ModalButton isConfirm={showModalOption === 0 ? true : false}>
+    <S.ModalButton isConfirm={showModalOption === 0 ? true : false} {...props}>
       {buttonTitle}
     </S.ModalButton>
   );
