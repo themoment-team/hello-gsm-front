@@ -115,7 +115,7 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
           localStorage.getItem('mainResultModalInvisible') !==
             new Date().getDate().toString(),
       );
-  }, [data?.admissionStatus?.isFinalSubmitted]);
+  }, [pass]);
 
   return (
     <S.MainPage>
