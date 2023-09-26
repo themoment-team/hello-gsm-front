@@ -94,6 +94,7 @@ export const ChangeAllowButton = styled.button`
   background-color: inherit;
   border: none;
   :disabled {
+    cursor: default;
     svg {
       path {
         stroke: ${({ theme }) => theme.color.gray['070']};
