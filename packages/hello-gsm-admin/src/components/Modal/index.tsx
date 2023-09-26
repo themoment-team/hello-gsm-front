@@ -94,6 +94,10 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
     updateList();
   }, [submittedApplyData]);
 
+  useEffect(() => {
+    console.log(isNextStep);
+  }, [isNextStep]);
+
   return (
     <>
       <S.Modal
