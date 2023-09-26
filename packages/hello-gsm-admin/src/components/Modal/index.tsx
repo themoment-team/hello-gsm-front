@@ -96,7 +96,8 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
 
   useEffect(() => {
     console.log(isNextStep);
-  }, [isNextStep]);
+    console.log(selectedOption);
+  }, [isNextStep, selectedOption]);
 
   return (
     <>
