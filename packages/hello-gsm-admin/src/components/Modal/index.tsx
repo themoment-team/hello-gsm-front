@@ -117,6 +117,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
       }
 
       try {
+        console.log(submittedApplyData);
         await status.putStatus(submittedApplyData, data.applicationId);
         toast.success('상태 수정이 완료되었어요.');
         handleCloseModal();
@@ -132,6 +133,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
       setIsButtonClicked(true);
     }
   };
+  console.log(submittedApplyData);
 
   return (
     <>

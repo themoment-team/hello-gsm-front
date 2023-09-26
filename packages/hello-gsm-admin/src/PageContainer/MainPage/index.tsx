@@ -45,6 +45,8 @@ const MainPage: NextPage = () => {
     }
   };
 
+  const getList = () => getApplicationList(pageNumber);
+
   useEffect(() => {
     getApplicationList(pageNumber);
   }, [pageNumber, searchKeyword, searchTag]);
@@ -73,7 +75,7 @@ const MainPage: NextPage = () => {
               <ContentBox
                 content={data}
                 key={data.applicationId}
-                getApplicationList={getApplicationList}
+                getApplicationList={getList}
               />
             );
           })}
