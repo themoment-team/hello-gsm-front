@@ -40,6 +40,10 @@ export const SearchWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.75rem;
+
+  @media ${device.mobile} {
+    width: 90%;
+  }
 `;
 
 export const Search = styled.input`
