@@ -139,12 +139,12 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
     <>
       <S.Modal
         style={{
-          width: selectedButtonId !== 0 ? '28.5rem' : '55.5rem',
+          width: isNextStep && selectedButtonId !== 0 ? '28.5rem' : '55.5rem',
         }}
       >
         <S.XIcon
           style={{
-            width: selectedButtonId !== 0 ? '28.5rem' : '55.5rem',
+            width: isNextStep && selectedButtonId !== 0 ? '28.5rem' : '55.5rem',
           }}
         >
           <div
