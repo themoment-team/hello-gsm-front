@@ -108,7 +108,7 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
   }, [logged, setShowMainNonLoginModal]);
 
   useEffect(() => {
-    if (firstResult !== undefined)
+    if (pass !== undefined)
       setShowMainResultModal(
         // 1차 합격 발표 날짜
         isStartFirstResult &&
