@@ -108,8 +108,8 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
           break;
       }
     } else {
-      setIsButtonClicked(false);
       setIsNextStep(true);
+      setIsButtonClicked(true);
     }
   };
 
