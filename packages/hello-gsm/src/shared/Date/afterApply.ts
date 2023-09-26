@@ -1,4 +1,4 @@
-const today = new Date();
+const today = new Date('2023/9/27 19:00:00');
 
 // 9월 27일 8시
 // 최종 합격 보여주는 날짜
