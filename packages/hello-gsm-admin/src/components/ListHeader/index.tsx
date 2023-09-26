@@ -7,6 +7,7 @@ import { SearchIcon } from 'Assets/svg';
 import { PrintButton } from 'components';
 
 import { SearchTagType } from 'Types/searchTag';
+import { useRouter } from 'next/router';
 
 interface ListHeaderType {
   searchValue: string;
@@ -26,6 +27,7 @@ const ListHeader: React.FC<ListHeaderType> = ({
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
   const handleFocus = () => setIsFocus(prev => !prev);
+  const { push } = useRouter();
 
   return (
     <S.ListHeaderWrapper>
@@ -63,7 +65,7 @@ const ListHeader: React.FC<ListHeaderType> = ({
         </S.ButtonWrapper>
         <S.ButtonWrapper>
           <PrintButton printType="excel" />
-          <PrintButton printType="ticket" />
+          <PrintButton onClick={() => push('/ticket')} printType="ticket" />
         </S.ButtonWrapper>
       </S.ListHeaderContent>
     </S.ListHeaderWrapper>
