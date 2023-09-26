@@ -93,12 +93,12 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
           if (selectedOption === 1) {
             setSubmittedApplyData({
               ...submittedApplyData,
-              firstEvaluation: 'PASS',
+              secondEvaluation: 'PASS',
             });
           } else {
             setSubmittedApplyData({
               ...submittedApplyData,
-              firstEvaluation: 'FALL',
+              secondEvaluation: 'FALL',
             });
           }
           break;
@@ -133,7 +133,6 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
       setIsButtonClicked(true);
     }
   };
-  console.log(submittedApplyData);
 
   return (
     <>
