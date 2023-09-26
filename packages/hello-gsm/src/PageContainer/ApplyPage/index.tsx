@@ -212,7 +212,7 @@ const ApplyPage: NextPage<
       schoolName !== '' || watch('graduation') === 'GED';
     const isIdPhoto = imgURL !== '';
     const isSpecial =
-      watch('screening') !== 'SPECIAL' || watch('screening') !== '';
+      watch('screening') !== 'SPECIAL' || watch('screening') === '';
 
     if (
       isMajorSelected &&
