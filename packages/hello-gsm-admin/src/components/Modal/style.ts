@@ -22,6 +22,7 @@ export const ModalContent = styled.div`
   width: '53rem';
   height: '27.5625rem';
 `;
+
 export const ButtonBox = styled.div`
   display: flex;
   align-items: center;

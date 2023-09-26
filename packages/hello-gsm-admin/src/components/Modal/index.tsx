@@ -54,59 +54,28 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
       return !isNaN(Number(value));
     };
     if (buttonTitle === '확인') {
+      const updatedData = { ...submittedApplyData };
+
       switch (selectedButtonId) {
         case 1:
-          if (selectedOption === 1) {
-            setSubmittedApplyData({
-              ...submittedApplyData,
-              isPrintsArrived: true,
-            });
-          } else {
-            setSubmittedApplyData({
-              ...submittedApplyData,
-              isPrintsArrived: false,
-            });
-          }
+          updatedData.isPrintsArrived = selectedOption === 1;
           break;
         case 2:
-          if (selectedOption === 1) {
-            setSubmittedApplyData({
-              ...submittedApplyData,
-              firstEvaluation: 'PASS',
-            });
-          } else {
-            setSubmittedApplyData({
-              ...submittedApplyData,
-              firstEvaluation: 'FALL',
-            });
-          }
+          updatedData.firstEvaluation = selectedOption === 1 ? 'PASS' : 'FALL';
           break;
         case 3:
-          if (selectedOption === 1) {
-            setSubmittedApplyData({
-              ...submittedApplyData,
-              secondEvaluation: 'PASS',
-            });
-          } else {
-            setSubmittedApplyData({
-              ...submittedApplyData,
-              secondEvaluation: 'FALL',
-            });
-          }
+          updatedData.secondEvaluation = selectedOption === 1 ? 'PASS' : 'FALL';
           break;
         case 4:
           if (isNumber(inputValue)) {
-            setSubmittedApplyData({
-              ...submittedApplyData,
-              secondScore: inputValue,
-            });
-
+            updatedData.secondScore = inputValue;
             console.log(inputValue);
           } else {
             toast.error('입력하신 값이 숫자가 아닙니다.');
           }
           break;
       }
+      setSubmittedApplyData(updatedData);
     } else {
       setIsNextStep(true);
       setIsButtonClicked(true);
@@ -195,22 +164,11 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
         {isNextStep && (
           <>
             {selectedButtonId === 1 && (
-              <S.ContentBox>
-                <S.TitleBox style={{ width: '26rem' }}>
-                  <S.Title>수험번호 {data.applicationId}</S.Title>
-                  <S.Desc>
-                    {data.applicantName}님의 서류 제출 여부를 선택해주세요
-                  </S.Desc>
-                </S.TitleBox>
-                <C.ModalSubmit data={data} />
-                <C.ModalButton
-                  buttonTitle="확인"
-                  isConfirm={!isButtonClicked}
-                  onClick={() =>
-                    handleModalButtonClick(selectedButtonId, '확인')
-                  }
-                />
-              </S.ContentBox>
+              <C.ModalSubmit
+                data={data}
+                isButtonClicked={isButtonClicked}
+                handleModalButtonClick={handleModalButtonClick}
+              />
             )}
             {selectedButtonId === 2 && (
               <S.ContentBox>
