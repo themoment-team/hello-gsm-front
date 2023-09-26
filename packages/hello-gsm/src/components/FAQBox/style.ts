@@ -50,7 +50,6 @@ export const FAQBox = styled.button`
   @media ${device.mobile} {
     margin: 0 auto 0.9375rem;
     padding: 1.2rem 1rem;
-    width: 90vw;
   }
 `;
 

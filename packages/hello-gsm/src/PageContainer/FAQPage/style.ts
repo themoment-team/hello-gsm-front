@@ -72,6 +72,10 @@ export const FAQList = styled.div`
   width: 100%;
   margin-top: 3.125rem;
   margin-bottom: 6.25rem;
+
+  @media ${device.mobile} {
+    width: 90vw;
+  }
 `;
 
 export const FAQListIndex = styled.div`
