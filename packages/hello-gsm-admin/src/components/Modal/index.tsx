@@ -64,10 +64,10 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
         if (isNumber(inputValue)) {
           updatedData.secondScore = inputValue;
           console.log(inputValue);
+          break;
         } else {
           toast.error('입력하신 값이 숫자가 아닙니다.');
         }
-        break;
     }
     setSubmittedApplyData(updatedData);
   };
