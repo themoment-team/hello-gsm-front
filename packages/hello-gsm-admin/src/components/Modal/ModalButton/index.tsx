@@ -9,8 +9,8 @@ const ModalButton: React.FC<ModalButtonProps> = ({ buttonTitle }) => {
   const { selectedOption } = useStore();
   return (
     <S.ModalButton
-      isConfirm={selectedOption !== 0}
-      disabled={selectedOption === 0}
+      isConfirm={selectedOption === 0 ? true : false}
+      disabled={selectedOption === 0 ? true : false}
     >
       {buttonTitle}
     </S.ModalButton>
