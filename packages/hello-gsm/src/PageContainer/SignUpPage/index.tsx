@@ -310,6 +310,7 @@ const SignUpPage: NextPage = () => {
             <S.ResetText
               onClick={() => {
                 setValue('phoneNumber', '');
+                setValue('code', '');
                 setIsSent(false);
                 setIsVerified(false);
               }}
