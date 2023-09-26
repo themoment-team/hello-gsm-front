@@ -20,8 +20,6 @@ interface ModalProps {
 // selectedOption : 선택된 모달 내의 제출 미제출 혹은 합격 불합격 결정
 
 const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
-  const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false);
-  const [selectedButtonId, setSelectedButtonId] = useState<number>(0);
   const [isNextStep, setIsNextStep] = useState(false);
   const [buttonTitle, setButtonTitle] = useState<'다음' | '확인'>('다음');
   const [showModalOption, setShowModalOption] = useState<number>(0);
@@ -74,7 +72,6 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
       }
       setSubmittedApplyData(updatedData);
     } else {
-      setSelectedOption(0);
       setIsNextStep(true);
     }
   };
@@ -85,9 +82,9 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
         try {
           await status.putStatus(submittedApplyData, data.applicationId);
           toast.success('상태 수정이 완료되었어요.');
+          setSelectedOption(0);
           handleCloseModal();
           getApplicationList();
-          setSelectedButtonId(0);
           setIsNextStep(false);
         } catch (error: any) {
           toast.error(
