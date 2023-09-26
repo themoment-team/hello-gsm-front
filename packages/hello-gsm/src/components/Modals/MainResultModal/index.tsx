@@ -11,7 +11,7 @@ import formatMajor from 'Utils/Format/formatMajor';
 
 interface ResultModal {
   name: string;
-  pass: boolean;
+  pass: boolean | undefined;
   isMobile: boolean;
   majorResult: MajorType | null;
 }
