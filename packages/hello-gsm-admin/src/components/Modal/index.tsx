@@ -19,7 +19,6 @@ interface ModalProps {
 const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
   const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false);
   const [selectedButtonId, setSelectedButtonId] = useState<number>(0);
-  const [showModalResult, setShowModalResult] = useState<boolean>(false);
   const [isNextStep, setIsNextStep] = useState(false);
 
   const [inputValue, setInputValue] = useState<number>(0);
@@ -110,7 +109,6 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
       }
     } else {
       setIsButtonClicked(false);
-      setShowModalResult(true);
       setIsNextStep(true);
     }
   };
@@ -160,8 +158,8 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
             <I.ModalCloseIcon />
           </div>
         </S.XIcon>
-        {showModalResult && (
-          <div>
+        {!isNextStep && (
+          <>
             <S.TitleBox>
               <S.Title>수험번호 {data.applicationId}</S.Title>
               <S.Desc>
@@ -191,7 +189,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                 onClick={() => handleModalButtonClick(selectedButtonId, '다음')}
               />
             </S.ContentBox>
-          </div>
+          </>
         )}
 
         {isNextStep && (
