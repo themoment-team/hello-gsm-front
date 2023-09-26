@@ -30,9 +30,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
     data?.admissionStatus.firstEvaluation === 'PASS' ? true : false;
   const finalResult =
     data?.admissionStatus.secondEvaluation === 'PASS' ? true : false;
-  const [pass, setPass] = useState<boolean>(
-    isFirstPeriod ? firstResult : finalResult,
-  );
+  const [pass, setPass] = useState<boolean>();
   const [index, setIndex] = useState<number>(1);
   const name = data?.admissionInfo.applicantName ?? '';
   const registrationNumber = data?.admissionStatus.registrationNumber ?? '';
@@ -42,6 +40,10 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
 
   const { push } = useRouter();
   const { logged } = useStore();
+
+  useEffect(() => {
+    setPass(isFirstPeriod ? firstResult : finalResult);
+  }, [finalResult, firstResult, isFirstPeriod]);
 
   useEffect(() => {
     // 입학 전형이 끝난 이후
