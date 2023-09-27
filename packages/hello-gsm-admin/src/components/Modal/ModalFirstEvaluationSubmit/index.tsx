@@ -12,7 +12,11 @@ const ModalFirstEvaluationSubmit = ({
   const { setSelectedOption, selectedOption } = useStore();
   useEffect(() => {
     setSelectedOption(
-      data.firstEvaluation !== undefined ? (data.firstEvaluation ? 1 : 2) : 0,
+      data.firstEvaluation !== 'NOT_YET'
+        ? data.firstEvaluation === 'PASS'
+          ? 1
+          : 2
+        : 0,
     );
   }, [setSelectedOption, data.firstEvaluation]);
   return (
