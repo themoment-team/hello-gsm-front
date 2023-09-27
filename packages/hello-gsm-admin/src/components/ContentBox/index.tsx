@@ -5,6 +5,7 @@ import * as I from 'Assets/svg';
 import { ApplicationListType, EvaluationStatusType } from 'type/application';
 import formatScreening from 'Utils/Libs/formatScreening';
 import { Modal } from 'components';
+import { useRouter } from 'next/router';
 
 interface ContentBoxProp {
   content: ApplicationListType;
@@ -46,7 +47,7 @@ const ContentBox: React.FC<ContentBoxProp> = ({
       : '검정고시';
 
   const [showStatusModal, setShowStatusModal] = useState<boolean>(false);
-
+  const { push } = useRouter();
   const resultStyle = {
     NOT_YET: css`
       color: #9e9e9e;
@@ -120,7 +121,7 @@ const ContentBox: React.FC<ContentBoxProp> = ({
           <I.BulbIcon />
           상태 수정
         </S.EditButton>
-        <S.EditButton>
+        <S.EditButton onClick={() => push(`/apply/${applicationId}`)}>
           <I.EditIcon />
           원서 수정
         </S.EditButton>
