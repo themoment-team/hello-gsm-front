@@ -211,8 +211,16 @@ const ApplyPage: NextPage<
     const isSchoolNameExist =
       schoolName !== '' || watch('graduation') === 'GED';
     const isIdPhoto = imgURL !== '';
+    const isSpecial =
+      watch('screening') !== 'SPECIAL' || watch('screening') === '';
 
-    if (isMajorSelected && isAddressExist && isSchoolNameExist && isIdPhoto) {
+    if (
+      isMajorSelected &&
+      isAddressExist &&
+      isSchoolNameExist &&
+      isIdPhoto &&
+      isSpecial
+    ) {
       apply(data);
     } else {
       toast.error('원서 정보 저장 중 에러가 발생했어요. 다시 시도해주세요.');
@@ -308,7 +316,7 @@ const ApplyPage: NextPage<
                   !value?.includes('-') || '( - )를 제외하고 입력해주세요.',
               },
               pattern: {
-                value: /^[0-9]{9,10}$/,
+                value: /^[0][0-9]{8-9}$/,
                 message: '* 집 전화번호를 확인해주세요.',
               },
             })}

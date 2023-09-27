@@ -1,10 +1,10 @@
 import * as S from './style';
 
 import { PrintIcon, ExcelIcon } from 'Assets/svg';
+import { ButtonHTMLAttributes } from 'react';
 
-interface PrintButtonProps {
+interface PrintButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   printType: 'excel' | 'ticket';
-  attributes?: React.ButtonHTMLAttributes<HTMLButtonElement>;
 }
 
 const PrintType = {

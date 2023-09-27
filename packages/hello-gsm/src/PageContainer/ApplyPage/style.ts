@@ -156,7 +156,8 @@ export const FindAddress = styled.div`
   width: 615px;
   height: 55px;
   border-radius: 6px;
-  padding: 15px 25px;
+  padding: 0 25px;
+  line-height: 55px;
   font-weight: 400;
   font-size: 20px;
   background: #484453;
