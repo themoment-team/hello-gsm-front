@@ -308,7 +308,7 @@ const ApplyPage: NextPage<
                   !value?.includes('-') || '( - )를 제외하고 입력해주세요.',
               },
               pattern: {
-                value: /^[0][0-9]{8-9}$/,
+                value: /^0\d{8,9}$/,
                 message: '* 집 전화번호를 확인해주세요.',
               },
             })}
