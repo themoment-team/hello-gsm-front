@@ -30,6 +30,8 @@ const ApplyPage: NextPage<
   const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(true);
 
   const [isSpecialScreening, setIsSpecialScreening] = useState<boolean>(false);
+  const userBirth =
+    applicationData && new Date(applicationData?.admissionInfo.applicantBirth);
 
   const {
     showDepartmentModal,
@@ -272,16 +274,9 @@ const ApplyPage: NextPage<
             </S.GenderSelect>
           </S.GenderBox>
           <S.BirthBox>
-            <S.Birth>
-              {applicationData?.admissionInfo.applicantBirth.getFullYear()}
-            </S.Birth>
-            <S.Birth>
-              {applicationData?.admissionInfo.applicantBirth.getMonth() ??
-                0 + 1}
-            </S.Birth>
-            <S.Birth>
-              {applicationData?.admissionInfo.applicantBirth.getDate()}
-            </S.Birth>
+            <S.Birth>{userBirth?.getFullYear()}</S.Birth>
+            <S.Birth>{userBirth?.getMonth() ?? 0 + 1}</S.Birth>
+            <S.Birth>{userBirth?.getDate()}</S.Birth>
           </S.BirthBox>
           <S.AddressBox>
             <S.AddressDescription>주소지 검색</S.AddressDescription>
