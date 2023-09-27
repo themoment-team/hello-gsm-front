@@ -8,8 +8,8 @@ import { CommonApplicationResponseType } from 'Types/application';
 const ModalSubmit = ({ data }: { data: CommonApplicationResponseType }) => {
   const { setSelectedOption, selectedOption } = useStore();
   useEffect(() => {
-    setSelectedOption(data.firstEvaluation ? 1 : 2);
-  }, [setSelectedOption, data.firstEvaluation]);
+    setSelectedOption(data.isPrintsArrived ? 1 : 2);
+  }, [setSelectedOption, data.isPrintsArrived]);
 
   return (
     <S.ModalSubmit>
