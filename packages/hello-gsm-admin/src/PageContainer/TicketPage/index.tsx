@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { TicketDataType } from 'Types/ticket';
+import { TicketDataType } from 'type/ticket';
 import * as S from './style';
 import dayjs from 'dayjs';
 import * as I from 'Assets/svg';

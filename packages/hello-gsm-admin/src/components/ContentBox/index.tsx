@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import * as S from './style';
 import * as I from 'Assets/svg';
-import { ApplicationListType, EvaluationStatusType } from 'Types/application';
+import { ApplicationListType, EvaluationStatusType } from 'type/application';
 import formatScreening from 'Utils/Libs/formatScreening';
 import { Modal } from 'components';
 

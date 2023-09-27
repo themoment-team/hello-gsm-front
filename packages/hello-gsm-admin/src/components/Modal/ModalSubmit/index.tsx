@@ -3,7 +3,7 @@ import * as I from 'Assets/svg';
 import * as S from './style';
 
 import useStore from 'Stores/StoreContainer';
-import { CommonApplicationResponseType } from 'Types/application';
+import { CommonApplicationResponseType } from 'type/application';
 
 const ModalSubmit = ({ data }: { data: CommonApplicationResponseType }) => {
   const { setSelectedOption, selectedOption } = useStore();

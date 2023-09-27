@@ -1,4 +1,4 @@
-import { ScreeningType } from 'Types/application';
+import { ScreeningType } from 'type/application';
 
 export interface TicketDataType {
   data: TicketType[];
