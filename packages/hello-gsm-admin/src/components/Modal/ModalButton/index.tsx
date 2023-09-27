@@ -1,5 +1,6 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes, useEffect } from 'react';
 import * as S from './style';
+import useStore from 'Stores/StoreContainer';
 interface ModalButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   buttonTitle: '다음' | '확인';
   showModalOption?: number;
@@ -10,10 +11,18 @@ const ModalButton: React.FC<ModalButtonProps> = ({
   showModalOption,
   ...props
 }) => {
+  const { selectedOption, isButtonActive, setIsButtonActive } = useStore();
+  useEffect(() => {
+    if (buttonTitle === '다음') {
+      setIsButtonActive(showModalOption === 0 ? true : false);
+    } else {
+      setIsButtonActive(selectedOption === 0 ? true : false);
+    }
+  }, [buttonTitle]);
   return (
     <S.ModalButton
-      isConfirm={showModalOption === 0 ? true : false}
-      disabled={showModalOption === 0 ? true : false}
+      isConfirm={isButtonActive}
+      disabled={isButtonActive}
       {...props}
     >
       {buttonTitle}
