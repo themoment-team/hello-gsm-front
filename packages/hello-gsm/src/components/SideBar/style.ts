@@ -13,7 +13,7 @@ export const Background = styled.div<AnimationProps>`
   background: rgba(0, 0, 0, 0.51);
   width: 100vw;
   height: 100vh;
-  z-index: 3;
+  z-index: 10;
   animation-name: ${props => (props.animation ? 'showin' : 'showout')};
   animation-duration: 1s;
   animation-fill-mode: forwards;
@@ -40,7 +40,7 @@ export const SideBar = styled.div<AnimationProps>`
   height: 100vh;
   background: #20212f;
   position: fixed;
-  z-index: 3;
+  z-index: 10;
   right: 0;
   top: 0;
   animation-name: ${props => (props.animation ? 'slidein' : 'slideout')};
@@ -60,7 +60,7 @@ export const SideBar = styled.div<AnimationProps>`
       right: 0;
     }
     to {
-      right: -31.25rem;
+      right: -40.25rem;
     }
   }
 `;

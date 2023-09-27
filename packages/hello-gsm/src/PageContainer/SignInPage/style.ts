@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import device from 'shared/config';
 
 export const SignInPage = styled.div`
   position: relative;
@@ -48,4 +49,24 @@ export const SignInBtn = styled.a`
   gap: 3rem;
   line-height: 2.8125rem;
   margin-bottom: 1.5rem;
+
+  @media ${device.tablet} {
+    line-height: 0;
+  }
+`;
+
+export const ImageWrap = styled.span`
+  width: 1.875rem;
+  height: 1.875rem;
+
+  .iamge {
+    object-fit: cover;
+    width: 100%;
+    position: relative;
+  }
+
+  @media ${device.tablet} {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
 `;

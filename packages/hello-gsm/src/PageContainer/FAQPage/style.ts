@@ -40,6 +40,10 @@ export const SearchWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.75rem;
+
+  @media ${device.mobile} {
+    width: 90vw;
+  }
 `;
 
 export const Search = styled.input`
@@ -68,6 +72,10 @@ export const FAQList = styled.div`
   width: 100%;
   margin-top: 3.125rem;
   margin-bottom: 6.25rem;
+
+  @media ${device.mobile} {
+    width: 90vw;
+  }
 `;
 
 export const FAQListIndex = styled.div`
@@ -94,6 +102,7 @@ export const ChangeAllowButton = styled.button`
   background-color: inherit;
   border: none;
   :disabled {
+    cursor: default;
     svg {
       path {
         stroke: ${({ theme }) => theme.color.gray['070']};

@@ -19,7 +19,7 @@ import {
   startApply,
 } from 'shared/Date/firstScreening';
 import { formatDate } from 'Utils/Format';
-import { ApplicationDataType } from 'type/application';
+import { ApplicationDataType, EvaluationStatusType } from 'type/application';
 
 const contentSelects = [
   '원서 작성',
@@ -36,6 +36,25 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
   const [isAcceptable, setIsAcceptable] = useState<boolean>(false);
   const [isFirstResultPeriod, setIsFirstResultPeriod] =
     useState<boolean>(isFirstResult);
+  const [pass, setPass] = useState<boolean | undefined>(undefined);
+
+  const resetResult = (result?: EvaluationStatusType): boolean | undefined => {
+    switch (result) {
+      case 'FALL':
+        return false;
+      case 'PASS':
+        return true;
+      case 'NOT_YET':
+        return undefined;
+    }
+    return undefined;
+  };
+  const firstResult = resetResult(data?.admissionStatus.firstEvaluation);
+  const finalResult = resetResult(data?.admissionStatus.secondEvaluation);
+
+  useEffect(() => {
+    setPass(isFirstResultPeriod ? firstResult : finalResult);
+  }, [finalResult, firstResult, isFirstResultPeriod]);
 
   const {
     showMainNonLoginModal,
@@ -79,38 +98,32 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
   }, []);
 
   useEffect(() => {
-    setShowMainNonLoginModal(
-      // 1차 합격 발표 날짜
-      isStartFirstResult &&
-        !logged &&
-        localStorage.getItem('mainNonLoginModalInvisible') !==
-          new Date().getDate().toString(),
-    );
+    if (logged !== undefined)
+      setShowMainNonLoginModal(
+        // 1차 합격 발표 날짜
+        isStartFirstResult &&
+          !logged &&
+          localStorage.getItem('mainNonLoginModalInvisible') !==
+            new Date().getDate().toString(),
+      );
   }, [logged, setShowMainNonLoginModal]);
 
   useEffect(() => {
-    setShowMainResultModal(
-      // 1차 합격 발표 날짜
-      isStartFirstResult &&
-        localStorage.getItem('mainResultModalInvisible') !==
-          new Date().getDate().toString(),
-    );
-  }, [data?.admissionStatus?.isFinalSubmitted]);
+    if (pass !== undefined)
+      setShowMainResultModal(
+        // 1차 합격 발표 날짜
+        isStartFirstResult &&
+          localStorage.getItem('mainResultModalInvisible') !==
+            new Date().getDate().toString(),
+      );
+  }, [pass]);
 
   return (
     <S.MainPage>
       {showMainResultModal && (
         <MainResultModal
           name={data?.admissionInfo.applicantName ?? ''}
-          pass={
-            isFirstResultPeriod
-              ? data?.admissionStatus.firstEvaluation === 'PASS'
-                ? true
-                : false
-              : data?.admissionStatus.secondEvaluation === 'PASS'
-              ? true
-              : false
-          }
+          pass={pass}
           isMobile={isMobile}
           majorResult={data?.admissionStatus.finalMajor ?? null}
         />

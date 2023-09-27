@@ -57,7 +57,7 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                 </tr>
                 <tr>
                   <td rowSpan={2}>합격자 등록 및 서류 제출</td>
-                  <S.Left>우편 또는 방문</S.Left>
+                  <S.Left>공문 제출 또는 방문</S.Left>
                 </tr>
                 <tr>
                   <S.Left>
@@ -82,7 +82,7 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                   <td rowSpan={2} colSpan={2}>
                     위 사람은 2024학년도 <br /> 본교 신입생 입학전형 지원자임을
                     확인함.
-                    <p>2023년 10월 28일</p>
+                    <p>2023년 10월 27일</p>
                     <S.Right>
                       광주소프트웨어마이스터고등학교장 <br /> [직인생략]
                     </S.Right>
