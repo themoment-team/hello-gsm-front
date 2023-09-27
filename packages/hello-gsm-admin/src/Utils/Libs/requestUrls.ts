@@ -34,6 +34,14 @@ export const IdentityController = {
   },
 };
 
+// 유저 상태 변경
+export const StatusController = {
+  // put 유저 상태 변경
+  putStatus: (userId: number) => {
+    return `/application/v1/status/${userId}`;
+  },
+};
+
 // 지원자 관리
 export const ApplicationController = {
   // get 특정 사용자의 원서 정보 조회하기

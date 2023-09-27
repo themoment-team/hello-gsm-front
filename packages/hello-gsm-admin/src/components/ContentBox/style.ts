@@ -12,6 +12,19 @@ export const ContentBox = styled.div`
   }
 `;
 
+export const ModalContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+`;
+
 export const Content = styled.div`
   width: 1205px;
   height: 100%;
@@ -60,10 +73,9 @@ export const isDocumentReception = styled.div`
 `;
 
 export const DocumentReceptionText = styled.span<{
-  documentReception: boolean;
+  isPrintsArrived: boolean;
 }>`
-  color: ${({ documentReception }) =>
-    documentReception ? '#2174d8' : '#FF000F'};
+  color: ${({ isPrintsArrived }) => (isPrintsArrived ? '#2174d8' : '#FF000F')};
   font-size: 12px;
   text-align: left;
   width: 50px;

@@ -48,7 +48,10 @@ export interface SearchApplicationInfoType {
     teacherPhoneNumber: string;
     firstEvaluation: EvaluationStatusType;
     secondEvaluation: EvaluationStatusType;
+    screeningFirstEvaluationAt: ScreeningType;
+    screeningSecondEvaluationAt: ScreeningType;
     secondScore: number;
+    finalMajor: MajorType;
   }[];
 }
 
@@ -65,6 +68,27 @@ export interface ApplicationListType {
   firstEvaluation: EvaluationStatusType;
   secondEvaluation: EvaluationStatusType;
   secondScore: number;
+  finalMajor: MajorType;
+  screeningFirstEvaluationAt: ScreeningType;
+  screeningSecondEvaluationAt: ScreeningType;
+}
+
+export type MajorType = 'SW' | 'IOT' | 'AI' | null;
+
+export interface CommonApplicationResponseType {
+  isFinalSubmitted: boolean | undefined;
+  isPrintsArrived: boolean | undefined;
+  firstEvaluation: EvaluationStatusType;
+  secondEvaluation: EvaluationStatusType;
+  screeningFirstEvaluationAt: ScreeningType | null;
+  screeningSecondEvaluationAt: ScreeningType | null;
+  registrationNumber: number | null;
+  secondScore: number | null;
+  finalMajor: MajorType | null;
+}
+
+export interface ApplicationDataType {
+  data: CommonApplicationResponseType;
 }
 
 export interface SearchApplicationType {

@@ -1,25 +1,23 @@
-import React, { useState } from 'react';
+import { useEffect } from 'react';
 import * as I from 'Assets/svg';
 import * as S from './style';
 
-interface ModalResultProps {
-  handleOptionSelect: (optionId: number) => void;
-}
+import useStore from 'Stores/StoreContainer';
+import { CommonApplicationResponseType } from 'Types/application';
 
-const ModalSubmit: React.FC<ModalResultProps> = ({ handleOptionSelect }) => {
-  const [selectedButtonId, setSelectedButtonId] = useState<number>(1);
-  const handleButtonClick = (id: number) => {
-    setSelectedButtonId(id);
-    handleOptionSelect(id);
-  };
+const ModalSubmit = ({ data }: { data: CommonApplicationResponseType }) => {
+  const { setSelectedOption, selectedOption } = useStore();
+  useEffect(() => {
+    setSelectedOption(data.isPrintsArrived ? 1 : 2);
+  }, [setSelectedOption, data.isPrintsArrived]);
 
   return (
     <S.ModalSubmit>
-      <S.ModalOption onClick={() => handleButtonClick(1)}>
-        <I.Submit isActive={selectedButtonId !== 1} />
+      <S.ModalOption onClick={() => setSelectedOption(1)}>
+        <I.Submit isActive={selectedOption !== 1} />
       </S.ModalOption>
-      <S.ModalOption onClick={() => handleButtonClick(2)}>
-        <I.NotSubmit isActive={selectedButtonId !== 2} />
+      <S.ModalOption onClick={() => setSelectedOption(2)}>
+        <I.NotSubmit isActive={selectedOption !== 2} />
       </S.ModalOption>
     </S.ModalSubmit>
   );
