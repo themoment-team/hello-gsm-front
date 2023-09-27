@@ -4,21 +4,27 @@ import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { CommonApplicationResponseType } from 'Types/application';
 
-const ModalResult = ({ data }: { data: CommonApplicationResponseType }) => {
+const ModalFirstEvaluationSubmit = ({
+  data,
+}: {
+  data: CommonApplicationResponseType;
+}) => {
   const { setSelectedOption, selectedOption } = useStore();
   useEffect(() => {
-    setSelectedOption(data.isPrintsArrived ? 1 : 2);
-  }, [setSelectedOption, data.isPrintsArrived]);
+    setSelectedOption(
+      data.firstEvaluation !== undefined ? (data.firstEvaluation ? 1 : 2) : 0,
+    );
+  }, [setSelectedOption, data.firstEvaluation]);
   return (
-    <S.ModalResult>
+    <S.ModalFirstEvaluationSubmit>
       <S.ModalOption onClick={() => setSelectedOption(1)}>
         <I.Pass isActive={selectedOption !== 1} />
       </S.ModalOption>
       <S.ModalOption onClick={() => setSelectedOption(2)}>
         <I.Fail isActive={selectedOption !== 2} />
       </S.ModalOption>
-    </S.ModalResult>
+    </S.ModalFirstEvaluationSubmit>
   );
 };
 
-export default ModalResult;
+export default ModalFirstEvaluationSubmit;

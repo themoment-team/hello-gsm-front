@@ -13,12 +13,13 @@ import { toast } from 'react-toastify';
 interface ModalProps {
   data: ApplicationListType;
   onClose: () => void;
+  getApplicationList: () => void;
 }
 
 // showModalOption : 첫번째 모달에서 상태를 바꿀 모달 선택
 // selectedOption : 선택된 모달 내의 제출 미제출 혹은 합격 불합격 결정
 
-const Modal = ({ data, onClose }: ModalProps) => {
+const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
   const [isNextStep, setIsNextStep] = useState(false);
   const [buttonTitle, setButtonTitle] = useState<'다음' | '확인'>('다음');
   const [showModalOption, setShowModalOption] = useState<number>(0);
@@ -80,6 +81,7 @@ const Modal = ({ data, onClose }: ModalProps) => {
           toast.success('상태 수정이 완료되었어요.');
           setSelectedOption(0);
           handleCloseModal();
+          getApplicationList();
           setIsNextStep(false);
         } catch (error: any) {
           toast.error(
@@ -92,11 +94,6 @@ const Modal = ({ data, onClose }: ModalProps) => {
 
     updateList();
   }, [submittedApplyData]);
-
-  useEffect(() => {
-    console.log(isNextStep);
-    console.log(selectedOption);
-  }, [isNextStep, showModalOption]);
 
   return (
     <>
@@ -180,7 +177,7 @@ const Modal = ({ data, onClose }: ModalProps) => {
                     {data.applicantName}님의 1차 합격 여부(서류)를 선택해주세요.
                   </S.Desc>
                 </S.TitleBox>
-                <C.ModalResult data={submittedApplyData} />
+                <C.ModalFirstEvaluationSubmit data={submittedApplyData} />
                 <C.ModalButton
                   buttonTitle="확인"
                   onClick={() => handleSubmit()}
@@ -196,7 +193,7 @@ const Modal = ({ data, onClose }: ModalProps) => {
                     선택해주세요.
                   </S.Desc>
                 </S.TitleBox>
-                <C.ModalResult data={submittedApplyData} />
+                <C.ModalSecondEvaluationSubmit data={submittedApplyData} />
                 <C.ModalButton
                   buttonTitle="확인"
                   onClick={() => handleSubmit()}
