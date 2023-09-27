@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import * as I from 'Assets/svg';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
-import { ApplicationListType } from 'Types/application';
+import { CommonApplicationResponseType } from 'Types/application';
 
-const ModalResult = () => {
+const ModalResult = ({ data }: { data: CommonApplicationResponseType }) => {
   const { setSelectedOption, selectedOption } = useStore();
-
+  useEffect(() => {
+    setSelectedOption(data.isPrintsArrived ? 1 : 2);
+  }, [setSelectedOption, data.isPrintsArrived]);
   return (
     <S.ModalResult>
       <S.ModalOption onClick={() => setSelectedOption(1)}>

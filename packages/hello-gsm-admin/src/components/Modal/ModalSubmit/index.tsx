@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import * as I from 'Assets/svg';
 import * as S from './style';
-import * as C from 'components';
 
 import useStore from 'Stores/StoreContainer';
 import { CommonApplicationResponseType } from 'Types/application';
@@ -9,8 +8,6 @@ import { CommonApplicationResponseType } from 'Types/application';
 const ModalSubmit = ({ data }: { data: CommonApplicationResponseType }) => {
   const { setSelectedOption, selectedOption } = useStore();
   useEffect(() => {
-    console.log('제출 미제출');
-    console.log(data.isPrintsArrived);
     setSelectedOption(data.isPrintsArrived ? 1 : 2);
   }, [setSelectedOption, data.isPrintsArrived]);
 

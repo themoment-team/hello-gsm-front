@@ -64,10 +64,11 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
         if (isNumber(inputValue)) {
           updatedData.secondScore = inputValue;
           console.log(inputValue);
-          break;
         } else {
           toast.error('입력하신 값이 숫자가 아닙니다.');
+          return;
         }
+        break;
     }
     setSubmittedApplyData(updatedData);
   };
@@ -181,7 +182,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                     {data.applicantName}님의 1차 합격 여부(서류)를 선택해주세요.
                   </S.Desc>
                 </S.TitleBox>
-                <C.ModalResult />
+                <C.ModalResult data={submittedApplyData} />
                 <C.ModalButton
                   buttonTitle="확인"
                   onClick={() => handleSubmit()}
@@ -197,7 +198,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                     선택해주세요.
                   </S.Desc>
                 </S.TitleBox>
-                <C.ModalResult />
+                <C.ModalResult data={submittedApplyData} />
                 <C.ModalButton
                   buttonTitle="확인"
                   onClick={() => handleSubmit()}
