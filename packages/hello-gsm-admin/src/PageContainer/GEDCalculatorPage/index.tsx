@@ -8,6 +8,7 @@ import { GEDCalculate, Rounds } from 'Utils/Calculate';
 import * as S from './style';
 import useScrollToTop from 'hooks/useScrollToTop';
 import useApplyStore from 'Stores/ApplyStoreContainer';
+import application from 'Api/application';
 
 interface ScoreType {
   curriculumScoreSubtotal: number; // 전과목 득점
@@ -16,9 +17,13 @@ interface ScoreType {
 
 interface GEDCalculatorPageProps {
   score: string | undefined;
+  userId: string;
 }
 
-const GEDCalculatorPage: NextPage<GEDCalculatorPageProps> = ({ score }) => {
+const GEDCalculatorPage: NextPage<GEDCalculatorPageProps> = ({
+  score,
+  userId,
+}) => {
   useScrollToTop();
   const { register, handleSubmit, setValue } = useForm<ScoreType>();
 
@@ -28,7 +33,10 @@ const GEDCalculatorPage: NextPage<GEDCalculatorPageProps> = ({ score }) => {
   const TrySubmission = async (data: GEDScoreType) => {
     const middleSchoolGrade = JSON.stringify(data);
     if (applyData !== null) {
-      console.log(middleSchoolGrade);
+      await application.putUserApplication(
+        { ...applyData, middleSchoolGrade },
+        userId,
+      );
     } else if (applyData === null)
       toast.error(
         '인적사항 정보가 저장되지 않았어요. 처음부터 다시 시도해주세요.',

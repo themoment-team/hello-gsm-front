@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { SEOHelmet } from 'components';
+import { SEOHelmet, SideBar } from 'components';
 import { ApplicationResponseType } from 'type/application';
 import { ApplyPage, CalculatorPage, GEDCalculatorPage } from 'PageContainer';
 import { useEffect, useState } from 'react';
@@ -21,10 +21,12 @@ const Apply: NextPage = () => {
   const [applicationData, setApplicationData] =
     useState<ApplicationResponseType>();
 
+  const userId = query.id as string;
+
   const getApplication = async () => {
     try {
       const { data }: { data: ApplicationResponseType } =
-        await application.getUserApplication(query.id as string);
+        await application.getUserApplication(userId);
 
       setApplicationData(data);
     } catch (e) {
@@ -47,6 +49,7 @@ const Apply: NextPage = () => {
           }
         `}
       />
+      <SideBar />
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
       {step === '원서' && (
         <ApplyPage
@@ -56,9 +59,15 @@ const Apply: NextPage = () => {
       )}
       {step === '성적' &&
         (applyData?.graduation === 'GED' ? (
-          <GEDCalculatorPage score={applicationData?.middleSchoolGrade} />
+          <GEDCalculatorPage
+            score={applicationData?.middleSchoolGrade}
+            userId={userId}
+          />
         ) : (
-          <CalculatorPage score={applicationData?.middleSchoolGrade} />
+          <CalculatorPage
+            score={applicationData?.middleSchoolGrade}
+            userId={userId}
+          />
         ))}
     </>
   );

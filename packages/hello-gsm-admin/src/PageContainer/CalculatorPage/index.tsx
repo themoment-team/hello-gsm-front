@@ -15,6 +15,7 @@ import { LocalScoreType } from 'type/score';
 import { toast } from 'react-toastify';
 import useScrollToTop from 'hooks/useScrollToTop';
 import useApplyStore from 'Stores/ApplyStoreContainer';
+import application from 'Api/application';
 
 interface ScoreForm {
   // 과목/점수 배열
@@ -32,9 +33,10 @@ interface ScoreForm {
 
 interface CalculatorPageProps {
   score: string | undefined;
+  userId: string;
 }
 
-const CalculatorPage: NextPage<CalculatorPageProps> = ({ score }) => {
+const CalculatorPage: NextPage<CalculatorPageProps> = ({ score, userId }) => {
   useScrollToTop();
   const { register, handleSubmit, watch, setValue } = useForm<ScoreForm>();
 
@@ -130,6 +132,10 @@ const CalculatorPage: NextPage<CalculatorPageProps> = ({ score }) => {
     const middleSchoolGrade = JSON.stringify(scoreObject);
     if (applyData !== null)
       try {
+        await application.putUserApplication(
+          { ...applyData, middleSchoolGrade },
+          userId,
+        );
         // 결과 모달 제어
         setResultArray([
           generalCurriculumScoreSubtotal,
