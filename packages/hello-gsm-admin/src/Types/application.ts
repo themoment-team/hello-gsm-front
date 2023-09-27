@@ -76,8 +76,8 @@ export interface ApplicationListType {
 export type MajorType = 'SW' | 'IOT' | 'AI' | null;
 
 export interface CommonApplicationResponseType {
-  isFinalSubmitted: boolean;
-  isPrintsArrived: boolean;
+  isFinalSubmitted: boolean | undefined;
+  isPrintsArrived: boolean | undefined;
   firstEvaluation: EvaluationStatusType;
   secondEvaluation: EvaluationStatusType;
   screeningFirstEvaluationAt: ScreeningType | null;

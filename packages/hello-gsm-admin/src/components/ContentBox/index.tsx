@@ -79,11 +79,7 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     <S.ContentBox>
       {showStatusModal && (
         <S.ModalContainer>
-          <Modal
-            data={content}
-            onClose={onCloseShowStatusModal}
-            getApplicationList={getApplicationList}
-          />
+          <Modal data={content} onClose={onCloseShowStatusModal} />
         </S.ModalContainer>
       )}
       <S.Content>
