@@ -36,14 +36,14 @@ const Apply: NextPage = () => {
 
   useEffect(() => {
     getApplication();
-  }, []);
+  }, [query]);
 
   return (
     <>
       <Global
         styles={css`
           html {
-            background: red;
+            background-color: #0f0921;
           }
         `}
       />
