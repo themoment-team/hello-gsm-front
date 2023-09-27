@@ -18,3 +18,5 @@ export { default as NotSubmit } from './modalOptions/NotSubmit';
 export { default as PaginationIcon } from './PaginationIcon';
 export { default as CrossRectangle } from './CrossRectangle';
 export { default as InputImg } from './InputImg';
+export { default as FindSchoolClose } from './FindSchoolClose';
+export { default as FindSchoolSearchIcon } from './FindSchoolSearchIcon';
