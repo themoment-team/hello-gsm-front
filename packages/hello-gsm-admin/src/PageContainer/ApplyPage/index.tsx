@@ -11,7 +11,6 @@ import {
   ApplyPostModal,
 } from 'components';
 import { useForm } from 'react-hook-form';
-import application from 'Api/application';
 import { ApplyFormType } from 'type/application';
 import { toast } from 'react-toastify';
 import formatMajor from 'Utils/Format/formatMajor';
@@ -22,14 +21,13 @@ const ApplyPage: NextPage<
   ApplicationIdentityType & {
     onNext: () => void;
   }
-> = ({ applicationData, onNext, identityData }) => {
+> = ({ applicationData, onNext }) => {
   const imgInput = useRef<HTMLInputElement>(null);
   const [imgURL, setImgURL] = useState<string>('');
   const [isIdPhoto, setIsIdPhoto] = useState<boolean>(true);
   const [isMajorSelected, setIsMajorSelected] = useState<boolean>(true);
   const [isAddressExist, setIsAddressExist] = useState<boolean>(true);
   const [isSchoolNameExist, setIsSchoolNameExist] = useState<boolean>(true);
-  const userBirth = identityData && new Date(identityData?.birth);
 
   const [isSpecialScreening, setIsSpecialScreening] = useState<boolean>(false);
 
@@ -254,37 +252,36 @@ const ApplyPage: NextPage<
             ref={imgInput}
             onChange={e => readImg(e)}
           />
-          <S.NameBox>{identityData?.name}</S.NameBox>
+          <S.NameBox>{applicationData?.admissionInfo.applicantName}</S.NameBox>
           <S.GenderBox>
             <S.GenderSelect
               css={css`
-                background: ${identityData?.gender === 'MALE' && '#42bafe'};
+                background: ${applicationData?.admissionInfo.applicantGender ===
+                  'MALE' && '#42bafe'};
               `}
             >
               남자
             </S.GenderSelect>
             <S.GenderSelect
               css={css`
-                background: ${identityData?.gender === 'FEMALE' && '#42bafe'};
+                background: ${applicationData?.admissionInfo.applicantGender ===
+                  'FEMALE' && '#42bafe'};
               `}
             >
               여자
             </S.GenderSelect>
           </S.GenderBox>
           <S.BirthBox>
-            {userBirth ? (
-              <>
-                <S.Birth>{userBirth.getFullYear()}</S.Birth>
-                <S.Birth>{userBirth.getMonth() + 1}</S.Birth>
-                <S.Birth>{userBirth.getDate()}</S.Birth>
-              </>
-            ) : (
-              <>
-                <S.Birth></S.Birth>
-                <S.Birth></S.Birth>
-                <S.Birth></S.Birth>
-              </>
-            )}
+            <S.Birth>
+              {applicationData?.admissionInfo.applicantBirth.getFullYear()}
+            </S.Birth>
+            <S.Birth>
+              {applicationData?.admissionInfo.applicantBirth.getMonth() ??
+                0 + 1}
+            </S.Birth>
+            <S.Birth>
+              {applicationData?.admissionInfo.applicantBirth.getDate()}
+            </S.Birth>
           </S.BirthBox>
           <S.AddressBox>
             <S.AddressDescription>주소지 검색</S.AddressDescription>
@@ -321,7 +318,9 @@ const ApplyPage: NextPage<
               },
             })}
           />
-          <S.Cellphone>{identityData?.phoneNumber}</S.Cellphone>
+          <S.Cellphone>
+            {applicationData?.admissionInfo.applicantPhoneNumber}
+          </S.Cellphone>
           <S.Title>지원자 현황</S.Title>
           <S.TypeBox>
             <S.Type
