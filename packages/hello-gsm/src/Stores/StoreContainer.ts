@@ -2,7 +2,7 @@ import { ApplicationFormType, ApplyFormType } from 'type/application';
 import create from 'zustand';
 
 interface StoreType {
-  logged: boolean;
+  logged: boolean | undefined;
   showFAQModal: boolean;
   FAQModalTitle: string;
   FAQModalContent: string;
@@ -60,7 +60,7 @@ interface StoreType {
 }
 
 const useStore = create<StoreType>(set => ({
-  logged: false,
+  logged: undefined,
   showFAQModal: false,
   FAQModalTitle: '',
   FAQModalContent: '',
