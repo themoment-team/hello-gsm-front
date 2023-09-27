@@ -278,6 +278,7 @@ const SignUpPage: NextPage = () => {
               <S.Input
                 type="text"
                 placeholder="인증번호를 입력해주세요."
+                disabled={isVerified}
                 css={css`
                   margin-bottom: 0px !important;
                 `}
@@ -309,7 +310,9 @@ const SignUpPage: NextPage = () => {
             <S.ResetText
               onClick={() => {
                 setValue('phoneNumber', '');
+                setValue('code', '');
                 setIsSent(false);
+                setIsVerified(false);
               }}
             >
               전화번호 초기화

@@ -98,13 +98,14 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
   }, []);
 
   useEffect(() => {
-    setShowMainNonLoginModal(
-      // 1차 합격 발표 날짜
-      isStartFirstResult &&
-        !logged &&
-        localStorage.getItem('mainNonLoginModalInvisible') !==
-          new Date().getDate().toString(),
-    );
+    if (logged !== undefined)
+      setShowMainNonLoginModal(
+        // 1차 합격 발표 날짜
+        isStartFirstResult &&
+          !logged &&
+          localStorage.getItem('mainNonLoginModalInvisible') !==
+            new Date().getDate().toString(),
+      );
   }, [logged, setShowMainNonLoginModal]);
 
   useEffect(() => {
