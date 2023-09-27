@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
 
 export const SideBar = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 221px;
   height: 100vh;
   background-color: #ffffff;
@@ -28,9 +31,9 @@ export const ApplicantListBox = styled.div`
   align-items: center;
   height: 56px;
   gap: 8px;
-  background-color: #fafafa;
   width: 221px;
 `;
+
 export const ApplicantList = styled.div`
   font-size: 16px;
   font-weight: 600;
