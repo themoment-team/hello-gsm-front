@@ -12,3 +12,12 @@ export { default as ModalFirstEvaluationSubmit } from './Modal/ModalFirstEvaluat
 export { default as ModalSecondEvaluationSubmit } from './Modal/ModalSecondEvaluationSubmit';
 export { default as ModalSubmit } from './Modal/ModalSubmit';
 export { default as PaginationController } from './PaginationController';
+export { default as GEDScoreResultModal } from './Calc/GEDScoreResultModal';
+export { default as ScoreResultModal } from './Calc/ScoreResultModal';
+export { default as ScoreSelect } from './Calc/ScoreSelect';
+export { default as FreeSemesterBtn } from './Calc/FreeSemesterBtn';
+export { default as ApplyPostModal } from './Apply/ApplyPostModal';
+export { default as DepartmentModal } from './Apply/DepartmentModal';
+export { default as FindAddressModal } from './Apply/FindAddressModal';
+export { default as FindSchoolModal } from './Apply/FindSchoolModal';
+export { default as ApplyBarBox } from './Apply/ApplyBarBox';
