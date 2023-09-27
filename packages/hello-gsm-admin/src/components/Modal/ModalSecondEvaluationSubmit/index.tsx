@@ -14,7 +14,9 @@ const ModalSecondEvaluationSubmit = ({
     setSelectedOption(
       data.secondEvaluation !== undefined ? (data.secondEvaluation ? 1 : 2) : 0,
     );
-  }, [setSelectedOption, data.secondEvaluation]);
+    console.log('2차 옵션');
+    console.log(selectedOption);
+  }, [setSelectedOption, data.secondEvaluation, selectedOption]);
   return (
     <S.ModalSecondEvaluationSubmit>
       <S.ModalOption onClick={() => setSelectedOption(1)}>
