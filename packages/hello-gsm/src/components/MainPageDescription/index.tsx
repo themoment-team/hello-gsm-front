@@ -18,25 +18,33 @@ import { isFinalEnd } from 'shared/Date/afterApply';
 import { startFinalTest } from 'shared/Date/secondScreening';
 import { formatDate } from 'Utils/Format';
 import formatMajor from 'Utils/Format/formatMajor';
-import { MajorType } from 'type/application';
+import { EvaluationStatusType, MajorType } from 'type/application';
 import useStore from 'Stores/StoreContainer';
 
 const MainPageDescription: React.FC<MainDescStatusType> = ({
   selectedIndex,
   data,
 }) => {
+  const resetResult = (result?: EvaluationStatusType): boolean | undefined => {
+    switch (result) {
+      case 'FALL':
+        return false;
+      case 'PASS':
+        return true;
+      case 'NOT_YET':
+        return undefined;
+    }
+    return undefined;
+  };
+
   const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(isFirstResult);
-  const firstResult =
-    data?.admissionStatus.firstEvaluation === 'PASS' ? true : false;
-  const finalResult =
-    data?.admissionStatus.secondEvaluation === 'PASS' ? true : false;
-  const [pass, setPass] = useState<boolean>();
+  const firstResult = resetResult(data?.admissionStatus.firstEvaluation);
+  const finalResult = resetResult(data?.admissionStatus.secondEvaluation);
+  const [pass, setPass] = useState<boolean | undefined>(undefined);
   const [index, setIndex] = useState<number>(1);
   const name = data?.admissionInfo.applicantName ?? '';
   const registrationNumber = data?.admissionStatus.registrationNumber ?? '';
-  const [majorResult, setMajorResult] = useState<MajorType | null>(
-    data?.admissionStatus.finalMajor ?? null,
-  );
+  const majorResult = data?.admissionStatus.finalMajor ?? '';
 
   const { push } = useRouter();
   const { logged } = useStore();
@@ -50,9 +58,9 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
     isFinalEnd ? setIndex(0) : setIndex(selectedIndex);
 
     if (selectedIndex === 5) {
-      if (data) {
+      if (pass !== undefined) {
         // 1차 전형 합격 날짜
-        isStartFirstResult && (data.admissionStatus.isFinalSubmitted ?? false)
+        isStartFirstResult && (data?.admissionStatus.isFinalSubmitted ?? false)
           ? setIndex(5)
           : setIndex(7);
       } else {

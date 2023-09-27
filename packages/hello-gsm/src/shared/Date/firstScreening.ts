@@ -1,4 +1,4 @@
-const today = new Date('2023/9/27 19:00:00');
+const today = new Date();
 
 // 9월 27일 0시부터 오후 6시까지
 // 원서 접수 및 증빙서류 제출 날짜
@@ -13,3 +13,5 @@ export const endFirstResult = new Date('2023/9/27 18:30:00');
 export const isStartFirstResult = today >= startFirstResult;
 export const isFirstResult =
   today >= startFirstResult && today < endFirstResult;
+
+// 11월 1일 10시부터 두번째 합격 결과 보여주는 날짜
