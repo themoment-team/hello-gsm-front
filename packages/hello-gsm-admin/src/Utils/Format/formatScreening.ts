@@ -4,7 +4,8 @@ type ScreeningObjectType = {
   [key in ScreeningType]: string;
 };
 
-const formatScreening = (screening: ScreeningType) => {
+const formatScreening = (screening: ScreeningType | undefined) => {
+  if (!screening) return '';
   const screeningObject: ScreeningObjectType = {
     GENERAL: '일반전형',
     SOCIAL: '사회통합전형',
