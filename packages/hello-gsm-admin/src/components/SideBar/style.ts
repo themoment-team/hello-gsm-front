@@ -32,6 +32,7 @@ export const ApplicantListBox = styled.div`
   height: 56px;
   gap: 8px;
   width: 221px;
+  cursor: pointer;
 `;
 
 export const ApplicantList = styled.div`
