@@ -3310,6 +3310,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["next", "virtual:7922876eef3e216418ae64600b48c98917319a6c33f1f0a6c899740f0561187a970b83ad42fd5582ec8af59dcf209ff9323daf0150ce539867a6648da3893a55#npm:12.2.3"],\
             ["prettier", "npm:2.6.0"],\
             ["react", "npm:17.0.2"],\
+            ["react-daum-postcode", "virtual:77460b7006793b29fac4674dce401ab408cddc3b3322f7f6953389e29317513cb61398c1e6a2ad8e3eacd83475bb7283f1442aa83bc7cb1cd9897294f5d0c7cc#npm:3.1.3"],\
             ["react-dom", "virtual:aa2a05a5980c8e0492085febcc49282fd773a11158ae903e01f9cc43334b44be6c5c8af3c21af4e251d90c61bb0cd547c82da8bf486e72906f4e3e5aa35f0ce4#npm:17.0.2"],\
             ["react-hook-form", "virtual:77460b7006793b29fac4674dce401ab408cddc3b3322f7f6953389e29317513cb61398c1e6a2ad8e3eacd83475bb7283f1442aa83bc7cb1cd9897294f5d0c7cc#npm:7.31.1"],\
             ["react-toastify", "virtual:77460b7006793b29fac4674dce401ab408cddc3b3322f7f6953389e29317513cb61398c1e6a2ad8e3eacd83475bb7283f1442aa83bc7cb1cd9897294f5d0c7cc#npm:9.0.8"],\
@@ -4344,6 +4345,26 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-daum-postcode", "npm:3.0.3"],\
             ["prop-types", "npm:15.8.1"],\
             ["react", "npm:17.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:3.1.3", {\
+          "packageLocation": "./.yarn/cache/react-daum-postcode-npm-3.1.3-95dbfacabd-559c2463b3.zip/node_modules/react-daum-postcode/",\
+          "packageDependencies": [\
+            ["react-daum-postcode", "npm:3.1.3"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:77460b7006793b29fac4674dce401ab408cddc3b3322f7f6953389e29317513cb61398c1e6a2ad8e3eacd83475bb7283f1442aa83bc7cb1cd9897294f5d0c7cc#npm:3.1.3", {\
+          "packageLocation": "./.yarn/__virtual__/react-daum-postcode-virtual-f1a8986e87/0/cache/react-daum-postcode-npm-3.1.3-95dbfacabd-559c2463b3.zip/node_modules/react-daum-postcode/",\
+          "packageDependencies": [\
+            ["react-daum-postcode", "virtual:77460b7006793b29fac4674dce401ab408cddc3b3322f7f6953389e29317513cb61398c1e6a2ad8e3eacd83475bb7283f1442aa83bc7cb1cd9897294f5d0c7cc#npm:3.1.3"],\
+            ["@types/react", "npm:17.0.40"],\
+            ["react", "npm:17.0.2"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
