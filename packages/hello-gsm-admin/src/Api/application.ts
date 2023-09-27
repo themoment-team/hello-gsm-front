@@ -41,7 +41,7 @@ class Application {
   putUserApplication(data: ApplicationFormType, userId: string) {
     try {
       return RequestApi({
-        method: 'PATCH',
+        method: 'PUT',
         url: ApplicationController.userApplication(userId),
         data,
       });
