@@ -11,7 +11,7 @@ const ModalSecondEvaluationSubmit = ({
 }) => {
   const { setSelectedOption, selectedOption } = useStore();
   useEffect(() => {
-    setSelectedOption(data.secondEvaluation ? 1 : 2);
+    data.secondEvaluation !== undefined ? (data.secondEvaluation ? 1 : 2) : 0;
     console.log('2차 옵션');
     console.log(selectedOption);
   }, [setSelectedOption, data.secondEvaluation, selectedOption]);
