@@ -57,7 +57,7 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                 </tr>
                 <tr>
                   <td rowSpan={2}>합격자 등록 및 서류 제출</td>
-                  <S.Left>우편 또는 방문</S.Left>
+                  <S.Left>공문 제출 또는 방문</S.Left>
                 </tr>
                 <tr>
                   <S.Left>

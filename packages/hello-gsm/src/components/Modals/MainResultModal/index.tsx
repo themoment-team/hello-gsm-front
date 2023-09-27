@@ -90,7 +90,7 @@ const MainResultModal: React.FC<ResultModal> = ({
                 <S.FinalPassPostScript>
                   제출서류 : 입학등록동의서 1부(11.7.월까지),
                   <br />
-                  건강진단서 1부(11.14.월까지)우편과 방문접수에 한함.
+                  건강진단서 1부(11.14.월까지)공문 제출과 방문접수에 한함.
                 </S.FinalPassPostScript>
               )}
             </>
