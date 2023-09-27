@@ -42,7 +42,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
     onClose();
   };
 
-  const { selectedOption, setSelectedOption } = useStore();
+  const { selectedOption, setSelectedOption, isScoreValue } = useStore();
 
   const handleSubmit = () => {
     const isNumber = (value: number) => {
