@@ -23,11 +23,11 @@ const GEDScoreResultModal: React.FC<ResultType> = ({ result, userId }) => {
         </S.Wrapper>
 
         <hr />
-        <S.MainDesc>원서를 저장했습니다.</S.MainDesc>
+        <S.MainDesc>원서를 수정했습니다.</S.MainDesc>
         <S.ConfirmSection>
           <S.Confirm onClick={setShowScoreResult}>수정</S.Confirm>
           <Link href={`/application/${userId}`} passHref>
-            <S.Confirm onClick={setShowScoreResult}>확인</S.Confirm>
+            <S.Confirm onClick={setShowScoreResult}>출력</S.Confirm>
           </Link>
         </S.ConfirmSection>
       </S.ResultSection>
