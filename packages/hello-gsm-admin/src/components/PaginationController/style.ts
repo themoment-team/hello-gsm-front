@@ -7,6 +7,7 @@ export const PaginationWrapper = styled.div`
   display: flex;
   gap: 16px;
   justify-content: space-between;
+  margin-bottom: 100px;
 `;
 
 export const NumberWrap = styled.div`
