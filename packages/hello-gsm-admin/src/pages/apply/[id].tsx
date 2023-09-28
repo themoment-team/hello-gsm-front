@@ -34,11 +34,9 @@ const Apply: NextPage = () => {
     }
   };
 
-  console.log(applicationData);
-
   useEffect(() => {
     getApplication();
-  }, [query]);
+  }, [userId]);
 
   return (
     <>

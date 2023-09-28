@@ -32,7 +32,7 @@ const Application: NextPage = () => {
 
   useEffect(() => {
     getApplication();
-  }, []);
+  }, [userId]);
 
   return (
     <>
