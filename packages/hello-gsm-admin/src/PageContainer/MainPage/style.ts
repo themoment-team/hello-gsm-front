@@ -93,7 +93,7 @@ export const Print = styled.a`
 `;
 
 export const ContentList = styled.div`
-  margin-bottom: 81px;
+  margin-bottom: 7.1vh;
   height: 688px;
 `;
 
