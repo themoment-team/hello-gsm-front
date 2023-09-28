@@ -8,7 +8,7 @@ import { css } from '@emotion/react';
 const SlideBar: React.FC = () => {
   const { push, pathname } = useRouter();
   return (
-    <S.SideBar>
+    <S.SideBar className="sideBar">
       <S.Title>Hello, GSM Admin</S.Title>
       <S.ApplicantListBox
         onClick={() => push('/')}

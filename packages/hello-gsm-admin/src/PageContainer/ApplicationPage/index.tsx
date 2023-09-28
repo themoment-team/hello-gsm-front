@@ -76,7 +76,8 @@ const ApplicationPage: NextPage<{
           @media print {
             body {
               header,
-              footer {
+              footer,
+              .sideBar {
                 display: none !important;
               }
             }

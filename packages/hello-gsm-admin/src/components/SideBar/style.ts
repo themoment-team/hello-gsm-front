@@ -4,7 +4,7 @@ export const SideBar = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 221px;
+  width: 100%;
   height: 100vh;
   background-color: #ffffff;
   border-right: 1px solid #eeeeee;
@@ -31,7 +31,7 @@ export const ApplicantListBox = styled.div`
   align-items: center;
   height: 56px;
   gap: 8px;
-  width: 221px;
+  width: 100%;
   cursor: pointer;
 `;
 
@@ -49,7 +49,7 @@ export const ApplicantList = styled.div`
 `;
 
 export const LogoutBox = styled.div`
-  width: 221px;
+  width: 100%;
   height: 73px;
   display: flex;
   align-items: center;
