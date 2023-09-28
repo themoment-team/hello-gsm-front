@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import application from 'Api/application';
-import { SEOHelmet } from 'components';
+import { SEOHelmet, SideBar } from 'components';
 import { ApplicationPage } from 'PageContainer';
 import { ApplicationResponseType } from 'type/application';
 import { useEffect, useState } from 'react';
@@ -37,6 +37,7 @@ const Application: NextPage = () => {
   return (
     <>
       <SEOHelmet seoTitle={seoTitle} desc={desc} />
+      <SideBar />
       <ApplicationPage data={applicationData} />
     </>
   );
