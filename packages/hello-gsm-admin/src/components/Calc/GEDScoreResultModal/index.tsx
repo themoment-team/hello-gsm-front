@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import useApplyStore from 'Stores/ApplyStoreContainer';
 import * as S from './style';
 
@@ -10,7 +9,6 @@ interface ResultType {
 
 const GEDScoreResultModal: React.FC<ResultType> = ({ result, userId }) => {
   const { setShowScoreResult } = useApplyStore();
-  const { push } = useRouter();
 
   return (
     <S.Background>
@@ -28,15 +26,8 @@ const GEDScoreResultModal: React.FC<ResultType> = ({ result, userId }) => {
         <S.MainDesc>원서를 저장했습니다.</S.MainDesc>
         <S.ConfirmSection>
           <S.Confirm onClick={setShowScoreResult}>수정</S.Confirm>
-          <Link href="/mypage" passHref>
-            <S.Confirm
-              onClick={() => {
-                setShowScoreResult();
-                push(`/application/${userId}`);
-              }}
-            >
-              확인
-            </S.Confirm>
+          <Link href={`/application/${userId}`} passHref>
+            <S.Confirm onClick={setShowScoreResult}>확인</S.Confirm>
           </Link>
         </S.ConfirmSection>
       </S.ResultSection>
