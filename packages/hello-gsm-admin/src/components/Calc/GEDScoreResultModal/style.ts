@@ -66,10 +66,6 @@ export const MainDesc = styled.h1`
   line-height: 50px;
 `;
 
-export const SubDesc = styled.p`
-  color: rgba(255, 255, 255, 0.69);
-`;
-
 export const Confirm = styled.button`
   width: 150px;
   height: 40px;
