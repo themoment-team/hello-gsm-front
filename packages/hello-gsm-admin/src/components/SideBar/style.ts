@@ -4,7 +4,7 @@ export const SideBar = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 221px;
   height: 100vh;
   background-color: #ffffff;
   border-right: 1px solid #eeeeee;
