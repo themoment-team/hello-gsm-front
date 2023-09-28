@@ -20,3 +20,4 @@ export { default as CrossRectangle } from './CrossRectangle';
 export { default as InputImg } from './InputImg';
 export { default as FindSchoolClose } from './FindSchoolClose';
 export { default as FindSchoolSearchIcon } from './FindSchoolSearchIcon';
+export { default as ApplicationPrintIcon } from './ApplicationPrintIcon';

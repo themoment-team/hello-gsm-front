@@ -470,7 +470,7 @@ const ApplicationPage: NextPage<{
       )}
       {/* 인쇄버튼 */}
       <S.PrintBtn onClick={TryPrint}>
-        <I.PrintIcon />
+        <I.ApplicationPrintIcon />
         <S.PrintDesc>인쇄하기</S.PrintDesc>
       </S.PrintBtn>
     </>
