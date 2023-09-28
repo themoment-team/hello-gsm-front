@@ -211,7 +211,9 @@ const CalculatorPage: NextPage<CalculatorPageProps> = ({ score, userId }) => {
 
   return (
     <>
-      {showScoreResult && <ScoreResultModal result={resultArray} />}
+      {showScoreResult && (
+        <ScoreResultModal result={resultArray} userId={userId} />
+      )}
       <S.Title>성적입력</S.Title>
 
       <S.SystemSection>

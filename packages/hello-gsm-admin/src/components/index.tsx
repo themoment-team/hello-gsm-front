@@ -21,3 +21,4 @@ export { default as DepartmentModal } from './Apply/DepartmentModal';
 export { default as FindAddressModal } from './Apply/FindAddressModal';
 export { default as FindSchoolModal } from './Apply/FindSchoolModal';
 export { default as ApplyBarBox } from './Apply/ApplyBarBox';
+export { default as ApplicantsStatus } from './Application/ApplicantsStatus';

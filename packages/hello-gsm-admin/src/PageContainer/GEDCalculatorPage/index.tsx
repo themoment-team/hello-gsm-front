@@ -92,7 +92,9 @@ const GEDCalculatorPage: NextPage<GEDCalculatorPageProps> = ({
 
   return (
     <>
-      {showScoreResult && <GEDScoreResultModal result={result} />}
+      {showScoreResult && (
+        <GEDScoreResultModal result={result} userId={userId} />
+      )}
       <S.GEDPage>
         <S.Title>성적입력(검정고시)</S.Title>
         <S.CalculateSection onSubmit={handleSubmit(onValid, inValid)}>

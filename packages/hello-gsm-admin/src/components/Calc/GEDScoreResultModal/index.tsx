@@ -1,13 +1,16 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import useApplyStore from 'Stores/ApplyStoreContainer';
 import * as S from './style';
 
 interface ResultType {
   result?: number[];
+  userId: string;
 }
 
-const GEDScoreResultModal: React.FC<ResultType> = ({ result }) => {
+const GEDScoreResultModal: React.FC<ResultType> = ({ result, userId }) => {
   const { setShowScoreResult } = useApplyStore();
+  const { push } = useRouter();
 
   return (
     <S.Background>
@@ -26,7 +29,14 @@ const GEDScoreResultModal: React.FC<ResultType> = ({ result }) => {
         <S.ConfirmSection>
           <S.Confirm onClick={setShowScoreResult}>수정</S.Confirm>
           <Link href="/mypage" passHref>
-            <S.Confirm onClick={setShowScoreResult}>확인</S.Confirm>
+            <S.Confirm
+              onClick={() => {
+                setShowScoreResult();
+                push(`/application/${userId}`);
+              }}
+            >
+              확인
+            </S.Confirm>
           </Link>
         </S.ConfirmSection>
       </S.ResultSection>
