@@ -7,7 +7,7 @@ import useStore from 'Stores/StoreContainer';
 import {
   ApplicationListType,
   CommonApplicationResponseType,
-} from 'Types/application';
+} from 'type/application';
 import { toast } from 'react-toastify';
 
 interface ModalProps {

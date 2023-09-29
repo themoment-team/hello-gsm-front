@@ -1,6 +1,6 @@
 import RequestApi from 'Utils/Libs/requestApi';
 import { StatusController } from 'Utils/Libs/requestUrls';
-import { CommonApplicationResponseType } from 'Types/application';
+import { CommonApplicationResponseType } from 'type/application';
 
 class Status {
   /**

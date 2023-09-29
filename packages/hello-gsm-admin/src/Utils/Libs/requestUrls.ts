@@ -54,7 +54,7 @@ export const ApplicationController = {
   },
   // put 특정 사용자의 원서 정보 수정하기
   userApplication: (userId: string) => {
-    return `/application/v1/status/${userId}`;
+    return `/application/v1/application/${userId}`;
   },
   // get 모든 사용자의 수험표 정보 조회하기
   tickets: () => {
