@@ -8,10 +8,10 @@ import {
 import type { NextPage } from 'next';
 import * as S from './style';
 import { useEffect, useState } from 'react';
-import { SearchApplicationInfoType } from 'Types/application';
+import { SearchApplicationInfoType } from 'type/application';
 import application from 'Api/application';
 import { useRouter } from 'next/router';
-import { SearchTagType } from 'Types/searchTag';
+import { SearchTagType } from 'type/searchTag';
 
 const MainPage: NextPage = () => {
   const [tmpValue, setTmpValue] = useState<string>('');

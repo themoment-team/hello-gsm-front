@@ -16,6 +16,7 @@
     "emotion-reset": "^3.0.1",
     "next": "latest",
     "react": "17.0.2",
+    "react-daum-postcode": "^3.1.3",
     "react-dom": "17.0.2",
     "react-hook-form": "^7.31.1",
     "react-toastify": "^9.0.8",

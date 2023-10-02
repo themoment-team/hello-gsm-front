@@ -1,5 +1,5 @@
 import React from 'react';
-import { ApplicationListType } from 'Types/application';
+import { ApplicationListType } from 'type/application';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 interface ModalInputProps {

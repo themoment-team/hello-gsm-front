@@ -6,7 +6,7 @@ import { SearchIcon } from 'Assets/svg';
 
 import { PrintButton } from 'components';
 
-import { SearchTagType } from 'Types/searchTag';
+import { SearchTagType } from 'type/searchTag';
 import { useRouter } from 'next/router';
 
 interface ListHeaderType {
