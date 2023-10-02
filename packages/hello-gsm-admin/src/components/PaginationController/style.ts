@@ -8,10 +8,6 @@ export const PaginationWrapper = styled.div`
   gap: 16px;
   justify-content: space-between;
   margin-bottom: 100px;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
 `;
 
 export const NumberWrap = styled.div`
