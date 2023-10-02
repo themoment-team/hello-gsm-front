@@ -45,7 +45,7 @@ const ChannelTalk = () => {
       "pluginKey": "${process.env.NEXT_PUBLIC_CHANNEL_IO_KEY}"
       "memberId":"hellogsm@gsm.hs.kr"
       },
-      "memberHash":"807533003f27a3c6014b7290a15a120b8813008868dafde7a6e0d8d099c6d10c"
+      "memberHash": "${process.env.NEXT_PUBLIC_CHANNEL_IO_MEMBERHASH}"
       );
         `,
       }}
