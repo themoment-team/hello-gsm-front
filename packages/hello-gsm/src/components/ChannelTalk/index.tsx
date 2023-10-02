@@ -4,6 +4,7 @@ import Script from 'next/script';
 const ChannelTalk = () => {
   return (
     <Script
+      id="hellogsmChannelTalk"
       dangerouslySetInnerHTML={{
         __html: `(function() {
           var w = window;
@@ -42,7 +43,10 @@ const ChannelTalk = () => {
       })();
       ChannelIO('boot', {
       "pluginKey": "${process.env.NEXT_PUBLIC_CHANNEL_IO_KEY}"
-      });
+      "memberId":"hellogsm@gsm.hs.kr"
+      },
+      "memberHash":"807533003f27a3c6014b7290a15a120b8813008868dafde7a6e0d8d099c6d10c"
+      );
         `,
       }}
     />
