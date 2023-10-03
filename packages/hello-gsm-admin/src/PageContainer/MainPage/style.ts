@@ -8,7 +8,7 @@ export const MainPage = styled.div`
 
 export const MainPageContent = styled.div`
   margin-left: calc(13.8125rem + 2rem);
-  width: 96.875rem;
+  width: 80vw;
   margin-top: 5.25rem;
 `;
 
@@ -92,40 +92,4 @@ export const Print = styled.a`
 export const ContentList = styled.div`
   margin-bottom: 5.0625rem;
   height: 43rem;
-`;
-
-export const Target = styled.div`
-  width: 100%;
-`;
-
-const Ball = styled.div`
-  border-radius: 100%;
-  position: absolute;
-  z-index: -1;
-`;
-
-export const BlueBall = styled(Ball)`
-  width: 57.5rem;
-  height: 57.5rem;
-  left: -34.375rem;
-  bottom: -23.125rem;
-  background: linear-gradient(
-    201.42deg,
-    rgba(123, 232, 255, 0.63) 13.47%,
-    rgba(63, 152, 255, 0.63) 33.16%,
-    rgba(0, 33, 65, 0.4284) 80.28%
-  );
-`;
-
-export const SkyBlueBall = styled(Ball)`
-  width: 17.5rem;
-  height: 17.5rem;
-  bottom: -7.5rem;
-  right: -3.75rem;
-  background: linear-gradient(
-    207.52deg,
-    rgba(210, 247, 255, 0.6) 13.95%,
-    rgba(97, 197, 219, 0.6) 37.16%,
-    rgba(0, 132, 201, 0.162) 91.31%
-  );
 `;

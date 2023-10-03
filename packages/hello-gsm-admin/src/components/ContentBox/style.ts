@@ -138,15 +138,17 @@ export const EditButtonBox = styled.div`
 `;
 
 export const EditButton = styled.button`
+  width: 6.375rem;
+  height: 2.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 0.3125rem;
   background: rgba(0, 0, 0, 0);
   color: #2174d8;
   border: 0.0625rem solid #2174d8;
   border-radius: 0.625rem;
-  gap: 0.3125rem;
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
 
