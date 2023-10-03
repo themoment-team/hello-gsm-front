@@ -11,7 +11,7 @@ export const MainPage = styled.div`
 
 export const MainPageContent = styled.div`
   width: 1530px;
-  padding: 84px 60px 0 0;
+  padding: 84px 60px 60px 0;
 `;
 
 export const FunctionBox = styled.div`
