@@ -26,17 +26,17 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
             <S.Table>
               <tbody>
                 <tr>
-                  <td style={{ width: '50%' }} colSpan={2}>
+                  <td style={{ width: '55%' }} colSpan={2}>
                     수험자 안내사항
                   </td>
-                  <td style={{ width: '50%' }} colSpan={3}>
+                  <td style={{ width: '45%' }} colSpan={3}>
                     수 험 표
                   </td>
                 </tr>
                 <tr>
-                  <td style={{ width: '15%' }}>2차 전형 (직무적성소양평가)</td>
-                  <S.Left>2023.10.27.(금) 14:30 ~ 16:30</S.Left>
-                  <td rowSpan={6} style={{ width: '30%', height: '100%' }}>
+                  <td>2차 전형 (직무적성소양평가)</td>
+                  <S.Left>2023.10.27.(금) 13:00 ~ 16:1s0</S.Left>
+                  <td rowSpan={6} style={{ width: '20%' }}>
                     {user.applicantImageUri && (
                       <img src={user.applicantImageUri} alt="증명사진 오류" />
                     )}
@@ -98,8 +98,6 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                 </tr>
               </tbody>
             </S.Table>
-
-            <S.Dash />
           </S.Ticket>
         );
       })}

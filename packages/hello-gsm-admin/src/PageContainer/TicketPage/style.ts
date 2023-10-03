@@ -13,9 +13,9 @@ export const TicketPage = styled.div`
 
 export const Ticket = styled.div`
   width: 63vh;
-  height: 40vh;
+  height: 380px;
 
-  margin: 0px auto 100px;
+  margin: 0px auto 180px;
 
   :nth-child(2n) {
     margin: 100px auto 150px;
