@@ -10,61 +10,59 @@ export const MainPage = styled.div`
 `;
 
 export const MainPageContent = styled.div`
-  width: 1530px;
-  margin-left: auto;
-  padding: 84px 60px 0 0;
+  margin: 5.25rem auto;
 `;
 
 export const FunctionBox = styled.div`
   width: 100%;
-  height: 45px;
+  height: 2.8125rem;
   display: flex;
   justify-content: space-between;
 `;
 
 export const CountBox = styled.div`
-  width: 210px;
+  width: 13.125rem;
   height: 100%;
   background: #ffffff;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 1.125rem;
   color: #0f0921;
 `;
 
 export const Searchbox = styled.div`
-  width: 650px;
+  width: 40.625rem;
   height: 100%;
   background: #ffffff;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   display: flex;
 `;
 
 export const SearchInput = styled.input`
-  width: 560px;
+  width: 35rem;
   border: none;
-  padding-left: 25px;
-  border-radius: 10px;
+  padding-left: 1.5625rem;
+  border-radius: 0.625rem;
   outline: none;
   font-weight: 900;
-  font-size: 18px;
+  font-size: 1.125rem;
   ::placeholder {
     font-weight: 500;
-    font-size: 18px;
+    font-size: 1.125rem;
     color: rgba(0, 0, 0, 0.48);
   }
 `;
 
 export const SearchButton = styled.div`
-  width: 90px;
+  width: 5.625rem;
   height: 100%;
   background: #19baff;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 1.25rem;
   color: rgba(0, 0, 0, 0.75);
   display: flex;
   justify-content: center;
@@ -73,28 +71,28 @@ export const SearchButton = styled.div`
 `;
 
 export const ButtonBox = styled.div`
-  width: 300px;
+  width: 18.75rem;
   display: flex;
   justify-content: space-between;
 `;
 
 export const Print = styled.a`
-  width: 140px;
+  width: 8.75rem;
   height: 100%;
   background: #19baff;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   color: rgba(0, 0, 0, 0.75);
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 1.25rem;
   cursor: pointer;
 `;
 
 export const ContentList = styled.div`
-  margin-bottom: 81px;
-  height: 688px;
+  margin-bottom: 5.0625rem;
+  height: 43rem;
 `;
 
 export const Target = styled.div`
@@ -108,10 +106,10 @@ const Ball = styled.div`
 `;
 
 export const BlueBall = styled(Ball)`
-  width: 920px;
-  height: 920px;
-  left: -550px;
-  bottom: -370px;
+  width: 57.5rem;
+  height: 57.5rem;
+  left: -34.375rem;
+  bottom: -23.125rem;
   background: linear-gradient(
     201.42deg,
     rgba(123, 232, 255, 0.63) 13.47%,
@@ -121,10 +119,10 @@ export const BlueBall = styled(Ball)`
 `;
 
 export const SkyBlueBall = styled(Ball)`
-  width: 280px;
-  height: 280px;
-  bottom: -120px;
-  right: -60px;
+  width: 17.5rem;
+  height: 17.5rem;
+  bottom: -7.5rem;
+  right: -3.75rem;
   background: linear-gradient(
     207.52deg,
     rgba(210, 247, 255, 0.6) 13.95%,
