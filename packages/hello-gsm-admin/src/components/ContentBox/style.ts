@@ -26,7 +26,7 @@ export const ModalContainer = styled.div`
 `;
 
 export const Content = styled.div`
-  width: 75.3125rem;
+  width: 64vw;
   height: 100%;
   display: flex;
   align-items: center;
@@ -133,10 +133,8 @@ export const FinalResultText = styled.p`
 
 export const EditButtonBox = styled.div`
   display: flex;
-  justify-content: center;
+  gap: 1rem;
   align-items: center;
-  gap: 0.9375rem;
-  width: 16.25rem;
 `;
 
 export const EditButton = styled.button`

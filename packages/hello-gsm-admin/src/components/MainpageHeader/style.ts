@@ -9,7 +9,7 @@ export const Header = styled.div`
 `;
 
 export const ContentBox = styled.div`
-  width: 76.25rem;
+  width: 64.5vw;
   height: 100%;
   display: flex;
   justify-content: space-between;

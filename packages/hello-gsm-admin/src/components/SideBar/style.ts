@@ -11,18 +11,12 @@ export const SideBar = styled.div`
 `;
 
 export const Title = styled.div`
-  width: 10.375rem;
-  height: 5.875rem;
-  font-family: Product Sans;
+  height: 4.375rem;
   font-size: 1.25rem;
   font-weight: 700;
-  line-height: 1.5rem;
-  text-align: left;
+  line-height: 4.375rem;
+  text-align: center;
   color: black;
-  margin: 0 auto;
-  height: 4.375rem;
-  display: flex;
-  align-items: center;
 `;
 
 export const ApplicantListBox = styled.div`

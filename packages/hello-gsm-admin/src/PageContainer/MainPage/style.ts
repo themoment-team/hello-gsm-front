@@ -4,13 +4,12 @@ export const MainPage = styled.div`
   width: 100vw;
   height: 100vh;
   position: relative;
-  display: flex;
-  justify-content: center;
-  overflow-x: hidden;
 `;
 
 export const MainPageContent = styled.div`
-  margin: 5.25rem auto;
+  margin-left: calc(13.8125rem + 2rem);
+  width: 96.875rem;
+  margin-top: 5.25rem;
 `;
 
 export const FunctionBox = styled.div`
