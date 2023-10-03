@@ -79,6 +79,7 @@ const MainPage: NextPage = () => {
               />
             );
           })}
+          <PaginationController totalPages={20} pageNumber={pageNumber} />
         </S.ContentList>
         {/* {applicationData?.info.totalPages ? (
           <PaginationController
@@ -88,7 +89,6 @@ const MainPage: NextPage = () => {
         ) : (
           ''
         )} */}
-        <PaginationController totalPages={20} pageNumber={pageNumber} />
       </S.MainPageContent>
     </S.MainPage>
   );
