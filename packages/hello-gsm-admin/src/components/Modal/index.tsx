@@ -42,14 +42,19 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
     onClose();
   };
 
-  const { selectedOption, setSelectedOption, isScoreValue } = useStore();
+  const {
+    selectedOption,
+    setSelectedOption,
+    isScoreValue,
+    isOptionSelect,
+    setIsOptionSelect,
+  } = useStore();
 
   const handleSubmit = () => {
     const isNumber = (value: number) => {
       return !isNaN(Number(value));
     };
     const updatedData = { ...submittedApplyData };
-
     switch (showModalOption) {
       case 1:
         updatedData.isPrintsArrived = selectedOption === 1 ? true : false;
@@ -68,6 +73,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
           toast.error('입력하신 값이 숫자가 아닙니다.');
           return;
         }
+        setIsOptionSelect(true);
         break;
     }
     setSubmittedApplyData(updatedData);

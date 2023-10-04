@@ -11,14 +11,23 @@ const ModalButton: React.FC<ModalButtonProps> = ({
   showModalOption,
   ...props
 }) => {
-  const { selectedOption, isButtonActive, setIsButtonActive, isScoreValue } =
-    useStore();
+  const {
+    selectedOption,
+    isButtonActive,
+    setIsButtonActive,
+    isScoreValue,
+    isOptionSelect,
+  } = useStore();
   useEffect(() => {
     if (buttonTitle === '다음') {
       setIsButtonActive(showModalOption === 0 ? true : false);
     } else {
-      setIsButtonActive(selectedOption === 0 ? true : false);
-      setIsButtonActive(isScoreValue);
+      if (isOptionSelect) {
+        setIsButtonActive(selectedOption === 0 ? true : false);
+      }
+      if (isScoreValue !== null) {
+        setIsButtonActive(false);
+      }
     }
   }, [buttonTitle, showModalOption, selectedOption, isScoreValue]);
   return (
