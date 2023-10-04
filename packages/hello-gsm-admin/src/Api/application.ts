@@ -1,3 +1,4 @@
+import { ApplicationFormType } from 'type/application';
 import RequestApi from 'Utils/Libs/requestApi';
 import { ApplicationController } from 'Utils/Libs/requestUrls';
 
@@ -37,11 +38,12 @@ class Application {
    * @param userId - 특정 사용자의 Id
    * @returns - 수정 결과가 반환됩니다.
    */
-  putUserApplication(userId: string) {
+  putUserApplication(data: ApplicationFormType, userId: string) {
     try {
       return RequestApi({
         method: 'PUT',
         url: ApplicationController.userApplication(userId),
+        data,
       });
     } catch (error: any) {
       return error;

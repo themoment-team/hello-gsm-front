@@ -10,6 +10,7 @@ export const Modal = styled.div`
   align-items: center;
   flex-direction: column;
   height: 32.0625rem;
+  position: absolute;
 `;
 
 export const ModalContent = styled.div`
@@ -21,6 +22,7 @@ export const ModalContent = styled.div`
   width: '53rem';
   height: '27.5625rem';
 `;
+
 export const ButtonBox = styled.div`
   display: flex;
   align-items: center;
@@ -37,9 +39,7 @@ export const ModalOption = styled.button`
 
 export const XIcon = styled.div`
   height: 24px;
-  width: 888px;
   display: flex;
-  cursor: pointer;
   justify-content: end;
   padding-right: 20px;
 `;

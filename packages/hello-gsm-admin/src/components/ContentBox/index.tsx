@@ -1,26 +1,15 @@
+import React, { useState } from 'react';
 import { css } from '@emotion/react';
-import application from 'Api/application';
-import auth from 'Api/auth';
-import React, { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
-import {
-  isDuringFinalResult,
-  isStartFinalResult,
-  isStartFirstResult,
-} from 'shared/acceptable';
-import useStore from 'Stores/StoreContainer';
-import {
-  ApplicantType,
-  SearchApplicationInfoType,
-  ApplicationListType,
-  EvaluationStatusType,
-} from 'Types/application';
 import * as S from './style';
 import * as I from 'Assets/svg';
+import { ApplicationListType, EvaluationStatusType } from 'type/application';
 import formatScreening from 'Utils/Libs/formatScreening';
+import { Modal } from 'components';
+import { useRouter } from 'next/router';
 
 interface ContentBoxProp {
   content: ApplicationListType;
+  getApplicationList: () => void;
 }
 
 type resultObjectType = {
@@ -35,28 +24,15 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     teacherPhoneNumber,
     guardianPhoneNumber,
     screening,
-    isFinalSubmitted,
+    schoolName,
     isPrintsArrived,
     firstEvaluation,
     secondEvaluation,
-    schoolName,
     secondScore,
   },
+  content,
+  getApplicationList,
 }) => {
-  const firstResult: EvaluationStatusType = firstEvaluation;
-  const finalResult: EvaluationStatusType = secondEvaluation;
-  const [score, setScore] = useState<number | null>(secondScore || null);
-  const [documentReception, setDocumentReception] = useState<boolean>(true);
-  const {
-    showScoreModal,
-    setShowScoreModal,
-    setModalName,
-    modalRegistrationNumber,
-    setModalRegistrationNumber,
-    scoreModalValue,
-    setScoreModalValue,
-  } = useStore();
-
   const formattedCellphoneNumber = applicantPhoneNumber.replace(
     /(\d{3})(\d{4})(\d{4})/,
     '$1-$2-$3',
@@ -70,6 +46,8 @@ const ContentBox: React.FC<ContentBoxProp> = ({
       ? teacherPhoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')
       : '검정고시';
 
+  const [showStatusModal, setShowStatusModal] = useState<boolean>(false);
+  const { push } = useRouter();
   const resultStyle = {
     NOT_YET: css`
       color: #9e9e9e;
@@ -94,14 +72,27 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     return resultObject[result];
   };
 
+  const onCloseShowStatusModal = () => {
+    setShowStatusModal(false);
+  };
+
   return (
     <S.ContentBox>
+      {showStatusModal && (
+        <S.ModalContainer>
+          <Modal
+            data={content}
+            onClose={onCloseShowStatusModal}
+            getApplicationList={getApplicationList}
+          />
+        </S.ModalContainer>
+      )}
       <S.Content>
         <S.RegistrationNumber>
           {String(applicationId).padStart(4, '0')}
         </S.RegistrationNumber>
         <S.isDocumentReception>
-          <S.DocumentReceptionText documentReception={documentReception}>
+          <S.DocumentReceptionText isPrintsArrived={isPrintsArrived}>
             · {isPrintsArrived ? '제출' : '미제출'}
           </S.DocumentReceptionText>
         </S.isDocumentReception>
@@ -111,26 +102,26 @@ const ContentBox: React.FC<ContentBoxProp> = ({
         <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
         <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
         <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
-        <S.FirstResultText css={resultStyle[firstResult]}>
-          {formatResult(firstResult)}
+        <S.FirstResultText css={resultStyle[firstEvaluation]}>
+          {formatResult(firstEvaluation)}
         </S.FirstResultText>
         <S.FinalScoreText
           css={css`
-            color: ${score ? '#212121' : '#9E9E9E'};
+            color: ${secondScore ? '#212121' : '#9E9E9E'};
           `}
         >
-          {score ?? '미입력'}
+          {secondScore ?? '미입력'}
         </S.FinalScoreText>
-        <S.FinalResultText css={resultStyle[finalResult]}>
-          {formatResult(finalResult)}
+        <S.FinalResultText css={resultStyle[secondEvaluation]}>
+          {formatResult(secondEvaluation)}
         </S.FinalResultText>
       </S.Content>
       <S.EditButtonBox>
-        <S.EditButton>
+        <S.EditButton onClick={() => setShowStatusModal(true)}>
           <I.BulbIcon />
           상태 수정
         </S.EditButton>
-        <S.EditButton>
+        <S.EditButton onClick={() => push(`/apply/${applicationId}`)}>
           <I.EditIcon />
           원서 수정
         </S.EditButton>

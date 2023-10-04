@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 
 export const PrintButton = styled.button`
   display: flex;
-  padding: 8px 12px;
+  padding: 0.5rem 0.75rem;
   justify-content: space-between;
-  gap: 2px;
-  border-radius: 10px;
+  gap: 0.125rem;
+  border-radius: 0.625rem;
   background: #2174d8;
   align-items: center;
   cursor: pointer;
@@ -41,7 +41,7 @@ export const PrintButton = styled.button`
 
 export const PrintText = styled.span`
   color: #fff;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
-  line-height: 24px;
+  line-height: 1.5rem;
 `;

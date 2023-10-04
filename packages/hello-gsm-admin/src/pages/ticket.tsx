@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import { TicketPage } from 'PageContainer';
-import { TicketDataType, TicketType } from 'Types/ticket';
+import { TicketDataType, TicketType } from 'type/ticket';
 import { toast } from 'react-toastify';
 import application from 'Api/application';
 import { useEffect, useState } from 'react';

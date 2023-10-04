@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const ModalResult = styled.div`
+export const ModalFirstEvaluationSubmit = styled.div`
   width: 26rem;
   display: flex;
 `;

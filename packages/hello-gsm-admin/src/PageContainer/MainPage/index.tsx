@@ -7,16 +7,13 @@ import {
 } from 'components';
 import type { NextPage } from 'next';
 import * as S from './style';
-import useStore from 'Stores/StoreContainer';
-import { css, Global } from '@emotion/react';
 import { useEffect, useState } from 'react';
-import { SearchApplicationInfoType } from 'Types/application';
+import { SearchApplicationInfoType } from 'type/application';
 import application from 'Api/application';
 import { useRouter } from 'next/router';
-import { SearchTagType } from 'Types/searchTag';
+import { SearchTagType } from 'type/searchTag';
 
 const MainPage: NextPage = () => {
-  const { showScoreModal } = useStore();
   const [tmpValue, setTmpValue] = useState<string>('');
   const [searchKeyword, setSearchKeyword] = useState<string>('');
   const [searchTag, setSearchTag] = useState<SearchTagType>('APPLICANT');
@@ -48,6 +45,8 @@ const MainPage: NextPage = () => {
     }
   };
 
+  const getList = () => getApplicationList(pageNumber);
+
   useEffect(() => {
     getApplicationList(pageNumber);
   }, [pageNumber, searchKeyword, searchTag]);
@@ -72,7 +71,13 @@ const MainPage: NextPage = () => {
         <MainpageHeader />
         <S.ContentList>
           {applicationData?.applications.map(data => {
-            return <ContentBox content={data} key={data.applicationId} />;
+            return (
+              <ContentBox
+                content={data}
+                key={data.applicationId}
+                getApplicationList={getList}
+              />
+            );
           })}
         </S.ContentList>
         {applicationData?.info.totalPages ? (

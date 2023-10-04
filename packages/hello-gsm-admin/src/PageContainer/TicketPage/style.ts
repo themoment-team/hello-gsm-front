@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const TicketPage = styled.div`
-  padding-top: 50px;
+  padding-top: 3.125rem;
   background-color: #ffffff;
   @media print {
     div {
@@ -13,12 +13,12 @@ export const TicketPage = styled.div`
 
 export const Ticket = styled.div`
   width: 63vh;
-  height: 40vh;
+  height: 23.75rem;
 
-  margin: 0px auto 100px;
+  margin: 0rem auto 11.25rem;
 
   :nth-child(2n) {
-    margin: 100px auto 150px;
+    margin: 6.25rem auto 9.375rem;
   }
 `;
 
@@ -27,11 +27,11 @@ export const Table = styled.table`
   height: 100%;
   text-align: center;
   border-collapse: collapse;
-  font-size: 12px;
-  line-height: 20px;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
   font-weight: 100;
   td {
-    border: 1px solid #000;
+    border: 0.0625rem solid #000;
     border-collapse: collapse;
     vertical-align: middle;
   }
@@ -56,18 +56,18 @@ export const Slash = styled.td`
 
 export const Left = styled.td`
   text-align: left;
-  padding-left: 10px;
+  padding-left: 0.625rem;
 `;
 
 export const Right = styled.p`
   text-align: right;
-  padding-right: 10px;
+  padding-right: 0.625rem;
 `;
 
 export const Dash = styled.div`
-  border-top: 1px dashed red;
+  border-top: 0.0625rem dashed red;
   width: 100%;
-  margin-top: 30px;
+  margin-top: 1.875rem;
 `;
 
 export const PrintBtn = styled.button`

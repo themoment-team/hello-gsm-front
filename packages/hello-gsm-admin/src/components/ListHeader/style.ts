@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const ListHeaderWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.25rem;
 `;
 
 export const ListHeaderContent = styled.div`
@@ -16,9 +16,9 @@ export const TitleWrapper = styled.div`
 `;
 
 const Title = styled.h5`
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 600;
-  line-height: 27px;
+  line-height: 1.6875rem;
 `;
 
 export const FinalSubmit = styled(Title)`
@@ -31,11 +31,11 @@ export const SubmitNumber = styled(Title)`
 
 export const SearchInputBox = styled.div`
   display: flex;
-  width: 340px;
-  padding: 12px 16px 12px 20px;
+  width: 21.25rem;
+  padding: 0.75rem 1rem 0.75rem 1.25rem;
   justify-content: space-between;
-  border-radius: 10px;
-  border: 1px solid #e0e0e0;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #e0e0e0;
 
   & > input::placeholder {
     color: #9e9e9e;
@@ -44,9 +44,9 @@ export const SearchInputBox = styled.div`
 
 export const SearchInput = styled.input`
   width: 100%;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
-  line-height: 20px;
+  line-height: 1.25rem;
   border: 0;
   outline: none;
   color: black;
@@ -57,25 +57,25 @@ export const SearchInput = styled.input`
 
 export const ButtonWrapper = styled.div`
   display: flex;
-  gap: 16px;
+  gap: 1rem;
 `;
 
 export const SelectWrapper = styled.div`
-  width: 113px;
-  border-radius: 10px;
-  border: 1px solid #e0e0e0;
+  width: 7.0625rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #e0e0e0;
   background: #fff;
-  padding-left: 16px;
+  padding-left: 1rem;
 `;
 
 export const SelectBox = styled.select`
-  height: 44px;
+  height: 2.75rem;
   border: 0;
   background: #fff;
   outline: none;
 
   color: #000;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
-  line-height: 20px;
+  line-height: 1.25rem;
 `;
