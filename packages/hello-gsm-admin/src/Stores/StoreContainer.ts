@@ -12,7 +12,7 @@ interface StoreType {
 }
 
 const useStore = create<StoreType>(set => ({
-  selectedOption: null,
+  selectedOption: 0,
   isButtonActive: false,
   isScoreValue: null,
   isOptionSelect: false,
