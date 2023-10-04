@@ -34,7 +34,14 @@ const ModalButton: React.FC<ModalButtonProps> = ({
         setIsButtonActive(false);
       }
     }
-  }, [buttonTitle, showModalOption, selectedOption, isScoreValue]);
+  }, [
+    buttonTitle,
+    showModalOption,
+    selectedOption,
+    isScoreValue,
+    isOptionSelect,
+    isButtonActive,
+  ]);
   return (
     <S.ModalButton
       isConfirm={isButtonActive}
