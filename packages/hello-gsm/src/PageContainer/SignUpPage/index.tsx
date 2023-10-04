@@ -290,15 +290,15 @@ const SignUpPage: NextPage = () => {
                   },
                 })}
               />
+              <S.ErrorMessage css={errors.code && selectErrorStyle(380)}>
+                {errors.code?.message}
+              </S.ErrorMessage>
               <S.CertificationButton
                 onClick={() => checkCertificationNumber(watch('code'))}
                 type="button"
               >
                 확인
               </S.CertificationButton>
-              <S.ErrorMessage css={errors.code && selectErrorStyle(380)}>
-                {errors.code?.message}
-              </S.ErrorMessage>
             </S.TelNumContainer>
           )}
           <S.ErrorMessage css={errors.phoneNumber && selectErrorStyle(380)}>
