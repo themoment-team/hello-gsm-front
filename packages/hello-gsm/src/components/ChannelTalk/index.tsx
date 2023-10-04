@@ -9,44 +9,43 @@ const ChannelTalk = () => {
         __html: `(function() {
           var w = window;
           if (w.ChannelIO) {
-          return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
+            return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
           }
           var ch = function() {
-          ch.c(arguments);
+            ch.c(arguments);
           };
           ch.q = [];
           ch.c = function(args) {
-          ch.q.push(args);
+            ch.q.push(args);
           };
           w.ChannelIO = ch;
           function l() {
-          if (w.ChannelIOInitialized) {
+            if (w.ChannelIOInitialized) {
               return;
-          }
-          w.ChannelIOInitialized = true;
-          var s = document.createElement('script');
-          s.type = 'text/javascript';
-          s.async = true;
-          s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
-          s.charset = 'UTF-8';
-          var x = document.getElementsByTagName('script')[0];
-          x.parentNode.insertBefore(s, x);
+            }
+            w.ChannelIOInitialized = true;
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+            s.charset = 'UTF-8';
+            var x = document.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(s, x);
           }
           if (document.readyState === 'complete') {
-          l();
+            l();
           } else if (window.attachEvent) {
-          window.attachEvent('onload', l);
+            window.attachEvent('onload', l);
           } else {
-          window.addEventListener('DOMContentLoaded', l, false);
-          window.addEventListener('load', l, false);
+            window.addEventListener('DOMContentLoaded', l, false);
+            window.addEventListener('load', l, false);
           }
-      })();
-      ChannelIO('boot', {
-      "pluginKey": "${process.env.NEXT_PUBLIC_CHANNEL_IO_KEY}"
-      "memberId":"ThemomentHellogsmChannelTalk"
-      },
-      "memberHash": "${process.env.NEXT_PUBLIC_CHANNEL_IO_MEMBERHASH}"
-      );
+        })();
+        ChannelIO('boot', {
+          "pluginKey": "42749bf3-df17-49ec-9c34-422e45ef0d07",
+          "memberId": "ThemomentHellogsmChannelTalk",
+          "memberHash": "17c5f8aa373cec7f8d01cb55d936139a7e4103566aa3a52f951a4546681b5ec5"
+        });
         `,
       }}
     />
