@@ -44,6 +44,11 @@ const ModalButton: React.FC<ModalButtonProps> = ({
     isOptionSelect,
     isButtonActive,
   ]);
+
+  useEffect(() => {
+    console.log('new');
+    console.log(isOptionSelect);
+  }, [isOptionSelect]);
   return (
     <S.ModalButton
       isConfirm={isButtonActive}
