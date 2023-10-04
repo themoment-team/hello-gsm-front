@@ -93,6 +93,7 @@ export const Print = styled.a`
 
 export const ContentList = styled.div`
   height: 688px;
+  margin-bottom: 81px;
 `;
 
 export const Target = styled.div`
