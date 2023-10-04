@@ -43,7 +43,7 @@ const ChannelTalk = () => {
       })();
       ChannelIO('boot', {
       "pluginKey": "${process.env.NEXT_PUBLIC_CHANNEL_IO_KEY}"
-      "memberId":"hellogsm@gsm.hs.kr"
+      "memberId":"ThemomentHellogsmChannelTalk"
       },
       "memberHash": "${process.env.NEXT_PUBLIC_CHANNEL_IO_MEMBERHASH}"
       );
