@@ -26,17 +26,17 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
             <S.Table>
               <tbody>
                 <tr>
-                  <td style={{ width: '50%' }} colSpan={2}>
+                  <td style={{ width: '55%' }} colSpan={2}>
                     수험자 안내사항
                   </td>
-                  <td style={{ width: '50%' }} colSpan={3}>
+                  <td style={{ width: '45%' }} colSpan={3}>
                     수 험 표
                   </td>
                 </tr>
                 <tr>
-                  <td style={{ width: '15%' }}>2차 전형 (직무적성소양평가)</td>
-                  <S.Left>2023.10.27.(금) 14:30 ~ 16:30</S.Left>
-                  <td rowSpan={6} style={{ width: '30%', height: '100%' }}>
+                  <td>2차 전형 (직무적성소양평가)</td>
+                  <S.Left>2023. 10. 27.(금) 13:00 ~ 16:10</S.Left>
+                  <td rowSpan={6} style={{ width: '20%' }}>
                     {user.applicantImageUri && (
                       <img src={user.applicantImageUri} alt="증명사진 오류" />
                     )}
@@ -51,17 +51,17 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                   <td>{user.applicantName}</td>
                 </tr>
                 <tr>
-                  <S.Left>2023.11. 1.(수) 10:00</S.Left>
+                  <S.Left>2023. 11. 1.(수) 10:00</S.Left>
                   <S.Subject rowSpan={2}>생년월일</S.Subject>
                   <td rowSpan={2}>{Formatbirth}</td>
                 </tr>
                 <tr>
                   <td rowSpan={2}>합격자 등록 및 서류 제출</td>
-                  <S.Left>공문 제출 또는 방문</S.Left>
+                  <S.Left>공문 및 방문 제출</S.Left>
                 </tr>
                 <tr>
                   <S.Left>
-                    2023.11. 1.(수) ~ 2023.11. 6.(월) <br />
+                    2023. 11. 1.(수) ~ 2023. 11. 6.(월) <br />
                     09:00 ~ 17:00 (토·일요일 제외, <br />
                     마감시간 이전 도착분에 한하여 유효함.)
                   </S.Left>
@@ -70,15 +70,13 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                 </tr>
                 <tr>
                   <td>합격자 서류</td>
-                  <S.Left>
-                    건강진단서 1부 <br /> 입학등록동의서 1부
-                  </S.Left>
+                  <S.Left>공고문 참조</S.Left>
                   <S.Subject>전형구분</S.Subject>
                   <td>{formatScreening(user.screening)}</td>
                 </tr>
                 <tr>
                   <td>신입생 비전캠프</td>
-                  <S.Left>2024. 1. 10.(월) ~ 2024. 1.12.(수) 예정</S.Left>
+                  <S.Left>2024. 1. 10.(수) ~ 2024. 1. 12.(금) 예정</S.Left>
                   <td rowSpan={2} colSpan={2}>
                     위 사람은 2024학년도 <br /> 본교 신입생 입학전형 지원자임을
                     확인함.
@@ -98,8 +96,6 @@ const TicketPage: NextPage<TicketDataType> = ({ data }) => {
                 </tr>
               </tbody>
             </S.Table>
-
-            <S.Dash />
           </S.Ticket>
         );
       })}
