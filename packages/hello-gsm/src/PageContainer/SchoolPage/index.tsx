@@ -24,26 +24,6 @@ const EmploymentRate = [
     ratio: 79,
     number: 59,
   },
-  {
-    year: 2024,
-    ratio: null,
-    number: null,
-  },
-  {
-    year: 2025,
-    ratio: null,
-    number: null,
-  },
-  {
-    year: 2026,
-    ratio: null,
-    number: null,
-  },
-  {
-    year: 2027,
-    ratio: null,
-    number: null,
-  },
 ];
 
 const SchoolPage: NextPage = () => {
@@ -109,10 +89,9 @@ const SchoolPage: NextPage = () => {
             ))}
             <S.Line />
             <S.TotalWrapper>
-              <S.SmallTotal>
+              <S.MiddleTotal>
                 {EmploymentRate[curIndex].year} 취업자 수
-              </S.SmallTotal>
-              <S.MiddleTotal>올해 취업자 수</S.MiddleTotal>
+              </S.MiddleTotal>
               <S.BigTotal>{EmploymentRate[curIndex].number}명</S.BigTotal>
               <S.FlippedTotal>
                 {EmploymentRate[curIndex].number}명

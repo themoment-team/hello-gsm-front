@@ -230,23 +230,10 @@ export const BigTotal = styled.p`
 
 export const MiddleTotal = styled(BigTotal)`
   font-size: 2.5rem;
-  line-height: 3.625rem;
+  line-height: normal;
 
   @media (max-width: 500px) {
     font-size: 1.5rem;
-    line-height: 2.6875rem;
-  }
-`;
-
-export const SmallTotal = styled(BigTotal)`
-  font-size: 1.5rem;
-  line-height: 2.1875rem;
-  margin-bottom: 0.875rem;
-
-  @media (max-width: 500px) {
-    margin-bottom: 0rem;
-    font-size: 1.2rem;
-    line-height: 1.6875rem;
   }
 `;
 

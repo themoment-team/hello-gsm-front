@@ -6,14 +6,16 @@ export const PaginationWrapper = styled.div`
   margin: 0 auto;
   display: flex;
   gap: 1rem;
+  justify-content: space-between;
 `;
 
 export const NumberWrap = styled.div`
+  width: 6.875rem;
   height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 1rem;
+  justify-content: space-between;
 `;
 
 export const PaginationButton = styled.button`
