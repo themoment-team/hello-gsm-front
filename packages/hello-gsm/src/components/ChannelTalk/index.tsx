@@ -4,7 +4,7 @@ import Script from 'next/script';
 const ChannelTalk = () => {
   return (
     <Script
-      id="hellogsmChannelTalk"
+      id="ThemomentHellogsmChannelTalk"
       dangerouslySetInnerHTML={{
         __html: `(function() {
           var w = window;
