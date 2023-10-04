@@ -290,7 +290,7 @@ const SignUpPage: NextPage = () => {
                   },
                 })}
               />
-              <S.ErrorMessage css={errors.code && selectErrorStyle(380)}>
+              <S.ErrorMessage css={errors.code && selectErrorStyle(576)}>
                 {errors.code?.message}
               </S.ErrorMessage>
               <S.CertificationButton
@@ -301,7 +301,7 @@ const SignUpPage: NextPage = () => {
               </S.CertificationButton>
             </S.TelNumContainer>
           )}
-          <S.ErrorMessage css={errors.phoneNumber && selectErrorStyle(380)}>
+          <S.ErrorMessage css={errors.phoneNumber && selectErrorStyle(576)}>
             {errors.phoneNumber?.message}
           </S.ErrorMessage>
           <S.NoticeSection>
