@@ -58,12 +58,15 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
     switch (showModalOption) {
       case 1:
         updatedData.isPrintsArrived = selectedOption === 1 ? true : false;
+        setIsOptionSelect(true);
         break;
       case 2:
         updatedData.firstEvaluation = selectedOption === 1 ? 'PASS' : 'FALL';
+        setIsOptionSelect(true);
         break;
       case 3:
         updatedData.secondEvaluation = selectedOption === 1 ? 'PASS' : 'FALL';
+        setIsOptionSelect(true);
         break;
       case 4:
         if (isNumber(inputValue)) {
@@ -73,7 +76,6 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
           toast.error('입력하신 값이 숫자가 아닙니다.');
           return;
         }
-        setIsOptionSelect(true);
         break;
     }
     setSubmittedApplyData(updatedData);
