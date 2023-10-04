@@ -6,14 +6,15 @@ export const PaginationWrapper = styled.div`
   margin: 0 auto;
   display: flex;
   gap: 16px;
+  justify-content: space-between;
 `;
 
 export const NumberWrap = styled.div`
+  width: 110px;
   height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 16px;
+  justify-content: space-between;
 `;
 
 export const PaginationButton = styled.button`
@@ -35,6 +36,7 @@ export const PageNumberButton = styled.button<{ selected: boolean }>`
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
+  padding: 0;
   background: none;
   border: none;
   cursor: pointer;

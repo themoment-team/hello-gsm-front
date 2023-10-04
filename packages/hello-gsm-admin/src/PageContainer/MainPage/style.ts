@@ -11,7 +11,6 @@ export const MainPage = styled.div`
 
 export const MainPageContent = styled.div`
   width: 1530px;
-  margin-left: auto;
   padding: 84px 60px 0 0;
 `;
 
@@ -93,8 +92,8 @@ export const Print = styled.a`
 `;
 
 export const ContentList = styled.div`
-  margin-bottom: 81px;
   height: 688px;
+  margin-bottom: 81px;
 `;
 
 export const Target = styled.div`
