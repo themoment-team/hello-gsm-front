@@ -23,7 +23,7 @@ const ModalButton: React.FC<ModalButtonProps> = ({
       setIsButtonActive(showModalOption === 0 ? true : false);
     } else {
       if (isOptionSelect) {
-        setIsButtonActive(selectedOption === 0 ? true : false);
+        setIsButtonActive(selectedOption === null ? true : false);
       }
       if (isScoreValue !== null) {
         setIsButtonActive(false);

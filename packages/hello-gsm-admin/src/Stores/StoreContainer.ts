@@ -1,7 +1,7 @@
 import create from 'zustand';
 
 interface StoreType {
-  selectedOption: number;
+  selectedOption: number | null;
   isButtonActive: boolean;
   isScoreValue: boolean | null;
   isOptionSelect: boolean;
@@ -12,7 +12,7 @@ interface StoreType {
 }
 
 const useStore = create<StoreType>(set => ({
-  selectedOption: 0,
+  selectedOption: null,
   isButtonActive: false,
   isScoreValue: null,
   isOptionSelect: false,
