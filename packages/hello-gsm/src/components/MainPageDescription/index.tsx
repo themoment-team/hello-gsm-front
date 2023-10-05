@@ -150,7 +150,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             중심으로 직무적성 소양평가를 치릅니다.
           </S.DescriptionLine>
           <S.PostScript>
-            {formatDate(startFinalTest, 'minutes')} 직무적성 소양평가 진행{' '}
+            {formatDate(startFinalTest)} 직무적성 소양평가 진행 (오후 1시 강당)
             <br />
             {formatDate(endFirstResult, 'hours')} 최종 결과 발표
           </S.PostScript>
