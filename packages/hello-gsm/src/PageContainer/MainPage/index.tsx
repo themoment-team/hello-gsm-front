@@ -145,7 +145,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
               font-weight: bold;
             `}
           >
-            (회원가입은 10월 10일 화요일부터 가능합니다.)
+            (회원가입은 10월 11일 수요일부터 가능합니다.)
           </S.Description>
 
           {isPC ? (
@@ -193,7 +193,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
                 접수 기간
               </S.ApplyTerm>
               <S.ApplyTerm>
-                {formatDate(startApply)} ~ {formatDate(endApply)}
+                {formatDate(startApply)}(월) ~ {formatDate(endApply)}(목)
               </S.ApplyTerm>
             </S.TermWrapper>
           </div>

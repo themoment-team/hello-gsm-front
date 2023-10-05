@@ -72,7 +72,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             날인하여
           </S.DescriptionLine>
           <S.DescriptionLine>
-            원서접수 기간 내에 방문 제출하여야 합니다.
+            원서접수 기간 내에 공문 및 방문 제출하여야 합니다.
           </S.DescriptionLine>
           <S.DescriptionLine
             css={css`
@@ -97,7 +97,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
               margin-top: 3.125rem;
             `}
           >
-            {formatDate(startApply)} ~ {formatDate(endApply)}
+            {formatDate(startApply)}(월) ~ {formatDate(endApply)}(목)
           </S.PostScript>
         </S.Description>
       );
@@ -125,7 +125,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             정원의 1.3배의 인원을 발표합니다.
           </S.DescriptionLine>
           <S.PostScript>
-            {formatDate(startFirstResult, 'hours')} 발표
+            {formatDate(startFirstResult, 'hours')}(월) 발표
           </S.PostScript>
         </S.Description>
       );
@@ -140,9 +140,10 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             중심으로 직무적성 소양평가를 치룹니다.
           </S.DescriptionLine>
           <S.PostScript>
-            {formatDate(startFinalTest)} 직무적성 소양평가 진행 (오후 1시 강당)
+            {formatDate(startFinalTest)}(금) 직무적성 소양평가 진행 (오후 1시
+            강당)
             <br />
-            {formatDate(endFirstResult, 'hours')} 최종 결과 발표
+            {formatDate(endFirstResult, 'hours')}(수) 최종 결과 발표
           </S.PostScript>
         </S.Description>
       );
@@ -183,7 +184,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
           <S.PostScript>
             제출서류 : 입학등록동의서 1부(11.7.월까지),
             <br />
-            건강진단서 1부(11.14.월까지)우편과 방문접수에 한함.
+            건강진단서 1부(11.14.월까지)공문과 방문접수에 한함.
           </S.PostScript>
           <S.PostScript>접수 번호 {registrationNumber}</S.PostScript>
           <S.Button onClick={() => push('/최종합격자_제출_서류.hwp')}>
@@ -229,7 +230,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             1차 서류 심사와 인적성소양평가를 통해 최종 합격자를 발표합니다.
           </S.DescriptionLine>
           <S.PostScript>
-            {formatDate(endFirstResult, 'hours')} 최종 결과 발표
+            {formatDate(endFirstResult, 'hours')}(수) 최종 결과 발표
           </S.PostScript>
         </S.Description>
       );
