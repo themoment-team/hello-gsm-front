@@ -302,7 +302,7 @@ const SignUpPage: NextPage = () => {
           <S.ErrorMessage css={errors.phoneNumber && selectErrorStyle(377)}>
             {errors.phoneNumber?.message}
           </S.ErrorMessage>
-          <S.ErrorMessage css={errors.code && selectErrorStyle(478)}>
+          <S.ErrorMessage css={errors.code && selectErrorStyle(460)}>
             {errors.code?.message}
           </S.ErrorMessage>
           <S.NoticeSection>
