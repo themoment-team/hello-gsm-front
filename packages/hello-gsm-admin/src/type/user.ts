@@ -1,10 +1,3 @@
-import { CommonApplicationResponseType } from './application';
-
-export interface MainDescStatusType {
-  selectedIndex: number;
-  data?: CommonApplicationResponseType;
-}
-
 type ProviderType = 'google' | 'kakao';
 type RoleType =
   | 'ROLE_USER'
