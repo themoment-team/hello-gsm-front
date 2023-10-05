@@ -33,6 +33,7 @@ const SignUpPage: NextPage = () => {
     handleSubmit,
     watch,
     setValue,
+    setError,
     formState: { errors },
   } = useForm<UserForm>();
   /**
@@ -317,6 +318,11 @@ const SignUpPage: NextPage = () => {
                 setValue('code', '');
                 setIsSent(false);
                 setIsVerified(false);
+                // 'code' 필드의 에러 초기화
+                setError('code', {
+                  type: '',
+                  message: '',
+                });
               }}
             >
               전화번호 초기화
