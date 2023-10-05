@@ -290,9 +290,7 @@ const SignUpPage: NextPage = () => {
                   },
                 })}
               />
-              <S.ErrorMessage css={errors.code && selectErrorStyle(576)}>
-                {errors.code?.message}
-              </S.ErrorMessage>
+
               <S.CertificationButton
                 onClick={() => checkCertificationNumber(watch('code'))}
                 type="button"
@@ -301,8 +299,11 @@ const SignUpPage: NextPage = () => {
               </S.CertificationButton>
             </S.TelNumContainer>
           )}
-          <S.ErrorMessage css={errors.phoneNumber && selectErrorStyle(576)}>
+          <S.ErrorMessage css={errors.phoneNumber && selectErrorStyle(377)}>
             {errors.phoneNumber?.message}
+          </S.ErrorMessage>
+          <S.ErrorMessage css={errors.code && selectErrorStyle(478)}>
+            {errors.code?.message}
           </S.ErrorMessage>
           <S.NoticeSection>
             <S.NoticeText>
@@ -348,7 +349,9 @@ const SignUpPage: NextPage = () => {
             >
               생년월일
             </S.Line>
-            <S.Line css={errors.phoneNumber && selectErrorStyle()}>
+            <S.Line
+              css={(errors.phoneNumber || errors.code) && selectErrorStyle()}
+            >
               전화번호
             </S.Line>
             <S.Line css={errors.agree && selectErrorStyle()}>
