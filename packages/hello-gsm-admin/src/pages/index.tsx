@@ -25,10 +25,10 @@ const Home: NextPage = () => {
   const getAuthority = async () => {
     try {
       const { data }: { data: UserInfoType } = await user.getMyInfo();
-      if (data.role !== 'ROLE_ADMIN') push('/auth/signin');
+      if (data.role !== 'ROLE_ADMIN') push('/signin');
     } catch (error) {
       toast.error('로그인을 해주세요.');
-      push('/auth/signin');
+      push('/signin');
     }
   };
 
