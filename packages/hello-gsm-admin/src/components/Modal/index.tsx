@@ -234,7 +234,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                 <C.ModalButton
                   buttonTitle="확인"
                   onClick={() => handleSubmit()}
-                  disabled={data.secondScore === null}
+                  disabled={data.secondScore === null && inputValue === 0}
                 />
               </S.ContentBox>
             )}
