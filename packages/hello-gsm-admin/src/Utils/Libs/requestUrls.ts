@@ -24,6 +24,11 @@ export const UserController = {
   userInfo: (userId: string) => {
     return `/user/v1/user/${userId}`;
   },
+
+  // get 현재 사용자 정보 조회하기
+  myInfo: () => {
+    return `/user/v1/user/me`;
+  },
 };
 
 // 유저 신원
