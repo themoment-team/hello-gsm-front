@@ -23,7 +23,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
   const [isNextStep, setIsNextStep] = useState(false);
   const [buttonTitle, setButtonTitle] = useState<'다음' | '확인'>('다음');
   const [showModalOption, setShowModalOption] = useState<number>(0);
-  const [inputValue, setInputValue] = useState<number>(0);
+  const [inputValue, setInputValue] = useState<number>(data.secondScore ?? 0);
   const [submittedApplyData, setSubmittedApplyData] =
     useState<CommonApplicationResponseType>({
       isFinalSubmitted: data.isFinalSubmitted,
@@ -42,14 +42,13 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
     onClose();
   };
 
-  const { selectedOption, setSelectedOption, isScoreValue } = useStore();
+  const { selectedOption, setSelectedOption } = useStore();
 
   const handleSubmit = () => {
     const isNumber = (value: number) => {
       return !isNaN(Number(value));
     };
     const updatedData = { ...submittedApplyData };
-
     switch (showModalOption) {
       case 1:
         updatedData.isPrintsArrived = selectedOption === 1 ? true : false;
@@ -63,7 +62,6 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
       case 4:
         if (isNumber(inputValue)) {
           updatedData.secondScore = inputValue;
-          console.log(inputValue);
         } else {
           toast.error('입력하신 값이 숫자가 아닙니다.');
           return;
@@ -147,6 +145,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                 buttonTitle={buttonTitle}
                 showModalOption={showModalOption}
                 onClick={() => setIsNextStep(true)}
+                disabled={showModalOption === 0}
               />
             </S.ContentBox>
           </>
@@ -166,6 +165,9 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                 <C.ModalButton
                   buttonTitle="확인"
                   onClick={() => handleSubmit()}
+                  disabled={
+                    data.isPrintsArrived === false && selectedOption === 0
+                  }
                 />
               </S.ContentBox>
             )}
@@ -181,6 +183,9 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                 <C.ModalButton
                   buttonTitle="확인"
                   onClick={() => handleSubmit()}
+                  disabled={
+                    data.firstEvaluation === 'NOT_YET' && selectedOption === 0
+                  }
                 />
               </S.ContentBox>
             )}
@@ -197,6 +202,9 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                 <C.ModalButton
                   buttonTitle="확인"
                   onClick={() => handleSubmit()}
+                  disabled={
+                    data.firstEvaluation === 'NOT_YET' && selectedOption === 0
+                  }
                 />
               </S.ContentBox>
             )}
@@ -212,6 +220,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                 <C.ModalButton
                   buttonTitle="확인"
                   onClick={() => handleSubmit()}
+                  disabled={inputValue === 0}
                 />
               </S.ContentBox>
             )}
