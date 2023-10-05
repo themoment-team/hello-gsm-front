@@ -60,6 +60,10 @@ export const ApplicationController = {
   tickets: () => {
     return `/application/v1/tickets`;
   },
+  // excel 문서 이동
+  excel: () => {
+    return '/application/v1/excel';
+  },
   // get 최종제출이 완료된 사용자를 검색
   searchApplication: (
     page: number,
