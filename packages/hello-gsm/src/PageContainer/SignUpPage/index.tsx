@@ -102,7 +102,7 @@ const SignUpPage: NextPage = () => {
    * @param phoneNumber: 전화번호
    */
   const sendCertificationNumber = async (phoneNumber: string) => {
-    if (!errors.phoneNumber && /^[0][1][0][0-9]{8}/.test(phoneNumber)) {
+    if (!errors.phoneNumber) {
       try {
         await identity.postCode(phoneNumber);
         toast.success('인증번호를 전송했어요.');
@@ -248,7 +248,7 @@ const SignUpPage: NextPage = () => {
                     !value.includes('-') || '( - )를 제외하고 입력해주세요.',
                 },
                 pattern: {
-                  value: /^[0][1][0][0-9]{8}/,
+                  value: /^0(?:\d|\d{2})(?:\d{3}|\d{4})\d{4}$/,
                   message: '* 전화번호를 확인해주세요.',
                 },
               })}

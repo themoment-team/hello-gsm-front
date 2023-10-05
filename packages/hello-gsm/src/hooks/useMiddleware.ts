@@ -19,8 +19,8 @@ export const useMiddleware = async () => {
         try {
           await user.getMyInfo();
         } catch (error) {
-          // push('/auth/signin');
-          // toast.info('로그인을 해주세요.');
+          push('/auth/signin');
+          toast.info('로그인을 해주세요.');
         }
     };
 
