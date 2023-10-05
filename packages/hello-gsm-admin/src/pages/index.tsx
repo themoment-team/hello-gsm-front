@@ -28,6 +28,7 @@ const Home: NextPage = () => {
       if (data.role !== 'ROLE_ADMIN') push('/auth/signin');
     } catch (error) {
       toast.error('로그인을 해주세요.');
+      push('/auth/signin');
     }
   };
 
