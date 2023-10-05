@@ -8,7 +8,7 @@ export const applyAcceptable = today >= startApply && today <= endApply;
 
 // 9월 27일 6시부터 7시 반까지
 // 첫번쨰 합격 결과 보여주는 날짜
-export const startFirstResult = new Date('2023/10/5 5:40:00');
+export const startFirstResult = new Date('2023/10/5 17:40:00');
 export const endFirstResult = new Date('2023/10/5 19:30:00');
 export const isStartFirstResult = today >= startFirstResult;
 export const isFirstResult =
