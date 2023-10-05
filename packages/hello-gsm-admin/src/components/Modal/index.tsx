@@ -42,13 +42,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
     onClose();
   };
 
-  const {
-    selectedOption,
-    setSelectedOption,
-    isScoreValue,
-    isOptionSelect,
-    setIsOptionSelect,
-  } = useStore();
+  const { selectedOption, setSelectedOption } = useStore();
 
   const handleSubmit = () => {
     const isNumber = (value: number) => {
@@ -58,15 +52,12 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
     switch (showModalOption) {
       case 1:
         updatedData.isPrintsArrived = selectedOption === 1 ? true : false;
-        setIsOptionSelect(true);
         break;
       case 2:
         updatedData.firstEvaluation = selectedOption === 1 ? 'PASS' : 'FALL';
-        setIsOptionSelect(true);
         break;
       case 3:
         updatedData.secondEvaluation = selectedOption === 1 ? 'PASS' : 'FALL';
-        setIsOptionSelect(true);
         break;
       case 4:
         if (isNumber(inputValue)) {
