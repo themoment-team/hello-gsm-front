@@ -10,12 +10,12 @@ export const PaginationWrapper = styled.div`
 `;
 
 export const NumberWrap = styled.div`
-  width: 130px;
+  width: 8.125rem;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10.23px;
+  gap: 0.6394rem;
 `;
 
 export const PaginationButton = styled.button`
