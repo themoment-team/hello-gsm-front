@@ -216,6 +216,9 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                 <C.ModalButton
                   buttonTitle="확인"
                   onClick={() => handleSubmit()}
+                  disabled={
+                    data.firstEvaluation === 'NOT_YET' && selectedOption === 0
+                  }
                 />
               </S.ContentBox>
             )}
@@ -231,6 +234,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                 <C.ModalButton
                   buttonTitle="확인"
                   onClick={() => handleSubmit()}
+                  disabled={data.secondScore === null}
                 />
               </S.ContentBox>
             )}
