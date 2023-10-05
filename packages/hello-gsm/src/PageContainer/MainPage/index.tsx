@@ -181,7 +181,7 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
                 접수 기간
               </S.ApplyTerm>
               <S.ApplyTerm>
-                {formatDate(startApply)} ~ {formatDate(endApply)}
+                {formatDate(startApply)}(월) ~ {formatDate(endApply)}(목)
               </S.ApplyTerm>
             </S.TermWrapper>
           </div>

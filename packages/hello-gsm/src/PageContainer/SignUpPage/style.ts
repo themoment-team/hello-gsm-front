@@ -325,3 +325,12 @@ export const ReSend = styled.p`
   line-height: 1.25rem;
   cursor: pointer;
 `;
+
+export const Subtitle = styled.p`
+  font-weight: 500;
+  font-size: 20px;
+  color: #b2e449;
+  text-align: center;
+  position: absolute;
+  bottom: 880px;
+`;

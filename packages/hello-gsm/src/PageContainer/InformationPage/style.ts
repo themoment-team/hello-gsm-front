@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 export const InformationPage = styled.div`
   height: calc(100vh - 4.375rem);
   position: relative;
-  overflow-x: hidden;
   &::-webkit-scrollbar {
     width: 16px;
   }

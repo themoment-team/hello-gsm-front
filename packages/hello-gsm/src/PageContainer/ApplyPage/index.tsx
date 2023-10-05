@@ -316,7 +316,7 @@ const ApplyPage: NextPage<
                   !value?.includes('-') || '( - )를 제외하고 입력해주세요.',
               },
               pattern: {
-                value: /^0\d{8,9}$/,
+                value: /^0(?:\d|\d{2})(?:\d{3}|\d{4})\d{4}$/,
                 message: '* 집 전화번호를 확인해주세요.',
               },
             })}
@@ -515,7 +515,7 @@ const ApplyPage: NextPage<
                   !value.includes('-') || '( - )를 제외하고 입력해주세요.',
               },
               pattern: {
-                value: /^[0][1][0][0-9]{8}/,
+                value: /^0(?:\d|\d{2})(?:\d{3}|\d{4})\d{4}$/,
                 message: '* 핸드폰 번호를 확인해주세요.',
               },
             })}
@@ -552,7 +552,7 @@ const ApplyPage: NextPage<
                   !value?.includes('-') || '( - )를 제외하고 입력해주세요.',
               },
               pattern: {
-                value: /^[0][1][0][0-9]{8}/,
+                value: /^0(?:\d|\d{2})(?:\d{3}|\d{4})\d{4}$/,
                 message: '* 핸드폰 번호를 확인해주세요.',
               },
             })}
