@@ -174,6 +174,9 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                 <C.ModalButton
                   buttonTitle="확인"
                   onClick={() => handleSubmit()}
+                  disabled={
+                    data.isPrintsArrived === false && selectedOption === 0
+                  }
                 />
               </S.ContentBox>
             )}

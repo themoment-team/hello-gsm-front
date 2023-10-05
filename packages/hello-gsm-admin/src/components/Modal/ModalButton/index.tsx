@@ -51,11 +51,7 @@ const ModalButton: React.FC<ModalButtonProps> = ({
     console.log(isOptionSelect);
   }, [isOptionSelect]);
   return (
-    <S.ModalButton
-      isConfirm={isButtonActive}
-      disabled={isButtonActive}
-      {...props}
-    >
+    <S.ModalButton isConfirm={isButtonActive} {...props}>
       {buttonTitle}
     </S.ModalButton>
   );
