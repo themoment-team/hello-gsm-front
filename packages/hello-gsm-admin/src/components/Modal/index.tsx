@@ -159,6 +159,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                 buttonTitle={buttonTitle}
                 showModalOption={showModalOption}
                 onClick={() => setIsNextStep(true)}
+                disabled={showModalOption === 0}
               />
             </S.ContentBox>
           </>
