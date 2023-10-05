@@ -139,7 +139,7 @@ const SignUpPage: NextPage = () => {
       {showResult && <SignUpResultModal />}
       <S.SignUpPage>
         <S.SignUpForm onSubmit={handleSubmit(onValid, inValid)}>
-          <S.Title>회원가입</S.Title>
+          <S.Title>본인인증</S.Title>
           <S.LadioSection>
             <S.RadioLabel>
               <input
