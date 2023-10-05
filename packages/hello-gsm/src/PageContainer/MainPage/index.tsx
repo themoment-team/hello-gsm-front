@@ -133,8 +133,19 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
             할 수 있는 <br />
             광주소프트웨어마이스터고등학교
           </S.Title>
-          <S.Description>
+          <S.Description
+            css={css`
+              margin: 0;
+            `}
+          >
             광주소프트웨어마이스터고등학교 입학 지원 시스템
+          </S.Description>
+          <S.Description
+            css={css`
+              font-weight: bold;
+            `}
+          >
+            (회원가입은 10월 10일 화요일부터 가능합니다.)
           </S.Description>
 
           {isPC ? (
