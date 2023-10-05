@@ -24,15 +24,18 @@ const TestGEDCalculatorPage: NextPage = () => {
     curriculumScoreSubtotal,
     nonCurriculumScoreSubtotal,
   }: ScoreType) => {
-    const rankPercentage = GEDCalculate(
-      curriculumScoreSubtotal,
-      nonCurriculumScoreSubtotal,
-    );
-    const scoreTotal =
-      rankPercentage && Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
+    if (curriculumScoreSubtotal > nonCurriculumScoreSubtotal) {
+      const rankPercentage = GEDCalculate(
+        curriculumScoreSubtotal,
+        nonCurriculumScoreSubtotal,
+      );
+      const scoreTotal =
+        rankPercentage &&
+        Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
 
-    setResultNumber([rankPercentage, scoreTotal]);
-    setShowScoreResult();
+      setResultNumber([rankPercentage, scoreTotal]);
+      setShowScoreResult();
+    }
   };
 
   const inValid = (Errors: FieldErrors) => {
