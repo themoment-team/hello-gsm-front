@@ -18,5 +18,6 @@ export const ModalButton = styled.button`
 
   &:disabled {
     background-color: #e0e0e0;
+    cursor: default;
   }
 `;
