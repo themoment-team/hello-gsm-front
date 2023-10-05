@@ -10,16 +10,17 @@ export const PaginationWrapper = styled.div`
 `;
 
 export const NumberWrap = styled.div`
-  width: 6.875rem;
+  width: 130px;
   height: 100%;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 10.23px;
 `;
 
 export const PaginationButton = styled.button`
   display: flex;
+  padding: 0;
   justify-content: center;
   align-items: center;
   background: none;
