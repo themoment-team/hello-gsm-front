@@ -4,6 +4,8 @@ import { MainPage } from 'PageContainer';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import user from 'Api/user';
+import { UserInfoType } from 'type/user';
 
 const Home: NextPage = () => {
   const seoTitle = '홈';
@@ -18,7 +20,20 @@ const Home: NextPage = () => {
       toast.success('로그인 되었습니다.');
       push('/');
     }
-  });
+  }, [query]);
+
+  const getAuthority = async () => {
+    try {
+      const { data }: { data: UserInfoType } = await user.getMyInfo();
+      if (data.role !== 'ROLE_ADMIN') push('/auth/signin');
+    } catch (error) {
+      toast.error('로그인을 해주세요.');
+    }
+  };
+
+  useEffect(() => {
+    getAuthority();
+  }, []);
 
   return (
     <>
