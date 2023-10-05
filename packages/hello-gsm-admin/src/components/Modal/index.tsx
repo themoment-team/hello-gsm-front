@@ -103,6 +103,10 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
     updateList();
   }, [submittedApplyData]);
 
+  useEffect(() => {
+    console.log(data.firstEvaluation === 'NOT_YET' && selectedOption === 0);
+    console.log(data.firstEvaluation === 'NOT_YET' || selectedOption === 0);
+  }, [data.firstEvaluation]);
   return (
     <>
       <S.Modal
