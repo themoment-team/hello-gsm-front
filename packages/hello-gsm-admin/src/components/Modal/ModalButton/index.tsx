@@ -19,7 +19,6 @@ const ModalButton: React.FC<ModalButtonProps> = ({
     isOptionSelect,
   } = useStore();
   useEffect(() => {
-    console.log(selectedOption);
     if (buttonTitle === '다음') {
       setIsButtonActive(showModalOption === 0 ? true : false);
     } else {

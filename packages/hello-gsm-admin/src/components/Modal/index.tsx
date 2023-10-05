@@ -71,7 +71,6 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
       case 4:
         if (isNumber(inputValue)) {
           updatedData.secondScore = inputValue;
-          console.log(inputValue);
         } else {
           toast.error('입력하신 값이 숫자가 아닙니다.');
           return;
@@ -103,10 +102,6 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
     updateList();
   }, [submittedApplyData]);
 
-  useEffect(() => {
-    console.log(data.firstEvaluation === 'NOT_YET' && selectedOption === 0);
-    console.log(data.firstEvaluation === 'NOT_YET' || selectedOption === 0);
-  }, [data.firstEvaluation]);
   return (
     <>
       <S.Modal
