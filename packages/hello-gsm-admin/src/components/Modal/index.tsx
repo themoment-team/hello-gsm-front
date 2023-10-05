@@ -23,7 +23,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
   const [isNextStep, setIsNextStep] = useState(false);
   const [buttonTitle, setButtonTitle] = useState<'다음' | '확인'>('다음');
   const [showModalOption, setShowModalOption] = useState<number>(0);
-  const [inputValue, setInputValue] = useState<number>(data.secondScore);
+  const [inputValue, setInputValue] = useState<number>(data.secondScore ?? 0);
   const [submittedApplyData, setSubmittedApplyData] =
     useState<CommonApplicationResponseType>({
       isFinalSubmitted: data.isFinalSubmitted,
@@ -234,7 +234,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                 <C.ModalButton
                   buttonTitle="확인"
                   onClick={() => handleSubmit()}
-                  disabled={data.secondScore === null && inputValue === 0}
+                  disabled={inputValue === 0}
                 />
               </S.ContentBox>
             )}
