@@ -139,8 +139,10 @@ const SignUpPage: NextPage = () => {
       {showResult && <SignUpResultModal />}
       <S.SignUpPage>
         <S.SignUpForm onSubmit={handleSubmit(onValid, inValid)}>
-          <S.Title>본인인증</S.Title>
-          <S.Subtitle>* 지원자 본인만 인증 가능합니다</S.Subtitle>
+          <S.TitleBox>
+            <S.Title>본인인증</S.Title>
+            <S.Subtitle>* 지원자 본인만 인증 가능합니다</S.Subtitle>
+          </S.TitleBox>
           <S.LadioSection>
             <S.RadioLabel>
               <input
