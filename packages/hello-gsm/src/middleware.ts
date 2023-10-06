@@ -1,6 +1,16 @@
 import { NextRequest, NextResponse, userAgent } from 'next/server';
 
-export function middleware(req: NextRequest) {
+const getSiteState = async () => {
+  const fetchUrl = `https://sheets.googleapis.com/v4/spreadsheets/${process.env.gssIdKey}/values/sheet1?key=${process.env.gssApiKey}`;
+  const res = await fetch(fetchUrl);
+  const data = await res.json();
+  return data?.values[1][0];
+};
+
+export async function middleware(req: NextRequest) {
+  const siteState = await getSiteState();
+  console.log(siteState);
+
   const acceptable =
     new Date() >= new Date('2023/10/16 00:00') &&
     new Date() <= new Date('2023/10/19 08:00');
