@@ -50,9 +50,10 @@ const TestCalculatorPage: NextPage = () => {
     '수학',
     '과학',
     '기술가정',
+    '정보',
     '영어',
   ];
-  const nonSubjects = ['체육', '미술', '음악'];
+  const nonSubjects = ['체육', '음악', '미술'];
   const grades = [1, 2, 3];
 
   // 저장 버튼을 눌렀을 때
