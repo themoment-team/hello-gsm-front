@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const Modal = styled.div`
   padding: 1.5rem 1.25rem 3rem 1.25rem;
   border-radius: 0.625rem;
-  width: 55.5rem;
+  width: 28.5rem;
   gap: 0.625rem;
   background-color: white;
   display: flex;
@@ -32,39 +32,40 @@ export const ButtonBox = styled.div`
 
 export const ModalOption = styled.button`
   border: none;
-  height: 200px;
+  height: 12.5rem;
   background-color: white;
   cursor: pointer;
 `;
 
 export const XIcon = styled.div`
-  height: 24px;
+  height: 1.5rem;
   display: flex;
   justify-content: end;
-  padding-right: 20px;
+  padding-right: 1.25rem;
+  width: 28.5rem;
 `;
 
 export const TitleBox = styled.div`
-  width: 840px;
-  height: 53px;
+  width: 26rem;
+  height: 3.3125rem;
 `;
 
 export const Title = styled.div`
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 600;
-  line-height: 29px;
-  padding-bottom: 5px;
+  line-height: 1.8125rem;
+  padding-bottom: 0.3125rem;
 `;
 
 export const Desc = styled.div`
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
-  line-height: 24px;
+  line-height: 1.5rem;
   color: #616161;
 `;
 
 export const ContentBox = styled.div`
-  height: 441px;
+  height: 27.5625rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
