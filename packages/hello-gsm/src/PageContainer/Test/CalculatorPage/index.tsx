@@ -13,6 +13,7 @@ import {
 } from 'Utils/Calculate';
 import useStore from 'Stores/StoreContainer';
 import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
+import { toast } from 'react-toastify';
 
 interface ScoreForm {
   // 과목/점수 배열
@@ -110,6 +111,7 @@ const TestCalculatorPage: NextPage = () => {
 
   const inValid = (errors: FieldErrors) => {
     console.error(errors);
+    toast.error('문제가 발생했어요. 다시 시도해주세요.');
   };
 
   // 추가과목 삭제
