@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse, userAgent } from 'next/server';
 
 const getSiteState = async () => {
-  const fetchUrl = `https://sheets.googleapis.com/v4/spreadsheets/${process.env.gssIdKey}/values/sheet1?key=${process.env.gssApiKey}`;
+  const fetchUrl = `https://sheets.googleapis.com/v4/spreadsheets/${process.env.GSS_ID_KEY}/values/sheet1?key=${process.env.GSS_API_KEY}`;
   const res = await fetch(fetchUrl);
   const data = await res.json();
+
   return data;
 };
 
