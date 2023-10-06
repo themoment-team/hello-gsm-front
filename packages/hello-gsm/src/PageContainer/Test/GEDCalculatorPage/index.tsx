@@ -29,9 +29,7 @@ const TestGEDCalculatorPage: NextPage = () => {
         curriculumScoreSubtotal,
         nonCurriculumScoreSubtotal,
       );
-      const scoreTotal =
-        rankPercentage &&
-        Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
+      const scoreTotal = Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
 
       setResultNumber([rankPercentage, scoreTotal]);
       setShowScoreResult();
