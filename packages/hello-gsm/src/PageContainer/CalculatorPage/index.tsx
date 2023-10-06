@@ -98,7 +98,9 @@ const CalculatorPage: NextPage<CalculatorPageProps> = ({
     );
     // 교과성적 소계
 
-    const artSportsScore: number = ArtSport(artSportsValue); // 예체능
+    const artSportsScore: number = isNaN(ArtSport(artSportsValue))
+      ? 36
+      : ArtSport(artSportsValue); // 예체능
     const curriculumScoreSubtotal: number = Rounds(
       generalCurriculumScoreSubtotal + artSportsScore,
       4,
