@@ -2,10 +2,8 @@ import { NextRequest, NextResponse, userAgent } from 'next/server';
 
 export function middleware(req: NextRequest) {
   const acceptable =
-    new Date() >= new Date('2023/10/16 00:00') &&
-    new Date() <= new Date('2023/10/19 08:00');
-  console.log(acceptable);
-  console.log(new Date());
+    new Date('2023/10/16 00:00') >= new Date('2023/10/16 00:00') &&
+    new Date('2023/10/16 00:00') <= new Date('2023/10/19 08:00');
 
   const { origin, pathname } = req.nextUrl;
   const { device, browser } = userAgent(req);
