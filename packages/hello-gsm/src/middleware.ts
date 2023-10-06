@@ -9,12 +9,7 @@ export function middleware(req: NextRequest) {
 
   const { origin, pathname } = req.nextUrl;
   const { device, browser } = userAgent(req);
-  const applicationFormURL = [
-    '/information',
-    '/apply',
-    '/calculator',
-    '/calculator/ged',
-  ];
+  const applicationFormURL = ['/information', '/apply'];
 
   if (browser.name === 'IE' && pathname !== '/browser') {
     return NextResponse.redirect(`${origin}/browser`);
