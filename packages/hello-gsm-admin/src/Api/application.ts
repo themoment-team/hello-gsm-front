@@ -1,7 +1,7 @@
 import { ApplicationFormType } from 'type/application';
 import RequestApi from 'Utils/Libs/requestApi';
 import { ApplicationController } from 'Utils/Libs/requestUrls';
-
+import BASE_URL from 'shared/baseURL';
 class Application {
   /**
    * @param userId - 특정 서용자의 Id
@@ -84,6 +84,10 @@ class Application {
     } catch (error: any) {
       return error;
     }
+  }
+
+  getExcel() {
+    return BASE_URL + ApplicationController.excel();
   }
 }
 

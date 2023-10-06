@@ -10,6 +10,7 @@ export const PrintButton = styled.button`
   align-items: center;
   cursor: pointer;
   border: 0;
+  height: 100%;
 
   &:hover {
     background: #d6e8ff;
