@@ -68,9 +68,10 @@ const CalculatorPage: NextPage<CalculatorPageProps> = ({
     '수학',
     '과학',
     '기술가정',
+    '정보',
     '영어',
   ];
-  const nonSubjects = ['체육', '미술', '음악'];
+  const nonSubjects = ['체육', '음악', '미술'];
   const grades = [1, 2, 3];
 
   // 저장 버튼을 눌렀을 때
@@ -98,7 +99,9 @@ const CalculatorPage: NextPage<CalculatorPageProps> = ({
     );
     // 교과성적 소계
 
-    const artSportsScore: number = ArtSport(artSportsValue); // 예체능
+    const artSportsScore: number = isNaN(ArtSport(artSportsValue))
+      ? 36
+      : ArtSport(artSportsValue); // 예체능
     const curriculumScoreSubtotal: number = Rounds(
       generalCurriculumScoreSubtotal + artSportsScore,
       4,
@@ -169,6 +172,7 @@ const CalculatorPage: NextPage<CalculatorPageProps> = ({
 
   const inValid = (errors: FieldErrors) => {
     console.error(errors);
+    toast.error('문제가 발생했어요. 다시 시도해주세요.');
   };
 
   // 추가과목 삭제

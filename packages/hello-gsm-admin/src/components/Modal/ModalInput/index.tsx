@@ -8,11 +8,9 @@ interface ModalInputProps {
 }
 
 const ModalInput: React.FC<ModalInputProps> = ({ data, setInputValue }) => {
-  const { isScoreValue, setIsScoreValue } = useStore();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     const numericValue = parseFloat(inputValue);
-    setIsScoreValue(true);
     setInputValue(numericValue);
   };
 

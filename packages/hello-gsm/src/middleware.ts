@@ -2,19 +2,12 @@ import { NextRequest, NextResponse, userAgent } from 'next/server';
 
 export function middleware(req: NextRequest) {
   const acceptable =
-    new Date() >= new Date('2023/10/16 00:00') &&
-    new Date() <= new Date('2023/10/19 08:00');
-
-  console.log(new Date());
+    new Date('2023/10/16 00:00') >= new Date('2023/10/16 00:00') &&
+    new Date('2023/10/16 00:00') <= new Date('2023/10/19 08:00');
 
   const { origin, pathname } = req.nextUrl;
   const { device, browser } = userAgent(req);
-  const applicationFormURL = [
-    '/information',
-    '/apply',
-    '/calculator',
-    '/calculator/ged',
-  ];
+  const applicationFormURL = ['/information', '/apply'];
 
   if (browser.name === 'IE' && pathname !== '/browser') {
     return NextResponse.redirect(`${origin}/browser`);
@@ -33,19 +26,19 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  // if (applicationFormURL.includes(pathname)) {
-  //   // 원서 접수 가능 기간이 아닐 시
-  //   if (!acceptable) {
-  //     return NextResponse.redirect(origin);
-  //   }
+  if (applicationFormURL.includes(pathname)) {
+    // 원서 접수 가능 기간이 아닐 시
+    if (!acceptable) {
+      return NextResponse.redirect(origin);
+    }
 
-  //   if (browser.name === 'Safari') {
-  //     return NextResponse.redirect(`${origin}/browser`);
-  //   }
+    if (browser.name === 'Safari') {
+      return NextResponse.redirect(`${origin}/browser`);
+    }
 
-  //   if (device.type === ('mobile' || 'tablet')) {
-  //     // pc가 아닐 시
-  //     return NextResponse.redirect(origin);
-  //   }
-  // }
+    if (device.type === ('mobile' || 'tablet')) {
+      // pc가 아닐 시
+      return NextResponse.redirect(origin);
+    }
+  }
 }

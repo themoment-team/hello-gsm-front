@@ -24,6 +24,11 @@ export const UserController = {
   userInfo: (userId: string) => {
     return `/user/v1/user/${userId}`;
   },
+
+  // get 현재 사용자 정보 조회하기
+  myInfo: () => {
+    return `/user/v1/user/me`;
+  },
 };
 
 // 유저 신원
@@ -59,6 +64,10 @@ export const ApplicationController = {
   // get 모든 사용자의 수험표 정보 조회하기
   tickets: () => {
     return `/application/v1/tickets`;
+  },
+  // excel 문서 이동
+  excel: () => {
+    return '/application/v1/excel';
   },
   // get 최종제출이 완료된 사용자를 검색
   searchApplication: (

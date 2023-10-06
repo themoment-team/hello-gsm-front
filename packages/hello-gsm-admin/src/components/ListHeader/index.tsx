@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import * as S from './style';
-
+import application from 'Api/application';
 import { SearchIcon } from 'Assets/svg';
 
 import { PrintButton } from 'components';
@@ -64,7 +64,9 @@ const ListHeader: React.FC<ListHeaderType> = ({
           </S.SearchInputBox>
         </S.ButtonWrapper>
         <S.ButtonWrapper>
-          <PrintButton printType="excel" />
+          <a href={application.getExcel()}>
+            <PrintButton printType="excel" />
+          </a>
           <PrintButton onClick={() => push('/ticket')} printType="ticket" />
         </S.ButtonWrapper>
       </S.ListHeaderContent>

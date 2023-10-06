@@ -24,15 +24,20 @@ const TestGEDCalculatorPage: NextPage = () => {
     curriculumScoreSubtotal,
     nonCurriculumScoreSubtotal,
   }: ScoreType) => {
-    const rankPercentage = GEDCalculate(
-      curriculumScoreSubtotal,
-      nonCurriculumScoreSubtotal,
-    );
-    const scoreTotal =
-      rankPercentage && Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
+    if (curriculumScoreSubtotal > nonCurriculumScoreSubtotal) {
+      const rankPercentage = GEDCalculate(
+        curriculumScoreSubtotal,
+        nonCurriculumScoreSubtotal,
+      );
+      const scoreTotal =
+        rankPercentage &&
+        Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
 
-    setResultNumber([rankPercentage, scoreTotal]);
-    setShowScoreResult();
+      setResultNumber([rankPercentage, scoreTotal]);
+      setShowScoreResult();
+    } else {
+      toast.error('성적은 만점보다 높을 수 없습니다.');
+    }
   };
 
   const inValid = (Errors: FieldErrors) => {

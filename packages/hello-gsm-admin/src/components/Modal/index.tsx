@@ -23,7 +23,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
   const [isNextStep, setIsNextStep] = useState(false);
   const [buttonTitle, setButtonTitle] = useState<'다음' | '확인'>('다음');
   const [showModalOption, setShowModalOption] = useState<number>(0);
-  const [inputValue, setInputValue] = useState<number>(0);
+  const [inputValue, setInputValue] = useState<number>(data.secondScore ?? 0);
   const [submittedApplyData, setSubmittedApplyData] =
     useState<CommonApplicationResponseType>({
       isFinalSubmitted: data.isFinalSubmitted,
@@ -42,28 +42,20 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
     onClose();
   };
 
-  const { selectedOption, setSelectedOption, isScoreValue } = useStore();
+  const { selectedOption, setSelectedOption } = useStore();
 
   const handleSubmit = () => {
     const isNumber = (value: number) => {
       return !isNaN(Number(value));
     };
     const updatedData = { ...submittedApplyData };
-
     switch (showModalOption) {
       case 1:
         updatedData.isPrintsArrived = selectedOption === 1 ? true : false;
         break;
       case 2:
-        updatedData.firstEvaluation = selectedOption === 1 ? 'PASS' : 'FALL';
-        break;
-      case 3:
-        updatedData.secondEvaluation = selectedOption === 1 ? 'PASS' : 'FALL';
-        break;
-      case 4:
         if (isNumber(inputValue)) {
           updatedData.secondScore = inputValue;
-          console.log(inputValue);
         } else {
           toast.error('입력하신 값이 숫자가 아닙니다.');
           return;
@@ -97,16 +89,8 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
 
   return (
     <>
-      <S.Modal
-        style={{
-          width: isNextStep && showModalOption !== 0 ? '28.5rem' : '55.5rem',
-        }}
-      >
-        <S.XIcon
-          style={{
-            width: isNextStep && showModalOption !== 0 ? '28.5rem' : '55.5rem',
-          }}
-        >
+      <S.Modal>
+        <S.XIcon>
           <div
             style={{
               width: '1.5rem',
@@ -119,44 +103,35 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
           </div>
         </S.XIcon>
         {!isNextStep && (
-          <>
+          <S.ContentBox>
             <S.TitleBox>
               <S.Title>수험번호 {data.applicationId}</S.Title>
               <S.Desc>
                 {data.applicantName}님의 어떤 상태를 수정하실건가요?
               </S.Desc>
             </S.TitleBox>
-            <S.ContentBox>
-              <S.ButtonBox>
-                <S.ModalOption onClick={() => setShowModalOption(1)}>
-                  <I.DocumentsSubmissionStatus
-                    isActive={showModalOption === 1}
-                  />
-                </S.ModalOption>
-                <S.ModalOption onClick={() => setShowModalOption(2)}>
-                  <I.FirstPassStatus isActive={showModalOption === 2} />
-                </S.ModalOption>
-                <S.ModalOption onClick={() => setShowModalOption(3)}>
-                  <I.SecondScoringStatus isActive={showModalOption === 3} />
-                </S.ModalOption>
-                <S.ModalOption onClick={() => setShowModalOption(4)}>
-                  <I.SecondScoringEntry isActive={showModalOption === 4} />
-                </S.ModalOption>
-              </S.ButtonBox>
-              <C.ModalButton
-                buttonTitle={buttonTitle}
-                showModalOption={showModalOption}
-                onClick={() => setIsNextStep(true)}
-              />
-            </S.ContentBox>
-          </>
+            <S.ButtonBox>
+              <S.ModalOption onClick={() => setShowModalOption(1)}>
+                <I.DocumentsSubmissionStatus isActive={showModalOption === 1} />
+              </S.ModalOption>
+              <S.ModalOption onClick={() => setShowModalOption(2)}>
+                <I.SecondScoringEntry isActive={showModalOption === 2} />
+              </S.ModalOption>
+            </S.ButtonBox>
+            <C.ModalButton
+              buttonTitle={buttonTitle}
+              showModalOption={showModalOption}
+              onClick={() => setIsNextStep(true)}
+              disabled={showModalOption === 0}
+            />
+          </S.ContentBox>
         )}
 
         {isNextStep && (
           <>
             {showModalOption === 1 && (
               <S.ContentBox>
-                <S.TitleBox style={{ width: '26rem' }}>
+                <S.TitleBox>
                   <S.Title>수험번호 {data.applicationId}</S.Title>
                   <S.Desc>
                     {data.applicantName}님의 서류 제출 여부를 선택해주세요
@@ -166,43 +141,15 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                 <C.ModalButton
                   buttonTitle="확인"
                   onClick={() => handleSubmit()}
+                  disabled={
+                    data.isPrintsArrived === false && selectedOption === 0
+                  }
                 />
               </S.ContentBox>
             )}
             {showModalOption === 2 && (
               <S.ContentBox>
-                <S.TitleBox style={{ width: '26rem' }}>
-                  <S.Title>수험번호 {data.applicationId}</S.Title>
-                  <S.Desc>
-                    {data.applicantName}님의 1차 합격 여부(서류)를 선택해주세요.
-                  </S.Desc>
-                </S.TitleBox>
-                <C.ModalFirstEvaluationSubmit data={submittedApplyData} />
-                <C.ModalButton
-                  buttonTitle="확인"
-                  onClick={() => handleSubmit()}
-                />
-              </S.ContentBox>
-            )}
-            {showModalOption === 3 && (
-              <S.ContentBox>
-                <S.TitleBox style={{ width: '26rem' }}>
-                  <S.Title>수험번호 {data.applicationId}</S.Title>
-                  <S.Desc>
-                    {data.applicantName}님의 2차 합격 여부(인적성)를
-                    선택해주세요.
-                  </S.Desc>
-                </S.TitleBox>
-                <C.ModalSecondEvaluationSubmit data={submittedApplyData} />
-                <C.ModalButton
-                  buttonTitle="확인"
-                  onClick={() => handleSubmit()}
-                />
-              </S.ContentBox>
-            )}
-            {showModalOption === 4 && (
-              <S.ContentBox>
-                <S.TitleBox style={{ width: '26rem' }}>
+                <S.TitleBox>
                   <S.Title>수험번호 {data.applicationId}</S.Title>
                   <S.Desc>
                     {data.applicantName}님의 2차 점수(인적성)를 입력해주세요.
@@ -212,6 +159,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
                 <C.ModalButton
                   buttonTitle="확인"
                   onClick={() => handleSubmit()}
+                  disabled={inputValue === 0}
                 />
               </S.ContentBox>
             )}

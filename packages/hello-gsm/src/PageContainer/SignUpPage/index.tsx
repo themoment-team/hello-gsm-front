@@ -33,6 +33,7 @@ const SignUpPage: NextPage = () => {
     handleSubmit,
     watch,
     setValue,
+    setError,
     formState: { errors },
   } = useForm<UserForm>();
   /**
@@ -101,7 +102,7 @@ const SignUpPage: NextPage = () => {
    * @param phoneNumber: 전화번호
    */
   const sendCertificationNumber = async (phoneNumber: string) => {
-    if (!errors.phoneNumber && /^[0][1][0][0-9]{8}/.test(phoneNumber)) {
+    if (!errors.phoneNumber) {
       try {
         await identity.postCode(phoneNumber);
         toast.success('인증번호를 전송했어요.');
@@ -138,7 +139,10 @@ const SignUpPage: NextPage = () => {
       {showResult && <SignUpResultModal />}
       <S.SignUpPage>
         <S.SignUpForm onSubmit={handleSubmit(onValid, inValid)}>
-          <S.Title>회원가입</S.Title>
+          <S.TitleBox>
+            <S.Title>본인인증</S.Title>
+            <S.Subtitle>* 지원자 본인만 인증 가능합니다</S.Subtitle>
+          </S.TitleBox>
           <S.LadioSection>
             <S.RadioLabel>
               <input
@@ -246,7 +250,7 @@ const SignUpPage: NextPage = () => {
                     !value.includes('-') || '( - )를 제외하고 입력해주세요.',
                 },
                 pattern: {
-                  value: /^[0][1][0][0-9]{8}/,
+                  value: /^0(?:\d|\d{2})(?:\d{3}|\d{4})\d{4}$/,
                   message: '* 전화번호를 확인해주세요.',
                 },
               })}
@@ -290,6 +294,7 @@ const SignUpPage: NextPage = () => {
                   },
                 })}
               />
+
               <S.CertificationButton
                 onClick={() => checkCertificationNumber(watch('code'))}
                 type="button"
@@ -298,8 +303,11 @@ const SignUpPage: NextPage = () => {
               </S.CertificationButton>
             </S.TelNumContainer>
           )}
-          <S.ErrorMessage css={errors.phoneNumber && selectErrorStyle(380)}>
+          <S.ErrorMessage css={errors.phoneNumber && selectErrorStyle(377)}>
             {errors.phoneNumber?.message}
+          </S.ErrorMessage>
+          <S.ErrorMessage css={errors.code && selectErrorStyle(460)}>
+            {errors.code?.message}
           </S.ErrorMessage>
           <S.NoticeSection>
             <S.NoticeText>
@@ -313,6 +321,11 @@ const SignUpPage: NextPage = () => {
                 setValue('code', '');
                 setIsSent(false);
                 setIsVerified(false);
+                // 'code' 필드의 에러 초기화
+                setError('code', {
+                  type: '',
+                  message: '',
+                });
               }}
             >
               전화번호 초기화
@@ -345,7 +358,9 @@ const SignUpPage: NextPage = () => {
             >
               생년월일
             </S.Line>
-            <S.Line css={errors.phoneNumber && selectErrorStyle()}>
+            <S.Line
+              css={(errors.phoneNumber || errors.code) && selectErrorStyle()}
+            >
               전화번호
             </S.Line>
             <S.Line css={errors.agree && selectErrorStyle()}>

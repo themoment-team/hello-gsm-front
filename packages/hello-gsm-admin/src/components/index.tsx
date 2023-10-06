@@ -8,8 +8,6 @@ export { default as Modal } from './Modal';
 export { default as SideBar } from './SideBar';
 export { default as ModalButton } from './Modal/ModalButton';
 export { default as ModalInput } from './Modal/ModalInput';
-export { default as ModalFirstEvaluationSubmit } from './Modal/ModalFirstEvaluationSubmit';
-export { default as ModalSecondEvaluationSubmit } from './Modal/ModalSecondEvaluationSubmit';
 export { default as ModalSubmit } from './Modal/ModalSubmit';
 export { default as PaginationController } from './PaginationController';
 export { default as GEDScoreResultModal } from './Calc/GEDScoreResultModal';
