@@ -42,7 +42,7 @@ const TestGEDCalculatorPage: NextPage = () => {
 
   const inValid = (Errors: FieldErrors) => {
     console.error(Errors);
-    toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
+    toast.error('선택되지 않은 값이 있어요.');
   };
 
   usePreventBackAndClose();

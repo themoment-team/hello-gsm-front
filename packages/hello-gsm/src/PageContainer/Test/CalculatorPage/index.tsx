@@ -114,7 +114,7 @@ const TestCalculatorPage: NextPage = () => {
 
   const inValid = (errors: FieldErrors) => {
     console.error(errors);
-    toast.error('문제가 발생했어요. 다시 시도해주세요.');
+    toast.error('선택되지 않은 값이 있어요.');
   };
 
   // 추가과목 삭제
