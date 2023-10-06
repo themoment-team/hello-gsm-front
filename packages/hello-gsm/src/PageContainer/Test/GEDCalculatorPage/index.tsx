@@ -24,7 +24,7 @@ const TestGEDCalculatorPage: NextPage = () => {
     curriculumScoreSubtotal,
     nonCurriculumScoreSubtotal,
   }: ScoreType) => {
-    if (curriculumScoreSubtotal > nonCurriculumScoreSubtotal) {
+    if (nonCurriculumScoreSubtotal >= curriculumScoreSubtotal) {
       const rankPercentage = GEDCalculate(
         curriculumScoreSubtotal,
         nonCurriculumScoreSubtotal,

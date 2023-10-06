@@ -47,28 +47,32 @@ const GEDCalculatorPage: NextPage<GEDCalculatorPageProps> = ({
     curriculumScoreSubtotal,
     nonCurriculumScoreSubtotal,
   }: ScoreType) => {
-    const rankPercentage = GEDCalculate(
-      curriculumScoreSubtotal,
-      nonCurriculumScoreSubtotal,
-    );
-
-    const scoreTotal =
-      rankPercentage && Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
-
-    try {
-      await TrySubmission({
+    if (nonCurriculumScoreSubtotal >= curriculumScoreSubtotal) {
+      const rankPercentage = GEDCalculate(
         curriculumScoreSubtotal,
         nonCurriculumScoreSubtotal,
-        rankPercentage,
-        scoreTotal,
-      });
+      );
+      const scoreTotal =
+        rankPercentage &&
+        Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
 
-      setResult([rankPercentage, scoreTotal]);
-      setShowScoreResult();
-      toast.success('성적입력이 완료되었어요.');
-    } catch (err: any) {
-      console.error(err);
-      toast.error('문제가 발생했어요. 다시 시도해주세요.');
+      try {
+        await TrySubmission({
+          curriculumScoreSubtotal,
+          nonCurriculumScoreSubtotal,
+          rankPercentage,
+          scoreTotal,
+        });
+
+        setResult([rankPercentage, scoreTotal]);
+        setShowScoreResult();
+        toast.success('성적입력이 완료되었어요.');
+      } catch (err: any) {
+        console.error(err);
+        toast.error('문제가 발생했어요. 다시 시도해주세요.');
+      }
+    } else {
+      toast.error('성적은 만점보다 높을 수 없습니다.');
     }
   };
 
