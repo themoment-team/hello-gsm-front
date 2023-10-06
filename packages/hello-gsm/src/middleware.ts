@@ -24,7 +24,8 @@ export async function middleware(req: NextRequest) {
   }
 
   if (
-    process.env.OPERATIONAL_STATUS === 'inspection' &&
+    process.env.NODE_ENV === 'production' &&
+    siteState === 'INSPECTION' &&
     pathname !== '/inspection'
   ) {
     return NextResponse.redirect(`${origin}/inspection`);
