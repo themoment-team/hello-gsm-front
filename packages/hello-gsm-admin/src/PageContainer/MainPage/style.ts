@@ -4,6 +4,7 @@ export const MainPage = styled.div`
   width: 100vw;
   height: 100vh;
   position: relative;
+  overflow-x: hidden;
 `;
 
 export const MainPageContent = styled.div`
