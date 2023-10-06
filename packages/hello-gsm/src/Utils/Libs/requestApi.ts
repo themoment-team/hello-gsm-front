@@ -7,11 +7,16 @@ axios.interceptors.response.use(
   },
   async error => {
     if (error.response.status === 401) {
+      const ExceptionURL = [
+        '/information',
+        '/apply',
+        '/calculator',
+        '/calculator/ged',
+        '/application',
+      ];
+
       // 현재 URL이 /auth/signin, / 이 아닌 경우에만 리다이렉트
-      if (
-        window.location.pathname !== '/auth/signin' &&
-        window.location.pathname !== '/'
-      ) {
+      if (ExceptionURL.includes(window.location.pathname)) {
         window.location.replace('/auth/signin');
       }
     }
