@@ -8,23 +8,29 @@ const getSiteState = async () => {
   return data.values[1][0];
 };
 
-let isMiddlewareExecuted = false;
-
 export async function middleware(req: NextRequest) {
-  if (isMiddlewareExecuted) {
-    return NextResponse.next();
-  }
-
   const siteState = await getSiteState();
 
   const { origin, pathname } = req.nextUrl;
   const { device, browser } = userAgent(req);
-  console.log(siteState, pathname, isMiddlewareExecuted);
+  console.log(siteState, pathname);
 
   if (siteState === 'INSPECTION' && pathname !== '/inspection') {
-    isMiddlewareExecuted = true; // 미들웨어 함수 실행 플래그 설정
-    return NextResponse.redirect(`${origin}/inspection`);
+    return NextResponse.rewrite(`${origin}/inspection`);
   }
 
   return NextResponse.next();
 }
+
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+  ],
+};
