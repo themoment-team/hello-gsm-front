@@ -77,7 +77,7 @@ const GEDCalculatorPage: NextPage<GEDCalculatorPageProps> = ({
         toast.error('문제가 발생했어요. 다시 시도해주세요.');
       }
     } else {
-      toast.error('성적은 만점보다 높을 수 없습니다.');
+      toast.error('성적은 만점보다 높을 수 없어요.');
     }
   };
 

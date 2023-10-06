@@ -34,7 +34,7 @@ const TestGEDCalculatorPage: NextPage = () => {
       setResultNumber([rankPercentage, scoreTotal]);
       setShowScoreResult();
     } else {
-      toast.error('성적은 만점보다 높을 수 없습니다.');
+      toast.error('성적은 만점보다 높을 수 없어요.');
     }
   };
 
