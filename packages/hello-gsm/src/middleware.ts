@@ -8,48 +8,23 @@ const getSiteState = async () => {
   return data.values[1][0];
 };
 
+let isMiddlewareExecuted = false;
+
 export async function middleware(req: NextRequest) {
+  if (isMiddlewareExecuted) {
+    return NextResponse.next();
+  }
+
   const siteState = await getSiteState();
-  console.log(siteState);
-  const acceptable =
-    new Date() >= new Date('2023/10/16 00:00') &&
-    new Date() <= new Date('2023/10/19 08:00');
 
   const { origin, pathname } = req.nextUrl;
   const { device, browser } = userAgent(req);
-  const applicationFormURL = ['/information', '/apply'];
+  console.log(siteState, pathname, isMiddlewareExecuted);
 
-  if (browser.name === 'IE' && pathname !== '/browser') {
-    return NextResponse.redirect(`${origin}/browser`);
-  }
-
-  if (
-    process.env.NODE_ENV === 'production' &&
-    siteState === 'INSPECTION' &&
-    pathname !== '/inspection'
-  ) {
+  if (siteState === 'INSPECTION' && pathname !== '/inspection') {
+    isMiddlewareExecuted = true; // 미들웨어 함수 실행 플래그 설정
     return NextResponse.redirect(`${origin}/inspection`);
   }
 
-  if (pathname === '/inspection') {
-    if (process.env.OPERATIONAL_STATUS !== 'inspection') {
-      return NextResponse.redirect(origin);
-    }
-  }
-
-  if (applicationFormURL.includes(pathname)) {
-    // 원서 접수 가능 기간이 아닐 시
-    if (!acceptable) {
-      return NextResponse.redirect(origin);
-    }
-
-    if (browser.name === 'Safari') {
-      return NextResponse.redirect(`${origin}/browser`);
-    }
-
-    if (device.type === ('mobile' || 'tablet')) {
-      // pc가 아닐 시
-      return NextResponse.redirect(origin);
-    }
-  }
+  return NextResponse.next();
 }

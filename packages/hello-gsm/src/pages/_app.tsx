@@ -54,7 +54,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <ToastContainer />
-        <Header />
+        {router.pathname !== '/inspection' && <Header />}
         <Component {...pageProps} />
         <Footer />
       </ThemeProvider>
