@@ -26,7 +26,7 @@ export const SignUpForm = styled.form`
 `;
 
 export const TitleBox = styled.form`
-  height: 105px;
+  height: 6.5625rem;
 `;
 
 export const Title = styled.h1`
@@ -37,9 +37,9 @@ export const Title = styled.h1`
 `;
 
 export const Subtitle = styled.p`
-  margin-top: 10px;
+  margin-top: 0.625rem;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 1.25rem;
   color: #b2e449;
   text-align: center;
 `;
