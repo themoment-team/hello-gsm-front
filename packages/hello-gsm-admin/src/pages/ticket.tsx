@@ -5,6 +5,7 @@ import { TicketDataType, TicketType } from 'type/ticket';
 import { toast } from 'react-toastify';
 import application from 'Api/application';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 const Ticket: NextPage = () => {
   const seoTitle = '수험표 출력';
@@ -12,12 +13,15 @@ const Ticket: NextPage = () => {
 
   const [tickets, setTickets] = useState<TicketType[]>();
 
+  const { push } = useRouter();
+
   const getTickets = async () => {
     try {
       const { data }: TicketDataType = await application.getAllTickets();
       setTickets(data);
     } catch (e) {
       toast.error('수험표 정보를 불러오지 못했어요. ');
+      push('/');
       console.error(e);
     }
   };
