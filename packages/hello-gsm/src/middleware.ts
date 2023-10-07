@@ -9,26 +9,31 @@ const getSiteState = async () => {
 };
 
 export async function middleware(req: NextRequest) {
-  const siteState = await getSiteState();
-  const acceptable =
-    new Date() >= new Date('2023/10/16 00:00') &&
-    new Date() <= new Date('2023/10/19 08:00');
-
   const { origin, pathname } = req.nextUrl;
   const { device, browser } = userAgent(req);
-  const applicationFormURL = ['/information', '/apply'];
+
+  // 점검창 처리
+  try {
+    const siteState = await getSiteState();
+    if (siteState === 'INSPECTION' && pathname !== '/inspection') {
+      return NextResponse.rewrite(`${origin}/inspection`);
+    }
+  } catch (e) {
+    return NextResponse.next();
+  }
 
   // IE 예외처리
   if (browser.name === 'IE' && pathname !== '/browser') {
     return NextResponse.rewrite(`${origin}/browser`);
   }
 
-  // 점검창 처리
-  if (siteState === 'INSPECTION' && pathname !== '/inspection') {
-    return NextResponse.rewrite(`${origin}/inspection`);
-  }
+  const acceptable =
+    new Date() >= new Date('2023/10/16 00:00') &&
+    new Date() <= new Date('2023/10/19 08:00');
 
-  // 원서 날짜 이후 처리
+  const applicationFormURL = ['/information', '/apply'];
+
+  // 원서 날짜 이후 처리 해당 페이지라면
   if (applicationFormURL.includes(pathname)) {
     // 원서 접수 가능 기간이 아닐 시
     if (!acceptable) {
