@@ -47,34 +47,35 @@ const GEDCalculatorPage: NextPage<GEDCalculatorPageProps> = ({
     curriculumScoreSubtotal,
     nonCurriculumScoreSubtotal,
   }: ScoreType) => {
-    const rankPercentage = GEDCalculate(
-      curriculumScoreSubtotal,
-      nonCurriculumScoreSubtotal,
-    );
-
-    const scoreTotal =
-      rankPercentage && Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
-
-    try {
-      await TrySubmission({
+    if (nonCurriculumScoreSubtotal >= curriculumScoreSubtotal) {
+      const rankPercentage = GEDCalculate(
         curriculumScoreSubtotal,
         nonCurriculumScoreSubtotal,
-        rankPercentage,
-        scoreTotal,
-      });
+      );
+      const scoreTotal = Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
+      try {
+        await TrySubmission({
+          curriculumScoreSubtotal,
+          nonCurriculumScoreSubtotal,
+          rankPercentage,
+          scoreTotal,
+        });
 
-      setResult([rankPercentage, scoreTotal]);
-      setShowScoreResult();
-      toast.success('성적입력이 완료되었어요.');
-    } catch (err: any) {
-      console.error(err);
-      toast.error('문제가 발생했어요. 다시 시도해주세요.');
+        setResult([rankPercentage, scoreTotal]);
+        setShowScoreResult();
+        toast.success('성적입력이 완료되었어요.');
+      } catch (err: any) {
+        console.error(err);
+        toast.error('문제가 발생했어요. 다시 시도해주세요.');
+      }
+    } else {
+      toast.error('성적은 만점보다 높을 수 없어요.');
     }
   };
 
   const inValid = (Errors: FieldErrors) => {
     console.error(Errors);
-    toast.error('문제가 발생했어요. 다시 시도해주세요.');
+    toast.error('선택되지 않은 값이 있어요.');
   };
 
   useEffect(() => {
