@@ -15,12 +15,9 @@ export const ToCalculator = styled.button`
   font-weight: 600;
 
   &:nth-of-type(1) {
-    top: 35rem;
-  }
-  &:nth-of-type(2) {
     top: 40rem;
   }
-  &:nth-of-type(3) {
+  &:nth-of-type(2) {
     top: 45rem;
   }
 

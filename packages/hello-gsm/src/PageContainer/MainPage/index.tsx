@@ -20,6 +20,7 @@ import {
 } from 'shared/Date/firstScreening';
 import { formatDate } from 'Utils/Format';
 import { ApplicationDataType, EvaluationStatusType } from 'type/application';
+import Link from 'next/link';
 
 const contentSelects = [
   '원서 작성',
@@ -186,9 +187,9 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
             </S.TermWrapper>
           </div>
         </div>
-        <BubbleButton link="/절차_가이드.pdf">
+        <S.GuideAnchor href="/절차_가이드.pdf" target="_blank" rel="noreferrer">
           ℹ️ 입학 절차 확인하기
-        </BubbleButton>
+        </S.GuideAnchor>
         <BubbleButton link="/calculator/choose">
           🧾 모의 성적 계산해보기
         </BubbleButton>
