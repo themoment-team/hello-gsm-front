@@ -32,8 +32,8 @@ export async function middleware(req: NextRequest) {
   }
 
   const acceptable =
-    new Date() >= new Date('2023/10/16 00:00') &&
-    new Date() <= new Date('2023/10/19 08:00');
+    new Date('2023/10/16 00:00') >= new Date('2023/10/16 00:00') &&
+    new Date('2023/10/16 00:00') <= new Date('2023/10/19 08:00');
 
   const applicationFormURL = ['/information', '/apply'];
 
