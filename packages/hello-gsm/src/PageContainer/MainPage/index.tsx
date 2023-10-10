@@ -186,6 +186,9 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
             </S.TermWrapper>
           </div>
         </div>
+        <BubbleButton link="/절차_가이드.pdf">
+          ℹ️ 입학 절차 확인하기
+        </BubbleButton>
         <BubbleButton link="/calculator/choose">
           🧾 모의 성적 계산해보기
         </BubbleButton>
