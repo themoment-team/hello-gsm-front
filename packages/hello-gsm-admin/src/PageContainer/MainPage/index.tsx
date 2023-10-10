@@ -1,164 +1,93 @@
-import { ContentBox, Logout, MainpageHeader, ScoreModal } from 'components';
+import {
+  ContentBox,
+  ListHeader,
+  MainpageHeader,
+  PaginationController,
+  SideBar,
+} from 'components';
 import type { NextPage } from 'next';
 import * as S from './style';
-import useStore from 'Stores/StoreContainer';
-import { css, Global } from '@emotion/react';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { ApplicantsType, ApplicantType, GetListType } from 'Types/application';
+import { useEffect, useState } from 'react';
+import { SearchApplicationInfoType } from 'type/application';
 import application from 'Api/application';
-import auth from 'Api/auth';
-import Link from 'next/link';
-import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
+import { SearchTagType } from 'type/searchTag';
 
-const MainPage: NextPage<ApplicantsType> = ({ list, count }) => {
-  const [printable, setPrintable] = useState<boolean>(false);
-  const [applicationList, setApplicationList] = useState<ApplicantType[]>(list);
-  const [isPageEnd, setIsPageEnd] = useState<boolean>(false);
-  const pageIndexRef = useRef<number>(2);
-  const searchRef = useRef<HTMLInputElement>(null);
-  const loadMoreRef = useRef<HTMLDivElement>(null);
-  const { showScoreModal } = useStore();
+const MainPage: NextPage = () => {
+  const [tmpValue, setTmpValue] = useState<string>('');
+  const [searchKeyword, setSearchKeyword] = useState<string>('');
+  const [searchTag, setSearchTag] = useState<SearchTagType>('APPLICANT');
+  const [applicationData, setApplicationData] =
+    useState<SearchApplicationInfoType>();
+  const router = useRouter();
+  const pageNumber = Number(router.query.pageNumber ?? 1);
 
   useEffect(() => {
-    setPrintable(new Date() >= new Date('2022-10-21 00:00:00'));
-  }, []);
+    const debounce = setTimeout(() => {
+      return setSearchKeyword(tmpValue);
+    }, 300);
+    return () => clearTimeout(debounce);
+  }, [tmpValue]);
 
-  const getList = useCallback(async () => {
-    const keyword = searchRef.current?.value;
+  const getApplicationList = async (pageNumber: number) => {
     try {
-      const { data }: GetListType = await application.getList(
-        pageIndexRef.current,
-        keyword,
-      );
-      setApplicationList(list => [...list, ...data]);
-      pageIndexRef.current++;
-      setIsPageEnd(data.length < 10 ? true : false);
+      const { data }: { data: SearchApplicationInfoType } =
+        await application.getSearchApplication(
+          pageNumber - 1,
+          8,
+          searchTag,
+          searchKeyword,
+        );
+      setApplicationData(data);
     } catch (error: any) {
-      // accessToken 없을 시에 accessToken 발급 후 가져오기 요청
-      if (error.response?.status === 401) {
-        try {
-          // accessToken 발급
-          await auth.refresh();
-          getList();
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        console.log(error);
-      }
-    }
-  }, []);
-
-  const search = async () => {
-    const keyword = searchRef.current?.value;
-    try {
-      const { data }: GetListType = await application.getList(1, keyword);
-      pageIndexRef.current = 2;
-      setApplicationList(data);
-      setIsPageEnd(data.length < 10 ? true : false);
-    } catch (error: any) {
-      // accessToken 없을 시에 accessToken 발급 후 검색 결과 요청
-      if (error.response?.status === 401) {
-        try {
-          // accessToken 발급
-          await auth.refresh();
-          search();
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        console.log(error);
-      }
+      console.error(error);
     }
   };
 
-  const handleObserver = useCallback(
-    async (
-      [entry]: IntersectionObserverEntry[],
-      observer: IntersectionObserver,
-    ) => {
-      if (entry.isIntersecting) {
-        observer.unobserve(entry.target);
-        await getList();
-        observer.observe(entry.target);
-      }
-    },
-    [getList],
-  );
+  const getList = () => getApplicationList(pageNumber);
 
   useEffect(() => {
-    if (!loadMoreRef.current) return;
+    getApplicationList(pageNumber);
+  }, [pageNumber, searchKeyword, searchTag]);
 
-    const option = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0,
-    };
-
-    const observer = new IntersectionObserver(handleObserver, option);
-
-    loadMoreRef.current && observer.observe(loadMoreRef.current);
-
-    return () => observer && observer.disconnect();
-  }, [handleObserver, isPageEnd]);
-
-  const enterEvent = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      search();
+  useEffect(() => {
+    if (searchKeyword && searchTag) {
+      router.push(`${router.pathname}?pageNumber=${1}`);
     }
-  };
+  }, [searchKeyword, searchTag]);
 
   return (
     <S.MainPage>
-      {showScoreModal && <ScoreModal />}
-      <Global
-        styles={css`
-          body {
-            overflow: ${showScoreModal ? 'hidden' : 'visible'};
-          }
-        `}
-      />
+      <SideBar />
       <S.MainPageContent>
-        <S.FunctionBox>
-          <S.CountBox>{`최종 제출 인원 : ${count ?? 0}명`}</S.CountBox>
-          <S.Searchbox>
-            <S.SearchInput
-              placeholder="검색어를 입력하세요"
-              ref={searchRef}
-              onKeyPress={enterEvent}
-            />
-            <S.SearchButton onClick={search}>검색</S.SearchButton>
-          </S.Searchbox>
-          <S.ButtonBox>
-            <Logout />
-            {printable ? (
-              <Link href="/ticket">
-                <S.Print>수험표 출력</S.Print>
-              </Link>
-            ) : (
-              <S.Print
-                onClick={() => toast.error('수험표 출력 가능 기간이 아닙니다.')}
-                css={css`
-                  background: #625e6f;
-                  color: rgba(31, 31, 31, 0.86);
-                  cursor: default;
-                `}
-              >
-                수험표 출력
-              </S.Print>
-            )}
-          </S.ButtonBox>
-        </S.FunctionBox>
+        <ListHeader
+          searchValue={tmpValue}
+          setSearchValue={setTmpValue}
+          setSearchTag={setSearchTag}
+          searchTag={searchTag}
+          submitCount={applicationData?.info.totalElements ?? 0}
+        />
         <MainpageHeader />
         <S.ContentList>
-          {applicationList?.map((content, index: number) => (
-            <ContentBox content={content} key={index} />
-          ))}
-          {!isPageEnd && <S.Target ref={loadMoreRef} />}
+          {applicationData?.applications.map(data => {
+            return (
+              <ContentBox
+                content={data}
+                key={data.applicationId}
+                getApplicationList={getList}
+              />
+            );
+          })}
         </S.ContentList>
+        {applicationData?.info.totalPages ? (
+          <PaginationController
+            totalPages={applicationData.info.totalPages}
+            pageNumber={pageNumber}
+          />
+        ) : (
+          ''
+        )}
       </S.MainPageContent>
-      <S.BlueBall />
-      <S.SkyBlueBall />
     </S.MainPage>
   );
 };

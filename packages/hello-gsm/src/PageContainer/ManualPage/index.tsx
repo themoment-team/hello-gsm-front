@@ -1,10 +1,10 @@
-import { Header } from 'components';
 import type { NextPage } from 'next';
 import * as S from 'PageContainer/InformationPage/style';
 import * as DS from 'components/InformationDescription/style';
 import * as I from 'Assets/svg';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import Image from 'next/image';
 
 const ManualPageStyle = styled.div`
   height: 100vh;
@@ -30,7 +30,9 @@ const ManualPageStyle = styled.div`
 
 const KakaoAccountButton = styled.button`
   display: flex;
+  justify-content: center;
   align-items: center;
+  gap: 1rem;
   width: 328px;
   height: 45px;
   background: #fee500;
@@ -56,7 +58,6 @@ const ManualPage: NextPage = () => {
 
   return (
     <ManualPageStyle>
-      <Header />
       <S.InformationContent
         css={css`
           height: 460px;
@@ -80,7 +81,13 @@ const ManualPage: NextPage = () => {
           </DS.DescriptionText>
         </DS.Description>
         <KakaoAccountButton onClick={location}>
-          <I.KakaoLogo /> <p>카카오계정 홈페이지</p>
+          <Image
+            src="/Images/KakaoIcon.png"
+            alt="kakao아이콘"
+            width={30}
+            height={30}
+          />
+          <p>카카오계정 홈페이지</p>
         </KakaoAccountButton>
       </S.InformationContent>
       <S.YellowBall />

@@ -1,4 +1,4 @@
-import { Header, GEDScoreResultModal } from 'components';
+import { GEDScoreResultModal } from 'components';
 import type { NextPage } from 'next';
 import { useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import useStore from 'Stores/StoreContainer';
 import { GEDCalculate, Rounds } from 'Utils/Calculate';
 import * as S from 'PageContainer/GEDCalculatorPage/style';
+import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
 
 interface ScoreType {
   curriculumScoreSubtotal: number; // 전과목 득점
@@ -23,24 +24,29 @@ const TestGEDCalculatorPage: NextPage = () => {
     curriculumScoreSubtotal,
     nonCurriculumScoreSubtotal,
   }: ScoreType) => {
-    const rankPercentage = GEDCalculate(
-      curriculumScoreSubtotal,
-      nonCurriculumScoreSubtotal,
-    );
-    const scoreTotal = Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
+    if (nonCurriculumScoreSubtotal >= curriculumScoreSubtotal) {
+      const rankPercentage = GEDCalculate(
+        curriculumScoreSubtotal,
+        nonCurriculumScoreSubtotal,
+      );
+      const scoreTotal = Rounds((300 - (300 * rankPercentage) / 100) * 0.87, 3);
 
-    setResultNumber([rankPercentage, scoreTotal]);
-    setShowScoreResult();
+      setResultNumber([rankPercentage, scoreTotal]);
+      setShowScoreResult();
+    } else {
+      toast.error('성적은 만점보다 높을 수 없어요.');
+    }
   };
 
   const inValid = (Errors: FieldErrors) => {
-    console.log(Errors);
-    toast.error('문제가 발생하였습니다. 다시 시도해주세요.');
+    console.error(Errors);
+    toast.error('선택되지 않은 값이 있어요.');
   };
+
+  usePreventBackAndClose();
 
   return (
     <>
-      <Header />
       {showScoreResult && <GEDScoreResultModal result={resultNumber} />}
       <S.GEDPage>
         <S.Title>성적입력(검정고시)</S.Title>

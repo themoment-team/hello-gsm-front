@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { fadeInAndOut } from 'shared/Styles/Animations';
+import { fadeInAndOut } from 'styles/Animations';
 
 export const Background = styled.div`
   display: flex;

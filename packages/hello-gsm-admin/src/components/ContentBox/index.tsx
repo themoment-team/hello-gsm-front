@@ -1,181 +1,131 @@
+import React, { useState } from 'react';
 import { css } from '@emotion/react';
-import application from 'Api/application';
-import auth from 'Api/auth';
-import React, { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
-import useStore from 'Stores/StoreContainer';
-import { ApplicantType } from 'Types/application';
 import * as S from './style';
+import * as I from 'Assets/svg';
+import { ApplicationListType, EvaluationStatusType } from 'type/application';
+import formatScreening from 'Utils/Libs/formatScreening';
+import { Modal } from 'components';
+import { useRouter } from 'next/router';
 
-interface ContentType {
-  content: ApplicantType;
+interface ContentBoxProp {
+  content: ApplicationListType;
+  getApplicationList: () => void;
 }
 
-const ContentBox: React.FC<ContentType> = ({
+type resultObjectType = {
+  [key in EvaluationStatusType]: string;
+};
+
+const ContentBox: React.FC<ContentBoxProp> = ({
   content: {
-    name,
-    cellphoneNumber,
-    application: {
-      applicationIdx,
-      finalResultScreening,
-      firstResultScreening,
-      guardianCellphoneNumber,
-      isDocumentReception,
-      registrationNumber,
-      schoolName,
-      screening,
-      teacherCellphoneNumber,
-      application_score,
-    },
+    applicationId,
+    applicantName,
+    applicantPhoneNumber,
+    teacherPhoneNumber,
+    guardianPhoneNumber,
+    screening,
+    schoolName,
+    isPrintsArrived,
+    firstEvaluation,
+    secondEvaluation,
+    secondScore,
   },
+  content,
+  getApplicationList,
 }) => {
-  const [isFirstResult, setIsFirstResult] = useState<boolean>(false);
-  const [isFinalResult, setIsFinalResult] = useState<boolean>(false);
-  const [firstResult, setFirstResult] = useState<'미정' | '합격' | '불합격'>(
-    '미정',
+  const formattedCellphoneNumber = applicantPhoneNumber.replace(
+    /(\d{3})(\d{4})(\d{4})/,
+    '$1-$2-$3',
   );
-  const finalResult: '합격' | '불합격' = finalResultScreening
-    ? '합격'
-    : '불합격';
-  const [score, setScore] = useState<number | null>(
-    parseFloat(application_score?.personalityEvaluationScore ?? '') || null,
+  const formattedGuardianCellphoneNumber = guardianPhoneNumber.replace(
+    /(\d{3})(\d{4})(\d{4})/,
+    '$1-$2-$3',
   );
-  const [documentReception, setDocumentReception] = useState<boolean>(false);
-  const {
-    showScoreModal,
-    setShowScoreModal,
-    setModalName,
-    modalRegistrationNumber,
-    setModalRegistrationNumber,
-    scoreModalValue,
-    setScoreModalValue,
-  } = useStore();
+  const formattedTeacherCellphoneNumber =
+    teacherPhoneNumber !== null
+      ? teacherPhoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')
+      : '검정고시';
 
-  useEffect(() => {
-    setIsFirstResult(new Date() >= new Date('2022-10-21 00:00:00'));
-    setIsFinalResult(new Date() >= new Date('2022-11-02 00:00:00'));
-  }, []);
+  const [showStatusModal, setShowStatusModal] = useState<boolean>(false);
+  const { push } = useRouter();
+  const resultStyle = {
+    NOT_YET: css`
+      color: #9e9e9e;
+      cursor: default;
+    `,
+    PASS: css`
+      color: #2174d8;
+      cursor: default;
+    `,
+    FALL: css`
+      color: #ff000f;
+      cursor: default;
+    `,
+  };
 
-  useEffect(() => {
-    setDocumentReception(isDocumentReception);
-  }, [isDocumentReception]);
-
-  useEffect(() => {
-    setFirstResult(
-      !isFirstResult ? '미정' : firstResultScreening ? '합격' : '불합격',
-    );
-  }, [isFirstResult]);
-
-  useEffect(() => {
-    if (!showScoreModal) {
-      if (modalRegistrationNumber === registrationNumber) {
-        setScore(scoreModalValue);
-      }
-    }
-  }, [showScoreModal]);
-
-  useEffect(() => {
-    setScore(
-      parseFloat(application_score?.personalityEvaluationScore ?? '') || null,
-    );
-  }, [application_score]);
-
-  const documentSubmission = async () => {
-    if (new Date() >= new Date('2022-10-21 20:00:00')) {
-      return toast.error('서류제출 여부 할당 기간이 아닙니다.');
-    }
-    const data = {
-      registrationNumber: registrationNumber,
+  const formatResult = (result: EvaluationStatusType) => {
+    const resultObject: resultObjectType = {
+      PASS: '합격',
+      FALL: '불합격',
+      NOT_YET: '미정',
     };
-    try {
-      await application.document(data);
-      setDocumentReception(documentReception => !documentReception);
-    } catch (error: any) {
-      // accessToken 없을 시에 accessToken 발급 후 서류 제출 여부 요청
-      if (error.response.status === 401) {
-        try {
-          // accessToken 발급
-          await auth.refresh();
-          documentSubmission();
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        console.log(error);
-      }
-    }
+    return resultObject[result];
   };
 
-  const resultStyle = (result: '미정' | '합격' | '불합격') => {
-    switch (result) {
-      case '미정':
-        return css`
-          background: #625e6f;
-          color: rgba(31, 31, 31, 0.86);
-          cursor: default;
-        `;
-      case '합격':
-        return css`
-          background: #19baff;
-          color: #ffffff;
-          cursor: default;
-        `;
-      case '불합격':
-        return css`
-          background: #ff4747;
-          color: #ffffff;
-          cursor: default;
-        `;
-    }
-  };
-
-  const scoreButtonClick = () => {
-    if (
-      new Date() <= new Date('2022-10-28 16:00:00') ||
-      new Date() >= new Date('2022-11-01 22:10:00')
-    ) {
-      return toast.error('2차 성적 입력 기간이 아닙니다.');
-    }
-    if (firstResult === '불합격') {
-      return toast.error('불합격자는 2차 성적 입력이 불가능합니다.');
-    }
-    setModalRegistrationNumber(registrationNumber);
-    setModalName(name);
-    setShowScoreModal();
-    setScoreModalValue(score);
+  const onCloseShowStatusModal = () => {
+    setShowStatusModal(false);
   };
 
   return (
     <S.ContentBox>
-      <S.Content>
-        <S.RegistrationNumber>{applicationIdx}</S.RegistrationNumber>
-        <S.Name>{name}</S.Name>
-        <S.Screening>{screening}</S.Screening>
-        <S.SchoolName>
-          {schoolName !== 'null' ? schoolName : '검정고시'}
-        </S.SchoolName>
-        <S.isDocumentReception>
-          <S.Checkbox
-            css={css`
-              background: ${documentReception && '#19BAFF'};
-            `}
-            onClick={documentSubmission}
+      {showStatusModal && (
+        <S.ModalContainer>
+          <Modal
+            data={content}
+            onClose={onCloseShowStatusModal}
+            getApplicationList={getApplicationList}
           />
-        </S.isDocumentReception>
-        <S.PhoneNumber>{cellphoneNumber}</S.PhoneNumber>
-        <S.GuardianNumber>{guardianCellphoneNumber}</S.GuardianNumber>
-        <S.TeacherNumber>
-          {teacherCellphoneNumber !== 'null'
-            ? teacherCellphoneNumber
-            : '검정고시'}
-        </S.TeacherNumber>
-      </S.Content>
-      <S.Button css={() => resultStyle(firstResult)}>{firstResult}</S.Button>
-      {isFinalResult ? (
-        <S.Button css={() => resultStyle(finalResult)}>{finalResult}</S.Button>
-      ) : (
-        <S.Button onClick={scoreButtonClick}>{score ?? '입력'}</S.Button>
+        </S.ModalContainer>
       )}
+      <S.Content>
+        <S.RegistrationNumber>
+          {String(applicationId).padStart(4, '0')}
+        </S.RegistrationNumber>
+        <S.isDocumentReception>
+          <S.DocumentReceptionText isPrintsArrived={isPrintsArrived}>
+            · {isPrintsArrived ? '제출' : '미제출'}
+          </S.DocumentReceptionText>
+        </S.isDocumentReception>
+        <S.Name>{applicantName}</S.Name>
+        <S.Screening>{formatScreening(screening)}</S.Screening>
+        <S.SchoolName>{schoolName ?? '검정고시'}</S.SchoolName>
+        <S.PhoneNumber>{formattedCellphoneNumber}</S.PhoneNumber>
+        <S.GuardianNumber>{formattedGuardianCellphoneNumber}</S.GuardianNumber>
+        <S.TeacherNumber>{formattedTeacherCellphoneNumber}</S.TeacherNumber>
+        <S.FirstResultText css={resultStyle[firstEvaluation]}>
+          {formatResult(firstEvaluation)}
+        </S.FirstResultText>
+        <S.FinalScoreText
+          css={css`
+            color: ${secondScore ? '#212121' : '#9E9E9E'};
+          `}
+        >
+          {secondScore ?? '미입력'}
+        </S.FinalScoreText>
+        <S.FinalResultText css={resultStyle[secondEvaluation]}>
+          {formatResult(secondEvaluation)}
+        </S.FinalResultText>
+      </S.Content>
+      <S.EditButtonBox>
+        <S.EditButton onClick={() => setShowStatusModal(true)}>
+          <I.BulbIcon />
+          상태 수정
+        </S.EditButton>
+        <S.EditButton onClick={() => push(`/apply/${applicationId}`)}>
+          <I.EditIcon />
+          원서 수정
+        </S.EditButton>
+      </S.EditButtonBox>
     </S.ContentBox>
   );
 };

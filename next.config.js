@@ -1,7 +1,10 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['github.com', 'k.kakaocdn.net'],
+    domains: [
+      'github.com',
+      'aws-cloudtrail-bucket-hellogsm.s3.ap-northeast-2.amazonaws.com',
+    ],
   },
   env: {
     NEIS_API_KEY: process.env.NEIS_API_KEY,

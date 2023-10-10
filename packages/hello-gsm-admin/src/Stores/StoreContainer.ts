@@ -1,29 +1,13 @@
 import create from 'zustand';
 
 interface StoreType {
-  showScoreModal: boolean;
-  modalRegistrationNumber: number;
-  modalName: string;
-  scoreModalValue: null | number;
-
-  setShowScoreModal: () => void;
-  setModalRegistrationNumber: (registrationNumber: number) => void;
-  setModalName: (name: string) => void;
-  setScoreModalValue: (value: number | null) => void;
+  selectedOption: number | null;
+  setSelectedOption: (option: number) => void;
 }
 
 const useStore = create<StoreType>(set => ({
-  showScoreModal: false,
-  modalRegistrationNumber: 0,
-  modalName: '',
-  scoreModalValue: null,
-
-  setShowScoreModal: () =>
-    set(state => ({ showScoreModal: !state.showScoreModal })),
-  setModalRegistrationNumber: registrationNumber =>
-    set({ modalRegistrationNumber: registrationNumber }),
-  setModalName: name => set({ modalName: name }),
-  setScoreModalValue: value => set({ scoreModalValue: value }),
+  selectedOption: 0,
+  setSelectedOption: option => set({ selectedOption: option }),
 }));
 
 export default useStore;

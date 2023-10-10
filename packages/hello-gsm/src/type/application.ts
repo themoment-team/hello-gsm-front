@@ -1,99 +1,131 @@
-export interface ApplicationType {
-  application: {
-    teacherCellphoneNumber?: string;
-    schoolName?: string;
-    guardianCellphoneNumber: string;
-    screening: '일반전형' | '사회통합전형' | '특별전형';
-  };
-  applicationDetail: {
-    telephoneNumber?: string;
-    address: string;
-    addressDetails?: string;
-    guardianName: string;
-    guardianRelation: string;
-    educationStatus: '졸업예정' | '졸업' | '검정고시';
-    graduationYear: string;
-    graduationMonth: string;
-    firstWantedMajor: '소프트웨어개발과' | '스마트IoT과' | '인공지능과' | '';
-    secondWantedMajor: '소프트웨어개발과' | '스마트IoT과' | '인공지능과' | '';
-    thirdWantedMajor: '소프트웨어개발과' | '스마트IoT과' | '인공지능과' | '';
-    teacherName?: string;
-    schoolLocation?: string;
-  };
+export type MajorType = 'SW' | 'IOT' | 'AI' | '';
+
+export type GraduationStatusType = 'CANDIDATE' | 'GRADUATE' | 'GED';
+
+export type GenderType = 'MALE' | 'FEMALE';
+
+export type ScreeningType =
+  | 'GENERAL'
+  | 'SOCIAL'
+  | 'SPECIAL_VETERANS'
+  | 'SPECIAL_ADMISSION'
+  | '';
+
+export type EvaluationStatusType = 'NOT_YET' | 'PASS' | 'FALL';
+
+export interface GEDScore {
+  totalScore: number;
+  percentileRank: number;
+  gedTotalScore: number;
+  gedMaxScore: number;
 }
 
-export interface ApplyFormType {
-  addressDetails: string;
-  telephoneNumber: string;
-  screening: '일반전형' | '사회통합전형' | '특별전형';
-  graduationYear: string;
-  graduationMonth: string;
-  educationStatus: '졸업예정' | '졸업' | '검정고시';
+export interface CommonScore {
+  totalScore: number;
+  percentileRank: number;
+  grade1Semester1Score: number;
+  grade1Semester2Score: number;
+  grade2Semester1Score: number;
+  grade2Semester2Score: number;
+  grade3Semester1Score: number;
+  artisticScore: number;
+  curricularSubtotalScore: number;
+  attendanceScore: number;
+  volunteerScore: number;
+  extracurricularSubtotalScore: number;
+}
+
+export interface ApplicationFormType {
+  applicantImageUri: string;
+  address: string;
+  detailAddress: string;
+  graduation: GraduationStatusType;
+  telephone: string | null;
   guardianName: string;
-  guardianRelation: string;
-  guardianCellphoneNumber: string;
+  relationWithApplicant: string;
+  guardianPhoneNumber: string;
   teacherName: string | null;
-  teacherCellphoneNumber: string | null;
+  teacherPhoneNumber: string | null;
+  firstDesiredMajor: MajorType | null;
+  secondDesiredMajor: MajorType;
+  thirdDesiredMajor: MajorType;
+  schoolName: string | null;
+  schoolLocation: string | null;
+  screening: ScreeningType | 'SPECIAL' | '';
+  middleSchoolGrade: string;
 }
 
-export interface GetApplicationType {
-  data: {
-    user_idx: number;
-    userImg: string;
-    name: string;
-    birth: Date;
-    gender: '남자' | '여자';
-    cellphoneNumber: string;
-    application_image?: {
-      idPhotoUrl: string;
+export type ApplyFormType = Omit<ApplicationFormType, 'middleSchoolGrade'>;
+
+export interface AdmissionInfoType {
+  admissionInfo?: {
+    applicantName: string;
+    applicantGender: GenderType;
+    applicantBirth: Date;
+    address: string;
+    detailAddress: string;
+    graduation: GraduationStatusType;
+    telephone: string | null;
+    applicantPhoneNumber: string;
+    guardianName: string;
+    relationWithApplicant: string;
+    guardianPhoneNumber: string;
+    teacherName: string | null;
+    teacherPhoneNumber: string | null;
+    schoolName: string | null;
+    schoolLocation: string | null;
+    applicantImageUri: string;
+    desiredMajor: {
+      firstDesiredMajor: MajorType;
+      secondDesiredMajor: MajorType;
+      thirdDesiredMajor: MajorType;
     };
-    application?: {
-      applicationIdx: number;
-      registrationNumber?: number;
-      isFinalSubmission?: boolean;
-      isDocumentReception?: boolean;
-      firstResultScreening?: string;
-      finalResultScreening?: string;
-      guardianCellphoneNumber: string;
-      teacherCellphoneNumber?: string;
-      schoolName?: string;
-      screening: '일반전형' | '사회통합전형' | '특별전형';
-      user_idx: number;
-      application_score?: {
-        applicationIdx: number;
-        score1_1: number;
-        score1_2: number;
-        score2_1: number;
-        score2_2: number;
-        score3_1: number;
-        score3_2: number;
-        generalCurriculumScoreSubtotal: number;
-        artSportsScore: number;
-        curriculumScoreSubtotal: number;
-        attendanceScore: number;
-        volunteerScore: number;
-        nonCurriculumScoreSubtotal: number;
-        personalityEvaluationScore?: number;
-        scoreTotal: number;
-        rankPercentage: number;
-      };
-      application_details?: {
-        applicationIdx: number;
-        address: string;
-        addressDetails?: string;
-        telephoneNumber?: string;
-        guardianName: string;
-        guardianRelation: string;
-        teacherName?: string;
-        schoolLocation?: string;
-        educationStatus: '졸업예정' | '졸업' | '검정고시';
-        graduationYear: string;
-        graduationMonth: string;
-        firstWantedMajor: '소프트웨어개발과' | '스마트IoT과' | '인공지능과';
-        secondWantedMajor: '소프트웨어개발과' | '스마트IoT과' | '인공지능과';
-        thirdWantedMajor: '소프트웨어개발과' | '스마트IoT과' | '인공지능과';
-        majorResult?: string;
-      };
-    };
+    screening: ScreeningType;
   };
+}
+
+export interface CommonApplicationResponseType {
+  id: number;
+  admissionInfo: {
+    applicantName: string;
+    applicantGender: GenderType;
+    applicantBirth: Date;
+    address: string;
+    detailAddress: string;
+    graduation: GraduationStatusType;
+    telephone: string | null;
+    applicantPhoneNumber: string;
+    guardianName: string;
+    relationWithApplicant: string;
+    guardianPhoneNumber: string;
+    teacherName: string | null;
+    teacherPhoneNumber: string | null;
+    schoolName: string | null;
+    schoolLocation: string | null;
+    applicantImageUri: string;
+    desiredMajor: {
+      firstDesiredMajor: MajorType;
+      secondDesiredMajor: MajorType;
+      thirdDesiredMajor: MajorType;
+    };
+    screening: ScreeningType;
+  };
+  middleSchoolGrade: string;
+  admissionGrade: GEDScore | CommonScore;
+  admissionStatus: {
+    isFinalSubmitted: boolean;
+    isPrintsArrived: boolean;
+    firstEvaluation: EvaluationStatusType;
+    secondEvaluation: EvaluationStatusType;
+    screeningSubmittedAt: ScreeningType | null;
+    screeningFirstEvaluationAt: ScreeningType | null;
+    screeningSecondEvaluationAt: ScreeningType | null;
+    registrationNumber: number | null;
+    secondScore: number | null;
+    finalMajor: MajorType | null;
+  };
+}
+
+export interface ApplicationDataType {
+  data?: CommonApplicationResponseType;
 }

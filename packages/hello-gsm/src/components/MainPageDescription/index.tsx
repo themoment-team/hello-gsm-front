@@ -6,54 +6,72 @@ import * as I from 'Assets/svg';
 import { MainDescStatusType } from 'type/user';
 import { useRouter } from 'next/router';
 import device from 'shared/config';
+import {
+  endApply,
+  endFirstResult,
+  isFirstResult,
+  isStartFirstResult,
+  startApply,
+  startFirstResult,
+} from 'shared/Date/firstScreening';
+import { isFinalEnd } from 'shared/Date/afterApply';
+import { startFinalTest } from 'shared/Date/secondScreening';
+import { formatDate } from 'Utils/Format';
+import formatMajor from 'Utils/Format/formatMajor';
+import { EvaluationStatusType, MajorType } from 'type/application';
+import useStore from 'Stores/StoreContainer';
 
 const MainPageDescription: React.FC<MainDescStatusType> = ({
   selectedIndex,
   data,
 }) => {
-  const today = new Date();
-  const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(true);
-  const [pass, setPass] = useState<boolean>(false);
-  const firstResult = data?.application?.firstResultScreening ? true : false;
-  const finalResult = data?.application?.finalResultScreening ? true : false;
-  const [index, setIndex] = useState<number>(1);
-  const name = data?.name ?? '';
-  const registrationNumber = data?.application?.registrationNumber ?? '';
-  const [majorResult, setMajorResult] = useState<
-    '인공지능과' | '스마트IoT과' | '소프트웨어개발과' | null
-  >(data?.application?.application_details?.majorResult ?? null);
-  const { push } = useRouter();
+  const resetResult = (result?: EvaluationStatusType): boolean | undefined => {
+    switch (result) {
+      case 'FALL':
+        return false;
+      case 'PASS':
+        return true;
+      case 'NOT_YET':
+        return undefined;
+    }
+    return undefined;
+  };
 
-  useEffect(() => {
-    setIsFirstPeriod(
-      new Date() >= new Date('2022/10/24 10:00:00') &&
-        new Date() < new Date('2022/11/02 10:00:00'),
-    );
-  }, []);
+  const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(isFirstResult);
+  const firstResult = resetResult(data?.admissionStatus.firstEvaluation);
+  const finalResult = resetResult(data?.admissionStatus.secondEvaluation);
+  const [pass, setPass] = useState<boolean | undefined>(undefined);
+  const [index, setIndex] = useState<number>(1);
+  const name = data?.admissionInfo.applicantName ?? '';
+  const registrationNumber = data?.admissionStatus.registrationNumber ?? '';
+  const majorResult = data?.admissionStatus.finalMajor ?? '';
+
+  const { push } = useRouter();
+  const { logged } = useStore();
 
   useEffect(() => {
     setPass(isFirstPeriod ? firstResult : finalResult);
-  }, [isFirstPeriod]);
+  }, [finalResult, firstResult, isFirstPeriod]);
 
   useEffect(() => {
-    setMajorResult(data?.application?.application_details?.majorResult ?? null);
-  }, [data?.application?.application_details?.majorResult]);
+    // 입학 전형이 끝난 이후
+    isFinalEnd ? setIndex(0) : setIndex(selectedIndex);
 
-  useEffect(() => {
-    today > new Date('2023/03/01 00:00:00')
-      ? setIndex(0)
-      : setIndex(selectedIndex);
     if (selectedIndex === 5) {
-      if (data) {
-        today >= new Date('2022/10/24 10:00:00') &&
-        (data.application?.isFinalSubmission ?? false)
+      if (pass !== undefined) {
+        // 1차 전형 합격 날짜
+        isStartFirstResult && (data?.admissionStatus.isFinalSubmitted ?? false)
           ? setIndex(5)
           : setIndex(7);
       } else {
-        setIndex(6);
+        if (logged) {
+          setIndex(7);
+        } else {
+          setIndex(6);
+        }
       }
     }
-  }, [selectedIndex]);
+  }, [data, logged, selectedIndex]);
 
   switch (index) {
     case 1:
@@ -64,12 +82,11 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             날인하여
           </S.DescriptionLine>
           <S.DescriptionLine>
-            원서접수 기간 내에 공문시행, 등기 우편, 방문 제출 중 한가지의
-            방법으로 제출하여야 합니다.
+            원서접수 기간 내에 공문 및 방문 제출하여야 합니다.
           </S.DescriptionLine>
           <S.DescriptionLine
             css={css`
-              margin-top: 50px;
+              margin-top: 3.125rem;
             `}
           >
             2. 입력사항에 오류가 있거나 허위로 입력한 경우 접수가 취소될 수
@@ -80,17 +97,17 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
           </S.DescriptionLine>
           <S.DescriptionLine
             css={css`
-              margin-top: 50px;
+              margin-top: 3.125rem;
             `}
           >
             3. 접수번호는 원서 최종 제출 후 자동으로 부여됩니다.
           </S.DescriptionLine>
           <S.PostScript
             css={css`
-              margin-top: 50px;
+              margin-top: 3.125rem;
             `}
           >
-            2022.10.17. ~ 2022.10.20.
+            {formatDate(startApply)}(월) ~ {formatDate(endApply)}(목)
           </S.PostScript>
         </S.Description>
       );
@@ -101,8 +118,8 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             작성하신 입학 원서와 그 외 서류들을 출력하여 수기 부분을
           </S.DescriptionLine>
           <S.DescriptionLine>
-            모두 작성하신 후 10월 17일 9시부터 10월 20일 17시까지 교무실
-            원서접수처에
+            모두 작성하신 후 {formatDate(startApply, 'notYear')}(월) 부터 {''}
+            {formatDate(endApply, 'notYear')}(목)까지 교무실 원서접수처에
           </S.DescriptionLine>
           <S.DescriptionLine>제출해야합니다.</S.DescriptionLine>
           <S.PostScript>광주광역시 광산구 송정동 상무대로 312</S.PostScript>
@@ -115,9 +132,11 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             1차 서류 심사에서는 내신과 봉사시간, 출결현황을 점수로 환산하여
           </S.DescriptionLine>
           <S.DescriptionLine>
-            정원의 1.3배의 인원을 선출합니다.
+            정원의 1.3배의 인원을 발표합니다.
           </S.DescriptionLine>
-          <S.PostScript>2022.10.24. 10시 발표</S.PostScript>
+          <S.PostScript>
+            {formatDate(startFirstResult, 'hours')}(월) 발표
+          </S.PostScript>
         </S.Description>
       );
     case 4:
@@ -128,11 +147,13 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             자질과 능력을
           </S.DescriptionLine>
           <S.DescriptionLine>
-            중심으로 직무적성 소양평가를 치룹니다.
+            중심으로 직무적성 소양평가를 치릅니다.
           </S.DescriptionLine>
           <S.PostScript>
-            2022.10.28. 13시 직무적성 소양평가 진행 <br />
-            2022.11.02. 10시 최종 결과 발표
+            {formatDate(startFinalTest)}(금) 직무적성 소양평가 진행 (오후 1시
+            강당)
+            <br />
+            {formatDate(endFirstResult, 'hours')}(수) 최종 결과 발표
           </S.PostScript>
         </S.Description>
       );
@@ -141,7 +162,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
         pass ? (
           <S.Description>
             <S.DescriptionLine>
-              {name}님 2022학년도 광주소프트웨어마이스터고등학교
+              {name}님 2024학년도 광주소프트웨어마이스터고등학교
             </S.DescriptionLine>
             <S.DescriptionLine>
               <S.Blue>1차 합격</S.Blue>하셨습니다.
@@ -154,7 +175,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
         ) : (
           <S.Description>
             <S.DescriptionLine>
-              {name}님 2022학년도 광주소프트웨어마이스터고등학교
+              {name}님 2024학년도 광주소프트웨어마이스터고등학교
             </S.DescriptionLine>
             <S.DescriptionLine>
               1차 서류 심사 결과 <S.Red>불합격</S.Red>하셨습니다.
@@ -165,15 +186,15 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
       ) : pass ? (
         <S.Description>
           <S.DescriptionLine>
-            {name}님 2022학년도 광주소프트웨어마이스터고등학교
+            {name}님 2024학년도 광주소프트웨어마이스터고등학교
           </S.DescriptionLine>
           <S.DescriptionLine>
-            {majorResult}에 <S.Blue>최종 합격</S.Blue> 하셨습니다.
+            {formatMajor(majorResult)}에 <S.Blue>최종 합격</S.Blue> 하셨습니다.
           </S.DescriptionLine>
           <S.PostScript>
             제출서류 : 입학등록동의서 1부(11.7.월까지),
             <br />
-            건강진단서 1부(11.14.월까지)우편과 방문접수에 한함.
+            건강진단서 1부(11.14.월까지)공문과 방문접수에 한함.
           </S.PostScript>
           <S.PostScript>접수 번호 {registrationNumber}</S.PostScript>
           <S.Button onClick={() => push('/최종합격자_제출_서류.hwp')}>
@@ -193,7 +214,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
       ) : (
         <S.Description>
           <S.DescriptionLine>
-            {name}님 2022학년도 광주소프트웨어마이스터고등학교
+            {name}님 2024학년도 광주소프트웨어마이스터고등학교
           </S.DescriptionLine>
           <S.DescriptionLine>
             <S.Red>최종 불합격</S.Red>하셨습니다.
@@ -216,9 +237,11 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
       return (
         <S.Description>
           <S.DescriptionLine>
-            1차 서류 심사와 인적성소양평가를 통해 최종 합격자를 선출합니다.
+            1차 서류 심사와 인적성소양평가를 통해 최종 합격자를 발표합니다.
           </S.DescriptionLine>
-          <S.PostScript>2022.11.02. 10시 최종 결과 발표</S.PostScript>
+          <S.PostScript>
+            {formatDate(endFirstResult, 'hours')}(수) 최종 결과 발표
+          </S.PostScript>
         </S.Description>
       );
     default:

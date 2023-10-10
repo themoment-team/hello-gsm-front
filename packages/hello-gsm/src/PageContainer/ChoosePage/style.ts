@@ -46,7 +46,7 @@ export const ChooseForm = styled.form`
 
 export const RadioSection = styled.div`
   display: flex;
-  margin: 40px 0 280px;
+  margin: 40px 0;
   width: 423px;
   justify-content: space-between;
   label {
@@ -66,10 +66,19 @@ export const Submit = styled.button`
   height: 64px;
   background: #ffffff;
   border-radius: 10px;
-  margin: 0 auto;
+  margin: 200px auto 0;
   text-align: center;
   color: #0f0921;
   font-size: 20px;
   cursor: pointer;
   border: none;
+`;
+
+export const Description = styled.p`
+  color: #9e9e9e;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 20px;
+  height: 70px;
 `;

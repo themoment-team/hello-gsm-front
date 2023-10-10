@@ -1,25 +1,17 @@
 import type { NextPage } from 'next';
 import * as S from './style';
-import { GetApplicationType } from 'type/application';
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { ApplicantsStatus } from 'components';
 import * as I from 'Assets/svg';
 import { LocalScoreType } from 'type/score';
 import toStringArray from 'Utils/Array/toStringArray';
+import { formatGender } from 'Utils/Format';
+import { ApplicationDataType } from 'type/application';
+import { isGED } from 'type/ged';
+import { css, Global } from '@emotion/react';
 
-const ApplicationPage: NextPage<GetApplicationType> = ({
-  data: {
-    user_idx,
-    application,
-    application_image,
-    birth,
-    name,
-    gender,
-    cellphoneNumber,
-  },
-  data,
-}) => {
+const ApplicationPage: NextPage<ApplicationDataType> = ({ data }) => {
   // 로컬스토리지 값을 가져와서 등급으로 표시
   const [score1_1, setScore1_1] = useState<string[] | undefined>([]);
   const [score1_2, setScore1_2] = useState<string[] | undefined>([]);
@@ -34,10 +26,12 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
   const [newSubjects, setNewSubjects] = useState<string[]>([]);
   const [nonSubjects, setNonSubjects] = useState<string[]>([]);
 
+  const { admissionGrade, middleSchoolGrade, admissionInfo, admissionStatus } =
+    data || {};
+
   useEffect(() => {
-    const localstorageData = window.localStorage.getItem(`${user_idx}`);
-    const scoreData: LocalScoreType | null = localstorageData
-      ? JSON.parse(localstorageData)
+    const scoreData: LocalScoreType | null = middleSchoolGrade
+      ? JSON.parse(middleSchoolGrade)
       : null;
     setScore1_1(toStringArray(scoreData?.score1_1));
     setScore1_2(toStringArray(scoreData?.score1_2));
@@ -51,21 +45,23 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
     setSubjects(scoreData?.subjects || []);
     setNewSubjects(scoreData?.newSubjects || []);
     setNonSubjects(scoreData?.nonSubjects || []);
-  }, []);
+  }, [middleSchoolGrade]);
+
+  const isGEDScore = isGED(admissionGrade);
 
   // 환산일수
   const conversionDays =
-    application?.application_score?.attendanceScore &&
-    (30 - application?.application_score?.attendanceScore) / 3;
+    !isGEDScore && admissionGrade && 30 - admissionGrade?.attendanceScore / 3;
 
-  const userBirth = new Date(birth);
-
+  const userBirth = admissionInfo && new Date(admissionInfo?.applicantBirth);
   // 생년월일을 YYYY-MM-DD형식에 맞게 포맷
-  const Formatbirth = dayjs()
-    .set('year', userBirth.getFullYear())
-    .set('month', userBirth.getMonth())
-    .set('date', userBirth.getDate())
-    .format('YYYY-MM-DD');
+  const Formatbirth =
+    userBirth &&
+    dayjs()
+      .set('year', userBirth.getFullYear())
+      .set('month', userBirth.getMonth())
+      .set('date', userBirth.getDate())
+      .format('YYYY-MM-DD');
 
   const TryPrint = () => {
     window.print();
@@ -73,6 +69,18 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
 
   return (
     <>
+      <Global
+        styles={css`
+          @media print {
+            body {
+              header,
+              footer {
+                display: none !important;
+              }
+            }
+          }
+        `}
+      />
       {/* 입학원서 */}
       <S.ApplicationPage>
         <S.Document>
@@ -81,11 +89,11 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
           <S.Title>광주소프트웨어마이스터고등학교 입학원서</S.Title>
           <S.Wrap>
             <S.SubTitle style={{ fontSize: '1.5vh', fontWeight: 700 }}>
-              2023학년도 신입생 입학전형
+              2024학년도 신입생 입학전형
             </S.SubTitle>
             <S.Box>
               <S.ApplyNum>접수번호</S.ApplyNum>
-              <S.Content>{application?.registrationNumber}</S.Content>
+              <S.Content>{admissionStatus?.registrationNumber}</S.Content>
             </S.Box>
           </S.Wrap>
           <S.Container>
@@ -101,9 +109,9 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
                     지원자
                   </S.Subject>
                   <S.Subject>성 명</S.Subject>
-                  <td>{name}</td>
+                  <td>{admissionInfo?.applicantName}</td>
                   <S.Subject style={{ width: '3%' }}>성별</S.Subject>
-                  <td>{gender}</td>
+                  <td>{formatGender(admissionInfo?.applicantGender)}</td>
                   <S.Subject>생년월일</S.Subject>
                   <td>{Formatbirth}</td>
                   <td
@@ -112,7 +120,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
                       width: '18vh',
                       height: '25vh',
                       backgroundImage: `url(
-                        ${application_image?.idPhotoUrl}
+                        ${admissionInfo?.applicantImageUri}
                       )`,
                       backgroundSize: '18vh 25vh',
                       backgroundRepeat: 'no-repeat',
@@ -121,56 +129,48 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
                 </tr>
                 <tr>
                   <S.Subject>주 소</S.Subject>
-                  <td colSpan={5}>
-                    {application?.application_details?.address}
-                  </td>
+                  <td colSpan={5}>{admissionInfo?.address}</td>
                 </tr>
                 <tr>
                   <S.Subject>연락처</S.Subject>
                   <S.Subject>집전화</S.Subject>
 
-                  {application?.application_details?.telephoneNumber ? (
-                    <td colSpan={2}>
-                      {application?.application_details?.telephoneNumber}
-                    </td>
+                  {admissionInfo?.telephone ? (
+                    <td colSpan={2}>{admissionInfo?.telephone}</td>
                   ) : (
                     <S.Slash colSpan={2} />
                   )}
                   <S.Subject>핸드폰</S.Subject>
-                  <td>{cellphoneNumber}</td>
+                  <td>{admissionInfo?.applicantPhoneNumber}</td>
                 </tr>
                 <tr>
                   <S.Subject style={{ width: '3%' }} rowSpan={2}>
                     보호자
                   </S.Subject>
                   <S.Subject>성 명</S.Subject>
-                  <td colSpan={2}>
-                    {application?.application_details?.guardianName}
-                  </td>
+                  <td colSpan={2}>{admissionInfo?.guardianName}</td>
                   <S.Subject>지원자와의 관계</S.Subject>
-                  <td colSpan={2}>
-                    {application?.application_details?.guardianRelation}
-                  </td>
+                  <td colSpan={2}>{admissionInfo?.relationWithApplicant}</td>
                 </tr>
                 <tr>
                   <S.Subject>핸드폰</S.Subject>
-                  <td colSpan={5}>{application?.guardianCellphoneNumber}</td>
+                  <td colSpan={5}>{admissionInfo?.guardianPhoneNumber}</td>
                 </tr>
                 <tr>
                   <S.Subject colSpan={3}>
                     원서작성자(담임) <br /> 성명
                   </S.Subject>
-                  {application?.application_details?.teacherName ? (
+                  {admissionInfo?.teacherName ? (
                     <td colSpan={2} style={{ textAlign: 'end' }}>
-                      {application?.application_details?.teacherName}(인)
+                      {admissionInfo?.teacherName}(인)
                     </td>
                   ) : (
                     <S.Slash colSpan={2} />
                   )}
 
                   <S.Subject>핸드폰</S.Subject>
-                  {application?.teacherCellphoneNumber ? (
-                    <td>{application?.teacherCellphoneNumber}</td>
+                  {admissionInfo?.teacherPhoneNumber ? (
+                    <td>{admissionInfo?.teacherPhoneNumber}</td>
                   ) : (
                     <S.Slash />
                   )}
@@ -181,7 +181,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
             <ApplicantsStatus data={data} />
             <S.Details>
               <S.Pledge>
-                위 학생은 2023학년도 귀교 제1학년에 입학하고자 소정의 서류를
+                위 학생은 2024학년도 귀교 제1학년에 입학하고자 소정의 서류를
                 갖추어 지원하며, &nbsp;
                 <strong>
                   다른 산업수요맞춤형(마이스터)고등학교에 이중지원하지 않을 것을
@@ -209,20 +209,20 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
         </S.Document>
       </S.ApplicationPage>
       {/* 검정고시가 아닌 학생만 성적 입력 확인서 보여주기 */}
-      {application?.application_details?.educationStatus !== '검정고시' && (
+      {!isGEDScore && (
         <S.ApplicationPage>
           <S.Document>
             <div className="warterMark">견본</div>
             <p>[서식 3]</p>
             <S.Title style={{ fontSize: '2vh' }}>
-              2023학년도 광주소프트웨어마이스터고등학교 입학 전형성적 입력
+              2024학년도 광주소프트웨어마이스터고등학교 입학 전형성적 입력
               확인서
             </S.Title>
             <S.Wrap>
               <S.SubTitle>일반교과</S.SubTitle>
               <S.Box>
                 <S.ApplyNum>접수번호</S.ApplyNum>
-                <S.Content>{application?.registrationNumber}</S.Content>
+                <S.Content>{admissionStatus?.registrationNumber}</S.Content>
               </S.Box>
             </S.Wrap>
 
@@ -245,18 +245,15 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
                   <S.DivSubject>1학년 1학기</S.DivSubject>
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
-                {/* 자유학년제거나 자유학기제를 시행한 학기이면 점수를 보여주지 않음 (없는 점수는 -1로 반환됨) */}
-                {application?.application_score?.score1_1 &&
-                application?.application_score?.score1_1 < 0 ? (
+                {/* 자유학년제거나 자유학기제를 시행한 학기이면 점수를 보여주지 않음  */}
+                {admissionGrade?.grade1Semester1Score === 0 ? (
                   <S.DivSlash />
                 ) : (
                   <>
                     {score1_1?.map((score, i) => (
                       <S.Value key={i}>{score}</S.Value>
                     ))}
-                    <S.Value>
-                      {application?.application_score?.score1_1}
-                    </S.Value>
+                    <S.Value>{admissionGrade?.grade1Semester1Score}</S.Value>
                   </>
                 )}
               </S.Column>
@@ -265,17 +262,14 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
                   <S.DivSubject>1학년 2학기</S.DivSubject>
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
-                {application?.application_score?.score1_2 &&
-                application?.application_score?.score1_2 < 0 ? (
+                {admissionGrade?.grade1Semester2Score === 0 ? (
                   <S.DivSlash />
                 ) : (
                   <>
                     {score1_2?.map((score, i) => (
                       <S.Value key={i}>{score}</S.Value>
                     ))}
-                    <S.Value>
-                      {application?.application_score?.score1_2}
-                    </S.Value>
+                    <S.Value>{admissionGrade?.grade1Semester2Score}</S.Value>
                   </>
                 )}
               </S.Column>
@@ -284,18 +278,14 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
                   <S.DivSubject>2학년 1학기</S.DivSubject>
                   <S.DivSubject>성취도/평어</S.DivSubject>
                 </S.Semester>
-                {application?.application_score?.score2_1 &&
-                application?.application_score?.score2_1 < 0 ? (
+                {admissionGrade?.grade2Semester1Score === 0 ? (
                   <S.DivSlash />
                 ) : (
                   <>
-                    {' '}
                     {score2_1?.map((score, i) => (
                       <S.Value key={i}>{score}</S.Value>
                     ))}
-                    <S.Value>
-                      {application?.application_score?.score2_1}
-                    </S.Value>
+                    <S.Value>{admissionGrade?.grade2Semester1Score}</S.Value>
                   </>
                 )}
               </S.Column>
@@ -307,7 +297,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
                 {score2_2?.map((score, i) => (
                   <S.Value key={i}>{score}</S.Value>
                 ))}
-                <S.Value>{application?.application_score?.score2_2}</S.Value>
+                <S.Value>{admissionGrade?.grade2Semester2Score}</S.Value>
               </S.Column>
               <S.Column>
                 <S.Semester>
@@ -317,7 +307,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
                 {score3_1?.map((score, i) => (
                   <S.Value key={i}>{score}</S.Value>
                 ))}
-                <S.Value>{application?.application_score?.score3_1}</S.Value>
+                <S.Value>{admissionGrade?.grade3Semester1Score}</S.Value>
               </S.Column>
             </S.ScoreTable>
 
@@ -381,9 +371,7 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
               </S.ColumnWrapper>
               <S.ConversionPoint>
                 <S.Column style={{ width: '20%' }}>환산점</S.Column>
-                <S.Value>
-                  {application?.application_score?.artSportsScore}
-                </S.Value>
+                <S.Value>{admissionGrade?.artisticScore}</S.Value>
               </S.ConversionPoint>
             </S.NonScoreTable>
             <S.SubTitle>비교과</S.SubTitle>
@@ -415,13 +403,9 @@ const ApplicationPage: NextPage<GetApplicationType> = ({
                     {/* 환산일수 구하기 */}
                     {conversionDays}
                   </td>
-                  <td rowSpan={3}>
-                    {application?.application_score?.attendanceScore}
-                  </td>
+                  <td rowSpan={3}>{admissionGrade?.attendanceScore}</td>
                   <td>{volunteerScore[0]}</td>
-                  <td rowSpan={3}>
-                    {application?.application_score?.volunteerScore}
-                  </td>
+                  <td rowSpan={3}>{admissionGrade?.volunteerScore}</td>
                 </tr>
                 <tr>
                   <td>2</td>

@@ -15,6 +15,7 @@ interface schoolType {
   SCHUL_NM: string;
   ORG_RDNMA: string;
   LCTN_SC_NM: string;
+  SCHUL_KND_SC_NM: '고등학교' | '중학교' | '초등학교';
 }
 
 const FindSchoolModal: React.FC = () => {
@@ -50,9 +51,14 @@ const FindSchoolModal: React.FC = () => {
       } = await axios.get(
         `https://open.neis.go.kr/hub/schoolInfo?KEY=${process.env.NEIS_API_KEY}&Type=json&SCHUL_NM=${keyword}`,
       );
-      setSchools(row);
+
+      setSchools(
+        row.filter(
+          (v: { SCHUL_KND_SC_NM: string }) => v.SCHUL_KND_SC_NM === '중학교',
+        ),
+      );
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 

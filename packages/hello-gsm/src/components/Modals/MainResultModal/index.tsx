@@ -1,16 +1,19 @@
 import { Global, css } from '@emotion/react';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as I from 'Assets/svg';
 import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 import device from 'shared/config';
+import { MajorType } from 'type/application';
+import { isFirstResult } from 'shared/Date/firstScreening';
+import formatMajor from 'Utils/Format/formatMajor';
 
 interface ResultModal {
   name: string;
-  pass: boolean;
+  pass: boolean | undefined;
   isMobile: boolean;
-  majorResult?: '소프트웨어개발과' | '스마트IoT과' | '인공지능과';
+  majorResult: MajorType | null;
 }
 
 const MainResultModal: React.FC<ResultModal> = ({
@@ -19,18 +22,10 @@ const MainResultModal: React.FC<ResultModal> = ({
   isMobile,
   majorResult,
 }) => {
-  const [isFirstResultPeriod, setIsFirstResultPeriod] = useState<boolean>(true);
-  const [isPass, setIsPass] = useState<boolean>(pass);
+  const [isFirstResultPeriod, setIsFirstResultPeriod] =
+    useState<boolean>(isFirstResult);
   const { setShowMainResultModal } = useStore();
   const { push } = useRouter();
-
-  useEffect(() => {
-    setIsFirstResultPeriod(new Date() < new Date('2022/11/2 10:00:00'));
-  }, []);
-
-  useEffect(() => {
-    setIsPass(pass);
-  }, [pass]);
 
   const invisible = () => {
     setShowMainResultModal(false);
@@ -53,48 +48,49 @@ const MainResultModal: React.FC<ResultModal> = ({
         <S.MainResultModalContent>
           {isFirstResultPeriod ? (
             <S.Text>
-              {name}님의 2023학년도 {isMobile && <br />}
+              {name}님의 2024학년도 {isMobile && <br />}
               광주소프트웨어마이스터고등학교
               <br />
               1차 서류 심사 결과{' '}
-              {isPass ? (
+              {pass ? (
                 <S.PassText>합격</S.PassText>
               ) : (
                 <S.FailText>불합격</S.FailText>
               )}
               하셨습니다.
               <br />
-              {isPass &&
+              {pass &&
                 (isMobile ? (
                   <>
                     2차 직무적성 소양평가는
                     <br />
-                    10월 28일 13시에 진행됩니다.
+                    10월 27일 13시에 진행됩니다.
                   </>
                 ) : (
-                  '2차 직무적성 소양평가는 10월 28일 13시에 진행됩니다.'
+                  '2차 직무적성 소양평가는 10월 27일 13시에 진행됩니다.'
                 ))}
             </S.Text>
           ) : (
             <>
               <S.Text>
-                {name}님의 2023학년도 {isMobile && <br />}
+                {name}님의 2024학년도 {isMobile && <br />}
                 광주소프트웨어마이스터고등학교
                 <br />
-                {isPass ? (
+                {pass ? (
                   <>
-                    {majorResult}에 <S.PassText>최종 합격</S.PassText>
+                    {formatMajor(majorResult)}에{' '}
+                    <S.PassText>최종 합격</S.PassText>
                   </>
                 ) : (
                   <S.FailText>최종 불합격</S.FailText>
                 )}
                 하셨습니다.
               </S.Text>
-              {isPass && (
+              {pass && (
                 <S.FinalPassPostScript>
                   제출서류 : 입학등록동의서 1부(11.7.월까지),
                   <br />
-                  건강진단서 1부(11.14.월까지)우편과 방문접수에 한함.
+                  건강진단서 1부(11.14.월까지)공문 제출과 방문접수에 한함.
                 </S.FinalPassPostScript>
               )}
             </>
@@ -110,7 +106,7 @@ const MainResultModal: React.FC<ResultModal> = ({
           </S.InvisibleButton>
         </S.InvisibleButtonWrap>
         {isFirstResultPeriod ? (
-          isPass ? (
+          pass ? (
             <S.ButtonWrap>
               <S.Button
                 css={css`
@@ -137,7 +133,7 @@ const MainResultModal: React.FC<ResultModal> = ({
               확인
             </S.Button>
           )
-        ) : isPass ? (
+        ) : pass ? (
           <S.ButtonWrap>
             <S.Button
               css={css`

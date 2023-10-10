@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Subject } from 'shared/Styles/Calculate';
+import { Subject } from 'styles/Calculate';
 
 export const Background = styled.div`
   position: fixed;

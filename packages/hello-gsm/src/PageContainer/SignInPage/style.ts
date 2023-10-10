@@ -3,7 +3,7 @@ import device from 'shared/config';
 
 export const SignInPage = styled.div`
   position: relative;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 5rem);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,72 +15,58 @@ export const SignInForm = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 300px;
+  height: 18.75rem;
+
+  .google {
+    background-color: #ffffff;
+  }
+
+  .kakao {
+    background-color: #fee500;
+  }
 `;
 
 export const Title = styled.h1`
-  font-style: normal;
   font-weight: 700;
-  font-size: 48px;
-  line-height: 70px;
+  font-size: 3rem;
+  line-height: 4.375rem;
   color: #ffffff;
-  border-bottom: 1px solid #fff;
-  margin-bottom: 30px;
+  border-bottom: 0.0625rem solid #fff;
+  margin-bottom: 1.875rem;
 `;
 
 export const SignInBtn = styled.a`
   display: flex;
   align-items: center;
-  width: 328px;
-  height: 45px;
-  background: #fee500;
-  border-radius: 10px;
+  width: 20.5rem;
+  height: 2.8125rem;
+  padding: 0 1.25rem;
+  border-radius: 0.625rem;
   cursor: pointer;
   color: #0f0921;
-  font-size: 20px;
+  font-size: 1.25rem;
   border: none;
-  p {
-    text-align: center;
-    line-height: 45px;
-  }
-  svg {
-    width: 25px;
-    height: 45px;
-    margin: 0 40px 0 20px;
-  }
-`;
+  gap: 3rem;
+  line-height: 2.8125rem;
+  margin-bottom: 1.5rem;
 
-const Ball = styled.div`
-  position: absolute;
-  border-radius: 50%;
-  z-index: -1;
   @media ${device.tablet} {
-    display: none;
+    line-height: 0;
   }
 `;
 
-export const BigBall = styled(Ball)`
-  width: 93vh;
-  height: 93vh;
-  left: -30vh;
-  top: 43vh;
-  background: linear-gradient(
-    201.42deg,
-    #7be8ff 13.47%,
-    #3f98ff 33.16%,
-    rgba(0, 33, 65, 0.68) 80.28%
-  );
-`;
+export const ImageWrap = styled.span`
+  width: 1.875rem;
+  height: 1.875rem;
 
-export const SmallBall = styled(Ball)`
-  width: 25vh;
-  height: 25vh;
-  right: -5vh;
-  top: 77vh;
-  background: linear-gradient(
-    207.52deg,
-    #d2f7ff 13.95%,
-    #61c5db 37.16%,
-    rgba(0, 132, 201, 0.27) 91.31%
-  );
+  .iamge {
+    object-fit: cover;
+    width: 100%;
+    position: relative;
+  }
+
+  @media ${device.tablet} {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
 `;

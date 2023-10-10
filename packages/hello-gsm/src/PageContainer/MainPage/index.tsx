@@ -1,20 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
-import Link from 'next/link';
 import {
-  Header,
-  Footer,
   MainPageDescription,
   BubbleButton,
   MainResultModal,
   MainNonLoginModal,
+  LinkButton,
 } from 'components';
-import { css } from '@emotion/react';
-import { StatusType } from 'type/user';
+import { css, useTheme } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
 import device from 'shared/config';
-import acceptable from 'shared/acceptable';
+import {
+  applyAcceptable,
+  endApply,
+  isFirstResult,
+  isStartFirstResult,
+  startApply,
+} from 'shared/Date/firstScreening';
+import { formatDate } from 'Utils/Format';
+import { ApplicationDataType, EvaluationStatusType } from 'type/application';
 
 const contentSelects = [
   '원서 작성',
@@ -24,12 +29,32 @@ const contentSelects = [
   '결과 발표',
 ];
 
-const MainPage: NextPage<StatusType> = ({ data }) => {
+const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
   const [selectedIndex, setSelectedIndex] = useState<number>(1);
   const [isPC, setIsPC] = useState<boolean>(true);
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isAcceptable, setIsAcceptable] = useState<boolean>(false);
-  const [isFirstResultPeriod, setIsFirstResultPeriod] = useState<boolean>(true);
+  const [isFirstResultPeriod, setIsFirstResultPeriod] =
+    useState<boolean>(isFirstResult);
+  const [pass, setPass] = useState<boolean | undefined>(undefined);
+
+  const resetResult = (result?: EvaluationStatusType): boolean | undefined => {
+    switch (result) {
+      case 'FALL':
+        return false;
+      case 'PASS':
+        return true;
+      case 'NOT_YET':
+        return undefined;
+    }
+    return undefined;
+  };
+  const firstResult = resetResult(data?.admissionStatus.firstEvaluation);
+  const finalResult = resetResult(data?.admissionStatus.secondEvaluation);
+
+  useEffect(() => {
+    setPass(isFirstResultPeriod ? firstResult : finalResult);
+  }, [finalResult, firstResult, isFirstResultPeriod]);
 
   const {
     showMainNonLoginModal,
@@ -44,7 +69,7 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
     css`
       color: #ffffff;
       font-weight: 700;
-      font-size: '24px';
+      font-size: '1.5rem';
       padding: 0;
       &:before,
       &:after {
@@ -58,10 +83,10 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
       }
     `;
 
+  const theme = useTheme();
   useEffect(() => {
-    setIsFirstResultPeriod(new Date() < new Date('2022/11/2 10:00:00'));
     setIsMobile(window.innerWidth < 640 ? true : false);
-    setIsAcceptable(acceptable);
+    setIsAcceptable(applyAcceptable);
     setIsPC(
       !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi|mobi/i.test(
         navigator.userAgent,
@@ -73,115 +98,99 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
   }, []);
 
   useEffect(() => {
-    setShowMainNonLoginModal(
-      new Date() >= new Date('2022/10/24 10:00:00') &&
-        !logged &&
-        localStorage.getItem('mainNonLoginModalInvisible') !==
-          new Date().getDate().toString(),
-    );
-  }, [logged]);
+    if (logged !== undefined)
+      setShowMainNonLoginModal(
+        // 1차 합격 발표 날짜
+        isStartFirstResult &&
+          !logged &&
+          localStorage.getItem('mainNonLoginModalInvisible') !==
+            new Date().getDate().toString(),
+      );
+  }, [logged, setShowMainNonLoginModal]);
 
   useEffect(() => {
-    setShowMainResultModal(
-      new Date() >= new Date('2022/10/24 10:00:00') &&
-        localStorage.getItem('mainResultModalInvisible') !==
-          new Date().getDate().toString() &&
-        data?.application?.isFinalSubmission === true,
-    );
-  }, [data?.application?.isFinalSubmission]);
+    if (pass !== undefined)
+      setShowMainResultModal(
+        // 1차 합격 발표 날짜
+        isStartFirstResult &&
+          localStorage.getItem('mainResultModalInvisible') !==
+            new Date().getDate().toString(),
+      );
+  }, [pass]);
 
   return (
     <S.MainPage>
       {showMainResultModal && (
         <MainResultModal
-          name={data?.name ?? ''}
-          pass={
-            isFirstResultPeriod
-              ? data?.application?.firstResultScreening
-                ? true
-                : false
-              : data?.application?.finalResultScreening
-              ? true
-              : false
-          }
+          name={data?.admissionInfo.applicantName ?? ''}
+          pass={pass}
           isMobile={isMobile}
-          majorResult={
-            data?.application?.application_details.majorResult ?? undefined
-          }
+          majorResult={data?.admissionStatus.finalMajor ?? null}
         />
       )}
       {showMainNonLoginModal && <MainNonLoginModal />}
-      <Header />
       <S.MainContent>
-        <S.TitleWrap>
-          <S.TitleBox>
-            <S.Title>
-              광주소프트웨어
-              <br />
-              마이스터고등학교
-            </S.Title>
-            <S.Description>
-              광주소프트웨어마이스터고등학교 입학 지원 시스템
-            </S.Description>
-          </S.TitleBox>
-          <S.ApplyBox>
-            {isPC ? (
-              isAcceptable ? (
-                !data?.application?.isFinalSubmission ? (
-                  <Link
-                    href={logged ? '/information' : '/auth/signin'}
-                    passHref
-                  >
-                    <S.ToApply>원서 접수 하러가기</S.ToApply>
-                  </Link>
-                ) : (
-                  <S.ToApply
-                    css={css`
-                      background: #a2a2a2;
-                      border-radius: 12px;
-                      box-shadow: 0px 5px 20px 0px #a2a2a2;
-                      pointer-events: none;
-                    `}
-                  >
-                    접수 완료
-                  </S.ToApply>
-                )
-              ) : (
-                <S.ToApply
-                  css={css`
-                    background: #a2a2a2;
-                    border-radius: 12px;
-                    box-shadow: 0px 5px 20px 0px #a2a2a2;
-                    pointer-events: none;
-                  `}
+        <div>
+          <S.Title>
+            꿈과 끼를 마음껏{' '}
+            <span
+              css={css`
+                color: ${theme.color.primary.sky};
+              `}
+            >
+              Up!
+            </span>{' '}
+            할 수 있는 <br />
+            광주소프트웨어마이스터고등학교
+          </S.Title>
+          <S.Description>
+            광주소프트웨어마이스터고등학교 입학 지원 시스템
+          </S.Description>
+
+          {isPC ? (
+            isAcceptable ? (
+              !data?.admissionStatus?.isFinalSubmitted ? (
+                <LinkButton
+                  href={logged ? '/information' : '/auth/signin'}
+                  color={theme.color.primary.sky}
                 >
-                  접수 기간이 아닙니다.
-                </S.ToApply>
+                  📑 원서접수 하러가기
+                </LinkButton>
+              ) : (
+                <LinkButton color={theme.color.primary.lime} disabled>
+                  ✅ 접수 완료
+                </LinkButton>
               )
             ) : (
-              <S.ToApply
+              <LinkButton disabled>❌ 접수 기간이 아닙니다.</LinkButton>
+            )
+          ) : (
+            <LinkButton disabled>🖥️ 원서 접수는 pc로만 가능해요</LinkButton>
+          )}
+
+          <div>
+            <S.Underline />
+            <S.TermWrapper>
+              <S.ApplyTerm
                 css={css`
-                  height: 65px;
-                  background: #615d6c;
-                  box-shadow: none;
-                  :hover {
-                    box-shadow: none;
-                  }
+                  list-style: initial;
+                  list-style-position: inside;
+                  font-weight: 600;
                 `}
               >
-                {isAcceptable
-                  ? '원서 접수는 pc로만 가능해요'
-                  : '접수 기간이 아닙니다.'}
-              </S.ToApply>
-            )}
-            <S.ApplyTerm>접수 기간: 10.17. ~ 10.20.</S.ApplyTerm>
-            <S.Underline />
-          </S.ApplyBox>
-        </S.TitleWrap>
-
-        <BubbleButton link="/manual">여러 계정으로 로그인 하는 법</BubbleButton>
+                접수 기간
+              </S.ApplyTerm>
+              <S.ApplyTerm>
+                {formatDate(startApply)}(월) ~ {formatDate(endApply)}(목)
+              </S.ApplyTerm>
+            </S.TermWrapper>
+          </div>
+        </div>
         <BubbleButton link="/calculator/choose">
-          모의 성적 계산 해보기
+          🧾 모의 성적 계산해보기
+        </BubbleButton>
+        <BubbleButton link="/manual">
+          ❓️ 여러 계정으로 로그인 하는 방법
         </BubbleButton>
 
         <S.ContentBox>
@@ -237,7 +246,6 @@ const MainPage: NextPage<StatusType> = ({ data }) => {
       <S.SmallBlueBall />
       <S.MintBall />
       <S.NanoBlueBall />
-      <Footer />
     </S.MainPage>
   );
 };

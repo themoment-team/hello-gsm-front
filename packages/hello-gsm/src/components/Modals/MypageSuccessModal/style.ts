@@ -1,4 +1,4 @@
-import { fadeInAndOut } from 'shared/Styles/Animations';
+import { fadeInAndOut } from 'styles/Animations';
 import styled from '@emotion/styled';
 
 export const SuccessModal = styled.div`
@@ -9,6 +9,7 @@ export const SuccessModal = styled.div`
   align-items: center;
   background: rgba(0, 0, 0, 0.51);
   position: absolute;
+  top: 0;
   z-index: 5;
   animation: ${fadeInAndOut} 5s;
   animation-fill-mode: forwards;

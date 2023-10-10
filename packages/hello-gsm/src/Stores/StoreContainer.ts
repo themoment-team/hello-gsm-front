@@ -1,7 +1,8 @@
+import { ApplicationFormType, ApplyFormType } from 'type/application';
 import create from 'zustand';
 
 interface StoreType {
-  logged: boolean;
+  logged: boolean | undefined;
   showFAQModal: boolean;
   FAQModalTitle: string;
   FAQModalContent: string;
@@ -10,9 +11,9 @@ interface StoreType {
   isFAQSearching: boolean;
   showDepartmentModal: boolean;
   selectedChoice: number;
-  choice1: '소프트웨어개발과' | '스마트IoT과' | '인공지능과' | '';
-  choice2: '소프트웨어개발과' | '스마트IoT과' | '인공지능과' | '';
-  choice3: '소프트웨어개발과' | '스마트IoT과' | '인공지능과' | '';
+  choice1: 'SW' | 'IOT' | 'AI' | '';
+  choice2: 'SW' | 'IOT' | 'AI' | '';
+  choice3: 'SW' | 'IOT' | 'AI' | '';
   showFindSchoolModal: boolean;
   schoolName: string;
   schoolLocation: string;
@@ -26,6 +27,8 @@ interface StoreType {
   showApplyPostModal: boolean;
   showMainResultModal: boolean;
   showMainNonLoginModal: boolean;
+  applyData: ApplyFormType | null;
+  applicationData: ApplicationFormType | null;
 
   setLogged: (isLogged: boolean) => void;
   setShowFAQModal: () => void;
@@ -36,15 +39,9 @@ interface StoreType {
   setIsFAQSearching: (trueOrFalse: boolean) => void;
   setShowDepartmentModal: () => void;
   setSelectedChoice: (index: number) => void;
-  setChoice1: (
-    type: '소프트웨어개발과' | '스마트IoT과' | '인공지능과' | '',
-  ) => void;
-  setChoice2: (
-    type: '소프트웨어개발과' | '스마트IoT과' | '인공지능과' | '',
-  ) => void;
-  setChoice3: (
-    type: '소프트웨어개발과' | '스마트IoT과' | '인공지능과' | '',
-  ) => void;
+  setChoice1: (type: 'SW' | 'IOT' | 'AI' | '') => void;
+  setChoice2: (type: 'SW' | 'IOT' | 'AI' | '') => void;
+  setChoice3: (type: 'SW' | 'IOT' | 'AI' | '') => void;
   setShowFindSchoolModal: () => void;
   setSchoolName: (name: string) => void;
   setSchoolLocation: (location: string) => void;
@@ -58,10 +55,12 @@ interface StoreType {
   setshowApplyPostModal: () => void;
   setShowMainResultModal: (isShow: boolean) => void;
   setShowMainNonLoginModal: (isShow: boolean) => void;
+  setApplyData: (data: ApplyFormType) => void;
+  setApplicationData: (data: ApplicationFormType) => void;
 }
 
 const useStore = create<StoreType>(set => ({
-  logged: false,
+  logged: undefined,
   showFAQModal: false,
   FAQModalTitle: '',
   FAQModalContent: '',
@@ -86,6 +85,8 @@ const useStore = create<StoreType>(set => ({
   showApplyPostModal: false,
   showMainResultModal: false,
   showMainNonLoginModal: false,
+  applicationData: null,
+  applyData: null,
 
   setLogged: isLogged => set({ logged: isLogged }),
   setShowFAQModal: () => set(state => ({ showFAQModal: !state.showFAQModal })),
@@ -121,6 +122,7 @@ const useStore = create<StoreType>(set => ({
     })),
   setShowMainResultModal: isShow => set({ showMainResultModal: isShow }),
   setShowMainNonLoginModal: isShow => set({ showMainNonLoginModal: isShow }),
+  setApplyData: data => set({ applyData: data }),
+  setApplicationData: data => set({ applicationData: data }),
 }));
-
 export default useStore;

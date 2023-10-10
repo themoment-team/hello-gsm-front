@@ -1,78 +1,83 @@
 import styled from '@emotion/styled';
 import device from 'shared/config';
 
-export const HeaderWrap = styled.div`
+export const HeaderWrap = styled.header`
   color: #ffffff;
   user-select: none;
-  height: 70px;
-  width: 88%;
+  height: 4.375rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
+  padding: 0 13vw;
+
+  @media (${device.mobile}) {
+    padding: 0 7vw;
+  }
 `;
 
 export const LogoContent = styled.a`
-  font-size: 30px;
+  font-size: 1.875rem;
   font-weight: 700;
+
   @media ${device.tablet} {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 `;
 
-export const NavBar = styled.div`
-  width: 660px;
+export const NavBar = styled.nav`
+  width: 26.5625rem;
   display: flex;
   justify-content: space-between;
-  @media (max-width: 1200px) {
-    width: 400px;
-  }
+
   @media ${device.tablet} {
     display: none;
   }
 `;
 
 export const NavContent = styled.a`
-  font-size: 18px;
-  font-weight: 700;
-  color: #bdbdbd;
+  ${({ theme }) => theme.typo.body1}
+  position: relative;
+  font-weight: 400;
+
+  ::after {
+    position: absolute;
+    left: 50%;
+    bottom: -0.7rem;
+    transform: translateX(-50%);
+
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: ${({ theme }) => theme.color.primary.lime};
+  }
 `;
 
 export const MemberBox = styled.div`
-  width: 150px;
+  height: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  @media ${device.laptop} {
-    width: 130px;
-  }
+  gap: 2rem;
+
   @media ${device.tablet} {
     display: none;
   }
 `;
 
-export const MemberContent = styled.a`
-  font-size: 18px;
-  color: #dddddd;
-  font-weight: 400;
+export const AuthButton = styled.button`
+  color: ${({ theme }) => theme.color.white};
+  font-weight: 700;
+  padding: 0.375rem 1rem;
+  border-radius: 6.25rem;
+  background: #2c273c;
+  border: none;
+  cursor: pointer;
 `;
 
 export const HamBurger = styled.div`
   display: none;
-  height: 14px;
+  height: 0.875rem;
   cursor: pointer;
   @media ${device.tablet} {
     display: block;
   }
-`;
-
-export const Logout = styled.button`
-  color: #dddddd;
-  font-weight: 400;
-  font-size: 18px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
 `;

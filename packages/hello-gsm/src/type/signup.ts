@@ -1,6 +1,8 @@
+import { GenderType } from './application';
+
 export interface SignUpType {
   name: string;
-  cellphoneNumber: string;
-  gender: '남자' | '여자';
+  phoneNumber: string;
+  gender: GenderType;
   birth: string;
 }

@@ -1,31 +1,41 @@
-import { Header } from 'components';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
+import { GraduationStatusType } from 'type/application';
 import * as S from './style';
 
 interface StatusForm {
-  status: '졸업자' | '검정고시' | '졸업예정';
+  status: GraduationStatusType;
 }
 
 const ChoosePage: NextPage = () => {
-  const { register, handleSubmit } = useForm<StatusForm>();
+  const { register, handleSubmit, watch } = useForm<StatusForm>();
   const { push } = useRouter();
 
   const onValid = ({ status }: StatusForm) => {
     switch (status) {
-      case '졸업자':
-      case '졸업예정':
+      case 'CANDIDATE':
+      case 'GRADUATE':
         push('/calculator/test');
         break;
-      case '검정고시':
+      case 'GED':
         push('/calculator/test/ged');
         break;
     }
   };
+
+  const desc = {
+    CANDIDATE: <>2024년도에 졸업 예정인 학생을 의미해요.</>,
+    GRADUATE: <>이미 중학교를 졸업한 학생을 의미해요.</>,
+    GED: (
+      <>
+        중학교를 졸업하지 않고, <br /> 검정고시 시험에 합격한 사람을 의미해요.
+      </>
+    ),
+  };
+
   return (
     <>
-      <Header />
       <S.ChoosePage>
         <S.ChooseForm onSubmit={handleSubmit(onValid)}>
           <S.ChooseTitle>
@@ -38,7 +48,7 @@ const ChoosePage: NextPage = () => {
                 type="radio"
                 id="system"
                 name="status"
-                value="졸업자"
+                value="GRADUATE"
               />
               <div>졸업자</div>
             </S.SystemLabel>
@@ -47,7 +57,7 @@ const ChoosePage: NextPage = () => {
                 {...register('status')}
                 type="radio"
                 name="status"
-                value="졸업예정"
+                value="CANDIDATE"
               />
               <div>졸업예정</div>
             </S.SystemLabel>
@@ -56,11 +66,12 @@ const ChoosePage: NextPage = () => {
                 {...register('status')}
                 type="radio"
                 name="status"
-                value="검정고시"
+                value="GED"
               />
               <div>검정고시</div>
             </S.SystemLabel>
           </S.RadioSection>
+          <S.Description>{desc[watch('status')]}</S.Description>
           <S.Submit>다음</S.Submit>
         </S.ChooseForm>
       </S.ChoosePage>

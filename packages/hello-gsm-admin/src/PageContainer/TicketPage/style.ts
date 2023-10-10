@@ -1,21 +1,24 @@
 import styled from '@emotion/styled';
 
 export const TicketPage = styled.div`
-  padding: 50px 0;
+  padding-top: 4.16vh;
   background-color: #ffffff;
   @media print {
+    div {
+      padding-top: 0;
+    }
     -webkit-print-color-adjust: exact;
   }
 `;
 
 export const Ticket = styled.div`
   width: 63vh;
-  height: 40vh;
+  height: 31.64vh;
 
-  margin: 0 auto 100px;
+  margin: 0rem auto 26.97vh;
 
   :nth-child(2n) {
-    margin: 0 auto 150px;
+    margin: 8.32vh auto 27.14vh;
   }
 `;
 
@@ -24,11 +27,11 @@ export const Table = styled.table`
   height: 100%;
   text-align: center;
   border-collapse: collapse;
-  font-size: 12px;
-  line-height: 20px;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
   font-weight: 100;
   td {
-    border: 1px solid #000;
+    border: 0.0625rem solid #000;
     border-collapse: collapse;
     vertical-align: middle;
   }
@@ -53,18 +56,12 @@ export const Slash = styled.td`
 
 export const Left = styled.td`
   text-align: left;
-  padding-left: 10px;
+  padding-left: 0.625rem;
 `;
 
 export const Right = styled.p`
   text-align: right;
-  padding-right: 10px;
-`;
-
-export const Dash = styled.div`
-  border-top: 1px dashed red;
-  width: 100%;
-  margin-top: 30px;
+  padding-right: 0.625rem;
 `;
 
 export const PrintBtn = styled.button`
@@ -86,6 +83,9 @@ export const PrintBtn = styled.button`
   border: none;
   svg {
     width: 2.5vh;
+    path {
+      fill: #000000;
+    }
   }
   &:hover {
     transition: 0.5s;

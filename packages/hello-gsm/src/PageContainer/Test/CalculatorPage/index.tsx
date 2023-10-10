@@ -1,11 +1,6 @@
 import type { NextPage } from 'next';
-import {
-  Header,
-  ScoreSelect,
-  ScoreResultModal,
-  FreeSemesterBtn,
-} from 'components';
-import * as S from 'shared/Styles/Calculate';
+import { ScoreSelect, ScoreResultModal, FreeSemesterBtn } from 'components';
+import * as S from 'styles/Calculate';
 import * as I from 'Assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { useState } from 'react';
@@ -17,6 +12,8 @@ import {
   ArtSport,
 } from 'Utils/Calculate';
 import useStore from 'Stores/StoreContainer';
+import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
+import { toast } from 'react-toastify';
 
 interface ScoreForm {
   // 과목/점수 배열
@@ -53,9 +50,10 @@ const TestCalculatorPage: NextPage = () => {
     '수학',
     '과학',
     '기술가정',
+    '정보',
     '영어',
   ];
-  const nonSubjects = ['체육', '미술', '음악'];
+  const nonSubjects = ['체육', '음악', '미술'];
   const grades = [1, 2, 3];
 
   // 저장 버튼을 눌렀을 때
@@ -82,7 +80,9 @@ const TestCalculatorPage: NextPage = () => {
     );
     // 교과성적 소계
 
-    const artSportsScore: number = ArtSport(artSportsValue); // 예체능
+    const artSportsScore: number = isNaN(ArtSport(artSportsValue))
+      ? 36
+      : ArtSport(artSportsValue); // 예체능
     const curriculumScoreSubtotal: number = Rounds(
       generalCurriculumScoreSubtotal + artSportsScore,
       4,
@@ -113,7 +113,8 @@ const TestCalculatorPage: NextPage = () => {
   };
 
   const inValid = (errors: FieldErrors) => {
-    console.log(errors);
+    console.error(errors);
+    toast.error('선택되지 않은 값이 있어요.');
   };
 
   // 추가과목 삭제
@@ -150,12 +151,11 @@ const TestCalculatorPage: NextPage = () => {
     );
   };
 
+  usePreventBackAndClose();
   return (
     <>
-      <Header />
       {showScoreResult && <ScoreResultModal result={resultArray} />}
       <S.Title>성적입력</S.Title>
-
       <S.SystemSection>
         <S.SystemLabel>
           <input
