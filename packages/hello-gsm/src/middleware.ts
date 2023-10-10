@@ -15,7 +15,11 @@ export async function middleware(req: NextRequest) {
   // 점검창 처리
   try {
     const siteState = await getSiteState();
-    if (siteState === 'INSPECTION' && pathname !== '/inspection') {
+    if (
+      process.env.NODE_ENV === 'production' &&
+      siteState === 'INSPECTION' &&
+      pathname !== '/inspection'
+    ) {
       return NextResponse.rewrite(`${origin}/inspection`);
     }
   } catch (e) {
