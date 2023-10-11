@@ -20,11 +20,10 @@ import {
 } from 'shared/Date/firstScreening';
 import { formatDate } from 'Utils/Format';
 import { ApplicationDataType, EvaluationStatusType } from 'type/application';
-import Link from 'next/link';
 
 const contentSelects = [
   '원서 작성',
-  '원서 학교 제출',
+  '입학 원서 제출',
   '1차 서류 전형',
   '2차 평가',
   '결과 발표',
