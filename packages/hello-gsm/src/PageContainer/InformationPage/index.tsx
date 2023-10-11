@@ -12,7 +12,7 @@ const InformationPage: NextPage = () => {
   const progressArray = [
     '유의 사항',
     '원서 및 성적 작성',
-    '원서 학교 제출',
+    '입학 원서 제출',
     '1차 전형',
     '2차 전형',
     '결과 발표',

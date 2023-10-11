@@ -20,11 +20,10 @@ import {
 } from 'shared/Date/firstScreening';
 import { formatDate } from 'Utils/Format';
 import { ApplicationDataType, EvaluationStatusType } from 'type/application';
-import Link from 'next/link';
 
 const contentSelects = [
   '원서 작성',
-  '원서 학교 제출',
+  '입학 원서 제출',
   '1차 서류 전형',
   '2차 평가',
   '결과 발표',
@@ -188,7 +187,7 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
           </div>
         </div>
         <S.GuideAnchor href="/절차_가이드.pdf" target="_blank" rel="noreferrer">
-          ℹ️ 입학 절차 확인하기
+          ℹ️ 원서 접수 가이드 보기
         </S.GuideAnchor>
         <BubbleButton link="/calculator/choose">
           🧾 모의 성적 계산해보기

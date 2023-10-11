@@ -152,8 +152,6 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
           <S.PostScript>
             {formatDate(startFinalTest)}(금) 직무적성 소양평가 진행 (오후 1시
             강당)
-            <br />
-            {formatDate(endFirstResult, 'hours')}(수) 최종 결과 발표
           </S.PostScript>
         </S.Description>
       );
