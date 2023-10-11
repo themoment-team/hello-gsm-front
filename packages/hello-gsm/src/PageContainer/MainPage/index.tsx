@@ -188,7 +188,7 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
           </div>
         </div>
         <S.GuideAnchor href="/절차_가이드.pdf" target="_blank" rel="noreferrer">
-          ℹ️ 입학 절차 확인하기
+          ℹ️ 원서 접수 가이드 보기
         </S.GuideAnchor>
         <BubbleButton link="/calculator/choose">
           🧾 모의 성적 계산해보기
