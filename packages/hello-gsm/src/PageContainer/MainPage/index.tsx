@@ -190,7 +190,7 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
           ℹ️ 원서 접수 방법 미리보기
         </S.GuideAnchor>
         <BubbleButton link="/지원자_제출_서류.hwp">
-          📑 지원자 제출 서류 다운로드
+          📑 지원자 제출 서류 안내
         </BubbleButton>
         <BubbleButton link="/calculator/choose">
           🧾 모의 성적 계산해보기
