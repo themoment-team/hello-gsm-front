@@ -43,7 +43,7 @@ export const VideoWrapper = styled.div`
 
 export const VideoBox = styled.div`
   width: 69%;
-  height: 30vw;
+  height: 20vw;
   background: rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(3rem);
   margin: 3.9375rem 0 3.1875rem;
