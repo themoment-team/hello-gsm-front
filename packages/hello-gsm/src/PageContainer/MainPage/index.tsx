@@ -187,7 +187,7 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
           </div>
         </div>
         <S.GuideAnchor href="/절차_가이드.pdf" target="_blank" rel="noreferrer">
-          ℹ️ 원서 접수 가이드 보기
+          ℹ️ 원서 접수 방법 미리보기
         </S.GuideAnchor>
         <BubbleButton link="/지원자_제출_서류.hwp">
           📑 지원자 제출 서류 다운로드
