@@ -33,8 +33,12 @@ export const SchoolName = styled.p`
 export const VideoWrapper = styled.div`
   width: 100%;
   display: flex;
-  padding: 0 10vw;
-  gap: 5vw;
+  padding: 0 13vw;
+  gap: 3vw;
+
+  @media ${device.mobile} {
+    padding: 0 7vw;
+  }
 `;
 
 export const VideoBox = styled.div`
