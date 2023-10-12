@@ -38,17 +38,30 @@ const SchoolPage: NextPage = () => {
       <S.SchoolPage>
         <S.Section1>
           <S.SchoolName>광주소프트웨어마이스터고등학교</S.SchoolName>
-          <S.VideoBox>
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/FBEBPnWafTk"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </S.VideoBox>
+          <S.VideoWrapper>
+            <S.VideoBox>
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/FBEBPnWafTk"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </S.VideoBox>
+            <S.VideoBox>
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/9J78QKkSvwg?si=IF3Zxb_eB-Oz_rjF"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </S.VideoBox>
+          </S.VideoWrapper>
           <S.ToHomepage href="https://official.hellogsm.kr/" target="_blank">
             홈페이지
           </S.ToHomepage>
