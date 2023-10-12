@@ -47,10 +47,6 @@ export const VideoBox = styled.div`
   background: rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(3rem);
   margin: 3.9375rem 0 3.1875rem;
-  @media ${device.tablet} {
-    width: 95%;
-    height: 50vw;
-  }
 `;
 
 export const ToHomepage = styled.a`
