@@ -9,6 +9,7 @@ export const useMiddleware = async () => {
     '/information',
     '/apply',
     '/mypage',
+    '/application',
     '/auth/signup',
   ];
 
