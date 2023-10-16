@@ -93,7 +93,7 @@ const MyPage: NextPage<ApplicationIdentityType> = ({
         <LinkButton color={theme.color.primary.sky} href="/apply">
           📑 원서 수정하기
         </LinkButton>
-        <LinkButton href="/application" color={theme.color.primary.sky}>
+        <LinkButton href="/application" color={theme.color.white}>
           🖨️ 원서 출력
         </LinkButton>
         <LinkButton
