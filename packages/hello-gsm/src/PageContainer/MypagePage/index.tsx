@@ -81,7 +81,7 @@ const MyPage: NextPage<ApplicationIdentityType> = ({
     >
       <S.ButtonBox
         css={css`
-          width: 45.25rem;
+          width: 55.25rem;
         `}
       >
         <LinkButton
