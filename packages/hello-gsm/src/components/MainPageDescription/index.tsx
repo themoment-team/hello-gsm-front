@@ -115,7 +115,8 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
       return (
         <S.Description>
           <S.DescriptionLine>
-            작성하신 입학 원서와 그 외 서류들을 출력하여 수기 부분을
+            작성하신 입학 원서와 그 외 서류들을 서류를 후 확인 부분을
+            서명합니다.
           </S.DescriptionLine>
           <S.DescriptionLine>
             모두 작성하신 후 {formatDate(startApply, 'notYear')}(월) 부터 {''}
