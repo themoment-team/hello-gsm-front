@@ -150,6 +150,7 @@ export const StickWrapper = styled.div<{ ratio: number | null }>`
   align-items: center;
   flex-direction: column;
   ${({ ratio }) => ratio && 'cursor: pointer;'}
+  z-index: 2;
 
   @media (max-width: 500px) {
     ${({ ratio }) => !ratio && 'display: none'}
