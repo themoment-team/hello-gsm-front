@@ -30,16 +30,23 @@ export const SchoolName = styled.p`
   }
 `;
 
+export const VideoWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 0 13vw;
+  gap: 3vw;
+
+  @media ${device.mobile} {
+    padding: 0 7vw;
+  }
+`;
+
 export const VideoBox = styled.div`
   width: 69%;
-  height: 35vw;
+  height: 20vw;
   background: rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(3rem);
   margin: 3.9375rem 0 3.1875rem;
-  @media ${device.tablet} {
-    width: 95%;
-    height: 50vw;
-  }
 `;
 
 export const ToHomepage = styled.a`

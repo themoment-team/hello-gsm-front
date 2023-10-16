@@ -91,6 +91,30 @@ export const TermWrapper = styled.ul`
   padding-left: 0.8125rem;
 `;
 
+export const GuideAnchor = styled.a`
+  ${({ theme }) => theme.typo.h4}
+  position: absolute;
+  right: 10%;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  background-color: #f3f3f3;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  border: none;
+  color: ${({ theme }) => theme.color.black};
+  font-weight: 600;
+  top: 35rem;
+
+  &:hover {
+    background: rgba(243, 243, 243, 0.52);
+    transition: 0.3s;
+  }
+
+  @media ${device.mobile} {
+    display: none;
+  }
+`;
+
 export const ApplyTerm = styled.li`
   ${({ theme }) => theme.typo.h3}
   font-weight: 400;

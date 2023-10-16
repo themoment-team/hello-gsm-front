@@ -23,7 +23,7 @@ import { ApplicationDataType, EvaluationStatusType } from 'type/application';
 
 const contentSelects = [
   '원서 작성',
-  '원서 학교 제출',
+  '입학 원서 제출',
   '1차 서류 전형',
   '2차 평가',
   '결과 발표',
@@ -186,6 +186,12 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
             </S.TermWrapper>
           </div>
         </div>
+        <S.GuideAnchor href="/절차_가이드.pdf" target="_blank" rel="noreferrer">
+          ℹ️ 원서 접수 방법 미리보기
+        </S.GuideAnchor>
+        <BubbleButton link="/지원자_제출_서류.hwpx">
+          📑 지원자 제출 서류 안내
+        </BubbleButton>
         <BubbleButton link="/calculator/choose">
           🧾 모의 성적 계산해보기
         </BubbleButton>
