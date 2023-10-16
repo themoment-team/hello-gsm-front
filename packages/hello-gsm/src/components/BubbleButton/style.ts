@@ -20,6 +20,9 @@ export const ToCalculator = styled.button`
   &:nth-of-type(2) {
     top: 45rem;
   }
+  &:nth-of-type(3) {
+    top: 50rem;
+  }
 
   &:hover {
     background: rgba(243, 243, 243, 0.52);

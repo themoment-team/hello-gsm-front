@@ -43,8 +43,6 @@ const ChannelTalk = () => {
         })();
         ChannelIO('boot', {
           "pluginKey": "42749bf3-df17-49ec-9c34-422e45ef0d07",
-          "memberId": "ThemomentHellogsmChannelTalk",
-          "memberHash": "17c5f8aa373cec7f8d01cb55d936139a7e4103566aa3a52f951a4546681b5ec5"
         });
         `,
       }}
