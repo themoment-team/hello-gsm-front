@@ -150,7 +150,6 @@ export const StickWrapper = styled.div<{ ratio: number | null }>`
   align-items: center;
   flex-direction: column;
   ${({ ratio }) => ratio && 'cursor: pointer;'}
-  z-index: 2;
 
   @media (max-width: 500px) {
     ${({ ratio }) => !ratio && 'display: none'}
@@ -294,6 +293,7 @@ export const BlueBall = styled(Ball)`
   );
   top: 50.25rem;
   left: 82%;
+  z-index: -2;
   @media ${device.tablet} {
     display: none;
   }
@@ -360,6 +360,7 @@ export const BigGreenBall = styled(Ball)`
   box-shadow: 0.25rem 0.25rem 1.9375rem 0rem rgba(0, 0, 0, 0.25);
   top: 111.625rem;
   left: 75%;
+  z-index: -2;
   @media ${device.tablet} {
     display: none;
   }
