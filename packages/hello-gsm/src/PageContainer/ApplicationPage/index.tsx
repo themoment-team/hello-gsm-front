@@ -91,10 +91,6 @@ const ApplicationPage: NextPage<ApplicationDataType> = ({ data }) => {
             <S.SubTitle style={{ fontSize: '1.5vh', fontWeight: 700 }}>
               2024학년도 신입생 입학전형
             </S.SubTitle>
-            <S.Box>
-              <S.ApplyNum>접수번호</S.ApplyNum>
-              <S.Content>{admissionStatus?.registrationNumber}</S.Content>
-            </S.Box>
           </S.Wrap>
           <S.Container>
             <S.Table>
@@ -220,10 +216,6 @@ const ApplicationPage: NextPage<ApplicationDataType> = ({ data }) => {
             </S.Title>
             <S.Wrap>
               <S.SubTitle>일반교과</S.SubTitle>
-              <S.Box>
-                <S.ApplyNum>접수번호</S.ApplyNum>
-                <S.Content>{admissionStatus?.registrationNumber}</S.Content>
-              </S.Box>
             </S.Wrap>
 
             <S.ScoreTable>
