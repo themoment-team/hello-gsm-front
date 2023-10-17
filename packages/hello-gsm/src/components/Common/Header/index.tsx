@@ -10,16 +10,15 @@ import { SideBar } from 'components';
 
 const Header: React.FC = () => {
   const { pathname } = useRouter();
-  const [isClick, setIsClick] = useState(false);
+  const [logoutClick, setLogoutClick] = useState(false);
 
   const { logged, setShowSideBar } = useStore();
 
   const handleLogoutClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (isClick) {
+    if (logoutClick) {
       return e.preventDefault();
     }
-
-    return setIsClick(true);
+    return setLogoutClick(true);
   };
 
   const select = (navPath: string) =>
