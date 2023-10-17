@@ -10,7 +10,7 @@ const ApplyBarBox: React.FC<{ isSpecialScreening: boolean }> = ({
     '성별',
     '생년월일',
     '주소지',
-    '집 전화',
+    '집 전화(선택)',
     '휴대폰 번호',
     '전형',
     '출신 중학교',
