@@ -63,6 +63,7 @@ const Header: React.FC = () => {
               onClick={e => {
                 if (isClick) {
                   e.preventDefault();
+                  return;
                 }
                 setIsClick(true);
                 return;
