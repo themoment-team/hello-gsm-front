@@ -11,17 +11,17 @@ import { toast } from 'react-toastify';
 
 const Header: React.FC = () => {
   const { pathname } = useRouter();
-  const [logoutClick, setLogoutClick] = useState(false);
+  const [isLogoutClicked, setIsLogoutClicked] = useState<boolean>(false);
 
   const { logged, setShowSideBar } = useStore();
 
   const handleLogoutClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (logoutClick) {
+    if (isLogoutClicked) {
       toast.error('로그아웃 중입니다. 잠시만 기다려주세요.');
       return e.preventDefault();
     }
 
-    return setLogoutClick(true);
+    return setIsLogoutClicked(true);
   };
 
   const select = (navPath: string) =>
@@ -53,7 +53,7 @@ const Header: React.FC = () => {
             <S.NavContent css={select('/about')}>팀소개</S.NavContent>
           </Link>
         </S.NavBar>
-        {!logged ? (
+        {logged ? (
           <S.MemberBox
             css={css`
               justify-content: flex-end;
