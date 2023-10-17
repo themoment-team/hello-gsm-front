@@ -55,9 +55,9 @@ export const RedHighlighting = styled.span`
 `;
 
 export const ButtonBox = styled.div`
-  width: 510px;
   display: flex;
   justify-content: space-between;
+  gap: 30px;
 `;
 
 const Button = styled.div`
