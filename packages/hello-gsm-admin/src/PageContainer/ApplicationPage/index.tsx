@@ -375,7 +375,7 @@ const ApplicationPage: NextPage<{
               <tbody>
                 <tr>
                   <S.Subject rowSpan={2}>학년</S.Subject>
-                  <S.Subject colSpan={6}>출결상황</S.Subject>
+                  <S.Subject colSpan={6}>미인정 출결 현황</S.Subject>
                   <S.Subject colSpan={2}>봉사활동</S.Subject>
                 </tr>
                 <tr>
