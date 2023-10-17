@@ -445,7 +445,7 @@ const TestCalculatorPage: NextPage = () => {
                 <tbody>
                   <tr>
                     <S.Grade rowSpan={2}>학년</S.Grade>
-                    <S.Attendance colSpan={4}>출결상황</S.Attendance>
+                    <S.Attendance colSpan={4}>미인정 출결 현황</S.Attendance>
                     <S.Attendance rowSpan={2}>봉사활동(시간)</S.Attendance>
                   </tr>
                   <tr>
