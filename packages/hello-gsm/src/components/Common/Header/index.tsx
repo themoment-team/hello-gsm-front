@@ -43,16 +43,14 @@ const Header: React.FC = () => {
             <S.NavContent css={select('/about')}>팀소개</S.NavContent>
           </Link>
         </S.NavBar>
-        {!logged ? (
+        {logged ? (
           <S.MemberBox
             css={css`
               justify-content: flex-end;
             `}
           >
             <Link href="/auth/signin" passHref>
-              <S.AuthButton onClick={() => setIsClick(false)}>
-                로그인하기
-              </S.AuthButton>
+              <S.AuthButton>로그인하기</S.AuthButton>
             </Link>
           </S.MemberBox>
         ) : (
@@ -60,10 +58,17 @@ const Header: React.FC = () => {
             <Link href="/mypage" passHref>
               <S.NavContent css={select('/mypage')}>마이페이지</S.NavContent>
             </Link>
-            <a href={auth.logout()}>
-              <S.AuthButton onClick={() => setIsClick(true)} disabled={isClick}>
-                로그아웃
-              </S.AuthButton>
+            <a
+              href={auth.logout()}
+              onClick={e => {
+                if (isClick) {
+                  e.preventDefault();
+                }
+                setIsClick(true);
+                return;
+              }}
+            >
+              <S.AuthButton>로그아웃</S.AuthButton>
             </a>
           </S.MemberBox>
         )}
