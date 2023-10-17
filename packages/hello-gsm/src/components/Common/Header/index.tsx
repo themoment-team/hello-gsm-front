@@ -2,16 +2,27 @@ import { css } from '@emotion/react';
 import auth from 'Api/auth';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 import * as I from 'Assets/svg';
 import { SideBar } from 'components';
+import { toast } from 'react-toastify';
 
 const Header: React.FC = () => {
   const { pathname } = useRouter();
+  const [isLogoutClicked, setIsLogoutClicked] = useState<boolean>(false);
 
   const { logged, setShowSideBar } = useStore();
+
+  const handleLogoutClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isLogoutClicked) {
+      toast.error('로그아웃 중입니다. 잠시만 기다려주세요.');
+      return e.preventDefault();
+    }
+
+    return setIsLogoutClicked(true);
+  };
 
   const select = (navPath: string) =>
     navPath === pathname &&
@@ -57,7 +68,7 @@ const Header: React.FC = () => {
             <Link href="/mypage" passHref>
               <S.NavContent css={select('/mypage')}>마이페이지</S.NavContent>
             </Link>
-            <a href={auth.logout()}>
+            <a href={auth.logout()} onClick={handleLogoutClick}>
               <S.AuthButton>로그아웃</S.AuthButton>
             </a>
           </S.MemberBox>
