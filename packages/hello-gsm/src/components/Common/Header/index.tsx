@@ -7,6 +7,7 @@ import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 import * as I from 'Assets/svg';
 import { SideBar } from 'components';
+import { toast } from 'react-toastify';
 
 const Header: React.FC = () => {
   const { pathname } = useRouter();
@@ -16,8 +17,10 @@ const Header: React.FC = () => {
 
   const handleLogoutClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (logoutClick) {
+      toast.error('로그아웃 중입니다. 잠시만 기다려주세요.');
       return e.preventDefault();
     }
+
     return setLogoutClick(true);
   };
 
