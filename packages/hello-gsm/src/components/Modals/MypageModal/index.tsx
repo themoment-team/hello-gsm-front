@@ -95,11 +95,7 @@ const MypageModal: React.FC = () => {
           </S.ExplanationTitle>
           <I.Questioner />
         </S.ExplanationBox>
-        <S.ButtonBox
-          css={css`
-            gap: 10px;
-          `}
-        >
+        <S.ButtonBox>
           <Link href="/application">
             <S.CancelButton>원서 미리보기</S.CancelButton>
           </Link>
