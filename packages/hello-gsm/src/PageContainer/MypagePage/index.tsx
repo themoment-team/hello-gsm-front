@@ -55,11 +55,7 @@ const MyPage: NextPage<ApplicationIdentityType> = ({
   );
 
   const isSubmitted = () => (
-    <S.ButtonBox
-      css={css`
-        width: 30rem;
-      `}
-    >
+    <S.ButtonBox>
       <LinkButton href="/application" color={theme.color.primary.sky}>
         🖨️ 원서 출력
       </LinkButton>
