@@ -101,6 +101,7 @@ const MypageModal: React.FC = () => {
             🖨️ 원서 미리보기
           </LinkButton>
           <S.CancelButton onClick={setShowMypageModal}>취소</S.CancelButton>
+          <S.CancelButton onClick={setShowMypageModal}>취소</S.CancelButton>
           <S.AllowButton
             css={css`
               ${mypageModalContent === 'delete' && 'background: #FB1834'};
