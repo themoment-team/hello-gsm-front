@@ -4,8 +4,6 @@ import useStore from 'Stores/StoreContainer';
 import { css } from '@emotion/react';
 import application from 'Api/application';
 import { useRouter } from 'next/router';
-import { LinkButton } from 'components';
-import { theme } from 'styles/theme';
 import Link from 'next/link';
 const MypageModal: React.FC = () => {
   const { setShowMypageModal, mypageModalContent, setShowMypageSuccessModal } =
