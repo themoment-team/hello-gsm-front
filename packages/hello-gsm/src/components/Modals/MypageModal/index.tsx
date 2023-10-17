@@ -4,7 +4,8 @@ import useStore from 'Stores/StoreContainer';
 import { css } from '@emotion/react';
 import application from 'Api/application';
 import { useRouter } from 'next/router';
-
+import { LinkButton } from 'components';
+import { theme } from 'styles/theme';
 const MypageModal: React.FC = () => {
   const { setShowMypageModal, mypageModalContent, setShowMypageSuccessModal } =
     useStore();
@@ -96,6 +97,9 @@ const MypageModal: React.FC = () => {
           <I.Questioner />
         </S.ExplanationBox>
         <S.ButtonBox>
+          <LinkButton href="/application" color={theme.color.white}>
+            🖨️ 원서 미리보기
+          </LinkButton>
           <S.CancelButton onClick={setShowMypageModal}>취소</S.CancelButton>
           <S.AllowButton
             css={css`
