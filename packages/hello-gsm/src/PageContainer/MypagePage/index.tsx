@@ -75,11 +75,7 @@ const MyPage: NextPage<ApplicationIdentityType> = ({
         height: 13.125rem;
       `}
     >
-      <S.ButtonBox
-        css={css`
-          width: 57.25rem;
-        `}
-      >
+      <S.ButtonBox>
         <LinkButton
           color={theme.color.sub.orange}
           onClick={() => showModal('delete')}
