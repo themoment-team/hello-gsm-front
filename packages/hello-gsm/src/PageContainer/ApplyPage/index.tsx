@@ -308,7 +308,7 @@ const ApplyPage: NextPage<
             />
           </S.AddressBox>
           <S.HomeTelephone
-            placeholder="집 전화번호를 입력해주세요. ('-'제외 9~10자리)"
+            placeholder="집 전화번호를 입력해주세요. ('-'제외 9~11자리)"
             {...register('telephone', {
               required: false,
               validate: {

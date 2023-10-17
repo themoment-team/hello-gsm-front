@@ -81,7 +81,7 @@ const MyPage: NextPage<ApplicationIdentityType> = ({
     >
       <S.ButtonBox
         css={css`
-          width: 45.25rem;
+          width: 55.25rem;
         `}
       >
         <LinkButton
@@ -90,9 +90,11 @@ const MyPage: NextPage<ApplicationIdentityType> = ({
         >
           🗑️ 원서 삭제
         </LinkButton>
-
         <LinkButton color={theme.color.primary.sky} href="/apply">
           📑 원서 수정하기
+        </LinkButton>
+        <LinkButton href="/application" color={theme.color.white}>
+          🖨️ 원서 미리보기
         </LinkButton>
         <LinkButton
           color={theme.color.primary.lime}
