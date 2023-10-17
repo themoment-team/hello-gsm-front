@@ -147,7 +147,7 @@ export const Line = styled.div`
   height: 0.1875rem;
   position: absolute;
   top: 33.3438rem;
-  z-index: -1;
+  z-index: 0;
   background: #9a9a9a;
 `;
 
@@ -212,6 +212,7 @@ export const Dot = styled.div`
   border-radius: 50%;
   background: #c4c4c4;
   margin: 1.25rem 0 1.0625rem;
+  z-index: 1;
 `;
 
 export const TotalWrapper = styled.div`
@@ -292,6 +293,7 @@ export const GreenBall = styled(Ball)`
 export const BlueBall = styled(Ball)`
   width: 6.875rem;
   height: 6.875rem;
+  z-index: -1;
   background: linear-gradient(
     220deg,
     #7be8ff 10.2%,
@@ -300,7 +302,7 @@ export const BlueBall = styled(Ball)`
   );
   top: 50.25rem;
   left: 82%;
-  z-index: -2;
+
   @media ${device.tablet} {
     display: none;
   }
