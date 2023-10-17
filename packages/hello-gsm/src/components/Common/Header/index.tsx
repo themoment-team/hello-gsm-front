@@ -14,6 +14,14 @@ const Header: React.FC = () => {
 
   const { logged, setShowSideBar } = useStore();
 
+  const handleLogoutClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isClick) {
+      return e.preventDefault();
+    }
+
+    return setIsClick(true);
+  };
+
   const select = (navPath: string) =>
     navPath === pathname &&
     css`
@@ -58,17 +66,7 @@ const Header: React.FC = () => {
             <Link href="/mypage" passHref>
               <S.NavContent css={select('/mypage')}>마이페이지</S.NavContent>
             </Link>
-            <a
-              href={auth.logout()}
-              onClick={e => {
-                if (isClick) {
-                  e.preventDefault();
-                  return;
-                }
-                setIsClick(true);
-                return;
-              }}
-            >
+            <a href={auth.logout()} onClick={handleLogoutClick}>
               <S.AuthButton>로그아웃</S.AuthButton>
             </a>
           </S.MemberBox>
