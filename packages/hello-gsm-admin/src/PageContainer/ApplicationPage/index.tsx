@@ -61,7 +61,7 @@ const ApplicationPage: NextPage<{
     userBirth &&
     dayjs()
       .set('year', userBirth.getFullYear())
-      .set('month', userBirth.getMonth() + 1)
+      .set('month', userBirth.getMonth())
       .set('date', userBirth.getDate())
       .format('YYYY-MM-DD');
 
