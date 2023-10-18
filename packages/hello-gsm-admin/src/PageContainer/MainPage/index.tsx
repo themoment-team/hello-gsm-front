@@ -71,7 +71,7 @@ const MainPage: NextPage = () => {
         <S.ContentList>
           {applicationData?.applications
             .sort(
-              (a, b) => Number(b.isPrintsArrived) - Number(a.isPrintsArrived),
+              (a, b) => Number(!a.isPrintsArrived) - Number(!b.isPrintsArrived),
             )
             .map(data => {
               return (
