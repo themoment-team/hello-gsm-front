@@ -275,7 +275,7 @@ const ApplyPage: NextPage<
           </S.GenderBox>
           <S.BirthBox>
             <S.Birth>{userBirth?.getFullYear()}</S.Birth>
-            <S.Birth>{userBirth?.getMonth() ?? 0 + 1}</S.Birth>
+            <S.Birth>{(userBirth?.getMonth() ?? 0) + 1}</S.Birth>
             <S.Birth>{userBirth?.getDate()}</S.Birth>
           </S.BirthBox>
           <S.AddressBox>
