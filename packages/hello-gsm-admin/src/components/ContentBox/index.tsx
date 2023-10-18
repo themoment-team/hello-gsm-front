@@ -77,9 +77,6 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     setShowStatusModal(false);
   };
 
-  useEffect(() => {
-    console.log(registrationNumber);
-  }, [registrationNumber]);
   return (
     <S.ContentBox>
       {showStatusModal && (
