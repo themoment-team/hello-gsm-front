@@ -54,6 +54,7 @@ export interface SearchApplicationInfoType {
     secondEvaluation: EvaluationStatusType;
     screeningFirstEvaluationAt: ScreeningType;
     screeningSecondEvaluationAt: ScreeningType;
+    registrationNumber: number | null;
     secondScore: number;
     finalMajor: MajorType;
   }[];
@@ -72,6 +73,7 @@ export interface ApplicationListType {
   firstEvaluation: EvaluationStatusType;
   secondEvaluation: EvaluationStatusType;
   secondScore: number;
+  registrationNumber: number | null;
   finalMajor: MajorType;
   screeningFirstEvaluationAt: ScreeningType;
   screeningSecondEvaluationAt: ScreeningType;

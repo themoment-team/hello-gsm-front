@@ -32,7 +32,7 @@ const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
       secondEvaluation: data.secondEvaluation,
       screeningFirstEvaluationAt: data.screeningFirstEvaluationAt,
       screeningSecondEvaluationAt: data.screeningSecondEvaluationAt,
-      registrationNumber: data.applicationId,
+      registrationNumber: data.registrationNumber,
       secondScore: data.secondScore,
       finalMajor: data.finalMajor,
     });
