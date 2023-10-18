@@ -39,6 +39,7 @@ const MainPage: NextPage = () => {
           searchKeyword,
         );
       setApplicationData(data);
+      console.log(data);
     } catch (error: any) {
       console.error(error);
     }

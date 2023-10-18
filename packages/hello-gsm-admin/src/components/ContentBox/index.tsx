@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import * as S from './style';
 import * as I from 'Assets/svg';
@@ -77,6 +77,9 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     setShowStatusModal(false);
   };
 
+  useEffect(() => {
+    console.log(registrationNumber);
+  }, [registrationNumber]);
   return (
     <S.ContentBox>
       {showStatusModal && (
