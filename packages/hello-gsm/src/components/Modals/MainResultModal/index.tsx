@@ -48,33 +48,59 @@ const MainResultModal: React.FC<ResultModal> = ({
         <S.MainResultModalContent>
           {isFirstResultPeriod ? (
             <S.Text>
-              {name}님의 2024학년도 {isMobile && <br />}
-              광주소프트웨어마이스터고등학교
-              <br />
-              1차 서류 심사 결과{' '}
+              전예빈님의 1차 서류 심사 결과{' '}
               {pass ? (
-                <S.PassText>합격</S.PassText>
-              ) : (
-                <S.FailText>불합격</S.FailText>
-              )}
-              하셨습니다.
-              <br />
-              {pass &&
-                (isMobile ? (
-                  <>
-                    2차 직무적성 소양평가는
+                <>
+                  <S.PassText>합격</S.PassText>
+                  하셨습니다.
+                  <S.DescriptionText>
+                    &lt;2차 직무적성소양평가 안내&gt;
                     <br />
-                    10월 27일 13시에 진행됩니다.
-                  </>
-                ) : (
-                  <>{'2차 직무적성 소양평가는 10월 27일 13시에 진행됩니다.'}</>
-                ))}
+                    <li>
+                      일시:{' '}
+                      <span
+                        css={css`
+                          color: #3796ff;
+                        `}
+                      >
+                        2023.10.27.(금) 13시
+                      </span>
+                    </li>
+                    <li>
+                      장소:{' '}
+                      <span
+                        css={css`
+                          color: #fa4953;
+                        `}
+                      >
+                        본교 금봉관 2층 강당
+                      </span>
+                    </li>
+                    <li>
+                      준비물:{' '}
+                      <span
+                        css={css`
+                          color: #fa4953;
+                        `}
+                      >
+                        컴퓨터용 싸인펜, 필기구, 신분확인증,
+                        <br />
+                        (학생증, 청소년증, 여권, 생활기록부(원본대조필) 중 하나
+                      </span>
+                    </li>
+                  </S.DescriptionText>
+                </>
+              ) : (
+                <>
+                  <S.FailText>불합격</S.FailText>
+                  하셨습니다.
+                </>
+              )}
             </S.Text>
           ) : (
             <>
               <S.Text>
-                {name}님의 2024학년도 {isMobile && <br />}
-                광주소프트웨어마이스터고등학교
+                {name}님의 2차 평가
                 <br />
                 {pass ? (
                   <>
@@ -95,17 +121,8 @@ const MainResultModal: React.FC<ResultModal> = ({
               )}
             </>
           )}
-          <S.DescriptionText>
-            &lt;2차 직무적성소양평가 안내&gt;
-            <br />
-            <span>10월 27일 금요일 13시까지&nbsp;</span>
-            본교 금봉관 입실 완료
-            <br />
-            준비물: 컴퓨터용싸인펜, 필기구, 학생증, 청소년증, 여권,
-            <br />
-            생활기록부(원본대조필) 중 하나
-          </S.DescriptionText>
-          <S.PostScript id="test">
+
+          <S.PostScript>
             메인 페이지 하단에 결과 발표에서 {isMobile && <br />}
             다시 확인하실 수 있습니다.
           </S.PostScript>

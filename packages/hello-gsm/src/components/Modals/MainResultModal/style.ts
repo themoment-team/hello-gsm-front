@@ -32,21 +32,24 @@ export const MainResultModalBox = styled.div`
 
 export const MainResultModalContent = styled.div`
   width: 100%;
+  height: 222px;
   background: #ffffff;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 16px;
   padding: 16px 0px;
+  @media ${device.mobile} {
+    gap: 4px;
+  }
 `;
 
 export const Text = styled.p`
   font-weight: 700;
   font-size: 20px;
   line-height: 29px;
-  text-align: center;
   color: #0f0921;
   @media ${device.mobile} {
     font-size: 13px;
@@ -76,8 +79,7 @@ export const FinalPassPostScript = styled.p`
   }
 `;
 
-export const PostScript = styled.p`
-  margin-top: 24px;
+export const PostScript = styled.div`
   font-weight: 400;
   font-size: 16px;
   color: rgba(39, 39, 39, 0.64);
@@ -167,17 +169,13 @@ export const ButtonText = styled.span`
 `;
 
 export const DescriptionText = styled.p`
-  font-weight: 400;
+  font-weight: 500;
   font-size: 15px;
-  line-height: 15px;
+  line-height: 20px;
   color: #0f0921;
-  text-align: center;
+  margin-top: 16px;
 
   @media ${device.mobile} {
     font-size: 5px;
-  }
-
-  span {
-    color: #fb1834;
   }
 `;
