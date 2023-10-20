@@ -65,31 +65,9 @@ const MainResultModal: React.FC<ResultModal> = ({
                     2차 직무적성 소양평가는
                     <br />
                     10월 27일 13시에 진행됩니다.
-                    <S.DescriptionText>
-                      &lt;2차 직무적성소양평가 안내&gt;
-                      <br />
-                      <span>10월 27일 금요일 13시까지&nbsp;</span>
-                      본교 금봉관 입실 완료
-                      <br />
-                      준비물: 컴퓨터용싸인펜, 필기구, 학생증, 청소년증, 여권,
-                      <br />
-                      생활기록부(원본대조필) 중 하나
-                    </S.DescriptionText>
                   </>
                 ) : (
-                  <>
-                    {'2차 직무적성 소양평가는 10월 27일 13시에 진행됩니다.'}
-                    <S.DescriptionText>
-                      &lt;2차 직무적성소양평가 안내&gt;
-                      <br />
-                      <span>10월 27일 금요일 13시까지&nbsp;</span>
-                      본교 금봉관 입실 완료
-                      <br />
-                      준비물: 컴퓨터용싸인펜, 필기구, 학생증, 청소년증, 여권,
-                      <br />
-                      생활기록부(원본대조필) 중 하나
-                    </S.DescriptionText>
-                  </>
+                  <>{'2차 직무적성 소양평가는 10월 27일 13시에 진행됩니다.'}</>
                 ))}
             </S.Text>
           ) : (
@@ -117,7 +95,17 @@ const MainResultModal: React.FC<ResultModal> = ({
               )}
             </>
           )}
-          <S.PostScript>
+          <S.DescriptionText>
+            &lt;2차 직무적성소양평가 안내&gt;
+            <br />
+            <span>10월 27일 금요일 13시까지&nbsp;</span>
+            본교 금봉관 입실 완료
+            <br />
+            준비물: 컴퓨터용싸인펜, 필기구, 학생증, 청소년증, 여권,
+            <br />
+            생활기록부(원본대조필) 중 하나
+          </S.DescriptionText>
+          <S.PostScript id="test">
             메인 페이지 하단에 결과 발표에서 {isMobile && <br />}
             다시 확인하실 수 있습니다.
           </S.PostScript>

@@ -20,6 +20,7 @@ export const MainResultModalBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
   @media (max-width: 710px) {
     width: 90%;
   }
@@ -31,13 +32,14 @@ export const MainResultModalBox = styled.div`
 
 export const MainResultModalContent = styled.div`
   width: 100%;
-  height: 200px;
   background: #ffffff;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 5px;
+  padding: 16px 0px;
 `;
 
 export const Text = styled.p`
@@ -169,6 +171,7 @@ export const DescriptionText = styled.p`
   font-size: 15px;
   line-height: 15px;
   color: #0f0921;
+  text-align: center;
 
   @media ${device.mobile} {
     font-size: 5px;
