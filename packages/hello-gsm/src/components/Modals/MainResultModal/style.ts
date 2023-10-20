@@ -81,6 +81,7 @@ export const PostScript = styled.p`
   color: rgba(39, 39, 39, 0.64);
   text-align: center;
   @media ${device.mobile} {
+    margin-top: 5px;
     font-size: 13px;
     line-height: 19px;
   }
@@ -161,4 +162,15 @@ export const Button = styled.button`
 export const ButtonText = styled.span`
   color: #0f0921;
   margin-left: 5px;
+`;
+
+export const DescriptionText = styled.p`
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 15px;
+  color: #0f0921;
+
+  span {
+    color: #fb1834;
+  }
 `;
