@@ -29,6 +29,7 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     firstEvaluation,
     secondEvaluation,
     secondScore,
+    registrationNumber,
   },
   content,
   getApplicationList,
