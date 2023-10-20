@@ -47,7 +47,7 @@ export const Text = styled.p`
   text-align: center;
   color: #0f0921;
   @media ${device.mobile} {
-    font-size: 15px;
+    font-size: 13px;
     line-height: 23px;
   }
 `;
@@ -70,7 +70,7 @@ export const FinalPassPostScript = styled.p`
   @media ${device.mobile} {
     font-weight: 400;
     font-size: 11.5px;
-    line-height: 19px;
+    line-height: 10px;
   }
 `;
 
@@ -82,7 +82,7 @@ export const PostScript = styled.p`
   text-align: center;
   @media ${device.mobile} {
     margin-top: 5px;
-    font-size: 13px;
+    font-size: 10px;
     line-height: 19px;
   }
 `;
@@ -169,6 +169,10 @@ export const DescriptionText = styled.p`
   font-size: 15px;
   line-height: 15px;
   color: #0f0921;
+
+  @media ${device.mobile} {
+    font-size: 5px;
+  }
 
   span {
     color: #fb1834;
