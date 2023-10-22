@@ -20,6 +20,7 @@ export const MainResultModalBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
   @media (max-width: 710px) {
     width: 90%;
   }
@@ -31,23 +32,28 @@ export const MainResultModalBox = styled.div`
 
 export const MainResultModalContent = styled.div`
   width: 100%;
-  height: 200px;
+  height: 222px;
   background: #ffffff;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 16px;
+  padding: 16px 0px;
+  @media ${device.mobile} {
+    gap: 4px;
+  }
 `;
 
-export const Text = styled.p`
+export const Text = styled.div`
   font-weight: 700;
   font-size: 20px;
   line-height: 29px;
-  text-align: center;
   color: #0f0921;
+  text-align: center;
   @media ${device.mobile} {
-    font-size: 15px;
+    font-size: 13px;
     line-height: 23px;
   }
 `;
@@ -70,19 +76,19 @@ export const FinalPassPostScript = styled.p`
   @media ${device.mobile} {
     font-weight: 400;
     font-size: 11.5px;
-    line-height: 19px;
+    line-height: 15px;
   }
 `;
 
-export const PostScript = styled.p`
-  margin-top: 24px;
+export const PostScript = styled.div`
   font-weight: 400;
   font-size: 16px;
   color: rgba(39, 39, 39, 0.64);
   text-align: center;
   @media ${device.mobile} {
-    font-size: 13px;
-    line-height: 19px;
+    margin-top: 10px;
+    font-size: 10px;
+    line-height: 15px;
   }
 `;
 
@@ -161,4 +167,17 @@ export const Button = styled.button`
 export const ButtonText = styled.span`
   color: #0f0921;
   margin-left: 5px;
+`;
+
+export const DescriptionText = styled.div`
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+  color: #0f0921;
+  margin-top: 16px;
+
+  @media ${device.mobile} {
+    font-size: 10px;
+    line-height: 15px;
+  }
 `;
