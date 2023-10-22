@@ -83,7 +83,7 @@ const MainResultModal: React.FC<ResultModal> = ({
                           color: #fa4953;
                         `}
                       >
-                        컴퓨터용 싸인펜, 필기구, 신분확인증,
+                        컴퓨터용 싸인펜, 필기구, 신분확인증
                         <br />
                         (학생증, 청소년증, 여권, 생활기록부(원본대조필) 중 하나
                       </span>
