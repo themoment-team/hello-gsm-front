@@ -48,7 +48,7 @@ const MainResultModal: React.FC<ResultModal> = ({
         <S.MainResultModalContent>
           {isFirstResultPeriod ? (
             <S.Text>
-              전예빈님의 1차 서류 심사 결과{' '}
+              {name}님의 1차 서류 심사 결과{' '}
               {pass ? (
                 <>
                   <S.PassText>합격</S.PassText>

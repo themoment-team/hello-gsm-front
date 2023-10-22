@@ -51,6 +51,7 @@ export const Text = styled.p`
   font-size: 20px;
   line-height: 29px;
   color: #0f0921;
+  text-align: center;
   @media ${device.mobile} {
     font-size: 13px;
     line-height: 23px;
