@@ -46,7 +46,7 @@ export const MainResultModalContent = styled.div`
   }
 `;
 
-export const Text = styled.p`
+export const Text = styled.div`
   font-weight: 700;
   font-size: 20px;
   line-height: 29px;
@@ -169,7 +169,7 @@ export const ButtonText = styled.span`
   margin-left: 5px;
 `;
 
-export const DescriptionText = styled.p`
+export const DescriptionText = styled.div`
   font-weight: 500;
   font-size: 15px;
   line-height: 20px;
