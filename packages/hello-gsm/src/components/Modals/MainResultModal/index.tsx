@@ -100,7 +100,7 @@ const MainResultModal: React.FC<ResultModal> = ({
           ) : (
             <>
               <S.Text>
-                {name}님의 2차 평가
+                {name}님의 2차 평가 결과,
                 <br />
                 {pass ? (
                   <>
