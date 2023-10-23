@@ -275,7 +275,7 @@ const ApplyPage: NextPage<
           </S.GenderBox>
           <S.BirthBox>
             <S.Birth>{userBirth?.getFullYear()}</S.Birth>
-            <S.Birth>{userBirth?.getMonth() ?? 0 + 1}</S.Birth>
+            <S.Birth>{(userBirth?.getMonth() ?? 0) + 1}</S.Birth>
             <S.Birth>{userBirth?.getDate()}</S.Birth>
           </S.BirthBox>
           <S.AddressBox>
@@ -300,7 +300,7 @@ const ApplyPage: NextPage<
             />
           </S.AddressBox>
           <S.HomeTelephone
-            placeholder="집 전화번호를 입력해주세요. ('-'제외 9~10자리)"
+            placeholder="집 전화번호를 입력해주세요. ('-'제외 9~11자리)"
             {...register('telephone', {
               required: false,
               validate: {
@@ -308,7 +308,7 @@ const ApplyPage: NextPage<
                   !value?.includes('-') || '( - )를 제외하고 입력해주세요.',
               },
               pattern: {
-                value: /^0\d{8,9}$/,
+                value: /^0(?:\d|\d{2})(?:\d{3}|\d{4})\d{4}$/,
                 message: '* 집 전화번호를 확인해주세요.',
               },
             })}
@@ -509,7 +509,7 @@ const ApplyPage: NextPage<
                   !value.includes('-') || '( - )를 제외하고 입력해주세요.',
               },
               pattern: {
-                value: /^[0][1][0][0-9]{8}/,
+                value: /^0(?:\d|\d{2})(?:\d{3}|\d{4})\d{4}$/,
                 message: '* 핸드폰 번호를 확인해주세요.',
               },
             })}
@@ -546,7 +546,7 @@ const ApplyPage: NextPage<
                   !value?.includes('-') || '( - )를 제외하고 입력해주세요.',
               },
               pattern: {
-                value: /^[0][1][0][0-9]{8}/,
+                value: /^0(?:\d|\d{2})(?:\d{3}|\d{4})\d{4}$/,
                 message: '* 핸드폰 번호를 확인해주세요.',
               },
             })}

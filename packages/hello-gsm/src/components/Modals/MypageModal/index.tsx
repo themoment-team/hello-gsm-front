@@ -4,7 +4,7 @@ import useStore from 'Stores/StoreContainer';
 import { css } from '@emotion/react';
 import application from 'Api/application';
 import { useRouter } from 'next/router';
-
+import Link from 'next/link';
 const MypageModal: React.FC = () => {
   const { setShowMypageModal, mypageModalContent, setShowMypageSuccessModal } =
     useStore();
@@ -96,6 +96,9 @@ const MypageModal: React.FC = () => {
           <I.Questioner />
         </S.ExplanationBox>
         <S.ButtonBox>
+          <Link href="/application">
+            <S.CancelButton>원서 미리보기</S.CancelButton>
+          </Link>
           <S.CancelButton onClick={setShowMypageModal}>취소</S.CancelButton>
           <S.AllowButton
             css={css`

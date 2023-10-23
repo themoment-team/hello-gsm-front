@@ -45,9 +45,8 @@ export const Name = styled.p`
 `;
 
 export const ButtonBox = styled.div`
-  width: 100%;
   display: flex;
-  justify-content: space-between;
+  gap: 12px;
 `;
 
 export const Button = styled.button`

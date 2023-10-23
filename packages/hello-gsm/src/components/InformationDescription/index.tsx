@@ -81,10 +81,7 @@ const InformationDescription: React.FC<IndexType> = ({ index }) => {
               <S.Highlight>출력</S.Highlight>합니다.
             </li>
 
-            <li>
-              서류를 출력하고 필요한 수기 부분을 모두{' '}
-              <S.Highlight>작성</S.Highlight>합니다.
-            </li>
+            <li>서류를 출력 후 확인 부분을 서명합니다.</li>
             <li>
               <S.Highlight>10월 16일</S.Highlight>부터{' '}
               <S.Highlight>10월 19일</S.Highlight>까지 해당 서류를 학교 원서

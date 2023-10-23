@@ -69,15 +69,17 @@ const MainPage: NextPage = () => {
         />
         <MainpageHeader />
         <S.ContentList>
-          {applicationData?.applications.map(data => {
-            return (
+          {applicationData?.applications
+            .sort(
+              (a, b) => Number(a.isPrintsArrived) - Number(b.isPrintsArrived),
+            )
+            .map(data => (
               <ContentBox
                 content={data}
                 key={data.applicationId}
                 getApplicationList={getList}
               />
-            );
-          })}
+            ))}
         </S.ContentList>
         {applicationData?.info.totalPages ? (
           <PaginationController

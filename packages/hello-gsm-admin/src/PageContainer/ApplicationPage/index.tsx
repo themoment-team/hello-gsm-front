@@ -94,10 +94,6 @@ const ApplicationPage: NextPage<{
             <S.SubTitle style={{ fontSize: '1.5vh', fontWeight: 700 }}>
               2024학년도 신입생 입학전형
             </S.SubTitle>
-            <S.Box>
-              <S.ApplyNum>접수번호</S.ApplyNum>
-              <S.Content>{admissionStatus?.registrationNumber}</S.Content>
-            </S.Box>
           </S.Wrap>
           <S.Container>
             <S.Table>
@@ -223,10 +219,6 @@ const ApplicationPage: NextPage<{
             </S.Title>
             <S.Wrap>
               <S.SubTitle>일반교과</S.SubTitle>
-              <S.Box>
-                <S.ApplyNum>접수번호</S.ApplyNum>
-                <S.Content>{admissionStatus?.registrationNumber}</S.Content>
-              </S.Box>
             </S.Wrap>
 
             <S.ScoreTable>
@@ -383,7 +375,7 @@ const ApplicationPage: NextPage<{
               <tbody>
                 <tr>
                   <S.Subject rowSpan={2}>학년</S.Subject>
-                  <S.Subject colSpan={6}>출결상황</S.Subject>
+                  <S.Subject colSpan={6}>미인정 출결 현황</S.Subject>
                   <S.Subject colSpan={2}>봉사활동</S.Subject>
                 </tr>
                 <tr>
