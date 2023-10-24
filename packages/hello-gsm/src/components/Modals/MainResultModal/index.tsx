@@ -111,7 +111,7 @@ const MainResultModal: React.FC<ResultModal> = ({
                     >
                       {formatMajor(majorResult)}
                     </span>
-                    에<S.PassText>최종 합격</S.PassText>
+                    에 <S.PassText>최종 합격</S.PassText>
                   </>
                 ) : (
                   <S.FailText>최종 불합격</S.FailText>
