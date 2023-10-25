@@ -104,8 +104,14 @@ const MainResultModal: React.FC<ResultModal> = ({
                 <br />
                 {pass ? (
                   <>
-                    {formatMajor(majorResult)}에{' '}
-                    <S.PassText>최종 합격</S.PassText>
+                    <span
+                      css={css`
+                        color: #3796ff;
+                      `}
+                    >
+                      {formatMajor(majorResult)}
+                    </span>
+                    에 <S.PassText>최종 합격</S.PassText>
                   </>
                 ) : (
                   <S.FailText>최종 불합격</S.FailText>
