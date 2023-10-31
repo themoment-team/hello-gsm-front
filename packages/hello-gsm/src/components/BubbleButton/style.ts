@@ -18,10 +18,13 @@ export const ToCalculator = styled.button`
     top: 40rem;
   }
   &:nth-of-type(2) {
-    top: 45rem;
+    top: 50rem;
   }
   &:nth-of-type(3) {
-    top: 50rem;
+    top: 55rem;
+  }
+  &:nth-of-type(4) {
+    top: 60rem;
   }
 
   &:hover {

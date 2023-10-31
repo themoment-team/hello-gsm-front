@@ -187,6 +187,10 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
             </S.TermWrapper>
           </div>
         </div>
+
+        <BubbleButton link="/최종합격자_제출_서류.hwpx">
+          📑 최종합격자 제출 서류 안내
+        </BubbleButton>
         <S.GuideAnchor href="/절차_가이드.pdf" target="_blank" rel="noreferrer">
           ℹ️ 원서 접수 방법 미리보기
         </S.GuideAnchor>
