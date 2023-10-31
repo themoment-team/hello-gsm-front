@@ -100,13 +100,13 @@ const MainResultModal: React.FC<ResultModal> = ({
           ) : (
             <>
               <S.Text>
-                {name}님의 2차 평가 결과,
+                {name}님 광주소프트웨어마이스터고등학교
                 <br />
                 {pass ? (
                   <>
                     <span
                       css={css`
-                        color: #3796ff;
+                        color: #ff4e4e;
                       `}
                     >
                       {formatMajor(majorResult)}
@@ -120,9 +120,20 @@ const MainResultModal: React.FC<ResultModal> = ({
               </S.Text>
               {pass && (
                 <S.FinalPassPostScript>
-                  제출서류 : 입학등록동의서 1부(11.7.월까지),
-                  <br />
-                  건강진단서 1부(11.14.월까지)공문 제출과 방문접수에 한함.
+                  <span
+                    css={css`
+                      font-weight: 700;
+                    `}
+                  >
+                    &lt;합격자 제출서류&gt; <br />
+                  </span>
+                  <li>
+                    입학등록동의서 1부: 11.6.(월) 까지 <br />
+                  </li>
+                  <li>
+                    건강진단서 1부: 11.13.(월)까지 <br />
+                  </li>
+                  <li>우편과 방문 제출: 1층 교무실</li>
                 </S.FinalPassPostScript>
               )}
             </>
