@@ -146,7 +146,6 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
           <S.Description>
             광주소프트웨어마이스터고등학교 입학 지원 시스템
           </S.Description>
-
           {isPC ? (
             isAcceptable ? (
               !data?.admissionStatus?.isFinalSubmitted ? (
@@ -162,7 +161,9 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
                 </LinkButton>
               )
             ) : (
-              <LinkButton disabled>❌ 접수 기간이 아닙니다.</LinkButton>
+              <LinkButton disabled>
+                하단의 해당 기간에만 접수가능합니다
+              </LinkButton>
             )
           ) : (
             <LinkButton disabled>🖥️ 원서 접수는 pc로만 가능해요</LinkButton>
@@ -186,6 +187,10 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
             </S.TermWrapper>
           </div>
         </div>
+
+        <BubbleButton link="/최종합격자_제출_서류.hwpx">
+          📑 최종합격자 제출 서류 안내
+        </BubbleButton>
         <S.GuideAnchor href="/절차_가이드.pdf" target="_blank" rel="noreferrer">
           ℹ️ 원서 접수 방법 미리보기
         </S.GuideAnchor>

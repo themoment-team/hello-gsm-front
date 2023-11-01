@@ -103,7 +103,7 @@ export const GuideAnchor = styled.a`
   border: none;
   color: ${({ theme }) => theme.color.black};
   font-weight: 600;
-  top: 35rem;
+  top: 45rem;
 
   &:hover {
     background: rgba(243, 243, 243, 0.52);
