@@ -15,7 +15,7 @@ export const MainResultModal = styled.div`
 
 export const MainResultModalBox = styled.div`
   width: 710px;
-  height: 320px;
+  height: 338px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -40,7 +40,7 @@ export const MainResultModalContent = styled.div`
   justify-content: center;
   align-items: center;
   gap: 16px;
-  padding: 16px 0px;
+  padding: 130px 0px;
   @media ${device.mobile} {
     gap: 4px;
   }
@@ -70,7 +70,6 @@ export const FinalPassPostScript = styled.p`
   font-weight: 500;
   font-size: 16px;
   line-height: 23px;
-  text-align: center;
   color: #0f0921;
   margin-top: 10px;
   @media ${device.mobile} {
