@@ -196,7 +196,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
             건강진단서 1부(11.14.월까지)공문과 방문접수에 한함.
           </S.PostScript>
           <S.PostScript>접수 번호 {registrationNumber}</S.PostScript>
-          <S.Button onClick={() => push('/최종합격자_제출_서류.hwp')}>
+          <S.Button onClick={() => push('/최종합격자_제출_서류.hwpx')}>
             <I.DownloadIcon />
             <S.ButtonText>제출서류</S.ButtonText>
           </S.Button>
