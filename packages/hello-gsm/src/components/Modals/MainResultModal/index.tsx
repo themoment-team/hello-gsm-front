@@ -190,7 +190,7 @@ const MainResultModal: React.FC<ResultModal> = ({
                   }
                 }
               `}
-              onClick={() => push('/최종합격자_제출_서류.hwp')}
+              onClick={() => push('/최종합격자_제출_서류.hwpx')}
             >
               <I.DownloadIcon />
               <S.ButtonText>제출서류</S.ButtonText>
