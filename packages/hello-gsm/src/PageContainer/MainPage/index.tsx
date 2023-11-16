@@ -15,7 +15,6 @@ import {
   applyAcceptable,
   endApply,
   isFirstResult,
-  isStartFirstResult,
   startApply,
 } from 'shared/Date/firstScreening';
 import { formatDate } from 'Utils/Format';
@@ -101,7 +100,7 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
     if (logged !== undefined)
       setShowMainNonLoginModal(
         // 1차 합격 발표 날짜
-        isStartFirstResult &&
+        isFirstResult &&
           !logged &&
           localStorage.getItem('mainNonLoginModalInvisible') !==
             new Date().getDate().toString(),
@@ -112,7 +111,7 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
     if (pass !== undefined)
       setShowMainResultModal(
         // 1차 합격 발표 날짜
-        isStartFirstResult &&
+        isFirstResult &&
           localStorage.getItem('mainResultModalInvisible') !==
             new Date().getDate().toString(),
       );

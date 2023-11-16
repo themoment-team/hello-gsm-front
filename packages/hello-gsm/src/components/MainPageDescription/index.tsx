@@ -10,7 +10,6 @@ import {
   endApply,
   endFirstResult,
   isFirstResult,
-  isStartFirstResult,
   startApply,
   startFirstResult,
 } from 'shared/Date/firstScreening';
@@ -60,14 +59,14 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
     if (selectedIndex === 5) {
       if (pass !== undefined) {
         // 1차 전형 합격 날짜
-        isStartFirstResult && (data?.admissionStatus.isFinalSubmitted ?? false)
+        isFirstResult && (data?.admissionStatus.isFinalSubmitted ?? false)
           ? setIndex(5)
           : setIndex(7);
       } else {
         if (logged) {
           setIndex(7);
         } else {
-          setIndex(6);
+          isFirstResult ? setIndex(6) : setIndex(5);
         }
       }
     }

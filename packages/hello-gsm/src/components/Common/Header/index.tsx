@@ -53,7 +53,7 @@ const Header: React.FC = () => {
             <S.NavContent css={select('/about')}>팀소개</S.NavContent>
           </Link>
         </S.NavBar>
-        {!logged ? (
+        {/* {!logged ? (
           <S.MemberBox
             css={css`
               justify-content: flex-end;
@@ -72,7 +72,7 @@ const Header: React.FC = () => {
               <S.AuthButton>로그아웃</S.AuthButton>
             </a>
           </S.MemberBox>
-        )}
+        )} */}
         <S.HamBurger onClick={() => setShowSideBar(true)}>
           <I.HamburgerButton />
         </S.HamBurger>

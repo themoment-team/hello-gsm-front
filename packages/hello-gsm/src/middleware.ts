@@ -35,7 +35,7 @@ export async function middleware(req: NextRequest) {
     new Date() >= new Date('2023/10/16 00:00') &&
     new Date() <= new Date('2023/10/19 08:00');
 
-  const applicationFormURL = ['/information', '/apply'];
+  const applicationFormURL = ['/information', '/apply', '/auth/signin'];
 
   // 원서 날짜 이후 처리 해당 페이지라면
   if (applicationFormURL.includes(pathname)) {
