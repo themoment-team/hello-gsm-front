@@ -10,6 +10,7 @@ import {
   endApply,
   endFirstResult,
   isFirstResult,
+  isStartFirstResult,
   startApply,
   startFirstResult,
 } from 'shared/Date/firstScreening';
@@ -37,6 +38,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   };
 
   const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(isFirstResult);
+  const [isFinalPeriod, setIsFinalPeriod] = useState<boolean>(isFinalEnd);
   const firstResult = resetResult(data?.admissionStatus.firstEvaluation);
   const finalResult = resetResult(data?.admissionStatus.secondEvaluation);
   const [pass, setPass] = useState<boolean | undefined>(undefined);
@@ -54,23 +56,23 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
 
   useEffect(() => {
     // 입학 전형이 끝난 이후
-    isFinalEnd ? setIndex(0) : setIndex(selectedIndex);
+    isFinalPeriod ? setIndex(0) : setIndex(selectedIndex);
 
     if (selectedIndex === 5) {
       if (pass !== undefined) {
         // 1차 전형 합격 날짜
-        isFirstResult && (data?.admissionStatus.isFinalSubmitted ?? false)
+        isStartFirstResult && (data?.admissionStatus.isFinalSubmitted ?? false)
           ? setIndex(5)
           : setIndex(7);
       } else {
         if (logged) {
           setIndex(7);
         } else {
-          isFirstResult ? setIndex(6) : setIndex(5);
+          isFinalPeriod ? setIndex(6) : setIndex(7);
         }
       }
     }
-  }, [data, logged, selectedIndex]);
+  }, [data, isFinalPeriod, logged, pass, selectedIndex]);
 
   switch (index) {
     case 1:
