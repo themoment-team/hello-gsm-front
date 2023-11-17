@@ -68,7 +68,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
         if (logged) {
           setIndex(7);
         } else {
-          isFinalPeriod ? setIndex(6) : setIndex(7);
+          isFinalPeriod ? setIndex(6) : setIndex(0);
         }
       }
     }
