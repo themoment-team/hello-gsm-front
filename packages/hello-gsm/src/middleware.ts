@@ -57,10 +57,10 @@ export async function middleware(req: NextRequest) {
 
   const isShowResult =
     today >= new Date('2023/10/23 01:00:00') &&
-    new Date('2023/10/23 01:00:00') <= new Date('2023/11/14 15:00:00');
+    today <= new Date('2023/11/14 15:00:00');
 
   if (pathname === '/auth/signin') {
-    if (isShowResult) {
+    if (!isShowResult) {
       return NextResponse.rewrite(origin);
     }
   }
