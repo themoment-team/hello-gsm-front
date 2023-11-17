@@ -55,26 +55,27 @@ const Header: React.FC = () => {
             <S.NavContent css={select('/about')}>팀소개</S.NavContent>
           </Link>
         </S.NavBar>
-        {!isFinalPeriod && !logged ? (
-          <S.MemberBox
-            css={css`
-              justify-content: flex-end;
-            `}
-          >
-            <Link href="/auth/signin" passHref>
-              <S.AuthButton>로그인하기</S.AuthButton>
-            </Link>
-          </S.MemberBox>
-        ) : (
-          <S.MemberBox>
-            <Link href="/mypage" passHref>
-              <S.NavContent css={select('/mypage')}>마이페이지</S.NavContent>
-            </Link>
-            <a href={auth.logout()} onClick={handleLogoutClick}>
-              <S.AuthButton>로그아웃</S.AuthButton>
-            </a>
-          </S.MemberBox>
-        )}
+        {!isFinalPeriod &&
+          (!logged ? (
+            <S.MemberBox
+              css={css`
+                justify-content: flex-end;
+              `}
+            >
+              <Link href="/auth/signin" passHref>
+                <S.AuthButton>로그인하기</S.AuthButton>
+              </Link>
+            </S.MemberBox>
+          ) : (
+            <S.MemberBox>
+              <Link href="/mypage" passHref>
+                <S.NavContent css={select('/mypage')}>마이페이지</S.NavContent>
+              </Link>
+              <a href={auth.logout()} onClick={handleLogoutClick}>
+                <S.AuthButton>로그아웃</S.AuthButton>
+              </a>
+            </S.MemberBox>
+          ))}
         <S.HamBurger onClick={() => setShowSideBar(true)}>
           <I.HamburgerButton />
         </S.HamBurger>
