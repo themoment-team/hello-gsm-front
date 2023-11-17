@@ -10,15 +10,15 @@ import {
   endApply,
   endFirstResult,
   isFirstResult,
+  isShowResult,
   isStartFirstResult,
   startApply,
   startFirstResult,
 } from 'shared/Date/firstScreening';
-import { isFinalEnd } from 'shared/Date/afterApply';
 import { startFinalTest } from 'shared/Date/secondScreening';
 import { formatDate } from 'Utils/Format';
 import formatMajor from 'Utils/Format/formatMajor';
-import { EvaluationStatusType, MajorType } from 'type/application';
+import { EvaluationStatusType } from 'type/application';
 import useStore from 'Stores/StoreContainer';
 
 const MainPageDescription: React.FC<MainDescStatusType> = ({
@@ -38,7 +38,8 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
   };
 
   const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(isFirstResult);
-  const [isFinalPeriod, setIsFinalPeriod] = useState<boolean>(isFinalEnd);
+  const [isShowResultPeriod, setIsSetResultPeriod] =
+    useState<boolean>(isShowResult);
   const firstResult = resetResult(data?.admissionStatus.firstEvaluation);
   const finalResult = resetResult(data?.admissionStatus.secondEvaluation);
   const [pass, setPass] = useState<boolean | undefined>(undefined);
@@ -56,7 +57,7 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
 
   useEffect(() => {
     // 입학 전형이 끝난 이후
-    isFinalPeriod ? setIndex(0) : setIndex(selectedIndex);
+    isShowResultPeriod ? setIndex(selectedIndex) : setIndex(0);
 
     if (selectedIndex === 5) {
       if (pass !== undefined) {
@@ -68,11 +69,11 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
         if (logged) {
           setIndex(7);
         } else {
-          isFinalPeriod ? setIndex(6) : setIndex(0);
+          isShowResultPeriod ? setIndex(6) : setIndex(0);
         }
       }
     }
-  }, [data, isFinalPeriod, logged, pass, selectedIndex]);
+  }, [data, logged, pass, selectedIndex]);
 
   switch (index) {
     case 1:
