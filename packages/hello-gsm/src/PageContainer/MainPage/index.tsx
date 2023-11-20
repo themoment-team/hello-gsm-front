@@ -15,7 +15,7 @@ import {
   applyAcceptable,
   endApply,
   isFirstResult,
-  isStartFirstResult,
+  isShowResult,
   startApply,
 } from 'shared/Date/firstScreening';
 import { formatDate } from 'Utils/Format';
@@ -36,6 +36,8 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
   const [isAcceptable, setIsAcceptable] = useState<boolean>(false);
   const [isFirstResultPeriod, setIsFirstResultPeriod] =
     useState<boolean>(isFirstResult);
+  const [isShowResultPeriod, setIsShowResultPeriod] =
+    useState<boolean>(isShowResult);
   const [pass, setPass] = useState<boolean | undefined>(undefined);
 
   const resetResult = (result?: EvaluationStatusType): boolean | undefined => {
@@ -101,22 +103,22 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
     if (logged !== undefined)
       setShowMainNonLoginModal(
         // 1차 합격 발표 날짜
-        isStartFirstResult &&
+        isShowResultPeriod &&
           !logged &&
           localStorage.getItem('mainNonLoginModalInvisible') !==
             new Date().getDate().toString(),
       );
-  }, [logged, setShowMainNonLoginModal]);
+  }, [isShowResultPeriod, logged, setShowMainNonLoginModal]);
 
   useEffect(() => {
     if (pass !== undefined)
       setShowMainResultModal(
         // 1차 합격 발표 날짜
-        isStartFirstResult &&
+        isShowResultPeriod &&
           localStorage.getItem('mainResultModalInvisible') !==
             new Date().getDate().toString(),
       );
-  }, [pass]);
+  }, [isShowResultPeriod, pass, setShowMainResultModal]);
 
   return (
     <S.MainPage>

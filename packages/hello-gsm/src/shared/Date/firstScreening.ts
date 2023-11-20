@@ -14,4 +14,8 @@ export const isStartFirstResult = today >= startFirstResult;
 export const isFirstResult =
   today >= startFirstResult && today < endFirstResult;
 
+const endShowResult = new Date('2023/11/15 00:00:00');
+
+export const isShowResult = today >= startFirstResult && today < endShowResult;
+
 // 11월 1일 10시부터 두번째 합격 결과 보여주는 날짜

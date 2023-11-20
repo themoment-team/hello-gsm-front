@@ -8,10 +8,12 @@ import * as S from './style';
 import * as I from 'Assets/svg';
 import { SideBar } from 'components';
 import { toast } from 'react-toastify';
+import { isFinalEnd } from 'shared/Date/afterApply';
 
 const Header: React.FC = () => {
   const { pathname } = useRouter();
   const [isLogoutClicked, setIsLogoutClicked] = useState<boolean>(false);
+  const [isFinalPeriod, setIsFinalPeriod] = useState<boolean>(isFinalEnd);
 
   const { logged, setShowSideBar } = useStore();
 
@@ -53,26 +55,27 @@ const Header: React.FC = () => {
             <S.NavContent css={select('/about')}>팀소개</S.NavContent>
           </Link>
         </S.NavBar>
-        {!logged ? (
-          <S.MemberBox
-            css={css`
-              justify-content: flex-end;
-            `}
-          >
-            <Link href="/auth/signin" passHref>
-              <S.AuthButton>로그인하기</S.AuthButton>
-            </Link>
-          </S.MemberBox>
-        ) : (
-          <S.MemberBox>
-            <Link href="/mypage" passHref>
-              <S.NavContent css={select('/mypage')}>마이페이지</S.NavContent>
-            </Link>
-            <a href={auth.logout()} onClick={handleLogoutClick}>
-              <S.AuthButton>로그아웃</S.AuthButton>
-            </a>
-          </S.MemberBox>
-        )}
+        {!isFinalPeriod &&
+          (!logged ? (
+            <S.MemberBox
+              css={css`
+                justify-content: flex-end;
+              `}
+            >
+              <Link href="/auth/signin" passHref>
+                <S.AuthButton>로그인하기</S.AuthButton>
+              </Link>
+            </S.MemberBox>
+          ) : (
+            <S.MemberBox>
+              <Link href="/mypage" passHref>
+                <S.NavContent css={select('/mypage')}>마이페이지</S.NavContent>
+              </Link>
+              <a href={auth.logout()} onClick={handleLogoutClick}>
+                <S.AuthButton>로그아웃</S.AuthButton>
+              </a>
+            </S.MemberBox>
+          ))}
         <S.HamBurger onClick={() => setShowSideBar(true)}>
           <I.HamburgerButton />
         </S.HamBurger>

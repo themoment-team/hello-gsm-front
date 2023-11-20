@@ -138,7 +138,7 @@ export const ButtonWrap = styled.div`
     button {
       width: 136px;
     }
-  } ;
+  }
 `;
 
 export const Button = styled.button`
