@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import auth from 'api/auth';
+import { auth } from 'api';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';

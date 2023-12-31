@@ -1,11 +1,10 @@
 import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import { CommonApplicationResponseType } from 'type/application';
-import application from 'api/application';
+import { application, identity } from 'api';
 import { ApplyPage, CalculatorPage, GEDCalculatorPage } from 'PageContainer';
 import { useEffect, useState } from 'react';
 import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
-import identity from 'api/identity';
 import { IdentityType } from 'type/identity';
 import useStore from 'Stores/StoreContainer';
 import { useRouter } from 'next/router';

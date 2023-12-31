@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import user from 'api/user';
+import { user } from 'api';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 
