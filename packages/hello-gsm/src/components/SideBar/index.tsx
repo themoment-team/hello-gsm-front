@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import * as S from './style';
-import * as I from 'Assets/svg';
+import * as I from 'assets/svg';
 import { useEffect } from 'react';
 import useStore from 'Stores/StoreContainer';
 import NavLink from './NavLink';

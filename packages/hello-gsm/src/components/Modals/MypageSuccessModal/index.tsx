@@ -1,5 +1,5 @@
 import * as S from './style';
-import * as I from 'Assets/svg';
+import * as I from 'assets/svg';
 import React, { useEffect } from 'react';
 
 const SuccessModal: React.FC = () => {

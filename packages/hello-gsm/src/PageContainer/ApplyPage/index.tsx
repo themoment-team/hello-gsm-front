@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import type { NextPage } from 'next';
 import * as S from './style';
-import * as I from 'Assets/svg';
+import * as I from 'assets/svg';
 import { css } from '@emotion/react';
 import useStore from 'Stores/StoreContainer';
 import {

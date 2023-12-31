@@ -1,5 +1,5 @@
 import * as S from './style';
-import * as I from 'Assets/svg';
+import * as I from 'assets/svg';
 import useStore from 'Stores/StoreContainer';
 import { FAQType } from 'type/faq';
 import { useEffect, useState } from 'react';

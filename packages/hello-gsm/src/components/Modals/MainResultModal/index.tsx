@@ -1,7 +1,7 @@
 import { Global, css } from '@emotion/react';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import * as I from 'Assets/svg';
+import * as I from 'assets/svg';
 import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 import device from 'shared/config';

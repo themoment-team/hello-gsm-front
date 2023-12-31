@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 
 import * as S from './style';
-import * as I from 'Assets/svg';
+import * as I from 'assets/svg';
 
 const NotFoundPage: NextPage = () => {
   return (

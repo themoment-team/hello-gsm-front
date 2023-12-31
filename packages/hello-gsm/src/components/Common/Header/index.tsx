@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import useStore from 'Stores/StoreContainer';
 import * as S from './style';
-import * as I from 'Assets/svg';
+import * as I from 'assets/svg';
 import { SideBar } from 'components';
 import { toast } from 'react-toastify';
 import { isFinalEnd } from 'shared/Date/afterApply';

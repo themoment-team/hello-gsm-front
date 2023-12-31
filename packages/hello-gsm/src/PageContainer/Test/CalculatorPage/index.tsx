@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { ScoreSelect, ScoreResultModal, FreeSemesterBtn } from 'components';
 import * as S from 'styles/Calculate';
-import * as I from 'Assets/svg';
+import * as I from 'assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { useState } from 'react';
 import {
