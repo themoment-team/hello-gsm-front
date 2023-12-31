@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import * as S from 'PageContainer/InformationPage/style';
 import * as DS from 'components/InformationDescription/style';
-import * as I from 'Assets/svg';
+import * as I from 'assets/svg';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import Image from 'next/image';

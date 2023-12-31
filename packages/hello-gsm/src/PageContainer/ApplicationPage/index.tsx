@@ -3,7 +3,7 @@ import * as S from './style';
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { ApplicantsStatus } from 'components';
-import * as I from 'Assets/svg';
+import * as I from 'assets/svg';
 import { LocalScoreType } from 'type/score';
 import toStringArray from 'Utils/Array/toStringArray';
 import { formatGender } from 'Utils/Format';

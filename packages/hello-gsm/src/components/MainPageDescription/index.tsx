@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import * as S from './style';
-import * as I from 'Assets/svg';
+import * as I from 'assets/svg';
 import { MainDescStatusType } from 'type/user';
 import { useRouter } from 'next/router';
 import device from 'shared/config';

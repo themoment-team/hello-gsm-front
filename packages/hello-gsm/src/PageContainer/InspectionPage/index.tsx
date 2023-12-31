@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { InspectionIcon } from 'Assets/svg';
+import { InspectionIcon } from 'assets/svg';
 import * as S from './style';
 import { css } from '@emotion/react';
 import device from 'shared/config';

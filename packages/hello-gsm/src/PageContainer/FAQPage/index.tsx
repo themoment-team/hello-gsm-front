@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
-import * as I from 'Assets/svg';
+import * as I from 'assets/svg';
 import * as S from './style';
 import { FAQBox } from 'components';
 import useStore from 'Stores/StoreContainer';
