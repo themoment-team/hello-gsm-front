@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import { CommonApplicationResponseType } from 'type/application';
 import application from 'Api/application';
-import { ApplyPage, CalculatorPage, GEDCalculatorPage } from 'PageContainer';
+import { ApplyPage, CalculatorPage, GEDCalculatorPage } from 'pageContainer';
 import { useEffect, useState } from 'react';
 import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
 import identity from 'Api/identity';
