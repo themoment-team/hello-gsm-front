@@ -5,7 +5,7 @@ import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { CommonApplicationResponseType } from 'type/application';
 
-interface Props {
+interface ModalSubmitProps {
   data: CommonApplicationResponseType;
 }
 
