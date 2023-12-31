@@ -10,7 +10,7 @@ import { SideBar } from 'components';
 import { toast } from 'react-toastify';
 import { isFinalEnd } from 'shared/Date/afterApply';
 
-const Header: React.FC = () => {
+const Header = () => {
   const { pathname } = useRouter();
   const [isLogoutClicked, setIsLogoutClicked] = useState<boolean>(false);
   const [isFinalPeriod, setIsFinalPeriod] = useState<boolean>(isFinalEnd);

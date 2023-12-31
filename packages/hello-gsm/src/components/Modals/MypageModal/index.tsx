@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 import application from 'Api/application';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-const MypageModal: React.FC = () => {
+const MypageModal = () => {
   const { setShowMypageModal, mypageModalContent, setShowMypageSuccessModal } =
     useStore();
 

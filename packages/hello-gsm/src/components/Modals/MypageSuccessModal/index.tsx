@@ -2,7 +2,7 @@ import * as S from './style';
 import * as I from 'Assets/svg';
 import React, { useEffect } from 'react';
 
-const SuccessModal: React.FC = () => {
+const SuccessModal = () => {
   useEffect(() => {
     setTimeout(() => {
       window.location.reload();
