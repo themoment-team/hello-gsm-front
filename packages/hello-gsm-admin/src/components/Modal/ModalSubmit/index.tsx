@@ -9,7 +9,7 @@ interface ModalSubmitProps {
   data: CommonApplicationResponseType;
 }
 
-const ModalSubmit: React.FC<Props> = ({ data }) => {
+const ModalSubmit: React.FC<ModalSubmitProps> = ({ data }) => {
   const { setSelectedOption, selectedOption } = useStore();
   useEffect(() => {
     setSelectedOption(data.isPrintsArrived ? 1 : 2);
