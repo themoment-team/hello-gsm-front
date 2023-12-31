@@ -5,7 +5,11 @@ import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 import { CommonApplicationResponseType } from 'type/application';
 
-const ModalSubmit: React.FC<CommonApplicationResponseType> = data => {
+interface Props {
+  data: CommonApplicationResponseType;
+}
+
+const ModalSubmit: React.FC<Props> = ({ data }) => {
   const { setSelectedOption, selectedOption } = useStore();
   useEffect(() => {
     setSelectedOption(data.isPrintsArrived ? 1 : 2);
