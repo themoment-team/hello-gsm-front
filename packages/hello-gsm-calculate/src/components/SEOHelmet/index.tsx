@@ -11,7 +11,7 @@ interface SEOHelmetProps {
  * @param desc - page 설명
  * @returns 검색엔진 최적화를 위한 HEAD태그
  */
-const SEOHelmet = ({ seoTitle, desc }: SEOHelmetProps) => {
+const SEOHelmet: React.FC<SEOHelmetProps> = (seoTitle, desc) => {
   return (
     <Head>
       <title>{seoTitle} | HelloGSM</title>
