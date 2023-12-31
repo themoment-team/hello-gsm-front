@@ -4,7 +4,7 @@ import * as I from 'assets/svg';
 import { useEffect } from 'react';
 import useStore from 'Stores/StoreContainer';
 import NavLink from './NavLink';
-import auth from 'Api/auth';
+import auth from 'api/auth';
 
 const SideBar: NextPage = () => {
   const { logged, showSideBar, setShowSideBar } = useStore();

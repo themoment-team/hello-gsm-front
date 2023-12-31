@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import { SignUpPage } from 'PageContainer';
 import { UserInfoType } from 'type/user';
-import user from 'Api/user';
+import user from 'api/user';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';

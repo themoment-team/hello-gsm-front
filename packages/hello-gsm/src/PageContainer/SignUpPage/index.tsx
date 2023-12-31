@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 import TosBox from './TosBox';
 import { toast } from 'react-toastify';
 import { GenderType } from 'type/application';
-import identity from 'Api/identity';
+import identity from 'api/identity';
 
 interface UserForm {
   gender: GenderType;
