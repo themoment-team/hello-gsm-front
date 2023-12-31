@@ -5,7 +5,7 @@ import auth from 'Api/auth';
 import { useRouter } from 'next/router';
 import { css } from '@emotion/react';
 
-const SlideBar: React.FC = () => {
+const SlideBar = () => {
   const { push, pathname } = useRouter();
   return (
     <S.SideBar className="sideBar">

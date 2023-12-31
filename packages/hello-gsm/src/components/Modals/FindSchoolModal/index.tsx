@@ -18,7 +18,7 @@ interface schoolType {
   SCHUL_KND_SC_NM: '고등학교' | '중학교' | '초등학교';
 }
 
-const FindSchoolModal: React.FC = () => {
+const FindSchoolModal = () => {
   const {
     showFindSchoolModal,
     setShowFindSchoolModal,

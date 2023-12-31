@@ -6,7 +6,7 @@ interface BubbleButtonProps {
   children: React.ReactNode;
 }
 
-const BubbleButton = ({ children, link }: BubbleButtonProps) => {
+const BubbleButton: React.FC<BubbleButtonProps> = ({ children, link }) => {
   return (
     <Link href={link} passHref>
       <S.ToCalculator>{children}</S.ToCalculator>

@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './style';
 
-const MainpageHeader: React.FC = () => {
+const MainpageHeader = () => {
   const headerElement = [
     '지원자 번호',
     '서류여부',
