@@ -5,7 +5,7 @@ import { FieldErrors, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import useStore from 'Stores/StoreContainer';
 import { GEDCalculate, Rounds } from 'Utils/Calculate';
-import * as S from 'PageContainer/GEDCalculatorPage/style';
+import * as S from 'pageContainer/GEDCalculatorPage/style';
 import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
 
 interface ScoreType {
