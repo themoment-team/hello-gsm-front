@@ -3,7 +3,7 @@ import React from 'react';
 import * as S from './style';
 import useStore from 'Stores/StoreContainer';
 
-const MainNonLoginModal: React.FC = () => {
+const MainNonLoginModal = () => {
   const { setShowMainNonLoginModal } = useStore();
 
   const invisible = () => {

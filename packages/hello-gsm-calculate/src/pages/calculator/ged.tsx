@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
-import { GEDCalculatorPage } from 'PageContainer';
+import { GEDCalculatorPage } from 'pageContainer';
 
 const GEDCalcaulator: NextPage = () => {
   const seoTitle = '검정고시생 성적 입력 테스트';

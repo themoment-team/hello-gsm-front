@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import * as S from 'PageContainer/InformationPage/style';
+import * as S from 'pageContainer/InformationPage/style';
 import * as DS from 'components/InformationDescription/style';
 import * as I from 'assets/svg';
 import styled from '@emotion/styled';

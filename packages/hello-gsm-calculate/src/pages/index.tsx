@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
-import { ChoosePage } from 'PageContainer';
+import { ChoosePage } from 'pageContainer';
 
 const Home: NextPage = () => {
   const seoTitle = '성적 입력 테스트';

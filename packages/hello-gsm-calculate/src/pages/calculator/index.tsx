@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
-import { CalculatorPage } from 'PageContainer';
+import { CalculatorPage } from 'pageContainer';
 
 const Calculator: NextPage = () => {
   const seoTitle = '졸업자 & 졸업예정 학생 성적 입력 테스트';

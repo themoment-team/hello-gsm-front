@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
-import { MypagePage } from 'PageContainer';
 import { application, identity, user } from 'api';
+import { MypagePage } from 'pageContainer';
 import { CommonApplicationResponseType } from 'type/application';
 import { useEffect, useState } from 'react';
 import { IdentityType } from 'type/identity';
