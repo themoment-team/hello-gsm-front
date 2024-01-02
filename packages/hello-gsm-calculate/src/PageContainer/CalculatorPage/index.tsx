@@ -4,7 +4,7 @@ import * as S from 'shared/style';
 import * as I from 'assets/svg';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { Calculate, Volunteer, Rounds, Attendance, ArtSport } from 'utils';
+import { Calculate, Volunteer, Rounds, Attendance, ArtSport } from 'utils/';
 import useStore from 'stores/StoreContainer';
 
 interface ScoreForm {

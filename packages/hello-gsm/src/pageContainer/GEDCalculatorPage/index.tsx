@@ -6,7 +6,7 @@ import { FieldErrors, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import useStore from 'Stores/StoreContainer';
 import { GEDLocalScoreType, GEDScoreType } from 'types/score';
-import { GEDCalculate, Rounds } from 'Utils/Calculate';
+import { GEDCalculate, Rounds } from 'utils//Calculate';
 import * as S from './style';
 import useScrollToTop from 'hooks/useScrollToTop';
 

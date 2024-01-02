@@ -2,7 +2,7 @@ import {
   FreeGradeCalculate,
   FreeSemesterCalculate,
   UnAppliedCalculate,
-} from 'utils';
+} from 'utils/';
 
 /**
  *

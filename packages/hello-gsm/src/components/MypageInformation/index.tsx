@@ -1,7 +1,7 @@
 import React from 'react';
 import { AdmissionInfoType } from 'types/application';
-import formatMajor from 'Utils/Format/formatMajor';
-import formatScreening from 'Utils/Format/formatScreening';
+import formatMajor from 'utils//Format/formatMajor';
+import formatScreening from 'utils//Format/formatScreening';
 import * as S from './style';
 
 const MypageInformation: React.FC<AdmissionInfoType> = ({ admissionInfo }) => {

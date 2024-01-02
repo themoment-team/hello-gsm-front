@@ -10,7 +10,7 @@ import {
   Rounds,
   Attendance,
   ArtSport,
-} from 'Utils/Calculate';
+} from 'utils//Calculate';
 import { application } from 'api';
 import { LocalScoreType } from 'types/score';
 import useStore from 'Stores/StoreContainer';
