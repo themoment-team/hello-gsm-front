@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
-import useStore from 'stores/StoreContainer';
+import useStore from 'Stores/StoreContainer';
 import Image from 'next/image';
 import {
   MypageModal,

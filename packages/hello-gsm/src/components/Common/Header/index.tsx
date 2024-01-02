@@ -3,7 +3,7 @@ import { auth } from 'api';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import useStore from 'stores/StoreContainer';
+import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 import * as I from 'assets/svg';
 import { SideBar } from 'components';

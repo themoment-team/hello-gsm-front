@@ -21,6 +21,7 @@ import { formatDate } from 'utils/Format';
 import formatMajor from 'utils/Format/formatMajor';
 import { EvaluationStatusType } from 'types/application';
 
+
 const MainPageDescription: React.FC<MainDescStatusType> = ({
   selectedIndex,
   data,
