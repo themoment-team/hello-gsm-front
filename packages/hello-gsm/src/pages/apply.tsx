@@ -1,12 +1,11 @@
 import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
-import { CommonApplicationResponseType } from 'type/application';
-import application from 'Api/application';
+import { CommonApplicationResponseType } from 'types/application';
+import { application, identity } from 'api';
 import { ApplyPage, CalculatorPage, GEDCalculatorPage } from 'pageContainer';
 import { useEffect, useState } from 'react';
 import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
-import identity from 'Api/identity';
-import { IdentityType } from 'type/identity';
+import { IdentityType } from 'types/identity';
 import useStore from 'Stores/StoreContainer';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';

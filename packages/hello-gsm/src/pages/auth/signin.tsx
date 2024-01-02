@@ -1,10 +1,10 @@
 import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
+import { user } from 'api';
 import { SignInPage } from 'pageContainer';
-import user from 'Api/user';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { UserInfoType } from 'type/user';
+import { UserInfoType } from 'types/user';
 import { toast } from 'react-toastify';
 
 const SignIn: NextPage = () => {

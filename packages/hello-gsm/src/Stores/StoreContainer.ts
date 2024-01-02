@@ -1,4 +1,4 @@
-import { ApplicationFormType, ApplyFormType } from 'type/application';
+import { ApplicationFormType, ApplyFormType } from 'types/application';
 import create from 'zustand';
 
 interface StoreType {

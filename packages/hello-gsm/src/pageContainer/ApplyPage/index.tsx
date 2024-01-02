@@ -12,11 +12,11 @@ import {
   ApplyPostModal,
 } from 'components';
 import { useForm } from 'react-hook-form';
-import application from 'Api/application';
-import { ApplyFormType } from 'type/application';
+import { application } from 'api';
+import { ApplyFormType } from 'types/application';
 import { toast } from 'react-toastify';
-import formatMajor from 'Utils/Format/formatMajor';
-import { ApplicationIdentityType } from 'type/data';
+import formatMajor from 'utils/Format/formatMajor';
+import { ApplicationIdentityType } from 'types/data';
 
 const ApplyPage: NextPage<
   ApplicationIdentityType & {

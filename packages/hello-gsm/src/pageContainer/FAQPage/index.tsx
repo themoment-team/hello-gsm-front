@@ -4,7 +4,7 @@ import * as I from 'assets/svg';
 import * as S from './style';
 import { FAQBox } from 'components';
 import useStore from 'Stores/StoreContainer';
-import { FAQType } from 'type/faq';
+import { FAQType } from 'types/faq';
 import { css } from '@emotion/react';
 
 type FAQDataType = {

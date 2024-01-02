@@ -1,11 +1,11 @@
 import type { NextPage } from 'next';
-import application from 'Api/application';
+import { application } from 'api';
 import { SEOHelmet } from 'components';
 import { ApplicationPage } from 'pageContainer';
 import {
   ApplicationDataType,
   CommonApplicationResponseType,
-} from 'type/application';
+} from 'types/application';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 

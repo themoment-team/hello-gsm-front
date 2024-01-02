@@ -1,12 +1,12 @@
-import application from 'Api/application';
+import { application } from 'api';
 import { GEDScoreResultModal } from 'components';
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import useStore from 'Stores/StoreContainer';
-import { GEDLocalScoreType, GEDScoreType } from 'type/score';
-import { GEDCalculate, Rounds } from 'Utils/Calculate';
+import { GEDLocalScoreType, GEDScoreType } from 'types/score';
+import { GEDCalculate, Rounds } from 'utils/Calculate';
 import * as S from './style';
 import useScrollToTop from 'hooks/useScrollToTop';
 

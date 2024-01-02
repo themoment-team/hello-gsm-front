@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { GraduationStatusType } from 'type/application';
+import { GraduationStatusType } from 'types/application';
 import * as S from './style';
 
 interface StatusForm {

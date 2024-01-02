@@ -10,9 +10,9 @@ import {
   Rounds,
   Attendance,
   ArtSport,
-} from 'Utils/Calculate';
-import application from 'Api/application';
-import { LocalScoreType } from 'type/score';
+} from 'utils/Calculate';
+import { application } from 'api';
+import { LocalScoreType } from 'types/score';
 import useStore from 'Stores/StoreContainer';
 import { toast } from 'react-toastify';
 import useScrollToTop from 'hooks/useScrollToTop';
