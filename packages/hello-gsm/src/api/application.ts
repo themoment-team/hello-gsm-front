@@ -1,8 +1,8 @@
 import axios from 'axios';
 import BASE_URL from 'shared/baseURL';
 import { ApplicationFormType } from 'types/application';
-import RequestApi from 'utils//Libs/requestApi';
-import { ApplicationController } from 'utils//Libs/requestUrls';
+import RequestApi from 'utils/Libs/requestApi';
+import { ApplicationController } from 'utils/Libs/requestUrls';
 
 class Application {
   /**
