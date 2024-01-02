@@ -9,7 +9,7 @@ import {
   LinkButton,
 } from 'components';
 import { css, useTheme } from '@emotion/react';
-import useStore from 'Stores/StoreContainer';
+import useStore from 'stores/StoreContainer';
 import device from 'shared/config';
 import {
   applyAcceptable,

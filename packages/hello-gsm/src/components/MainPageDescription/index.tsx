@@ -19,7 +19,7 @@ import { startFinalTest } from 'shared/Date/secondScreening';
 import { formatDate } from 'Utils/Format';
 import formatMajor from 'Utils/Format/formatMajor';
 import { EvaluationStatusType } from 'type/application';
-import useStore from 'Stores/StoreContainer';
+import useStore from 'stores/StoreContainer';
 
 const MainPageDescription: React.FC<MainDescStatusType> = ({
   selectedIndex,

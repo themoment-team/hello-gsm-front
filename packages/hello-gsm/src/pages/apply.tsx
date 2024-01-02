@@ -6,7 +6,7 @@ import { ApplyPage, CalculatorPage, GEDCalculatorPage } from 'pageContainer';
 import { useEffect, useState } from 'react';
 import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
 import { IdentityType } from 'type/identity';
-import useStore from 'Stores/StoreContainer';
+import useStore from 'stores/StoreContainer';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 

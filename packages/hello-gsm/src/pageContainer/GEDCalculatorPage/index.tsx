@@ -4,7 +4,7 @@ import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import useStore from 'Stores/StoreContainer';
+import useStore from 'stores/StoreContainer';
 import { GEDLocalScoreType, GEDScoreType } from 'type/score';
 import { GEDCalculate, Rounds } from 'Utils/Calculate';
 import * as S from './style';

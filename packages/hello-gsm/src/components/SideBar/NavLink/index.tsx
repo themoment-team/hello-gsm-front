@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import useStore from 'Stores/StoreContainer';
+import useStore from 'stores/StoreContainer';
 import * as S from '../style';
 
 interface NavLinkProps {

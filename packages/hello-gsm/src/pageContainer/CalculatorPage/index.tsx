@@ -13,7 +13,7 @@ import {
 } from 'Utils/Calculate';
 import { application } from 'api';
 import { LocalScoreType } from 'type/score';
-import useStore from 'Stores/StoreContainer';
+import useStore from 'stores/StoreContainer';
 import { toast } from 'react-toastify';
 import useScrollToTop from 'hooks/useScrollToTop';
 

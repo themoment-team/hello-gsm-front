@@ -1,6 +1,6 @@
 import * as S from './style';
 import * as I from 'assets/svg';
-import useStore from 'Stores/StoreContainer';
+import useStore from 'stores/StoreContainer';
 import { css } from '@emotion/react';
 import { application } from 'api';
 import { useRouter } from 'next/router';
