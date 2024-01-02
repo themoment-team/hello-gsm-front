@@ -1,5 +1,5 @@
-import RequestApi from 'Utils/Libs/requestApi';
-import { UserController } from 'Utils/Libs/requestUrls';
+import RequestApi from 'utils/Libs/requestApi';
+import { UserController } from 'utils/Libs/requestUrls';
 
 class User {
   /**

@@ -1,4 +1,4 @@
-import { MajorType } from 'type/application';
+import { MajorType } from 'types/application';
 
 type MajorObjectType = {
   [key in MajorType]: string;

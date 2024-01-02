@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import { SignUpPage } from 'pageContainer';
-import { UserInfoType } from 'type/user';
+import { UserInfoType } from 'types/user';
 import { user } from 'api';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';

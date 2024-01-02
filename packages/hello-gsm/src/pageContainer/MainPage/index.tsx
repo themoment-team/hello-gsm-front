@@ -18,8 +18,8 @@ import {
   isShowResult,
   startApply,
 } from 'shared/Date/firstScreening';
-import { formatDate } from 'Utils/Format';
-import { ApplicationDataType, EvaluationStatusType } from 'type/application';
+import { formatDate } from 'utils/Format';
+import { ApplicationDataType, EvaluationStatusType } from 'types/application';
 
 const contentSelects = [
   '원서 작성',

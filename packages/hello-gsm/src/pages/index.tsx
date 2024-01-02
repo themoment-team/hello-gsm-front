@@ -5,7 +5,7 @@ import { MainPage } from 'pageContainer';
 import {
   ApplicationDataType,
   CommonApplicationResponseType,
-} from 'type/application';
+} from 'types/application';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';

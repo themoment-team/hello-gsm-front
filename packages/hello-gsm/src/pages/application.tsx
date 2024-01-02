@@ -5,7 +5,7 @@ import { ApplicationPage } from 'pageContainer';
 import {
   ApplicationDataType,
   CommonApplicationResponseType,
-} from 'type/application';
+} from 'types/application';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 

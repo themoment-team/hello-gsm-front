@@ -2,10 +2,10 @@ import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import { application, identity, user } from 'api';
 import { MypagePage } from 'pageContainer';
-import { CommonApplicationResponseType } from 'type/application';
+import { CommonApplicationResponseType } from 'types/application';
 import { useEffect, useState } from 'react';
-import { IdentityType } from 'type/identity';
-import { UserInfoType } from 'type/user';
+import { IdentityType } from 'types/identity';
+import { UserInfoType } from 'types/user';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 

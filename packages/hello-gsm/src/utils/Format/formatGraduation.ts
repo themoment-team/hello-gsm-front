@@ -1,4 +1,4 @@
-import { GraduationStatusType } from 'type/application';
+import { GraduationStatusType } from 'types/application';
 
 type GraduationObjectType = {
   [key in GraduationStatusType]: string;

@@ -1,4 +1,4 @@
-import { GenderType } from 'type/application';
+import { GenderType } from 'types/application';
 
 type GenderObjectType = {
   [key in GenderType]: string;
