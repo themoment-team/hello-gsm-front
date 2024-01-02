@@ -1,4 +1,4 @@
-import application from 'Api/application';
+import { application } from 'api';
 import { GEDScoreResultModal } from 'components';
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
