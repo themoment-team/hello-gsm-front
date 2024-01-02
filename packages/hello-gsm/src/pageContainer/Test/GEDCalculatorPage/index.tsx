@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import useStore from 'stores/StoreContainer';
-import { GEDCalculate, Rounds } from 'Utils/Calculate';
+import { GEDCalculate, Rounds } from 'utils/Calculate';
 import * as S from 'pageContainer/GEDCalculatorPage/style';
 import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
 

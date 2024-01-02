@@ -1,6 +1,6 @@
-import { SignUpType } from 'type/signup';
-import RequestApi from 'Utils/Libs/requestApi';
-import { IdentityController } from 'Utils/Libs/requestUrls';
+import { SignUpType } from 'types/signup';
+import RequestApi from 'utils/Libs/requestApi';
+import { IdentityController } from 'utils/Libs/requestUrls';
 
 interface newSignUpType extends SignUpType {
   code: string;

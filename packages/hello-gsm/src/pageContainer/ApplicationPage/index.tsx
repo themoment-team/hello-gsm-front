@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { ApplicantsStatus } from 'components';
 import * as I from 'assets/svg';
-import { LocalScoreType } from 'type/score';
-import toStringArray from 'Utils/Array/toStringArray';
-import { formatGender } from 'Utils/Format';
-import { ApplicationDataType } from 'type/application';
-import { isGED } from 'type/ged';
+import { LocalScoreType } from 'types/score';
+import toStringArray from 'utils/Array/toStringArray';
+import { formatGender } from 'utils/Format';
+import { ApplicationDataType } from 'types/application';
+import { isGED } from 'types/ged';
 import { css, Global } from '@emotion/react';
 
 const ApplicationPage: NextPage<ApplicationDataType> = ({ data }) => {

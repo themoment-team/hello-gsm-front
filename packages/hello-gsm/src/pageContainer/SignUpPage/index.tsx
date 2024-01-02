@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import TosBox from './TosBox';
 import { toast } from 'react-toastify';
-import { GenderType } from 'type/application';
+import { GenderType } from 'types/application';
 import { identity } from 'api';
 
 interface UserForm {

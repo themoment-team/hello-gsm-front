@@ -1,7 +1,7 @@
 import * as S from './style';
 import * as I from 'assets/svg';
 import useStore from 'stores/StoreContainer';
-import { FAQType } from 'type/faq';
+import { FAQType } from 'types/faq';
 import { useEffect, useState } from 'react';
 
 type FAQBoxType = FAQType & {

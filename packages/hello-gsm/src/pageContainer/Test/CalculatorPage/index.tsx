@@ -10,7 +10,7 @@ import {
   Rounds,
   Attendance,
   ArtSport,
-} from 'Utils/Calculate';
+} from 'utils/Calculate';
 import useStore from 'stores/StoreContainer';
 import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
 import { toast } from 'react-toastify';
