@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import * as S from './style';
 import * as I from 'assets/svg';
-import { MainDescStatusType } from 'type/user';
+import { MainDescStatusType } from 'types/user';
 import { useRouter } from 'next/router';
 import device from 'shared/config';
 import {
@@ -18,7 +18,7 @@ import {
 import { startFinalTest } from 'shared/Date/secondScreening';
 import { formatDate } from 'Utils/Format';
 import formatMajor from 'Utils/Format/formatMajor';
-import { EvaluationStatusType } from 'type/application';
+import { EvaluationStatusType } from 'types/application';
 import useStore from 'Stores/StoreContainer';
 
 const MainPageDescription: React.FC<MainDescStatusType> = ({

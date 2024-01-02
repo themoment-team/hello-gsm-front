@@ -1,6 +1,6 @@
 import axios from 'axios';
 import BASE_URL from 'shared/baseURL';
-import { ApplicationFormType } from 'type/application';
+import { ApplicationFormType } from 'types/application';
 import RequestApi from 'Utils/Libs/requestApi';
 import { ApplicationController } from 'Utils/Libs/requestUrls';
 

@@ -1,4 +1,4 @@
-import { ScreeningType } from 'type/application';
+import { ScreeningType } from 'types/application';
 
 type ScreeningObjectType = {
   [key in ScreeningType]: string;

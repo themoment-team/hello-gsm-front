@@ -1,5 +1,5 @@
 import React from 'react';
-import { AdmissionInfoType } from 'type/application';
+import { AdmissionInfoType } from 'types/application';
 import formatMajor from 'Utils/Format/formatMajor';
 import formatScreening from 'Utils/Format/formatScreening';
 import * as S from './style';

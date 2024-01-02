@@ -11,7 +11,7 @@ import {
   LinkButton,
 } from 'components';
 import { applyAcceptable } from 'shared/Date/firstScreening';
-import { ApplicationIdentityType } from 'type/data';
+import { ApplicationIdentityType } from 'types/data';
 import { theme } from 'styles/theme';
 
 const MyPage: NextPage<ApplicationIdentityType> = ({

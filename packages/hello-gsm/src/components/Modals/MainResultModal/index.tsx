@@ -5,7 +5,7 @@ import * as I from 'assets/svg';
 import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 import device from 'shared/config';
-import { MajorType } from 'type/application';
+import { MajorType } from 'types/application';
 import { isFirstResult } from 'shared/Date/firstScreening';
 import formatMajor from 'Utils/Format/formatMajor';
 

@@ -4,7 +4,7 @@ import { user } from 'api';
 import { SignInPage } from 'pageContainer';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { UserInfoType } from 'type/user';
+import { UserInfoType } from 'types/user';
 import { toast } from 'react-toastify';
 
 const SignIn: NextPage = () => {

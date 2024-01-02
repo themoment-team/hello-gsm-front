@@ -1,4 +1,4 @@
-import { SignUpType } from 'type/signup';
+import { SignUpType } from 'types/signup';
 import RequestApi from 'Utils/Libs/requestApi';
 import { IdentityController } from 'Utils/Libs/requestUrls';
 
