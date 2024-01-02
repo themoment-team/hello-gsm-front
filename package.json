@@ -43,5 +43,5 @@
   "resolutions": {
     "minimist": "1.2.6"
   },
-  "packageManager": "yarn@3.2.0"
+  "packageManager": "yarn@3.5.0"
 }
