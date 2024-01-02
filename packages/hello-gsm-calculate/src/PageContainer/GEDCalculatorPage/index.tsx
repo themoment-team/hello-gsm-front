@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import useStore from 'stores/StoreContainer';
-import { GEDCalculate, Rounds } from 'utils/';
+import { GEDCalculate, Rounds } from 'utils';
 import * as S from './style';
 
 interface ScoreType {

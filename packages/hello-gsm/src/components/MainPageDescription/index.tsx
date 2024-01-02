@@ -16,8 +16,8 @@ import {
   startFirstResult,
 } from 'shared/Date/firstScreening';
 import { startFinalTest } from 'shared/Date/secondScreening';
-import { formatDate } from 'utils//Format';
-import formatMajor from 'utils//Format/formatMajor';
+import { formatDate } from 'utils/Format';
+import formatMajor from 'utils/Format/formatMajor';
 import { EvaluationStatusType } from 'types/application';
 import useStore from 'Stores/StoreContainer';
 

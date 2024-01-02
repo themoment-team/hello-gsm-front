@@ -1,4 +1,4 @@
-import { Sum, Rounds } from 'utils//Calculate';
+import { Sum, Rounds } from 'utils/Calculate';
 
 /**
  *

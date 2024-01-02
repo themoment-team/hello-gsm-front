@@ -15,7 +15,7 @@ import { useForm } from 'react-hook-form';
 import { application } from 'api';
 import { ApplyFormType } from 'types/application';
 import { toast } from 'react-toastify';
-import formatMajor from 'utils//Format/formatMajor';
+import formatMajor from 'utils/Format/formatMajor';
 import { ApplicationIdentityType } from 'types/data';
 
 const ApplyPage: NextPage<

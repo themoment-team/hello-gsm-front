@@ -1,4 +1,4 @@
-import { Sum, Rounds } from 'utils/';
+import { Sum, Rounds } from 'utils';
 
 /**
  *
