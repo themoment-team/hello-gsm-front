@@ -4,7 +4,7 @@ import DaumPostcode from 'react-daum-postcode';
 import { css, Global } from '@emotion/react';
 import useApplyStore from 'Stores/ApplyStoreContainer';
 
-const FindAddressModal: React.FC = () => {
+const FindAddressModal = () => {
   const { showFindAddressModal, setShowFindAddressModal, setApplicantAddress } =
     useApplyStore();
 

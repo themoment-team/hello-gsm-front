@@ -3,7 +3,7 @@ import React from 'react';
 import useStore from 'Stores/StoreContainer';
 import * as S from './style';
 
-const DepartmentModal: React.FC = () => {
+const DepartmentModal = () => {
   const {
     showDepartmentModal,
     setShowDepartmentModal,

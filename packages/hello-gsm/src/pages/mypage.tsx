@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
-import { MypagePage } from 'PageContainer';
+import { MypagePage } from 'pageContainer';
 import application from 'Api/application';
 import { CommonApplicationResponseType } from 'type/application';
 import { useEffect, useState } from 'react';
