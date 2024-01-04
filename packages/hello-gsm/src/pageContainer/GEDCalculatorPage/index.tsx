@@ -1,10 +1,10 @@
-import { application } from 'api';
+import { application } from 'apis';
 import { GEDScoreResultModal } from 'components';
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import useStore from 'Stores/StoreContainer';
+import useStore from 'stores/StoreContainer';
 import { GEDLocalScoreType, GEDScoreType } from 'types/score';
 import { GEDCalculate, Rounds } from 'utils/Calculate';
 import * as S from './style';

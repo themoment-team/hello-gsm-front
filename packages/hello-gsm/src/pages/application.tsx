@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { application } from 'api';
+import { application } from 'apis';
 import { SEOHelmet } from 'components';
 import { ApplicationPage } from 'pageContainer';
 import {

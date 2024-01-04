@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
-import { auth } from 'api';
+import { auth } from 'apis';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import useStore from 'Stores/StoreContainer';
+import useStore from 'stores/StoreContainer';
 import * as S from './style';
 import * as I from 'assets/svg';
 import { SideBar } from 'components';

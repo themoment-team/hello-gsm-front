@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
-import { application } from 'api';
+import { application } from 'apis';
 import { MainPage } from 'pageContainer';
 import {
   ApplicationDataType,

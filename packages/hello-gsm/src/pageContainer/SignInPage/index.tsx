@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import * as S from './style';
-import { auth } from 'api';
+import { auth } from 'apis';
 import Image from 'next/image';
 
 const SignInPage: NextPage = () => {

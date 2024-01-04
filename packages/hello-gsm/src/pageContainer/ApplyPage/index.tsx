@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import * as I from 'assets/svg';
 import { css } from '@emotion/react';
-import useStore from 'Stores/StoreContainer';
+import useStore from 'stores/StoreContainer';
 import {
   DepartmentModal,
   FindAddressModal,
@@ -12,7 +12,7 @@ import {
   ApplyPostModal,
 } from 'components';
 import { useForm } from 'react-hook-form';
-import { application } from 'api';
+import { application } from 'apis';
 import { ApplyFormType } from 'types/application';
 import { toast } from 'react-toastify';
 import formatMajor from 'utils/Format/formatMajor';
