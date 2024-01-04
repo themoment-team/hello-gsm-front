@@ -2,7 +2,7 @@ import * as S from './style';
 import * as I from 'assets/svg';
 import useStore from 'Stores/StoreContainer';
 import { css } from '@emotion/react';
-import { application } from 'api';
+import { application } from 'apis';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 const MypageModal = () => {

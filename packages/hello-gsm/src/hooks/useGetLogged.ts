@@ -1,4 +1,4 @@
-import { user } from 'api';
+import { user } from 'apis';
 import { useEffect } from 'react';
 import useStore from 'Stores/StoreContainer';
 

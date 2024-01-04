@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { SEOHelmet } from 'components';
 import { CommonApplicationResponseType } from 'types/application';
-import { application, identity } from 'api';
+import { application, identity } from 'apis';
 import { ApplyPage, CalculatorPage, GEDCalculatorPage } from 'pageContainer';
 import { useEffect, useState } from 'react';
 import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';

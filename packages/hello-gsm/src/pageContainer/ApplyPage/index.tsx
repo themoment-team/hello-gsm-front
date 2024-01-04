@@ -12,7 +12,7 @@ import {
   ApplyPostModal,
 } from 'components';
 import { useForm } from 'react-hook-form';
-import { application } from 'api';
+import { application } from 'apis';
 import { ApplyFormType } from 'types/application';
 import { toast } from 'react-toastify';
 import formatMajor from 'utils/Format/formatMajor';

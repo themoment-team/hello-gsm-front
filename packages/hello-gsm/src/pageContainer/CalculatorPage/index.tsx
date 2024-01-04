@@ -11,7 +11,7 @@ import {
   Attendance,
   ArtSport,
 } from 'utils/Calculate';
-import { application } from 'api';
+import { application } from 'apis';
 import { LocalScoreType } from 'types/score';
 import useStore from 'Stores/StoreContainer';
 import { toast } from 'react-toastify';
