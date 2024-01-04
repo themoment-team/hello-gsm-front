@@ -42,7 +42,7 @@ const CalculatorPage: NextPage<CalculatorPageProps> = ({
 }) => {
   useScrollToTop();
   const { register, handleSubmit, watch, setValue } = useForm<ScoreForm>();
-
+  console.log('test');
   const {
     showScoreResult,
     setShowScoreResult,
