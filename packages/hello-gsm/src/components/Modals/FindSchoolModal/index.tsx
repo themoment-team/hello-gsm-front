@@ -6,7 +6,7 @@ import React, {
   useState,
   MouseEvent,
 } from 'react';
-import useStore from 'Stores/StoreContainer';
+import useStore from 'stores/StoreContainer';
 import * as S from './style';
 import * as I from 'assets/svg';
 import axios from 'axios';

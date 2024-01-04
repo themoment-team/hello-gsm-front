@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import * as S from './style';
 import * as I from 'assets/svg';
 import { css } from '@emotion/react';
-import useStore from 'Stores/StoreContainer';
+import useStore from 'stores/StoreContainer';
 import {
   DepartmentModal,
   FindAddressModal,

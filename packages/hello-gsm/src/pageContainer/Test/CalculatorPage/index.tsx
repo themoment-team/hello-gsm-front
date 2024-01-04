@@ -11,7 +11,7 @@ import {
   Attendance,
   ArtSport,
 } from 'utils/Calculate';
-import useStore from 'Stores/StoreContainer';
+import useStore from 'stores/StoreContainer';
 import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
 import { toast } from 'react-toastify';
 
