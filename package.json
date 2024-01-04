@@ -16,7 +16,10 @@
     "@emotion/styled": "^11.8.1",
     "axios": "^0.26.1",
     "emotion-reset": "^3.0.1",
+    "next": "13",
+    "react": "^18.2.0",
     "react-daum-postcode": "^3.0.1",
+    "react-dom": "^18.2.0",
     "react-hook-form": "^7.29.0",
     "zustand": "^3.7.2"
   },
