@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
-import * as I from 'assets/svg';
-import * as S from './style';
-import { FAQBox } from 'components';
-import useStore from 'stores/StoreContainer';
-import { FAQType } from 'types/faq';
+
 import { css } from '@emotion/react';
+import React, { useEffect, useState } from 'react';
+
+import * as I from 'assets/svg';
+import useStore from 'stores/StoreContainer';
+
+import { FAQBox } from 'components';
+
+import { FAQType } from 'types/faq';
+
+import * as S from './style';
 
 type FAQDataType = {
   faqData: FAQType[];

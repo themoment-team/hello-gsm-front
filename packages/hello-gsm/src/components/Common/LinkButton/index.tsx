@@ -1,7 +1,9 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
 import { ButtonHTMLAttributes } from 'react';
+
 import { theme } from 'styles/theme';
+
 import * as S from './style';
 
 interface LinkButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

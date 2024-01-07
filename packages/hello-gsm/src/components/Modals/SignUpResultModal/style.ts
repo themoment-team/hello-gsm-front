@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+
 import { fadeInAndOut } from 'styles/Animations';
 
 export const Background = styled.div`

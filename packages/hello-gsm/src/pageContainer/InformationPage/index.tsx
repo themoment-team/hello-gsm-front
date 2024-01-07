@@ -1,9 +1,12 @@
 import type { NextPage } from 'next';
-import { InformationDescription } from 'components';
-import * as S from './style';
+
 import { css } from '@emotion/react';
-import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
+
+import { InformationDescription } from 'components';
+
+import * as S from './style';
 
 const InformationPage: NextPage = () => {
   const [progressIndex, setProgressIndex] = useState<number>(0);

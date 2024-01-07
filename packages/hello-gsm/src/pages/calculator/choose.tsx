@@ -1,6 +1,8 @@
-import { SEOHelmet } from 'components';
 import type { NextPage } from 'next';
+
 import { ChoosePage } from 'pageContainer';
+
+import { SEOHelmet } from 'components';
 
 const Choose: NextPage = () => {
   const seoTitle = '학생 상태 선택';

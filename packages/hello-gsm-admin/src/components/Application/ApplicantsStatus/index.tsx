@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { ApplicationResponseType } from 'type/application';
 import { isGED } from 'type/ged';
 import { formatGraduation, formatMajor, formatScreening } from 'Utils/Format';
+
 import * as S from './style';
 
 const ApplicantsStatus: React.FC<{

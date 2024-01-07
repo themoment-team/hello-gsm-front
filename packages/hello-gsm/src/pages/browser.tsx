@@ -1,6 +1,8 @@
 import type { NextPage } from 'next';
-import { SEOHelmet } from 'components';
+
 import { BrowserPage } from 'pageContainer';
+
+import { SEOHelmet } from 'components';
 
 const NotFound: NextPage = () => {
   const seoTitle = '크롬 권장';

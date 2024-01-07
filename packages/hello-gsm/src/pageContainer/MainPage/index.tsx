@@ -1,15 +1,18 @@
-import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
-import * as S from './style';
-import {
-  MainPageDescription,
-  BubbleButton,
-  MainResultModal,
-  MainNonLoginModal,
-  LinkButton,
-} from 'components';
+
 import { css, useTheme } from '@emotion/react';
+import { useEffect, useState } from 'react';
+
 import useStore from 'stores/StoreContainer';
+
+import {
+  BubbleButton,
+  LinkButton,
+  MainNonLoginModal,
+  MainPageDescription,
+  MainResultModal,
+} from 'components';
+
 import device from 'shared/config';
 import {
   applyAcceptable,
@@ -18,8 +21,12 @@ import {
   isShowResult,
   startApply,
 } from 'shared/Date/firstScreening';
+
 import { formatDate } from 'utils/Format';
+
 import { ApplicationDataType, EvaluationStatusType } from 'types/application';
+
+import * as S from './style';
 
 const contentSelects = [
   '원서 작성',
@@ -34,10 +41,8 @@ const MainPage: NextPage<ApplicationDataType> = ({ data }) => {
   const [isPC, setIsPC] = useState<boolean>(true);
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isAcceptable, setIsAcceptable] = useState<boolean>(false);
-  const [isFirstResultPeriod, setIsFirstResultPeriod] =
-    useState<boolean>(isFirstResult);
-  const [isShowResultPeriod, setIsShowResultPeriod] =
-    useState<boolean>(isShowResult);
+  const [isFirstResultPeriod] = useState<boolean>(isFirstResult);
+  const [isShowResultPeriod] = useState<boolean>(isShowResult);
   const [pass, setPass] = useState<boolean | undefined>(undefined);
 
   const resetResult = (result?: EvaluationStatusType): boolean | undefined => {

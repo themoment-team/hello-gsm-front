@@ -1,18 +1,25 @@
 import type { NextPage } from 'next';
-import * as S from './style';
-import { useEffect, useState } from 'react';
+
 import { css } from '@emotion/react';
-import useStore from 'stores/StoreContainer';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+
+import useStore from 'stores/StoreContainer';
+
 import {
+  LinkButton,
+  MypageInformation,
   MypageModal,
   MypageSuccessModal,
-  MypageInformation,
-  LinkButton,
 } from 'components';
+
 import { applyAcceptable } from 'shared/Date/firstScreening';
+
 import { ApplicationIdentityType } from 'types/data';
+
 import { theme } from 'styles/theme';
+
+import * as S from './style';
 
 const MyPage: NextPage<ApplicationIdentityType> = ({
   applicationData,
@@ -23,7 +30,7 @@ const MyPage: NextPage<ApplicationIdentityType> = ({
     ? true
     : false;
   const [isPC, setIsPC] = useState<boolean>(true);
-  const [isAcceptable, setIsAcceptable] = useState<boolean>(applyAcceptable);
+  const [isAcceptable] = useState<boolean>(applyAcceptable);
 
   const {
     showMypageModal,

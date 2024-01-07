@@ -1,9 +1,11 @@
-import React from 'react';
-import * as S from './style';
-import * as I from 'Assets/svg';
-import auth from 'Api/auth';
-import { useRouter } from 'next/router';
 import { css } from '@emotion/react';
+import { useRouter } from 'next/router';
+import React from 'react';
+
+import auth from 'Api/auth';
+import * as I from 'Assets/svg';
+
+import * as S from './style';
 
 const SlideBar = () => {
   const { push, pathname } = useRouter();

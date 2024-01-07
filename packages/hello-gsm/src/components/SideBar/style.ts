@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
+
 import { NavContent } from 'components/Common/Header/style';
+
 import device from 'shared/config';
 
 interface AnimationProps {

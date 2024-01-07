@@ -1,11 +1,15 @@
 import type { NextPage } from 'next';
-import { SEOHelmet } from 'components';
-import { SignUpPage } from 'pageContainer';
-import { UserInfoType } from 'types/user';
-import { user } from 'apis';
+
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
+
+import { user } from 'apis';
+import { SignUpPage } from 'pageContainer';
+
+import { SEOHelmet } from 'components';
+
+import { UserInfoType } from 'types/user';
 
 const SignUp: NextPage = () => {
   const seoTitle = '회원가입';

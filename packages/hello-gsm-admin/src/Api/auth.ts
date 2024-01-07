@@ -1,5 +1,6 @@
-import BASE_URL from 'shared/baseURL';
 import { AuthController } from 'Utils/Libs/requestUrls';
+
+import BASE_URL from 'shared/baseURL';
 
 class Auth {
   /**

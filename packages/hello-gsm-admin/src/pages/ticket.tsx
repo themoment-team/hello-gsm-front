@@ -1,11 +1,14 @@
 import type { NextPage } from 'next';
-import { SEOHelmet } from 'components';
+
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+
+import application from 'Api/application';
 import { TicketPage } from 'PageContainer';
 import { TicketDataType, TicketType } from 'type/ticket';
-import { toast } from 'react-toastify';
-import application from 'Api/application';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+
+import { SEOHelmet } from 'components';
 
 const Ticket: NextPage = () => {
   const seoTitle = '수험표 출력';

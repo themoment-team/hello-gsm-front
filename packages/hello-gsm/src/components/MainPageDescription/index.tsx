@@ -1,10 +1,11 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import * as S from './style';
-import * as I from 'assets/svg';
-import { MainDescStatusType } from 'types/user';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+
+import * as I from 'assets/svg';
+import useStore from 'stores/StoreContainer';
+
 import device from 'shared/config';
 import {
   endApply,
@@ -16,10 +17,14 @@ import {
   startFirstResult,
 } from 'shared/Date/firstScreening';
 import { startFinalTest } from 'shared/Date/secondScreening';
+
 import { formatDate } from 'utils/Format';
 import formatMajor from 'utils/Format/formatMajor';
+
 import { EvaluationStatusType } from 'types/application';
-import useStore from 'stores/StoreContainer';
+import { MainDescStatusType } from 'types/user';
+
+import * as S from './style';
 
 const MainPageDescription: React.FC<MainDescStatusType> = ({
   selectedIndex,
@@ -37,9 +42,8 @@ const MainPageDescription: React.FC<MainDescStatusType> = ({
     return undefined;
   };
 
-  const [isFirstPeriod, setIsFirstPeriod] = useState<boolean>(isFirstResult);
-  const [isShowResultPeriod, setIsSetResultPeriod] =
-    useState<boolean>(isShowResult);
+  const [isFirstPeriod] = useState<boolean>(isFirstResult);
+  const [isShowResultPeriod] = useState<boolean>(isShowResult);
   const firstResult = resetResult(data?.admissionStatus.firstEvaluation);
   const finalResult = resetResult(data?.admissionStatus.secondEvaluation);
   const [pass, setPass] = useState<boolean | undefined>(undefined);

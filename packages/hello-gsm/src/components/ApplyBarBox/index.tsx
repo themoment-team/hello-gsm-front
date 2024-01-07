@@ -1,4 +1,5 @@
 import React from 'react';
+
 import * as S from './style';
 
 const ApplyBarBox: React.FC<{ isSpecialScreening: boolean }> = ({

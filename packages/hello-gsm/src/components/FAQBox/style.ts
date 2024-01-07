@@ -1,5 +1,6 @@
 import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
+
 import device from 'shared/config';
 
 const fadeAnimation = keyframes`

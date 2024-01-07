@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+
 import device from 'shared/config';
 
 export const Footer = styled.footer`

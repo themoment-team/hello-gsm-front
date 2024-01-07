@@ -1,15 +1,17 @@
 import { css, Global } from '@emotion/react';
+import axios from 'axios';
 import React, {
+  MouseEvent,
   useCallback,
   useEffect,
   useRef,
   useState,
-  MouseEvent,
 } from 'react';
-import useStore from 'stores/StoreContainer';
-import * as S from './style';
+
 import * as I from 'assets/svg';
-import axios from 'axios';
+import useStore from 'stores/StoreContainer';
+
+import * as S from './style';
 
 interface schoolType {
   SCHUL_NM: string;

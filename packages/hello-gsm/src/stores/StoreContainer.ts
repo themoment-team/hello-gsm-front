@@ -1,5 +1,6 @@
-import { ApplicationFormType, ApplyFormType } from 'types/application';
 import create from 'zustand';
+
+import { ApplicationFormType, ApplyFormType } from 'types/application';
 
 interface StoreType {
   logged: boolean | undefined;

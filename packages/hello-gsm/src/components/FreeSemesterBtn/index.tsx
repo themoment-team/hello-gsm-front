@@ -1,4 +1,5 @@
 import useStore from 'stores/StoreContainer';
+
 import * as S from './style';
 
 interface FreeSemesterType {
