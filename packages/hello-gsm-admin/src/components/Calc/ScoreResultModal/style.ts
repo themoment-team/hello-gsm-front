@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+
 import { Semester, Subject } from 'styles/Calculate';
 
 export const Background = styled.div`

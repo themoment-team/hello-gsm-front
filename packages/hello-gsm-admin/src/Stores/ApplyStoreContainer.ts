@@ -1,4 +1,5 @@
 import create from 'zustand';
+
 import { ApplicationFormType, ApplyFormType } from 'type/application';
 
 interface ApplyStoreType {

@@ -1,7 +1,10 @@
 import type { NextPage } from 'next';
-import * as S from './style';
+
 import type { UseFormRegisterReturn } from 'react-hook-form';
+
 import useApplyStore from 'Stores/ApplyStoreContainer';
+
+import * as S from './style';
 
 interface ScoreSelectProps {
   register: UseFormRegisterReturn;

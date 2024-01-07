@@ -1,6 +1,8 @@
 import Image from 'next/image';
-import * as S from './style';
+
 import auth from 'Api/auth';
+
+import * as S from './style';
 
 interface GoogleLoginButtonProps {
   children: React.ReactNode;

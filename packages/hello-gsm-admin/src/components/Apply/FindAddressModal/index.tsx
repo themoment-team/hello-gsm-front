@@ -1,8 +1,10 @@
-import React from 'react';
-import * as S from './style';
-import DaumPostcode from 'react-daum-postcode';
 import { css, Global } from '@emotion/react';
+import React from 'react';
+import DaumPostcode from 'react-daum-postcode';
+
 import useApplyStore from 'Stores/ApplyStoreContainer';
+
+import * as S from './style';
 
 const FindAddressModal = () => {
   const { showFindAddressModal, setShowFindAddressModal, setApplicantAddress } =

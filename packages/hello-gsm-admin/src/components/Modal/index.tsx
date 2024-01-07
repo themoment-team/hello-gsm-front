@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import * as S from './style';
-import * as I from 'Assets/svg';
-import * as C from 'components';
+import { toast } from 'react-toastify';
+
 import status from 'Api/status';
+import * as I from 'Assets/svg';
 import useStore from 'Stores/StoreContainer';
 import {
   ApplicationListType,
   CommonApplicationResponseType,
 } from 'type/application';
-import { toast } from 'react-toastify';
+
+import * as C from 'components';
+
+import * as S from './style';
 
 interface ModalProps {
   data: ApplicationListType;
@@ -21,7 +24,7 @@ interface ModalProps {
 
 const Modal = ({ data, onClose, getApplicationList }: ModalProps) => {
   const [isNextStep, setIsNextStep] = useState(false);
-  const [buttonTitle, setButtonTitle] = useState<'다음' | '확인'>('다음');
+  const [buttonTitle] = useState<'다음' | '확인'>('다음');
   const [showModalOption, setShowModalOption] = useState<number>(0);
   const [inputValue, setInputValue] = useState<number>(data.secondScore ?? 0);
   const [submittedApplyData, setSubmittedApplyData] =

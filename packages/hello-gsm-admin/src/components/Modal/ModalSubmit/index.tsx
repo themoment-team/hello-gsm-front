@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import * as I from 'Assets/svg';
-import * as S from './style';
 
+import * as I from 'Assets/svg';
 import useStore from 'Stores/StoreContainer';
 import { CommonApplicationResponseType } from 'type/application';
+
+import * as S from './style';
 
 interface ModalSubmitProps {
   data: CommonApplicationResponseType;
