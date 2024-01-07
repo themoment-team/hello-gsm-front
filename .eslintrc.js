@@ -21,8 +21,79 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint'],
-  rules: {},
+  plugins: ['react', '@typescript-eslint', 'import'],
+  rules: {
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['error'],
+    'sort-imports': [
+      'error',
+      {
+        ignoreCase: true,
+        ignoreDeclarationSort: true,
+        ignoreMemberSort: false,
+        allowSeparatedGroups: true,
+      },
+    ],
+    'import/order': [
+      'error',
+      {
+        'newlines-between': 'always',
+        groups: ['builtin', ['external', 'type'], 'internal'],
+
+        pathGroups: [
+          {
+            pattern: 'next',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'next/**',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'react',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'react-toastify',
+            group: 'external',
+          },
+          {
+            pattern: 'components',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: 'shared/**',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: 'utils/**',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: 'types/**',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: 'styles/**',
+            group: 'internal',
+            position: 'after',
+          },
+        ],
+
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
+      },
+    ],
+  },
   overrides: [
     {
       files: ['packages/hello-gsm/**/*.ts?(x)'],
