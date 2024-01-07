@@ -1,7 +1,8 @@
 import type { NextPage } from 'next';
-import * as S from './style';
-import * as I from 'assets/svg';
+
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+
 import {
   BackEnd,
   Design,
@@ -9,7 +10,9 @@ import {
   FrontEnd,
   Operating,
 } from '@/public/data/about';
-import { useEffect, useState } from 'react';
+import * as I from 'assets/svg';
+
+import * as S from './style';
 
 const AboutPage: NextPage = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);

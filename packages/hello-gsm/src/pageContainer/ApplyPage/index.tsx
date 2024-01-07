@@ -1,22 +1,28 @@
-import React, { useEffect, useRef, useState } from 'react';
 import type { NextPage } from 'next';
-import * as S from './style';
-import * as I from 'assets/svg';
+
 import { css } from '@emotion/react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+
+import { application } from 'apis';
+import * as I from 'assets/svg';
 import useStore from 'stores/StoreContainer';
+
 import {
+  ApplyBarBox,
+  ApplyPostModal,
   DepartmentModal,
   FindAddressModal,
   FindSchoolModal,
-  ApplyBarBox,
-  ApplyPostModal,
 } from 'components';
-import { useForm } from 'react-hook-form';
-import { application } from 'apis';
-import { ApplyFormType } from 'types/application';
-import { toast } from 'react-toastify';
+
 import formatMajor from 'utils/Format/formatMajor';
+
+import { ApplyFormType } from 'types/application';
 import { ApplicationIdentityType } from 'types/data';
+
+import * as S from './style';
 
 const ApplyPage: NextPage<
   ApplicationIdentityType & {

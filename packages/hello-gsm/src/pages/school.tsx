@@ -1,6 +1,8 @@
 import type { NextPage } from 'next';
-import { SEOHelmet } from 'components';
+
 import { SchoolPage } from 'pageContainer';
+
+import { SEOHelmet } from 'components';
 
 const School: NextPage = () => {
   const seoTitle = '학교 소개';

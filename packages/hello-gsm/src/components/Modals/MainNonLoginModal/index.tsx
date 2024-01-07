@@ -1,7 +1,9 @@
-import { Global, css } from '@emotion/react';
+import { css, Global } from '@emotion/react';
 import React from 'react';
-import * as S from './style';
+
 import useStore from 'stores/StoreContainer';
+
+import * as S from './style';
 
 const MainNonLoginModal = () => {
   const { setShowMainNonLoginModal } = useStore();

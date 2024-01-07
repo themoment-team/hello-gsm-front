@@ -1,6 +1,8 @@
 import { css, Global } from '@emotion/react';
 import React from 'react';
+
 import useStore from 'stores/StoreContainer';
+
 import * as S from './style';
 
 const ApplyPostModal = () => {

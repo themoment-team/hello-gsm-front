@@ -1,5 +1,7 @@
 import Link from 'next/link';
+
 import useStore from 'stores/StoreContainer';
+
 import * as S from './style';
 
 interface ResultType {

@@ -1,9 +1,12 @@
-import { NextPage } from 'next';
-import { InspectionIcon } from 'assets/svg';
-import * as S from './style';
 import { css } from '@emotion/react';
-import device from 'shared/config';
+import { NextPage } from 'next';
 import { useEffect, useState } from 'react';
+
+import { InspectionIcon } from 'assets/svg';
+
+import device from 'shared/config';
+
+import * as S from './style';
 
 const InspectionPage: NextPage = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);

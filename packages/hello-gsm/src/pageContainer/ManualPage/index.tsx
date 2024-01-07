@@ -1,10 +1,11 @@
 import type { NextPage } from 'next';
-import * as S from 'pageContainer/InformationPage/style';
-import * as DS from 'components/InformationDescription/style';
-import * as I from 'assets/svg';
-import styled from '@emotion/styled';
+
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import Image from 'next/image';
+
+import * as DS from 'components/InformationDescription/style';
+import * as S from 'pageContainer/InformationPage/style';
 
 const ManualPageStyle = styled.div`
   height: 100vh;

@@ -1,7 +1,10 @@
-import { useState } from 'react';
 import type { NextPage } from 'next';
-import * as S from './style';
+
+import { useState } from 'react';
+
 import { Enterprises } from 'components';
+
+import * as S from './style';
 
 const EmploymentRate = [
   {

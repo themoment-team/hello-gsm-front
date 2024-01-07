@@ -1,7 +1,10 @@
 import type { NextPage } from 'next';
-import * as S from './style';
-import { auth } from 'apis';
+
 import Image from 'next/image';
+
+import { auth } from 'apis';
+
+import * as S from './style';
 
 const SignInPage: NextPage = () => {
   return (

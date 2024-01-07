@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+
 import * as S from './style';
 
 /**

@@ -1,19 +1,23 @@
 import { css } from '@emotion/react';
-import { auth } from 'apis';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import useStore from 'stores/StoreContainer';
-import * as S from './style';
-import * as I from 'assets/svg';
-import { SideBar } from 'components';
 import { toast } from 'react-toastify';
+
+import { auth } from 'apis';
+import * as I from 'assets/svg';
+import useStore from 'stores/StoreContainer';
+
+import { SideBar } from 'components';
+
 import { isFinalEnd } from 'shared/Date/afterApply';
+
+import * as S from './style';
 
 const Header = () => {
   const { pathname } = useRouter();
   const [isLogoutClicked, setIsLogoutClicked] = useState<boolean>(false);
-  const [isFinalPeriod, setIsFinalPeriod] = useState<boolean>(isFinalEnd);
+  const [isFinalPeriod] = useState<boolean>(isFinalEnd);
 
   const { logged, setShowSideBar } = useStore();
 

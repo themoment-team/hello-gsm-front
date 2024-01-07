@@ -1,15 +1,20 @@
 import type { NextPage } from 'next';
-import * as S from './style';
-import { FieldErrors, useForm } from 'react-hook-form';
-import { SignUpResultModal } from 'components';
+
 import { css } from '@emotion/react';
 import dayjs from 'dayjs';
-import { useState } from 'react';
 import { useRouter } from 'next/router';
-import TosBox from './TosBox';
+import { useState } from 'react';
+import { FieldErrors, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { GenderType } from 'types/application';
+
 import { identity } from 'apis';
+
+import { SignUpResultModal } from 'components';
+
+import { GenderType } from 'types/application';
+
+import * as S from './style';
+import TosBox from './TosBox';
 
 interface UserForm {
   gender: GenderType;

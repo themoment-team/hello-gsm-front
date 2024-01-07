@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { FreeSemester } from 'components/ScoreSelect/style';
 
 export const FreeSemesterBtn = styled.button`
   width: 127px;
