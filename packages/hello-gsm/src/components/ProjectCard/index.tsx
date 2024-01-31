@@ -1,6 +1,6 @@
-import * as S from './style';
-
 import Image from 'next/image';
+
+import * as S from './style';
 
 interface Props {
   project: {
@@ -16,7 +16,7 @@ const ProjectCard: React.FC<Props> = ({
   return (
     <S.CardWrapper>
       <S.ImageWrapper>
-        <S.ImageWrapper>
+        <S.ImageWrapper className="test">
           <Image src={imageUrl} fill alt="project image" />
         </S.ImageWrapper>
       </S.ImageWrapper>

@@ -20,6 +20,7 @@ export const ImageWrapper = styled.div`
   border-radius: 10px;
   box-shadow: 2px 2px 20px 0px rgba(255, 255, 255, 0.4);
   position: relative;
+  overflow: hidden;
 
   .iamge {
     object-fit: cover;
@@ -45,4 +46,5 @@ export const CardDescription = styled.p`
   font-weight: 400;
   line-height: 150%; /* 24px */
   letter-spacing: -0.32px;
+  word-break: keep-all;
 `;
