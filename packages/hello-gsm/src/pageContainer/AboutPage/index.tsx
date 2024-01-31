@@ -42,12 +42,66 @@ const projects: ProjectType[] = [
 ];
 
 const AboutPage: NextPage = () => {
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [elementScrollPosition, setElementScrollPosition] = useState(-1);
+
+  let isThrottled = false;
+  const throttleInterval = 200;
+
+  const handleScroll = () => {
+    if (!isThrottled) {
+      setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+      isThrottled = true;
+      setTimeout(() => {
+        isThrottled = false;
+      }, throttleInterval);
+    }
+  };
+
+  const handleElementScroll = () => {
+    const element = document.querySelector('.projects');
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      setElementScrollPosition(rect.top + window.scrollY);
+    }
+  };
+
   const [isMobile, setIsMobile] = useState<boolean>(false);
   useEffect(() => {
     window.onresize = () => {
       setIsMobile(window.innerWidth < 640 ? true : false);
     };
+
+    window.addEventListener('scroll', () => {
+      handleElementScroll();
+      handleScroll();
+    });
+
+    const element = document.querySelector('.projects');
+    if (element) {
+      handleElementScroll();
+      element.addEventListener('scroll', handleElementScroll);
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (element) {
+        element.removeEventListener('scroll', handleElementScroll);
+      }
+    };
   }, []);
+
+  const startAnimation = () => {
+    alert('hah');
+  };
+
+  useEffect(() => {
+    if (scrollPosition === elementScrollPosition) {
+      startAnimation();
+    }
+    console.log(scrollPosition, elementScrollPosition);
+  }, [scrollPosition, elementScrollPosition]);
+
   return (
     <>
       <S.AboutPage>
@@ -88,7 +142,7 @@ const AboutPage: NextPage = () => {
         </S.Section>
 
         <S.Section>
-          <S.SubTitle>프로젝트 소개</S.SubTitle>
+          <S.SubTitle className="projects">프로젝트 소개</S.SubTitle>
           <S.Desc>더모먼트는 이런 프로젝트를 진행하고 있어요!</S.Desc>
           <S.Projects>
             {projects.map(project => (
