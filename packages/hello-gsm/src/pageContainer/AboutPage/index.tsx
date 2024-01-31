@@ -1,8 +1,11 @@
 import type { NextPage } from 'next';
 
+import * as I from 'assets/svg';
+import { ProjectCard } from 'components';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
+import * as S from './style';
 import {
   BackEnd,
   Design,
@@ -10,11 +13,6 @@ import {
   FrontEnd,
   Operating,
 } from '@/public/data/about';
-import * as I from 'assets/svg';
-
-import { ProjectCard } from 'components';
-
-import * as S from './style';
 
 interface ProjectType {
   imageUrl: string;
