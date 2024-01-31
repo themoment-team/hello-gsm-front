@@ -266,3 +266,19 @@ export const SmallBall = styled(Ball)`
     rgba(0, 51, 77, 0.51) 88.36%
   );
 `;
+
+export const Projects = styled.div`
+  width: 1402px;
+  height: 490px;
+
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 141px;
+
+  div {
+    :nth-of-type(2) {
+      margin-top: 40px;
+    }
+  }
+`;
