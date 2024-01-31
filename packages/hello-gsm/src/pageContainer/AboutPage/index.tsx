@@ -41,15 +41,18 @@ const projects: ProjectType[] = [
   },
 ];
 
+// 애니메이션 실행 순서
+const animationOrder = [0, 2, 1] as const;
+
+// 200ms마다 발동하도록 설정
+const throttleInterval = 200 as const;
+
 const AboutPage: NextPage = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [elementScrollPosition, setElementScrollPosition] = useState(1000);
   const [isAnimate, setIsAnimate] = useState<number>(0);
 
   let isThrottled = false;
-
-  // 200ms마다 발동하도록 설정
-  const throttleInterval = 200;
 
   const handleScroll = () => {
     if (!isThrottled) {
@@ -103,7 +106,7 @@ const AboutPage: NextPage = () => {
   };
 
   useEffect(() => {
-    if (scrollPosition > elementScrollPosition - 500) startAnimation();
+    if (scrollPosition > elementScrollPosition - 1000) startAnimation();
   }, [scrollPosition, elementScrollPosition]);
 
   return (
@@ -152,7 +155,9 @@ const AboutPage: NextPage = () => {
             {projects.map((project, index) => (
               <S.ProjectCardWrapper
                 key={project.imageUrl}
-                isAnimate={isAnimate > index}
+                isAnimate={
+                  isAnimate > animationOrder.indexOf(index as 0 | 1 | 2)
+                }
               >
                 <ProjectCard project={project} />
               </S.ProjectCardWrapper>
