@@ -4,13 +4,14 @@ export const CardWrapper = styled.div`
   width: 414px;
   height: 450px;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(75, 75, 75, 0.8);
   background: linear-gradient(
     140deg,
     rgba(255, 255, 255, 0.1) 0%,
     rgba(255, 255, 255, 0) 100%
   );
   backdrop-filter: blur(20px);
+
   padding: 40px 44px;
 `;
 

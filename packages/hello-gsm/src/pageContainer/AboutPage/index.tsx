@@ -43,9 +43,12 @@ const projects: ProjectType[] = [
 
 const AboutPage: NextPage = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [elementScrollPosition, setElementScrollPosition] = useState(-1);
+  const [elementScrollPosition, setElementScrollPosition] = useState(1000);
+  const [isAnimate, setIsAnimate] = useState<number>(0);
 
   let isThrottled = false;
+
+  // 200ms마다 발동하도록 설정
   const throttleInterval = 200;
 
   const handleScroll = () => {
@@ -72,6 +75,7 @@ const AboutPage: NextPage = () => {
       setIsMobile(window.innerWidth < 640 ? true : false);
     };
 
+    // 스크롤 이벤트 관리
     window.addEventListener('scroll', () => {
       handleElementScroll();
       handleScroll();
@@ -84,6 +88,7 @@ const AboutPage: NextPage = () => {
     }
 
     return () => {
+      // 언마운트 시 제거
       window.removeEventListener('scroll', handleScroll);
       if (element) {
         element.removeEventListener('scroll', handleElementScroll);
@@ -92,14 +97,13 @@ const AboutPage: NextPage = () => {
   }, []);
 
   const startAnimation = () => {
-    alert('hah');
+    //순차적으로 애니메이션 진행
+    for (let i = 0; i < projects.length; i++)
+      setTimeout(() => setIsAnimate(prev => prev + 1), i * 1000);
   };
 
   useEffect(() => {
-    if (scrollPosition === elementScrollPosition) {
-      startAnimation();
-    }
-    console.log(scrollPosition, elementScrollPosition);
+    if (scrollPosition > elementScrollPosition - 500) startAnimation();
   }, [scrollPosition, elementScrollPosition]);
 
   return (
@@ -145,8 +149,13 @@ const AboutPage: NextPage = () => {
           <S.SubTitle className="projects">프로젝트 소개</S.SubTitle>
           <S.Desc>더모먼트는 이런 프로젝트를 진행하고 있어요!</S.Desc>
           <S.Projects>
-            {projects.map(project => (
-              <ProjectCard project={project} key={project.imageUrl} />
+            {projects.map((project, index) => (
+              <S.ProjectCardWrapper
+                key={project.imageUrl}
+                isAnimate={isAnimate > index}
+              >
+                <ProjectCard project={project} />
+              </S.ProjectCardWrapper>
             ))}
           </S.Projects>
         </S.Section>
