@@ -1,25 +1,25 @@
 import styled from '@emotion/styled';
 
 export const CardWrapper = styled.div`
-  width: 414px;
-  height: 450px;
-  border-radius: 16px;
-  border: 1px solid rgba(75, 75, 75, 0.8);
+  width: 25.875rem;
+  height: 28.125rem;
+  border-radius: 1rem;
+  border: 0.0625rem solid rgba(75, 75, 75, 0.8);
   background: linear-gradient(
     140deg,
     rgba(255, 255, 255, 0.1) 0%,
     rgba(255, 255, 255, 0) 100%
   );
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(1.25rem);
 
-  padding: 40px 44px;
+  padding: 2.5rem 2.75rem;
 `;
 
 export const ImageWrapper = styled.div`
-  width: 326px;
-  height: 200px;
-  border-radius: 10px;
-  box-shadow: 2px 2px 20px 0px rgba(255, 255, 255, 0.4);
+  width: 20.375rem;
+  height: 12.5rem;
+  border-radius: 0.625rem;
+  box-shadow: 0.125rem 0.125rem 1.25rem 0rem rgba(255, 255, 255, 0.4);
   position: relative;
   overflow: hidden;
 
@@ -31,21 +31,21 @@ export const ImageWrapper = styled.div`
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.75rem;
 `;
 
 export const CardTitle = styled.span`
   color: #fff;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 400;
-  letter-spacing: -0.72px;
+  letter-spacing: -0.045rem;
 `;
 
 export const CardDescription = styled.p`
   color: #a7a7a7;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
-  line-height: 150%; /* 24px */
-  letter-spacing: -0.32px;
+  line-height: 150%; /* 1.5rem */
+  letter-spacing: -0.02rem;
   word-break: keep-all;
 `;

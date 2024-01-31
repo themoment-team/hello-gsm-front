@@ -270,7 +270,7 @@ export const SmallBall = styled(Ball)`
 const fadeInUp = keyframes`
   from {
     opacity: 0;
-    transform: translateY(200px);
+    transform: translateY(12.5rem);
   }
   to {
     opacity: 1;
@@ -279,17 +279,17 @@ const fadeInUp = keyframes`
 `;
 
 export const Projects = styled.div`
-  width: 1402px;
-  height: 490px;
+  width: 87.625rem;
+  height: 30.625rem;
 
   display: flex;
   justify-content: space-between;
 
-  margin-top: 141px;
+  margin-top: 8.8125rem;
 
   div {
     :nth-of-type(2) {
-      margin-top: 40px;
+      margin-top: 2.5rem;
     }
   }
 `;
