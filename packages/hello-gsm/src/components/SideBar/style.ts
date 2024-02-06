@@ -1,7 +1,4 @@
 import styled from '@emotion/styled';
-
-import { NavContent } from 'components/Common/Header/style';
-
 import device from 'shared/config';
 
 interface AnimationProps {
@@ -90,8 +87,22 @@ export const LinkWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const NavLink = styled(NavContent)`
-  ${({ theme }) => theme.typo.h4}
+export const NavLink = styled.p`
+  ${({ theme }) => theme.typo.h4};
+  position: relative;
+  font-weight: 400;
+
+  ::after {
+    position: absolute;
+    left: 50%;
+    bottom: -0.7rem;
+    transform: translateX(-50%);
+
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: ${({ theme }) => theme.color.primary.lime};
+  }
 `;
 
 export const LogOut = styled.div`
