@@ -34,8 +34,8 @@ export const Operating = [
   },
   {
     name: '김주은',
-    imageURL: 'https://github.com/MelBIP.png',
-    githubURL: 'https://github.com/MelBIP',
+    imageURL: 'https://github.com/Jueuunn7.png',
+    githubURL: 'https://github.com/Jueuunn7',
   },
 ];
 
