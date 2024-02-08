@@ -26,12 +26,6 @@ const job = {
 
 type JobType = 'backend' | 'design' | 'devops' | 'frontend' | 'operating';
 
-interface ProfileType {
-  name: string;
-  imageURL: string;
-  githubURL: string;
-}
-
 const AboutPage: NextPage = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   useEffect(() => {
@@ -54,7 +48,7 @@ const AboutPage: NextPage = () => {
         {profileList.map((list, i) => (
           <S.ProfileSection key={i}>
             {list.map(profile => (
-              <Profile profile={profile as ProfileType} key={i} />
+              <Profile profile={profile} key={i} />
             ))}
           </S.ProfileSection>
         ))}
