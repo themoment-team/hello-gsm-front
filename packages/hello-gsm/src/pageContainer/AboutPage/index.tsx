@@ -203,10 +203,10 @@ const AboutPage: NextPage = () => {
                 // 모바일 사이즈이면 2줄로 나눔
                 <>
                   <S.ProfileSection>
-                    {FrontEnd[0].map((profile, i) => (
+                    {FrontEnd.flat().map((profile, i) => (
                       <div key={i}>
                         {/* 인덱스가 0, 1, 2인 요소만 표시 */}
-                        {i <= 2 ? (
+                        {i <= 4 ? (
                           <a
                             href={profile.githubURL}
                             target="_blank"
@@ -226,9 +226,9 @@ const AboutPage: NextPage = () => {
                   </S.ProfileSection>
                   <S.ProfileSection>
                     {/* 인덱스가 3, 4인 요소만 표시 */}
-                    {FrontEnd[1].map((profile, i) => (
+                    {FrontEnd.flat().map((profile, i) => (
                       <div key={i}>
-                        {i >= 3 ? (
+                        {i >= 5 ? (
                           <a
                             href={profile.githubURL}
                             target="_blank"
@@ -303,7 +303,7 @@ const AboutPage: NextPage = () => {
                 // 모바일 사이즈이면 2줄로 나눔
                 <>
                   <S.ProfileSection>
-                    {BackEnd[0].map((profile, i) => (
+                    {BackEnd.flat().map((profile, i) => (
                       <div key={i}>
                         {/* 인덱스가 0, 1, 2인 요소만 표시 */}
                         {i <= 2 ? (
@@ -326,7 +326,7 @@ const AboutPage: NextPage = () => {
                   </S.ProfileSection>
                   <S.ProfileSection>
                     {/* 인덱스가 3, 4인 요소만 표시 */}
-                    {BackEnd[1].map((profile, i) => (
+                    {BackEnd.flat().map((profile, i) => (
                       <div key={i}>
                         {i >= 3 ? (
                           <a
