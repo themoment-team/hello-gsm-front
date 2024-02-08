@@ -3,6 +3,8 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
+import { Profile } from 'components';
+
 import {
   BackEnd,
   Design,
@@ -21,6 +23,7 @@ const AboutPage: NextPage = () => {
       setIsMobile(window.innerWidth < 640 ? true : false);
     };
   }, []);
+
   return (
     <>
       <S.AboutPage>
@@ -73,21 +76,8 @@ const AboutPage: NextPage = () => {
               </S.TeamSubTitle>
               <hr />
               <S.ProfileSection>
-                {DevOps.map((profile, i) => (
-                  <a
-                    href={profile.githubURL}
-                    target="_blank"
-                    key={i}
-                    rel="noreferrer"
-                  >
-                    <Image
-                      src={profile.imageURL}
-                      alt=""
-                      width={75}
-                      height={75}
-                    />
-                    <p>{profile.name}</p>
-                  </a>
+                {DevOps.map(profile => (
+                  <Profile key={profile.name} profile={profile} />
                 ))}
               </S.ProfileSection>
             </S.TeamSection>
