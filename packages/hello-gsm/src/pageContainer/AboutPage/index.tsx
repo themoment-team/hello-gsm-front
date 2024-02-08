@@ -161,29 +161,49 @@ const AboutPage: NextPage = () => {
               <hr />
               {!isMobile ? (
                 // 모바일사이즈가 아니면 일렬 사진
-                <S.ProfileSection>
-                  {FrontEnd.map((profile, i) => (
-                    <a
-                      href={profile.githubURL}
-                      target="_blank"
-                      key={i}
-                      rel="noreferrer"
-                    >
-                      <Image
-                        src={profile.imageURL}
-                        alt=""
-                        width={75}
-                        height={75}
-                      />
-                      <p>{profile.name}</p>
-                    </a>
-                  ))}
-                </S.ProfileSection>
+                <>
+                  <S.ProfileSection>
+                    {FrontEnd[0].map((profile, i) => (
+                      <a
+                        href={profile.githubURL}
+                        target="_blank"
+                        key={i}
+                        rel="noreferrer"
+                      >
+                        <Image
+                          src={profile.imageURL}
+                          alt=""
+                          width={75}
+                          height={75}
+                        />
+                        <p>{profile.name}</p>
+                      </a>
+                    ))}
+                  </S.ProfileSection>
+                  <S.ProfileSection>
+                    {FrontEnd[1].map((profile, i) => (
+                      <a
+                        href={profile.githubURL}
+                        target="_blank"
+                        key={i}
+                        rel="noreferrer"
+                      >
+                        <Image
+                          src={profile.imageURL}
+                          alt=""
+                          width={75}
+                          height={75}
+                        />
+                        <p>{profile.name}</p>
+                      </a>
+                    ))}
+                  </S.ProfileSection>
+                </>
               ) : (
                 // 모바일 사이즈이면 2줄로 나눔
                 <>
                   <S.ProfileSection>
-                    {FrontEnd.map((profile, i) => (
+                    {FrontEnd[0].map((profile, i) => (
                       <div key={i}>
                         {/* 인덱스가 0, 1, 2인 요소만 표시 */}
                         {i <= 2 ? (
@@ -206,7 +226,7 @@ const AboutPage: NextPage = () => {
                   </S.ProfileSection>
                   <S.ProfileSection>
                     {/* 인덱스가 3, 4인 요소만 표시 */}
-                    {FrontEnd.map((profile, i) => (
+                    {FrontEnd[1].map((profile, i) => (
                       <div key={i}>
                         {i >= 3 ? (
                           <a
@@ -239,24 +259,95 @@ const AboutPage: NextPage = () => {
                 유연하게 서빙 하는 것을 목표로 합니다.
               </S.TeamSubTitle>
               <hr />
-              <S.ProfileSection>
-                {BackEnd.map((profile, i) => (
-                  <a
-                    href={profile.githubURL}
-                    target="_blank"
-                    key={i}
-                    rel="noreferrer"
-                  >
-                    <Image
-                      src={profile.imageURL}
-                      alt=""
-                      width={75}
-                      height={75}
-                    />
-                    <p>{profile.name}</p>
-                  </a>
-                ))}
-              </S.ProfileSection>
+              {!isMobile ? (
+                // 모바일사이즈가 아니면 일렬 사진
+                <>
+                  <S.ProfileSection>
+                    {BackEnd[0].map((profile, i) => (
+                      <a
+                        href={profile.githubURL}
+                        target="_blank"
+                        key={i}
+                        rel="noreferrer"
+                      >
+                        <Image
+                          src={profile.imageURL}
+                          alt=""
+                          width={75}
+                          height={75}
+                        />
+                        <p>{profile.name}</p>
+                      </a>
+                    ))}
+                  </S.ProfileSection>
+                  <S.ProfileSection>
+                    {BackEnd[1].map((profile, i) => (
+                      <a
+                        href={profile.githubURL}
+                        target="_blank"
+                        key={i}
+                        rel="noreferrer"
+                      >
+                        <Image
+                          src={profile.imageURL}
+                          alt=""
+                          width={75}
+                          height={75}
+                        />
+                        <p>{profile.name}</p>
+                      </a>
+                    ))}
+                  </S.ProfileSection>
+                </>
+              ) : (
+                // 모바일 사이즈이면 2줄로 나눔
+                <>
+                  <S.ProfileSection>
+                    {BackEnd[0].map((profile, i) => (
+                      <div key={i}>
+                        {/* 인덱스가 0, 1, 2인 요소만 표시 */}
+                        {i <= 2 ? (
+                          <a
+                            href={profile.githubURL}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <Image
+                              src={profile.imageURL}
+                              alt=""
+                              width={75}
+                              height={75}
+                            />
+                            <p>{profile.name}</p>
+                          </a>
+                        ) : null}
+                      </div>
+                    ))}
+                  </S.ProfileSection>
+                  <S.ProfileSection>
+                    {/* 인덱스가 3, 4인 요소만 표시 */}
+                    {BackEnd[1].map((profile, i) => (
+                      <div key={i}>
+                        {i >= 3 ? (
+                          <a
+                            href={profile.githubURL}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <Image
+                              src={profile.imageURL}
+                              alt=""
+                              width={75}
+                              height={75}
+                            />
+                            <p>{profile.name}</p>
+                          </a>
+                        ) : null}
+                      </div>
+                    ))}
+                  </S.ProfileSection>
+                </>
+              )}
             </S.TeamSection>
           </S.Row>
           <S.BigBall style={{ right: '-35vh', top: '280vh' }} />
