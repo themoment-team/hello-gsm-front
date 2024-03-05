@@ -42,22 +42,12 @@ const Header = () => {
   return (
     <>
       <S.HeaderWrap>
-        <Link href="/" passHref>
-          <S.LogoContent>Hello, GSM</S.LogoContent>
-        </Link>
+        <S.LogoContent href="/" passHref>Hello, GSM</S.LogoContent>
         <S.NavBar>
-          <Link href="/" passHref>
-            <S.NavContent css={select('/')}>홈으로</S.NavContent>
-          </Link>
-          <Link href="/school" passHref>
-            <S.NavContent css={select('/school')}>학교소개</S.NavContent>
-          </Link>
-          <Link href="/faq" passHref>
-            <S.NavContent css={select('/faq')}>자주 묻는 질문</S.NavContent>
-          </Link>
-          <Link href="/about" passHref>
-            <S.NavContent css={select('/about')}>팀소개</S.NavContent>
-          </Link>
+            <S.NavContent href="/" passHref css={select('/')}>홈으로</S.NavContent>
+            <S.NavContent href="/school" passHref css={select('/school')}>학교소개</S.NavContent>
+            <S.NavContent href="/faq" passHref css={select('/faq')}>자주 묻는 질문</S.NavContent>
+            <S.NavContent href="/about" passHref css={select('/about')}>팀소개</S.NavContent>
         </S.NavBar>
         {!isFinalPeriod &&
           (!logged ? (
