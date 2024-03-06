@@ -57,8 +57,34 @@ module.exports = {
             position: 'before',
           },
           {
+            pattern: 'react-daum-postcode',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'axios',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '@emotion/react',
+            group: 'external',
+            position: 'before',
+          },
+          {
             pattern: 'react-toastify',
             group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'react-hook-form',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'dayjs',
+            group: 'external',
+            position: 'before',
           },
           {
             pattern: 'components',
@@ -90,7 +116,18 @@ module.exports = {
             group: 'internal',
             position: 'after',
           },
+          {
+            pattern: 'stores/**',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: 'hooks/**',
+            group: 'internal',
+            position: 'after',
+          },
         ],
+        pathGroupsExcludedImportTypes: ['extanal'],
 
         alphabetize: {
           order: 'asc',
