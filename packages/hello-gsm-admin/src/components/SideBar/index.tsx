@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
 import { useRouter } from 'next/router';
-import React from 'react';
+
+import { css } from '@emotion/react';
 
 import auth from 'Api/auth';
 import * as I from 'Assets/svg';

@@ -1,12 +1,13 @@
 import type { NextPage } from 'next';
 
 import { useEffect, useState } from 'react';
-import { FieldErrors, useForm } from 'react-hook-form';
+
 import { toast } from 'react-toastify';
+
+import { FieldErrors, useForm } from 'react-hook-form';
 
 import application from 'Api/application';
 import * as I from 'Assets/svg';
-import useScrollToTop from 'hooks/useScrollToTop';
 import useApplyStore from 'Stores/ApplyStoreContainer';
 import { LocalScoreType } from 'type/score';
 import {
@@ -20,6 +21,8 @@ import {
 import { FreeSemesterBtn, ScoreResultModal, ScoreSelect } from 'components';
 
 import * as S from 'styles/Calculate';
+
+import useScrollToTop from 'hooks/useScrollToTop';
 
 interface ScoreForm {
   // 과목/점수 배열
