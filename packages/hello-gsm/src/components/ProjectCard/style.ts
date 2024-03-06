@@ -13,6 +13,7 @@ export const CardWrapper = styled.div`
   backdrop-filter: blur(1.25rem);
 
   padding: 2.5rem 2.75rem;
+  cursor: pointer;
 `;
 
 export const ImageWrapper = styled.div`

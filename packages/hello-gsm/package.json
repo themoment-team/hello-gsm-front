@@ -14,7 +14,7 @@
     "axios": "^0.26.1",
     "dayjs": "^1.11.2",
     "emotion-reset": "^3.0.1",
-    "next": "13",
+    "next": "^13",
     "react": "18.2.0",
     "react-daum-postcode": "^3.0.1",
     "react-dom": "18.2.0",

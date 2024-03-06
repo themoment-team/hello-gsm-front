@@ -18,6 +18,7 @@ interface ProjectType {
   imageUrl: string;
   title: string;
   description: string;
+  link: string;
 }
 
 const projects: ProjectType[] = [
@@ -26,18 +27,21 @@ const projects: ProjectType[] = [
     title: 'Hello, GSM',
     description:
       'Hello, GSM은 신입생의 입학 지원을 도와주는 GSM 입학 지원 서비스입니다.',
+    link: 'https://www.hellogsm.kr/',
   },
   {
     imageUrl: '/Images/gsmnetworkingCover.jpeg',
     title: 'GSM Networking',
     description:
       'GSM Networking은 학교를 졸업 및 취업한 사람들을 멘토로, 학교 내 취업 준비생을 멘티로 하여 멘토 멘티를 연결해주고 취업 조언을 받을 수 있도록 도와주는 서비스입니다.',
+    link: 'https://www.gsm-networking.com/',
   },
   {
     imageUrl: '/Images/officialgsmCover.jpeg',
     title: 'official GSM',
     description:
       'official GSM은 광주소프트웨어마이스터고의 메인 페이지로 학교 소개 및 소식을 알리는 서비스입니다.',
+    link: 'https://official.hellogsm.kr/',
   },
 ];
 

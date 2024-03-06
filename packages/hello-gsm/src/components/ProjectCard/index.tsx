@@ -7,13 +7,14 @@ interface Props {
     imageUrl: string;
     title: string;
     description: string;
+    link: string;
   };
 }
 
 const ProjectCard: React.FC<Props> = ({
-  project: { imageUrl, title, description },
+  project: { imageUrl, title, description, link },
 }) => (
-  <S.CardWrapper>
+  <S.CardWrapper onClick={() => window.open(link, '_blank')}>
     <S.ImageWrapper>
       <S.ImageWrapper className="test">
         <Image src={imageUrl} fill alt="project image" />
