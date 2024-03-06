@@ -1,9 +1,8 @@
 import type { NextPage } from 'next';
 
-import { css, useTheme } from '@emotion/react';
 import { useEffect, useState } from 'react';
 
-import useStore from 'stores/StoreContainer';
+import { css, useTheme } from '@emotion/react';
 
 import {
   BubbleButton,
@@ -13,7 +12,6 @@ import {
   MainResultModal,
 } from 'components';
 
-import device from 'shared/config';
 import {
   applyAcceptable,
   endApply,
@@ -21,10 +19,13 @@ import {
   isShowResult,
   startApply,
 } from 'shared/Date/firstScreening';
+import device from 'shared/config';
 
 import { formatDate } from 'utils/Format';
 
 import { ApplicationDataType, EvaluationStatusType } from 'types/application';
+
+import useStore from 'stores/StoreContainer';
 
 import * as S from './style';
 

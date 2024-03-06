@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 
 import { useRouter } from 'next/router';
+
 import { useForm } from 'react-hook-form';
 
 import { GraduationStatusType } from 'types/application';

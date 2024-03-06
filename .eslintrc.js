@@ -67,7 +67,7 @@ module.exports = {
             position: 'before',
           },
           {
-            pattern: '@emotion/react',
+            pattern: '@emotion/**',
             group: 'external',
             position: 'before',
           },
@@ -126,12 +126,26 @@ module.exports = {
             group: 'internal',
             position: 'after',
           },
+          {
+            pattern: 'apis/**',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: 'assets/**',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: '@/**',
+            group: 'internal',
+            position: 'after',
+          },
         ],
         pathGroupsExcludedImportTypes: ['extanal'],
 
         alphabetize: {
           order: 'asc',
-          caseInsensitive: true,
         },
       },
     ],

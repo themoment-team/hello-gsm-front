@@ -1,14 +1,16 @@
 import type { NextPage } from 'next';
 
-import { css } from '@emotion/react';
 import React, { useEffect, useState } from 'react';
 
-import * as I from 'assets/svg';
-import useStore from 'stores/StoreContainer';
+import { css } from '@emotion/react';
 
 import { FAQBox } from 'components';
 
 import { FAQType } from 'types/faq';
+
+import useStore from 'stores/StoreContainer';
+
+import * as I from 'assets/svg';
 
 import * as S from './style';
 

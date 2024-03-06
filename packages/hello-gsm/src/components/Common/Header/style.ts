@@ -1,8 +1,8 @@
+import Link from 'next/link';
+
 import styled from '@emotion/styled';
 
 import device from 'shared/config';
-
-import Link from 'next/link';
 
 export const HeaderWrap = styled.header`
   color: #ffffff;

@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 
-import { ManualPage } from 'pageContainer';
-
 import { SEOHelmet } from 'components';
+
+import { ManualPage } from 'pageContainer';
 
 const Manual: NextPage = () => {
   const seoTitle = '매뉴얼 설명';

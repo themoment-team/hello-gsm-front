@@ -10,9 +10,9 @@ import { useForm } from 'react-hook-form';
 
 import * as I from 'Assets/svg';
 import useApplyStore from 'Stores/ApplyStoreContainer';
+import formatMajor from 'Utils/Format/formatMajor';
 import { ApplyFormType } from 'type/application';
 import { ApplicationIdentityType } from 'type/data';
-import formatMajor from 'Utils/Format/formatMajor';
 
 import {
   ApplyBarBox,

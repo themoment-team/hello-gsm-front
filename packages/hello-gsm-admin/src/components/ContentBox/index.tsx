@@ -5,8 +5,8 @@ import React, { useState } from 'react';
 import { css } from '@emotion/react';
 
 import * as I from 'Assets/svg';
-import { ApplicationListType, EvaluationStatusType } from 'type/application';
 import formatScreening from 'Utils/Libs/formatScreening';
+import { ApplicationListType, EvaluationStatusType } from 'type/application';
 
 import { Modal } from 'components';
 

@@ -9,7 +9,6 @@ import { FieldErrors, useForm } from 'react-hook-form';
 import application from 'Api/application';
 import * as I from 'Assets/svg';
 import useApplyStore from 'Stores/ApplyStoreContainer';
-import { LocalScoreType } from 'type/score';
 import {
   ArtSport,
   Attendance,
@@ -17,6 +16,7 @@ import {
   Rounds,
   Volunteer,
 } from 'Utils/Calculate';
+import { LocalScoreType } from 'type/score';
 
 import { FreeSemesterBtn, ScoreResultModal, ScoreSelect } from 'components';
 

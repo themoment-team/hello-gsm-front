@@ -8,8 +8,8 @@ import { FieldErrors, useForm } from 'react-hook-form';
 
 import application from 'Api/application';
 import useApplyStore from 'Stores/ApplyStoreContainer';
-import { GEDLocalScoreType, GEDScoreType } from 'type/score';
 import { GEDCalculate, Rounds } from 'Utils/Calculate';
+import { GEDLocalScoreType, GEDScoreType } from 'type/score';
 
 import { GEDScoreResultModal } from 'components';
 
