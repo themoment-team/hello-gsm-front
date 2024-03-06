@@ -1,14 +1,10 @@
 import Image from 'next/image';
+import { ProjectType } from 'types/project';
 
 import * as S from './style';
 
 interface Props {
-  project: {
-    imageUrl: string;
-    title: string;
-    description: string;
-    link: string;
-  };
+  project: ProjectType;
 }
 
 const ProjectCard: React.FC<Props> = ({

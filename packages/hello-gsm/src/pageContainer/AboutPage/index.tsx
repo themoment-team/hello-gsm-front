@@ -4,6 +4,7 @@ import * as I from 'assets/svg';
 import { ProjectCard } from 'components';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { ProjectType } from 'types/project';
 
 import * as S from './style';
 import {
@@ -13,13 +14,6 @@ import {
   FrontEnd,
   Operating,
 } from '@/public/data/about';
-
-interface ProjectType {
-  imageUrl: string;
-  title: string;
-  description: string;
-  link: string;
-}
 
 const projects: ProjectType[] = [
   {
