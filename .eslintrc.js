@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
   env: {
     browser: true,
@@ -21,11 +19,12 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', 'import'],
+  plugins: ['react', '@typescript-eslint', 'import', 'unused-imports'],
   rules: {
     '@typescript-eslint/no-var-requires': 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
+    'unused-imports/no-unused-imports-ts': ['error'],
     'sort-imports': [
       'error',
       {
@@ -38,7 +37,7 @@ module.exports = {
     'import/order': [
       'error',
       {
-        'newlines-between': 'ignore',
+        'newlines-between': 'always',
         groups: ['builtin', ['external', 'type'], 'internal'],
 
         pathGroups: [
@@ -63,6 +62,11 @@ module.exports = {
           },
           {
             pattern: 'components',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: 'pageContainer',
             group: 'internal',
             position: 'after',
           },
@@ -95,30 +99,4 @@ module.exports = {
       },
     ],
   },
-  overrides: [
-    {
-      files: ['packages/hello-gsm/**/*.ts?(x)'],
-      settings: {
-        'import/resolver': {
-          typescript: {
-            project: path.resolve(
-              `${__dirname}/packages/hello-gsm/tsconfig.json`,
-            ),
-          },
-        },
-      },
-    },
-    {
-      files: ['packages/hello-gsm-admin/**/*.ts?(x)'],
-      settings: {
-        'import/resolver': {
-          typescript: {
-            project: path.resolve(
-              `${__dirname}/packages/hello-gsm-admin/tsconfig.json`,
-            ),
-          },
-        },
-      },
-    },
-  ],
 };
