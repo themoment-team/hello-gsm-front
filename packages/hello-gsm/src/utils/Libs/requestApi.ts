@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from 'axios';
-
 import BASE_URL from 'shared/baseURL';
 
 axios.interceptors.response.use(

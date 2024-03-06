@@ -23,6 +23,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'import'],
   rules: {
+    '@typescript-eslint/no-var-requires': 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
     'sort-imports': [
@@ -37,7 +38,7 @@ module.exports = {
     'import/order': [
       'error',
       {
-        'newlines-between': 'always',
+        'newlines-between': 'ignore',
         groups: ['builtin', ['external', 'type'], 'internal'],
 
         pathGroups: [
