@@ -42,12 +42,22 @@ const Header = () => {
   return (
     <>
       <S.HeaderWrap>
-        <S.LogoContent href="/" passHref>Hello, GSM</S.LogoContent>
+        <S.LogoContent href="/" passHref>
+          Hello, GSM
+        </S.LogoContent>
         <S.NavBar>
-            <S.NavContent href="/" passHref css={select('/')}>홈으로</S.NavContent>
-            <S.NavContent href="/school" passHref css={select('/school')}>학교소개</S.NavContent>
-            <S.NavContent href="/faq" passHref css={select('/faq')}>자주 묻는 질문</S.NavContent>
-            <S.NavContent href="/about" passHref css={select('/about')}>팀소개</S.NavContent>
+          <S.NavContent href="/" passHref css={select('/')}>
+            홈으로
+          </S.NavContent>
+          <S.NavContent href="/school" passHref css={select('/school')}>
+            학교소개
+          </S.NavContent>
+          <S.NavContent href="/faq" passHref css={select('/faq')}>
+            자주 묻는 질문
+          </S.NavContent>
+          <S.NavContent href="/about" passHref css={select('/about')}>
+            팀소개
+          </S.NavContent>
         </S.NavBar>
         {!isFinalPeriod &&
           (!logged ? (
@@ -62,9 +72,9 @@ const Header = () => {
             </S.MemberBox>
           ) : (
             <S.MemberBox>
-              <Link href="/mypage" passHref>
-                <S.NavContent css={select('/mypage')}>마이페이지</S.NavContent>
-              </Link>
+              <S.NavContent href="/mypage" passHref css={select('/mypage')}>
+                마이페이지
+              </S.NavContent>
               <a href={auth.logout()} onClick={handleLogoutClick}>
                 <S.AuthButton>로그아웃</S.AuthButton>
               </a>
