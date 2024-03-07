@@ -36,17 +36,16 @@ export const TextWrapper = styled.div`
 `;
 
 export const CardTitle = styled.span`
-  color: #fff;
-  font-size: 1.5rem;
+  ${({theme}) => theme.typo.h3};
+  color: ${({theme}) => theme.color.white};
   font-weight: 400;
   letter-spacing: -0.045rem;
 `;
 
 export const CardDescription = styled.p`
   color: #a7a7a7;
-  font-size: 1rem;
+  ${({theme}) => theme.typo.body1};
   font-weight: 400;
-  line-height: 150%;
   letter-spacing: -0.02rem;
   word-break: keep-all;
 `;
