@@ -300,3 +300,10 @@ export const ProjectCardWrapper = styled.div<{ isAnimate: boolean }>`
     forwards;
   opacity: 0;
 `;
+
+export const MobileSizeProjects = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.875rem;
+`;

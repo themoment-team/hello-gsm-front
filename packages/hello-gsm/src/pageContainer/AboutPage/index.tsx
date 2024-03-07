@@ -8,6 +8,8 @@ import { ProjectCard } from 'components';
 
 import { ProjectType } from 'types/project';
 
+import useHandleWindowSize from 'hooks/useHandleWindowSize';
+
 import * as I from 'assets/svg';
 
 import {
@@ -50,10 +52,24 @@ const animationOrder = [0, 2, 1] as const;
 // 200ms마다 발동하도록 설정
 const throttleInterval = 200 as const;
 
+enum Device {
+  PC = 'PC',
+  TALBET = 'TABLET',
+  MOBILE = 'MOBILE',
+}
+
+enum WindowSizes {
+  TALBET = 1420,
+  MOBILE = 640,
+}
+
 const AboutPage: NextPage = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [elementScrollPosition, setElementScrollPosition] = useState(1000);
+
   const [isAnimate, setIsAnimate] = useState<number>(0);
+
+  const windowSize = useHandleWindowSize();
 
   let isThrottled = false;
 
@@ -75,12 +91,18 @@ const AboutPage: NextPage = () => {
     }
   };
 
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-  useEffect(() => {
-    window.onresize = () => {
-      setIsMobile(window.innerWidth < 640 ? true : false);
-    };
+  const [device, setDevice] = useState<Device>(Device.PC);
 
+  useEffect(() => {
+    let device = Device.PC;
+
+    if (windowSize < WindowSizes.MOBILE) device = Device.MOBILE;
+    else if (windowSize < WindowSizes.TALBET) device = Device.TALBET;
+
+    setDevice(device);
+  }, [windowSize]);
+
+  useEffect(() => {
     // 스크롤 이벤트 관리
     window.addEventListener('scroll', () => {
       handleElementScroll();
@@ -154,18 +176,26 @@ const AboutPage: NextPage = () => {
         <S.Section>
           <S.SubTitle className="projects">프로젝트 소개</S.SubTitle>
           <S.Desc>더모먼트는 이런 프로젝트를 진행하고 있어요!</S.Desc>
-          <S.Projects>
-            {projects.map((project, index) => (
-              <S.ProjectCardWrapper
-                key={project.imageUrl}
-                isAnimate={
-                  isAnimate > animationOrder.indexOf(index as 0 | 1 | 2)
-                }
-              >
-                <ProjectCard project={project} />
-              </S.ProjectCardWrapper>
-            ))}
-          </S.Projects>
+          {device === Device.TALBET ? (
+            <S.MobileSizeProjects>
+              {projects.map(project => (
+                <ProjectCard key={project.imageUrl} project={project} />
+              ))}
+            </S.MobileSizeProjects>
+          ) : (
+            <S.Projects>
+              {projects.map((project, index) => (
+                <S.ProjectCardWrapper
+                  key={project.imageUrl}
+                  isAnimate={
+                    isAnimate > animationOrder.indexOf(index as 0 | 1 | 2)
+                  }
+                >
+                  <ProjectCard project={project} />
+                </S.ProjectCardWrapper>
+              ))}
+            </S.Projects>
+          )}
         </S.Section>
 
         <S.Section>
@@ -267,27 +297,7 @@ const AboutPage: NextPage = () => {
                 끊임없이 연구합니다.
               </S.TeamSubTitle>
               <hr />
-              {!isMobile ? (
-                // 모바일사이즈가 아니면 일렬 사진
-                <S.ProfileSection>
-                  {FrontEnd.map((profile, i) => (
-                    <a
-                      href={profile.githubURL}
-                      target="_blank"
-                      key={i}
-                      rel="noreferrer"
-                    >
-                      <Image
-                        src={profile.imageURL}
-                        alt=""
-                        width={75}
-                        height={75}
-                      />
-                      <p>{profile.name}</p>
-                    </a>
-                  ))}
-                </S.ProfileSection>
-              ) : (
+              {device === Device.MOBILE ? (
                 // 모바일 사이즈이면 2줄로 나눔
                 <>
                   <S.ProfileSection>
@@ -335,6 +345,26 @@ const AboutPage: NextPage = () => {
                     ))}
                   </S.ProfileSection>
                 </>
+              ) : (
+                // 모바일사이즈가 아니면 일렬 사진
+                <S.ProfileSection>
+                  {FrontEnd.map((profile, i) => (
+                    <a
+                      href={profile.githubURL}
+                      target="_blank"
+                      key={i}
+                      rel="noreferrer"
+                    >
+                      <Image
+                        src={profile.imageURL}
+                        alt=""
+                        width={75}
+                        height={75}
+                      />
+                      <p>{profile.name}</p>
+                    </a>
+                  ))}
+                </S.ProfileSection>
               )}
             </S.TeamSection>
             <S.TeamSection>
