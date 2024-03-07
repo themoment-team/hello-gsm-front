@@ -1,7 +1,5 @@
 import type { NextPage } from 'next';
 
-import Image from 'next/image';
-
 import { useEffect, useState } from 'react';
 
 import { Profile } from 'components';
