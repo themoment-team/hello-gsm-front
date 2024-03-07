@@ -34,7 +34,7 @@ const projects: ProjectType[] = [
     imageUrl: '/Images/officialgsmCover.jpeg',
     title: 'official GSM',
     description:
-      'official GSM은 광주소프트웨어마이스터고의 메인 페이지로 학교 소개 및 소식을 알리는 서비스입니다.',
+      'official GSM은 광주소프트웨어마이스터고의 공식 홈페이질 학교 소개 및 소식을 알리는 서비스입니다.',
     link: 'https://official.hellogsm.kr/',
   },
 ];
