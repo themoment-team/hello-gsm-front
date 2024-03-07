@@ -1,10 +1,10 @@
 import type { NextPage } from 'next';
 
-import { css } from '@emotion/react';
 import Image from 'next/image';
+
 import { useEffect, useState } from 'react';
 
-import useStore from 'stores/StoreContainer';
+import { css } from '@emotion/react';
 
 import {
   LinkButton,
@@ -18,6 +18,8 @@ import { applyAcceptable } from 'shared/Date/firstScreening';
 import { ApplicationIdentityType } from 'types/data';
 
 import { theme } from 'styles/theme';
+
+import useStore from 'stores/StoreContainer';
 
 import * as S from './style';
 
