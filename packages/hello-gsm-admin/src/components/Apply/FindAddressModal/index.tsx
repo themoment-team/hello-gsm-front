@@ -1,6 +1,6 @@
-import { css, Global } from '@emotion/react';
-import React from 'react';
 import DaumPostcode from 'react-daum-postcode';
+
+import { css, Global } from '@emotion/react';
 
 import useApplyStore from 'Stores/ApplyStoreContainer';
 
