@@ -46,7 +46,7 @@ export const CardDescription = styled.p`
   color: #a7a7a7;
   font-size: 1rem;
   font-weight: 400;
-  line-height: 150%; /* 1.5rem */
+  line-height: 150%;
   letter-spacing: -0.02rem;
   word-break: keep-all;
 `;
