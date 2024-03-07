@@ -13,7 +13,7 @@ const ProjectCard: React.FC<Props> = ({
 }) => (
   <S.CardWrapper onClick={() => window.open(link, '_blank')}>
     <S.ImageWrapper>
-      <S.ImageWrapper className="test">
+      <S.ImageWrapper>
         <Image src={imageUrl} fill alt="project image" />
       </S.ImageWrapper>
     </S.ImageWrapper>
