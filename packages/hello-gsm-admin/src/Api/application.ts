@@ -1,6 +1,6 @@
-import { ApplicationFormType } from 'type/application';
 import RequestApi from 'Utils/Libs/requestApi';
 import { ApplicationController } from 'Utils/Libs/requestUrls';
+import { ApplicationFormType } from 'type/application';
 
 import BASE_URL from 'shared/baseURL';
 class Application {

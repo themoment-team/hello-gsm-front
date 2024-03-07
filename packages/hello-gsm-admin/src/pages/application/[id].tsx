@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 
 import { useRouter } from 'next/router';
+
 import { useEffect, useState } from 'react';
 
 import application from 'Api/application';

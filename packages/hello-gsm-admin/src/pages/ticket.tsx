@@ -1,7 +1,9 @@
 import type { NextPage } from 'next';
 
 import { useRouter } from 'next/router';
+
 import { useEffect, useState } from 'react';
+
 import { toast } from 'react-toastify';
 
 import application from 'Api/application';

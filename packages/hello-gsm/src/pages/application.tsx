@@ -3,9 +3,10 @@ import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 
 import { application } from 'apis';
-import { ApplicationPage } from 'pageContainer';
 
 import { SEOHelmet } from 'components';
+
+import { ApplicationPage } from 'pageContainer';
 
 import {
   ApplicationDataType,

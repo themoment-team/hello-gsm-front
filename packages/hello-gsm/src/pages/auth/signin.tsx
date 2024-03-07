@@ -1,13 +1,16 @@
 import type { NextPage } from 'next';
 
 import { useRouter } from 'next/router';
+
 import { useEffect } from 'react';
+
 import { toast } from 'react-toastify';
 
 import { user } from 'apis';
-import { SignInPage } from 'pageContainer';
 
 import { SEOHelmet } from 'components';
+
+import { SignInPage } from 'pageContainer';
 
 import { UserInfoType } from 'types/user';
 

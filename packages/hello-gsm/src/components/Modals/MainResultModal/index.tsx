@@ -1,16 +1,19 @@
-import { css, Global } from '@emotion/react';
 import { useRouter } from 'next/router';
+
 import React, { useState } from 'react';
 
-import * as I from 'assets/svg';
-import useStore from 'stores/StoreContainer';
+import { css, Global } from '@emotion/react';
 
-import device from 'shared/config';
 import { isFirstResult } from 'shared/Date/firstScreening';
+import device from 'shared/config';
 
 import formatMajor from 'utils/Format/formatMajor';
 
 import { MajorType } from 'types/application';
+
+import useStore from 'stores/StoreContainer';
+
+import * as I from 'assets/svg';
 
 import * as S from './style';
 

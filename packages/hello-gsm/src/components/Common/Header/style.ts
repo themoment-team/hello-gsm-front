@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import styled from '@emotion/styled';
 
 import device from 'shared/config';
@@ -16,7 +18,7 @@ export const HeaderWrap = styled.header`
   }
 `;
 
-export const LogoContent = styled.a`
+export const LogoContent = styled(Link)`
   font-size: 1.875rem;
   font-weight: 700;
 
@@ -35,7 +37,7 @@ export const NavBar = styled.nav`
   }
 `;
 
-export const NavContent = styled.a`
+export const NavContent = styled(Link)`
   ${({ theme }) => theme.typo.body1}
   position: relative;
   font-weight: 400;

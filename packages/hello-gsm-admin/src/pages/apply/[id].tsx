@@ -1,8 +1,10 @@
 import type { NextPage } from 'next';
 
-import { css, Global } from '@emotion/react';
 import { useRouter } from 'next/router';
+
 import { useEffect, useState } from 'react';
+
+import { css, Global } from '@emotion/react';
 
 import application from 'Api/application';
 import { ApplyPage, CalculatorPage, GEDCalculatorPage } from 'PageContainer';

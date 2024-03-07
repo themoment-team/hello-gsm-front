@@ -1,16 +1,20 @@
 import type { NextPage } from 'next';
 
 import { useState } from 'react';
-import { FieldErrors, useForm } from 'react-hook-form';
+
 import { toast } from 'react-toastify';
 
-import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
+import { FieldErrors, useForm } from 'react-hook-form';
+
 import * as S from 'pageContainer/GEDCalculatorPage/style';
-import useStore from 'stores/StoreContainer';
 
 import { GEDScoreResultModal } from 'components';
 
 import { GEDCalculate, Rounds } from 'utils/Calculate';
+
+import useStore from 'stores/StoreContainer';
+
+import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
 
 interface ScoreType {
   curriculumScoreSubtotal: number; // 전과목 득점

@@ -1,9 +1,12 @@
 import type { NextPage } from 'next';
 
 import Image from 'next/image';
+
 import { useEffect, useState } from 'react';
 
 import { Profile } from 'components';
+
+import * as I from 'assets/svg';
 
 import {
   BackEnd,
@@ -12,7 +15,6 @@ import {
   FrontEnd,
   Operating,
 } from '@/public/data/about';
-import * as I from 'assets/svg';
 
 import * as S from './style';
 
