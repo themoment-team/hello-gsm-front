@@ -1,13 +1,14 @@
 import type { NextPage } from 'next';
 
-import { css } from '@emotion/react';
 import React, { useEffect, useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
+
+import { css } from '@emotion/react';
+
 import { toast } from 'react-toastify';
 
+import { useForm } from 'react-hook-form';
+
 import { application } from 'apis';
-import * as I from 'assets/svg';
-import useStore from 'stores/StoreContainer';
 
 import {
   ApplyBarBox,
@@ -21,6 +22,10 @@ import formatMajor from 'utils/Format/formatMajor';
 
 import { ApplyFormType } from 'types/application';
 import { ApplicationIdentityType } from 'types/data';
+
+import useStore from 'stores/StoreContainer';
+
+import * as I from 'assets/svg';
 
 import * as S from './style';
 

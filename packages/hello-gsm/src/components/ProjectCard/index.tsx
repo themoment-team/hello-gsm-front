@@ -1,4 +1,5 @@
 import Image from 'next/image';
+
 import { ProjectType } from 'types/project';
 
 import * as S from './style';

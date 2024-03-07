@@ -1,8 +1,9 @@
 import type { NextPage } from 'next';
 
+import Image from 'next/image';
+
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import Image from 'next/image';
 
 import * as DS from 'components/InformationDescription/style';
 import * as S from 'pageContainer/InformationPage/style';

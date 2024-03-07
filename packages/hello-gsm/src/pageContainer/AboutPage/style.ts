@@ -1,5 +1,6 @@
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
+
 import device from 'shared/config';
 
 export const AboutPage = styled.div`
