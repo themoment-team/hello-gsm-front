@@ -36,15 +36,15 @@ export const TextWrapper = styled.div`
 `;
 
 export const CardTitle = styled.span`
-  ${({theme}) => theme.typo.h3};
-  color: ${({theme}) => theme.color.white};
+  ${({ theme }) => theme.typo.h3};
+  color: ${({ theme }) => theme.color.white};
   font-weight: 400;
   letter-spacing: -0.045rem;
 `;
 
 export const CardDescription = styled.p`
   color: #a7a7a7;
-  ${({theme}) => theme.typo.body1};
+  ${({ theme }) => theme.typo.body1};
   font-weight: 400;
   letter-spacing: -0.02rem;
   word-break: keep-all;
