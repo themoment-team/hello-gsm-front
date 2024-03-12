@@ -15,6 +15,7 @@ export { default as MypageSuccessModal } from './Modals/MypageSuccessModal';
 export { default as SignUpResultModal } from './Modals/SignUpResultModal';
 export { default as MypageInformation } from './MypageInformation';
 export { default as SideBar } from './SideBar';
+export { default as Profile } from './Profile';
 export { default as ScoreSelect } from './ScoreSelect';
 export { default as GEDScoreResultModal } from './Modals/GEDScoreResultModal';
 export { default as MainNonLoginModal } from './Modals/MainNonLoginModal';
