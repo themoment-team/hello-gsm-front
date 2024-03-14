@@ -1,10 +1,8 @@
 import type { NextPage } from 'next';
 
-import Image from 'next/image';
-
 import { useEffect, useState } from 'react';
 
-import { ProjectCard } from 'components';
+import { ProjectCard, Profile } from 'components';
 
 import { ProjectType } from 'types/project';
 
@@ -62,6 +60,16 @@ enum WindowSizes {
   TALBET = 1420,
   MOBILE = 640,
 }
+
+const job = {
+  backend: BackEnd,
+  design: Design,
+  devops: DevOps,
+  frontend: FrontEnd,
+  operating: Operating,
+};
+
+type JobType = 'backend' | 'design' | 'devops' | 'frontend' | 'operating';
 
 const AboutPage: NextPage = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -134,6 +142,28 @@ const AboutPage: NextPage = () => {
     if (scrollPosition > elementScrollPosition - 1000) startAnimation();
   }, [scrollPosition, elementScrollPosition]);
 
+  const returnList = (listType: JobType) => {
+    const jobList = job[listType];
+
+    const unit = device === Device.MOBILE ? 3 : 5;
+
+    const profileList = [];
+    for (let i = 0; i < jobList.length; i++)
+      if (i % unit === 0) profileList.push(jobList.slice(i, i + unit));
+
+    return (
+      <>
+        {profileList.map((list, i) => (
+          <S.ProfileSection key={i}>
+            {list.map(profile => (
+              <Profile profile={profile} key={i + profile.name} />
+            ))}
+          </S.ProfileSection>
+        ))}
+      </>
+    );
+  };
+
   return (
     <>
       <S.AboutPage>
@@ -176,7 +206,7 @@ const AboutPage: NextPage = () => {
         <S.Section>
           <S.SubTitle className="projects">프로젝트 소개</S.SubTitle>
           <S.Desc>더모먼트는 이런 프로젝트를 진행하고 있어요!</S.Desc>
-          {device === Device.TALBET ? (
+          {!(device === Device.PC) ? (
             <S.MobileSizeProjects>
               {projects.map(project => (
                 <ProjectCard key={project.imageUrl} project={project} />
@@ -210,24 +240,7 @@ const AboutPage: NextPage = () => {
                 사용되는 기술들을 연구합니다.
               </S.TeamSubTitle>
               <hr />
-              <S.ProfileSection>
-                {DevOps.map((profile, i) => (
-                  <a
-                    href={profile.githubURL}
-                    target="_blank"
-                    key={i}
-                    rel="noreferrer"
-                  >
-                    <Image
-                      src={profile.imageURL}
-                      alt=""
-                      width={75}
-                      height={75}
-                    />
-                    <p>{profile.name}</p>
-                  </a>
-                ))}
-              </S.ProfileSection>
+              {returnList('devops')}
             </S.TeamSection>
             <S.TeamSection>
               <S.TeamTitle>
@@ -238,24 +251,7 @@ const AboutPage: NextPage = () => {
                 끌어낼 수 있는 최선의 방법을 연구합니다.
               </S.TeamSubTitle>
               <hr />
-              <S.ProfileSection>
-                {Operating.map((profile, i) => (
-                  <a
-                    href={profile.githubURL}
-                    target="_blank"
-                    key={i}
-                    rel="noreferrer"
-                  >
-                    <Image
-                      src={profile.imageURL}
-                      alt=""
-                      width={75}
-                      height={75}
-                    />
-                    <p>{profile.name}</p>
-                  </a>
-                ))}
-              </S.ProfileSection>
+              {returnList('operating')}
             </S.TeamSection>
             <S.TeamSection>
               <S.TeamTitle>
@@ -266,24 +262,7 @@ const AboutPage: NextPage = () => {
                 디자인하는 팀입니다.
               </S.TeamSubTitle>
               <hr />
-              <S.ProfileSection>
-                {Design.map((profile, i) => (
-                  <a
-                    href={profile.githubURL}
-                    target="_blank"
-                    key={i}
-                    rel="noreferrer"
-                  >
-                    <Image
-                      src={profile.imageURL}
-                      alt=""
-                      width={75}
-                      height={75}
-                    />
-                    <p>{profile.name}</p>
-                  </a>
-                ))}
-              </S.ProfileSection>
+              {returnList('design')}
             </S.TeamSection>
           </S.Row>
           <S.Row>
@@ -297,75 +276,7 @@ const AboutPage: NextPage = () => {
                 끊임없이 연구합니다.
               </S.TeamSubTitle>
               <hr />
-              {device === Device.MOBILE ? (
-                // 모바일 사이즈이면 2줄로 나눔
-                <>
-                  <S.ProfileSection>
-                    {FrontEnd.map((profile, i) => (
-                      <div key={i}>
-                        {/* 인덱스가 0, 1, 2인 요소만 표시 */}
-                        {i <= 2 ? (
-                          <a
-                            href={profile.githubURL}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            <Image
-                              src={profile.imageURL}
-                              alt=""
-                              width={75}
-                              height={75}
-                            />
-                            <p>{profile.name}</p>
-                          </a>
-                        ) : null}
-                      </div>
-                    ))}
-                  </S.ProfileSection>
-                  <S.ProfileSection>
-                    {/* 인덱스가 3, 4인 요소만 표시 */}
-                    {FrontEnd.map((profile, i) => (
-                      <div key={i}>
-                        {i >= 3 ? (
-                          <a
-                            href={profile.githubURL}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            <Image
-                              src={profile.imageURL}
-                              alt=""
-                              width={75}
-                              height={75}
-                            />
-                            <p>{profile.name}</p>
-                          </a>
-                        ) : null}
-                      </div>
-                    ))}
-                  </S.ProfileSection>
-                </>
-              ) : (
-                // 모바일사이즈가 아니면 일렬 사진
-                <S.ProfileSection>
-                  {FrontEnd.map((profile, i) => (
-                    <a
-                      href={profile.githubURL}
-                      target="_blank"
-                      key={i}
-                      rel="noreferrer"
-                    >
-                      <Image
-                        src={profile.imageURL}
-                        alt=""
-                        width={75}
-                        height={75}
-                      />
-                      <p>{profile.name}</p>
-                    </a>
-                  ))}
-                </S.ProfileSection>
-              )}
+              {returnList('frontend')}
             </S.TeamSection>
             <S.TeamSection>
               <S.TeamTitle>
@@ -377,24 +288,7 @@ const AboutPage: NextPage = () => {
                 유연하게 서빙 하는 것을 목표로 합니다.
               </S.TeamSubTitle>
               <hr />
-              <S.ProfileSection>
-                {BackEnd.map((profile, i) => (
-                  <a
-                    href={profile.githubURL}
-                    target="_blank"
-                    key={i}
-                    rel="noreferrer"
-                  >
-                    <Image
-                      src={profile.imageURL}
-                      alt=""
-                      width={75}
-                      height={75}
-                    />
-                    <p>{profile.name}</p>
-                  </a>
-                ))}
-              </S.ProfileSection>
+              {returnList('backend')}
             </S.TeamSection>
           </S.Row>
           <S.BigBall style={{ right: '-35vh', top: '280vh' }} />
