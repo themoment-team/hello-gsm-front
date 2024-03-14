@@ -2,7 +2,11 @@ import type { NextPage } from 'next';
 
 import { useEffect, useState } from 'react';
 
-import { Profile } from 'components';
+import { Profile, ProjectCard } from 'components';
+
+import { ProjectType } from 'types/project';
+
+import useHandleWindowSize from 'hooks/useHandleWindowSize';
 
 import * as I from 'assets/svg';
 
@@ -16,6 +20,47 @@ import {
 
 import * as S from './style';
 
+const projects: ProjectType[] = [
+  {
+    imageUrl: '/Images/hellogsmCover.jpeg',
+    title: 'Hello, GSM',
+    description:
+      'Hello, GSM은 신입생의 입학 지원을 도와주는 GSM 입학 지원 서비스입니다.',
+    link: 'https://www.hellogsm.kr/',
+  },
+  {
+    imageUrl: '/Images/gsmnetworkingCover.jpeg',
+    title: 'GSM Networking',
+    description:
+      'GSM Networking은 학교를 졸업 및 취업한 사람들을 멘토로, 학교 내 취업 준비생을 멘티로 하여 멘토 멘티를 연결해주고 취업 조언을 받을 수 있도록 도와주는 서비스입니다.',
+    link: 'https://www.gsm-networking.com/',
+  },
+  {
+    imageUrl: '/Images/officialgsmCover.jpeg',
+    title: 'official GSM',
+    description:
+      'official GSM은 광주소프트웨어마이스터고의 공식 홈페이지로 학교 소개 및 소식을 알리는 서비스입니다.',
+    link: 'https://official.hellogsm.kr/',
+  },
+];
+
+// 애니메이션 실행 순서
+const animationOrder = [0, 2, 1] as const;
+
+// 200ms마다 발동하도록 설정
+const throttleInterval = 200 as const;
+
+enum Device {
+  PC = 'PC',
+  TALBET = 'TABLET',
+  MOBILE = 'MOBILE',
+}
+
+enum WindowSizes {
+  TALBET = 1420,
+  MOBILE = 640,
+}
+
 const job = {
   backend: BackEnd,
   design: Design,
@@ -27,17 +72,80 @@ const job = {
 type JobType = 'backend' | 'design' | 'devops' | 'frontend' | 'operating';
 
 const AboutPage: NextPage = () => {
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [elementScrollPosition, setElementScrollPosition] = useState(1000);
+
+  const [isAnimate, setIsAnimate] = useState<number>(0);
+
+  const windowSize = useHandleWindowSize();
+
+  let isThrottled = false;
+
+  const handleScroll = () => {
+    if (!isThrottled) {
+      setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+      isThrottled = true;
+      setTimeout(() => {
+        isThrottled = false;
+      }, throttleInterval);
+    }
+  };
+
+  const handleElementScroll = () => {
+    const element = document.querySelector('.projects');
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      setElementScrollPosition(rect.top + window.scrollY);
+    }
+  };
+
+  const [device, setDevice] = useState<Device>(Device.PC);
+
   useEffect(() => {
-    window.onresize = () => {
-      setIsMobile(window.innerWidth < 640 ? true : false);
+    let device = Device.PC;
+
+    if (windowSize < WindowSizes.MOBILE) device = Device.MOBILE;
+    else if (windowSize < WindowSizes.TALBET) device = Device.TALBET;
+
+    setDevice(device);
+  }, [windowSize]);
+
+  useEffect(() => {
+    // 스크롤 이벤트 관리
+    window.addEventListener('scroll', () => {
+      handleElementScroll();
+      handleScroll();
+    });
+
+    const element = document.querySelector('.projects');
+    if (element) {
+      handleElementScroll();
+      element.addEventListener('scroll', handleElementScroll);
+    }
+
+    return () => {
+      // 언마운트 시 제거
+      window.removeEventListener('scroll', handleScroll);
+      if (element) {
+        element.removeEventListener('scroll', handleElementScroll);
+      }
     };
   }, []);
+
+  const startAnimation = () => {
+    //순차적으로 애니메이션 진행
+    for (let i = 0; i < projects.length; i++)
+      setTimeout(() => setIsAnimate(prev => prev + 1), i * 1000);
+  };
+
+  useEffect(() => {
+    if (scrollPosition > elementScrollPosition - 1000) startAnimation();
+  }, [scrollPosition, elementScrollPosition]);
 
   const returnList = (listType: JobType) => {
     const jobList = job[listType];
 
-    const unit = isMobile ? 3 : 5;
+    const unit = device === Device.MOBILE ? 3 : 5;
 
     const profileList = [];
     for (let i = 0; i < jobList.length; i++)
@@ -48,7 +156,7 @@ const AboutPage: NextPage = () => {
         {profileList.map((list, i) => (
           <S.ProfileSection key={i}>
             {list.map(profile => (
-              <Profile profile={profile} key={i} />
+              <Profile profile={profile} key={i + profile.name} />
             ))}
           </S.ProfileSection>
         ))}
@@ -93,6 +201,31 @@ const AboutPage: NextPage = () => {
               top: '94vh',
             }}
           />
+        </S.Section>
+
+        <S.Section>
+          <S.SubTitle className="projects">프로젝트 소개</S.SubTitle>
+          <S.Desc>더모먼트는 이런 프로젝트를 진행하고 있어요!</S.Desc>
+          {!(device === Device.PC) ? (
+            <S.MobileSizeProjects>
+              {projects.map(project => (
+                <ProjectCard key={project.imageUrl} project={project} />
+              ))}
+            </S.MobileSizeProjects>
+          ) : (
+            <S.Projects>
+              {projects.map((project, index) => (
+                <S.ProjectCardWrapper
+                  key={project.imageUrl}
+                  isAnimate={
+                    isAnimate > animationOrder.indexOf(index as 0 | 1 | 2)
+                  }
+                >
+                  <ProjectCard project={project} />
+                </S.ProjectCardWrapper>
+              ))}
+            </S.Projects>
+          )}
         </S.Section>
 
         <S.Section>
