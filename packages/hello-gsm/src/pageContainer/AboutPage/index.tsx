@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 
 import { useEffect, useState } from 'react';
 
-import { ProjectCard, Profile } from 'components';
+import { Profile, ProjectCard } from 'components';
 
 import { ProjectType } from 'types/project';
 
