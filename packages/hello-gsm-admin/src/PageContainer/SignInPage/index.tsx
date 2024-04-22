@@ -1,7 +1,10 @@
 import type { NextPage } from 'next';
+
 import Image from 'next/image';
-import * as S from './style';
+
 import { GoogleLoginButton } from 'components';
+
+import * as S from './style';
 
 const SignInPage: NextPage = () => {
   return (

@@ -1,8 +1,12 @@
-import * as S from './style';
-import * as I from 'Assets/svg';
-import useStore from 'Stores/StoreContainer';
-import { FAQType } from 'type/faq';
 import { useEffect, useState } from 'react';
+
+import { FAQType } from 'types/faq';
+
+import useStore from 'stores/StoreContainer';
+
+import * as I from 'assets/svg';
+
+import * as S from './style';
 
 type FAQBoxType = FAQType & {
   keyword: string;

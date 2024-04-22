@@ -1,15 +1,20 @@
 import type { NextPage } from 'next';
-import { SEOHelmet } from 'components';
-import { MypagePage } from 'PageContainer';
-import application from 'Api/application';
-import { CommonApplicationResponseType } from 'type/application';
-import { useEffect, useState } from 'react';
-import identity from 'Api/identity';
-import { IdentityType } from 'type/identity';
-import { UserInfoType } from 'type/user';
-import user from 'Api/user';
+
 import { useRouter } from 'next/router';
+
+import { useEffect, useState } from 'react';
+
 import { toast } from 'react-toastify';
+
+import { application, identity, user } from 'apis';
+
+import { SEOHelmet } from 'components';
+
+import { MypagePage } from 'pageContainer';
+
+import { CommonApplicationResponseType } from 'types/application';
+import { IdentityType } from 'types/identity';
+import { UserInfoType } from 'types/user';
 
 const MyPage: NextPage = () => {
   const seoTitle = '마이페이지';

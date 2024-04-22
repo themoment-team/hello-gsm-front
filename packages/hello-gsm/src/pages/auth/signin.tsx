@@ -1,11 +1,18 @@
 import type { NextPage } from 'next';
-import { SEOHelmet } from 'components';
-import { SignInPage } from 'PageContainer';
-import user from 'Api/user';
-import { useEffect } from 'react';
+
 import { useRouter } from 'next/router';
-import { UserInfoType } from 'type/user';
+
+import { useEffect } from 'react';
+
 import { toast } from 'react-toastify';
+
+import { user } from 'apis';
+
+import { SEOHelmet } from 'components';
+
+import { SignInPage } from 'pageContainer';
+
+import { UserInfoType } from 'types/user';
 
 const SignIn: NextPage = () => {
   const seoTitle = '로그인';

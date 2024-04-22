@@ -1,3 +1,13 @@
+import type { NextPage } from 'next';
+
+import { useRouter } from 'next/router';
+
+import { useEffect, useState } from 'react';
+
+import application from 'Api/application';
+import { SearchApplicationInfoType } from 'type/application';
+import { SearchTagType } from 'type/searchTag';
+
 import {
   ContentBox,
   ListHeader,
@@ -5,13 +15,8 @@ import {
   PaginationController,
   SideBar,
 } from 'components';
-import type { NextPage } from 'next';
+
 import * as S from './style';
-import { useEffect, useState } from 'react';
-import { SearchApplicationInfoType } from 'type/application';
-import application from 'Api/application';
-import { useRouter } from 'next/router';
-import { SearchTagType } from 'type/searchTag';
 
 const MainPage: NextPage = () => {
   const [tmpValue, setTmpValue] = useState<string>('');

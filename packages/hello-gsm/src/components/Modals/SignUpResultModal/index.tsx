@@ -1,7 +1,8 @@
-import * as S from './style';
-import * as I from 'Assets/svg';
+import * as I from 'assets/svg';
 
-const SignUpResultModal: React.FC = () => {
+import * as S from './style';
+
+const SignUpResultModal = () => {
   return (
     <S.Background>
       <I.SignUpSuccess />

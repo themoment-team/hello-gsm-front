@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import { css } from '@emotion/react';
-import * as S from './style';
-import * as I from 'Assets/svg';
-import { ApplicationListType, EvaluationStatusType } from 'type/application';
-import formatScreening from 'Utils/Libs/formatScreening';
-import { Modal } from 'components';
 import { useRouter } from 'next/router';
+
+import React, { useState } from 'react';
+
+import { css } from '@emotion/react';
+
+import * as I from 'Assets/svg';
+import formatScreening from 'Utils/Libs/formatScreening';
+import { ApplicationListType, EvaluationStatusType } from 'type/application';
+
+import { Modal } from 'components';
+
+import * as S from './style';
 
 interface ContentBoxProp {
   content: ApplicationListType;
@@ -29,7 +34,6 @@ const ContentBox: React.FC<ContentBoxProp> = ({
     firstEvaluation,
     secondEvaluation,
     secondScore,
-    registrationNumber,
   },
   content,
   getApplicationList,

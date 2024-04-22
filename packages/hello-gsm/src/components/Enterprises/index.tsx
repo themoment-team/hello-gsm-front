@@ -1,8 +1,8 @@
-import React from 'react';
-import * as S from './style';
 import { css } from '@emotion/react';
 
-const Enterprises: React.FC = () => {
+import * as S from './style';
+
+const Enterprises = () => {
   const enterprises = [
     [
       '/Enterprises/Hancom.jpg',

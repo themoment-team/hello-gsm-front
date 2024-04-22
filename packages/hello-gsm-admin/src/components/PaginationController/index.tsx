@@ -1,7 +1,10 @@
-import * as S from './style';
-import PaginationIcon from 'Assets/svg/PaginationIcon';
 import { useRouter } from 'next/router';
+
 import { useEffect, useState } from 'react';
+
+import PaginationIcon from 'Assets/svg/PaginationIcon';
+
+import * as S from './style';
 
 interface PaginationControllerProps {
   totalPages: number;

@@ -1,14 +1,21 @@
-import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
-import { GlobalStyle } from 'styles/GlobalStyle';
+import { useRouter } from 'next/router';
+import Script from 'next/script';
+
+import { useEffect } from 'react';
+
+import { ThemeProvider } from '@emotion/react';
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useRouter } from 'next/router';
+
 import * as gtag from 'lib/gtag';
-import Script from 'next/script';
-import { ThemeProvider } from '@emotion/react';
-import { theme } from 'styles/theme';
+
 import { ChannelTalk, Footer, Header } from 'components';
+
+import { GlobalStyle } from 'styles/GlobalStyle';
+import { theme } from 'styles/theme';
+
 import useGetLogged from 'hooks/useGetLogged';
 import { useMiddleware } from 'hooks/useMiddleware';
 

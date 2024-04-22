@@ -1,7 +1,10 @@
 import React from 'react';
-import { ApplicationDataType } from 'type/application';
-import { isGED } from 'type/ged';
-import { formatGraduation, formatMajor, formatScreening } from 'Utils/Format';
+
+import { formatGraduation, formatMajor, formatScreening } from 'utils/Format';
+
+import { ApplicationDataType } from 'types/application';
+import { isGED } from 'types/ged';
+
 import * as S from './style';
 
 const ApplicantsStatus: React.FC<ApplicationDataType> = ({ data }) => {

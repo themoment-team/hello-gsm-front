@@ -1,21 +1,28 @@
 import type { NextPage } from 'next';
-import { ScoreSelect, ScoreResultModal, FreeSemesterBtn } from 'components';
-import * as S from 'styles/Calculate';
-import * as I from 'Assets/svg';
-import { FieldErrors, useForm } from 'react-hook-form';
+
 import { useEffect, useState } from 'react';
+
+import { toast } from 'react-toastify';
+
+import { FieldErrors, useForm } from 'react-hook-form';
+
+import application from 'Api/application';
+import * as I from 'Assets/svg';
+import useApplyStore from 'Stores/ApplyStoreContainer';
 import {
-  Calculate,
-  Volunteer,
-  Rounds,
-  Attendance,
   ArtSport,
+  Attendance,
+  Calculate,
+  Rounds,
+  Volunteer,
 } from 'Utils/Calculate';
 import { LocalScoreType } from 'type/score';
-import { toast } from 'react-toastify';
+
+import { FreeSemesterBtn, ScoreResultModal, ScoreSelect } from 'components';
+
+import * as S from 'styles/Calculate';
+
 import useScrollToTop from 'hooks/useScrollToTop';
-import useApplyStore from 'Stores/ApplyStoreContainer';
-import application from 'Api/application';
 
 interface ScoreForm {
   // 과목/점수 배열

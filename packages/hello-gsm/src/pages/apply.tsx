@@ -1,15 +1,23 @@
 import type { NextPage } from 'next';
-import { SEOHelmet } from 'components';
-import { CommonApplicationResponseType } from 'type/application';
-import application from 'Api/application';
-import { ApplyPage, CalculatorPage, GEDCalculatorPage } from 'PageContainer';
-import { useEffect, useState } from 'react';
-import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
-import identity from 'Api/identity';
-import { IdentityType } from 'type/identity';
-import useStore from 'Stores/StoreContainer';
+
 import { useRouter } from 'next/router';
+
+import { useEffect, useState } from 'react';
+
 import { toast } from 'react-toastify';
+
+import { application, identity } from 'apis';
+
+import { SEOHelmet } from 'components';
+
+import { ApplyPage, CalculatorPage, GEDCalculatorPage } from 'pageContainer';
+
+import { CommonApplicationResponseType } from 'types/application';
+import { IdentityType } from 'types/identity';
+
+import useStore from 'stores/StoreContainer';
+
+import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
 
 const Apply: NextPage = () => {
   const seoTitle = '입학 지원';

@@ -1,7 +1,10 @@
 import { useRouter } from 'next/router';
-import user from 'Api/user';
-import { toast } from 'react-toastify';
+
 import { useEffect } from 'react';
+
+import { toast } from 'react-toastify';
+
+import { user } from 'apis';
 
 export const useMiddleware = async () => {
   const { push, pathname } = useRouter();

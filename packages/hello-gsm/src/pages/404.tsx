@@ -1,6 +1,8 @@
 import type { NextPage } from 'next';
+
 import { SEOHelmet } from 'components';
-import { NotFoundPage } from 'PageContainer';
+
+import { NotFoundPage } from 'pageContainer';
 
 const NotFound: NextPage = () => {
   const seoTitle = 'NOT FOUND';

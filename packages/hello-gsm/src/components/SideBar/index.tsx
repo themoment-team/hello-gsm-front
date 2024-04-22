@@ -1,10 +1,15 @@
 import type { NextPage } from 'next';
-import * as S from './style';
-import * as I from 'Assets/svg';
+
 import { useEffect } from 'react';
-import useStore from 'Stores/StoreContainer';
+
+import { auth } from 'apis';
+
+import useStore from 'stores/StoreContainer';
+
+import * as I from 'assets/svg';
+
 import NavLink from './NavLink';
-import auth from 'Api/auth';
+import * as S from './style';
 
 const SideBar: NextPage = () => {
   const { logged, showSideBar, setShowSideBar } = useStore();

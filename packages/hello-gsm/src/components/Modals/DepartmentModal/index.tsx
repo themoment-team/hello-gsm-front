@@ -1,9 +1,10 @@
 import { css, Global } from '@emotion/react';
-import React from 'react';
-import useStore from 'Stores/StoreContainer';
+
+import useStore from 'stores/StoreContainer';
+
 import * as S from './style';
 
-const DepartmentModal: React.FC = () => {
+const DepartmentModal = () => {
   const {
     showDepartmentModal,
     setShowDepartmentModal,

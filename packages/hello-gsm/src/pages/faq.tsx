@@ -1,7 +1,10 @@
 import type { GetStaticProps, NextPage } from 'next';
-import { SEOHelmet } from 'components';
+
 import axios from 'axios';
-import { FAQPage } from 'PageContainer';
+
+import { SEOHelmet } from 'components';
+
+import { FAQPage } from 'pageContainer';
 
 interface FaqType {
   data: {

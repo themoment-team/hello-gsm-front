@@ -1,14 +1,21 @@
 import type { NextPage } from 'next';
+
+import { useRouter } from 'next/router';
+
+import { useEffect, useState } from 'react';
+
+import { toast } from 'react-toastify';
+
+import { application } from 'apis';
+
 import { SEOHelmet } from 'components';
-import { MainPage } from 'PageContainer';
-import application from 'Api/application';
+
+import { MainPage } from 'pageContainer';
+
 import {
   ApplicationDataType,
   CommonApplicationResponseType,
-} from 'type/application';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+} from 'types/application';
 
 const Home: NextPage = () => {
   const seoTitle = '홈';

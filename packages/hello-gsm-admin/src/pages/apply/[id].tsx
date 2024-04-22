@@ -1,12 +1,17 @@
 import type { NextPage } from 'next';
-import { SEOHelmet, SideBar } from 'components';
-import { ApplicationResponseType } from 'type/application';
-import { ApplyPage, CalculatorPage, GEDCalculatorPage } from 'PageContainer';
-import { useEffect, useState } from 'react';
+
 import { useRouter } from 'next/router';
-import useApplyStore from 'Stores/ApplyStoreContainer';
-import application from 'Api/application';
+
+import { useEffect, useState } from 'react';
+
 import { css, Global } from '@emotion/react';
+
+import application from 'Api/application';
+import { ApplyPage, CalculatorPage, GEDCalculatorPage } from 'PageContainer';
+import useApplyStore from 'Stores/ApplyStoreContainer';
+import { ApplicationResponseType } from 'type/application';
+
+import { SEOHelmet, SideBar } from 'components';
 
 const Apply: NextPage = () => {
   const seoTitle = '입학 지원';

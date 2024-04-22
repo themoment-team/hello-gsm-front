@@ -1,15 +1,19 @@
-import { css, Global } from '@emotion/react';
 import React, {
+  MouseEvent,
   useCallback,
   useEffect,
   useRef,
   useState,
-  MouseEvent,
 } from 'react';
-import * as S from './style';
-import * as I from 'Assets/svg';
+
 import axios from 'axios';
+
+import { css, Global } from '@emotion/react';
+
+import * as I from 'Assets/svg';
 import useApplyStore from 'Stores/ApplyStoreContainer';
+
+import * as S from './style';
 
 interface schoolType {
   SCHUL_NM: string;
@@ -18,7 +22,7 @@ interface schoolType {
   SCHUL_KND_SC_NM: '고등학교' | '중학교' | '초등학교';
 }
 
-const FindSchoolModal: React.FC = () => {
+const FindSchoolModal = () => {
   const {
     showFindSchoolModal,
     setShowFindSchoolModal,

@@ -1,4 +1,5 @@
 import React, { ButtonHTMLAttributes } from 'react';
+
 import * as S from './style';
 interface ModalButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   buttonTitle: '다음' | '확인';

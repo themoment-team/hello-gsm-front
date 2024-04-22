@@ -1,6 +1,8 @@
 import type { NextPage } from 'next';
+
 import { SEOHelmet } from 'components';
-import { InformationPage } from 'PageContainer';
+
+import { InformationPage } from 'pageContainer';
 
 const Information: NextPage = () => {
   const seoTitle = '유의사항 및 입학 절차';

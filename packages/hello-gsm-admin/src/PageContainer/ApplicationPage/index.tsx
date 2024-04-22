@@ -1,15 +1,21 @@
 import type { NextPage } from 'next';
-import * as S from './style';
+
 import { useEffect, useState } from 'react';
+
+import { css, Global } from '@emotion/react';
+
 import dayjs from 'dayjs';
-import { ApplicantsStatus } from 'components';
+
 import * as I from 'Assets/svg';
-import { LocalScoreType } from 'type/score';
 import toStringArray from 'Utils/Array/toStringArray';
 import { formatGender } from 'Utils/Format';
 import { ApplicationResponseType } from 'type/application';
 import { isGED } from 'type/ged';
-import { css, Global } from '@emotion/react';
+import { LocalScoreType } from 'type/score';
+
+import { ApplicantsStatus } from 'components';
+
+import * as S from './style';
 
 const ApplicationPage: NextPage<{
   data: ApplicationResponseType | undefined;
@@ -28,8 +34,7 @@ const ApplicationPage: NextPage<{
   const [newSubjects, setNewSubjects] = useState<string[]>([]);
   const [nonSubjects, setNonSubjects] = useState<string[]>([]);
 
-  const { admissionGrade, middleSchoolGrade, admissionInfo, admissionStatus } =
-    data || {};
+  const { admissionGrade, middleSchoolGrade, admissionInfo } = data || {};
 
   useEffect(() => {
     const scoreData: LocalScoreType | null = middleSchoolGrade

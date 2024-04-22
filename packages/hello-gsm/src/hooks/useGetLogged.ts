@@ -1,6 +1,8 @@
-import user from 'Api/user';
 import { useEffect } from 'react';
-import useStore from 'Stores/StoreContainer';
+
+import { user } from 'apis';
+
+import useStore from 'stores/StoreContainer';
 
 const useGetLogged = () => {
   const { setLogged } = useStore();

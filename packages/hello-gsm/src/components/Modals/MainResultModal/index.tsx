@@ -1,13 +1,21 @@
-import { Global, css } from '@emotion/react';
 import { useRouter } from 'next/router';
+
 import React, { useState } from 'react';
-import * as I from 'Assets/svg';
-import useStore from 'Stores/StoreContainer';
-import * as S from './style';
-import device from 'shared/config';
-import { MajorType } from 'type/application';
+
+import { css, Global } from '@emotion/react';
+
 import { isFirstResult } from 'shared/Date/firstScreening';
-import formatMajor from 'Utils/Format/formatMajor';
+import device from 'shared/config';
+
+import formatMajor from 'utils/Format/formatMajor';
+
+import { MajorType } from 'types/application';
+
+import useStore from 'stores/StoreContainer';
+
+import * as I from 'assets/svg';
+
+import * as S from './style';
 
 interface ResultModal {
   name: string;
@@ -22,8 +30,7 @@ const MainResultModal: React.FC<ResultModal> = ({
   isMobile,
   majorResult,
 }) => {
-  const [isFirstResultPeriod, setIsFirstResultPeriod] =
-    useState<boolean>(isFirstResult);
+  const [isFirstResultPeriod] = useState<boolean>(isFirstResult);
   const { setShowMainResultModal } = useStore();
   const { push } = useRouter();
 

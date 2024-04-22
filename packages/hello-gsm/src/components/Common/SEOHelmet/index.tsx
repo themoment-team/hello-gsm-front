@@ -25,14 +25,23 @@ const SEOHelmet = ({ seoTitle, desc }: SEOHelmetProps) => {
       <meta name="author" content="themoment-team" />
       <meta name="description" content={desc} />
 
-      <meta name="og:title" content="Hello, GSM" />
-      <meta name="og:site_name" content="Hello, GSM" />
+      <meta
+        name="og:title"
+        content="광주소프트웨어마이스터고등학교 신입생 입학 지원 서비스"
+      />
+      <meta
+        name="og:site_name"
+        content="광주소프트웨어마이스터고등학교 신입생 입학 지원 서비스"
+      />
       <meta name="og:description" content={desc} />
       <meta name="og:type" content="website" />
       <meta name="og:url" content="https://hellogsm.kr" />
       <meta property="og:image" content="https://hellogsm.kr/thumbnail.png" />
 
-      <meta name="twitter:title" content="Hello, GSM" />
+      <meta
+        name="twitter:title"
+        content="광주소프트웨어마이스터고등학교 신입생 입학 지원 서비스"
+      />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="https://hellogsm.kr" />
       <meta name="twitter:creator" content="themoment-team" />

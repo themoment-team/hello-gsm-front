@@ -1,6 +1,8 @@
-import { SEOHelmet } from 'components';
 import type { NextPage } from 'next';
-import { TestGEDCalculatorPage } from 'PageContainer';
+
+import { SEOHelmet } from 'components';
+
+import { TestGEDCalculatorPage } from 'pageContainer';
 
 const TestGEDCalculator: NextPage = () => {
   const seoTitle = '성적 입력 테스트';

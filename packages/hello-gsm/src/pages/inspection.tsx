@@ -1,6 +1,8 @@
-import { SEOHelmet } from 'components';
 import { NextPage } from 'next';
-import { InspectionPage } from 'PageContainer';
+
+import { SEOHelmet } from 'components';
+
+import { InspectionPage } from 'pageContainer';
 
 const Inspection: NextPage = () => {
   const seoTitle = '점검 중';

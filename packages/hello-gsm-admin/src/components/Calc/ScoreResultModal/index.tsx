@@ -1,5 +1,7 @@
 import Link from 'next/link';
+
 import useApplyStore from 'Stores/ApplyStoreContainer';
+
 import * as S from './style';
 
 interface ResultType {

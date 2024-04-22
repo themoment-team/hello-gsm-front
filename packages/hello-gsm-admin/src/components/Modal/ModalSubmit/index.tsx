@@ -1,11 +1,16 @@
 import { useEffect } from 'react';
-import * as I from 'Assets/svg';
-import * as S from './style';
 
+import * as I from 'Assets/svg';
 import useStore from 'Stores/StoreContainer';
 import { CommonApplicationResponseType } from 'type/application';
 
-const ModalSubmit = ({ data }: { data: CommonApplicationResponseType }) => {
+import * as S from './style';
+
+interface ModalSubmitProps {
+  data: CommonApplicationResponseType;
+}
+
+const ModalSubmit: React.FC<ModalSubmitProps> = ({ data }) => {
   const { setSelectedOption, selectedOption } = useStore();
   useEffect(() => {
     setSelectedOption(data.isPrintsArrived ? 1 : 2);
