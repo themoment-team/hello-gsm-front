@@ -3,8 +3,10 @@ import type { NextPage } from 'next';
 import { useEffect } from 'react';
 
 import { auth } from 'apis';
-import * as I from 'assets/svg';
+
 import useStore from 'stores/StoreContainer';
+
+import * as I from 'assets/svg';
 
 import NavLink from './NavLink';
 import * as S from './style';

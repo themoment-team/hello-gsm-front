@@ -1,15 +1,17 @@
 import type { NextPage } from 'next';
 
-import { css, Global } from '@emotion/react';
-import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 
+import { css, Global } from '@emotion/react';
+
+import dayjs from 'dayjs';
+
 import * as I from 'Assets/svg';
+import toStringArray from 'Utils/Array/toStringArray';
+import { formatGender } from 'Utils/Format';
 import { ApplicationResponseType } from 'type/application';
 import { isGED } from 'type/ged';
 import { LocalScoreType } from 'type/score';
-import toStringArray from 'Utils/Array/toStringArray';
-import { formatGender } from 'Utils/Format';
 
 import { ApplicantsStatus } from 'components';
 

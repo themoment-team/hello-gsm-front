@@ -1,12 +1,10 @@
-import { css } from '@emotion/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
 import { useEffect, useState } from 'react';
 
-import * as I from 'assets/svg';
-import useStore from 'stores/StoreContainer';
+import { css } from '@emotion/react';
 
-import device from 'shared/config';
 import {
   endApply,
   endFirstResult,
@@ -17,12 +15,17 @@ import {
   startFirstResult,
 } from 'shared/Date/firstScreening';
 import { startFinalTest } from 'shared/Date/secondScreening';
+import device from 'shared/config';
 
 import { formatDate } from 'utils/Format';
 import formatMajor from 'utils/Format/formatMajor';
 
 import { EvaluationStatusType } from 'types/application';
 import { MainDescStatusType } from 'types/user';
+
+import useStore from 'stores/StoreContainer';
+
+import * as I from 'assets/svg';
 
 import * as S from './style';
 

@@ -1,5 +1,3 @@
-import { css, Global } from '@emotion/react';
-import axios from 'axios';
 import React, {
   MouseEvent,
   useCallback,
@@ -8,8 +6,13 @@ import React, {
   useState,
 } from 'react';
 
-import * as I from 'assets/svg';
+import axios from 'axios';
+
+import { css, Global } from '@emotion/react';
+
 import useStore from 'stores/StoreContainer';
+
+import * as I from 'assets/svg';
 
 import * as S from './style';
 

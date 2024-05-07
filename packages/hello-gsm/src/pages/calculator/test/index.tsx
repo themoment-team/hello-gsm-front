@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 
-import { TestCalculatorPage } from 'pageContainer';
-
 import { SEOHelmet } from 'components';
+
+import { TestCalculatorPage } from 'pageContainer';
 
 const TestCalculator: NextPage = () => {
   const seoTitle = '성적 입력 테스트';

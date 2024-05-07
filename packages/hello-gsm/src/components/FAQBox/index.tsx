@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import * as I from 'assets/svg';
+import { FAQType } from 'types/faq';
+
 import useStore from 'stores/StoreContainer';
 
-import { FAQType } from 'types/faq';
+import * as I from 'assets/svg';
 
 import * as S from './style';
 

@@ -1,16 +1,19 @@
 import type { NextPage } from 'next';
 
 import { useEffect, useState } from 'react';
-import { FieldErrors, useForm } from 'react-hook-form';
+
 import { toast } from 'react-toastify';
 
+import { FieldErrors, useForm } from 'react-hook-form';
+
 import application from 'Api/application';
-import useScrollToTop from 'hooks/useScrollToTop';
 import useApplyStore from 'Stores/ApplyStoreContainer';
-import { GEDLocalScoreType, GEDScoreType } from 'type/score';
 import { GEDCalculate, Rounds } from 'Utils/Calculate';
+import { GEDLocalScoreType, GEDScoreType } from 'type/score';
 
 import { GEDScoreResultModal } from 'components';
+
+import useScrollToTop from 'hooks/useScrollToTop';
 
 import * as S from './style';
 

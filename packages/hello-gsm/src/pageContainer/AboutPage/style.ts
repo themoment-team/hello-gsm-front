@@ -1,3 +1,4 @@
+import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import device from 'shared/config';
@@ -265,4 +266,44 @@ export const SmallBall = styled(Ball)`
     #48afe4 32.84%,
     rgba(0, 51, 77, 0.51) 88.36%
   );
+`;
+
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(12.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+export const Projects = styled.div`
+  width: 87.625rem;
+  height: 30.625rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 8.8125rem;
+
+  div {
+    :nth-of-type(2) {
+      margin-top: 2.5rem;
+    }
+  }
+`;
+
+export const ProjectCardWrapper = styled.div<{ isAnimate: boolean }>`
+  animation: ${({ isAnimate }) => isAnimate && fadeInUp} 1.5s ease-in-out
+    forwards;
+  opacity: 0;
+`;
+
+export const MobileSizeProjects = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.875rem;
 `;

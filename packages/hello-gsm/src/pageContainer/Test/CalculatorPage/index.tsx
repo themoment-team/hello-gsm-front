@@ -1,12 +1,10 @@
 import type { NextPage } from 'next';
 
 import { useState } from 'react';
-import { FieldErrors, useForm } from 'react-hook-form';
+
 import { toast } from 'react-toastify';
 
-import * as I from 'assets/svg';
-import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
-import useStore from 'stores/StoreContainer';
+import { FieldErrors, useForm } from 'react-hook-form';
 
 import { FreeSemesterBtn, ScoreResultModal, ScoreSelect } from 'components';
 
@@ -19,6 +17,12 @@ import {
 } from 'utils/Calculate';
 
 import * as S from 'styles/Calculate';
+
+import useStore from 'stores/StoreContainer';
+
+import { usePreventBackAndClose } from 'hooks/usePreventBackAndClose';
+
+import * as I from 'assets/svg';
 
 interface ScoreForm {
   // 과목/점수 배열
