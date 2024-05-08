@@ -14,7 +14,9 @@ interface SEOHelmetProps {
 const SEOHelmet = ({ seoTitle, desc }: SEOHelmetProps) => {
   return (
     <Head>
-      <title>{seoTitle} | HelloGSM</title>
+      <title>
+        {seoTitle} | 광주소프트웨어마이스터고등학교 신입생 입학 지원 서비스
+      </title>
       <meta charSet="UTF-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
