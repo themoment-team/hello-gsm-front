@@ -380,3 +380,8 @@ export const BigGreenBall = styled(Ball)`
     height: 11.25rem;
   }
 `;
+
+export const ToHomepageWrapper = styled.div`
+  display: flex;
+  gap: 1.25rem;
+`;

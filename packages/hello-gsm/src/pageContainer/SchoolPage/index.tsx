@@ -65,9 +65,15 @@ const SchoolPage: NextPage = () => {
               />
             </S.VideoBox>
           </S.VideoWrapper>
-          <S.ToHomepage href="https://official.hellogsm.kr/" target="_blank">
-            홈페이지
-          </S.ToHomepage>
+
+          <S.ToHomepageWrapper>
+            <S.ToHomepage href="http://gsm.gen.hs.kr/" target="_blank">
+              홈페이지
+            </S.ToHomepage>
+            {/* <S.ToHomepage href="https://official.hellogsm.kr/" target="_blank">
+              학생들이 만든 홈페이지
+            </S.ToHomepage> */}
+          </S.ToHomepageWrapper>
         </S.Section1>
         <S.Section2>
           <S.Section2Title>MOU 기업</S.Section2Title>
