@@ -384,4 +384,4 @@ export const BigGreenBall = styled(Ball)`
 export const ToHomepageWrapper = styled.div`
   display: flex;
   gap: 1.25rem;
-`
+`;
